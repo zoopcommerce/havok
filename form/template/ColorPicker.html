@@ -1,0 +1,63 @@
+<span data-dojo-type="havok/widget/DropdownToggle" data-dojo-attach-point="dropdown">
+    <button id="${id}"
+        class="btn btn-color-picker"
+        data-dojo-attach-point="focusNode"
+    >
+        <span class="badge badge-info" data-dojo-attach-point="swatch">&nbsp;</span>
+        <span class="caret"></span>
+    </button>
+    <div data-dojo-type="havok/widget/DropdownBase">
+        <div class="color-picker" data-dojo-attach-point="pickerContainer">
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span10">
+                        <div class="color-picker-constraint">
+                            <div
+                                data-dojo-type="havok/widget/Moveable"
+                                data-dojo-attach-point="boxHandle"
+                                data-dojo-attach-event="moved: onBoxHandleMoved, click: onBoxHandleClick"
+                                class="color-picker-box-handle"
+                                tabindex=1
+                            ></div>
+                            <div class="color-picker-outer-box">
+                                <div
+                                    class="color-picker-box"
+                                    data-dojo-attach-point="box"
+                                    data-dojo-attach-event="ondijitclick: onBoxClick"
+                                ></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="span2">
+                        <div class="color-picker-hue-constraint">
+                            <div
+                                data-dojo-type="havok/widget/Moveable"
+                                data-dojo-attach-point="hueHandle"
+                                data-dojo-attach-event="moved: onHueHandleMoved, click: onHueHandleClick"
+                                class="color-picker-hue-handle"
+                                tabindex=2
+                            ></div>
+                            <div class="color-picker-hue-outer-box">
+                                <div
+                                    class="color-picker-hue"
+                                    data-dojo-attach-point="hue"
+                                    data-dojo-attach-event="ondijitclick: onHueClick"
+                                ></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    <input
+                        data-dojo-type="havok/form/HexColor"
+                        data-dojo-attach-point="hex"
+                        tabindex=3
+                        data-dojo-props="
+                            focusNodeClass: 'span10',
+                            suppressValidationMessages: {preActivity: true, postActivity: true}
+                        "/>
+                </div>
+            </div>
+        </div>
+    </div>
+</span>

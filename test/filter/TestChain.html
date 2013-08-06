@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+	"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>Testing havok/filter/Chain</title>
+        <script type="text/javascript" src="../testconfig.js"></script>
+        <script type="text/javascript" src="../../../dojo/dojo.js"></script>
+		<script type="text/javascript">
+            require([
+                    'doh/main',
+                    'havok/filter/Trim',
+                    'havok/filter/Uppercase',
+                    'havok/filter/Chain',
+                    'havok/test/filter/asset/DeferredFilter',
+                    'dojo/domReady!'
+                ],
+                function(
+                    doh,
+                    Trim,
+                    Uppercase,
+                    Chain,
+                    DeferredFilter
+                ){
+                    doh.register("havok/test/filter/TestChain", [
+
+                        function FilterTest(doh){
+
+                            var filter = new Chain({filters: [
+                                new Trim,
+                                new Uppercase
+                            ]});
+
+                            var testArray = [
+                                ['AB CD', 'ab cd'],
+                                ['ABCD', '  abcd   ']
+                            ];
+
+                            var index;
+                            for (index in testArray){
+                                doh.assertEqual(testArray[index][0], filter.filter(testArray[index][1]));
+                            }
+                        },
+
+                        function deferredFilterTest(doh){
+
+                            var deferredTest = new doh.Deferred;
+
+                            var filter = new Chain({filters: [
+                                new DeferredFilter,
+                                new Uppercase
+                            ]});
+
+                            filter.filter('awesome').then(function(value){
+                                doh.assertEqual('PROCESSEDAWESOME', value);
+                                deferredTest.callback(true);
+                            });
+
+                            return deferredTest;
+                        }
+                    ]);
+
+                    doh.runOnLoad();
+                }
+            );
+
+		</script>
+	</head>
+	<body>
+        <h1>Testing havok/filter/Chain</h1>
+	</body>
+</html>

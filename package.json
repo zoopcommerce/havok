@@ -1,0 +1,14 @@
+{
+	"name": "havok",
+	"version":"1.0",
+	"main":"main",
+	"dependencies": {
+            "dojo": "1.9",
+            "dijit": "1.9",
+            "mystique": "1.0"
+	},
+	"description": "The mutant offspring of Twitter Bootstrap and Dojo",
+	"keywords": ["JavaScript", "Dojo", "Widget", "Bootstrap"],
+	"homepage": "http://zoopcommerce.github.io/havok",
+	"dojoBuild": "havok.profile.js"
+}

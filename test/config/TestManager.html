@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+	"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>Testing havok/config/manager</title>
+		<script
+            type="text/javascript"
+            src="../../../dojo/dojo.js"
+            data-dojo-config="
+                isDebug: true,
+                popup: true,
+                async: true,
+                merge: [
+                    'havok/test/config/asset/Config1',
+                    'havok/test/config/asset/Config2'
+                ]
+            ">
+        </script>
+		<script type="text/javascript">
+			require([
+                'doh/main',
+                'dojo/_base/config',
+                'havok/config/ready!',
+                'dojo/domReady!'
+            ],
+            function(
+                doh,
+                dojoConfig
+            ){
+                doh.register([
+                   function testConfigMerge(){
+                        var expectedConfig = {
+                            test1: {
+                                base: 'Test1',
+                                params: {
+                                    value1: 1,
+                                    value2: 22
+                                }
+                            },
+                            test2: {
+                                base: 'Test2',
+                                params: {
+                                    value1: 1
+                                }
+                            },
+                            test3: {
+                                params: {
+                                    value1: 11
+                                }
+                            }
+                        }
+                        doh.assertEqual(expectedConfig, dojoConfig.configTest);
+                   }
+                ]);
+                doh.runOnLoad();
+            });
+		</script>
+	</head>
+	<body>
+        <h1>Testing havok/config/manager</h1>
+	</body>
+</html>

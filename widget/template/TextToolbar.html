@@ -1,0 +1,145 @@
+<div>
+    <div data-dojo-type="havok/widget/ButtonGroup">
+        <div data-dojo-type="havok/widget/DropdownToggle" data-dojo-attach-point="font" class="btn">
+            <span>
+                <i class="icon-font"></i>
+                <span class="caret"></span>
+            </span>
+            <ul data-dojo-type="havok/widget/Dropdown" data-dojo-props="store: 'font'">
+            </ul>
+        </div>
+        <hr />
+        <div data-dojo-type="havok/widget/DropdownToggle" data-dojo-attach-point="fontSize" class="btn">
+            <span>
+                <i class="icon-text-height"></i>
+                <span class="caret"></span>
+            </span>
+            <ul data-dojo-type="havok/widget/Dropdown" data-dojo-props="store: 'fontsize'">
+            </ul>
+        </div>
+        <hr />
+        <button
+            data-dojo-type="havok/widget/ToggleButton"
+            data-dojo-attach-point="bold"
+            data-dojo-props="keys: {ctrl: true, char: 'b'}"
+        >
+            <i class="icon-bold"></i>
+        </button>
+        <button
+            data-dojo-type="havok/widget/ToggleButton"
+            data-dojo-attach-point="italic"
+            data-dojo-props="keys: {ctrl: true, char: 'i'}"
+        >
+            <i class="icon-italic"></i>
+        </button>
+        <button
+            data-dojo-type="havok/widget/ToggleButton"
+            data-dojo-attach-point="strikeThrough"
+        >
+            <i class="icon-strikethrough"></i>
+        </button>
+        <button
+            data-dojo-type="havok/widget/ToggleButton"
+            data-dojo-attach-point="underline"
+            data-dojo-props="keys: {ctrl: true, char: 'u'}"
+        >
+            <i class="icon-underline"></i>
+        </button>
+
+        <hr />
+
+        <button
+            data-dojo-type="havok/widget/ToggleButton"
+            data-dojo-attach-point="insertUnorderedList"
+        >
+            <i class="icon-list-ul"></i>
+        </button>
+        <button
+            data-dojo-type="havok/widget/ToggleButton"
+            data-dojo-attach-point="insertOrderedList"
+        >
+            <i class="icon-list-ol"></i>
+        </button>
+        <button
+            data-dojo-type="havok/widget/Button"
+            data-dojo-attach-point="outdent"
+            data-dojo-props="keys: {char: 'TAB', shift: true}"
+        >
+            <i class="icon-indent-left"></i>
+        </button>
+        <button
+            data-dojo-type="havok/widget/Button"
+            data-dojo-attach-point="indent"
+            data-dojo-props="keys: {char: 'TAB'}"
+        >
+            <i class="icon-indent-right"></i>
+        </button>
+
+        <hr />
+
+        <button
+            data-dojo-type="havok/widget/ToggleButton"
+            data-dojo-attach-point="justifyleft"
+            data-dojo-props="keys: {ctrl: true, char: 'l'}"
+        >
+            <i class="icon-align-left"></i>
+        </button>
+        <button
+            data-dojo-type="havok/widget/ToggleButton"
+            data-dojo-attach-point="justifycenter"
+            data-dojo-props="keys: {ctrl: true, char: 'e'}"
+        >
+            <i class="icon-align-center"></i>
+        </button>
+        <button
+            data-dojo-type="havok/widget/ToggleButton"
+            data-dojo-attach-point="justifyright"
+            data-dojo-props="keys: {ctrl: true, char: 'r'}"
+        >
+            <i class="icon-align-right"></i>
+        </button>
+        <button
+            data-dojo-type="havok/widget/ToggleButton"
+            data-dojo-attach-point="justifyfull"
+            data-dojo-props="keys: {ctrl: true, char: 'j'}"
+        >
+            <i class="icon-align-justify"></i>
+        </button>
+
+        <hr />
+
+        <div data-dojo-type="havok/widget/DropdownToggle" data-dojo-attach-point="createLinkDropdown" class="btn">
+            <i class="icon-link"></i>
+            <div data-dojo-type="havok/widget/DropdownContainer">
+                <div data-dojo-type="havok/form/TextBox" data-dojo-attach-point="createLinkTextBox">
+                    <input />
+                    <button data-dojo-attach-point="createLink">Add</button>
+                </div>
+            </div>
+        </div>
+        <button
+            data-dojo-type="havok/widget/Button"
+            data-dojo-attach-point="unlink"
+        >
+            <i class="icon-cut"></i>
+        </button>
+
+        <hr />
+
+        <button
+            data-dojo-type="havok/widget/Button"
+            data-dojo-attach-point="undo"
+            data-dojo-props="keys: {ctrl: true, char: 'z'}"
+        >
+            <i class="icon-undo"></i>
+        </button>
+        <button
+            data-dojo-type="havok/widget/Button"
+            data-dojo-attach-point="redo"
+            data-dojo-props="keys: {ctrl: true, char: 'y'}"
+        >
+            <i class="icon-repeat"></i>
+        </button>
+
+    </div>
+</div>

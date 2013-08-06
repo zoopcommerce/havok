@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+	"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>Testing havok/validator/factory</title>
+        <script type="text/javascript" src="../testconfig.js"></script>
+        <script type="text/javascript" src="../../../dojo/dojo.js"></script>
+		<script type="text/javascript">
+            require([
+                    'doh/main',
+                    'dojo/when',
+                    'havok/get!ValidatorFactory',
+                    'dojo/domReady!'
+                ],
+                function(
+                    doh,
+                    when,
+                    validatorFactory
+                ){
+                    doh.register("havok/test/validator/TestFactory", [
+
+                        function CreateTest1(doh){
+
+                            var testDeferred = new doh.Deferred;
+
+                            when(validatorFactory.create({base: 'mystique/Length', params: {min: 5, max: 10}}), function(validator){
+
+                                var testArray = [
+                                    [true, 'username'],
+                                    [false, 123]
+                                ];
+
+                                var index;
+                                for (index in testArray){
+                                    if (testArray[index][0]){
+                                        doh.assertTrue(validator.isValid(testArray[index][1]).get('value'));
+                                    } else {
+                                        doh.assertFalse(validator.isValid(testArray[index][1]).get('value'));
+                                    }
+                                }
+
+                                testDeferred.callback(true);
+                            });
+
+                            return testDeferred;
+                        },
+
+                        function CreateTest2(doh){
+
+                            var testDeferred = new doh.Deferred;
+
+                            when(validatorFactory.create('mystique/Alpha'), function(validator){
+
+                                   var testArray = [
+                                    [true, 'username'],
+                                    [false, 1233456]
+                                ];
+
+                                var index;
+                                for (index in testArray){
+                                    if (testArray[index][0]){
+                                        doh.assertTrue(validator.isValid(testArray[index][1]).get('value'));
+                                    } else {
+                                        doh.assertFalse(validator.isValid(testArray[index][1]).get('value'));
+                                    }
+                                }
+
+                                testDeferred.callback(true);
+                            });
+
+                            return testDeferred;
+                        },
+
+                        function CreateChainTest1(doh){
+
+                            var testDeferred = new doh.Deferred;
+
+                            when(validatorFactory.create([
+                                {
+                                    base: 'mystique/Length',
+                                    params: {min: 5, max: 10}
+                                },
+                                'mystique/Slug'
+                            ]), function(validator){
+
+                                var testArray = [
+                                    [true, 'username'],
+                                    [false, 'u'],
+                                    [false, 'ADF&^*B']
+                                ];
+
+                                var index;
+                                for (index in testArray){
+                                    if (testArray[index][0]){
+                                        doh.assertTrue(validator.isValid(testArray[index][1]).get('value'));
+                                    } else {
+                                        doh.assertFalse(validator.isValid(testArray[index][1]).get('value'));
+                                    }
+                                }
+
+                                testDeferred.callback(true);
+                            });
+
+                            return testDeferred;
+                        },
+
+                        function CreateChainTest2(doh){
+
+                            var testDeferred = new doh.Deferred;
+
+                            when(validatorFactory.create('mystique/Slug'), function(slugValidator){
+                                when(validatorFactory.create([
+                                    {
+                                        base: 'mystique/Length',
+                                        params: {min: 5, max: 10}
+                                    },
+                                    slugValidator
+                                ]), function(validator){
+
+                                    var testArray = [
+                                        [true, 'username'],
+                                        [false, 'u'],
+                                        [false, 'ADF&^*B']
+                                    ];
+
+                                    var index;
+                                    for (index in testArray){
+                                        if (testArray[index][0]){
+                                            doh.assertTrue(validator.isValid(testArray[index][1]).get('value'));
+                                        } else {
+                                            doh.assertFalse(validator.isValid(testArray[index][1]).get('value'));
+                                        }
+                                    }
+
+                                    testDeferred.callback(true);
+                                });
+                            });
+
+                            return testDeferred;
+                        }
+                    ]);
+
+                    doh.runOnLoad();
+                }
+            );
+
+		</script>
+	</head>
+	<body>
+        <h1>Testing havok/validator/factory</h1>
+	</body>
+</html>

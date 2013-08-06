@@ -1,0 +1,18 @@
+<div class="hide">
+    <div data-dojo-attach-point="modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-scroll" data-dojo-attach-point="backdrop" data-dojo-attach-event="ondijitclick: onBackdropClick">
+            <div class="modal">
+                <div class="modal-header">
+                    ${!closeButtonTemplate}
+                    <h3 data-dojo-attach-point="titleNode"></h3>
+                </div>
+                <div data-dojo-attach-point="containerNode" class="modal-body">
+                </div>
+                <div data-dojo-attach-point="footer" class="modal-footer">
+                    ${!footerTemplate}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
