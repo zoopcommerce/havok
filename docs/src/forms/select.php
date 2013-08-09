@@ -127,4 +127,10 @@
 &lt;/select&gt;
 </pre>
 
+          <div class="bs-docs-example">
+             <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
+                <input data-dojo-type="havok/form/CreditCardExpiry" data-dojo-props="helpMessages: 'please select your credit card expiry date'"/>
+             </div>
+          </div>
+
         </section>

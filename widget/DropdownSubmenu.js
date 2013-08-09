@@ -4,7 +4,7 @@ define([
     '../string',
     'dojo/dom-style',
     './DropdownToggle',
-    'dojo/text!./template/DropdownSubmenu.html'
+    'dojo/text!./template/DropdownBase.html'
 ],
 function (
     declare,
@@ -20,6 +20,8 @@ function (
     return declare(
         [DropdownToggle],
         {
+
+            defaultClass: 'dropdown-submenu',
 
             templateString: template,
 

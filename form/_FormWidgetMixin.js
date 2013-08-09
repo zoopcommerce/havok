@@ -4,7 +4,8 @@ define([
     './_LabelMixin',
     './_HelpMessagesMixin',
     './_RequiredStarMixin',
-    'dojo/text!./template/Control.html'
+    'dojo/text!./template/BlockControl.html',
+    'dojo/text!./template/InlineControl.html'
 ],
 function (
     declare,
@@ -12,13 +13,20 @@ function (
     LabelMixin,
     HelpMessagesMixin,
     RequiredStarMixin,
-    controlTemplate
+    blockControlTemplate,
+    inlineControlTemplate
 ){
     return declare(
         [LabelMixin, HelpMessagesMixin, RequiredStarMixin],
         {
+            //inline: false,
+
             buildRendering: function(){
-                this.templateString = string.substitute(controlTemplate, {input: this.templateString});
+                if (this.inline){
+                    this.templateString = string.substitute(inlineControlTemplate, {input: this.templateString});
+                } else {
+                    this.templateString = string.substitute(blockControlTemplate, {input: this.templateString});
+                }
                 this.inherited(arguments);
             }
         }

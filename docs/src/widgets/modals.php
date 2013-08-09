@@ -31,22 +31,22 @@
                 <pre id="modalButtonValue1"></pre>
             </div>
 
-              <div data-dojo-type="havok/widget/Modal" id="modal1" title="Modal Heading">
+              <div class="hidden" data-dojo-type="havok/widget/Modal" id="modal1" title="Modal Heading">
                 <h4>Text in a modal</h4>
                 <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem.</p>
 
                 <h4>Dropdown in a modal</h4>
                 <p>This dropdown should trigger a dropdown on click:</p>
-                <span class="btn-group" data-dojo-type="havok/widget/DropdownToggle">
-                    <button class="btn">dropdown <span class="caret"></span></button>
-                    <ul data-dojo-type="havok/widget/Dropdown">
+                <button class="btn" data-dojo-type="havok/widget/DropdownToggle">
+                    dropdown <span class="caret"></span>
+                    <ul class="hidden" data-dojo-type="havok/widget/Dropdown">
                       <li><a>Action</a></li>
                       <li><a>Another action</a></li>
                       <li><a>Something else here</a></li>
                       <hr />
                       <li><a>Separated link</a></li>
                     </ul>
-                </span>
+                </button>
 
                 <h4>Tooltips in a modal</h4>
                 <p><a data-dojo-type="havok/widget/Tooltip" title="Tooltip">This link</a> and <a data-dojo-type="havok/widget/Tooltip" title="Tooltip">that link</a> should have tooltips on hover.</p>

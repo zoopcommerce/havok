@@ -29,10 +29,11 @@ function (
         [ButtonGroup],
         {
 
-            _attachClickListener: function(item){
-                on(item.node, a11yclick.click, lang.hitch(this, function(e){
+            _attachClickListener: function(node, item){
+
+                on(node, a11yclick.click, lang.hitch(this, function(e){
                     e.preventDefault();
-                    if (domClass.contains(item.node, 'disabled')){
+                    if (domClass.contains(e.target, 'disabled')){
                         return;
                     }
 
@@ -107,16 +108,16 @@ function (
                             return valueItem[1];
                         }
                     );
-                    array.forEach(this.active, function(activeItem){
+                    array.forEach(this.active, lang.hitch(this, function(activeItem){
                         if (typeof activeItem == 'object'){
-                            domClass.remove(activeItem.node, 'active');
+                            domClass.remove(this.nodes[activeItem.id], 'active');
                         }
-                    })
-                    array.forEach(fliteredValues, function(valueItem){
-                        if (valueItem.node){
-                            domClass.add(valueItem.node, 'active');
+                    }));
+                    array.forEach(fliteredValues, lang.hitch(this, function(valueItem){
+                        if (this.nodes[valueItem.id]){
+                            domClass.add(this.nodes[valueItem.id], 'active');
                         }
-                    })
+                    }));
 
                     this._set('active', fliteredValues);
                 }));

@@ -54,19 +54,19 @@
         <a class="brand" href="./index.html">Havok</a>
         <div data-dojo-attach-point="toggleTarget">
             <ul data-dojo-type="havok/widget/NavBarLinks">
-              <li class="">
+              <li>
                 <a href="index.html">Home</a>
               </li>
-              <li class="">
+              <li>
                 <a href="getting-started.html">Get started</a>
               </li>
-              <li class="">
+              <li>
                 <a href="widgets.html">Widgets</a>
               </li>
-              <li class="">
+              <li>
                 <a href="forms.html">Forms</a>
               </li>
-              <li class="">
+              <li>
                 <a href="data-quality.html">Data Quality</a>
               </li>
               <li>

@@ -39,7 +39,7 @@
             <h2>Button Groups</h2>
           <p>Wrap a series of buttons with <code>havok/widget/ButtonGroup</code> to create a group.</p>
           <div class="bs-docs-example">
-            <div data-dojo-type="havok/widget/ButtonGroup" style="margin: 9px 0 5px;">
+            <div data-dojo-type="havok/widget/ButtonGroup">
               <button>Left</button>
               <button>Middle</button>
               <button>Right</button>
@@ -50,36 +50,6 @@
   &lt;button&gt;Left&lt;/button&gt;
   &lt;button&gt;Middle&lt;/button&gt;
   &lt;button&gt;Right&lt;/button&gt;
-&lt;/div&gt;
-</pre>
-
-          <p>Add HR tags to create subgroups.</p>
-          <div class="bs-docs-example">
-            <div data-dojo-type="havok/widget/ButtonGroup" style="margin: 0;">
-              <button>1</button>
-              <button>2</button>
-              <button>3</button>
-              <button>4</button>
-              <hr />
-              <button>5</button>
-              <button>6</button>
-              <button>7</button>
-              <hr />
-              <button>8</button>
-            </div>
-          </div>
-<pre class="prettyprint linenums">
-&lt;div data-dojo-type=&quot;havok/widget/ButtonGroup&quot;&gt;
-  &lt;button&gt;1&lt;/button&gt;
-  &lt;button&gt;2&lt;/button&gt;
-  &lt;button&gt;3&lt;/button&gt;
-  &lt;button&gt;4&lt;/button&gt;
-  &lt;hr /&gt;
-  &lt;button&gt;5&lt;/button&gt;
-  &lt;button&gt;6&lt;/button&gt;
-  &lt;button&gt;7&lt;/button&gt;
-  &lt;hr /&gt;
-  &lt;button&gt;8&lt;/button&gt;
 &lt;/div&gt;
 </pre>
 
@@ -341,97 +311,95 @@
             <h2>Overview and examples</h2>
           <p><code>havok/widget/DropdownToggle</code> with a <code>btn-group</code> class can be used to create button dropdown menus.</p>
           <div class="bs-docs-example">
-            <div class="btn-toolbar" style="margin: 0;">
-              <div class="btn-group" data-dojo-type="havok/widget/DropdownToggle">
-                <button class="btn">Action <span class="caret"></span></button>
-                <ul data-dojo-type="havok/widget/Dropdown">
+              <button class="btn" data-dojo-type="havok/widget/DropdownToggle">
+                Action <span class="caret"></span>
+                <ul class="hidden" data-dojo-type="havok/widget/Dropdown">
                   <li><a>Action</a></li>
                   <li><a>Another action</a></li>
                   <li><a>Something else here</a></li>
                   <hr />
                   <li><a>Separated link</a></li>
                 </ul>
-              </div>
-              <div class="btn-group" data-dojo-type="havok/widget/DropdownToggle">
-                <button class="btn btn-primary">Action <span class="caret"></span></button>
-                <ul data-dojo-type="havok/widget/Dropdown">
+              </button>
+              <button class="btn btn-primary" data-dojo-type="havok/widget/DropdownToggle">
+                Action <span class="caret"></span>
+                <ul class="hidden" data-dojo-type="havok/widget/Dropdown">
                   <li><a>Action</a></li>
                   <li><a>Another action</a></li>
                   <li><a>Something else here</a></li>
                   <hr />
                   <li><a>Separated link</a></li>
                 </ul>
-              </div>
-              <div class="btn-group" data-dojo-type="havok/widget/DropdownToggle">
-                <button class="btn btn-danger">Danger <span class="caret"></span></button>
-                <ul data-dojo-type="havok/widget/Dropdown">
+              </button>
+              <button class="btn btn-danger" data-dojo-type="havok/widget/DropdownToggle">
+                Danger <span class="caret"></span>
+                <ul class="hidden" data-dojo-type="havok/widget/Dropdown">
                   <li><a>Action</a></li>
                   <li><a>Another action</a></li>
                   <li><a>Something else here</a></li>
                   <hr />
                   <li><a>Separated link</a></li>
                 </ul>
-              </div>
-              <div class="btn-group" data-dojo-type="havok/widget/DropdownToggle">
-                <button class="btn btn-warning">Warning <span class="caret"></span></button>
-                <ul data-dojo-type="havok/widget/Dropdown">
+              </button>
+              <button class="btn btn-warning" data-dojo-type="havok/widget/DropdownToggle">
+                Warning <span class="caret"></span>
+                <ul class="hidden" data-dojo-type="havok/widget/Dropdown">
                   <li><a>Action</a></li>
                   <li><a>Another action</a></li>
                   <li><a>Something else here</a></li>
                   <hr />
                   <li><a>Separated link</a></li>
                 </ul>
-              </div>
-              <div class="btn-group" data-dojo-type="havok/widget/DropdownToggle">
-                <button class="btn btn-success">Success <span class="caret"></span></button>
-                <ul data-dojo-type="havok/widget/Dropdown">
+              </button>
+              <button class="btn btn-success" data-dojo-type="havok/widget/DropdownToggle">
+                Success <span class="caret"></span>
+                <ul class="hidden" data-dojo-type="havok/widget/Dropdown">
                   <li><a>Action</a></li>
                   <li><a>Another action</a></li>
                   <li><a>Something else here</a></li>
                   <hr />
                   <li><a>Separated link</a></li>
                 </ul>
-              </div>
-              <div class="btn-group" data-dojo-type="havok/widget/DropdownToggle">
-                <button class="btn btn-info">Info <span class="caret"></span></button>
-                <ul data-dojo-type="havok/widget/Dropdown">
+              </button>
+              <button class="btn btn-info" data-dojo-type="havok/widget/DropdownToggle">
+                Info <span class="caret"></span>
+                <ul class="hidden" data-dojo-type="havok/widget/Dropdown">
                   <li><a>Action</a></li>
                   <li><a>Another action</a></li>
                   <li><a>Something else here</a></li>
                   <hr />
                   <li><a>Separated link</a></li>
                 </ul>
-              </div>
-              <div class="btn-group" data-dojo-type="havok/widget/DropdownToggle">
-                <button class="btn btn-inverse">Inverse <span class="caret"></span></button>
-                <ul data-dojo-type="havok/widget/Dropdown">
+              </button>
+              <button class="btn btn-inverse" data-dojo-type="havok/widget/DropdownToggle">
+                Inverse <span class="caret"></span>
+                <ul class="hidden" data-dojo-type="havok/widget/Dropdown">
                   <li><a>Action</a></li>
                   <li><a>Another action</a></li>
                   <li><a>Something else here</a></li>
                   <hr />
                   <li><a>Separated link</a></li>
                 </ul>
-              </div>
-            </div>
+              </button>
           </div>
 <pre class="prettyprint linenums">
-&lt;div class="btn-group" data-dojo-type="havok/widget/DropdownToggle"&gt;
-  &lt;a class="btn"&gt;
-    Action
-    &lt;span class="caret"&gt;&lt;/span&gt;
-  &lt;/a&gt;
-  &lt;ul data-dojo-type="havok/widget/Dropdown"&gt;
-    &lt;!-- dropdown menu links --&gt;
+&lt;button class=&quot;btn&quot; data-dojo-type=&quot;havok/widget/DropdownToggle&quot;&gt;
+  Action &lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;
+  &lt;ul class=&quot;hidden&quot; data-dojo-type=&quot;havok/widget/Dropdown&quot;&gt;
+    &lt;li&gt;&lt;a&gt;Action&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a&gt;Another action&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a&gt;Something else here&lt;/a&gt;&lt;/li&gt;
+    &lt;hr /&gt;
+    &lt;li&gt;&lt;a&gt;Separated link&lt;/a&gt;&lt;/li&gt;
   &lt;/ul&gt;
-&lt;/div&gt;
+&lt;/button&gt;
 </pre>
 
           <h3>Works with all button sizes</h3>
           <p>Button dropdowns work at any size:  <code>.btn-large</code>, <code>.btn-small</code>, or <code>.btn-mini</code>.</p>
           <div class="bs-docs-example">
-            <div class="btn-toolbar" style="margin: 0;">
-              <div class="btn-group" data-dojo-type="havok/widget/DropdownToggle">
-                <button class="btn btn-large">Large button <span class="caret"></span></button>
+              <button class="btn btn-large" data-dojo-type="havok/widget/DropdownToggle">
+                Large button <span class="caret"></span>
                 <ul data-dojo-type="havok/widget/Dropdown">
                   <li><a>Action</a></li>
                   <li><a>Another action</a></li>
@@ -439,9 +407,9 @@
                   <hr />
                   <li><a>Separated link</a></li>
                 </ul>
-              </div>
-              <div class="btn-group" data-dojo-type="havok/widget/DropdownToggle">
-                <button class="btn btn-small">Small button <span class="caret"></span></button>
+              </button>
+              <button class="btn btn-small" data-dojo-type="havok/widget/DropdownToggle">
+                Small button <span class="caret"></span>
                 <ul data-dojo-type="havok/widget/Dropdown">
                   <li><a>Action</a></li>
                   <li><a>Another action</a></li>
@@ -449,9 +417,9 @@
                   <hr />
                   <li><a>Separated link</a></li>
                 </ul>
-              </div>
-              <div class="btn-group" data-dojo-type="havok/widget/DropdownToggle">
-                <button class="btn btn-mini">Mini button <span class="caret"></span></button>
+              </button>
+              <button class="btn btn-mini" data-dojo-type="havok/widget/DropdownToggle">
+                Mini button <span class="caret"></span>
                 <ul data-dojo-type="havok/widget/Dropdown">
                   <li><a>Action</a></li>
                   <li><a>Another action</a></li>
@@ -459,8 +427,7 @@
                   <hr />
                   <li><a>Separated link</a></li>
                 </ul>
-              </div>
-            </div>
+              </button>
           </div>
 
           <hr class="bs-docs-separator">
@@ -468,11 +435,10 @@
           <h2>Split button dropdowns</h2>
           <p>Building on the button group styles and markup, we can easily create a split button. Split buttons feature a standard action on the left and a dropdown toggle on the right with contextual links.</p>
           <div class="bs-docs-example">
-            <div class="btn-toolbar" style="margin: 0;">
               <div class="btn-group" data-dojo-type="havok/widget/DropdownToggle">
-                <button data-dojo-attach-point="placementNode" class="btn">Action</button>
+                <button class="btn">Action</button>
                 <button data-dojo-attach-point="button" class="btn"><span class="caret"></span></button>
-                <ul data-dojo-type="havok/widget/Dropdown">
+                <ul class="hidden" data-dojo-type="havok/widget/Dropdown">
                   <li><a>Action</a></li>
                   <li><a>Another action</a></li>
                   <li><a>Something else here</a></li>
@@ -482,9 +448,9 @@
               </div>
 
               <div class="btn-group" data-dojo-type="havok/widget/DropdownToggle">
-                <button data-dojo-attach-point="placementNode" class="btn btn-primary">Action</button>
+                <button class="btn btn-primary">Action</button>
                 <button data-dojo-attach-point="button" class="btn btn-primary"><span class="caret"></span></button>
-                <ul data-dojo-type="havok/widget/Dropdown">
+                <ul class="hidden" data-dojo-type="havok/widget/Dropdown">
                   <li><a>Action</a></li>
                   <li><a>Another action</a></li>
                   <li><a>Something else here</a></li>
@@ -494,9 +460,9 @@
               </div>
 
               <div class="btn-group" data-dojo-type="havok/widget/DropdownToggle">
-                <button data-dojo-attach-point="placementNode" class="btn btn-danger">Danger</button>
+                <button class="btn btn-danger">Danger</button>
                 <button data-dojo-attach-point="button" class="btn btn-danger"><span class="caret"></span></button>
-                <ul data-dojo-type="havok/widget/Dropdown">
+                <ul class="hidden" data-dojo-type="havok/widget/Dropdown">
                   <li><a>Action</a></li>
                   <li><a>Another action</a></li>
                   <li><a>Something else here</a></li>
@@ -506,9 +472,9 @@
               </div>
 
               <div class="btn-group" data-dojo-type="havok/widget/DropdownToggle">
-                <button data-dojo-attach-point="placementNode" class="btn btn-warning">Warning</button>
+                <button class="btn btn-warning">Warning</button>
                 <button data-dojo-attach-point="button" class="btn btn-warning"><span class="caret"></span></button>
-                <ul data-dojo-type="havok/widget/Dropdown">
+                <ul class="hidden" data-dojo-type="havok/widget/Dropdown">
                   <li><a>Action</a></li>
                   <li><a>Another action</a></li>
                   <li><a>Something else here</a></li>
@@ -518,9 +484,9 @@
               </div>
 
               <div class="btn-group" data-dojo-type="havok/widget/DropdownToggle">
-                <button data-dojo-attach-point="placementNode" class="btn btn-success">Success</button>
+                <button class="btn btn-success">Success</button>
                 <button data-dojo-attach-point="button" class="btn btn-success"><span class="caret"></span></button>
-                <ul data-dojo-type="havok/widget/Dropdown">
+                <ul class="hidden" data-dojo-type="havok/widget/Dropdown">
                   <li><a>Action</a></li>
                   <li><a>Another action</a></li>
                   <li><a>Something else here</a></li>
@@ -530,9 +496,9 @@
               </div>
 
               <div class="btn-group" data-dojo-type="havok/widget/DropdownToggle">
-                <button data-dojo-attach-point="placementNode" class="btn btn-info">Info</button>
+                <button class="btn btn-info">Info</button>
                 <button data-dojo-attach-point="button" class="btn btn-info"><span class="caret"></span></button>
-                <ul data-dojo-type="havok/widget/Dropdown">
+                <ul class="hidden" data-dojo-type="havok/widget/Dropdown">
                   <li><a>Action</a></li>
                   <li><a>Another action</a></li>
                   <li><a>Something else here</a></li>
@@ -542,9 +508,9 @@
               </div>
 
               <div class="btn-group" data-dojo-type="havok/widget/DropdownToggle">
-                <button data-dojo-attach-point="placementNode" class="btn btn-inverse">Inverse</button>
+                <button class="btn btn-inverse">Inverse</button>
                 <button data-dojo-attach-point="button" class="btn btn-inverse"><span class="caret"></span></button>
-                <ul data-dojo-type="havok/widget/Dropdown">
+                <ul class="hidden" data-dojo-type="havok/widget/Dropdown">
                   <li><a>Action</a></li>
                   <li><a>Another action</a></li>
                   <li><a>Something else here</a></li>
@@ -552,11 +518,10 @@
                   <li><a>Separated link</a></li>
                 </ul>
               </div>
-            </div>
           </div>
 <pre class="prettyprint linenums">
 &lt;div class=&quot;btn-group&quot; data-dojo-type=&quot;havok/widget/DropdownToggle&quot;&gt;
-  &lt;button data-dojo-attach-point=&quot;placementNode&quot; class=&quot;btn&quot;&gt;Inverse&lt;/button&gt;
+  &lt;button class=&quot;btn&quot;&gt;Inverse&lt;/button&gt;
   &lt;button data-dojo-attach-point=&quot;button&quot; class=&quot;btn btn-inverse&quot;&gt;&lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;&lt;/button&gt;
   &lt;ul data-dojo-type=&quot;havok/widget/Dropdown&quot;&gt;
       ...
@@ -570,9 +535,9 @@
             <div class="btn-toolbar">
 
               <div class="btn-group" data-dojo-type="havok/widget/DropdownToggle">
-                <button data-dojo-attach-point="placementNode" class="btn btn-large">Large action</button>
+                <button class="btn btn-large">Large action</button>
                 <button data-dojo-attach-point="button" class="btn btn-large"><span class="caret"></span></button>
-                <ul data-dojo-type="havok/widget/Dropdown">
+                <ul class="hidden" data-dojo-type="havok/widget/Dropdown">
                   <li><a>Action</a></li>
                   <li><a>Another action</a></li>
                   <li><a>Something else here</a></li>
@@ -582,9 +547,9 @@
               </div>
 
               <div class="btn-group" data-dojo-type="havok/widget/DropdownToggle">
-                <button data-dojo-attach-point="placementNode" class="btn btn-small">Small action</button>
+                <button class="btn btn-small">Small action</button>
                 <button data-dojo-attach-point="button" class="btn btn-small"><span class="caret"></span></button>
-                <ul data-dojo-type="havok/widget/Dropdown">
+                <ul class="hidden" data-dojo-type="havok/widget/Dropdown">
                   <li><a>Action</a></li>
                   <li><a>Another action</a></li>
                   <li><a>Something else here</a></li>
@@ -594,9 +559,9 @@
               </div>
 
               <div class="btn-group" data-dojo-type="havok/widget/DropdownToggle">
-                <button data-dojo-attach-point="placementNode" class="btn btn-mini">Mini action</button>
+                <button class="btn btn-mini">Mini action</button>
                 <button data-dojo-attach-point="button" class="btn btn-mini"><span class="caret"></span></button>
-                <ul data-dojo-type="havok/widget/Dropdown">
+                <ul class="hidden" data-dojo-type="havok/widget/Dropdown">
                   <li><a>Action</a></li>
                   <li><a>Another action</a></li>
                   <li><a>Something else here</a></li>
@@ -616,9 +581,9 @@
                    data-dojo-type="havok/widget/DropdownToggle"
                    data-dojo-props="placement: {placementNode: 'top-left', dropdown: 'bottom-left'}"
               >
-                <button data-dojo-attach-point="placementNode" class="btn">Dropup</button>
+                <button class="btn">Dropup</button>
                 <button data-dojo-attach-point="button" class="btn"><span class="dropup caret"></span></button>
-                <ul data-dojo-type="havok/widget/Dropdown">
+                <ul class="hidden" data-dojo-type="havok/widget/Dropdown">
                   <li><a>Action</a></li>
                   <li><a>Another action</a></li>
                   <li><a>Something else here</a></li>
@@ -633,7 +598,7 @@
      data-dojo-type=&quot;havok/widget/DropdownToggle&quot;
      data-dojo-props=&quot;placement: {placementNode: 'top-left', dropdown: 'bottom-left'}&quot;
 &gt;
-  &lt;button data-dojo-attach-point=&quot;placementNode&quot; class=&quot;btn&quot;&gt;Dropup&lt;/button&gt;
+  &lt;button class=&quot;btn&quot;&gt;Dropup&lt;/button&gt;
   &lt;button data-dojo-attach-point=&quot;button&quot; class=&quot;btn&quot;&gt;&lt;span class=&quot;dropup caret&quot;&gt;&lt;/span&gt;&lt;/button&gt;
   &lt;ul data-dojo-type=&quot;havok/widget/Dropdown&quot;&gt;
       ...
@@ -652,7 +617,7 @@
               >
                 <button class="btn">Right Dropup</button>
                 <button data-dojo-attach-point="button" class="btn"><span class="dropup caret"></span></button>
-                <ul data-dojo-type="havok/widget/Dropdown">
+                <ul class="hidden" data-dojo-type="havok/widget/Dropdown">
                   <li><a>Action</a></li>
                   <li><a>Another action</a></li>
                   <li><a>Something else here</a></li>

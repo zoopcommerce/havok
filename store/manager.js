@@ -8,7 +8,7 @@ define([], function(){
 
     return {
 
-        stores: [],
+        stores: {},
 
         get: function(ref){
             // Will return an object based on the ref given
@@ -23,11 +23,11 @@ define([], function(){
         getStore: function(name){
             // Function will return a store based on the store name.
 
-            for(var index in this.stores){
-                if (this.stores[index].name == name){
-
-                    return this.stores[index];
+            if (this.stores[name]){
+                if (!this.stores[name].idProperty){
+                    this.stores[name].idProperty = 'id';
                 }
+                return this.stores[name];
             }
         }
     }

@@ -16,7 +16,7 @@ function(
             'Propercase',
             'PadCurrency',
             'Uppercase',
-            'Group',
+            'CleanHTML',
             'HexColor'
         ],
 

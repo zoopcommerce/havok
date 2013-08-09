@@ -77,7 +77,7 @@ function (
                     this._createLink(item);
                 }
 
-                item.node = this.containerNode.lastElementChild;
+                return this.containerNode.lastElementChild;
             },
 
             _createDisabled: function(item){

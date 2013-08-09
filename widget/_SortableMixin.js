@@ -3,7 +3,6 @@ define([
     'dojo/on',
     'dojo/_base/lang',
     './Dragable',
-    './Overlay',
     'dojo/dom-construct',
     'dojo/dom-style',
     'dijit/registry'
@@ -13,7 +12,6 @@ function (
     on,
     lang,
     Dragable,
-    Overlay,
     domConstruct,
     domStyle,
     registry
@@ -37,7 +35,7 @@ function (
             },
 
             _makeDragable: function(item){
-                var dragable = new Dragable({}, item.node);
+                var dragable = new Dragable({}, this.nodes[item[this.store.idProperty]]);
 
                 on(dragable.domNode, 'dragover', function(e){
 

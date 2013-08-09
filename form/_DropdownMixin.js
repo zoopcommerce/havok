@@ -102,9 +102,7 @@ function (
                 } else if (this.label){
                     domProp.set(this.textbox, 'placeholder', this.get('label'));
                 }
-            },
-
-            _setFocusNodeClassAttr: {node: "textbox", type: "class" }
+            }
         }
     )
 });

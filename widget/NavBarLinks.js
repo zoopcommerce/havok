@@ -1,12 +1,10 @@
 define([
     'dojo/_base/declare',
-    'dojo/dom-class',
     './_NavBase',
     'dojo/text!./template/NavBarLinksDivider.html'
 ],
 function (
     declare,
-    domClass,
     NavBase,
     NavBarLinksDivider
 ){
@@ -16,7 +14,6 @@ function (
     return declare(
         [NavBase],
         {
-            
             dividerTemplate: NavBarLinksDivider
         }
     );

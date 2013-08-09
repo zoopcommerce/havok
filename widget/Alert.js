@@ -1,8 +1,7 @@
 define([
     'dojo/_base/declare',
     'dojo/dom-class',
-    'dijit/_Widget',
-    'dijit/_TemplatedMixin',
+    './_WidgetBase',
     './_HideableMixin',
     'dojo/text!./template/Alert.html',
     'dojo/text!./template/CloseButton.html',
@@ -14,8 +13,7 @@ define([
 function (
     declare,
     domClass,
-    Widget,
-    TemplatedMixin,
+    WidgetBase,
     HideableMixin,
     template,
     closeButtonTemplate
@@ -24,8 +22,11 @@ function (
     //    	havok/widget/Alert
 
     return declare(
-        [Widget, TemplatedMixin, HideableMixin],
+        [WidgetBase, HideableMixin],
         {
+
+            defaultClass: 'alert',
+
             templateString: template,
 
             closeButtonTemplate: closeButtonTemplate,

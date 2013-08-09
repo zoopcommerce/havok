@@ -11,7 +11,6 @@ define([
     './_WidgetBase',
     './_StoreMixin',
     './_ListMixin',
-    'dojo/text!./template/Nav.html',
     'dojo/text!./template/NavLink.html',
     'dojo/text!./template/NavHeader.html',
     'dojo/text!./template/Divider.html',
@@ -30,7 +29,6 @@ function (
     WidgetBase,
     StoreMixin,
     ListMixin,
-    template,
     linkTemplate,
     headerTemplate,
     dividerTemplate
@@ -46,7 +44,9 @@ function (
             //show a list of links.
             //
 
-            templateString: template,
+            tag: 'ul',
+
+            defaultClass: 'nav',
 
             linkTemplate: linkTemplate,
 
@@ -66,10 +66,10 @@ function (
                     }
                     when(this.store.get(id), lang.hitch(this, function(item){
                         if (typeof this.active == 'object'){
-                            domClass.remove(this.active.node, 'active');
+                            domClass.remove(this.nodes[this.active[this.store.idProperty]], 'active');
                         }
-                        if (item && item.node){
-                            domClass.add(item.node, 'active');
+                        if (item && this.nodes[item[this.store.idProperty]]){
+                            domClass.add(this.nodes[item[this.store.idProperty]], 'active');
                         }
                         this._set('active', item);
                     }))
@@ -90,7 +90,7 @@ function (
                     this._createLink(item);
                 }
 
-                item.node = this.containerNode.lastElementChild;
+                return this.containerNode.lastElementChild;
             },
 
             _createDisabled: function(item){

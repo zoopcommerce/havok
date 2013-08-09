@@ -31,19 +31,23 @@
         <?php
 //        include 'forms/using-forms.php';
 //        include 'forms/using-form-widgets.php';
-//        include 'forms/textbox.php';
+        include 'forms/textbox.php';
 //        include 'forms/validation-textbox.php';
 //        include 'forms/number-textbox.php';
 //        include 'forms/currency-textbox.php';
-        include 'forms/date-textbox.php';
+//        include 'forms/date-textbox.php';
+//        include 'forms/password-textbox.php';
+//        include 'forms/email-textbox.php';
+//        include 'forms/textarea.php';
+//        include 'forms/text-editor.php';
 //        include 'forms/checkbox.php';
 //        include 'forms/radio-group.php';
 //        include 'forms/select.php';
 //        include 'forms/typeahead.php';
 //        include 'forms/hexcolor.php';
 //        include 'forms/color-picker.php';
-        include 'forms/validation-group.php';
-        //include 'forms/credit-card-expiry.php';
+//        include 'forms/validation-group.php';
+//        include 'forms/credit-card-expiry.php';
         ?>
       </div>
     </div>

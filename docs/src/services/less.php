@@ -19,7 +19,7 @@ function (){
 
           <h2>Config</h2>
 
-          <p>The less plugin takes an array of less files. The files are loaded and parsed client side, and the resulting css is inserted into the page. A priority can be used to control the order they are parsed.</p>
+          <p>The less plugin takes an array of less files. The files are loaded and parsed client side, and the resulting css is inserted into the page. A rank can be used to control the order they are added to the page.</p>
 
           <p>Less files can be added to the plugin in two ways. Firstly through <code>dojoConfig</code>. Eg:</p>
 

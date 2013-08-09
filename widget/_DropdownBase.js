@@ -3,7 +3,7 @@ define([
     'dojo/_base/lang',
     'dojo/dom-construct',
     './_WidgetBase',
-    'dojo/text!./template/Dropdown.html',
+    'dojo/text!./template/DropdownBase.html',
     '../less!./less/dropdowns.less'
 ],
 function (
@@ -23,16 +23,12 @@ function (
             //This is a really basic empty dropdown.
             //
 
+            defaultClass: 'dropdown-menu',
+
             templateString: template,
 
             buildRendering: function(){
 
-                if (!this.tag){
-                    this.tag = 'div';
-                }
-                if (this.srcNodeRef){
-                    this.tag = this.srcNodeRef.nodeName;
-                }
                 if (!this.srcNodeRef && this.innerHTML){
                     this.srcNodeRef = domConstruct.create(this.tag, {innerHTML: this.innerHTML});
                 }
@@ -65,7 +61,11 @@ function (
 
             watchChildHasMouse: function(childWidget){
                 childWidget.watch('hasMouse', lang.hitch(this, function(property, oldValue, newValue){
-                    this.set('childHasMouse', newValue);
+                    if (newValue){
+                        this.set('childHasMouse', childWidget);
+                    } else {
+                        this.set('childHasMouse', false);
+                    }
                     if (!newValue){
                         setTimeout(lang.hitch(this, function(){
                             if (!this._primaryHasMouse){

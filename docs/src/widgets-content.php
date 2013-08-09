@@ -3,7 +3,7 @@
 <header class="jumbotron subhead" id="overview">
   <div class="container">
     <h1>Widgets</h1>
-    <p class="lead">Dozens of reusable widgets built to provide navigation, alerts, popovers, and more.</p>
+    <p class="lead">Dozens of reusable widgets built to provide navigation, alerts, text editing, and more.</p>
   </div>
 </header>
 

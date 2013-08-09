@@ -102,27 +102,6 @@ function (
                     }
                     return this._dataPendingDeferred;
                 }
-//
-//                var query = this.get('query'),
-//                    queryOptions = this.get('queryOptinos');
-//
-//                var dataDeferred = new Deferred,
-//                    getData = lang.hitch(this, function(query, queryOptions){
-//                        when(this.store.query(query, queryOptions), function(data){
-//                            dataDeferred.resolve(data);
-//                        });
-//                    });
-//
-//
-//                when(this.get('store'), lang.hitch(this, function(store){
-//                    if (this._readyToQuery){
-//                        this._readyToQuery = false;
-//                        setTimout(lang.hitch(this, function(){this._readyToQuery = true}), this.queryThrottle);
-//                        getData();
-//                    }
-//                }))
-//
-//                return dataDeferred;
             }
         }
     )

@@ -26,12 +26,16 @@ function (
 
                 this.state.innerHTML = target.get('state');
                 target.watch('state', lang.hitch(this, function(property, oldValue, newValue){
-                    this.state.innerHTML = newValue;
+                    this.state.textContent = newValue;
                 }));
 
                 this.value.innerHTML = json.stringify(target.get('value'), null, '   ');
                 target.watch('value', lang.hitch(this, function(property, oldValue, newValue){
-                    this.value.innerHTML = json.stringify(newValue, null, '   ');
+                    if (typeof newValue == 'string'){
+                        this.value.textContent = newValue;
+                    } else {
+                        this.value.innerHTML = json.stringify(newValue, null, '   ');
+                    }
                 }));
             }
         }

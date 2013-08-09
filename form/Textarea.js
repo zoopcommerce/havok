@@ -1,21 +1,24 @@
 define([
     'dojo/_base/declare',
-    'dijit/_Widget',
-    'dijit/_TemplatedMixin',
+    '../widget/_WidgetBase',
     './_TextBoxMixin',
     'dojo/text!./Template/Textarea.html'
 ],
 function (
     declare,
-    Widget,
-    TemplatedMixin,
+    WidgetBase,
     TextBoxMixin,
     template
 ){
     return declare(
-        [Widget, TemplatedMixin, TextBoxMixin],
+        [WidgetBase, TextBoxMixin],
         {
             templateString: template,
+
+            buildRendering: function(){
+                this.inherited(arguments);
+                this.styleNode = this.domNode;
+            },
 
             postCreate: function(){
                 this.set('value', this.textbox.value);

@@ -22,22 +22,12 @@
           <p>Add a placeholder</p>
           <div class="bs-docs-example" class="form-horizontal">
               <div class="form-horizontal">
-                <input data-dojo-type="havok/form/TextBox"
-                       data-dojo-props="
-                           label: 'name',
-                           placeholder: 'Enter your name'
-                       "
-                />
+                  <label data-dojo-type="havok/form/TextBox">name<input placeholder="Enter your name"/></label>
               </div>
           </div>
 
 <pre class="prettyprint linenums">
-&lt;input data-dojo-type=&quot;havok/form/TextBox&quot;
-       data-dojo-props=&quot;
-           label: 'name',
-           placeholder: 'Enter your name'
-       &quot;
-/&gt;
+
 </pre>
 
           <h2>Filters</h2>
@@ -118,14 +108,15 @@
           <h3>Custom markup</h3>
           <div class="bs-docs-example">
               <div class="form-horizontal">
-                <div data-dojo-type="havok/form/TextBox"
-                       data-dojo-props="label: 'name'"
-                >
+                  <div data-dojo-type="havok/form/TextBox">
                     <span><b>p</b>re1</span>
-                    <input />
+                    <label>
+                        <strong>name</strong>
+                        <input />
+                    </label>
                     <span><b>a</b>ppend 1</span>
                     <span><b>a</b>ppend 2</span>
-                </div>
+                  </div>
               </div>
           </div>
 
@@ -172,8 +163,8 @@
                        data-dojo-props="label: 'name'"
                 >
                     <input />
-                    <div class="btn-group" data-dojo-type="havok/widget/DropdownToggle">
-                        <button class="btn">Action <span class="caret"></span></button>
+                    <button class="btn" data-dojo-type="havok/widget/DropdownToggle">
+                        Action <span class="caret"></span>
                         <ul data-dojo-type="havok/widget/Dropdown">
                             <li><a href="">Action</a></li>
                             <li><a href="">Another action</a></li>
@@ -181,27 +172,13 @@
                             <hr />
                             <li><a href="">Separated link</a></li>
                         </ul>
-                    </div>
+                    </button>
                 </div>
               </div>
           </div>
 
 <pre class="prettyprint linenums">
-&lt;div data-dojo-type=&quot;havok/form/TextBox&quot;
-       data-dojo-props=&quot;label: 'name'&quot;
-&gt;
-    &lt;input /&gt;
-    &lt;div class=&quot;btn-group&quot; data-dojo-type=&quot;havok/widget/DropdownToggle&quot;&gt;
-        &lt;button class=&quot;btn&quot;&gt;Action &lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;&lt;/button&gt;
-        &lt;ul data-dojo-type=&quot;havok/widget/Dropdown&quot;&gt;
-            &lt;li&gt;&lt;a href=&quot;&quot;&gt;Action&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a href=&quot;&quot;&gt;Another action&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a href=&quot;&quot;&gt;Something else here&lt;/a&gt;&lt;/li&gt;
-            &lt;hr /&gt;
-            &lt;li&gt;&lt;a href=&quot;&quot;&gt;Separated link&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
+
 </pre>
 
           <h3>Split dropdowns</h3>
@@ -290,20 +267,16 @@
           <div class="bs-docs-example">
               <div class="form-horizontal">
                 <input data-dojo-type="havok/form/TextBox"
-                       data-dojo-props="
-                           label: 'name',
-                           focusNodeClass: 'span2'
-                       "
+                       class="span2"
+                       data-dojo-props="label: 'name'"
                 />
               </div>
           </div>
 
 <pre class="prettyprint linenums">
 &lt;input data-dojo-type=&quot;havok/form/TextBox&quot;
-       data-dojo-props=&quot;
-           label: 'name',
-           focusNodeClass: 'span2'
-       &quot;
+       class=&quot;span2&quot;
+       data-dojo-props=&quot;label: 'name'&quot;
 /&gt;
 </pre>
 

@@ -15,8 +15,7 @@ define([
     'dijit/a11yclick',
     'dijit/registry',
     './_WidgetBase',
-    './_HideableMixin',
-    'dojo/text!./template/DropdownToggle.html'
+    './_HideableMixin'
 ],
 function (
     declare,
@@ -35,8 +34,7 @@ function (
     a11yclick,
     registry,
     WidgetBase,
-    HideableMixin,
-    template
+    HideableMixin
 ){
     // module:
     //    	havok/widget/DropdownToggle
@@ -45,7 +43,7 @@ function (
         [WidgetBase, HideableMixin],
         {
 
-            templateString: template,
+            defaultClass: 'dropdown',
 
             //dropdown: undefined,
 
@@ -142,6 +140,7 @@ function (
                     domConstruct.place(this.dropdown.domNode, this.dropdownContainer, 'last');
                 }
                 domClass.remove(this.dropdownContainer, 'hidden');
+                domClass.remove(this.dropdown.domNode, 'hidden');
                 domClass.add(this.dropdownContainer, 'open');
                 this._addKeypressHandlers();
                 this.position();
@@ -151,6 +150,9 @@ function (
                 if (this.dropdownContainer){
                     domClass.remove(this.dropdownContainer, 'open');
                     domClass.add(this.dropdownContainer, 'hidden');
+                }
+                if (this.dropdown.childHasMouse){
+                    this.dropdown.childHasMouse.hide();
                 }
                 this._removeKeypressHandlers();
             },

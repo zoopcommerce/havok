@@ -115,8 +115,8 @@ function (
             },
 
             _createAppendagesWrapper: function(){
-                this.appendagesWrapper = domConstruct.create('div', null, this.focusNode, 'after');
-                domConstruct.place(this.focusNode, this.appendagesWrapper, 'first');
+                this.appendagesWrapper = domConstruct.create('div', null, this.textbox, 'after');
+                domConstruct.place(this.textbox, this.appendagesWrapper, 'first');
             },
 
             _createNode: function(value, prepend){

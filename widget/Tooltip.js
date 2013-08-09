@@ -43,13 +43,9 @@ function(
 
             //target: undefined,
 
+            tag: 'span',
+            
             buildRendering: function(){
-                if (!this.tag){
-                    this.tag = 'span';
-                }
-                if (this.srcNodeRef){
-                    this.tag = this.srcNodeRef.nodeName;
-                }
 
                 this.inherited(arguments);
 

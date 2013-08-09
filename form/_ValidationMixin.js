@@ -157,7 +157,7 @@ function (
                     } else if (this.styleNode){
                         styleNode = this.styleNode;
                     } else if (this.containerNode){
-                        styleNode = this.continerNode;
+                        styleNode = this.containerNode;
                     } else {
                         styleNode = this.domNode;
                     }

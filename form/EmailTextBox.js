@@ -1,21 +1,20 @@
 define([
     'dojo/_base/declare',
     './ValidationTextBox',
-    'dojo/text!./Template/PasswordTextBox.html',
     'mystique/Required',
-    'mystique/Password'
+    'mystique/Email'
 ],
 function (
     declare,
-    ValidationTextBox,
-    template
+    ValidationTextBox
 ){
     return declare(
         [ValidationTextBox],
         {
-            templateString: template,
 
-            validator: ['Required', 'Password']
+            prepend: '<i class="icon-envelope"></i>',
+
+            validator: ['Required', 'Email']
         }
     );
 });

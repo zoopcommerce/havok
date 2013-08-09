@@ -33,12 +33,27 @@ function (
 
             startup: function(){
                 this.inherited(arguments);
-                this.dropdownToggle.watch('date', lang.hitch(this, '_dropdownWatcher'));
+                this.dropdownToggle.watch('hidden', lang.hitch(this, '_dropdownToggleWatcher'));
             },
 
-            _dropdownWatcher: function(property, oldValue, newValue){
-                this.set('value', newValue);
-                this.dropdownToggle.hide();
+            _dropdownToggleWatcher: function(property, oldValue, newValue){
+
+                var handle;
+
+                if (newValue){
+                    this.set('value', this.dropdown.get('date'));
+                    if (handle){
+                        handle.unwatch();
+                    }
+                } else {
+                    var value = this.get('value');
+                    if (value){
+                        this.dropdown.set('date', value);
+                    }
+                    handle = this.dropdown.watch('date', lang.hitch(this, function(){
+                        this.dropdownToggle.hide()
+                    }))
+                }
             },
 
             blurFormat: function(value) {

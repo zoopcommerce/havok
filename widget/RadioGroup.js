@@ -32,10 +32,10 @@ function (
                             return;
                         }
                         if (typeof this.active == 'object'){
-                            domClass.remove(this.active.node, 'active');
+                            domClass.remove(this.nodes[this.active[this.store.idProperty]], 'active');
                         }
-                        if (item && item.node){
-                            domClass.add(item.node, 'active');
+                        if (item && this.nodes[item[this.store.idProperty]]){
+                            domClass.add(this.nodes[item[this.store.idProperty]], 'active');
                         }
                         this._set('active', item);
                     }))

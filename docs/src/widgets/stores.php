@@ -5,12 +5,6 @@
 
   <p>Many of the havok widgets use the <code>havok/widget/_StoreMixin</code> to manage lists of items. Stores allow great flexibility. Items may be fetched via ajax, filtered, sorted, and reused throughout your application.</p>
 
-  <h2>Supporting Widgets</h2>
-  <p>Stores are supported by the following widgets:</p>
-  <ul>
-      <li><code>havok/widge/Dropdown</code></li>
-      <li><code>havok/widge/ButtonGroup</code></li>
-  </ul>
   <h2>Properties</h2>
   <p>This mixin adds four properties to any widget using it:</p>
 
@@ -209,7 +203,7 @@
 </pre>
 
     <h3>Implicit store</h3>
-    <p>If no store is set by one of the above methods, a store is created implicitly from the markup. For example, in the Dropdown widget each <code>li</code> becomes an item in the store with the following structure: <code>{id: id, node: node}</code>.</p>
+    <p>If no store is set by one of the above methods, a store is created implicitly from the markup. For example, in the Dropdown widget each <code>li</code> becomes an item in the store.</p>
 
 
     <h2>Store queries</h2>
@@ -256,15 +250,13 @@
 </pre>
 
     <h3>Queries on an implicit store</h3>
-    <p>Implicitly created stores don't have <code>text</code> or other properties set on the store item. Therefore queries on an implicit store will need to pass a query function on the <code>node</code> property. Eg:</p>
+    <p>Implicitly created stores can also be queried. Eg:</p>
     <div class="bs-docs-example">
 
       <div class="dropdown clearfix">
         <ul data-dojo-type="havok/widget/Dropdown"
           data-dojo-props="
-              query: {node: {test: function(node){
-                  return !!node && !!node.firstElementChild && /^.*A.*$/.test(node.firstElementChild.innerHTML);
-              }}}
+              query: {text:  /^.*A.*$/}
           "
           style="display: block; position: static; margin-bottom: 5px; *width: 180px;"
         >
@@ -279,9 +271,7 @@
 <pre class="prettyprint linenums">
 &lt;ul data-dojo-type=&quot;havok/widget/Dropdown&quot;
   data-dojo-props=&quot;
-      query: {node: {test: function(node){
-          return !!node && !!node.firstElementChild &amp;&amp; /^.*A.*$/.test(node.firstElementChild.innerHTML);
-      }}}
+      query: {text:  /^.*A.*$/}
   &quot;
 &gt;
   &lt;li&gt;&lt;a href=&quot;&quot;&gt;Action&lt;/a&gt;&lt;/li&gt;

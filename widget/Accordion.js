@@ -13,7 +13,6 @@ define([
     'dojo/dom-geometry',
     'dijit/a11yclick',
     './_WidgetBase',
-    'dojo/text!./template/Accordion.html',
     'dojo/text!./template/AccordionItem.html',
     '../less!../vendor/bootstrap/less/accordion.less',
     '../less!../vendor/bootstrap/less/component-animations.less'
@@ -33,7 +32,6 @@ function (
     domGeom,
     a11yclick,
     WidgetBase,
-    template,
     itemTemplate
 ){
     // module:
@@ -42,7 +40,8 @@ function (
     return declare(
         [WidgetBase],
         {
-            templateString: template,
+
+            defaultClass: 'accordion',
 
             itemTemplate: itemTemplate,
 

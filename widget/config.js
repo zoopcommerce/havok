@@ -3,26 +3,22 @@ define(
     function(){
         return {
             di: {
-                'havok/store/manager': {
+                'havok/store/stores': {
                     proxies: {
-                        stores: [
-                            {
-                                base: 'havok/widget/font',
-                                params: {name: 'font'},
-                                proxyMethods: [
-                                    'get',
-                                    'query'
-                                ]
-                            },
-                            {
-                                base: 'havok/widget/fontsize',
-                                params: {name: 'fontsize'},
-                                proxyMethods: [
-                                    'get',
-                                    'query'
-                                ]
-                            }
-                        ]
+                        font: {
+                            base: 'havok/widget/font',
+                            proxyMethods: [
+                                'get',
+                                'query'
+                            ]
+                        },
+                        fontsize: {
+                            base: 'havok/widget/fontsize',
+                            proxyMethods: [
+                                'get',
+                                'query'
+                            ]
+                        }
                     }
                 }
             }

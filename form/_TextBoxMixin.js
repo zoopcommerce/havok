@@ -120,7 +120,7 @@ function (
                 this._set('value', this.parse(filteredValue, this.constraints));
             },
 
-            _setFocusNodeClassAttr: { node: "focusNode", type: "class" },
+            _setClassAttr: { node: "textbox", type: "class" },
 
             onInput: function(){},
 

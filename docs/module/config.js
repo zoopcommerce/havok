@@ -2,12 +2,11 @@ define([],
 function(){
     return {
         di: {
-            'havok/store/manager': {
+            'havok/store/stores': {
                 proxies: {
-                    stores: [
+                    demostates: [
                         {
                             base: 'havok/docs/module/state',
-                            params: {name: 'demostates'},
                             proxyMethods: [
                                 'get',
                                 'query'
@@ -32,9 +31,9 @@ function(){
             }
         },
         less: {
-            "havok/vendor/bootstrap/less/labels-badges.less": {block: 1},
-            "havok/vendor/bootstrap/less/wells.less": {block: 1},
-            "havok/docs/src/less/docs.less": {block: 3}
+            "havok/vendor/bootstrap/less/labels-badges.less": {rank: 1},
+            "havok/vendor/bootstrap/less/wells.less": {rank: 1},
+            "havok/docs/src/less/docs.css": {rank: 4}
         }
     }
 });

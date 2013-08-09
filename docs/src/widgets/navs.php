@@ -193,7 +193,7 @@
                         data: [
                             {text: 'home'},
                             {href: '#navs', text: '#navs anchor'},
-                            {type: 'disabled', text: 'distabled'}
+                            {type: 'disabled', text: 'disabled'}
                         ]
                     }"
             ></ul>

@@ -155,9 +155,7 @@ function (
                     'top',
                     (this.box.offsetHeight * (1 - hsv.v / 100)) + 'px'
                 );
-            },
-
-            _setFocusNodeClassAttr: { node: "focusNode", type: "class" }
+            }
         }
     );
 });

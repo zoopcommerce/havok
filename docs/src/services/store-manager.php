@@ -10,30 +10,23 @@
 
           <h2>Config</h2>
 
-          <p>To configure the store manager use di, and populate the stores array. Each store should have a <code>name</code> property set. Eg:</p>
+          <p>To configure the store manager use di, and populate the stores object. Eg:</p>
 
 <pre class="prettyprint linenums">
 di: {
-    'havok/store/manager': {
+    'havok/store/stores': {
         gets: {
-            stores: [
-                {
-                    base: 'my/store/one',
-                    params: {name: 'store1'}
-                },
-                {
-                    base: 'my/store/two',
-                    params: {name: 'store2'}
-                }
-            ]
+            store1: 'my/store/one',
+            store2: 'my/store/two'
         },
         proxies: {
-            stores: [
-                {
-                    base: 'my/store/three',
-                    params: {name: 'store3'}
-                }
-            ]
+            store3: {
+                base: 'my/store/three',
+                proxyMethods: [
+                    'get',
+                    'query'
+                ]
+            }
         }
     }
 }
@@ -61,5 +54,5 @@ require(['havok/store/manager'], function(storeManager){
           <h2>Support</h2>
 
           <p>The store manager is supported by many havok that can use data stores.</p>
- 
+
         </section>

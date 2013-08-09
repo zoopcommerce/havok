@@ -31,12 +31,16 @@ function (
 
             //active: undefined,
 
+            //nodes: undefined,
+
             buildRendering: function(){
 
                 if (!this.srcNodeRef && this.innerHTML){
                     this.srcNodeRef = domConstruct.create('div', {innerHTML: this.innerHTML});
                 }
                 this.inherited(arguments);
+
+                this.nodes = {};
             },
 
             startup: function(){
@@ -54,6 +58,7 @@ function (
                 var i,
                     j = 0,
                     href,
+                    text,
                     id,
                     node,
                     aNode,
@@ -69,8 +74,10 @@ function (
                             aNode = query('[href]', node);
                             if (aNode.length > 0){
                                 href = domAttr.get(aNode[0], 'href');
+                                text = aNode[0].innerHTML;
                             } else {
                                 href = '';
+                                text = '';
                             }
 
                             if (href && href != ''){
@@ -78,8 +85,10 @@ function (
                             } else {
                                 id = j;
                             }
-                            item = {id: id, node: node};
-                            this._attachClickListener(item);
+
+                            item = {id: id, href: href, text: text};
+                            this.nodes[id] = node;
+                            this._attachClickListener(node, item);
                         }
                         storeData.push(item);
                         if (domClass.contains(node, 'active')){
@@ -91,9 +100,10 @@ function (
                 return {data: storeData};
             },
 
-            _attachClickListener: function(item){
-                on(item.node, a11yclick.click, lang.hitch(this, function(e){
-                    if (domClass.contains(item.node, 'disabled')){
+            _attachClickListener: function(node, item){
+
+                on(node, a11yclick.click, lang.hitch(this, function(e){
+                    if (domClass.contains(e.target, 'disabled')){
                         e.preventDefault();
                         return;
                     }
@@ -126,12 +136,16 @@ function (
                     return;
                 }
 
-                for (var i = 0; i < data.length; i++){
-                    if (data[i].node){
-                        domConstruct.place(data[i].node, this.containerNode, 'last');
+                var i,
+                    id;
+
+                for (i = 0; i < data.length; i++){
+                    id = data[i][this.store.idProperty];
+                    if (this.nodes[id]){
+                        domConstruct.place(this.nodes[id], this.containerNode, 'last');
                     } else {
-                        this._createNode(data[i]);
-                        this._attachClickListener(data[i]);
+                        this.nodes[id] = this._createNode(data[i]);
+                        this._attachClickListener(this.nodes[id], data[i]);
                     }
                 }
 
@@ -140,7 +154,7 @@ function (
                 while (removed){
                     removed = false;
                     if (this.containerNode.children.length > 0 &&
-                        ((data.length > 0 && this.containerNode.firstElementChild !== data[0].node) || data.length == 0)
+                        ((data.length > 0 && this.containerNode.firstElementChild !== this.nodes[data[0][this.store.idProperty]]) || data.length == 0)
                     ){
                         this.containerNode.removeChild(this.containerNode.firstElementChild);
                         removed = true;
