@@ -8,7 +8,7 @@
 
           <h2>Example</h2>
           <div class="bs-docs-example">
-             <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
+             <div data-dojo-type="havokdocs/Formspy" class="form-horizontal">
                 <input data-dojo-type="havok/form/Checkbox"
                     data-dojo-props="
                         label:'Check Me',
@@ -33,7 +33,7 @@
 
           <p>Use <code>havok/form/ToggleButton</code> for a button style checkbox.</p>
           <div class="bs-docs-example">
-             <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
+             <div data-dojo-type="havokdocs/Formspy" class="form-horizontal">
                 <input data-dojo-type="havok/form/ToggleButton"
                     data-dojo-props="
                         text:'Check Me',
@@ -60,7 +60,7 @@
 
           <p>Use <code>havok/form/CheckboxGroup</code> for a group of button style checkboxes.</p>
           <div class="bs-docs-example">
-             <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
+             <div data-dojo-type="havokdocs/Formspy" class="form-horizontal">
                 <input data-dojo-type="havok/form/CheckboxGroup"
                     data-dojo-props="
                         label: 'A checkbox group',

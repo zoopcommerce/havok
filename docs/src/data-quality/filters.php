@@ -186,7 +186,7 @@ require(['havok/filter/Base', 'dojo/_base/declare'],
 
           <div class="bs-docs-example" class="form-horizontal">
              <script>
-                 require(['havok/get!FilterFactory', 'dojo/dom', 'dojo/on', 'dojo/domReady!'],
+                 require(['havok/get!havok/filter/factory', 'dojo/dom', 'dojo/on', 'dojo/domReady!'],
                     function(factory, dom, on){
 
                         on(dom.byId('factoryButton'), 'click', function(){
@@ -205,7 +205,7 @@ require(['havok/filter/Base', 'dojo/_base/declare'],
           </div>
 
 <pre class="prettyprint linenums">
-require(['havok/get!FilterFactory'],
+require(['havok/get!havok/filter/factory'],
    function(factory){
        factory.create(['Trim', 'Lowercase']).then(function(filter){
            filteredValue = filter.filter(value);

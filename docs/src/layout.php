@@ -14,19 +14,24 @@
         dojoConfig = {
             isDebug: true,
             locale: 'en-au',
-            popup: true,
             async: true,
             merge: [
                 'havok/config',
-                'havok/docs/module/config'
+                'havokdocs/config'
             ],
             di: {
-                'havok/docs/module/Controller': {
+                'havokdocs/Controller': {
                     params: {
                         type: 'php'
                     }
                 }
-            }
+            },
+            packages: [
+                {
+                    name: "havokdocs",
+                    location: "../havok/docs/module"
+                }
+            ]
         }
     </script>
     <script src="../../../dojo/dojo.js"></script>

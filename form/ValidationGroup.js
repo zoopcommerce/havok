@@ -7,7 +7,7 @@ define([
     './_FormMixin',
     './_ValidationMixin',
     './_ValidationMessagesMixin',
-    'dojo/text!./Template/ValidationGroup.html',
+    'dojo/text!./template/ValidationGroup.html',
     '../widget/Alert'
 ],
 function (

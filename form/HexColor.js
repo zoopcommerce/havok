@@ -1,7 +1,7 @@
 define([
     'dojo/_base/declare',
     './ValidationTextBox',
-    '../Filter/HexColor',
+    '../filter/HexColor',
     'mystique/HexColor'
 ],
 function (

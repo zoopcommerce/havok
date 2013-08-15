@@ -7,7 +7,7 @@ define([
     '../is',
     './_FormWidgetMixin',
     './_FilterMixin',
-    '../Filter/Trim'
+    '../filter/Trim'
 ],
 function (
     declare,

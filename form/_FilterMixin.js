@@ -3,7 +3,7 @@ define([
     'dojo/_base/lang',
     'dojo/when',
     'dojo/Deferred',
-    '../get!FilterFactory'
+    '../get!havok/filter/factory'
 ],
 function (
     declare,

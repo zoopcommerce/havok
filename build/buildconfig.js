@@ -5,33 +5,36 @@ dojoConfig = {
     packages: [
         {
             name: "dojo",
-            location: "vendor/dojo/dojo"
+            location: "dojo"
         },
         {
             name: "dijit",
-            location: "vendor/dojo/dijit"
+            location: "dijit"
         },
         {
             name:'util',
-            location:'vendor/dojo/util'
+            location:'util'
         },
         {
             name:'build',
-            location:'vendor/dojo/util/build'
+            location:'util/build'
         },
         {
             name:'doh',
-            location:'vendor/dojo/util/doh'
+            location:'util/doh'
         },
         {
             name: "havok",
-            location: "vendor/dojo/havok"
+            location: "havok"
         },
         {
             name: "mystique",
-            location: "vendor/dojo/mystique"
+            location: "mystique"
         }
     ]
 };
 
-require('../../../../vendor/dojo/dojo/dojo');
+//have to load the less compiler before dojo because it doesn't play nice with dojo AMD
+lessc = require('../../havok/vendor/less/lib/less');
+
+require('../../dojo/dojo');

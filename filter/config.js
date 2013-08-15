@@ -1,8 +1,7 @@
 define ([], function (){
     return {
         di: {
-            'FilterFactory': {
-                base: 'havok/filter/factory',
+            'havok/filter/factory': {
                 gets: {
                     di: 'havok/di/sharedDi!'
                 }

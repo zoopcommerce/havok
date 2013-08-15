@@ -11,7 +11,7 @@ define([
     'dojo/text!./template/ColorPicker.html',
     './HexColor',
     '../widget/DropdownToggle',
-    '../widget/DropdownBase',
+    '../widget/DropdownContainer',
     '../widget/Moveable',
     '../less!./less/colorpicker.less'
 ],

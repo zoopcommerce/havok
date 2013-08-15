@@ -1,8 +1,7 @@
 define ([], function (){
     return {
         di: {
-            'ValidatorFactory': {
-                base: 'havok/Validator/factory',
+            'havok/validator/factory': {
                 gets: {
                     di: 'havok/di/sharedDi!'
                 }

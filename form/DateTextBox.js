@@ -5,7 +5,7 @@ define([
     '../is',
     './ValidationTextBox',
     'dijit/_WidgetsInTemplateMixin',
-    'dojo/text!./Template/DateTextBox.html',
+    'dojo/text!./template/DateTextBox.html',
     '../widget/DateDropdown',
     '../widget/DropdownToggle',
     'mystique/Date'

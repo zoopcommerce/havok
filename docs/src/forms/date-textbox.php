@@ -8,7 +8,7 @@
 
           <h2>Example</h2>
           <div class="bs-docs-example">
-             <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
+             <div data-dojo-type="havokdocs/Formspy" class="form-horizontal">
                 <input data-dojo-type="havok/form/DateTextBox"
                     data-dojo-props="
                         label:'Date',
@@ -24,7 +24,7 @@
 
           <h2>Example with preset value</h2>
           <div class="bs-docs-example">
-             <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
+             <div data-dojo-type="havokdocs/Formspy" class="form-horizontal">
                 <input data-dojo-type="havok/form/DateTextBox"
                     data-dojo-props="
                         label:'Date',

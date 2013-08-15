@@ -69,7 +69,14 @@ function(
             "havok/di/sharedDi":"havok/build/plugin/di/sharedDi",
             "havok/proxy":"havok/build/plugin/proxy",
             "havok/get":"havok/build/plugin/get",
+            "havok/less":"havok/build/plugin/less",
             "dojo/text":"havok/build/plugin/text"
+        }
+    },
+
+    havoktransforms = {
+        transforms: {
+            writeAmd: ["havok/build/writeAmd", "write"]
         }
     };
 
@@ -79,6 +86,9 @@ function(
 
         // inject extra build plugin resolvers
         profile = lang.mixinDeep(profile, havokplugins);
+
+        // inject modified tansform to create less and css for layers
+        profile = lang.mixinDeep(profile, havoktransforms);
 
         // determine preprocessed filename
         var splitFilename = profile.selfFilename.split('.');
@@ -133,7 +143,7 @@ function(
         }
 
         // merge configs into the defaultConfig
-        if (profile.defaultConfig.merge){
+        if (profile.defaultConfig && profile.defaultConfig.merge){
             var mergedConfig = {};
             configManager.merge(profile.defaultConfig.merge, mergedConfig).then(function(mergedConfig){
                 profile.defaultConfig = lang.mixinDeep(profile.defaultConfig, mergedConfig);

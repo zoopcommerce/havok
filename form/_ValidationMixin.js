@@ -6,7 +6,7 @@ define([
     'dojo/Deferred',
     'dojo/dom-class',
     '../is',
-    '../get!ValidatorFactory',
+    '../get!havok/validator/factory',
     'mystique/Result',
     'dijit/_FocusMixin'
 ],

@@ -8,7 +8,7 @@
 
           <h2>Example</h2>
           <div class="bs-docs-example">
-             <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
+             <div data-dojo-type="havokdocs/Formspy" class="form-horizontal">
                 <input data-dojo-type="havok/form/TextBox" value="hello"/>
              </div>
           </div>
@@ -35,7 +35,7 @@
           <p>Note: The <code>Trim</code> filter is applied by default.</p>
 
           <div class="bs-docs-example">
-             <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
+             <div data-dojo-type="havokdocs/Formspy" class="form-horizontal">
                 <input data-dojo-type="havok/form/TextBox"
                        value="John Smith"
                        data-dojo-props="
@@ -58,7 +58,7 @@
 
           <p>Set a filter chain:</p>
           <div class="bs-docs-example">
-             <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
+             <div data-dojo-type="havokdocs/Formspy" class="form-horizontal">
                 <input data-dojo-type="havok/form/TextBox"
                        value="    John Smith    "
                        data-dojo-props="

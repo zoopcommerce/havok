@@ -37,7 +37,7 @@ function(
                 return parser;
             }
             var deferredGetParser = new Deferred;
-            require(['havok/vendor/less/less'], function(lessc){
+            require(['havok/vendor/less/dist/less'], function(lessc){
                 parser = new lessc.Parser();
                 deferredGetParser.resolve(parser);
             })
@@ -91,13 +91,25 @@ function(
     }
 
     require(requires, function(){
-        var fileType;
+        var fileType,
+            injectRequired = false;
+
         for (i = 0; i < arguments.length; i++){
             fileType = requireOrder[i].split('.').pop();
             if (fileType != 'less' && fileType != 'css'){
                 throw new Error('Unknown filetype. Should be less or css. Got ' + requireOrder[i]);
             }
             config[requireOrder[i]][fileType] = arguments[i];
+            if (arguments[i] == '//skip'){
+                config[requireOrder[i]].skip = true;
+            } else {
+                injectRequired = true;
+            }
+        }
+
+        if (!injectRequired){
+            initalLoad.resolve();
+            return;
         }
 
         //add a tiny bit of extra less to correct to some paths. This is a bit of a hack. Should find a way to remove it
@@ -161,14 +173,14 @@ function(
     return {
         load: function(id, require, callback){
 
-            //this is the callback executed by ther plugin
+            //this is the callback executed by the plugin
 
             var item,
                 pieces = id.split('!'),
                 mid = pieces[0];
 
             if (pieces.length > 1){
-                item = json.parse(id, true);
+                item = json.parse(pieces[1], true);
             } else {
                 item = {rank: 2};
             }
@@ -204,6 +216,12 @@ function(
                 }
 
                 item[fileType] = styles;
+
+                if (styles == '//skip'){
+                    item.skip = true;
+                    return;
+                }
+
                 if (item.css){
                     injectCss(item);
                 } else {

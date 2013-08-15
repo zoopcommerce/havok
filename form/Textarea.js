@@ -2,7 +2,7 @@ define([
     'dojo/_base/declare',
     '../widget/_WidgetBase',
     './_TextBoxMixin',
-    'dojo/text!./Template/Textarea.html'
+    'dojo/text!./template/Textarea.html'
 ],
 function (
     declare,

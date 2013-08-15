@@ -7,7 +7,7 @@ define([
     'dijit/registry',
     './_WidgetBase',
     'dijit/_WidgetsInTemplateMixin',
-    '../Form/_FormMixin',
+    '../form/_FormMixin',
     './_HideableMixin',
     'dojo/text!./template/Modal.html',
     'dojo/text!./template/ModalFooter.html',

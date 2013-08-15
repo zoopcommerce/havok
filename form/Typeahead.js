@@ -2,7 +2,7 @@ define([
     'dojo/_base/declare',
     'dojo/_base/lang',
     'dojo/when',
-    './ValidationTextbox',
+    './ValidationTextBox',
     'dijit/_WidgetsInTemplateMixin',
     './_DropdownMixin',
     'dojo/text!./template/Typeahead.html',
@@ -13,13 +13,13 @@ function (
     declare,
     lang,
     when,
-    ValidationTextbox,
+    ValidationTextBox,
     WidgetsInTemplateMixin,
     DropdownMixin,
     template
 ){
     return declare(
-        [ValidationTextbox, WidgetsInTemplateMixin, DropdownMixin],
+        [ValidationTextBox, WidgetsInTemplateMixin, DropdownMixin],
         {
             templateString: template,
 

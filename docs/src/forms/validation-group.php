@@ -8,10 +8,10 @@
 
           <h2>Example</h2>
           <div class="bs-docs-example">
-             <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
+             <div data-dojo-type="havokdocs/Formspy" class="form-horizontal">
                 <div
                     data-dojo-type="havok/form/ValidationGroup"
-                    data-dojo-props="validator: 'havok/docs/module/MultiFieldValidator'"
+                    data-dojo-props="validator: 'havokdocs/MultiFieldValidator'"
                 >
                     <input
                         id="username1"
@@ -32,7 +32,7 @@
 <pre class="prettyprint linenums">
 &lt;div
     data-dojo-type=&quot;havok/form/ValidationGroup&quot;
-    data-dojo-props=&quot;validator: 'havok/docs/module/MultiFieldValidator'&quot;
+    data-dojo-props=&quot;validator: 'havokdocs/MultiFieldValidator'&quot;
 &gt;
     &lt;input
         id=&quot;username1&quot;

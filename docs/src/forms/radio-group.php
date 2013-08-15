@@ -9,7 +9,7 @@
 
           <p>Use <code>havok/form/RadioGroup</code> for a group of button style radios.</p>
           <div class="bs-docs-example">
-             <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
+             <div data-dojo-type="havokdocs/Formspy" class="form-horizontal">
                 <input data-dojo-type="havok/form/RadioGroup"
                     data-dojo-props="
                         label: 'A radio group',

@@ -7,7 +7,7 @@
 
           <h2>Example</h2>
           <div class="bs-docs-example">
-             <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
+             <div data-dojo-type="havokdocs/Formspy" class="form-horizontal">
                 <select data-dojo-type="havok/form/Select" data-dojo-props="label: 'State', helpMessages: 'please select a state'">
                     <option value="TN">Tennessee</option>
                     <option value="VA">Virginia</option>
@@ -30,7 +30,7 @@
 
           <h2>Example with predefined selection</h2>
           <div class="bs-docs-example">
-             <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
+             <div data-dojo-type="havokdocs/Formspy" class="form-horizontal">
                 <select data-dojo-type="havok/form/Select" data-dojo-props="label: 'State', value: 'VA'">
                     <option value="TN">Tennessee</option>
                     <option value="VA">Virginia</option>
@@ -53,7 +53,7 @@
 
           <h2>Example using a store</h2>
           <div class="bs-docs-example">
-             <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
+             <div data-dojo-type="havokdocs/Formspy" class="form-horizontal">
                 <select data-dojo-type="havok/form/Select"
                     data-dojo-props="
                     label: 'State',
@@ -90,7 +90,7 @@
 
           <h2>Example with a query filtered list</h2>
           <div class="bs-docs-example">
-             <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
+             <div data-dojo-type="havokdocs/Formspy" class="form-horizontal">
                 <select data-dojo-type="havok/form/Select"
                     data-dojo-props="
                     label: 'State',
@@ -128,7 +128,7 @@
 </pre>
 
           <div class="bs-docs-example">
-             <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
+             <div data-dojo-type="havokdocs/Formspy" class="form-horizontal">
                 <input data-dojo-type="havok/form/CreditCardExpiry" data-dojo-props="helpMessages: 'please select your credit card expiry date'"/>
              </div>
           </div>

@@ -1,7 +1,7 @@
 define([
     'dojo/_base/declare',
     './ValidationTextBox',
-    'dojo/text!./Template/PasswordTextBox.html',
+    'dojo/text!./template/PasswordTextBox.html',
     'mystique/Required',
     'mystique/Password'
 ],
