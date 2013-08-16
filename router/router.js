@@ -4,7 +4,8 @@ define([
     'dojo/when',
     'dojo/string',
     'dojo/i18n!../nls/router',
-    './exception/RouteNotFound'
+    './exception/RouteNotFound',
+    'dojo/domReady!'
 ],
 function (
     lang,
@@ -91,6 +92,9 @@ function (
 
             //Check routes in reverse order - first registerd means last checked
             for (i = this.routes.length - 1; i >= 0; i--){
+                if (!this.routes[i].regex.test){
+                    this.routes[i].regex = new RegExp(this.routes[i].regex);
+                }
                 if (this.routes[i].regex.test(pieces[0])){
                     config = this.routes[i];
                     break;

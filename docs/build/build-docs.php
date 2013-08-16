@@ -1,5 +1,8 @@
 <?php
 
+//Builds the src php files of the docs into flat html files
+//Run this script from the havok/docs directory
+
 $base = __DIR__ . '/..';
 $src = $base . '/src';
 $dist = $base . '/dist';
@@ -28,7 +31,7 @@ foreach($files as $file){ // iterate files
 }
 
 //copy css
-$copy($src . '/css', $dist . '/css');
+//$copy($src . '/css', $dist . '/css');
 
 //copy js
 $copy($src . '/js', $dist . '/js');
@@ -43,6 +46,9 @@ foreach($files as $file){ // iterate files
     $name = array_pop($name);
     $name = explode('.', $name);
     array_pop($name);
+    if ($name[count($name) - 1] == layout){
+        continue;
+    }
     $name[] = 'html';
     $name = implode('.', $name);
     ob_start();

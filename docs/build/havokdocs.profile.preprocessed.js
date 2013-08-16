@@ -1,0 +1,282 @@
+var profile = {
+    "action": "release",
+    "basePath": "c:/xds/charting/public/dev-assets",
+    "releaseDir": "../../../builthavok43",
+    "cssOptimize": 0,
+    "layerOptimize": 0,
+    "selectorEngine": "lite",
+    "mini": 1,
+    "buildReportDir": ".",
+    "buildReportFilename": "build-report.txt",
+    "insertAbsMids": 0,
+    "defaultConfig": {
+        "hasCache": {
+            "dojo-built": 1,
+            "dojo-loader": 1,
+            "dom": 1,
+            "host-browser": 1,
+            "config-selectorEngine": "lite"
+        },
+        "async": true,
+        "less": {
+            "havok/vendor/bootstrap/less/variables.less": {
+                "defs": true
+            },
+            "havok/vendor/bootstrap/less/mixins.less": {
+                "defs": true
+            },
+            "havok/vendor/bootstrap/less/reset.less": {
+                "rank": 1
+            },
+            "havok/vendor/bootstrap/less/scaffolding.less": {
+                "rank": 1
+            },
+            "havok/vendor/bootstrap/less/grid.less": {
+                "rank": 1
+            },
+            "havok/vendor/bootstrap/less/layouts.less": {
+                "rank": 1
+            },
+            "havok/vendor/bootstrap/less/type.less": {
+                "rank": 1
+            },
+            "havok/vendor/bootstrap/less/code.less": {
+                "rank": 1
+            },
+            "havok/vendor/bootstrap/less/forms.less": {
+                "rank": 1
+            },
+            "havok/vendor/bootstrap/less/tables.less": {
+                "rank": 1
+            },
+            "havok/vendor/bootstrap/less/utilities.less": {
+                "rank": 1
+            },
+            "havok/vendor/bootstrap/less/responsive-utilities.less": {
+                "rank": 3
+            },
+            "havok/vendor/bootstrap/less/responsive-1200px-min.less": {
+                "rank": 3
+            },
+            "havok/vendor/bootstrap/less/responsive-768px-979px.less": {
+                "rank": 3
+            },
+            "havok/vendor/bootstrap/less/responsive-767px-max.less": {
+                "rank": 3
+            },
+            "havok/vendor/bootstrap/less/responsive-navbar.less": {
+                "rank": 3
+            },
+            "havok/vendor/font-awesome/less/variables.less": {
+                "defs": true
+            },
+            "havok/vendor/font-awesome/less/mixins.less": {
+                "defs": true
+            },
+            "havok/vendor/font-awesome/less/path.less": {
+                "rank": 1
+            },
+            "havok/vendor/font-awesome/less/core.less": {
+                "rank": 1
+            },
+            "havok/vendor/font-awesome/less/bootstrap.less": {
+                "rank": 1
+            },
+            "havok/vendor/font-awesome/less/extras.less": {
+                "rank": 1
+            },
+            "havok/vendor/font-awesome/less/icons.less": {
+                "rank": 1
+            },
+            "havok/docs/src/less/variables.less": {
+                "defs": true
+            },
+            "havok/vendor/bootstrap/less/labels-badges.less": {
+                "rank": 1
+            },
+            "havok/vendor/bootstrap/less/wells.less": {
+                "rank": 1
+            },
+            "havok/docs/src/less/docs.less": {
+                "rank": 4
+            }
+        },
+        "di": {
+            "havok/validator/factory": {
+                "gets": {
+                    "di": "havok/di/sharedDi!"
+                }
+            },
+            "mystique/Chain": {
+                "directives": {
+                    "cache": false
+                }
+            },
+            "havok/filter/factory": {
+                "gets": {
+                    "di": "havok/di/sharedDi!"
+                }
+            },
+            "havok/filter/Chain": {
+                "directives": {
+                    "cache": false
+                }
+            },
+            "havok/exception/Handler": {
+                "gets": {
+                    "renderers": [
+                        "havok/exception/renderer/Console"
+                    ]
+                },
+                "proxyMethods": [
+                    "set",
+                    "handle"
+                ]
+            },
+            "havok/router/router": {
+                "gets": {
+                    "di": "havok/di/sharedDi!"
+                },
+                "params": {
+                    "routes": [
+                        {
+                            "regex": "[a-zA-Z][a-zA-Z0-9/_-]+",
+                            "ignore": true
+                        },
+                        {
+                            "regex": "back",
+                            "defaultMethod": -1
+                        },
+                        {
+                            "regex": "forward",
+                            "defaultMethod": 1
+                        },
+                        {
+                            "regex": "[a-zA-Z][a-zA-Z0-9/_-]+.[html|php]",
+                            "controller": "havok/docs/module/Controller",
+                            "defaultMethod": {
+                                "enter": "go",
+                                "exit": "exit"
+                            }
+                        }
+                    ]
+                }
+            },
+            "havok/store/manager": {
+                "gets": {
+                    "stores": "havok/store/stores"
+                },
+                "proxyMethods": [
+                    "get",
+                    "getStore"
+                ]
+            },
+            "havok/store/stores": {
+                "base": {},
+                "proxies": {
+                    "font": {
+                        "base": "havok/widget/font",
+                        "proxyMethods": [
+                            "get",
+                            "query"
+                        ]
+                    },
+                    "fontsize": {
+                        "base": "havok/widget/fontsize",
+                        "proxyMethods": [
+                            "get",
+                            "query"
+                        ]
+                    },
+                    "demostates": [
+                        {
+                            "base": "havok/docs/module/state",
+                            "proxyMethods": [
+                                "get",
+                                "query"
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "staticHasFeatures": {
+        "dom": 1,
+        "host-browser": 1,
+        "dojo-inject-api": 1,
+        "dojo-loader-eval-hint-url": 1,
+        "dojo-built": 1,
+        "host-node": 0,
+        "host-rhino": 0,
+        "dojo-trace-api": 0,
+        "dojo-sync-loader": 0,
+        "dojo-config-api": 1,
+        "dojo-cdn": 0,
+        "dojo-sniff": 0,
+        "dojo-requirejs-api": 0,
+        "dojo-test-sniff": 0,
+        "dojo-combo-api": 0,
+        "dojo-undef-api": 0,
+        "config-tlmSiblingOfDojo": 0,
+        "config-dojo-loader-catches": 0,
+        "config-stripStrict": 0,
+        "dojo-timeout-api": 0,
+        "dojo-dom-ready-api": 0,
+        "dojo-log-api": 0,
+        "dojo-amd-factory-scan": 0,
+        "dojo-publish-privates": 0
+    },
+    "packages": [
+        {
+            "name": "dojo",
+            "location": "dojo"
+        },
+        {
+            "name": "dijit",
+            "location": "dijit"
+        },
+        {
+            "name": "havok",
+            "location": "havok"
+        },
+        {
+            "name": "mystique",
+            "location": "mystique"
+        }
+    ],
+    "layers": {
+        "dojo/dojo": {
+            "include": [],
+            "customBase": 1
+        },
+        "havok/havokdocs": {
+            "includeLocales": [
+                "en-us"
+            ],
+            "include": [
+                "havok/main",
+                "havok/docs/module/Formspy",
+                "havok/docs/module/Controller",
+                "havok/docs/module/MultiFieldValidator"
+            ],
+            "boot": 1
+        }
+    },
+    "plugins": {
+        "havok/config/ready": "havok/build/plugin/config/ready",
+        "havok/router/baseUrl": "havok/build/plugin/router/baseUrl",
+        "havok/router/started": "havok/build/plugin/router/started",
+        "havok/di/sharedDi": "havok/build/plugin/di/sharedDi",
+        "havok/proxy": "havok/build/plugin/proxy",
+        "havok/get": "havok/build/plugin/get",
+        "havok/less": "havok/build/plugin/less",
+        "dojo/text": "havok/build/plugin/text"
+    },
+    "transforms": {
+        "writeAmd": [
+            "havok/build/writeAmd",
+            "write"
+        ]
+    }
+}

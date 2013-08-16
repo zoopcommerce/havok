@@ -219,6 +219,7 @@ function(
 
                 if (styles == '//skip'){
                     item.skip = true;
+                    callback();
                     return;
                 }
 

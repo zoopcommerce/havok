@@ -1,16 +1,21 @@
 define ([
     './Accordion',
+    './Affix',
     './ButtonGroup',
     './CheckboxGroup',
     './Dragable',
     './Dropdown',
     './DropdownToggle',
+    './NavBar',
+    './NavBarLinks',
     './NavTab',
     './NavPill',
     './NavList',
+    './Overlay',
     './RadioGroup',
     './TabContainer',
-    './ToggleButton'
+    './ToggleButton',
+    './_ScrollSpyMixin'
 ],
 function (
 

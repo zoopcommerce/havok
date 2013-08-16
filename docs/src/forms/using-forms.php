@@ -13,7 +13,7 @@
     <p>Any havok form widges wrapped in a <code>havok/form/Form</code> will automatically data bind. Eg: </p>
 
           <div class="bs-docs-example">
-             <div data-dojo-type="havokdocs/Formspy" class="form-horizontal">
+             <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
                 <form data-dojo-type="havok/form/Form">
                     <input data-dojo-type="havok/form/Checkbox"
                         name="checkme"
@@ -97,7 +97,7 @@
                 })
             })
     </script>
-       <div data-dojo-type="havokdocs/Formspy" class="form-horizontal">
+       <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
            <button class="btn" id="formModalButton1">Show modal</button>
           <div id="formModal1" data-dojo-type="havok/widget/Modal" title="Form Modal">
               <input data-dojo-type="havok/form/TextBox"

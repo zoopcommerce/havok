@@ -2,9 +2,13 @@ define ([
     './array',
     './is',
     './lang',
+    './parseComplete',
     './string',
     './config/main',
     './di/main',
+    './exception/main',
+    './filter/main',
+    './router/main',
     './widget/main'
 ],
 function () {

@@ -54,7 +54,7 @@ require(['mystique/Length'], function(Length){
 
 
 <pre class="prettyprint linenums">
-require(['havok/get!ValidatorFactory'],
+require(['havok/get!havok/validator/factory'],
    function(factory){
        factory.create(['Alpha', {base: 'Length', params: {min: 5, max: 10}}]).then(function(validator){
            result = validator.isValid(value);

@@ -19,7 +19,7 @@ function(){
                 params: {
                     routes: [
                         {
-                            regex: /[a-zA-Z][a-zA-Z0-9/_-]+.[html|php]/,
+                            regex: '[a-zA-Z][a-zA-Z0-9/_-]+.[html|php]',
                             controller: 'havok/docs/module/Controller',
                             defaultMethod: {
                                 enter: 'go',
@@ -31,9 +31,10 @@ function(){
             }
         },
         less: {
+            "havok/docs/src/less/variables.less": {defs: true},
             "havok/vendor/bootstrap/less/labels-badges.less": {rank: 1},
             "havok/vendor/bootstrap/less/wells.less": {rank: 1},
-            "havok/docs/src/less/docs.css": {rank: 4}
+            "havok/docs/src/less/docs.less": {rank: 4}
         }
     }
 });

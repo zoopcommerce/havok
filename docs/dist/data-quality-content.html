@@ -1,0 +1,319 @@
+<!-- Subhead
+================================================== -->
+<header class="jumbotron subhead" id="overview">
+  <div class="container">
+    <h1>Data Quality</h1>
+    <p class="lead">Keep your data clean and tidy without annoying your users.</p>
+  </div>
+</header>
+
+
+  <div class="container">
+
+    <!-- Docs nav
+    ================================================== -->
+    <div class="row">
+      <div class="span3 bs-docs-sidebar">
+        <ul data-dojo-type="havok/widget/NavList"
+            data-dojo-mixins="havok/widget/_AffixMixin, havok/widget/_ScrollSpyMixin"
+            data-dojo-props="
+               linkTemplate: '&lt;a role=&quot;navitem&quot; href=&quot;${href}&quot;&gt;&lt;i class=&quot;icon-chevron-right&quot;&gt;&lt;/i&gt; ${text}&lt;/a&gt;',
+               viewportOffset: {top: 40, bottom: 0},
+               affixTarget: 'mainContent',
+               spyTarget: 'mainContent'
+            "
+            class="nav-stacked bs-docs-sidenav"
+        >
+        </ul>
+      </div>
+    <div class="span9" id="mainContent">
+
+        
+        <section id="filters" title="Filters">
+          <div class="page-header">
+            <h1>Filters</h1>
+          </div>
+
+          <p>Filters are normally used by form widgets to process raw input data. They may be used individually, or chained together.</p>
+
+          <h2>Trim</h2>
+          <div class="bs-docs-example" class="form-horizontal">
+             <script>
+                 require(['havok/filter/Trim', 'dojo/dom', 'dojo/on', 'dojo/domReady!'],
+                    function(Trim, dom, on){
+                        on(dom.byId('trimButton'), 'click', function(){
+                            var trim = new Trim;
+                            dom.byId('trimOutput').innerHTML = '"' + trim.filter(dom.byId('trimInput').value) + '"';
+                        })
+                    }
+                 )
+             </script>
+             <input id ="trimInput" type="textbox" value="    Filter me noW    "/>
+             <div class="well">
+                 <button id="trimButton" class="btn">filter</button>
+                 <pre id="trimOutput"></pre>
+             </div>
+          </div>
+
+<pre class="prettyprint linenums">
+var trim = new Trim,
+    filteredValue = trim.filter(value);
+</pre>
+
+          <h2>Lowercase</h2>
+          <div class="bs-docs-example" class="form-horizontal">
+             <script>
+                 require(['havok/filter/Lowercase', 'dojo/dom', 'dojo/on', 'dojo/domReady!'],
+                    function(Lowercase, dom, on){
+                        on(dom.byId('lowercaseButton'), 'click', function(){
+                            var lowercase = new Lowercase;
+                            dom.byId('lowercaseOutput').innerHTML = '"' + lowercase.filter(dom.byId('lowercaseInput').value) + '"';
+                        })
+                    }
+                 )
+             </script>
+             <input id ="lowercaseInput" type="textbox" value="    Filter me noW    "/>
+             <div class="well">
+                 <button id="lowercaseButton" class="btn">filter</button>
+                 <pre id="lowercaseOutput"></pre>
+             </div>
+          </div>
+
+<pre class="prettyprint linenums">
+var lowercase = new Lowercase,
+    filteredValue = lowercase.filter(value);
+</pre>
+
+          <h2>Uppercase</h2>
+          <div class="bs-docs-example" class="form-horizontal">
+             <script>
+                 require(['havok/filter/Uppercase', 'dojo/dom', 'dojo/on', 'dojo/domReady!'],
+                    function(Uppercase, dom, on){
+                        on(dom.byId('uppercaseButton'), 'click', function(){
+                            var uppercase = new Uppercase;
+                            dom.byId('uppercaseOutput').innerHTML = '"' + uppercase.filter(dom.byId('uppercaseInput').value) + '"';
+                        })
+                    }
+                 )
+             </script>
+             <input id ="uppercaseInput" type="textbox" value="    Filter me noW    "/>
+             <div class="well">
+                 <button id="uppercaseButton" class="btn">filter</button>
+                 <pre id="uppercaseOutput"></pre>
+             </div>
+          </div>
+
+<pre class="prettyprint linenums">
+var uppercase = new Uppercase,
+    filteredValue = uppercase.filter(value);
+</pre>
+
+          <h2>Propercase</h2>
+          <div class="bs-docs-example" class="form-horizontal">
+             <script>
+                 require(['havok/filter/Propercase', 'dojo/dom', 'dojo/on', 'dojo/domReady!'],
+                    function(Propercase, dom, on){
+                        on(dom.byId('propercaseButton'), 'click', function(){
+                            var propercase = new Propercase;
+                            dom.byId('propercaseOutput').innerHTML = '"' + propercase.filter(dom.byId('propercaseInput').value) + '"';
+                        })
+                    }
+                 )
+             </script>
+             <input id ="propercaseInput" type="textbox" value="    Filter me noW    "/>
+             <div class="well">
+                 <button id="propercaseButton" class="btn">filter</button>
+                 <pre id="propercaseOutput"></pre>
+             </div>
+          </div>
+
+<pre class="prettyprint linenums">
+var propercase = new propercase,
+    filteredValue = propercase.filter(value);
+</pre>
+
+          <h2>Chains</h2>
+
+          <p>Chain filters together. The result of each filter will be passed to the next filter in the chain.</p>
+
+          <div class="bs-docs-example" class="form-horizontal">
+             <script>
+                 require(['havok/filter/Chain', 'havok/filter/Trim', 'havok/filter/Uppercase', 'dojo/dom', 'dojo/on', 'dojo/domReady!'],
+                    function(Chain, Trim, Uppercase, dom, on){
+                        on(dom.byId('chainButton'), 'click', function(){
+                            var chain = new Chain({filters: [
+                                new Trim,
+                                new Uppercase
+                            ]});
+                            dom.byId('chainOutput').innerHTML = '"' + chain.filter(dom.byId('chainInput').value) + '"';
+                        })
+                    }
+                 )
+             </script>
+             <input id ="chainInput" type="textbox" value="    Filter me noW    "/>
+             <div class="well">
+                 <button id="chainButton" class="btn">filter</button>
+                 <pre id="chainOutput"></pre>
+             </div>
+          </div>
+
+<pre class="prettyprint linenums">
+var chain = new Chain({filters: [
+        new Trim,
+        new Uppercase
+    ]}),
+    filteredValue = chain.filter(value);
+</pre>
+
+          <h2>Custom Filters</h2>
+
+          <p>Define your own filters by extending from <code>havok/filter/Base</code> and overriding the <code>filter</code> method.</p>
+
+          <div class="bs-docs-example" class="form-horizontal">
+             <script>
+                 require(['havok/filter/Base', 'dojo/dom', 'dojo/on', 'dojo/_base/declare', 'dojo/domReady!'],
+                    function(FilterBase, dom, on, declare){
+
+                        var Dollar = declare([FilterBase], {
+                            filter: function(value){
+                                return '$' + value;
+                            }
+                        });
+
+                        on(dom.byId('customButton'), 'click', function(){
+                            var dollar = new Dollar;
+                            dom.byId('customOutput').innerHTML = '"' + dollar.filter(dom.byId('customInput').value) + '"';
+                        })
+                    }
+                 )
+             </script>
+             <input id ="customInput" type="textbox" value="    Filter me noW    "/>
+             <div class="well">
+                 <button id="customButton" class="btn">filter</button>
+                 <pre id="customOutput"></pre>
+             </div>
+          </div>
+
+<pre class="prettyprint linenums">
+require(['havok/filter/Base', 'dojo/_base/declare'],
+   function(FilterBase, declare){
+
+       var Dollar = declare([FilterBase], {
+           filter: function(value){
+               return '$' + value;
+           }
+       });
+
+       var dollar = new Dollar;
+       filteredValue = dollar.filter(value);
+   }
+)
+</pre>
+
+          <h2>Filter Factory</h2>
+
+          <p>The filter factory can be used to create instances of filters. eg:</p>
+
+          <div class="bs-docs-example" class="form-horizontal">
+             <script>
+                 require(['havok/get!havok/filter/factory', 'dojo/dom', 'dojo/on', 'dojo/domReady!'],
+                    function(factory, dom, on){
+
+                        on(dom.byId('factoryButton'), 'click', function(){
+                            factory.create(['Trim', 'Lowercase']).then(function(filter){
+                                dom.byId('factoryOutput').innerHTML = '"' + filter.filter(dom.byId('factoryInput').value) + '"';
+                            })
+                        })
+                    }
+                 )
+             </script>
+             <input id ="factoryInput" type="textbox" value="    Filter me noW    "/>
+             <div class="well">
+                 <button id="factoryButton" class="btn">filter</button>
+                 <pre id="factoryOutput"></pre>
+             </div>
+          </div>
+
+<pre class="prettyprint linenums">
+require(['havok/get!havok/filter/factory'],
+   function(factory){
+       factory.create(['Trim', 'Lowercase']).then(function(filter){
+           filteredValue = filter.filter(value);
+       })
+   }
+)
+</pre>
+
+          <p>The filter factory uses <code>havok/di</code> to create and configure the filters. It accepts any valid di config.</p>
+        </section>
+
+        <section id="validators" title="Validators">
+          <div class="page-header">
+            <h1>Validators</h1>
+          </div>
+
+          <p>Validators will check if data meets certain criteria and return a message if it does not.</p>
+
+          <p>Havok uses the <a href="http://zoopcommerce.github.io/mystique">mystique</a> validator library. Which includes:</p>
+
+          <ul>
+              <li>Alpha</li>
+              <li>Boolean</li>
+              <li>Chain</li>
+              <li>CreditCard</li>
+              <li>CreditCardExpiry</li>
+              <li>Cvv</li>
+              <li>Date</li>
+              <li>Equal</li>
+              <li>Alpha</li>
+              <li>Float</li>
+              <li>GreaterThan</li>
+              <li>LessThan</li>
+              <li>HexColor</li>
+              <li>Int</li>
+              <li>Length</li>
+              <li>LessThan</li>
+              <li>LethThanEqual</li>
+              <li>NotEqual</li>
+              <li>NotRequired</li>
+              <li>Password</li>
+              <li>Regex</li>
+              <li>Slug</li>
+              <li>String</li>
+              <li>And probably more ...</li>
+          </ul>
+
+          <h2>Mystique Validators</h2>
+
+          <p>Use the mystique validators as described in the mystique docs. Eg</p>
+
+<pre class="prettyprint linenums">
+require(['mystique/Length'], function(Length){
+    var validator = new Length({min: 10, max: 20}),
+        result = validator.isValid(myValue);
+})
+</pre>
+
+          <p>Mystique validators can be extended and chained. See the mystique docs for more detail.</p>
+
+          <h2>Validator Factory</h2>
+
+          <p>The validator factory can be used to create instances of validators. eg:</p>
+
+
+<pre class="prettyprint linenums">
+require(['havok/get!ValidatorFactory'],
+   function(factory){
+       factory.create(['Alpha', {base: 'Length', params: {min: 5, max: 10}}]).then(function(validator){
+           result = validator.isValid(value);
+       })
+   }
+)
+</pre>
+
+          <p>The validator factory uses <code>havok/di</code> to create and configure the validators. It accepts any valid di config.</p>
+        </section>
+      </div>
+    </div>
+
+  </div>

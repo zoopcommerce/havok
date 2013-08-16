@@ -6,7 +6,7 @@ define(
                 'havok/exception/Handler': {
                     gets: {
                         renderers: [
-                            'havok/exception/renderer/console'
+                            'havok/exception/renderer/Console'
                         ]
                     },
                     proxyMethods: ['set', 'handle']

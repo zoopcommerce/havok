@@ -6,7 +6,7 @@
 
           <h2>Example</h2>
           <div class="bs-docs-example">
-             <div data-dojo-type="havokdocs/Formspy" class="form-horizontal">
+             <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
                 <textarea data-dojo-type="havok/form/Textarea" data-dojo-props="label:'About'">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </textarea>
@@ -22,7 +22,7 @@
 
           <h2>Rows Example</h2>
           <div class="bs-docs-example">
-             <div data-dojo-type="havokdocs/Formspy" class="form-horizontal">
+             <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
                 <textarea data-dojo-type="havok/form/Textarea" rows="15" data-dojo-props="label:'About'">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </textarea>
@@ -37,7 +37,7 @@
 
           <h2>Filter Example</h2>
           <div class="bs-docs-example">
-             <div data-dojo-type="havokdocs/Formspy" class="form-horizontal">
+             <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
                 <textarea data-dojo-type="havok/form/Textarea" rows="15" data-dojo-props="label:'About', filter: ['Trim', 'Uppercase']">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </textarea>
@@ -55,7 +55,7 @@
 
           <h2>Validation text area</h2>
           <div class="bs-docs-example">
-             <div data-dojo-type="havokdocs/Formspy" class="form-horizontal">
+             <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
                 <textarea data-dojo-type="havok/form/ValidationTextarea" data-dojo-props="label:'About', validator: {base: 'Length', params: {min: 10, max: 50}}">
                 Too long. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.
                 </textarea>
@@ -75,7 +75,7 @@
 
           <p>Mixin <code>dijit/form/_ExpandingTextAreaMixin</code> to make a text area expand to match the length of it's content.</p>
           <div class="bs-docs-example">
-             <div data-dojo-type="havokdocs/Formspy" class="form-horizontal">
+             <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
                 <textarea
                     data-dojo-type="havok/form/Textarea"
                     data-dojo-mixins="dijit/form/_ExpandingTextAreaMixin"

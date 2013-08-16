@@ -30,15 +30,11 @@ dojoConfig = {
         {
             name: "mystique",
             location: "mystique"
-        },
-        {
-            name: "havokdocs",
-            location: "havok/docs/module"
         }
     ]
 };
 
 //have to load the less compiler before dojo because it doesn't play nice with dojo AMD
-lessc = require('../../havok/vendor/less/lib/less');
+lessc = require('../../../havok/vendor/less/lib/less');
 
-require('../../dojo/dojo');
+require('../../../dojo/dojo');

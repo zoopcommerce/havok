@@ -1,13 +1,14 @@
 var profile = {
     action: "release",
     basePath: "../../../",
-    releaseDir:"../../../builthavok21",
+    releaseDir:"../../../builthavok43",
     cssOptimize:0,
-    layerOptimize:"closure",
+    layerOptimize:0,
     selectorEngine:"lite",
     mini:1,
     buildReportDir: ".",
     buildReportFilename: "build-report.txt",
+    insertAbsMids: 0,
     defaultConfig: {
         hasCache:{
             "dojo-built": 1,
@@ -19,7 +20,7 @@ var profile = {
         async: true,
         merge: [
             'havok/config',
-            'havokdocs/config'
+            'havok/docs/module/config'
         ]
     },
     staticHasFeatures: {
@@ -48,7 +49,6 @@ var profile = {
         'dojo-amd-factory-scan': 0,
         'dojo-publish-privates': 0
     },
-    dojoBootText: "require.boot && require.apply(null, require.boot);",
     packages:[
         {
             name:"dojo",
@@ -65,10 +65,6 @@ var profile = {
         {
             name:"mystique",
             location:"mystique"
-        },
-        {
-            name:"havokdocs",
-            location:"havok/docs/module"
         }
     ],
     layers:{
@@ -76,9 +72,13 @@ var profile = {
             include: [],
             customBase: 1
         },
-        "havok/test":{
+        "havok/havokdocs":{
+            includeLocales: ['en-us'],
             include: [
-                'havok/main'
+                'havok/main',
+                'havok/docs/module/Formspy',
+                'havok/docs/module/Controller',
+                'havok/docs/module/MultiFieldValidator'
             ],
             boot: 1
         }

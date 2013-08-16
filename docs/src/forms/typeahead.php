@@ -7,7 +7,7 @@
 
           <h2>Example</h2>
           <div class="bs-docs-example">
-             <div data-dojo-type="havokdocs/Formspy" class="form-horizontal">
+             <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
                 <select data-dojo-type="havok/form/Typeahead"
                     data-dojo-props="label: 'State', helpMessages: 'please type a state'"
                 >
@@ -78,7 +78,7 @@
 
           <h2>Using a store</h2>
           <div class="bs-docs-example">
-             <div data-dojo-type="havokdocs/Formspy" class="form-horizontal">
+             <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
                 <select data-dojo-type="havok/form/Typeahead"
                     data-dojo-props="label: 'State', store: 'demostates'"
                 >
@@ -94,7 +94,7 @@
 
           <h2>With a validator</h2>
           <div class="bs-docs-example">
-             <div data-dojo-type="havokdocs/Formspy" class="form-horizontal">
+             <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
                 <select data-dojo-type="havok/form/Typeahead"
                     data-dojo-props="label: 'State', store: 'demostates', validator: 'Required'"
                 >
@@ -110,7 +110,7 @@
 
           <h2>With appendages</h2>
           <div class="bs-docs-example">
-             <div data-dojo-type="havokdocs/Formspy" class="form-horizontal">
+             <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
                 <div data-dojo-type="havok/form/Typeahead"
                     data-dojo-props="label: 'State', store: 'demostates'"
                 >
@@ -134,7 +134,7 @@
 
           <p><code>queryThrottle</code> will limit the rate of queries against the store. In this example, there will be a minimum of 1500 milliseconds between queries (quite slow). Also, <code>minLength</code> sets the minimum number of characters before the Typeahead will give suggestions.</p>
           <div class="bs-docs-example">
-             <div data-dojo-type="havokdocs/Formspy" class="form-horizontal">
+             <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
                 <select data-dojo-type="havok/form/Typeahead"
                     data-dojo-props="label: 'State', store: 'demostates', queryThrottle: 1500, minLength: 2"
                 ></select>

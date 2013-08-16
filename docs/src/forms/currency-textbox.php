@@ -8,7 +8,7 @@
 
           <h2>Example</h2>
           <div class="bs-docs-example">
-             <div data-dojo-type="havokdocs/Formspy" class="form-horizontal">
+             <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
                 <input data-dojo-type="havok/form/CurrencyTextBox"
                     data-dojo-props="label:'Cost'"
                 />
@@ -23,7 +23,7 @@
 
             <h3>Currency Box with preset float value</h3>
           <div class="bs-docs-example">
-             <div data-dojo-type="havokdocs/Formspy" class="form-horizontal">
+             <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
                 <input data-dojo-type="havok/form/CurrencyTextBox"
                     data-dojo-props="
                         label:'Cost',
@@ -35,7 +35,7 @@
 
             <h3>Currency Box with preset string value</h3>
           <div class="bs-docs-example">
-             <div data-dojo-type="havokdocs/Formspy" class="form-horizontal">
+             <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
                 <input data-dojo-type="havok/form/CurrencyTextBox"
                     data-dojo-props="
                         label:'Cost',

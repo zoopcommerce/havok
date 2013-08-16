@@ -2,7 +2,11 @@ var profile = (function(){
     var testResourceRe = /^havok\/test\//,
         buildResourceRe = /^havok\/build\//,
         lessLibRe = /^havok\/vendor\/less\/lib\//,
-        docsResourceRe = /^havok\/docs\//;
+        distResourceRe = /^havok\/dist\//,
+        docsBuildResourceRe = /^havok\/docs\/build\//,
+        docsDistResourceRe = /^havok\/docs\/dist\//,
+        docsSrcResourceRe = /^havok\/docs\/src\//,
+        docsTempResourceRe = /^havok\/docs\/temp\//;
 
     var less = function(filename, mid){
         var list = {};
@@ -12,7 +16,11 @@ var profile = (function(){
 
     var ignore = function(filename, mid){
         var list = {
-            "havok/docs"             : true,
+            "havok/dist"             : true,
+            "havok/docs/build"       : true,
+            "havok/docs/dist"        : true,
+            "havok/docs/src"         : true,
+            "havok/docs/temp"        : true,
             "havok/build"            : true,
             "havok/composer.json"    : true,
             "havok/vendor/less/lib"  : true
@@ -20,7 +28,11 @@ var profile = (function(){
         return (mid in list) ||
             lessLibRe.test(mid) ||
             buildResourceRe.test(mid) ||
-            docsResourceRe.test(mid);
+            distResourceRe.test(mid) ||
+            docsBuildResourceRe.test(mid) ||
+            docsDistResourceRe.test(mid) ||
+            docsSrcResourceRe.test(mid) ||
+            docsTempResourceRe.test(mid);
     };
 
     var test = function(filename, mid){

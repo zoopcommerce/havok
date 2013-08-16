@@ -1,6 +1,5 @@
 define([
 	'dojo/_base/declare',
-    'dojo/on',
     'dojo/dom-class',
     'dojo/dom-construct',
     'dojo/dom-geometry',
@@ -14,7 +13,6 @@ define([
 
 function(
     declare,
-    on,
     domClass,
     domConstruct,
     domGeom,

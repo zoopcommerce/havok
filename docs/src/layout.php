@@ -17,10 +17,10 @@
             async: true,
             merge: [
                 'havok/config',
-                'havokdocs/config'
+                'havok/docs/module/config'
             ],
             di: {
-                'havokdocs/Controller': {
+                'havok/docs/module/Controller': {
                     params: {
                         type: 'php'
                     }
@@ -28,7 +28,7 @@
             },
             packages: [
                 {
-                    name: "havokdocs",
+                    name: "havok/docs/module",
                     location: "../havok/docs/module"
                 }
             ]
