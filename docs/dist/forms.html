@@ -9,32 +9,11 @@
 
     <link href="js/google-code-prettify/prettify.css" rel="stylesheet">
 
+        <link rel="stylesheet" href="havokdocs.css">
+
     <!-- Placed at the start of the document so require is available for examples -->
-    <script type="text/javascript">
-        dojoConfig = {
-            isDebug: true,
-            locale: 'en-au',
-            async: true,
-            merge: [
-                'havok/config',
-                'havok/docs/module/config'
-            ],
-            di: {
-                'havok/docs/module/Controller': {
-                    params: {
-                        type: 'php'
-                    }
-                }
-            },
-            packages: [
-                {
-                    name: "havok/docs/module",
-                    location: "../havok/docs/module"
-                }
-            ]
-        }
-    </script>
-    <script src="../../../dojo/dojo.js"></script>
+    <script src="js/havokdocs.js"></script>
+    
     <script type="text/javascript">
         require([
             'havok/main',
@@ -79,6 +58,9 @@
               </li>
               <li>
                 <a href="di.html">DI</a>
+              </li>
+              <li>
+                <a href="builds.html">builds</a>
               </li>
             </ul>
         </div>

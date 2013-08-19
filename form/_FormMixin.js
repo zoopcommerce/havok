@@ -14,8 +14,15 @@ function (
 
             //postActivity: undefined,
 
-            // Extends the standard dijit/form/_FormMixin
-            //
+            startup: function(){
+                this.inherited(arguments);
+
+                //make sure state watches trigger on startup
+                var state = this.state;
+                this.state = 'startup';
+                this.set('state', state);
+            },
+
             _getInvalidWidgetsAttr: function(){
                 // Returns an array of child widgets which have a state != '' (ie have invalid state)
                 return array.filter(this._descendants, function(widget){

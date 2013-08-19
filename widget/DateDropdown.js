@@ -19,7 +19,7 @@ function (
     return declare(
         [DropdownBase],
         {
-            
+
             defaultClass: 'dropdown-menu datepicker',
 
             templateString: template,
@@ -135,6 +135,7 @@ function (
                 if (startDay.getDay() == 6){
                     startDay.setDate(1);
                     startDay.setMonth(month);
+                    startDay.setYear(year);
                 } else {
                     startDay.setDate(startDay.getDate() - startDay.getDay());
                 }

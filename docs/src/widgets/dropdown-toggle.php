@@ -27,8 +27,8 @@
                <tr>
                  <td>placement</td>
                  <td>object</td>
-                 <td><code>{placementNode: 'bottom-left', dropdown: 'top-left'}</code></td>
-                 <td>Defines where the dropdown will be placed when it is opened. The <code>placementNode</code> defines the corner of the toggle button that will be used for placement. The <code>dropdown</code> defines the corner of the dropdown that will be used for placement. By default the top-left corner of the dropdown is aligned with the bottom-left corner of the placementNode. Note that placement will be automatically adjusted if the dropdown will be clipped by and edge of the viewport.</td>
+                 <td><code>{toggle: 'bottom-left', dropdown: 'top-left'}</code></td>
+                 <td>Defines where the dropdown will be placed when it is opened. The <code>toggle</code> defines the corner of the toggle button that will be used for placement. The <code>dropdown</code> defines the corner of the dropdown that will be used for placement. By default the top-left corner of the dropdown is aligned with the bottom-left corner of the toggle. Note that placement will be automatically adjusted if the dropdown will be clipped by and edge of the viewport.</td>
                </tr>
                 <tr>
                     <td>templateString</td>
@@ -287,13 +287,11 @@
 
           <h3>Fine grained control</h3>
 
-          <p>Use attach points to control exactly which element in the markup will respond to a click, and which element the dropdown will be placed relative to.</p>
+          <p>Use attach points to control exactly which element in the markup will respond to a click.</p>
           <div class="bs-docs-example">
-            <div data-dojo-type="havok/widget/DropdownToggle">
-                <div data-dojo-attach-point="placementNode" class="well">
-                    <p>Extra text</p>
-                    <button data-dojo-attach-point="button" class="btn">Show Dropdown</button>
-                </div>
+            <div data-dojo-type="havok/widget/DropdownToggle" class="well">
+              <p>Extra text</p>
+              <button data-dojo-attach-point="button" class="btn">Show Dropdown</button>
               <ul data-dojo-type="havok/widget/Dropdown">
                   <li><a href="">Action</a></li>
                   <li><a href="">Another action</a></li>
@@ -304,11 +302,9 @@
             </div>
           </div>
 <pre class="prettyprint linenums">
-&lt;div data-dojo-type=&quot;havok/widget/DropdownToggle&quot;&gt;
-    &lt;div data-dojo-attach-point=&quot;placementNode&quot; class=&quot;well&quot;&gt;
-        &lt;p&gt;Extra text&lt;/p&gt;
-        &lt;button data-dojo-attach-point=&quot;button&quot; class=&quot;btn&quot;&gt;Show Dropdown&lt;/button&gt;
-    &lt;/div&gt;
+&lt;div data-dojo-type=&quot;havok/widget/DropdownToggle&quot; class=&quot;well&quot;&gt;
+  &lt;p&gt;Extra text&lt;/p&gt;
+  &lt;button data-dojo-attach-point=&quot;button&quot; class=&quot;btn&quot;&gt;Show Dropdown&lt;/button&gt;
   &lt;ul data-dojo-type=&quot;havok/widget/Dropdown&quot;&gt;
       ...
   &lt;/ul&gt;

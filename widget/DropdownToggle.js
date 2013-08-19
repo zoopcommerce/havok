@@ -50,7 +50,7 @@ function (
             //dropdownContainer: undefined,
 
             placement: {
-                placementNode: 'bottom-left',
+                toggle: 'bottom-left',
                 dropdown: 'top-left'
             },
 
@@ -86,9 +86,6 @@ function (
 
                 if (!this.button){
                     this.button = this.domNode;
-                }
-                if (!this.placementNode){
-                    this.placementNode = this.domNode;
                 }
 
                 domClass.add(this.button, 'dropdown-toggle');
@@ -192,7 +189,7 @@ function (
 
             position: function() {
                 var placement = lang.clone(this.placement),
-                    placementNodePos = domGeom.position(this.placementNode, true),
+                    placementNodePos = domGeom.position(this.domNode, true),
                     dropdownPos = domGeom.position(this.dropdown.domNode, true),
                     box = win.getBox(),
                     scroll = domGeom.docScroll().y,
@@ -202,13 +199,13 @@ function (
                     anchor = {},
                     target = {},
                     calcTarget = function(){
-                        if (placement.placementNode.indexOf('top') !== -1){
+                        if (placement.toggle.indexOf('top') !== -1){
                             anchor.y = placementNodePos.y;
                         } else {
                             anchor.y = placementNodePos.y + placementNodePos.h;
                         }
 
-                        if (placement.placementNode.indexOf('left') !== -1){
+                        if (placement.toggle.indexOf('left') !== -1){
                             anchor.x = placementNodePos.x;
                         } else {
                             anchor.x = placementNodePos.x + placementNodePos.w;
@@ -229,10 +226,10 @@ function (
 
                 calcTarget();
                 if (target.x < 0){
-                    if (placement.placementNode.indexOf('left') !== -1){
-                        placement.placementNode = placement.placementNode.replace('left', 'right');
+                    if (placement.toggle.indexOf('left') !== -1){
+                        placement.toggle = placement.toggle.replace('left', 'right');
                     } else {
-                        placement.placementNode = placement.placementNode.replace('right', 'left');
+                        placement.toggle = placement.toggle.replace('right', 'left');
                     }
                     if (placement.dropdown.indexOf('right') !== -1){
                         placement.dropdown = placement.dropdown.replace('right', 'left');
@@ -243,10 +240,10 @@ function (
                 }
 
                 if (target.x + dropdownPos.w > windowWidth){
-                    if (placement.placementNode.indexOf('right') !== -1){
-                        placement.placementNode = placement.placementNode.replace('right', 'left');
+                    if (placement.toggle.indexOf('right') !== -1){
+                        placement.toggle = placement.toggle.replace('right', 'left');
                     } else {
-                        placement.placementNode = placement.placementNode.replace('left', 'right');
+                        placement.toggle = placement.toggle.replace('left', 'right');
                     }
                     if (placement.dropdown.indexOf('left') !== -1){
                         placement.dropdown = placement.dropdown.replace('left', 'right');
@@ -257,10 +254,10 @@ function (
                 }
 
                 if (target.y < scrollTop){
-                    if (placement.placementNode.indexOf('top') !== -1){
-                        placement.placementNode = placement.placementNode.replace('top', 'bottom');
+                    if (placement.toggle.indexOf('top') !== -1){
+                        placement.toggle = placement.toggle.replace('top', 'bottom');
                     } else {
-                        placement.placementNode = placement.placementNode.replace('bottom', 'top');
+                        placement.toggle = placement.toggle.replace('bottom', 'top');
                     }
                     if (placement.dropdown.indexOf('bottom') !== -1){
                         placement.dropdown = placement.dropdown.replace('bottom', 'top');
@@ -271,10 +268,10 @@ function (
                 }
 
                 if (target.y + dropdownPos.h > scrollBottom){
-                    if (placement.placementNode.indexOf('bottom') !== -1){
-                        placement.placementNode = placement.placementNode.replace('bottom', 'top');
+                    if (placement.toggle.indexOf('bottom') !== -1){
+                        placement.toggle = placement.toggle.replace('bottom', 'top');
                     } else {
-                        placement.placementNode = placement.placementNode.replace('top', 'bottom');
+                        placement.toggle = placement.toggle.replace('top', 'bottom');
                     }
                     if (placement.dropdown.indexOf('top') !== -1){
                         placement.dropdown = placement.dropdown.replace('top', 'bottom');

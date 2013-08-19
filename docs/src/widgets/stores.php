@@ -158,18 +158,16 @@
                         'dojo/store/Memory'
                     ],
                         function(storeManager, Memory){
-                            storeManager.stores.push( //add a new store to the store manager
-                                new Memory({
-                                    name: 'dropdownStore', //give the store a name so it can be fetched with that name
-                                    data: [
-                                        {id: 0, text: 'Action'},
-                                        {id: 1, text: 'Another Action'},
-                                        {id: 2, text: 'Something else here'},
-                                        {id: 3, type: 'divider'},
-                                        {id: 4, href: '#dropdowns', text: 'Dropdowns'}
-                                    ]
-                                })
-                            );
+                            storeManager.stores.dropdownStore = new Memory({ //add a new store to the store manager
+                                name: 'dropdownStore', //give the store a name so it can be fetched with that name
+                                data: [
+                                    {id: 0, text: 'Action'},
+                                    {id: 1, text: 'Another Action'},
+                                    {id: 2, text: 'Something else here'},
+                                    {id: 3, type: 'divider'},
+                                    {id: 4, href: '#dropdowns', text: 'Dropdowns'}
+                                ]
+                            })
                         }
                     )
                 </script>

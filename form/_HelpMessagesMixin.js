@@ -2,12 +2,14 @@ define([
     'dojo/_base/declare',
     'dojo/_base/lang',
     'dojo/_base/array',
+    'dojo/query',
     './_MessagesMixin'
 ],
 function (
     declare,
     lang,
     array,
+    query,
     MessagesMixin
 ){
     return declare(
@@ -18,6 +20,23 @@ function (
 
             // _helpMessageObjects: string,
             //_helpMessageObjects: undefined,
+
+            buildRendering: function(){
+
+                var helpMessages;
+
+                if (this.srcNodeRef){
+                    helpMessages = query('[data-dojo-attach-point=helpMessages]>*', this.srcNodeRef).map(function(node){
+                        return node.innerHTML;
+                    })
+                }
+
+                this.inherited(arguments);
+
+                if (helpMessages.length > 0){
+                    this.set('helpMessages', helpMessages);
+                }
+            },
 
             _setHelpMessagesAttr: function(messages) {
 

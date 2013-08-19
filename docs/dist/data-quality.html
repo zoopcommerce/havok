@@ -8,18 +8,19 @@
     <meta name="author" content="Tim Roediger">
 
     <link href="js/google-code-prettify/prettify.css" rel="stylesheet">
-    <link rel="stylesheet" href="havokdocs.css">
+
+        <link rel="stylesheet" href="havokdocs.css">
 
     <!-- Placed at the start of the document so require is available for examples -->
     <script src="js/havokdocs.js"></script>
+    
     <script type="text/javascript">
         require([
-            'havok/parseComplete!',
             'havok/main',
             'havok/exception/started!',
-            'havok/router/started!'
-        ], function(){
-        })
+            'havok/router/started!',
+            'havok/parseComplete!'
+        ], function(){})
     </script>
   </head>
 
@@ -58,6 +59,9 @@
               <li>
                 <a href="di.html">DI</a>
               </li>
+              <li>
+                <a href="builds.html">builds</a>
+              </li>
             </ul>
         </div>
       </div>
@@ -94,7 +98,7 @@
       </div>
     <div class="span9" id="mainContent">
 
-
+        
         <section id="filters" title="Filters">
           <div class="page-header">
             <h1>Filters</h1>
@@ -368,7 +372,7 @@ require(['mystique/Length'], function(Length){
 
 
 <pre class="prettyprint linenums">
-require(['havok/get!ValidatorFactory'],
+require(['havok/get!havok/validator/factory'],
    function(factory){
        factory.create(['Alpha', {base: 'Length', params: {min: 5, max: 10}}]).then(function(validator){
            result = validator.isValid(value);

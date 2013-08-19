@@ -26,24 +26,50 @@ function (){
 <pre class="prettyprint linenums">
 dojoConfig = {
     ...
-    less: [
-        {priority: 500, src: "my/less/file.less"},
-        {priority: 500, src: "another/less/file.less"}
-    ]
+    less: {
+        "my/less/mixins.less": {defs: true},
+        "my/less/file.less": {rank: 2},
+        "another/less/file.less": {rank: 2}
+    }
 }
 </pre>
-          <p>Secondly, less files can be added through the plugin, as in the example above. If no priority is passed to the plugin, it defaults to 500. To pass priority, use a json object:</p>
+          <p>Secondly, less files can be added through the plugin. Less loaded this way will get a rank of 2 by default. eg:</p>
 <pre class="prettyprint linenums">
 define([
-    'havok/less!{"priority": 1, "src": "my/less/file.less"}'
+    'havok/less!my/less/file.less
 ],
 function (){
     //my module code
 });
 </pre>
 
-          <h2>Use</h2>
+          <p>To set the <code>defs</code> or <code>rank</code> when using the plugin, pass a json object:</p>
+<pre class="prettyprint linenums">
+define([
+    'havok/less!my/less/file.less!{rank: 4}
+],
+function (){
+    //my module code
+});
+</pre>
 
+
+          <h2>Defs and Rank</h2>
+
+          <p>The <code>defs</code> and <code>rank</code> control the order of less compilation an injection into the page. Any less marked with <code>defs: true</code> is considered to contain less definitions. Use this for less files that define variables and mixins.</p>
+
+          <p>Several <code>style</code> tags will be appended to the <code>body</code> of the page where compiled less will be injected. Less marked with <code>rank: 0</code> will be added to the first <code>style</code> tag. Less marked with <code>rank: 1</code> will be added to the second <code>style</code> tag, and so on.</p>
+
+          <h2>Builds</h2>
           <p>Dynamically requiring less and compiling it client side is great for development - no intermediate steps, just edit your code and reload the browser. However, it is slow and inefficent for production. It is strongly recommended that you use the havok build tools to compile all less to css before deployment.</p>
 
+          <p>If you use the build tools, the following files will be created for each build layer:</p>
+
+          <ul>
+              <li>myLayer.less</li>
+              <li>myLayer.uncompressed.css</li>
+              <li>myLayer.css</li>
+          </ul>
+
+          <p>When deploying an a layer, link the <code>myLayer.css</code> in your document body to completely bypass client side less compilation and greatly speed up load times.</p>
         </section>

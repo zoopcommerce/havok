@@ -1,7 +1,7 @@
 // Dojo Configuration
 dojoConfig = {
     async: true,
-    baseUrl: "../../",
+    baseUrl: __dirname + "/../../",
     packages: [
         {
             name: "dojo",
@@ -35,6 +35,6 @@ dojoConfig = {
 };
 
 //have to load the less compiler before dojo because it doesn't play nice with dojo AMD
-lessc = require('../../havok/vendor/less/lib/less');
+lessc = require(__dirname + '/../../havok/vendor/less/lib/less');
 
-require('../../dojo/dojo');
+require(__dirname + '/../../dojo/dojo');

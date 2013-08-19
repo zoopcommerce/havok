@@ -9,7 +9,8 @@ define ([
     './exception/main',
     './filter/main',
     './router/main',
-    './widget/main'
+    './widget/main',
+    'mystique/mystique'
 ],
 function () {
     // module:

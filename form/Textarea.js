@@ -1,19 +1,17 @@
 define([
     'dojo/_base/declare',
     '../widget/_WidgetBase',
-    './_TextBoxMixin',
-    'dojo/text!./template/Textarea.html'
+    './_TextBoxMixin'
 ],
 function (
     declare,
     WidgetBase,
-    TextBoxMixin,
-    template
+    TextBoxMixin
 ){
     return declare(
         [WidgetBase, TextBoxMixin],
         {
-            templateString: template,
+            templateString: '<textarea data-dojo-attach-point="focusNode, containerNode, textbox" autocomplete="off"></textarea>',
 
             buildRendering: function(){
                 this.inherited(arguments);

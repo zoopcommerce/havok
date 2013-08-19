@@ -1,19 +1,17 @@
 define([
     'dojo/_base/declare',
     './ValidationTextBox',
-    'dojo/text!./template/PasswordTextBox.html',
     'mystique/Required',
     'mystique/Password'
 ],
 function (
     declare,
-    ValidationTextBox,
-    template
+    ValidationTextBox
 ){
     return declare(
         [ValidationTextBox],
         {
-            templateString: template,
+            templateString: '<input type="password" id="${id}" data-dojo-attach-point="textbox, focusNode"/>',
 
             validator: ['Required', 'Password']
         }

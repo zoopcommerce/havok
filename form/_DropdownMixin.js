@@ -46,7 +46,7 @@ function (
                     this.textbox.value = e.text;
                     this.dropdownToggle.hide();
                 }));
-                domStyle.set(this.dropdown.containerNode, 'width', this.dropdownToggle.placementNode.offsetWidth + 'px');
+                domStyle.set(this.dropdown.containerNode, 'width', this.dropdownToggle.domNode.offsetWidth + 'px');
             },
 
             _setValueAttr: function(value){

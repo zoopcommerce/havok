@@ -1,8 +1,32 @@
 define([
 	"build/buildControl",
 	"build/fileUtils",
-	"build/fs"
-], function(bc, fileUtils, fs){
+	"build/fs",
+	"dojo/has",
+    "dojo/_base/config"
+], function(bc, fileUtils, fs, has, dojoConfig){
+
+   var getRelativePath = function(lessDest, layerDest){
+
+       var delimiter = has('is-windows') ? '/' : '\\',
+           lessPieces = lessDest.split(delimiter),
+           layerPieces = layerDest.split(delimiter),
+           lessFilename = lessPieces.pop();
+
+       layerPieces.pop();
+
+       while (lessPieces[0] == layerPieces[0]){
+           lessPieces.shift();
+           layerPieces.shift();
+       }
+
+       while (layerPieces.length > 0){
+           lessPieces.unshift('..' + delimiter);
+       }
+       lessPieces.push(lessFilename);
+
+       return lessPieces.join(delimiter);
+   };
 
    return function(
         resource,
@@ -16,11 +40,13 @@ define([
         }
 
         var i,
+            j,
             module,
             hasLess = false,
             defsLess = [],
             ranksLess = [],
-            rawLess,
+            rawLess = [],
+            toCompileLess = [],
             rawLessFilename,
             rawCssFilename,
             optCssFilename,
@@ -31,12 +57,12 @@ define([
             if (module.lessConfig){
                 hasLess = true;
                 if (module.lessConfig.defs){
-                    defsLess.push("@import '" + module.module.src + "';");
+                    defsLess.push(module.module);
                 } else {
                     while (ranksLess.length - 1 < module.lessConfig.rank){
                         ranksLess.push([]);
                     }
-                    ranksLess[module.lessConfig.rank].push("@import '" + module.module.src + "';");
+                    ranksLess[module.lessConfig.rank].push(module.module);
                 }
             }
         }
@@ -50,10 +76,26 @@ define([
         pieces = resource.dest.split('.');
         pieces.pop();
 
-        rawLess = defsLess.join('\n');
-        for (i = 0; i < ranksLess.length; i++){
-            rawLess = rawLess + '\n' + ranksLess[i].join('\n');
+        //add a tiny bit of extra less to enable correct paths.
+        var basePath = dojoConfig.baseUrl + '..',
+            extraVariables = '@basePath: "' + basePath + '";\n';
+        toCompileLess.push(extraVariables);
+        rawLess.push(extraVariables);
+        
+        for(i = 0; i < defsLess.length; i++){
+            toCompileLess.push("@import '" + defsLess[i].src + "';");
+            rawLess.push("@import '" + getRelativePath(defsLess[i].dest, resource.dest) + "';");
         }
+        for (i = 0; i < ranksLess.length; i++){
+            for (j = 0; j < ranksLess[i].length; j++){
+                toCompileLess.push("@import '" + ranksLess[i][j].src + "';");
+                rawLess.push("@import '" + getRelativePath(ranksLess[i][j].dest, resource.dest) + "';");
+            }
+        }
+
+        toCompileLess = toCompileLess.join('\n');
+        rawLess = rawLess.join('\n');
+
         rawLessFilename = pieces.join('.') + '.less';
         if (bc.layerOptimize){
             rawCssFilename = pieces.join('.') + '.uncompressed.css';
@@ -77,7 +119,7 @@ define([
                 }),
                 rawCss,
                 optCss;
-            parser.parse(rawLess, function(err, root){
+            parser.parse(toCompileLess, function(err, root){
                 if (err){
                     callback(resource, err);
                     return;

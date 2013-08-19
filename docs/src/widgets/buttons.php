@@ -579,7 +579,7 @@
 
               <div class="btn-group dropup"
                    data-dojo-type="havok/widget/DropdownToggle"
-                   data-dojo-props="placement: {placementNode: 'top-left', dropdown: 'bottom-left'}"
+                   data-dojo-props="placement: {toggle: 'top-left', dropdown: 'bottom-left'}"
               >
                 <button class="btn">Dropup</button>
                 <button data-dojo-attach-point="button" class="btn"><span class="dropup caret"></span></button>
@@ -596,7 +596,7 @@
 <pre class="prettyprint linenums">
 &lt;div class=&quot;btn-group dropup&quot;
      data-dojo-type=&quot;havok/widget/DropdownToggle&quot;
-     data-dojo-props=&quot;placement: {placementNode: 'top-left', dropdown: 'bottom-left'}&quot;
+     data-dojo-props=&quot;placement: {toggle: 'top-left', dropdown: 'bottom-left'}&quot;
 &gt;
   &lt;button class=&quot;btn&quot;&gt;Dropup&lt;/button&gt;
   &lt;button data-dojo-attach-point=&quot;button&quot; class=&quot;btn&quot;&gt;&lt;span class=&quot;dropup caret&quot;&gt;&lt;/span&gt;&lt;/button&gt;
@@ -613,7 +613,7 @@
             <div class="btn-toolbar" style="margin: 0;">
               <div class="btn-group dropup"
                    data-dojo-type="havok/widget/DropdownToggle"
-                   data-dojo-props="placement: {placementNode: 'top-right', dropdown: 'bottom-right'}"
+                   data-dojo-props="placement: {toggle: 'top-right', dropdown: 'bottom-right'}"
               >
                 <button class="btn">Right Dropup</button>
                 <button data-dojo-attach-point="button" class="btn"><span class="dropup caret"></span></button>
@@ -630,7 +630,7 @@
 <pre class="prettyprint linenums">
 &lt;div class=&quot;btn-group dropup&quot;
      data-dojo-type=&quot;havok/widget/DropdownToggle&quot;
-     data-dojo-props=&quot;placement: {placementNode: 'top-right', dropdown: 'bottom-right'}&quot;
+     data-dojo-props=&quot;placement: {toggle: 'top-right', dropdown: 'bottom-right'}&quot;
 &gt;
   &lt;button class=&quot;btn&quot;&gt;Right Dropup&lt;/button&gt;
   &lt;button data-dojo-attach-point=&quot;button&quot; class=&quot;btn&quot;&gt;&lt;span class=&quot;dropup caret&quot;&gt;&lt;/span&gt;&lt;/button&gt;

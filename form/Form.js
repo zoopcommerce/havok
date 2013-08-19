@@ -1,19 +1,17 @@
 define([
     'dojo/_base/declare',
     '../widget/_WidgetBase',
-    './_FormMixin',
-    'dojo/text!./template/Form.html'
+    './_FormMixin'
 ],
 function (
     declare,
     WidgetBase,
-    FormMixin,
-    template
+    FormMixin
 ){
     return declare(
         [WidgetBase, FormMixin],
         {
-            templateString: template
+            templateString: '<form class="form-horizontal" data-dojo-attach-point="containerNode"></form>'
         }
     );
 });

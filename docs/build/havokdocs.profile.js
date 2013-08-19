@@ -1,9 +1,8 @@
 var profile = {
     action: "release",
     basePath: "../../../",
-    releaseDir:"../../../builthavok43",
-    cssOptimize:0,
-    layerOptimize:0,
+    releaseDir:"havok/docs/temp",
+    layerOptimize:"closure",
     selectorEngine:"lite",
     mini:1,
     buildReportDir: ".",
@@ -42,12 +41,14 @@ var profile = {
         'dojo-undef-api': 0,
         'config-tlmSiblingOfDojo': 0,
         'config-dojo-loader-catches': 0,
+        'config-deferredInstrumentation': 0,
         'config-stripStrict': 0,
         'dojo-timeout-api': 0,
         'dojo-dom-ready-api': 0,
         'dojo-log-api': 0,
         'dojo-amd-factory-scan': 0,
-        'dojo-publish-privates': 0
+        'dojo-publish-privates': 0,
+        'dojo-debug-messages': 0
     },
     packages:[
         {

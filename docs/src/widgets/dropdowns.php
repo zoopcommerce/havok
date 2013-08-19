@@ -271,7 +271,7 @@
                   <li><a href="">Another action</a></li>
                   <li><a href="">Something else here</a></li>
                   <hr />
-                  <li data-dojo-type="havok/widget/DropdownSubmenu" data-dojo-props="placement: {placementNode: 'bottom-right', dropdown: 'bottom-left'}">
+                  <li data-dojo-type="havok/widget/DropdownSubmenu">
                     <a href="">More options</a>
                     <ul data-dojo-type="havok/widget/Dropdown">
                       <li><a href="">Second level link</a></li>
@@ -293,7 +293,7 @@
                   <li><a href="">Another action</a></li>
                   <li><a href="">Something else here</a></li>
                   <hr />
-                  <li data-dojo-type="havok/widget/DropdownSubmenu" data-dojo-props="placement: {placementNode: 'top-left', dropdown: 'top-right'}">
+                  <li data-dojo-type="havok/widget/DropdownSubmenu">
                     <a href="">More options</a>
                     <ul data-dojo-type="havok/widget/Dropdown">
                       <li><a href="">Second level link</a></li>

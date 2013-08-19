@@ -31,8 +31,28 @@ function(
         defRoot, //the parsed token tree of all less marked with {defs: true}
         deferredDefsRoot = new Deferred, //resolves when defRoot has been populated
 
-        //creates a parser
+        rewriteImports = function(fileName, less){
+            //rewrites @import so that relative paths work
+            //In particular this allows the definition less to be parsed just once,
+            //greatly speeding up load time during development
+
+            var basePath = dojoConfig.baseUrl + '../',
+                filePieces = fileName.split('/'),
+                filePath;
+
+            filePieces.pop();
+            filePath = basePath + filePieces.join('/');
+
+            return less.replace(/@import .*;/g, function(match){
+                var pieces = match.indexOf('"') == -1 ? match.split("'") : match.split('"');
+
+                pieces[1] = filePath + '/' + pieces[1];
+                return pieces.join("'");
+            });
+        },
+
         getParser = function(){
+            //creates a parser
             if (parser){
                 return parser;
             }
@@ -44,8 +64,8 @@ function(
             return deferredGetParser;
         },
 
-        //function parses less into a token tree
         parseLess = function(item, useDefs){
+            //function parses less into a token tree
             var result = new Deferred;
 
             when(getParser(), function(parser){
@@ -66,13 +86,13 @@ function(
             return result;
         },
 
-        //function turns a token tree into css
         toCss = function(item){
+            //function turns a token tree into css
             item.css = item.root.toCSS({compress: true, strictMaths: false, strictUnits: false});
         },
 
-        //function injects some css into the document
         injectCss = function(item){
+            //function injects some css into the document
             if (!item.rank){
                 item.rank = 2;
             }
@@ -103,6 +123,9 @@ function(
             if (arguments[i] == '//skip'){
                 config[requireOrder[i]].skip = true;
             } else {
+                if (fileType == 'less'){
+                    config[requireOrder[i]][fileType] = rewriteImports(requireOrder[i], arguments[i]);
+                }
                 injectRequired = true;
             }
         }
@@ -112,12 +135,9 @@ function(
             return;
         }
 
-        //add a tiny bit of extra less to correct to some paths. This is a bit of a hack. Should find a way to remove it
+        //add a tiny bit of extra less to enable correct paths.
         var basePath = dojoConfig.baseUrl + '..',
-            extraVariables = [
-                '@basePath: "' + basePath + '";\n',
-                '@FontAwesomePath: "' + basePath + '/havok/vendor/font-awesome/font";\n'
-            ].join('\n');
+            extraVariables = '@basePath: "' + basePath + '";\n';
         config['extraVariables'] = {defs: true, less: extraVariables};
 
         //now parse the loaded less
@@ -226,6 +246,7 @@ function(
                 if (item.css){
                     injectCss(item);
                 } else {
+                    item.less = rewriteImports(id, item.less);
                     parseLess(item, true).then(function(){
                         toCss(item);
                         injectCss(item);

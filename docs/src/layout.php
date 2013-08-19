@@ -9,6 +9,16 @@
 
     <link href="js/google-code-prettify/prettify.css" rel="stylesheet">
 
+    <?php
+    if (isset($build) && $build == 'dist'){
+    ?>
+    <link rel="stylesheet" href="havokdocs.css">
+
+    <!-- Placed at the start of the document so require is available for examples -->
+    <script src="js/havokdocs.js"></script>
+    <?php
+    } else {
+    ?>
     <!-- Placed at the start of the document so require is available for examples -->
     <script type="text/javascript">
         dojoConfig = {
@@ -35,6 +45,10 @@
         }
     </script>
     <script src="../../../dojo/dojo.js"></script>
+    <?php
+    }
+    ?>
+
     <script type="text/javascript">
         require([
             'havok/main',
@@ -79,6 +93,9 @@
               </li>
               <li>
                 <a href="di.html">DI</a>
+              </li>
+              <li>
+                <a href="builds.html">Builds</a>
               </li>
             </ul>
         </div>

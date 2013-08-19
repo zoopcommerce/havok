@@ -26,7 +26,7 @@ function (
             templateString: template,
 
             placement: {
-                placementNode: 'top-right',
+                toggle: 'top-right',
                 dropdown: 'top-left'
             },
 

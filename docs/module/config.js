@@ -31,7 +31,6 @@ function(){
             }
         },
         less: {
-            "havok/docs/src/less/variables.less": {defs: true},
             "havok/vendor/bootstrap/less/labels-badges.less": {rank: 1},
             "havok/vendor/bootstrap/less/wells.less": {rank: 1},
             "havok/docs/src/less/docs.less": {rank: 4}

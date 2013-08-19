@@ -1,16 +1,14 @@
 define([
     'dojo/_base/declare',
     'dojo/_base/lang',
-    'dojo/_base/array',
-    'dojo/on',
+    'dojo/dom-attr',
     'dojo/dom-construct',
     'dojo/dom-class'
 ],
 function (
     declare,
     lang,
-    array,
-    on,
+    domAttr,
     domConstruct,
     domClass
 ){
@@ -36,8 +34,15 @@ function (
                         append = [];
                     for (i = 0; i < this.srcNodeRef.children.length; i++){
                         node = this.srcNodeRef.children[i];
-                        if (node.nodeName == 'INPUT' || node.nodeName == 'SELECT'){
+                        if (node.nodeName == 'INPUT' ||
+                            node.nodeName == 'SELECT'
+                        ){
                             doPrepend = false;
+                            continue;
+                        } else if (
+                            node.nodeName == 'LABEL' ||
+                            domAttr.get(node, 'data-dojo-attach-point') == 'helpMessages'
+                        ){
                             continue;
                         }
                         if (doPrepend){

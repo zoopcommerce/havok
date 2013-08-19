@@ -15,25 +15,24 @@
           <div class="bs-docs-example">
              <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
                 <form data-dojo-type="havok/form/Form">
-                    <input data-dojo-type="havok/form/Checkbox"
-                        name="checkme"
+                    <input data-dojo-type="havok/form/TextBox"
+                        name="something"
                         data-dojo-props="
-                            label:'Check Me',
-                            helpMessages: 'this is a checkbox',
-                            value: true
+                            label:'Something',
+                            helpMessages: 'please write something',
+                            value: 'example@example.com'
                         "
                      />
                     <input data-dojo-type="havok/form/ValidationTextBox"
-                           name="writesomething"
-                           data-dojo-props="label: 'Write something', validator: 'Alpha'"
+                           name="somethingelse"
+                           data-dojo-props="label: 'Something Else', validator: 'Alpha'"
                            value = "asdf123"
                     />
-                    <input data-dojo-type="havok/form/ColorPicker"
-                        name="chosencolor"
+                    <input data-dojo-type="havok/form/DateTextBox"
+                        name="date"
                         data-dojo-props="
-                           label: 'Color',
-                           value: '#AA0033',
-                           helpMessages: 'please pick a color'
+                           label: 'Date',
+                           helpMessages: 'please select a date'
                         "
                     />
                 </form>
@@ -41,25 +40,24 @@
           </div>
 <pre class="prettyprint linenums">
 &lt;form data-dojo-type=&quot;havok/form/Form&quot;&gt;
-    &lt;input data-dojo-type=&quot;havok/form/Checkbox&quot;
-        name=&quot;checkme&quot;
+    &lt;input data-dojo-type=&quot;havok/form/TextBox&quot;
+        name=&quot;something&quot;
         data-dojo-props=&quot;
-            label:'Check Me',
-            value: true,
-            helpMessages: 'this is a checkbox'
+            label:'Something',
+            helpMessages: 'please write something',
+            value: 'example@example.com'
         &quot;
      /&gt;
     &lt;input data-dojo-type=&quot;havok/form/ValidationTextBox&quot;
-           name=&quot;writesomething&quot;
-           data-dojo-props=&quot;label: 'Write something', validator: 'Alpha'&quot;
+           name=&quot;somethingelse&quot;
+           data-dojo-props=&quot;label: 'Something Else', validator: 'Alpha'&quot;
            value = &quot;asdf123&quot;
     /&gt;
-    &lt;input data-dojo-type=&quot;havok/form/ColorPicker&quot;
-        name=&quot;chosencolor&quot;
+    &lt;input data-dojo-type=&quot;havok/form/DateTextBox&quot;
+        name=&quot;date&quot;
         data-dojo-props=&quot;
-           label: 'Color',
-           value: '#AA0033',
-           helpMessages: 'please pick a color'
+           label: 'Date',
+           helpMessages: 'please select a date'
         &quot;
     /&gt;
 &lt;/form&gt;

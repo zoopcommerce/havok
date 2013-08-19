@@ -2,20 +2,18 @@ define([
     'dojo/_base/declare',
     '../widget/_WidgetBase',
     './_TextBoxMixin',
-    './_AppendageMixin',
-    'dojo/text!./template/TextBox.html'
+    './_AppendageMixin'
 ],
 function (
     declare,
     WidgetBase,
     TextBoxMixin,
-    AppendageMixin,
-    template
+    AppendageMixin
 ){
     return declare(
         [WidgetBase, TextBoxMixin, AppendageMixin],
         {
-            templateString: template
+            templateString: '<input type="text" id="${id}" data-dojo-attach-point="textbox"/>'
         }
     );
 });
