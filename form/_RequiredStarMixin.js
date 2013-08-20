@@ -1,14 +1,14 @@
 define([
     'dojo/_base/declare',
     'dojo/_base/lang',
-    'mystique/Required',
-    'mystique/Chain'
+    'dojo/query',
+    'dojo/dom-attr'
 ],
 function (
     declare,
     lang,
-    Required,
-    Chain
+    query,
+    domAttr
 ){
     return declare(
         [],
@@ -19,37 +19,18 @@ function (
             //When should the star be shown? Possible values:
             //    false: never show
             //    true: always show
-            //    auto: only show if a required validator is set
-            requiredStar: 'auto',
+            //    auto: only show if a required attr is set
+            //requiredStar: 'auto',
 
             requiredStarTemplate: '<span class="text-warning"> *</span>',
 
             _setLabelAttr: function(value) {
 
-                var add,
-                    i;
-
-                if (this.requiredStar == 'auto'){
-                    var validator = this.validator;
-                    if (validator instanceof Required){
-                        add = true;
-                    } else if (validator instanceof Chain){
-                        for (i = 0; i < validator.validators.length; i++){
-                            if (validator.validators[i] instanceof Required){
-                                add = true;
-                                break;
-                            }
-                        }
-                    }
-                } else if (this.requiredStar){
-                    add = true;
-                }
-
                 if (value){
                     value = value.replace(this.requiredStarTemplate, '');
                 }
 
-                if (add){
+                if (this.requiredStar){
                     if (value){
                         value = value + this.requiredStarTemplate
                     } else {
@@ -68,6 +49,28 @@ function (
                     value = value.replace(this.requiredStarTemplate, '');
                 }
                 return value;
+            },
+
+            buildRendering: function(){
+
+                var nodeList,
+                    required;
+
+                if (this.srcNodeRef){
+                    if (this.srcNodeRef.children.length > 0){
+                        nodeList = query('INPUT[required]', this.srcNodeRef);
+                        if (nodeList.length > 0){
+                            required = true;
+                        }
+                    } else if (domAttr.has(this.srcNodeRef, 'required')){
+                        required = true;
+                    }
+                }
+                this.inherited(arguments);
+
+                if (required){
+                    this.set('requiredStar', true);
+                }
             },
 
             startup: function(){

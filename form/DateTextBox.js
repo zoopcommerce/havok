@@ -62,6 +62,12 @@ function (
                     value;
             },
 
+            focusFormat: function(value) {
+                return is.isDate(value) ?
+                    dateLocale.format(value, {selector: 'date', formatLength: this.formatLength}) :
+                    value;
+            },
+
             parse: function(value){
                 return is.isDate(value) ?
                     value :

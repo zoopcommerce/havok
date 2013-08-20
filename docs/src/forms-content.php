@@ -29,7 +29,7 @@
     <div class="span9" id="mainContent">
 
         <?php
-        include 'forms/using-forms.php';
+//        include 'forms/using-forms.php';
 //        include 'forms/using-form-widgets.php';
 //        include 'forms/textbox.php';
 //        include 'forms/validation-textbox.php';
@@ -42,7 +42,7 @@
 //        include 'forms/text-editor.php';
 //        include 'forms/checkbox.php';
 //        include 'forms/radio-group.php';
-//        include 'forms/select.php';
+        include 'forms/select.php';
 //        include 'forms/typeahead.php';
 //        include 'forms/hexcolor.php';
 //        include 'forms/color-picker.php';

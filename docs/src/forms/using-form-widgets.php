@@ -228,7 +228,14 @@
           </div>
 
 <pre class="prettyprint linenums">
-
+&lt;input data-dojo-type=&quot;havok/form/TextBox&quot;
+       data-dojo-props=&quot;label: 'name'&quot;
+       required
+/&gt;
 </pre>
+
+          <h2>Post Activity</h2>
+
+          <p>All form widgets have a <code>postActivity</code> property which is set to true after user interaction.</p>
 
 </section>

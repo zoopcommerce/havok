@@ -4,6 +4,7 @@ define([
     'dojo/on',
     'dojo/_base/lang',
     'dojo/dom-attr',
+    'dojo/query',
     '../is',
     './_FormWidgetMixin',
     './_FilterMixin',
@@ -15,6 +16,7 @@ function (
     on,
     lang,
     domAttr,
+    query,
     is,
     FormWidgetMixin,
     FilterMixin
@@ -39,6 +41,23 @@ function (
             //placeholder: undefined,
 
             state: '',
+
+            buildRendering: function(){
+
+                var nodeList;
+
+                if (this.srcNodeRef && !this.placeholder){
+                    if (this.srcNodeRef.children.length > 0){
+                        nodeList = query('INPUT[placeholder], TEXTAREA[placeholder]', this.srcNodeRef);
+                        if (nodeList.length > 0){
+                            this.placeholder = domAttr.get(nodeList[0], 'placeholder');
+                        }
+                    } else if (domAttr.has(this.srcNodeRef, 'placeholder')){
+                        this.placeholder = domAttr.get(this.srcNodeRef, 'placeholder');
+                    }
+                }
+                this.inherited(arguments);
+            },
 
             _setPlaceholderAttr: function(value) {
                 this._set('placeholder', value);

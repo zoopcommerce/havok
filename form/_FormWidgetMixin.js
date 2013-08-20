@@ -3,17 +3,19 @@ define([
     'dojo/string',
     './_LabelMixin',
     './_HelpMessagesMixin',
-    './_RequiredStarMixin'
+    './_RequiredStarMixin',
+    './_ActivityMixin'
 ],
 function (
     declare,
     string,
     LabelMixin,
     HelpMessagesMixin,
-    RequiredStarMixin
+    RequiredStarMixin,
+    ActivityMixin
 ){
     return declare(
-        [LabelMixin, HelpMessagesMixin, RequiredStarMixin],
+        [LabelMixin, HelpMessagesMixin, RequiredStarMixin, ActivityMixin],
         {
             //inline: false,
 

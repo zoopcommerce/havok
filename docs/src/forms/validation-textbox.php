@@ -68,6 +68,19 @@
 /&gt;
 </pre>
 
+          <h2>Required and NotRequired Validators</h2>
+
+          <p>If an input has a <code>required</code> attribute, a <code>Required</code> validator will automatically be added. If not, a <code>NotRequired</code> validator will automatically be added.</p>
+
+          <div class="bs-docs-example">
+             <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
+                <input required data-dojo-type="havok/form/ValidationTextBox"/>
+             </div>
+          </div>
+<pre class="prettyprint linenums">
+&lt;input required data-dojo-type=&quot;havok/form/ValidationTextBox&quot;/&gt;
+</pre>
+
           <h2>validationStyle</h2>
           <p>By default, validation errors are only highlighted after user interaction with the input. These styles be customised using the validationStyle property. It holds four lists of css class names that will be applied the four different validation situations.</p>
 
@@ -214,27 +227,6 @@
            }
        &quot;
        value = &quot;asdf123&quot;
-/&gt;
-</pre>
-
-          <h2>required star</h2>
-          <p>If the validator is <code>mystique/Required</code> or a chain containing <code>mystique/Required</code> the required star will be visible by default.</p>
-
-          <div class="bs-docs-example">
-             <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
-                <input data-dojo-type="havok/form/ValidationTextBox"
-                       data-dojo-props="
-                           validator: 'Required'
-                       "
-                />
-             </div>
-          </div>
-
-<pre class="prettyprint linenums">
-&lt;input data-dojo-type=&quot;havok/form/ValidationTextBox&quot;
-       data-dojo-props=&quot;
-           validator: 'Required'
-       &quot;
 /&gt;
 </pre>
 

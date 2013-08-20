@@ -2,15 +2,13 @@ define([
     'dojo/_base/declare',
     'dojo/dom-class',
     'dijit/_WidgetBase',
-    'dijit/_TemplatedMixin',
-    'dojo/text!./template/WidgetBase.html'
+    'dijit/_TemplatedMixin'
 ],
 function (
     declare,
     domClass,
     WidgetBase,
-    TemplatedMixin,
-    template
+    TemplatedMixin
 ){
     // module:
     //    	havok/widget/_WidgetBase
@@ -19,22 +17,25 @@ function (
         [WidgetBase, TemplatedMixin],
         {
 
-            defaultClass: '',
+            //defaultClass: undefined,
 
-            templateString: template,
+            templateString: '<${tag} data-dojo-attach-point="containerNode"></{tag}>',
 
             buildRendering: function(){
 
                 if (!this.tag){
-                    this.tag = 'div';
-                }
-                if (this.srcNodeRef){
-                    this.tag = this.srcNodeRef.nodeName;
+                    if (this.srcNodeRef){
+                        this.tag = this.srcNodeRef.nodeName;
+                    } else {
+                        this.tag = 'div'
+                    }
                 }
 
                 this.inherited(arguments);
 
-                domClass.add(this.domNode, this.defaultClass);
+                if (this.defaultClass){
+                    domClass.add(this.domNode, this.defaultClass);
+                }
             }
         }
     );

@@ -1,25 +1,30 @@
 define([
     'dojo/_base/declare',
-    './ValidationGroup',
+    'dojo/_base/lang',
+    './Form',
+    'dijit/_WidgetsInTemplateMixin',
     './_FormWidgetMixin',
+    './_ValidationMessagesMixin',
+    './_ValidationStyleMixin',
     'dojo/text!./template/CreditCardExpiry.html',
     'mystique/CreditCardExpiry',
-    './Select'
+    './Select',
+    './ValidationGroup'
 ],
 function (
     declare,
-    ValidationGroup,
+    lang,
+    Form,
+    WidgetsInTemplateMixin,
     FormWidgetMixin,
+    ValidationStyleMixin,
+    ValidationMessagesMixin,
     template
 ){
     return declare(
-        [ValidationGroup, FormWidgetMixin],
+        [Form, WidgetsInTemplateMixin, FormWidgetMixin, ValidationStyleMixin, ValidationMessagesMixin],
         {
             templateString: template,
-
-            validator: 'CreditCardExpiry',
-
-            label: 'Card Expiry',
 
             postCreate: function(){
 
@@ -32,7 +37,7 @@ function (
 
                 //Create years - 10 years from now
                 for (i; i < limit; i++){
-                    years.push({text: i, id: ('' + i).substr(2,2)});
+                    years.push({text: ('' + i).substr(2,2), id: i});
                 }
                 this.year.set('store', {data: years});
 
@@ -43,6 +48,18 @@ function (
                 this.month.set('store', {data: months});
 
                 this.inherited(arguments);
+            },
+
+            startup: function(){
+
+                this.validationStyle = this.validationGroup.validationStyle;
+
+                this.inherited(arguments);
+
+                this.validationGroup.watch('validationMessages', lang.hitch(this, function(prop, oldValue, newValue){
+                    this.set('validationMessages', newValue);
+                    this.updateValidationStyle();
+                }));
             }
         }
     );

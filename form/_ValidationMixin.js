@@ -3,51 +3,41 @@ define([
     'dojo/_base/lang',
     'dojo/_base/array',
     'dojo/when',
+    'dojo/query',
     'dojo/Deferred',
-    'dojo/dom-class',
+    'dojo/dom-attr',
     '../is',
     '../get!havok/validator/factory',
     'mystique/Result',
-    'dijit/_FocusMixin'
+    './_ValidationStyleMixin',
+    './_ValidationMessagesMixin',
+    'mystique/Required',
+    'mystique/NotRequired',
+    'mystique/Chain'
 ],
 function (
     declare,
     lang,
     array,
     when,
+    query,
     Deferred,
-    domClass,
+    domAttr,
     is,
     ValidatorFactory,
     Result,
-    FocusMixin
+    ValidationStyleMixin,
+    ValidationMessagesMixin
 ){
 
     return declare(
-        [FocusMixin],
+        [ValidationStyleMixin, ValidationMessagesMixin],
         {
             // state: [readonly] String
             //		Shows current state (ie, validation result) of input ('' | Incomplete | Error | Validating)
             //		An empty string indicates successful validation.
             //      State will start as `Validating` until validation has executed the first time.
             state: 'Validating',
-
-            // Indicates if the ui element has had user interaction
-            // postActivity will be set to true after the first blur event or
-            // after the state first changes to an invalid value
-            //postActivity: undefined,
-
-            // Indicates the classes to apply in different validation states
-            validationStyle: {
-                preActivity: {
-                    //valid: [], //A list of classes to apply when valid
-                    //invalid: [] //apply when invalid
-                },
-                postActivity: {
-                    //valid: [], //apply when valid
-                    invalid: ['error'] //apply when invalid
-                }
-            },
 
             // validator: an instance of mystique/Base.
             //validator: undefined,
@@ -59,43 +49,49 @@ function (
             //every single keystroke.
             delay: 350,
 
-            //_appliedStyle: undefined,
-
-            //_onFocusValue: undefined,
-
             //_delayTimer: undefined,
 
             _setValueTimestamp: 0,
+
+            buildRendering: function(){
+
+                var nodeList,
+                    required;
+
+                if (this.srcNodeRef){
+                    if (this.srcNodeRef.children.length > 0){
+                        nodeList = query('INPUT[required]', this.srcNodeRef);
+                        if (nodeList.length > 0){
+                            required = 'Required';
+                        } else {
+                            required = 'NotRequired';
+                        }
+                    } else if (domAttr.has(this.srcNodeRef, 'required')){
+                        required = 'Required';
+                    } else {
+                        required = 'NotRequired';
+                    }
+                }
+                this.inherited(arguments);
+
+                if (lang.isArray(this.validator)){
+                    this.validator.unshift(required);
+                } else if (this.validator) {
+                    this.validator = [required, this.validator];
+                } else {
+                    this.validator = required;
+                }
+            },
 
             startup: function(){
                 this.inherited(arguments);
 
                 //Set watchers
                 this.watch('value', lang.hitch(this, '_triggerValidate'));
-                this.watch('state', lang.hitch(this, '_updateActivityFromState'));
-                this.watch('postActivity', lang.hitch(this, '_updateValidationStyle'));
+                this.watch('postActivity', lang.hitch(this, 'updateValidationStyle'));//re-apply styles which may change postActivity
 
                 //Trigger first validation
                 this.validateNow();
-            },
-
-            _updateActivityFromState: function(property, oldValue, newValue){
-                //Watch the state if the state changes from valid to invalid,
-                //while in focus,
-                //and the value was not empty on focus,
-                //then postActivity should be set to true
-                if (newValue != '' &&
-                    this._onFocusValue != undefined &&
-                    this._onFocusValue != '' &&
-                    this.get('focused')
-                ){
-                    this.set('postActivity', true);
-                }
-            },
-
-            _updateValidationStyle: function(){
-                //re-apply styles which may change postActivity
-                this.set('validationStyle', this.validationStyle);
             },
 
             _triggerValidate: function(property, oldValue, newValue){
@@ -131,15 +127,12 @@ function (
                 //     The definition will be passed to havok/validator/factory.create(). The validator property
                 //     will be set to the returned instance of mytique/Base
 
-                if (value.isValid){
-                    this._set('validator', value);
-                    this.validateNow();
-                    return;
-                }
-
                 var validatorDeferred = new Deferred;
                 validatorDeferred.then(lang.hitch(this, function(validator){
-                    this.set('validator', validator);
+                    this._set('validator', validator);
+                    if (this._started){
+                        this.validateNow();
+                    }
                 }));
 
                 when(ValidatorFactory.create(value), function(validator){
@@ -147,62 +140,7 @@ function (
                 });
             },
 
-            _setValidationStyleAttr: function(value){
-                if (this._started){
-
-                    //Determine which node the style classes should be applied to
-                    var styleNode;
-                    if (this.styleNode && this.styleNode.domNode){ //if the styleNode is a widget
-                        styleNode = this.styleNode.domNode;
-                    } else if (this.styleNode){
-                        styleNode = this.styleNode;
-                    } else if (this.containerNode){
-                        styleNode = this.containerNode;
-                    } else {
-                        styleNode = this.domNode;
-                    }
-
-                    //Determine which style classes to apply
-                    var apply;
-                    if (typeof value == 'array'){
-                        apply = value;
-                    } else if (typeof value == 'string'){
-                        apply = [value];
-                    } else if (this.postActivity && this.state == ''){
-                        apply = value.postActivity.valid;
-                    } else if (this.postActivity && this.state != ''){
-                        apply = value.postActivity.invalid;
-                    } else if (!this.postActivity && this.state == ''){
-                        apply = value.preActivity.valid;
-                    } else if (!this.postActivity && this.state != ''){
-                        apply = value.preActivity.invalid;
-                    } else {
-                        apply = [];
-                    }
-
-                    // remove any previously applied styles
-                    array.forEach(this._appliedStyle, function(item){
-                        domClass.remove(styleNode, item);
-                    }, this);
-
-                    // add the new styles
-                    array.forEach(apply, function(item){
-                        domClass.add(styleNode, item);
-                    }, this);
-
-                    this._appliedStyle = apply;
-                }
-
-                this._set('validationStyle', value);
-            },
-
-            onFocus: function(){
-                this.inherited(arguments);
-                this._onFocusValue = this.get('value');
-            },
-
             onBlur: function(){
-                this.set('postActivity', true);
                 this.inherited(arguments);
                 this.validateNow(); //Force immediate validation on blur, no need to wait for the delay timer.
             },
@@ -264,7 +202,7 @@ function (
 
                 this.set('state', state);
                 this.set('validationMessages', resultObject.get('messages'));
-                this._updateValidationStyle();
+                this.updateValidationStyle();
                 return null;
             },
 

@@ -20,7 +20,9 @@ function (
     return declare(
         [WidgetBase, WidgetsInTemplateMixin, FormWidgetMixin, DropdownMixin],
         {
-            templateString: template
+            templateString: template,
+
+            _setClassAttr: { node: "textbox", type: "class" }
         }
     )
 });

@@ -1,11 +1,13 @@
 define([
     'dojo/_base/declare',
     'dojo/_base/array',
+    'dijit/registry',
     'dijit/form/_FormMixin'
 ],
 function (
     declare,
     array,
+    registry,
     FormMixin
 ){
     return declare(
@@ -49,7 +51,7 @@ function (
             _getState: function(){
                 // summary:
                 //		Compute what this.state should be based on state of children
-                var states = array.map(this._descendants, function(widget){
+                var states = array.map(registry.findWidgets(this.containerNode), function(widget){
                     return widget.get('state') || '';
                 });
 

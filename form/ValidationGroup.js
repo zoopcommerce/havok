@@ -2,77 +2,69 @@ define([
     'dojo/_base/declare',
     'dojo/_base/lang',
     'dojo/_base/array',
+    'dijit/registry',
     '../widget/_WidgetBase',
-    'dijit/_WidgetsInTemplateMixin',
-    './_FormMixin',
+    './_FormWidgetMixin',
     './_ValidationMixin',
-    './_ValidationMessagesMixin',
-    'dojo/text!./template/ValidationGroup.html',
-    '../widget/Alert'
+    'dojo/text!./template/ValidationGroup.html'
 ],
 function (
     declare,
     lang,
     array,
+    registry,
     WidgetBase,
-    FormMixin,
+    FormWidgetMixin,
     ValidationMixin,
-    ValidationMessagesMixin,
-    WidgetsInTemplateMixin,
     template
 ){
     return declare(
-        [WidgetBase, WidgetsInTemplateMixin, FormMixin, ValidationMixin, ValidationMessagesMixin],
+        [WidgetBase, FormWidgetMixin, ValidationMixin],
         {
-            content: '',
-
-            templateString: template,
-
             validationStyle: {
                 preActivity: {
                     //valid: [], //A list of classes to apply when valid
-                    //invalid: [] //apply when invalid
+                    invalid: ['error'] //apply when invalid
                 },
                 postActivity: {
                     //valid: [], //apply when valid
-                    invalid: ['alert-error'] //apply when invalid
+                    invalid: ['error'] //apply when invalid
                 }
             },
 
+            templateString: template,
+
             startup: function(){
+
+                this.form = registry.getEnclosingWidget(this.domNode.parentNode);
+
                 this.inherited(arguments);
 
-                array.forEach(this._getDescendantFormWidgets(), lang.hitch(this, function(child){
-                    child.watch('postActivity', lang.hitch(this, '_childPostActivityWatcher'));
-                }));
+                var postActivity = lang.clone(this.fields);
 
-                this.watch('validationMessages', lang.hitch(this, function(property, oldValue, newValue){
-                    if ((this.postActivity && this.suppressValidationMessages.postActivity) ||
-                        (!this.postActivity && this.suppressValidationMessages.preActivity) ||
-                        newValue.length == 0
-                    ){
-                        this.alert.hide();
-                    } else {
-                        this.alert.show();
+                array.forEach(registry.findWidgets(this.form.domNode), lang.hitch(this, function(field){
+                    if (this.fields.indexOf(field.name) != -1){
+                        field.watch('postActivity', lang.hitch(this, function(property, oldValue, newValue){
+                            postActivity[postActivity.indexOf(field.name)] = false;
+                            if (array.filter(postActivity, function(value){return value}).length == 0){
+                                this.set('postActivity', true);
+                            }
+                        }));
+                        field.watch('value', lang.hitch(this, function(property, oldValue, newValue){
+                            this._triggerValidate();
+                        }));
                     }
                 }));
             },
 
-            _updateActivityFromState: function(property, oldValue, newValue){
-            },
-
-            _childPostActivityWatcher: function(property, oldValue, newValue){
-                if (newValue){
-                    this.set('postActivity', true);
-                }
-            },
-
-            _getInvalidWidgetsAttr: function(){
-                var result = this.inherited(arguments);
-                if (this.get('state') != ''){
-                    result.push(this);
-                }
-                return result;
+            _getValueAttr: function(){
+                var value = {};
+                array.forEach(registry.findWidgets(this.form.domNode), lang.hitch(this, function(field){
+                    if (this.fields.indexOf(field.name) != -1){
+                        value[field.name] = field.get('value');
+                    }
+                }));
+                return value;
             }
         }
     );

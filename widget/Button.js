@@ -20,11 +20,15 @@ function (
 
             templateString: template,
 
-            text: '',
+            //text: undefined,
 
             buildRendering: function(){
-                if (this.srcNodeRef){
-                    this.text = this.srcNodeRef.innerHTML;
+                if (!this.text){
+                    if (this.srcNodeRef){
+                        this.text = this.srcNodeRef.innerHTML;
+                    } else {
+                        this.text = '';
+                    }
                 }
                 this.inherited(arguments);
             }

@@ -11,10 +11,7 @@
              <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
                 <input data-dojo-type="havok/form/NumberTextBox"
                     value=10000000
-                    data-dojo-props="
-                        label:'Number'
-                    "
-                    id="numberTextBox1"
+                    data-dojo-props="label:'Number'"
                 />
              </div>
           </div>
@@ -22,10 +19,7 @@
 <pre class="prettyprint linenums">
 &lt;input data-dojo-type=&quot;havok/form/NumberTextBox&quot;
     value=10000000
-    data-dojo-props=&quot;
-        label:'Number'
-    &quot;
-    id=&quot;numberTextBox1&quot;
+    data-dojo-props=&quot;label:'Number'&quot;
 /&gt;
 </pre>
 

@@ -1,12 +1,14 @@
 define([
     'dojo/_base/declare',
     'dojo/_base/array',
+    'dojo/dom-class',
     '../widget/CheckboxGroup',
     './_FormWidgetMixin'
 ],
 function(
     declare,
     array,
+    domClass,
     CheckboxGroup,
     FormWidgetMixin
 ){
@@ -17,6 +19,17 @@ function(
     (
         [CheckboxGroup, FormWidgetMixin],
         {
+            tag: 'span',
+
+            buildRendering: function(){
+
+                this.inherited(arguments);
+
+                if (this.defaultClass){
+                    domClass.add(this.containerNode, this.defaultClass);
+                }
+            },
+
             startup: function(){
                 this.inherited(arguments);
 

@@ -3,14 +3,16 @@ define([
     'dojo/_base/lang',
     'dojo/when',
     'dojo/Deferred',
-    '../get!havok/filter/factory'
+    '../get!havok/filter/factory',
+    '../filter/Base'
 ],
 function (
     declare,
     lang,
     when,
     Deferred,
-    FilterFactory
+    FilterFactory,
+    FilterBase
 ){
 
     return declare(
@@ -18,6 +20,8 @@ function (
         {
             // filter: an instance of havok/filter/Base.
             //filter: undefined,
+
+            //_filterDeferred: undefined,
 
             _setFilterAttr: function(value){
                 // summary:
@@ -40,31 +44,41 @@ function (
                     return;
                 }
 
-                var filterDeferred = new Deferred;
-                filterDeferred.then(lang.hitch(this, function(filter){
+                if (!this._filterDeferred){
+                    this._filterDeferred = new Deferred;
+                }
+                this._filterDeferred.then(lang.hitch(this, function(filter){
                     this._set('filter', filter);
-                    this.set('_filterSet', true);
                 }));
 
-                when(FilterFactory.create(value), function(filter){
-                    filterDeferred.resolve(filter);
-                });
+                when(FilterFactory.create(value), lang.hitch(this, function(filter){
+                    this._filterDeferred.resolve(filter);
+                }));
             },
 
             applyFilter: function(value){
 
-                if (! this._filterSet){
-                    var filteredValueDeferred = new Deferred;
-                    this.watch('_filterSet', lang.hitch(this, function(p, o, n){
-                        if (n){
-                            filteredValueDeferred.resolve(this.filter.filter(value));
-                        }
-                    }))
-
-                    return filteredValueDeferred;
+                if (!this.filter){
+                    //no filter set, no filtering to be done
+                    return value;
                 }
 
-                return this.filter.filter(value);
+                if (this.filter.isInstanceOf && this.filter.isInstanceOf(FilterBase)){
+                    //filter set, so do filtering
+                    return this.filter.filter(value);
+                }
+
+                //filter is a configuration string, but hasn't been created yet
+                var filteredValueDeferred = new Deferred;
+
+                if (!this._filterDeferred){
+                    this._filterDeferred = new Deferred;
+                }
+                this._filterDeferred.then(function(filter){
+                    filteredValueDeferred.resolve(filter.filter(value));
+                });
+
+                return filteredValueDeferred;
             }
         }
     );

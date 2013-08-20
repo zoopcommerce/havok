@@ -3,7 +3,7 @@
           <div class="page-header">
             <h1>Textbox</h1>
           </div>
-
+<!--
           <p>Use <code>havok/form/Textbox</code> to collect simple text data.</p>
 
           <h2>Example</h2>
@@ -19,21 +19,47 @@
 
           <h2>Placeholders</h2>
 
-          <p>Add a placeholder</p>
+          <h3>Using properties</h3>
           <div class="bs-docs-example" class="form-horizontal">
               <div class="form-horizontal">
-                  <label data-dojo-type="havok/form/TextBox">name<input placeholder="Enter your name"/></label>
+                  <input data-dojo-type="havok/form/TextBox"
+                         data-dojo-props="
+                            label: 'name',
+                            placeholder: 'Enter your name'"
+                  />
               </div>
           </div>
-
 <pre class="prettyprint linenums">
-
+&lt;input data-dojo-type=&quot;havok/form/TextBox&quot;
+       data-dojo-props=&quot;
+          label: 'name',
+          placeholder: 'Enter your name'&quot;
+/&gt;
 </pre>
 
+          <h3>Using markup</h3>
+          <div class="bs-docs-example" class="form-horizontal">
+              <div class="form-horizontal">
+                  <div data-dojo-type="havok/form/TextBox">
+                    <label>name</label>
+                    <input placeholder="Enter your name"/>
+                  </div>
+              </div>
+          </div>
+<pre class="prettyprint linenums">
+&lt;div data-dojo-type=&quot;havok/form/TextBox&quot;&gt;
+  &lt;label&gt;name&lt;/label&gt;
+  &lt;input placeholder=&quot;Enter your name&quot;/&gt;
+&lt;/div&gt;
+</pre>
+-->
           <h2>Filters</h2>
 
-          <p>Note: The <code>Trim</code> filter is applied by default.</p>
+          <p>Filters can be applied value displayed in the textbox. For more information about filters, see the filters section of the Data Quality documentation.</p>
 
+          <p>Note: The <code>Trim</code> filter is applied on all textboxes by default.</p>
+
+          <p>Example with an uppercase filter set:</p>
           <div class="bs-docs-example">
              <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
                 <input data-dojo-type="havok/form/TextBox"
@@ -82,7 +108,7 @@
 
           <h2>Appendages</h2>
 
-          <h3>Simple text</h3>
+          <h3>Using Properties</h3>
           <div class="bs-docs-example">
               <div class="form-horizontal">
                 <input data-dojo-type="havok/form/TextBox"
@@ -105,15 +131,13 @@
 /&gt;
 </pre>
 
-          <h3>Custom markup</h3>
+          <h3>Using markup</h3>
           <div class="bs-docs-example">
               <div class="form-horizontal">
                   <div data-dojo-type="havok/form/TextBox">
+                    <label><strong>name</strong></label>
                     <span><b>p</b>re1</span>
-                    <label>
-                        <strong>name</strong>
-                        <input />
-                    </label>
+                    <input />
                     <span><b>a</b>ppend 1</span>
                     <span><b>a</b>ppend 2</span>
                   </div>
@@ -121,13 +145,12 @@
           </div>
 
 <pre class="prettyprint linenums">
-&lt;div data-dojo-type=&quot;havok/form/TextBox&quot;
-     data-dojo-props=&quot;label: 'name'&quot;
-&gt;
-    &lt;span&gt;&lt;b&gt;p&lt;/b&gt;re1&lt;/span&gt;
-    &lt;input /&gt;
-    &lt;span&gt;&lt;b&gt;a&lt;/b&gt;ppend 1&lt;/span&gt;
-    &lt;span&gt;&lt;b&gt;a&lt;/b&gt;ppend 2&lt;/span&gt;
+&lt;div data-dojo-type=&quot;havok/form/TextBox&quot;&gt;
+  &lt;label&gt;&lt;strong&gt;name&lt;/strong&gt;&lt;/label&gt;
+  &lt;span&gt;&lt;b&gt;p&lt;/b&gt;re1&lt;/span&gt;
+  &lt;input /&gt;
+  &lt;span&gt;&lt;b&gt;a&lt;/b&gt;ppend 1&lt;/span&gt;
+  &lt;span&gt;&lt;b&gt;a&lt;/b&gt;ppend 2&lt;/span&gt;
 &lt;/div&gt;
 </pre>
 
@@ -165,7 +188,7 @@
                     <input />
                     <button class="btn" data-dojo-type="havok/widget/DropdownToggle">
                         Action <span class="caret"></span>
-                        <ul data-dojo-type="havok/widget/Dropdown">
+                        <ul class="hide" data-dojo-type="havok/widget/Dropdown">
                             <li><a href="">Action</a></li>
                             <li><a href="">Another action</a></li>
                             <li><a href="">Something else here</a></li>
@@ -178,7 +201,21 @@
           </div>
 
 <pre class="prettyprint linenums">
-
+&lt;div data-dojo-type=&quot;havok/form/TextBox&quot;
+       data-dojo-props=&quot;label: 'name'&quot;
+&gt;
+    &lt;input /&gt;
+    &lt;button class=&quot;btn&quot; data-dojo-type=&quot;havok/widget/DropdownToggle&quot;&gt;
+        Action &lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;
+        &lt;ul class=&quot;hide&quot; data-dojo-type=&quot;havok/widget/Dropdown&quot;&gt;
+            &lt;li&gt;&lt;a href=&quot;&quot;&gt;Action&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;&quot;&gt;Another action&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;&quot;&gt;Something else here&lt;/a&gt;&lt;/li&gt;
+            &lt;hr /&gt;
+            &lt;li&gt;&lt;a href=&quot;&quot;&gt;Separated link&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/button&gt;
+&lt;/div&gt;
 </pre>
 
           <h3>Split dropdowns</h3>
@@ -189,9 +226,9 @@
                 >
                     <input />
                     <div class="btn-group" data-dojo-type="havok/widget/DropdownToggle">
-                        <button data-dojo-attach-point="placementNode" class="btn">Action</button>
+                        <button class="btn">Action</button>
                         <button data-dojo-attach-point="button" class="btn"><span class="caret"></span></button>
-                        <ul data-dojo-type="havok/widget/Dropdown">
+                        <ul class="hide" data-dojo-type="havok/widget/Dropdown">
                             <li><a href="">Action</a></li>
                             <li><a href="">Another action</a></li>
                             <li><a href="">Something else here</a></li>
@@ -205,21 +242,21 @@
 
 <pre class="prettyprint linenums">
 &lt;div data-dojo-type=&quot;havok/form/TextBox&quot;
-       data-dojo-props=&quot;label: 'name'&quot;
-&gt;
-    &lt;input /&gt;
-    &lt;div class=&quot;btn-group&quot; data-dojo-type=&quot;havok/widget/DropdownToggle&quot;&gt;
-        &lt;button data-dojo-attach-point=&quot;placementNode&quot; class=&quot;btn&quot;&gt;Action&lt;/button&gt;
-        &lt;button data-dojo-attach-point=&quot;button&quot; class=&quot;btn&quot;&gt;&lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;&lt;/button&gt;
-        &lt;ul data-dojo-type=&quot;havok/widget/Dropdown&quot;&gt;
-            &lt;li&gt;&lt;a href=&quot;&quot;&gt;Action&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a href=&quot;&quot;&gt;Another action&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a href=&quot;&quot;&gt;Something else here&lt;/a&gt;&lt;/li&gt;
-            &lt;hr /&gt;
-            &lt;li&gt;&lt;a href=&quot;&quot;&gt;Separated link&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
+        data-dojo-props=&quot;label: 'name'&quot;
+ &gt;
+     &lt;input /&gt;
+     &lt;div class=&quot;btn-group&quot; data-dojo-type=&quot;havok/widget/DropdownToggle&quot;&gt;
+         &lt;button class=&quot;btn&quot;&gt;Action&lt;/button&gt;
+         &lt;button data-dojo-attach-point=&quot;button&quot; class=&quot;btn&quot;&gt;&lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;&lt;/button&gt;
+         &lt;ul class=&quot;hide&quot; data-dojo-type=&quot;havok/widget/Dropdown&quot;&gt;
+             &lt;li&gt;&lt;a href=&quot;&quot;&gt;Action&lt;/a&gt;&lt;/li&gt;
+             &lt;li&gt;&lt;a href=&quot;&quot;&gt;Another action&lt;/a&gt;&lt;/li&gt;
+             &lt;li&gt;&lt;a href=&quot;&quot;&gt;Something else here&lt;/a&gt;&lt;/li&gt;
+             &lt;hr /&gt;
+             &lt;li&gt;&lt;a href=&quot;&quot;&gt;Separated link&lt;/a&gt;&lt;/li&gt;
+         &lt;/ul&gt;
+     &lt;/div&gt;
+ &lt;/div&gt;
 </pre>
 
           <h3>Programatically change appendages</h3>

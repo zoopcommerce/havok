@@ -9,45 +9,50 @@
           <div class="bs-docs-example">
              <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
                 <select data-dojo-type="havok/form/Select" data-dojo-props="label: 'State', helpMessages: 'please select a state'">
-                    <option value="TN">Tennessee</option>
-                    <option value="VA">Virginia</option>
-                    <option value="WA">Washington</option>
-                    <option value="FL">Florida</option>
-                    <option value="CA">California</option>
+                    <option value="NSW">New South Wales</option>
+                    <option value="Qld">Queensland</option>
+                    <option value="Vic">Victoria</option>
+                    <option value="SA">South Australia</option>
+                    <option value="NT">Northern Territory</option>
+                    <option value="WA">Western Australia</option>
+                    <option value="ACT">Australian Capital Territory</option>
+                    <option value="Tas">Tasmania</option>
                 </select>
              </div>
           </div>
 
 <pre class="prettyprint linenums">
-&lt;select data-dojo-type=&quot;havok/form/Select&quot; data-dojo-props=&quot;label: 'State'&quot;&gt;
-    &lt;option value=&quot;TN&quot;&gt;Tennessee&lt;/option&gt;
-    &lt;option value=&quot;VA&quot;&gt;Virginia&lt;/option&gt;
-    &lt;option value=&quot;WA&quot;&gt;Washington&lt;/option&gt;
-    &lt;option value=&quot;FL&quot;&gt;Florida&lt;/option&gt;
-    &lt;option value=&quot;CA&quot;&gt;California&lt;/option&gt;
+&lt;select data-dojo-type=&quot;havok/form/Select&quot; data-dojo-props=&quot;label: 'State', helpMessages: 'please select a state'&quot;&gt;
+    &lt;option value=&quot;NSW&quot;&gt;New South Wales&lt;/option&gt;
+    &lt;option value=&quot;Qld&quot;&gt;Queensland&lt;/option&gt;
+    &lt;option value=&quot;Vic&quot;&gt;Victoria&lt;/option&gt;
+    &lt;option value=&quot;SA&quot;&gt;South Australia&lt;/option&gt;
+    &lt;option value=&quot;NT&quot;&gt;Northern Territory&lt;/option&gt;
+    &lt;option value=&quot;WA&quot;&gt;Western Australia&lt;/option&gt;
+    &lt;option value=&quot;ACT&quot;&gt;Australian Capital Territory&lt;/option&gt;
+    &lt;option value=&quot;Tas&quot;&gt;Tasmania&lt;/option&gt;
 &lt;/select&gt;
 </pre>
 
           <h2>Example with predefined selection</h2>
           <div class="bs-docs-example">
              <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
-                <select data-dojo-type="havok/form/Select" data-dojo-props="label: 'State', value: 'VA'">
-                    <option value="TN">Tennessee</option>
-                    <option value="VA">Virginia</option>
-                    <option value="WA">Washington</option>
-                    <option value="FL">Florida</option>
-                    <option value="CA">California</option>
+                <select data-dojo-type="havok/form/Select" data-dojo-props="label: 'State', value: 'NSW'">
+                    <option value="NSW">New South Wales</option>
+                    <option value="Qld">Queensland</option>
+                    <option value="Vic">Victoria</option>
+                    <option value="SA">South Australia</option>
+                    <option value="NT">Northern Territory</option>
+                    <option value="WA">Western Australia</option>
+                    <option value="ACT">Australian Capital Territory</option>
+                    <option value="Tas">Tasmania</option>
                 </select>
              </div>
           </div>
 
 <pre class="prettyprint linenums">
-&lt;select data-dojo-type=&quot;havok/form/Select&quot; data-dojo-props=&quot;label: 'State', value: 'VA'&quot;&gt;
-    &lt;option value=&quot;TN&quot;&gt;Tennessee&lt;/option&gt;
-    &lt;option value=&quot;VA&quot;&gt;Virginia&lt;/option&gt;
-    &lt;option value=&quot;WA&quot;&gt;Washington&lt;/option&gt;
-    &lt;option value=&quot;FL&quot;&gt;Florida&lt;/option&gt;
-    &lt;option value=&quot;CA&quot;&gt;California&lt;/option&gt;
+&lt;select data-dojo-type=&quot;havok/form/Select&quot; data-dojo-props=&quot;label: 'State', value: 'NSW'&quot;&gt;
+    ...
 &lt;/select&gt;
 </pre>
 
@@ -58,11 +63,14 @@
                     data-dojo-props="
                     label: 'State',
                     store: {data: [
-                        {id: 'TN', text: 'Tennesee'},
-                        {id: 'VA', text: 'Virginia'},
-                        {id: 'WA', text: 'Washington'},
-                        {id: 'FL', text: 'Florida'},
-                        {id: 'CA', text: 'California'},
+                        {id: 'NSW', text: 'New South Wales'},
+                        {id: 'Qld', text: 'Queensland'},
+                        {id: 'Vic', text: 'Victoria'},
+                        {id: 'SA', text: 'South Australia'},
+                        {id: 'NT', text: 'Northern Territory'},
+                        {id: 'WA', text: 'Western Australia'},
+                        {id: 'ACT', text: 'Australian Capital Territory'},
+                        {id: 'Tas', text: 'Tasmania'}
                     ]},
                     placeholder: 'select a state'
                     "
@@ -76,11 +84,14 @@
     data-dojo-props=&quot;
     label: 'State',
     store: {data: [
-        {id: 'TN', text: 'Tennesee'},
-        {id: 'VA', text: 'Virginia'},
-        {id: 'WA', text: 'Washington'},
-        {id: 'FL', text: 'Florida'},
-        {id: 'CA', text: 'California'},
+        {id: 'NSW', text: 'New South Wales'},
+        {id: 'Qld', text: 'Queensland'},
+        {id: 'Vic', text: 'Victoria'},
+        {id: 'SA', text: 'South Australia'},
+        {id: 'NT', text: 'Northern Territory'},
+        {id: 'WA', text: 'Western Australia'},
+        {id: 'ACT', text: 'Australian Capital Territory'},
+        {id: 'Tas', text: 'Tasmania'}
     ]},
     placeholder: 'select a state'
     &quot;
@@ -94,13 +105,16 @@
                 <select data-dojo-type="havok/form/Select"
                     data-dojo-props="
                     label: 'State',
-                    query: {text: /^.*o.*$/},
+                    query: {text: /^.*T.*$/},
                     store: {data: [
-                        {id: 'TN', text: 'Tennesee'},
-                        {id: 'VA', text: 'Virginia'},
-                        {id: 'WA', text: 'Washington'},
-                        {id: 'FL', text: 'Florida'},
-                        {id: 'CA', text: 'California'},
+                        {id: 'NSW', text: 'New South Wales'},
+                        {id: 'Qld', text: 'Queensland'},
+                        {id: 'Vic', text: 'Victoria'},
+                        {id: 'SA', text: 'South Australia'},
+                        {id: 'NT', text: 'Northern Territory'},
+                        {id: 'WA', text: 'Western Australia'},
+                        {id: 'ACT', text: 'Australian Capital Territory'},
+                        {id: 'Tas', text: 'Tasmania'}
                     ]},
                     placeholder: 'select a state'
                     "
@@ -113,13 +127,16 @@
 &lt;select data-dojo-type=&quot;havok/form/Select&quot;
     data-dojo-props=&quot;
     label: 'State',
-    query: {text: /^.*o.*$/},
+    query: {text: /^.*T.*$/},
     store: {data: [
-        {id: 'TN', text: 'Tennesee'},
-        {id: 'VA', text: 'Virginia'},
-        {id: 'WA', text: 'Washington'},
-        {id: 'FL', text: 'Florida'},
-        {id: 'CA', text: 'California'},
+        {id: 'NSW', text: 'New South Wales'},
+        {id: 'Qld', text: 'Queensland'},
+        {id: 'Vic', text: 'Victoria'},
+        {id: 'SA', text: 'South Australia'},
+        {id: 'NT', text: 'Northern Territory'},
+        {id: 'WA', text: 'Western Australia'},
+        {id: 'ACT', text: 'Australian Capital Territory'},
+        {id: 'Tas', text: 'Tasmania'}
     ]},
     placeholder: 'select a state'
     &quot;
@@ -129,7 +146,7 @@
 
           <div class="bs-docs-example">
              <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
-                <input data-dojo-type="havok/form/CreditCardExpiry" data-dojo-props="helpMessages: 'please select your credit card expiry date'"/>
+                <input data-dojo-type="havok/form/CreditCardExpiry" data-dojo-props="label: 'Card Expiry', helpMessages: 'please select your credit card expiry date'"/>
              </div>
           </div>
 
