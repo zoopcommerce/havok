@@ -48,7 +48,6 @@ define([
             defsLess = [],
             ranksLess = [],
             rawLess = [],
-            toCompileLess = [],
             rawLessFilename,
             rawCssFilename,
             optCssFilename,
@@ -79,36 +78,39 @@ define([
 		//less compile will probably fail if they are not
 		if (bc.defaultConfig.less){
 			for (i in bc.defaultConfig.less){
-				moduleInfo = bc.getSrcModuleInfo(i, null, true);
+				var moduleInfo = bc.getSrcModuleInfo(i, null, true);
 				module = bc.resources[moduleInfo.url];
 
                 if (bc.defaultConfig.less[i].defs){ //defs are added to every layer
-                    defsLess.push(module); 
+                    var j,
+                        alreadyAdded = false;
+
+                    for (j = 0; j < defsLess.length; j++){
+                        if (defsLess[j].src == module.src){
+                            alreadyAdded = true;
+                            break;
+                        }
+                    }
+                    if (!alreadyAdded){
+                        defsLess.push(module);
+                    }
                 }
 			}
 		}
-				
+
         pieces = resource.dest.split('.');
         pieces.pop();
 
-        //add a tiny bit of extra less to enable correct paths.
-        var basePath = dojoConfig.baseUrl + '..';
-		
-        toCompileLess.push('@basePath: "' + basePath + '";\n');
-        rawLess.push('@basePath: "' + getRelativePath(basePath + '/dummy', resource.src).slice(0, -6) + '";\n');
-        
+
         for(i = 0; i < defsLess.length; i++){
-            toCompileLess.push("@import '" + defsLess[i].src + "';");
             rawLess.push("@import '" + getRelativePath(defsLess[i].dest, resource.dest) + "';");
         }
         for (i = 0; i < ranksLess.length; i++){
             for (j = 0; j < ranksLess[i].length; j++){
-                toCompileLess.push("@import '" + ranksLess[i][j].src + "';");
                 rawLess.push("@import '" + getRelativePath(ranksLess[i][j].dest, resource.dest) + "';");
             }
         }
 
-        toCompileLess = toCompileLess.join('\n');
         rawLess = rawLess.join('\n');
 
         rawLessFilename = pieces.join('.') + '.less';
@@ -130,11 +132,13 @@ define([
             //parse the less into css
             //note: the lessc global is defined in the buildconfig.js
             var parser = new lessc.Parser({
-                    filenmae: rawLessFilename
+					relativeUrls: true,
+                    paths: ['c:/xds/charting/public/dev-assets/havok/'],
+                    filename: 'havokdocs.less'
                 }),
                 rawCss,
                 optCss;
-            parser.parse(toCompileLess, function(err, root){
+            parser.parse(rawLess, function(err, root){
                 if (err){
                     callback(resource, err);
                     return;

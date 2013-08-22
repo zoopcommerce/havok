@@ -1,44 +1,22 @@
 var profile = {
-    action:"release",
     basePath:"../../../",
-    releaseDir:"release",
-    layerOptimize:"closure",
-    selectorEngine:"lite",
-    mini:1,
-    buildReportDir: ".",
-    buildReportFilename: "build-report.txt",
+    releaseDir:"havok/temp",
     defaultConfig: {
-        hasCache:{
-            "dojo-built": 1,
-            "dojo-loader": 1,
-            "dom": 1,
-            "host-browser": 1,
-            "config-selectorEngine": "lite"
-        },
-        async: true,
         merge: [
             'havok/config'
         ]
     },
-    timestampLayers: true,
-    "packages":[
-    {
-        "name":"dojo",
-        "location":"vendor/dojo/dojo"
-    },
-    {
-        "name":"dijit",
-        "location":"vendor/dojo/dijit"
-    },
-    {
-        "name":"havok",
-        "location":"vendor/dojo/havok"
-    }
-    ],
-    "layers":{
+    layers:{
+        "dojo/dojo": {
+            include: [],
+            customBase: 1
+        },
         "havok/havok":{
-            "custombase":true,
-            "boot":true
+            includeLocales: ['en-us'],
+            include: [
+                'havok/main'
+            ],
+            boot: 1
         }
     }
 }

@@ -9,7 +9,7 @@
           <h2>Example</h2>
           <div class="bs-docs-example">
              <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
-                 <form data-dojo-type="havok/form/form">
+                 <form data-dojo-type="havok/form/Form">
                     <input
                         data-dojo-type="havok/form/TextBox"
                         value="Not Toby"
@@ -31,7 +31,7 @@
           </div>
 
 <pre class="prettyprint linenums">
-&lt;form data-dojo-type=&quot;havok/form/form&quot;&gt;
+&lt;form data-dojo-type=&quot;havok/form/Form&quot;&gt;
    &lt;input
        data-dojo-type=&quot;havok/form/TextBox&quot;
        value=&quot;Not Toby&quot;

@@ -89,7 +89,7 @@
 
     <div class="bs-docs-example">
         <script>
-            require(['dojo/dom', 'dojo/on', 'dijit/registry'], function(dom, on, registry){
+            require(['dojo/dom', 'dojo/on', 'dijit/registry', 'dojo/domReady!'], function(dom, on, registry){
                 on(dom.byId('formModalButton1'), 'click', function(){
                     registry.byId('formModal1').show();
                 })

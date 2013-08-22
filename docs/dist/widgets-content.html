@@ -231,18 +231,16 @@
                         'dojo/store/Memory'
                     ],
                         function(storeManager, Memory){
-                            storeManager.stores.push( //add a new store to the store manager
-                                new Memory({
-                                    name: 'dropdownStore', //give the store a name so it can be fetched with that name
-                                    data: [
-                                        {id: 0, text: 'Action'},
-                                        {id: 1, text: 'Another Action'},
-                                        {id: 2, text: 'Something else here'},
-                                        {id: 3, type: 'divider'},
-                                        {id: 4, href: '#dropdowns', text: 'Dropdowns'}
-                                    ]
-                                })
-                            );
+                            storeManager.stores.dropdownStore = new Memory({ //add a new store to the store manager
+                                name: 'dropdownStore', //give the store a name so it can be fetched with that name
+                                data: [
+                                    {id: 0, text: 'Action'},
+                                    {id: 1, text: 'Another Action'},
+                                    {id: 2, text: 'Something else here'},
+                                    {id: 3, type: 'divider'},
+                                    {id: 4, href: '#dropdowns', text: 'Dropdowns'}
+                                ]
+                            })
                         }
                     )
                 </script>
@@ -682,7 +680,7 @@
                   <li><a href="">Another action</a></li>
                   <li><a href="">Something else here</a></li>
                   <hr />
-                  <li data-dojo-type="havok/widget/DropdownSubmenu" data-dojo-props="placement: {placementNode: 'bottom-right', dropdown: 'bottom-left'}">
+                  <li data-dojo-type="havok/widget/DropdownSubmenu">
                     <a href="">More options</a>
                     <ul data-dojo-type="havok/widget/Dropdown">
                       <li><a href="">Second level link</a></li>
@@ -704,7 +702,7 @@
                   <li><a href="">Another action</a></li>
                   <li><a href="">Something else here</a></li>
                   <hr />
-                  <li data-dojo-type="havok/widget/DropdownSubmenu" data-dojo-props="placement: {placementNode: 'top-left', dropdown: 'top-right'}">
+                  <li data-dojo-type="havok/widget/DropdownSubmenu">
                     <a href="">More options</a>
                     <ul data-dojo-type="havok/widget/Dropdown">
                       <li><a href="">Second level link</a></li>
@@ -839,8 +837,8 @@
                <tr>
                  <td>placement</td>
                  <td>object</td>
-                 <td><code>{placementNode: 'bottom-left', dropdown: 'top-left'}</code></td>
-                 <td>Defines where the dropdown will be placed when it is opened. The <code>placementNode</code> defines the corner of the toggle button that will be used for placement. The <code>dropdown</code> defines the corner of the dropdown that will be used for placement. By default the top-left corner of the dropdown is aligned with the bottom-left corner of the placementNode. Note that placement will be automatically adjusted if the dropdown will be clipped by and edge of the viewport.</td>
+                 <td><code>{toggle: 'bottom-left', dropdown: 'top-left'}</code></td>
+                 <td>Defines where the dropdown will be placed when it is opened. The <code>toggle</code> defines the corner of the toggle button that will be used for placement. The <code>dropdown</code> defines the corner of the dropdown that will be used for placement. By default the top-left corner of the dropdown is aligned with the bottom-left corner of the toggle. Note that placement will be automatically adjusted if the dropdown will be clipped by and edge of the viewport.</td>
                </tr>
                 <tr>
                     <td>templateString</td>
@@ -1099,13 +1097,11 @@
 
           <h3>Fine grained control</h3>
 
-          <p>Use attach points to control exactly which element in the markup will respond to a click, and which element the dropdown will be placed relative to.</p>
+          <p>Use attach points to control exactly which element in the markup will respond to a click.</p>
           <div class="bs-docs-example">
-            <div data-dojo-type="havok/widget/DropdownToggle">
-                <div data-dojo-attach-point="placementNode" class="well">
-                    <p>Extra text</p>
-                    <button data-dojo-attach-point="button" class="btn">Show Dropdown</button>
-                </div>
+            <div data-dojo-type="havok/widget/DropdownToggle" class="well">
+              <p>Extra text</p>
+              <button data-dojo-attach-point="button" class="btn">Show Dropdown</button>
               <ul data-dojo-type="havok/widget/Dropdown">
                   <li><a href="">Action</a></li>
                   <li><a href="">Another action</a></li>
@@ -1116,11 +1112,9 @@
             </div>
           </div>
 <pre class="prettyprint linenums">
-&lt;div data-dojo-type=&quot;havok/widget/DropdownToggle&quot;&gt;
-    &lt;div data-dojo-attach-point=&quot;placementNode&quot; class=&quot;well&quot;&gt;
-        &lt;p&gt;Extra text&lt;/p&gt;
-        &lt;button data-dojo-attach-point=&quot;button&quot; class=&quot;btn&quot;&gt;Show Dropdown&lt;/button&gt;
-    &lt;/div&gt;
+&lt;div data-dojo-type=&quot;havok/widget/DropdownToggle&quot; class=&quot;well&quot;&gt;
+  &lt;p&gt;Extra text&lt;/p&gt;
+  &lt;button data-dojo-attach-point=&quot;button&quot; class=&quot;btn&quot;&gt;Show Dropdown&lt;/button&gt;
   &lt;ul data-dojo-type=&quot;havok/widget/Dropdown&quot;&gt;
       ...
   &lt;/ul&gt;
@@ -1708,7 +1702,7 @@
 
               <div class="btn-group dropup"
                    data-dojo-type="havok/widget/DropdownToggle"
-                   data-dojo-props="placement: {placementNode: 'top-left', dropdown: 'bottom-left'}"
+                   data-dojo-props="placement: {toggle: 'top-left', dropdown: 'bottom-left'}"
               >
                 <button class="btn">Dropup</button>
                 <button data-dojo-attach-point="button" class="btn"><span class="dropup caret"></span></button>
@@ -1725,7 +1719,7 @@
 <pre class="prettyprint linenums">
 &lt;div class=&quot;btn-group dropup&quot;
      data-dojo-type=&quot;havok/widget/DropdownToggle&quot;
-     data-dojo-props=&quot;placement: {placementNode: 'top-left', dropdown: 'bottom-left'}&quot;
+     data-dojo-props=&quot;placement: {toggle: 'top-left', dropdown: 'bottom-left'}&quot;
 &gt;
   &lt;button class=&quot;btn&quot;&gt;Dropup&lt;/button&gt;
   &lt;button data-dojo-attach-point=&quot;button&quot; class=&quot;btn&quot;&gt;&lt;span class=&quot;dropup caret&quot;&gt;&lt;/span&gt;&lt;/button&gt;
@@ -1742,7 +1736,7 @@
             <div class="btn-toolbar" style="margin: 0;">
               <div class="btn-group dropup"
                    data-dojo-type="havok/widget/DropdownToggle"
-                   data-dojo-props="placement: {placementNode: 'top-right', dropdown: 'bottom-right'}"
+                   data-dojo-props="placement: {toggle: 'top-right', dropdown: 'bottom-right'}"
               >
                 <button class="btn">Right Dropup</button>
                 <button data-dojo-attach-point="button" class="btn"><span class="dropup caret"></span></button>
@@ -1759,7 +1753,7 @@
 <pre class="prettyprint linenums">
 &lt;div class=&quot;btn-group dropup&quot;
      data-dojo-type=&quot;havok/widget/DropdownToggle&quot;
-     data-dojo-props=&quot;placement: {placementNode: 'top-right', dropdown: 'bottom-right'}&quot;
+     data-dojo-props=&quot;placement: {toggle: 'top-right', dropdown: 'bottom-right'}&quot;
 &gt;
   &lt;button class=&quot;btn&quot;&gt;Right Dropup&lt;/button&gt;
   &lt;button data-dojo-attach-point=&quot;button&quot; class=&quot;btn&quot;&gt;&lt;span class=&quot;dropup caret&quot;&gt;&lt;/span&gt;&lt;/button&gt;
@@ -3341,7 +3335,7 @@
           <h3>Live Demo</h3>
           <div class="bs-docs-example">
               <script>
-                  require(['dojo/on', 'dojo/dom', 'dijit/registry'],
+                  require(['dojo/on', 'dojo/dom', 'dijit/registry', 'dojo/domReady!'],
                        function(on, dom, registry){
                             on(dom.byId('modalButton1'), 'click', function(){
                                 var modal = registry.byId('modal1');
@@ -3408,7 +3402,7 @@
 
           <div class="bs-docs-example">
               <script>
-                  require(['dojo/on', 'dojo/dom', 'dijit/registry'],
+                  require(['dojo/on', 'dojo/dom', 'dijit/registry', 'dojo/domReady!'],
                        function(on, dom, registry){
                             on(dom.byId('modalButton2'), 'click', function(){
                                 var modal = registry.byId('modal2');

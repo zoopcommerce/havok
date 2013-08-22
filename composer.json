@@ -18,7 +18,10 @@
     ],
     "repositories": [{ "type": "composer", "url": "http://zoopcommerce.github.io/pixie"}],
     "require": {
-        "zoopcommerce/pixie":      "*",
-        "zoopcommerce/mystique":   "~1.1"
+        "zoopcommerce/pixie"   : "*",
+        "zoopcommerce/mystique": "~1.1",
+        "dojo/dojo"            : "~1.9",
+        "dojo/dijit"           : "~1.9",
+        "dojo/util"            : "~1.9"
     }
 }

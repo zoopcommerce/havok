@@ -35,12 +35,6 @@ foreach($files as $file){ // iterate files
 //copy js
 $copy($src . '/js', $dist . '/js');
 
-//copy img
-$copy($src . '/img', $dist . '/img');
-
-//copy font
-$copy($src . '/../../vendor/font-awesome/font', $dist . '/vendor/font-awesome/font');
-
 //build each html file
 $files = glob($src . '/*.php'); // get all file names
 foreach($files as $file){ // iterate files

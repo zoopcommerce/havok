@@ -1,7 +1,7 @@
 define([
     'mystique/Base',
     'mystique/Result',
-    'dojo/i18n!../nls/validator',
+    'dojo/i18n!../nls/validator'
 ],
 function(
     Base,

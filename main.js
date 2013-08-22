@@ -10,6 +10,7 @@ define ([
     './filter/main',
 	'./form/main',
     './router/main',
+    './store/main',
     './widget/main',
     'mystique/mystique'
 ],

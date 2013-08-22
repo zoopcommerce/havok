@@ -1,6 +1,7 @@
 define ([
 	'./Checkbox',
 	'./CheckboxGroup',
+    './ColorPicker',
 	'./CreditCardExpiry',
 	'./CurrencyTextBox',
 	'./DateTextBox',
@@ -16,7 +17,8 @@ define ([
 	'./ToggleButton',
 	'./Typeahead',
 	'./ValidationGroup',
-	'./ValidationTextarea'
+	'./ValidationTextarea',
+    'dijit/form/_ExpandingTextAreaMixin'
 ],
 function (
 

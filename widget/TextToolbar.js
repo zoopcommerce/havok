@@ -155,7 +155,7 @@ function (
                     })),
                     this.more.on('item-click', lang.hitch(this, function(item){
                         this.more.hide();
-                    })),
+                    }))
                 ];
 
                 array.forEach(this._buttonCommands, lang.hitch(this, function(command){

@@ -9,7 +9,7 @@
           <h3>Live Demo</h3>
           <div class="bs-docs-example">
               <script>
-                  require(['dojo/on', 'dojo/dom', 'dijit/registry'],
+                  require(['dojo/on', 'dojo/dom', 'dijit/registry', 'dojo/domReady!'],
                        function(on, dom, registry){
                             on(dom.byId('modalButton1'), 'click', function(){
                                 var modal = registry.byId('modal1');
@@ -76,7 +76,7 @@
 
           <div class="bs-docs-example">
               <script>
-                  require(['dojo/on', 'dojo/dom', 'dijit/registry'],
+                  require(['dojo/on', 'dojo/dom', 'dijit/registry', 'dojo/domReady!'],
                        function(on, dom, registry){
                             on(dom.byId('modalButton2'), 'click', function(){
                                 var modal = registry.byId('modal2');

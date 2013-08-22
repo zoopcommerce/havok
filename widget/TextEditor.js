@@ -45,6 +45,11 @@ function (
                     this.containerNode.innerHTML = value;
                     this._set('text', value);
                 }
+            },
+
+            destroy: function(){
+                this._observer.disconnect();
+                this.inherited(arguments);
             }
         }
     );

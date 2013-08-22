@@ -32,9 +32,8 @@
         include 'getting-started/download-havok.php';
         include 'getting-started/file-structure.php';
         include 'getting-started/whats-included.php';
-        include 'getting-started/loading.php';		
+        include 'getting-started/loading.php';
         include 'getting-started/using-havok.php';				
-        include 'getting-started/examples.php';
         include 'getting-started/what-next.php';
         ?>
       </div>

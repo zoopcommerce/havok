@@ -1,11 +1,13 @@
 define ([
     './Accordion',
+    './Alert',
     './Affix',
     './ButtonGroup',
     './CheckboxGroup',
     './Dragable',
     './Dropdown',
     './DropdownToggle',
+    './Modal',
     './NavBar',
     './NavBarLinks',
     './NavTab',
@@ -15,7 +17,9 @@ define ([
     './RadioGroup',
     './TabContainer',
     './ToggleButton',
-    './_ScrollSpyMixin'
+    './_ScrollSpyMixin',
+    './font',
+    './fontsize'
 ],
 function (
 

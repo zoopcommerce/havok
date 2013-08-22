@@ -135,11 +135,6 @@ function(
             return;
         }
 
-        //add a tiny bit of extra less to enable correct paths.
-        var basePath = dojoConfig.baseUrl + '..',
-            extraVariables = '@basePath: "' + basePath + '";\n';
-        config['extraVariables'] = {defs: true, less: extraVariables};
-
         //now parse the loaded less
 
         //first parse all the less marked as {defs: true}
