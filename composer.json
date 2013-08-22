@@ -16,7 +16,6 @@
             "email": "superdweebie@gmail.com"
         }
     ],
-    "repositories": [{ "type": "composer", "url": "http://zoopcommerce.github.io/pixie"}],
     "require": {
         "zoopcommerce/pixie"   : "*",
         "zoopcommerce/mystique": "~1.1",

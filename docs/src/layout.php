@@ -62,7 +62,7 @@
 
     <!-- Navbar
     ================================================== -->
-  <div class="navbar-inverse navbar-fixed-top" data-dojo-type="havok/widget/NavBar">
+  <div class="navbar navbar-inverse navbar-fixed-top" data-dojo-type="havok/widget/NavBar">
       <div class="container">
         <a data-dojo-attach-point="toggleNode">
           <span class="icon-bar"></span>
@@ -71,7 +71,7 @@
         </a>
         <a class="brand" href="./index.html">Havok</a>
         <div data-dojo-attach-point="toggleTarget">
-            <ul data-dojo-type="havok/widget/NavBarLinks">
+            <ul class="nav" data-dojo-type="havok/widget/NavBarLinks">
               <li>
                 <a href="index.html">Home</a>
               </li>
@@ -101,7 +101,7 @@
       </div>
   </div>
 
-    <div id="contentWrapper" style="min-height: 400px">
+    <div id="contentWrapper" style="min-height: 1000px">
     <?php echo $content;?>
     </div>
     <div id="contentWrapperOverlay" data-dojo-type="havok/widget/Overlay" data-dojo-props="target: document.body">Loading more havok...</div>

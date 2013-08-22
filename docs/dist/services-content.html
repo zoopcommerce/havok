@@ -441,7 +441,7 @@ ERROR    : 3
           <p>The severity of an error can be cusomised by throwing an instance of <code>havok/exception/Application</code>.</p>
           <div class="bs-docs-example">
               <script>
-                  require(['dojo/on', 'dojo/dom', 'havok/exception/severity', 'havok/exception/Application'],
+                  require(['dojo/on', 'dojo/dom', 'havok/exception/severity', 'havok/exception/Application', 'dojo/domReady!'],
                        function(on, dom, severity, Application){
                             on(dom.byId('exception2'), 'click', function(){
                                 throw new Application('Example Exception', {severity: severity.WARNING});
@@ -510,7 +510,8 @@ function(
                       'havok/exception/severity',
                       'havok/exception/Application',
                       'havok/exception/renderer/UI',
-                      'havok/exception/started!'
+                      'havok/exception/started!',
+                      'dojo/domReady!'
                   ],
                        function(on, dom, severity, Application, UI, handler){
                             var added = false;
@@ -542,7 +543,8 @@ function(
                       'havok/exception/severity',
                       'havok/exception/Application',
                       'havok/exception/renderer/Store',
-                      'havok/exception/started!'
+                      'havok/exception/started!',
+                      'dojo/domReady!'
                   ],
                        function(on, dom, json, when, severity, Application, Store, handler){
                             var added = false,

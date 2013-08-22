@@ -211,7 +211,9 @@ var profile = {
                 "havok/docs/module/Formspy",
                 "havok/docs/module/Controller",
                 "havok/docs/module/MultiFieldValidator",
-                "havok/docs/module/state"
+                "havok/docs/module/state",
+                "havok/exception/renderer/Store",
+                "havok/exception/renderer/UI"
             ],
             "boot": 1
         }
