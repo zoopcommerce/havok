@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Havok · Zoop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Tim Roediger">
+
+    <link href="js/google-code-prettify/prettify.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="havokdocs.css">
+
+    <!-- Placed at the start of the document so require is available for examples -->
+    <script src="js/havokdocs.js"></script>
+    
+    <script type="text/javascript">
+        require([
+            'havok/exception/started!',
+            'havok/router/started!',
+            'havok/parseComplete!'
+        ], function(){})
+    </script>
+  </head>
+
+  <body onload="prettyPrint()">
+
+    <!-- Navbar
+    ================================================== -->
+  <div class="navbar-inverse navbar-fixed-top" data-dojo-type="havok/widget/NavBar">
+      <div class="container">
+        <a data-dojo-attach-point="toggleNode">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="./index.html">Havok</a>
+        <div data-dojo-attach-point="toggleTarget">
+            <ul data-dojo-type="havok/widget/NavBarLinks">
+              <li>
+                <a href="index.html">Home</a>
+              </li>
+              <li>
+                <a href="getting-started.html">Get started</a>
+              </li>
+              <li>
+                <a href="widgets.html">Widgets</a>
+              </li>
+              <li>
+                <a href="forms.html">Forms</a>
+              </li>
+              <li>
+                <a href="data-quality.html">Data Quality</a>
+              </li>
+              <li>
+                <a href="services.html">Services</a>
+              </li>
+              <li>
+                <a href="di.html">DI</a>
+              </li>
+              <li>
+                <a href="builds.html">Builds</a>
+              </li>
+            </ul>
+        </div>
+      </div>
+  </div>
+
+    <div id="contentWrapper" style="min-height: 400px">
+    <!-- Subhead
+================================================== -->
+<header class="jumbotron subhead" id="overview">
+  <div class="container">
+    <h1>Services</h1>
+    <p class="lead">A myriad of services to make your life easier. PushState routing, exception handling, config merging, and less styles manager.</p>
+  </div>
+</header>
+
+
+  <div class="container">
+
+    <!-- Docs nav
+    ================================================== -->
+    <div class="row">
+      <div class="span3 bs-docs-sidebar">
+        <ul data-dojo-type="havok/widget/NavList"
+            data-dojo-mixins="havok/widget/_AffixMixin, havok/widget/_ScrollSpyMixin"
+            data-dojo-props="
+               linkTemplate: '&lt;a role=&quot;navitem&quot; href=&quot;${href}&quot;&gt;&lt;i class=&quot;icon-chevron-right&quot;&gt;&lt;/i&gt; ${text}&lt;/a&gt;',
+               viewportOffset: {top: 40, bottom: 0},
+               affixTarget: 'mainContent',
+               spyTarget: 'mainContent'
+            "
+            class="nav-stacked bs-docs-sidenav"
+        >
+        </ul>
+      </div>
+    <div class="span9" id="mainContent">
+
+        
+        <section id="router" title="Router">
+          <div class="page-header">
+            <h1>Router</h1>
+          </div>
+
+          <p class="lead">Dynamically manage page state with the havok router.</p>
+
+          <p>The router lets you manage the browser location for simple dynamic page loading, without having to use # hacks.</p>
+
+          <h2>Example</h2>
+
+          <p>These docs pages use the router. The first page you load will deliver a full html page. Any links you click after that will only load new content. It will not reload the top menu footer, css, or js. Moreover, if you go back to a page you have already visited, it will load very quickly because the havok documentation controller caches previously loaded content. And, all this is done with static pages, no logic on the server at all.</p>
+
+          <p>Try it out. Click on 'Getting Started' in the site, menu, and then click 'Services' to get back here.</p>
+
+          <h2>How it works</h2>
+
+          <p>Once a router is started, it will listen to every click event that bubbles up to <code>document.body</code>. If the click event is on a link (<code>A</code> tag) then it will be processed by the router.</p>
+
+          <p>The router will attempt to match the <code>href</code> attribute of the tag with one of it's configured routes. If a match is found, the controller on the configured route is called. If a match is not found, the click event is allowed to continue bubbling.</p>
+
+          <h2>Router Configuration</h2>
+
+          <p>The router is configured through a <code>havok/di/di</code> instance. See the DI docs for general di info.</p>
+
+          <p>The router can be configured with an array of routes. The routes will be evaluated in reverse order (fifo). The first matching route will be used. Each route has these properties:</p>
+
+<table class="table table-bordered table-striped">
+  <thead>
+   <tr>
+     <th style="width: 100px;">name</th>
+     <th style="width: 50px;">type</th>
+     <th>description</th>
+   </tr>
+  </thead>
+  <tbody>
+    <tr>
+        <td>regex</td>
+        <td>string</td>
+        <td>Used to test if the requested href matches with this route.</td>
+    </tr>
+    <tr>
+        <td>controller</td>
+        <td>string</td>
+        <td>The name of a controller instance that can be retrieved through the di container.</td>
+    </tr>
+    <tr>
+        <td>defaultMethod</td>
+        <td>string</td>
+        <td>The name of the method to call on the controller if there is no method match.</td>
+    </tr>
+    <tr>
+        <td>methods</td>
+        <td>object</td>
+        <td>An array of route to method name pairs.</td>
+    </tr>
+  </tbody>
+</table>
+
+          <h3>Example</h3>
+
+          <p>A router config:</p>
+<pre class="prettyprint linenums">
+di: {
+    'havok/router/router': {
+        params: {
+            routes: [
+                {
+                    regex: /index.html/,
+                    controller: 'my/index/controller',
+                    defaultMethod: 'home'
+                },
+                {
+                    regex: /login/,
+                    controller: 'my/login/controller',
+                    defaultMethod: 'login',
+                    methods: [
+                        {'logout': 'logout'}
+                    ]
+                },
+                {
+                    regex: /albums/,
+                    controller: 'my/albums/controller',
+                    defaultMethod: 'list',
+                    methods: {
+                        'new': 'create',
+                        'update': 'update'
+                    }
+                }
+            ]
+        }
+    }
+}
+</pre>
+
+          <p>The above router config will call the methods in the following way:</p>
+
+<pre class="prettyprint linenums">
+index.html -> myIndexController.home()
+user -> myLoginController.user()
+user/login -> myLoginController.login()
+user/logout -> myLoginController.logout()
+albums -> myAlbumController.list()
+albums/list -> myAlbumController.list()
+albums/new -> myAlbumController.new()
+albums/new/newAlbumName -> myAlbumController.list('newAlbumName')
+albums/update -> myAlbumController.update()
+albums/update/oldAlbumName -> myAlbumController.list('oldAlbumName')
+</pre>
+
+          <h2>Starting the router</h2>
+
+          <p>The router can be started like this:</p>
+<pre class="prettyprint linenums">
+require(['havok/get!havok/router/router'],
+function (router){
+    router.startup();
+});
+</pre>
+
+          <p>Alternately, the router can be started with the AMD plugin:</p>
+<pre class="prettyprint linenums">
+require(['havok/router/started!'],
+function (){
+    //do something
+});
+</pre>
+
+          <p>Note: if you are using the router, it is recommended you start it up when the page first loads.</p>
+
+          <h2>Base Url</h2>
+
+          <p>Router routes are evaluated relative to the Base Url. By default the base url is set when you first start the router to whatever the current page address is. However, this will not work if the first page you load on your site is not a the top level of the site's directory structure. In such cases, you will need to specify the Base Url in config:</p>
+<pre class="prettyprint linenums">
+di: {
+    'havok/router/router': {
+        params: {
+            baseUrl: 'my/site',
+            ...
+        }
+    }
+}
+</pre>
+
+          <p>You can retrieve the baseUrl in code using the baseUrl AMD plugin:</p>
+<pre class="prettyprint linenums">
+require(['havok/router/baseUrl!'],
+function (baseUrl){
+    //do something
+});
+</pre>
+
+          <h2>Arguments</h2>
+
+          <p>Arguments can be passed to a controller method through the route. Routes take the following form:</p>
+
+<pre class="prettyprint linenums">
+&lt;controllerRegexMatch&gt;/&lt;method&gt;/&lt;arg1&gt;/&lt;arg2&gt;/&lt;arg3&gt;
+</pre>
+
+          <p>For example, this config and controller could be used to add numbers together:</p>
+
+          <p>The config:</p>
+<pre class="prettyprint linenums">
+di: {
+    'havok/router/router': {
+        params: {
+            routes: [
+                {
+                    regex: /math/,
+                    controller: 'my/math',
+                    methods: {
+                        'add': 'add'
+                    }
+                }
+            ]
+        }
+    }
+}
+</pre>
+
+          <p>The controller:</p>
+<pre class="prettyprint linenums">
+define(['dojo/_base/declare'],
+function(declare){
+    return declare([], {
+        add: function(a, b){
+            console.debug(a + b);
+        }
+    )
+})
+</pre>
+
+          <p>The markup:</p>
+<pre class="prettyprint linenums">
+&lt;a href=&quot;math/add/1/6&quot;&gt;Add 1 and 6&lt;/a&gt;
+</pre>
+
+          <p>If the link were clicked, the number 7 would be printed in the console.</p>
+
+          <h2>Exit methods</h2>
+
+          <p>Exit methods can be defined for controllers. They are methods which will be called when a route is being left. Eg:</p>
+<pre class="prettyprint linenums">
+di: {
+    'havok/router/router': {
+        params: {
+            routes: [
+                {
+                    regex: /math/,
+                    controller: 'my/math',
+                    defaultMethod: {
+                        enter: 'add',
+                        exit: 'cleanup'
+                    }
+                    methods: {
+                        'subtract': {
+                            enter: 'subtract',
+                            exit: 'anotherMethod'
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}
+</pre>
+
+          <h2>Scripting a page change</h2>
+          <p>The router can be triggered in code using the <code>go</code> function:</p>
+<pre class="prettyprint linenums">
+require(['havok/router/started!'],
+function (router){
+    router.go('my/route');
+});
+</pre>
+
+          <h2>Forward and Back</h2>
+
+          <p>The router can go forward and back in history by passing an integer to <code>go</code>. Eg:</p>
+<pre class="prettyprint linenums">
+require(['havok/router/started!'],
+function (router){
+    router.go(-1); //go back one
+    router.go(-3); //go back three
+    router.go(1); //go forward one
+});
+</pre>
+
+        </section>
+
+        <section id="config-merger" title="Config Merger">
+          <div class="page-header">
+            <h1>Config Merger</h1>
+          </div>
+
+          <p class="lead">Create a merged dojo config from many different modules.</p>
+
+          <p>When you require <code>dojo/_base/config</code> you get back the dojo configuration object. Modules requiring configuration often use their own extensions to this object. Some havok modules, notably <code>havok/di</code> and <code>havok/less</code> use this pattern.</p>
+
+          <p>The <code>havok/config</code> modules allow you to build up the config object from multiple sources, and allows one config to be overridden by another - particularly useful for development or testing environments.</p>
+
+          <p>Use the <code>merge</code> key to specify the config modules to be merged. Eg:</p>
+
+<pre class="prettyprint linenums">
+dojoConfig = {
+    isDebug: true,
+    popup: true,
+    async: true,
+    merge: [
+        'MyNamespace/Config1',
+        'MyNamespace/Config2'
+    ]
+}
+</pre>
+
+          <h2>Merging</h2>
+
+          <p>The config modules can be loaded and merged using the <code>merge</code> function of <code>havok/config/manager</code>.
+
+           <p>The merge() function will return a Deferred object which will resolve when the config merge is complete.</p>
+
+<pre class="prettyprint linenums">
+require(['havok/config/manager'], function(configManager){
+    configManager.merge().then(function(){
+        //config merge complete
+    })
+}
+</pre>
+
+
+           <h2>ready!</h2>
+
+<p>Alternatively, config modules can be merged using the <code>havok/config/ready!</code> AMD plugin. The plugin will not return until configs are merged.</p>
+
+<pre class="prettyprint linenums">
+require(['havok/config/ready!'], function(){
+    //Do something
+}
+</pre>
+
+<h2>Dojo builds</h2>
+
+<p>If you use the havok build tool, it will merge all configs during the build, so that config merging does not happen in production.</p>
+
+        </section>
+
+        <section id="store-manager" title="Store Manager">
+          <div class="page-header">
+            <h1>Store Manager</h1>
+          </div>
+
+          <p class="lead">Container for managing data stores</p>
+
+          <p>The store manager allows you to configure the data stores you want to use with di, and then retrieve whole stores and individual records simply.</p>
+
+          <h2>Config</h2>
+
+          <p>To configure the store manager use di, and populate the stores object. Eg:</p>
+
+<pre class="prettyprint linenums">
+di: {
+    'havok/store/stores': {
+        gets: {
+            store1: 'my/store/one',
+            store2: 'my/store/two'
+        },
+        proxies: {
+            store3: {
+                base: 'my/store/three',
+                proxyMethods: [
+                    'get',
+                    'query'
+                ]
+            }
+        }
+    }
+}
+</pre>
+
+          <h2>Retrieve a store</h2>
+
+          <p>To get a store, use <code>getStore</code>. Note that a Deferred may be returned if the individual store is proxied.</p>
+
+<pre class="prettyprint linenums">
+require(['havok/store/manager'], function(storeManager){
+    var store1 = storeManager.getStore('store1');
+}
+</pre>
+
+          <h2>Retrieve a record</h2>
+
+          <p>To get a single record from a store, use <code>get</code> and pass a reference with the store name and record id. Eg:</p>
+
+<pre class="prettyprint linenums">
+require(['havok/store/manager'], function(storeManager){
+    var record = storeManager.get('store1/id1');
+}
+</pre>
+          <h2>Support</h2>
+
+          <p>The store manager is supported by many havok that can use data stores.</p>
+
+        </section>
+        <section id="exception-handler" title="Exception Handler">
+          <div class="page-header">
+            <h1>Exception Handler</h1>
+          </div>
+
+          <p class="lead">Throw, handle, view, and log js exceptions.</p>
+
+          <p>The exception handler will catch and process all js exceptions. It allows you to define exception severity and render exceptions to the console, a server, or to the user interface.</p>
+
+          <h2>Using</h2>
+
+          <p>To turn on the exception handler use the <code>havok/exception/started!</code>. It is suggested that this be done just after havok has first loaded. Eg:</p>
+
+<pre class="prettyprint linenums">
+require(['havok/exception/started!'], function(){
+    //do something
+})
+</pre>
+
+          <h2>How it works</h2>
+
+          <p>The exception handler listens to <code>window.onerror</code>. Any exceptions that are not handled by application code are caught and handled by the exception handler. Eg:</p>
+          <div class="bs-docs-example">
+                <button class="btn" onclick="console.debug(obj());">Not Defined</button>
+          </div>
+<pre class="prettyprint linenums">
+&lt;button class=&quot;btn&quot; onclick=&quot;console.debug(obj());&quot;&gt;Not Defined&lt;/button&gt;
+</pre>
+          <p>Note: Open your console to see the exception rendered there.</p>
+
+          <h2>Severity</h2>
+
+          <p>Each exception has a severity. The possible severity codes are:</p>
+
+<pre class="prettyprint linenums">
+NOTICE   : 1,
+WARNING  : 2,
+ERROR    : 3
+</pre>
+          <p>The higher the number, the more serious the exception.</p>
+
+          <p>By default, all exceptions have a severity of <code>ERROR: 3</code>.</p>
+
+          <h2>Application Exception</h2>
+
+          <p>The severity of an error can be cusomised by throwing an instance of <code>havok/exception/Application</code>.</p>
+          <div class="bs-docs-example">
+              <script>
+                  require(['dojo/on', 'dojo/dom', 'havok/exception/severity', 'havok/exception/Application'],
+                       function(on, dom, severity, Application){
+                            on(dom.byId('exception2'), 'click', function(){
+                                throw new Application('Example Exception', {severity: severity.WARNING});
+                            })
+                       }
+                   )
+              </script>
+              <button class="btn" id="exception2">Throw warning</button>
+          </div>
+<pre class="prettyprint linenums">
+&lt;script&gt;
+    require(['dojo/on', 'dojo/dom', 'havok/exception/severity', 'havok/exception/Application'],
+         function(on, dom, severity, Application){
+              on(dom.byId('exception2'), 'click', function(){
+                  throw new Application('Example Exception', {severity: severity.WARNING});
+              })
+         }
+     )
+&lt;/script&gt;
+&lt;button class=&quot;btn&quot; id=&quot;exception2&quot;&gt;Throw warning&lt;/button&gt;
+</pre>
+
+          <h2>Custom Exceptions</h2>
+
+          <p>To create your own custom exceptions, extend <code>havok/exception/Base</code>. Eg:</p>
+
+<pre class="prettyprint linenums">
+define([
+    'dojo/_base/lang',
+    'dojo/errors/create',
+    '../../exception/Base'
+],
+function(
+    lang,
+    create,
+    BaseException
+){
+    return create(
+        "MyCustomException",
+        function(message, options){
+            lang.mixin(this, options);
+        },
+        BaseException
+    )
+});
+</pre>
+
+          <h2>Renderers</h2>
+
+          <p>The handler is configured through the di container with an array of renderers. Each renderer must have a <code>minSeverity</code> property and a <code>render</code> function. The handler checks the <code>minSeverity</code> property, and if the exception is more severe, the <code>render</code> function is called.</p>
+
+          <h3>Console</h3>
+
+          <p>Renders and exception the the console, including extra info like stack trace.</p>
+
+          <p>By default the console renderer is registered with the handler and set to render all exceptions.</p>
+
+          <h3>UI</h3>
+
+          <p>Renders an exception as a modal for the the user to aknowledge. Eg:</p>
+          <div class="bs-docs-example">
+              <script>
+                  require([
+                      'dojo/on',
+                      'dojo/dom',
+                      'havok/exception/severity',
+                      'havok/exception/Application',
+                      'havok/exception/renderer/UI',
+                      'havok/exception/started!'
+                  ],
+                       function(on, dom, severity, Application, UI, handler){
+                            var added = false;
+                            on(dom.byId('exception3'), 'click', function(){
+                                if (!added){
+                                    added = true;
+                                    handler.renderers.push(new UI);
+                                }
+                                throw new Application('Example Exception', {severity: severity.ERROR});
+                            })
+                       }
+                   )
+              </script>
+              <button class="btn" id="exception3">UI Render</button>
+          </div>
+
+          <h3>Store</h3>
+
+          <p>Renders an exception to the configured store.</p>
+
+          <p>Click 'store render' to create an exception that is rendered to a store. Then click 'show store contents' to see the contents of the store.</p>
+          <div class="bs-docs-example">
+              <script>
+                  require([
+                      'dojo/on',
+                      'dojo/dom',
+                      'dojo/json',
+                      'dojo/when',
+                      'havok/exception/severity',
+                      'havok/exception/Application',
+                      'havok/exception/renderer/Store',
+                      'havok/exception/started!'
+                  ],
+                       function(on, dom, json, when, severity, Application, Store, handler){
+                            var added = false,
+                                renderer = new Store;
+                            renderer.store = {data: []};
+
+                            on(dom.byId('exception4'), 'click', function(){
+                                if (!added){
+                                    added = true;
+                                    handler.renderers.push(renderer);
+                                }
+                                throw new Application('Example Exception', {severity: severity.ERROR});
+                            });
+                            on(dom.byId('store4'), 'click', function(){
+                                when(renderer.getStore(), function(store){
+                                    dom.byId('storeContents').innerHTML = json.stringify(store.data, null, '    ');
+                                })
+                            })
+                       }
+                   )
+              </script>
+              <button class="btn" id="exception4">Store Render</button>
+              <div class="well">
+                  <button class="btn" id="store4">Show store contents</button>
+                  <p>Store items:</p>
+                  <pre id="storeContents"></pre>
+              </div>
+          </div>
+
+          <p>Tip: use a json rest store to send exceptions back to a server for logging.</p>
+
+        </section>
+
+        <section id="less" title="Less">
+          <div class="page-header">
+            <h1>Less</h1>
+          </div>
+
+          <p class="lead">Bundle less with widgets for better OOP design</p>
+
+          <p>Use the <code>havok/less!</code>. AMD plugin to define and load the less files you need.</p>
+
+<pre class="prettyprint linenums">
+define([
+    'havok/less!my/less/file.less'
+],
+function (){
+    //my module code
+});
+</pre>
+
+          <h2>Config</h2>
+
+          <p>The less plugin takes an array of less files. The files are loaded and parsed client side, and the resulting css is inserted into the page. A rank can be used to control the order they are added to the page.</p>
+
+          <p>Less files can be added to the plugin in two ways. Firstly through <code>dojoConfig</code>. Eg:</p>
+
+<pre class="prettyprint linenums">
+dojoConfig = {
+    ...
+    less: {
+        "my/less/mixins.less": {defs: true},
+        "my/less/file.less": {rank: 2},
+        "another/less/file.less": {rank: 2}
+    }
+}
+</pre>
+          <p>Secondly, less files can be added through the plugin. Less loaded this way will get a rank of 2 by default. eg:</p>
+<pre class="prettyprint linenums">
+define([
+    'havok/less!my/less/file.less
+],
+function (){
+    //my module code
+});
+</pre>
+
+          <p>To set the <code>defs</code> or <code>rank</code> when using the plugin, pass a json object:</p>
+<pre class="prettyprint linenums">
+define([
+    'havok/less!my/less/file.less!{rank: 4}
+],
+function (){
+    //my module code
+});
+</pre>
+
+
+          <h2>Defs and Rank</h2>
+
+          <p>The <code>defs</code> and <code>rank</code> control the order of less compilation an injection into the page. Any less marked with <code>defs: true</code> is considered to contain less definitions. Use this for less files that define variables and mixins.</p>
+
+          <p>Several <code>style</code> tags will be appended to the <code>body</code> of the page where compiled less will be injected. Less marked with <code>rank: 0</code> will be added to the first <code>style</code> tag. Less marked with <code>rank: 1</code> will be added to the second <code>style</code> tag, and so on.</p>
+
+          <h2>Builds</h2>
+          <p>Dynamically requiring less and compiling it client side is great for development - no intermediate steps, just edit your code and reload the browser. However, it is slow and inefficent for production. It is strongly recommended that you use the havok build tools to compile all less to css before deployment.</p>
+
+          <p>If you use the build tools, the following files will be created for each build layer:</p>
+
+          <ul>
+              <li>myLayer.less</li>
+              <li>myLayer.uncompressed.css</li>
+              <li>myLayer.css</li>
+          </ul>
+
+          <p>When deploying an a layer, link the <code>myLayer.css</code> in your document body to completely bypass client side less compilation and greatly speed up load times.</p>
+        </section>
+        <section id="utils" title="Utils">
+          <div class="page-header">
+            <h1>Utils</h1>
+          </div>
+
+          <p class="lead">Small helper functions</p>
+
+          <h2>array</h2>
+
+          <p><code>havok/array</code> extends <code>dojo/_base/array</code> to add one new function: <code>substract(a, b)</code>. Array subtract will remove any elemnts in both a and b from a. Eg:</p>
+
+<pre class="prettyprint linenums">
+require(['havok/array', function(array){
+    var removeFrom = [1, 2, 2, 3, 4, 5];
+    var removeValues = [2, 3];
+
+    var result = array.subtract(removeFrom, removeValues);
+    //result is [1, 4, 5]
+})
+</pre>
+
+          <h2>is</h2>
+
+          <p><code>havok/is</code> constains comparison functions that will return a boolean value.</p>
+
+<table class="table table-bordered table-striped">
+  <thead>
+   <tr>
+     <th style="width: 100px;">function</th>
+     <th>description</th>
+   </tr>
+  </thead>
+  <tbody>
+    <tr>
+        <td>isInt(value)</td>
+        <td>Is the value an integer?</td>
+    </tr>
+    <tr>
+        <td>isFloat(value)</td>
+        <td>Is the value a floating point number?</td>
+    </tr>
+    <tr>
+        <td>isDeferred(value)</td>
+        <td>Is the value an instance of <code>dojo/Deferred</code></td>
+    </tr>
+    <tr>
+        <td>isStatic(value)</td>
+        <td>Does the value contain any functions at all?</td>
+    </tr>
+  </tbody>
+</table>
+
+          <h2>lang</h2>
+
+          <p><code>havok/lang</code> extends <code>dojo/_base/lang</code> with one new function. <code>mixinDeep</code> will mix objects together deep into their object tree.</p>
+
+<pre class="prettyprint linenums">
+require(['havok/lang', function(lang){
+    var dest = {
+        item: {
+            a: 1,
+            b: {bb: 1}
+        }
+    };
+    var source = {
+        item: {
+            a: 0,
+            b: {dd: 5},
+            c: 3
+        }
+    }
+
+    var result = lang.mixinDeep(dest, source);
+
+    //result = {
+    //    item: {
+    //        a: 0,
+    //        b: {bb: 1, dd:5},
+    //        c: 3
+    //    }
+    //}
+})
+</pre>
+
+          <h2>string</h2>
+
+          <p><code>havok/string</code> extends <code>dojo/string</code> with one new function. <code>ucFirst</code> will make the first character in a string uppercase.</p>
+
+<pre class="prettyprint linenums">
+require(['havok/string', function(string){
+
+    var result = string.ucFirst('abc');
+
+    //result = 'Abc';
+})
+</pre>
+
+        </section>
+      </div>
+    </div>
+
+  </div>
+    </div>
+    <div id="contentWrapperOverlay" data-dojo-type="havok/widget/Overlay" data-dojo-props="target: document.body">Loading more havok...</div>
+
+    <!-- Footer
+    ================================================== -->
+    <footer class="footer">
+      <div class="container">
+        <p>Created by <a href="http://github.com/superdweebie">@superdweebie</a> and <a href="http://github.com/crimsonronin">@crimsonronin</a>.</p>
+        <p>Code licensed under MIT.</p>
+        <p>Built on the shoulders of giants <a href="http://twitter.github.io/bootstrap">bootstrap</a> and <a href="http://dojotoolkit.org">dojo</a>.</p>
+        <ul class="footer-links">
+          <li><a href="http://zoopcommerce.com">Zoop</a></li>
+          <li class="muted">&middot;</li>
+          <li><a href="https://github.com/zoopcommerce/havok/issues?state=open">Issues</a></li>
+          <li class="muted">&middot;</li>
+          <li><a href="https://github.com/zoopcommerce/havok/blob/master/CHANGELOG.md">Changelog</a></li>
+        </ul>
+      </div>
+    </footer>
+
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/google-code-prettify/prettify.js"></script>
+  </body>
+</html>
