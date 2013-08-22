@@ -8,6 +8,7 @@ define ([
     './di/main',
     './exception/main',
     './filter/main',
+	'./form/main',
     './router/main',
     './widget/main',
     'mystique/mystique'

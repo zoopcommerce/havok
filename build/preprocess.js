@@ -4,7 +4,8 @@ define([
     'dojo/json',
     'util/build/fs',
     'havok/config/manager',
-    'havok/lang'
+    'havok/lang',
+    'havok/build/defaultProfile'
 ],
 function(
     require,
@@ -12,7 +13,8 @@ function(
     json,
     fs,
     configManager,
-    lang
+    lang,
+    defaultProfile
 ){
 
 	// host-dependent environment initialization
@@ -60,35 +62,12 @@ function(
 		return text;
 	};
 
-    //List of plugin resolves to be added to the build profile
-    var havokplugins = {
-        plugins: {
-            "havok/config/ready":"havok/build/plugin/config/ready",
-            "havok/router/baseUrl":"havok/build/plugin/router/baseUrl",
-            "havok/router/started":"havok/build/plugin/router/started",
-            "havok/di/sharedDi":"havok/build/plugin/di/sharedDi",
-            "havok/proxy":"havok/build/plugin/proxy",
-            "havok/get":"havok/build/plugin/get",
-            "havok/less":"havok/build/plugin/less",
-            "dojo/text":"havok/build/plugin/text"
-        }
-    },
-
-    havoktransforms = {
-        transforms: {
-            writeAmd: ["havok/build/writeAmd", "write"]
-        }
-    };
-
     //Load and process the profile
     require(['util/build/argv'], function(argv){
         var profile = argv.args.profiles[0];
 
-        // inject extra build plugin resolvers
-        profile = lang.mixinDeep(profile, havokplugins);
-
-        // inject modified tansform to create less and css for layers
-        profile = lang.mixinDeep(profile, havoktransforms);
+        // mixin defaults
+        profile = lang.mixinDeep(defaultProfile, profile);
 
         // determine preprocessed filename
         var splitFilename = profile.selfFilename.split('.');

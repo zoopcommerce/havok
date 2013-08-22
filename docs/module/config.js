@@ -4,15 +4,13 @@ function(){
         di: {
             'havok/store/stores': {
                 proxies: {
-                    demostates: [
-                        {
-                            base: 'havok/docs/module/state',
-                            proxyMethods: [
-                                'get',
-                                'query'
-                            ]
-                        }
-                    ]
+                    demostates: {
+                        base: 'havok/docs/module/state',
+                        proxyMethods: [
+                            'get',
+                            'query'
+                        ]
+                    }
                 }
             },
             'havok/router/router': {

@@ -1,12 +1,7 @@
-<span data-dojo-type="havok/widget/DropdownToggle" data-dojo-attach-point="dropdown">
-    <button id="${id}"
-        class="btn btn-color-picker"
-        data-dojo-attach-point="focusNode"
-    >
-        <span class="badge badge-info" data-dojo-attach-point="swatch">&nbsp;</span>
-        <span class="caret"></span>
-    </button>
-    <div data-dojo-type="havok/widget/DropdownContainer">
+<button class="btn btn-color-picker" data-dojo-type="havok/widget/DropdownToggle" data-dojo-attach-point="dropdown">
+    <span class="badge badge-info" data-dojo-attach-point="swatch">&nbsp;</span>
+    <span class="caret"></span>
+    <div class="hide" data-dojo-type="havok/widget/DropdownContainer">
         <div class="color-picker" data-dojo-attach-point="pickerContainer">
             <div class="container-fluid">
                 <div class="row-fluid">
@@ -60,4 +55,4 @@
             </div>
         </div>
     </div>
-</span>
+</button>

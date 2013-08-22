@@ -1,7 +1,7 @@
 {
     "name": "zoopcommerce/havok",
+    "type": "zoop-js",
     "description": "Modern javascript for web apps",
-    "type": "library",
     "license": "MIT",
     "keywords": [
         "bootstrap",
@@ -16,11 +16,9 @@
             "email": "superdweebie@gmail.com"
         }
     ],
+    "repositories": [{ "type": "composer", "url": "http://zoopcommerce.github.io/pixie"}],
     "require": {
-        "php":                     ">=5.4",
-        "dojo/dojo":               "~1.9",
-        "dojo/dijit":              "~1.9",
-        "dojo/util":               "~1.9",
+        "zoopcommerce/pixie":      "*",
         "zoopcommerce/mystique":   "~1.1"
     }
 }

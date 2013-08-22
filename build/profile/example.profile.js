@@ -1,81 +1,35 @@
 var profile = {
-    action: "release",
-    basePath: "../../../",
-    releaseDir:"../../../builthavok20",
-    cssOptimize:0,
-    layerOptimize:"closure",
-    selectorEngine:"lite",
-    mini:1,
-    buildReportDir: ".",
-    buildReportFilename: "build-report.txt",
-    defaultConfig: {
-        hasCache:{
-            "dojo-built": 1,
-            "dojo-loader": 1,
-            "dom": 1,
-            "host-browser": 1,
-            "config-selectorEngine": "lite"
-        },
-        async: true,
+    basePath:"../../../", //this is the dojo base path for building. Other paths in the profile are relative to this path.
+    releaseDir:"example", //this is the directory the built files will be placed in
+    defaultConfig: { //set a default dojoConfig to be rolled into the build
         merge: [
-            'havok/config'
+            'havok/config' //any configs specified here will be merged by the havok build preprocessor
         ]
     },
-    staticHasFeatures: {
-        'dom': 1,
-        'host-browser': 1,
-        'dojo-inject-api': 1,
-        'dojo-loader-eval-hint-url': 1,
-        'dojo-built': 1,
-        'host-node': 0,
-        'host-rhino': 0,
-        'dojo-trace-api': 0,
-        'dojo-sync-loader': 0,
-        'dojo-config-api': 1,
-        'dojo-cdn': 0,
-        'dojo-sniff': 0,
-        'dojo-requirejs-api': 0,
-        'dojo-test-sniff': 0,
-        'dojo-combo-api': 0,
-        'dojo-undef-api': 0,
-        'config-tlmSiblingOfDojo': 0,
-        'config-dojo-loader-catches': 0,
-        'config-stripStrict': 0,
-        'dojo-timeout-api': 0,
-        'dojo-dom-ready-api': 0,
-        'dojo-log-api': 0,
-        'dojo-amd-factory-scan': 0,
-        'dojo-publish-privates': 0
-    },
-    dojoBootText: "require.boot && require.apply(null, require.boot);",
-    packages:[
-        {
-            name:"dojo",
-            location:"dojo"
+    layers:{ //this defines layers
+        "dojo/dojo": { //every build creates a dojo layer (that doesn't mean you have to use it)
+            include: [], //nothing exta is included in the dojo layer
+            customBase: 1 //even the dojo base is not included in the dojo layer. This makes this layer very slim - just the dojo AMD loader.
         },
-        {
-            name:"dijit",
-            location:"dijit"
-        },
-        {
-            name:"havok",
-            location:"havok"
-        },
-        {
-            name:"mystique",
-            location:"mystique"
-        }
-    ],
-    layers:{
-        "dojo/dojo": {
-            include: [],
-            customBase: 1
-        },
-        "havok/test":{
-            include: [
-                'havok/main'
+        "havok/bootexample":{ //An example bootable layer
+            includeLocales: ['en-us'], //locales to roll into the layer. If you don't add a locale it will be loaded async
+            include: [ //these modules and all their dependencies will be inclued in the layer
+                'havok/form/ValidationTextBox',
+                'havok/widget/NavBar',
+                'havok/widget/Affix',
+                'dojo/parser'
             ],
-            boot: 1
+            boot: 1 //make the layer bootable, that is, include the AMD loader in the layer
+        },
+        "havok/example":{ //An example non-bootable layer
+            includeLocales: ['en-us'],
+            include: [ //these modules and all their dependencies will be inclued in the layer
+                'havok/form/TextEditor',
+                'havok/widget/Modal'
+            ],
+            exclude: [
+                'havok/bootexample' //Any dependencies common to with the havok/bootexample layer will not be included
+            ]
         }
     }
 }

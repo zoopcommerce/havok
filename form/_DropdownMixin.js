@@ -4,7 +4,8 @@ define([
     'dojo/_base/array',
     'dojo/when',
     'dojo/dom-prop',
-    'dojo/dom-style'
+    'dojo/dom-style',
+    '../less!./less/dropdownmixin.less'
 ],
 function (
     declare,

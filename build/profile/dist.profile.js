@@ -1,24 +1,21 @@
 var profile = {
-    "basePath":"../../../../../",
-    "releaseDir":"public/prod-assets",
-    "action":"release",
-    "cssOptimize":"comments",
-    "layerOptimize":"closure",
-    "stripConsole":"all",
-    "selectorEngine":"acme",
-    "mini":0,
-    locale: 'en-au',
+    action:"release",
+    basePath:"../../../",
+    releaseDir:"release",
+    layerOptimize:"closure",
+    selectorEngine:"lite",
+    mini:1,
+    buildReportDir: ".",
+    buildReportFilename: "build-report.txt",
     defaultConfig: {
         hasCache:{
             "dojo-built": 1,
             "dojo-loader": 1,
             "dom": 1,
             "host-browser": 1,
-            "config-selectorEngine": "acme"
+            "config-selectorEngine": "lite"
         },
-        popup: true,
         async: true,
-        debug: false,
         merge: [
             'havok/config'
         ]

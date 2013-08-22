@@ -2,8 +2,8 @@
 ================================================== -->
 <header class="jumbotron subhead" id="overview">
   <div class="container">
-    <h1>Forms</h1>
-    <p class="lead">Dozens of reusable input widgets to prompt and validate all sorts of data.</p>
+    <h1>Getting started</h1>
+    <p class="lead">An overview of Havok.</p>
   </div>
 </header>
 
@@ -29,23 +29,13 @@
     <div class="span9" id="mainContent">
 
         <?php
-        include 'forms/using-forms.php';
-        include 'forms/using-form-widgets.php';
-        include 'forms/textbox.php';
-        include 'forms/validation-textbox.php';
-        include 'forms/number-textbox.php';
-        include 'forms/currency-textbox.php';
-        include 'forms/date-textbox.php';
-        include 'forms/password-textbox.php';
-        include 'forms/email-textbox.php';
-        include 'forms/textarea.php';
-        include 'forms/text-editor.php';
-        include 'forms/check-and-radio.php';
-        include 'forms/select.php';
-        include 'forms/typeahead.php';
-        include 'forms/color.php';
-        include 'forms/validation-group.php';
-        include 'forms/credit-card-expiry.php';
+        include 'getting-started/download-havok.php';
+        include 'getting-started/file-structure.php';
+        include 'getting-started/whats-included.php';
+        include 'getting-started/loading.php';		
+        include 'getting-started/using-havok.php';				
+        include 'getting-started/examples.php';
+        include 'getting-started/what-next.php';
         ?>
       </div>
     </div>

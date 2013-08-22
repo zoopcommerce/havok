@@ -32,10 +32,6 @@ function (
                 this._set('maxItems', value);
             },
 
-//            _setValueAttr: function(value){
-//                this._set('value', value);
-//            },
-
             startup: function(){
                 this.inherited(arguments);
                 this.watch('value', lang.hitch(this, '_valueWatcher'));
@@ -67,7 +63,11 @@ function (
                 when(
                     this.dropdown.refresh(),
                     lang.hitch(this, function(){
-                        this.dropdownToggle.show();
+                        if (this.dropdown.containerNode.children.length > 0){
+                            this.dropdownToggle.show();
+                        } else {
+                            this.dropdownToggle.hide();
+                        }
                     })
                 );
             }

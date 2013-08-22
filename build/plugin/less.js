@@ -59,7 +59,7 @@ define(["dojo/json", "dojo/_base/array", "util/build/fs"], function(json, array,
                             }
                         });
                     }
-                }
+                }				
 			}
 			return result;
 		}

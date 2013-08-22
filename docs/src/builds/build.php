@@ -8,6 +8,6 @@
 
           <code>node havok/build/buildconfig.js load=build --profile path/to/your.profile.preprocessed.js</code>
 
-          <p>Check the <code>build-report.text</code> to see any build errors and the exact content of your layers.</p>
+          <p>Check the <code>build-report.txt</code> to see any build errors and the exact content of your layers.</p>
 
         </section>

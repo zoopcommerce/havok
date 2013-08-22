@@ -1,6 +1,5 @@
 var profile = {
     "action": "release",
-    "basePath": "c:/xds/charting/public/dev-assets",
     "releaseDir": "havok/docs/temp",
     "layerOptimize": "closure",
     "selectorEngine": "lite",
@@ -124,19 +123,35 @@ var profile = {
                             "query"
                         ]
                     },
-                    "demostates": [
-                        {
-                            "base": "havok/docs/module/state",
-                            "proxyMethods": [
-                                "get",
-                                "query"
-                            ]
-                        }
-                    ]
+                    "demostates": {
+                        "base": "havok/docs/module/state",
+                        "proxyMethods": [
+                            "get",
+                            "query"
+                        ]
+                    }
                 }
             }
         }
     },
+    "packages": [
+        {
+            "name": "dojo",
+            "location": "dojo"
+        },
+        {
+            "name": "dijit",
+            "location": "dijit"
+        },
+        {
+            "name": "havok",
+            "location": "havok"
+        },
+        {
+            "name": "mystique",
+            "location": "mystique"
+        }
+    ],
     "staticHasFeatures": {
         "dom": 1,
         "host-browser": 1,
@@ -165,24 +180,23 @@ var profile = {
         "dojo-publish-privates": 0,
         "dojo-debug-messages": 0
     },
-    "packages": [
-        {
-            "name": "dojo",
-            "location": "dojo"
-        },
-        {
-            "name": "dijit",
-            "location": "dijit"
-        },
-        {
-            "name": "havok",
-            "location": "havok"
-        },
-        {
-            "name": "mystique",
-            "location": "mystique"
-        }
-    ],
+    "plugins": {
+        "havok/config/ready": "havok/build/plugin/config/ready",
+        "havok/router/baseUrl": "havok/build/plugin/router/baseUrl",
+        "havok/router/started": "havok/build/plugin/router/started",
+        "havok/di/sharedDi": "havok/build/plugin/di/sharedDi",
+        "havok/proxy": "havok/build/plugin/proxy",
+        "havok/get": "havok/build/plugin/get",
+        "havok/less": "havok/build/plugin/less",
+        "dojo/text": "havok/build/plugin/text"
+    },
+    "transforms": {
+        "writeAmd": [
+            "havok/build/writeAmd",
+            "write"
+        ]
+    },
+    "basePath": "c:/xds/charting/public/dev-assets",
     "layers": {
         "dojo/dojo": {
             "include": [],
@@ -200,21 +214,5 @@ var profile = {
             ],
             "boot": 1
         }
-    },
-    "plugins": {
-        "havok/config/ready": "havok/build/plugin/config/ready",
-        "havok/router/baseUrl": "havok/build/plugin/router/baseUrl",
-        "havok/router/started": "havok/build/plugin/router/started",
-        "havok/di/sharedDi": "havok/build/plugin/di/sharedDi",
-        "havok/proxy": "havok/build/plugin/proxy",
-        "havok/get": "havok/build/plugin/get",
-        "havok/less": "havok/build/plugin/less",
-        "dojo/text": "havok/build/plugin/text"
-    },
-    "transforms": {
-        "writeAmd": [
-            "havok/build/writeAmd",
-            "write"
-        ]
     }
 }

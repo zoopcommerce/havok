@@ -95,15 +95,15 @@
           <h2>With a validator</h2>
           <div class="bs-docs-example">
              <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
-                <select data-dojo-type="havok/form/Typeahead"
-                    data-dojo-props="label: 'State', store: 'demostates', validator: 'Required'"
+                <select data-dojo-type="havok/form/Typeahead" required
+                    data-dojo-props="label: 'State', store: 'demostates'"
                 >
                 </select>
              </div>
           </div>
 <pre class="prettyprint linenums">
-&lt;select data-dojo-type=&quot;havok/form/Typeahead&quot;
-    data-dojo-props=&quot;label: 'State', store: 'demostates', validator: 'Required'&quot;
+&lt;select data-dojo-type=&quot;havok/form/Typeahead&quot; required
+    data-dojo-props=&quot;label: 'State', store: 'demostates'&quot;
 &gt;
 &lt;/select&gt;
 </pre>
@@ -112,8 +112,9 @@
           <div class="bs-docs-example">
              <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
                 <div data-dojo-type="havok/form/Typeahead"
-                    data-dojo-props="label: 'State', store: 'demostates'"
+                    data-dojo-props="store: 'demostates'"
                 >
+                    <label>State</label>
                     <button>pre1</button>
                     <select></select>
                     <button>app1</button>
@@ -122,8 +123,9 @@
           </div>
 <pre class="prettyprint linenums">
 &lt;div data-dojo-type=&quot;havok/form/Typeahead&quot;
-    data-dojo-props=&quot;label: 'State', store: 'demostates'&quot;
+    data-dojo-props=&quot;store: 'demostates'&quot;
 &gt;
+    &lt;label&gt;State&lt;/label&gt;
     &lt;button&gt;pre1&lt;/button&gt;
     &lt;select&gt;&lt;/select&gt;
     &lt;button&gt;app1&lt;/button&gt;

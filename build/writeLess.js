@@ -9,8 +9,9 @@ define([
    var getRelativePath = function(lessDest, layerDest){
 
        var delimiter = has('is-windows') ? '/' : '\\',
-           lessPieces = lessDest.split(delimiter),
-           layerPieces = layerDest.split(delimiter),
+		   re = new RegExp('[\\\\/]+'),
+           lessPieces = lessDest.split(re),
+           layerPieces = layerDest.split(re),
            lessFilename = lessPieces.pop();
 
        layerPieces.pop();
@@ -22,10 +23,11 @@ define([
 
        while (layerPieces.length > 0){
            lessPieces.unshift('..' + delimiter);
+		   layerPieces.pop();
        }
        lessPieces.push(lessFilename);
 
-       return lessPieces.join(delimiter);
+       return fileUtils.compactPath(lessPieces.join(delimiter));
    };
 
    return function(
@@ -73,14 +75,27 @@ define([
             return;
         }
 
+		//make sure that defs in config are always included.
+		//less compile will probably fail if they are not
+		if (bc.defaultConfig.less){
+			for (i in bc.defaultConfig.less){
+				moduleInfo = bc.getSrcModuleInfo(i, null, true);
+				module = bc.resources[moduleInfo.url];
+
+                if (bc.defaultConfig.less[i].defs){ //defs are added to every layer
+                    defsLess.push(module); 
+                }
+			}
+		}
+				
         pieces = resource.dest.split('.');
         pieces.pop();
 
         //add a tiny bit of extra less to enable correct paths.
-        var basePath = dojoConfig.baseUrl + '..',
-            extraVariables = '@basePath: "' + basePath + '";\n';
-        toCompileLess.push(extraVariables);
-        rawLess.push(extraVariables);
+        var basePath = dojoConfig.baseUrl + '..';
+		
+        toCompileLess.push('@basePath: "' + basePath + '";\n');
+        rawLess.push('@basePath: "' + getRelativePath(basePath + '/dummy', resource.src).slice(0, -6) + '";\n');
         
         for(i = 0; i < defsLess.length; i++){
             toCompileLess.push("@import '" + defsLess[i].src + "';");
