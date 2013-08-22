@@ -2,6 +2,7 @@ define([
     'dojo/_base/declare',
     'dojo/_base/lang',
     'dojo/currency',
+    '../is',
     './ValidationTextBox',
     './_NumberTextBoxMixin',
     '../validator/Currency',
@@ -11,6 +12,7 @@ function (
     declare,
     lang,
     currency,
+    is,
     ValidationTextBox,
     NumberTextBoxMixin
 ){
@@ -59,7 +61,10 @@ function (
                 if (value == '' || value == undefined || value == null){
                     return null;
                 }
-
+                if (is.isFloat(value)){
+                    //if the value is already a plain numnber, it doesn't need to be parsed
+                    return value;
+                }
                 return this.inherited(arguments);
             },
 
