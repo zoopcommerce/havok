@@ -21,13 +21,15 @@ function (
 
             templateString: '<${tag} data-dojo-attach-point="containerNode"></{tag}>',
 
+            defaultTag: 'div',
+
             buildRendering: function(){
 
                 if (!this.tag){
                     if (this.srcNodeRef){
                         this.tag = this.srcNodeRef.nodeName;
                     } else {
-                        this.tag = 'div'
+                        this.tag = this.defaultTag;
                     }
                 }
 

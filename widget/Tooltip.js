@@ -43,8 +43,8 @@ function(
 
             //target: undefined,
 
-            tag: 'span',
-            
+            defaultTag: 'span',
+
             buildRendering: function(){
 
                 this.inherited(arguments);
