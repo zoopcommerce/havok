@@ -43,6 +43,8 @@ function (
         [WidgetBase, HideableMixin],
         {
 
+            templateString: '<${tag} data-dojo-attach-point="containerNode" data-dojo-attach-event="mouseleave: onMouseleave"></{tag}>',
+
             defaultClass: 'dropdown',
 
             //dropdown: undefined,
@@ -109,7 +111,6 @@ function (
                 this.dropdown.on('item-click', lang.hitch(this, function(e){
                     this.emit('item-click', e);
                 }));
-                on(this.domNode, 'mouseleave', lang.hitch(this, 'onMouseleave'));
             },
 
             destroy: function(){
