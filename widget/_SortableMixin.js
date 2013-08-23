@@ -5,7 +5,8 @@ define([
     './Dragable',
     'dojo/dom-construct',
     'dojo/dom-style',
-    'dijit/registry'
+    'dijit/registry',
+    '../get!./dragData'
 ],
 function (
     declare,
@@ -14,7 +15,8 @@ function (
     Dragable,
     domConstruct,
     domStyle,
-    registry
+    registry,
+    dragData
 ){
     // module:
     //		havok/widget/_SortableMixin
@@ -39,7 +41,7 @@ function (
 
                 on(dragable.domNode, 'dragover', function(e){
 
-                    var activeDragNode = registry.byId(e.dataTransfer.getData('application/widget')).domNode,
+                    var activeDragNode = registry.byId(dragData['application/widget']).domNode,
                         activeDragParentId = registry.getEnclosingWidget(activeDragNode.parentElement).id,
                         target = registry.getEnclosingWidget(dragable.domNode.parentElement),
                         i,

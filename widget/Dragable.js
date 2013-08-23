@@ -7,6 +7,7 @@ define([
     'dojo/on',
     'dijit/registry',
     'dijit/_WidgetBase',
+    '../get!./dragData',
     '../less!./less/dragable.less'
 ],
 function (
@@ -17,7 +18,8 @@ function (
     domClass,
     on,
     registry,
-    WidgetBase
+    WidgetBase,
+    dragData
 ){
     // module:
     //		havok/widget/Dragable
@@ -63,6 +65,8 @@ function (
                 domClass.add(this.domNode, 'dragging');
 
                 e.dataTransfer.effectAllowed = 'move';
+                dragData['application/widget'] = this.id;
+                dragData['text/html'] = this.domNode.outerHTML;
                 e.dataTransfer.setData('application/widget', this.id);
                 e.dataTransfer.setData('text/html', this.domNode.outerHTML);
 
@@ -74,6 +78,9 @@ function (
                 if (this.grip !== this.domNode){
                     domAttr.remove(this.domNode, 'draggable', false);
                 }
+                delete(dragData['application/widget']);
+                delete(dragData['text/html']);
+
                 this.set('dragging', false);
             },
 
