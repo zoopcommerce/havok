@@ -103,7 +103,7 @@ function (
             _attachClickListener: function(node, item){
 
                 on(node, a11yclick.click, lang.hitch(this, function(e){
-                    if (domClass.contains(e.target, 'disabled')){
+                    if (domClass.contains(e.target, 'disabled') || domClass.contains(e.target.parentNode, 'disabled')){
                         e.preventDefault();
                         return;
                     }
