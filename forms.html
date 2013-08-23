@@ -27,7 +27,7 @@
 
     <!-- Navbar
     ================================================== -->
-  <div class="navbar-inverse navbar-fixed-top" data-dojo-type="havok/widget/NavBar">
+  <div class="navbar navbar-inverse navbar-fixed-top" data-dojo-type="havok/widget/NavBar">
       <div class="container">
         <a data-dojo-attach-point="toggleNode">
           <span class="icon-bar"></span>
@@ -36,7 +36,7 @@
         </a>
         <a class="brand" href="./index.html">Havok</a>
         <div data-dojo-attach-point="toggleTarget">
-            <ul data-dojo-type="havok/widget/NavBarLinks">
+            <ul class="nav" data-dojo-type="havok/widget/NavBarLinks">
               <li>
                 <a href="index.html">Home</a>
               </li>
@@ -66,7 +66,7 @@
       </div>
   </div>
 
-    <div id="contentWrapper" style="min-height: 400px">
+    <div id="contentWrapper" style="min-height: 1000px">
     <!-- Subhead
 ================================================== -->
 <header class="jumbotron subhead" id="overview">
@@ -1075,6 +1075,18 @@
                     data-dojo-props="
                         label:'Cost',
                         value: '2.2'
+                    "
+                />
+             </div>
+          </div>
+
+            <h3>Currency Box with negative value</h3>
+          <div class="bs-docs-example">
+             <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
+                <input data-dojo-type="havok/form/CurrencyTextBox"
+                    data-dojo-props="
+                        label:'Cost',
+                        value: -100
                     "
                 />
              </div>
