@@ -1,6 +1,5 @@
 define ([
-    './started',
-    '../get!havok/exception/Handler'
+    './started'
 ],
 function (
 

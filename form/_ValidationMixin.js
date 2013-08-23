@@ -7,7 +7,7 @@ define([
     'dojo/Deferred',
     'dojo/dom-attr',
     '../is',
-    '../get!havok/validator/factory',
+    '../get!../validator/factory',
     'mystique/Result',
     './_ValidationStyleMixin',
     './_ValidationMessagesMixin',
