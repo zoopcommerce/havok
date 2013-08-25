@@ -8,13 +8,14 @@ var profile = {
             'havok/docs/module/config'
         ]
     },
+    localeList: ['en-gb', 'en-us'],	
     layers:{
         "dojo/dojo": {
             include: [],
             customBase: 1
         },
         "havok/havokdocs":{
-            includeLocales: ['en-us'],
+            includeLocales: ['en-gb', 'en-us'],
             include: [
                 'havok/main',
                 'havok/docs/module/Formspy',

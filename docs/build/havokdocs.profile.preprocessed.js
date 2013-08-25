@@ -197,6 +197,10 @@ var profile = {
         ]
     },
     "basePath": "c:/xds/charting/public/dev-assets",
+    "localeList": [
+        "en-gb",
+        "en-us"
+    ],
     "layers": {
         "dojo/dojo": {
             "include": [],
@@ -204,6 +208,7 @@ var profile = {
         },
         "havok/havokdocs": {
             "includeLocales": [
+                "en-gb",
                 "en-us"
             ],
             "include": [

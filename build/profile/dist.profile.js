@@ -6,13 +6,14 @@ var profile = {
             'havok/config'
         ]
     },
+    localeList: ['en-gb', 'en-us'],		
     layers:{
         "dojo/dojo": {
             include: [],
             customBase: 1
         },
         "havok/havok":{
-            includeLocales: ['en-us'],
+            includeLocales: ['en-gb', 'en-us'],
             include: [
                 'havok/main'
             ],
