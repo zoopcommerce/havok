@@ -1942,7 +1942,7 @@
 					 params:{routes:[
 					 				{
 					 					 ignore:true,
-					 					 regex:"[a-zA-Z][a-zA-Z0-9/_-]+"
+					 					 regex:"^$|[a-zA-Z][a-zA-Z0-9/_-]+"
 					 				},
 					 				{
 					 					 defaultMethod:-1,
@@ -1958,7 +1958,7 @@
 					 					 		enter:"go",
 					 					 		exit:"exit"
 					 					 },
-					 					 regex:"[a-zA-Z][a-zA-Z0-9/_-]+.[html|php]"
+					 					 regex:"^$|[a-zA-Z][a-zA-Z0-9/_-]+.[html|php]"
 					 				}
 					 		]}
 				},
@@ -31409,11 +31409,6 @@ function (
             //strip off any hash, in page navigation is not the business of the router
             route = route.split('#')[0];
 
-            //if there is no route left, don't do anything
-            if (route == ''){
-                return ({ignore: true});
-            }
-
             var pieces = route.split('/'),
                 config,
                 method,
@@ -35162,7 +35157,13 @@ function(
                     return;
                 }
 
-                this.load(window.location.href.replace('.html', '-content.' + this.type)).then(lang.hitch(this, function(html){
+                var href = window.location.href;
+                if (href.slice(-1) == '/'){
+                    //default to index.<type>
+                    href = href + 'index.html';
+                }
+
+                this.load(href.replace('.html', '-content.' + this.type)).then(lang.hitch(this, function(html){
                     this.node.innerHTML = html;
                     prettyPrint();
 
