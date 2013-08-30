@@ -63,7 +63,7 @@ curl -sS https://getcomposer.org/installer | php
 <pre>
 php composer.phar update
 </pre>
-    
+
     <p>Havok and dependencies will be insalled into <code>myproject/vendor</code> and symlinked to <code>myproject/public/js</code></p>
 
     <h2>Full sources manual install (advanced)</h2>
@@ -75,12 +75,11 @@ git clone http://github.com/zoopcommerce/havok
 git clone http://github.com/dojo/dojo
 git clone http://github.com/dojo/dijit
 git clone http://github.com/dojo/util
-git clone http://github.com/zoopcommerce/mystique
+git clone http://github.com/zoopcommerce/mystique-js mystique
+git clone http://github.com/zoopcommerce/mystique mystique-common
 </pre>
 
-    <p>Then go into each of the five repos and checkout the version tag you want.</p>
-
-    <p>Then make <code>mystique/js/mystique</code> loadable by dojo. You may do this by deleting the rest of the mystique repo and moving to the same directory as havok and dojo, or by through a dojoConfig package path.</p>
+    <p>Havok will normally work with the latest development versions of dojo and mystique. But if you want to be 100% sure, check the versions specified in composer.json, and check those tags out in the respective repos.</p>
 
 </section>
 <section id="file-structure" title="File Structure">

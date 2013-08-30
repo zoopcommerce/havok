@@ -35,13 +35,7 @@
                         type: 'php'
                     }
                 }
-            },
-            packages: [
-                {
-                    name: "havok/docs/module",
-                    location: "../havok/docs/module"
-                }
-            ]
+            }
         }
     </script>
     <script src="../../../dojo/dojo.js"></script>
