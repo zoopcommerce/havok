@@ -1,6 +1,6 @@
 {
 	"name": "havok",
-	"version":"1.0",
+	"version":"1.0.1",
 	"main":"main",
 	"dependencies": {
             "dojo": "1.9",

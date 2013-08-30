@@ -1,7 +1,7 @@
 var profile = {
     "action": "release",
     "releaseDir": "havok/docs/temp",
-    "layerOptimize": 0,
+    "layerOptimize": "closure",
     "selectorEngine": "lite",
     "mini": 1,
     "buildReportDir": ".",
