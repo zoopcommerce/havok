@@ -9,7 +9,7 @@ function(){
                 params: {
                     routes: [
                         {
-                            regex: '[a-zA-Z][a-zA-Z0-9/_-]+', //the catch all route
+                            regex: '^$|[a-zA-Z][a-zA-Z0-9/_-]+', //the catch all route
                             ignore: true
                         },
                         {

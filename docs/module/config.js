@@ -17,7 +17,7 @@ function(){
                 params: {
                     routes: [
                         {
-                            regex: '[a-zA-Z][a-zA-Z0-9/_-]+.[html|php]',
+                            regex: '^$|[a-zA-Z][a-zA-Z0-9/_-]+.[html|php]',
                             controller: 'havok/docs/module/Controller',
                             defaultMethod: {
                                 enter: 'go',

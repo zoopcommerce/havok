@@ -79,11 +79,6 @@ function (
             //strip off any hash, in page navigation is not the business of the router
             route = route.split('#')[0];
 
-            //if there is no route left, don't do anything
-            if (route == ''){
-                return ({ignore: true});
-            }
-
             var pieces = route.split('/'),
                 config,
                 method,

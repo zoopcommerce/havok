@@ -41,7 +41,13 @@ function(
                     return;
                 }
 
-                this.load(window.location.href.replace('.html', '-content.' + this.type)).then(lang.hitch(this, function(html){
+                var href = window.location.href;
+                if (href.slice(-1) == '/'){
+                    //default to index.<type>
+                    href = href + 'index.html';
+                }
+
+                this.load(href.replace('.html', '-content.' + this.type)).then(lang.hitch(this, function(html){
                     this.node.innerHTML = html;
                     prettyPrint();
 
