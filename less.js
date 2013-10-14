@@ -190,6 +190,12 @@ function(
 
             //this is the callback executed by the plugin
 
+            if (dojoConfig.less === false) {
+                //dynamic less loading is turnned off. Do nothing.
+                callback();
+                return;
+            }
+            
             var item,
                 pieces = id.split('!'),
                 mid = pieces[0];
