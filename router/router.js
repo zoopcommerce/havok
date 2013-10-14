@@ -76,6 +76,11 @@ function (
                 return ({ignore: true});
             }
 
+            // check for in page hash navigation - these are not routed
+            if (route.indexOf('#') == 0) {
+                return ({ignore: true});
+            }
+
             //strip off any hash, in page navigation is not the business of the router
             route = route.split('#')[0];
 
