@@ -195,7 +195,7 @@ function(
                 callback();
                 return;
             }
-            
+
             var item,
                 pieces = id.split('!'),
                 mid = pieces[0];
@@ -216,7 +216,7 @@ function(
 
             if (item.css){
                 injectCss(item);
-                callback(item.css);
+                initalLoad.then(function(){callback(item.css)});
                 return;
             }
 
@@ -224,7 +224,7 @@ function(
                 parseLess(item, true).then(function(){
                     toCss(item);
                     injectCss(item);
-                    callback(item.css);
+                    initalLoad.then(function(){callback(item.css)});
                 });
                 return;
             }
@@ -251,7 +251,7 @@ function(
                     parseLess(item, true).then(function(){
                         toCss(item);
                         injectCss(item);
-                        callback(item.css);
+                        initalLoad.then(function(){callback(item.css)});
                     });
                 }
 
