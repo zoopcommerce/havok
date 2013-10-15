@@ -1,10 +1,10 @@
-<span class="css-checkbox">
+<span class="checkbox-wrapper">
     <input
         type="checkbox"
         id="${id}"
         value="${value}"
-        data-dojo-attach-point="checkbox, focusNode"
+        data-dojo-attach-point="input"
     />
-    <span data-dojo-attach-event="click: onClick"></span>
+    <span data-dojo-attach-event="click: onClick" class="checkbox" data-dojo-attach-point="checkbox, focusNode"></span>
+    <label data-dojo-attach-point="labelNode"></label>
 </span>
-<span class="css-checkbox-spacer"></span>

@@ -31,8 +31,8 @@ function(
         defRoot, //the parsed token tree of all less marked with {defs: true}
         deferredDefsRoot = new Deferred, //resolves when defRoot has been populated
 
-        rewriteImports = function(fileName, less){
-            //rewrites @import so that relative paths work
+        rewriteUrls = function(fileName, less){
+            //rewrites @import and data-uri so that relative paths work
             //In particular this allows the definition less to be parsed just once,
             //greatly speeding up load time during development
 
@@ -43,7 +43,14 @@ function(
             filePieces.pop();
             filePath = basePath + filePieces.join('/');
 
-            return less.replace(/@import .*;/g, function(match){
+            less = less.replace(/@import .*;/g, function(match){
+                var pieces = match.indexOf('"') == -1 ? match.split("'") : match.split('"');
+
+                pieces[1] = filePath + '/' + pieces[1];
+                return pieces.join("'");
+            });
+
+            return less.replace(/data-uri(.*);/g, function(match){
                 var pieces = match.indexOf('"') == -1 ? match.split("'") : match.split('"');
 
                 pieces[1] = filePath + '/' + pieces[1];
@@ -124,7 +131,7 @@ function(
                 config[requireOrder[i]].skip = true;
             } else {
                 if (fileType == 'less'){
-                    config[requireOrder[i]][fileType] = rewriteImports(requireOrder[i], arguments[i]);
+                    config[requireOrder[i]][fileType] = rewriteUrls(requireOrder[i], arguments[i]);
                 }
                 injectRequired = true;
             }
@@ -247,7 +254,7 @@ function(
                 if (item.css){
                     injectCss(item);
                 } else {
-                    item.less = rewriteImports(id, item.less);
+                    item.less = rewriteUrls(id, item.less);
                     parseLess(item, true).then(function(){
                         toCss(item);
                         injectCss(item);
