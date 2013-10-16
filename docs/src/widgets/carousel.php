@@ -9,15 +9,15 @@
           <div class="bs-docs-example">
             <ol data-dojo-type="havok/widget/Carousel">
                 <li class="active" title="First Thumbnail label">
-                    <img alt="" src="assets/img/bootstrap-mdo-sfmoma-01.jpg">
+                    <img alt="" src="img/carousel-01.jpg">
                     Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
                 </li>
                 <li title="Second Thumbnail label">
-                    <img alt="" src="assets/img/bootstrap-mdo-sfmoma-02.jpg">
+                    <img alt="" src="img/carousel-02.jpg">
                     Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
                 </li>
                 <li title="Third Thumbnail label">
-                    <img alt="" src="assets/img/bootstrap-mdo-sfmoma-03.jpg">
+                    <img alt="" src="img/carousel-03.jpg">
                     Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
                 </li>
             </ol>
