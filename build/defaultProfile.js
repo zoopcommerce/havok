@@ -76,7 +76,7 @@ return {
         "dojo/text":"havok/build/plugin/text"
     },
     transforms: {
-        writeAmd: ["havok/build/writeAmd", "write"]
+        writeAmd: ["havok/build/transforms/writeAmd", "write"]
     }
 }
 });

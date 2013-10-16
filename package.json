@@ -1,11 +1,11 @@
 {
 	"name": "havok",
-	"version":"1.0.1",
+	"version":"1.0.3",
 	"main":"main",
 	"dependencies": {
             "dojo": "1.9",
             "dijit": "1.9",
-            "mystique": "1.0"
+            "mystique": "1.2"
 	},
 	"description": "The mutant offspring of Twitter Bootstrap and Dojo",
 	"keywords": ["JavaScript", "Dojo", "Widget", "Bootstrap"],
