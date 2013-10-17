@@ -23,8 +23,23 @@
             </ol>
           </div>
 <pre class="prettyprint linenums">
-
+&lt;ol data-dojo-type=&quot;havok/widget/Carousel&quot;&gt;
+    &lt;li class=&quot;active&quot; title=&quot;First Thumbnail label&quot;&gt;
+        &lt;img alt=&quot;&quot; src=&quot;img/carousel-01.jpg&quot;&gt;
+        Cras justo odio...
+    &lt;/li&gt;
+    &lt;li title=&quot;Second Thumbnail label&quot;&gt;
+        &lt;img alt=&quot;&quot; src=&quot;img/carousel-02.jpg&quot;&gt;
+        Cras justo odio...
+    &lt;/li&gt;
+    &lt;li title=&quot;Third Thumbnail label&quot;&gt;
+        &lt;img alt=&quot;&quot; src=&quot;img/carousel-03.jpg&quot;&gt;
+        Cras justo odio...
+    &lt;/li&gt;
+&lt;/ol&gt;
 </pre>
+
+          <p>Example using a store:</p>
 
           <div class="bs-docs-example">
             <ol data-dojo-type="havok/widget/Carousel"
@@ -32,15 +47,24 @@
                 active: 2,
                 store: {
                     data: [
-                        {id: 0, title: 'First Thumbnail label', caption: 'caption 1', img: 'assets/img/bootstrap-mdo-sfmoma-01.jpg'},
-                        {id: 1, title: 'Second Thumbnail label', caption: 'caption 2', img: 'assets/img/bootstrap-mdo-sfmoma-02.jpg'},
-                        {id: 2, title: 'Third Thumbnail label', caption: 'caption 3', img: 'assets/img/bootstrap-mdo-sfmoma-03.jpg'}
+                        {id: 0, title: 'First Thumbnail label', caption: 'caption 1', img: 'img/carousel-01.jpg'},
+                        {id: 1, title: 'Second Thumbnail label', caption: 'caption 2', img: 'img/carousel-02.jpg'},
+                        {id: 2, title: 'Third Thumbnail label', caption: 'caption 3', img: 'img/carousel-03.jpg'}
                     ]
                 }"
             ></ol>
           </div>
 <pre class="prettyprint linenums">
-
+&lt;ol data-dojo-type=&quot;havok/widget/Carousel&quot;
+    data-dojo-props=&quot;
+    active: 2,
+    store: {
+        data: [
+            {id: 0, title: 'First Thumbnail label', caption: 'caption 1', img: 'img/carousel-01.jpg'},
+            {id: 1, title: 'Second Thumbnail label', caption: 'caption 2', img: 'img/carousel-02.jpg'},
+            {id: 2, title: 'Third Thumbnail label', caption: 'caption 3', img: 'img/carousel-03.jpg'}
+        ]
+    }&quot;
+&gt;&lt;/ol&gt;
 </pre>
-
         </section>

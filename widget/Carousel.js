@@ -4,12 +4,10 @@ define([
     'dojo/Deferred',
     'dojo/when',
     'dojo/on',
-    'dojo/query',
     'dojo/dom-attr',
-    'dojo/dom-style',
     'dojo/dom-construct',
     'dojo/dom-class',
-    'dojo/dom-geometry',
+    '../cssfx',
     '../string',
     './_WidgetBase',
     './_StoreMixin',
@@ -23,12 +21,10 @@ function(
     Deferred,
     when,
     on,
-    query,
     domAttr,
-    domStyle,
     domConstruct,
     domClass,
-    domGeom,
+    cssfx,
     string,
     WidgetBase,
     StoreMixin,
@@ -45,9 +41,13 @@ function(
 
             itemTemplate: itemTemplate,
 
-            //items: undefined,
+            interval: 5000,
 
-            //indicators: undefined,
+            //_intervalObj: undefined,
+
+            paused: false,
+
+            //items: undefined,
 
             buildRendering: function(){
                 if (!this.store){
@@ -74,14 +74,14 @@ function(
                         this.set('store', {data: storeData});
                     }
                 }
-                this.items = {};
-                this.indicators = {};
+                this.items = [];
                 this.inherited(arguments);
             },
 
             startup: function(){
                 this.inherited(arguments);
                 this.refresh();
+                this.cycle();
             },
 
             refresh: function(){
@@ -105,16 +105,30 @@ function(
                 }
 
                 var i,
-                    id;
+                    j,
+                    id,
+                    found;
 
                 for (i = 0; i < data.length; i++){
                     id = data[i][this.store.idProperty];
-                    if (this.items[id]){
-                        domConstruct.place(this.items[id], this.itemsNode, 'last');
-                        domConstruct.place(this.indicators[id], this.indicatorsNode, 'last');
-                    } else {
-                        this.items[id] = domConstruct.place(string.substitute(this.itemTemplate, data[i]), this.itemsNode, 'last');
-                        this.indicators[id] = domConstruct.place('<li></li>', this.indicatorsNode, 'last');
+                    found = false;
+                    for (j = 0; j < this.items.length; j++){
+                        if (this.items[j].id == id){
+                            domConstruct.place(this.items[j].itemNode, this.itemsNode, 'last');
+                            domConstruct.place(this.indicators[j].inicatorNode, this.indicatorsNode, 'last');
+                            found = true;
+                        }
+                    }
+
+                    if (!found) {
+                        var indicatorNode = domConstruct.place('<li></li>', this.indicatorsNode, 'last');
+                        this._indicatorClick(indicatorNode);
+                        this.items.push({
+                            id: id,
+                            itemNode: domConstruct.place(string.substitute(this.itemTemplate, data[i]), this.itemsNode, 'last'),
+                            indicatorNode: indicatorNode
+                        });
+
                     }
                 }
 
@@ -123,7 +137,7 @@ function(
                 while (removed){
                     removed = false;
                     if (this.itemsNode.children.length > 0 &&
-                        ((data.length > 0 && this.itemsNode.firstElementChild !== this.items[data[0][this.store.idProperty]]) || data.length == 0)
+                        ((data.length > 0 && this.itemsNode.firstElementChild !== this.items[0].itemNode) || data.length == 0)
                     ){
                         this.itemsNode.removeChild(this.itemsNode.firstElementChild);
                         this.indicatorsNode.removeChild(this.indicatorsNode.firstElementChild);
@@ -134,58 +148,113 @@ function(
                 this.set('active', this.active);
             },
 
-            _setActiveAttr: function(value){
-
-                if (!this.items[value]) {
-                    return;
-                }
-
-                if (value == this.active) {
-                    //direct show
-                    domClass.add(this.items[value], 'active');
-                    domClass.add(this.indicators[value], 'active');
-                } else {
-                    //slide required
-                    var slideIn,
-                        slideOut,
-                        i;
-
-                    for (i in this.items){
-                        if (i == value) {
-                            slideOut = 'left';
-                            slideIn = 'right';
-                            break;
-                        }
-                        if (i == this.active) {
-                            slideOut = 'right';
-                            slideIn = 'left';
+            _indicatorClick: function(node){
+                on(node, 'click', lang.hitch(this, function(){
+                    for (var k = 0; k < this.items.length; k++){
+                        if (this.items[k].indicatorNode == node) {
+                            this.set('active', k);
                             break;
                         }
                     }
+                }));
+            },
 
-                    domClass.add(this.items[value], 'active ' + slideIn);
-                    domClass.add(this.indicators[value], 'active');
-                    domClass.add(this.items[this.active], slideOut);
-                    domClass.remove(this.indicators[this.active], 'active');
+            _setActiveAttr: function(value){
+                if (!this._started) return;
+
+                var dir = 1;
+                if (value < this.active) {
+                    dir = -1;
+                }
+                this._slide(value, dir);
+            },
+
+            _slide: function(value, dir){
+                var item,
+                    order,
+                    slideTo;
+
+                if (value < 0) {
+                    value = this.items.length - 1;
+                } else if (value > this.items.length - 1) {
+                    value = 0;
+                }
+                item = this.items[value];
+
+                if (value == this.active) {
+                    //direct show, no slide needed
+                    domClass.add(item.itemNode, 'active');
+                    domClass.add(item.indicatorNode, 'active');
+                    return;
                 }
 
-                this._set('active', value);
+                if (dir == 1){
+                    order = 'next';
+                    slideTo = 'left';
+                } else {
+                    order = 'prev';
+                    slideTo = 'right'
+                }
+
+                domClass.add(item.itemNode, order);
+                item.itemNode.offsetWidth; // force reflow
+                domClass.add(this.items[this.active].itemNode, slideTo);
+                domClass.add(item.itemNode, slideTo);
+                on.once(item.itemNode, cssfx.transitionEndEvent(), lang.hitch(this, function(){
+                    domClass.add(item.itemNode, 'active');
+                    domClass.remove(this.items[this.active].itemNode, 'active ' + slideTo);
+                    domClass.remove(item.itemNode, order + ' ' + slideTo);
+                    domClass.add(item.indicatorNode, 'active');
+                    domClass.remove(this.items[this.active].indicatorNode, 'active');
+                    this._set('active', value);
+                }));
             },
 
             cycle: function (){
-
+                this.paused = false;
+                if (this._intervalObj){
+                    clearInterval(this._intervalObj);
+                }
+                this._intervalObj = setInterval(lang.hitch(this, function(){
+                    if (this.paused) {
+                        clearInterval(this._intervalObj);
+                    } else {
+                        this.next();
+                    }
+                }), this.interval);
             },
 
             pause: function (){
-
+                this.paused = true;
+                clearInterval(this._intervalObj);
             },
 
             prev: function(){
-
+                this._slide(this.active - 1, -1);
             },
 
             next: function(){
+                this._slide(this.active + 1, 1);
+            },
 
+            onPrev: function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                this.prev();
+            },
+
+            onNext: function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                this.next();
+            },
+
+            onMouseenter: function(){
+                this.pause();
+            },
+
+            onMouseleave: function(){
+                this.cycle();
             }
         }
     );

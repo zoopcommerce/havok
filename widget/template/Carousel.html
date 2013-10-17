@@ -1,8 +1,8 @@
-<div id="${id}" class="carousel slide">
+<div id="${id}" class="carousel slide" data-dojo-attach-event="mouseenter: onMouseenter, mouseleave: onMouseleave">
     <ol class="carousel-indicators" data-dojo-attach-point="indicatorsNode">
     </ol>
     <div class="carousel-inner" data-dojo-attach-point="itemsNode">
     </div>
-    <a class="left carousel-control" data-dojo-attach-event="click: prev">‹</a>
-    <a class="right carousel-control" data-dojo-attach-event="click: next">›</a>
+    <a class="left carousel-control" data-dojo-attach-event="click: onPrev" href="">‹</a>
+    <a class="right carousel-control" data-dojo-attach-event="click: onNext" href="">›</a>
 </div>
