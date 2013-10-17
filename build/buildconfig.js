@@ -30,6 +30,10 @@ dojoConfig = {
         {
             name: "mystique",
             location: "mystique"
+        },
+        {
+            name: "mystique-common",
+            location: "mystique-common"
         }
     ]
 };

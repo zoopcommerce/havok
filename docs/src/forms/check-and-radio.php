@@ -8,24 +8,72 @@
             <p><code>havok/form/Checkbox</code> provides nicely styled checkbox.</p>
 
           <h3>Example</h3>
-          <div class="bs-docs-example">
-             <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
-                <input data-dojo-type="havok/form/Checkbox"
-                    data-dojo-props="
-                        label:'Check Me',
-                        helpMessages: 'this is a checkbox',
-                        value: true
-                    "
-                 />
-             </div>
+          <div class="bs-docs-example form-horizontal">
+            <input data-dojo-type="havok/form/Checkbox"
+                type="checkbox"
+                checked
+                data-dojo-props="
+                    label:'Checked Enabled',
+                    helpMessages: 'this is a checkbox'
+                "
+             />
+            <input data-dojo-type="havok/form/Checkbox"
+                type="checkbox"
+                data-dojo-props="
+                    label:'Unchecked Enabled',
+                    helpMessages: 'this is a checkbox'
+                "
+             />
+            <input data-dojo-type="havok/form/Checkbox"
+                type="checkbox"
+                checked
+                disabled
+                data-dojo-props="
+                    label:'Checked Disabled',
+                    helpMessages: 'this is a checkbox'
+                "
+             />
+            <input data-dojo-type="havok/form/Checkbox"
+                type="checkbox"
+                disabled
+                data-dojo-props="
+                    label:'Unchecked Disabled',
+                    helpMessages: 'this is a checkbox'
+                "
+             />
           </div>
 
 <pre class="prettyprint linenums">
 &lt;input data-dojo-type=&quot;havok/form/Checkbox&quot;
+    type=&quot;checkbox&quot;
+    checked
     data-dojo-props=&quot;
-        label:'Check Me',
-        helpMessages: 'this is a checkbox',
-        value: true
+        label:'Checked Enabled',
+        helpMessages: 'this is a checkbox'
+    &quot;
+ /&gt;
+&lt;input data-dojo-type=&quot;havok/form/Checkbox&quot;
+    type=&quot;checkbox&quot;
+    data-dojo-props=&quot;
+        label:'Unchecked Enabled',
+        helpMessages: 'this is a checkbox'
+    &quot;
+ /&gt;
+&lt;input data-dojo-type=&quot;havok/form/Checkbox&quot;
+    type=&quot;checkbox&quot;
+    checked
+    disabled
+    data-dojo-props=&quot;
+        label:'Checked Disabled',
+        helpMessages: 'this is a checkbox'
+    &quot;
+ /&gt;
+&lt;input data-dojo-type=&quot;havok/form/Checkbox&quot;
+    type=&quot;checkbox&quot;
+    disabled
+    data-dojo-props=&quot;
+        label:'Unchecked Disabled',
+        helpMessages: 'this is a checkbox'
     &quot;
  /&gt;
 </pre>

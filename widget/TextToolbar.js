@@ -4,6 +4,7 @@ define([
     'dojo/_base/array',
     'dojo/on',
     'dojo/dom',
+    'dojo/dom-construct',
     '../string',
     'dojo/dom-class',
     'dijit/focus',
@@ -11,12 +12,13 @@ define([
     './_WidgetBase',
     'dijit/_WidgetsInTemplateMixin',
     'dojo/text!./template/TextToolbar.html',
+    '../less!./less/text-toolbar.less',
     './ButtonGroup',
     './DropdownToggle',
     './Dropdown',
     './DropdownContainer',
-    '../form/TextBox',
-    '../less!./less/text-toolbar.less'
+    './ToggleButton',
+    '../form/TextBox'
 ],
 function (
     declare,
@@ -24,13 +26,15 @@ function (
     array,
     on,
     dom,
+    domConstruct,
     string,
     domClass,
     focus,
     Tooltip,
     WidgetBase,
     WidgetsInTemplateMixin,
-    template
+    template,
+    less
 ){
     // module:
     //    	havok/widget/TextToolbar
@@ -76,8 +80,11 @@ function (
                 'tab',
                 'list',
                 'link',
-                'correct'
+                'correct',
+                'viewGroup'
             ],
+
+            view: 'wysiwig', // wysiwig | source
 
             buildRendering: function(){
                 this.inherited(arguments);
@@ -105,6 +112,7 @@ function (
                     {target: this.unlink, title: 'Remove Hyperlink'},
                     {target: this.undo, title: 'Undo (ctrl + z)'},
                     {target: this.redo, title: 'Redo (ctrl + y)'},
+                    {target: this.source, title: 'View source'},
                     {target: this.more, title: 'More'}
                 ], function(item){
                     return new Tooltip({target: item.target.domNode, title: item.title});
@@ -118,8 +126,6 @@ function (
                 array.forEach(this.tooltips, function(tooltip){tooltip.startup()});
 
                 document.execCommand('styleWithCSS', 0, true);
-
-                this._resize();
 
                 this.events = [
                     on(window, 'resize', lang.hitch(this, function(){
@@ -155,6 +161,21 @@ function (
                     })),
                     this.more.on('item-click', lang.hitch(this, function(item){
                         this.more.hide();
+                    })),
+                    on(this.source, 'click', lang.hitch(this, function(){
+                        if (this.source.get('active')) {
+                            this.set('view', 'source');
+                        } else {
+                            this.set('view', 'wysiwig');
+                        }
+                    })),
+                    on(this.moreSource, 'click', lang.hitch(this, function(){
+                        this.more.hide();
+                        if (this.view == 'source') {
+                            this.set('view', 'wysiwig');
+                        } else {
+                            this.set('view', 'source');
+                        }
                     }))
                 ];
 
@@ -172,7 +193,7 @@ function (
                             this.execCommand(command);
                         }))
                     );
-                })),
+                }));
 
                 array.forEach(this._toggleCommands, lang.hitch(this, function(command){
                     this[command].set('keyTarget', this.target);
@@ -189,7 +210,17 @@ function (
                             this.execCommand(command, this[command].get('active'));
                         }))
                     );
-                }))
+                }));
+
+                //add source view node
+                this.sourceView = domConstruct.create(
+                    'textarea',
+                    {'class': 'hidden'},
+                    this.target,
+                    'after'
+                );
+
+                this._resize();
             },
 
             destroy: function(){
@@ -204,10 +235,13 @@ function (
 
             _resize: function(){
 
+                if (this.source.get('active')) {
+                    return;
+                }
+
                 var i,
                     node,
                     moreNode,
-                    hide,
                     tooLong = lang.hitch(this, function(){
                         domClass.remove(this.more.domNode, 'hidden');
                         for (i = this._groups.length - 1; i >= 0; i--){
@@ -255,6 +289,31 @@ function (
                 }
             },
 
+            _setViewAttr: function(value) {
+                if (value == 'source') {
+                    this.sourceView.value = string.trim(this.target.innerHTML);
+                    for (var i = 0; i < this._groups.length; i++){
+                        domClass.add(this[this._groups[i]].domNode, 'hidden');
+                    }
+                    domClass.remove(this.viewGroup.domNode, 'hidden');
+                    domClass.add(this.more.domNode, 'hidden');
+                    domClass.remove(this.sourceView, 'hidden');
+                    domClass.add(this.sourceView, 'text-editor-source');
+                    domClass.add(this.target, 'hidden');
+                    this.source.set('active', true);
+                    focus.focus(this.sourceView);
+                } else if (this._started) {
+                    this.target.innerHTML = this.sourceView.value;
+                    domClass.remove(this.sourceView, 'text-editor-source');
+                    domClass.add(this.sourceView, 'hidden');
+                    domClass.remove(this.target, 'hidden');
+                    this.source.set('active', false);
+                    this._resize();
+                    focus.focus(this.target);
+                }
+                this._set('view', value);
+            },
+
             execCommand: function(command, args){
                 this.restoreSelection();
                 focus.focus(this.target);
@@ -266,7 +325,8 @@ function (
             updateToolbar: function() {
                 array.forEach(this._toggleCommands, lang.hitch(this, function(command){
                     this[command].set('active', document.queryCommandState(command));
-                }))
+                }));
+                this.source.set('active', this.view == 'source');
             },
 
             getCurrentRange: function() {

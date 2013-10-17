@@ -46,6 +46,7 @@
         include 'widgets/alerts.php';
         include 'widgets/overlay.php';
         include 'widgets/dragable.php';
+        include 'widgets/carousel.php';
         include 'widgets/text-editor.php';
         ?>
       </div>
