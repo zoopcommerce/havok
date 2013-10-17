@@ -46,11 +46,8 @@ var profile = (function(){
     };
 
     var copyOnly = function(filename, mid){
-        if (mid == 'havok/vendor/less/less'){
-            return true;
-        }
         var list = {
-	        "havok/havok.profile"  : true,
+            "havok/havok.profile"  : true,
             "havok/package.json" : true,
             "havok/vendor/less/dist/less" : true
         };
@@ -74,11 +71,11 @@ var profile = (function(){
             },
 
             ignore: function(filename, mid){
-		        return ignore(filename, mid);
+                return ignore(filename, mid);
             },
 
             test: function(filename, mid){
-		        return test(filename, mid);
+                return test(filename, mid);
             },
 
             copyOnly: function(filename, mid){

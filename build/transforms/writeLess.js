@@ -1,15 +1,15 @@
 define([
-	"build/buildControl",
-	"build/fileUtils",
-	"build/fs",
-	"dojo/has",
-    "dojo/_base/config"
-], function(bc, fileUtils, fs, has, dojoConfig){
+    "build/buildControl",
+    "build/fileUtils",
+    "build/fs",
+    "dojo/has",
+    "build/transforms/writeAmd"
+], function(bc, fileUtils, fs, has, writeAmd){
 
    var getRelativePath = function(lessDest, layerDest){
 
        var delimiter = has('is-windows') ? '/' : '\\',
-		   re = new RegExp('[\\\\/]+'),
+           re = new RegExp('[\\\\/]+'),
            lessPieces = lessDest.split(re),
            layerPieces = layerDest.split(re),
            lessFilename = lessPieces.pop();
@@ -23,7 +23,7 @@ define([
 
        while (layerPieces.length > 0){
            lessPieces.unshift('..' + delimiter);
-		   layerPieces.pop();
+           layerPieces.pop();
        }
        lessPieces.push(lessFilename);
 
@@ -51,12 +51,16 @@ define([
             rawLessFilename,
             rawCssFilename,
             optCssFilename,
-            pieces;
-
-        for (i in resource.moduleSet){
-            module = resource.moduleSet[i];
-            if (module.lessConfig){
-                hasLess = true;
+            pieces,
+            moduleSet = writeAmd.computeLayerContents(resource, resource.layer.include, resource.layer.exclude);
+            
+        for (i in moduleSet){
+            if (!moduleSet[i].less) {
+                continue;
+            }
+            hasLess = true;
+            for (j in moduleSet[i].less) {
+                module = moduleSet[i].less[j];
                 if (module.lessConfig.defs){
                     defsLess.push(module.module);
                 } else {
@@ -74,16 +78,15 @@ define([
             return;
         }
 
-		//make sure that defs in config are always included.
-		//less compile will probably fail if they are not
-		if (bc.defaultConfig.less){
-			for (i in bc.defaultConfig.less){
-				var moduleInfo = bc.getSrcModuleInfo(i, null, true);
-				module = bc.resources[moduleInfo.url];
+        //make sure that defs in config are always included.
+        //less compile will probably fail if they are not
+        if (bc.less){
+            for (i in bc.less){
+                var moduleInfo = bc.getSrcModuleInfo(i, null, true);
+                module = bc.resources[moduleInfo.url];
 
-                if (bc.defaultConfig.less[i].defs){ //defs are added to every layer
-                    var j,
-                        alreadyAdded = false;
+                if (bc.less[i].defs){ //defs are added to every layer
+                    var alreadyAdded = false;
 
                     for (j = 0; j < defsLess.length; j++){
                         if (defsLess[j].src == module.src){
@@ -94,13 +97,14 @@ define([
                     if (!alreadyAdded){
                         defsLess.push(module);
                     }
+                } else if (resource.layer.boot) {
+                    while (ranksLess.length - 1 < bc.less[i].rank){
+                        ranksLess.push([]);
+                    }
+                    ranksLess[bc.less[i].rank].push(module);
                 }
-			}
-		}
-
-        pieces = resource.dest.split('.');
-        pieces.pop();
-
+            }
+        }
 
         for(i = 0; i < defsLess.length; i++){
             rawLess.push("@import '" + getRelativePath(defsLess[i].dest, resource.dest) + "';");
@@ -113,6 +117,8 @@ define([
 
         rawLess = rawLess.join('\n');
 
+        pieces = resource.dest.split('.');
+        pieces.pop();
         rawLessFilename = pieces.join('.') + '.less';
         if (bc.layerOptimize){
             rawCssFilename = pieces.join('.') + '.uncompressed.css';
@@ -132,12 +138,13 @@ define([
             //parse the less into css
             //note: the lessc global is defined in the buildconfig.js
             var parser = new lessc.Parser({
-					relativeUrls: true,
-                    paths: ['c:/xds/charting/public/dev-assets/havok/'],
-                    filename: 'havokdocs.less'
+                    relativeUrls: true,
+                    paths: [fileUtils.getFilepath(rawLessFilename)],
+                    filename: fileUtils.getFilename(rawLessFilename)
                 }),
                 rawCss,
                 optCss;
+
             parser.parse(rawLess, function(err, root){
                 if (err){
                     callback(resource, err);

@@ -116,7 +116,7 @@
             data-dojo-type="havok/widget/Button"
             data-dojo-attach-point="unlink"
         >
-            <i class="icon-cut"></i>
+            <i class="icon-unlink"></i>
         </button>
     </span>
 
@@ -134,6 +134,15 @@
             data-dojo-props="keys: {ctrl: true, char: 'y'}"
         >
             <i class="icon-repeat"></i>
+        </button>
+    </span>
+
+    <span data-dojo-type="havok/widget/ButtonGroup" data-dojo-attach-point="viewGroup">
+        <button
+            data-dojo-type="havok/widget/ToggleButton"
+            data-dojo-attach-point="source"
+        >
+            <i class="icon-terminal"></i>
         </button>
     </span>
 
@@ -194,7 +203,7 @@
                             </div>
                         </div>
                     </li>
-                    <li><a data-dojo-attach-point="moreUnlink" href=""><i class="icon-cut"></i> remove</a></li>
+                    <li><a data-dojo-attach-point="moreUnlink" href=""><i class="icon-unlink"></i> remove</a></li>
                 </ul>
             </li>
             <li data-dojo-type="havok/widget/DropdownSubmenu" data-dojo-attach-point="moreCorrect">
@@ -202,6 +211,12 @@
                 <ul data-dojo-type="havok/widget/Dropdown">
                     <li><a data-dojo-attach-point="moreUndo" href=""><i class="icon-undo"></i> undo <span class="muted">(ctrl + z)</span></a></li>
                     <li><a data-dojo-attach-point="moreRedo" href=""><i class="icon-repeat"></i> redo <span class="muted">(ctrl + y)</span></a></li>
+                </ul>
+            </li>
+            <li data-dojo-type="havok/widget/DropdownSubmenu" data-dojo-attach-point="moreViewGroup">
+                <a><i class="icon-terminal"></i> view</a>
+                <ul data-dojo-type="havok/widget/Dropdown">
+                    <li><a data-dojo-attach-point="moreSource" href=""><i class="icon-terminal"></i> source</a></li>
                 </ul>
             </li>
          </ul>

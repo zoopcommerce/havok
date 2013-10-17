@@ -1,68 +1,68 @@
-.css-checkbox-spacer {
-    display: inline-block;
-    width: 20px;
+.form-inline {
+    .checkbox-wrapper {
+        padding-left: 20px;
+    }
+
+    .checkbox-wrapper .checkbox {
+        padding-left: 16px;
+    }
 }
 
-.css-checkbox input[type=checkbox] {
-	display: none;
+.checkbox-wrapper {
+    input[type=checkbox] {
+        /* IE cannot fire events if display none or visibility hidden */
+        position: relative;
+        top: -99999px;
+    }
+
+    span {
+        background-image: data-uri('img/check/check.png');
+        background-position: 0 1px;
+        background-repeat: no-repeat;
+        margin-left: -20px;
+        margin-right: 4px;
+        padding-left: 16px;
+        width: 16px;
+        height: 16px;
+
+        &.checked {
+            /* checked */
+            background-position: -48px 1px;
+        }
+
+        &.disabled {
+            /* disabled */
+            background-position: -64px 1px;
+
+            &.checked {
+                /* disabled and checked */
+                background-position: -80px 1px;
+            }
+        }
+    }
+
+    label {
+        display: inline;
+    }
 }
 
-.css-checkbox {
-	width: 20px;
-	margin: 20px auto;
-	position: relative;
-}
+.checkbox-wrapper:hover {
+    span {
+        background-position: -16px 1px;
 
-.css-checkbox span {
-	cursor: pointer;
-	position: absolute;
-	width: 20px;
-	height: 20px;
-	border-radius: 4px;
+        &.checked {
+            /* checked */
+            background-position: -32px 1px;
+        }
 
-	-webkit-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
-	-moz-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
-	box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
-	background: #fcfff4;
+        &.disabled {
+            /* disabled */
+            background-position: -64px 1px;
 
-	background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-	background: -moz-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-	background: -o-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-	background: -ms-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-	background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead',GradientType=0 );
-}
-
-.css-checkbox span:after {
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-	filter: alpha(opacity=0);
-	opacity: 0;
-	content: '';
-	position: absolute;
-	width: 9px;
-	height: 5px;
-	background: transparent;
-	top: 4px;
-	left: 4px;
-	border: 3px solid #333;
-	border-top: none;
-	border-right: none;
-
-	-webkit-transform: rotate(-45deg);
-	-moz-transform: rotate(-45deg);
-	-o-transform: rotate(-45deg);
-	-ms-transform: rotate(-45deg);
-	transform: rotate(-45deg);
-}
-
-.css-checkbox span:hover::after {
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
-	filter: alpha(opacity=30);
-	opacity: 0.5;
-}
-
-.css-checkbox input[type=checkbox]:checked + span:after {
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-	filter: alpha(opacity=100);
-	opacity: 1;
+            &.checked {
+                /* disabled and checked */
+                background-position: -80px 1px;
+            }
+        }
+    }
 }

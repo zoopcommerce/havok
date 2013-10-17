@@ -1,5 +1,7 @@
 define([
     'dojo/_base/declare',
+    'dojo/dom-attr',
+    'dojo/dom-class',
     '../widget/_WidgetBase',
     './_FormWidgetMixin',
     'dojo/text!./template/Checkbox.html',
@@ -7,6 +9,8 @@ define([
 ],
 function(
     declare,
+    domAttr,
+    domClass,
     WidgetBase,
     FormWidgetMixin,
     template
@@ -20,11 +24,60 @@ function(
         {
             templateString: template,
 
-            value: false,
+            buildRendering: function(){
+                if (domAttr.has(this.srcNodeRef, 'checked')) {
+                    this.value = true;
+                } else {
+                    this.value = false;
+                }
+
+                if (domAttr.has(this.srcNodeRef, 'disabled')) {
+                    this.disabled = true;
+                } else {
+                    this.disabled = false;
+                }
+
+                this.inherited(arguments);
+            },
+
+            startup: function() {
+                this.inherited(arguments);
+                this.set('value', this.value);
+                this.set('disabled', this.disabled);
+            },
+
+            toggle: function() {
+                this.set('value', !this.value);
+            },
 
             onClick: function(){
-                this.checkbox.checked = !this.checkbox.checked;
-                this.set('value', this.checkbox.checked);
+                if (!this.get('disabled')) {
+                    this.toggle();
+                }
+            },
+
+            _setValueAttr: function(value) {
+                if (this._started) {
+                    if (value) {
+                        this.input.checked = false;
+                        domClass.remove(this.checkbox, 'checked');
+                    } else {
+                        this.input.checked = true;
+                        domClass.add(this.checkbox, 'checked');
+                    }
+                }
+                this._set('value', value);
+            },
+
+            _setDisabledAttr: function(value) {
+                if (this._started) {
+                    if (value) {
+                        domClass.add(this.checkbox, 'disabled');
+                    } else {
+                        domClass.remove(this.checkbox, 'disabled');
+                    }
+                }
+                this._set('disabled', value);
             }
         }
     );

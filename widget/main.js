@@ -3,6 +3,7 @@ define ([
     './Alert',
     './Affix',
     './ButtonGroup',
+    './Carousel',
     './CheckboxGroup',
     './Dragable',
     './Dropdown',

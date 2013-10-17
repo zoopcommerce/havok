@@ -16,26 +16,6 @@ var profile = {
             "config-selectorEngine": "lite"
         },
         "async": true,
-        "less": {
-            "havok/less/havok-defs.less": {
-                "defs": true
-            },
-            "havok/less/havok-rank1.less": {
-                "rank": 1
-            },
-            "havok/less/havok-rank3.less": {
-                "rank": 3
-            },
-            "havok/vendor/bootstrap/less/labels-badges.less": {
-                "rank": 1
-            },
-            "havok/vendor/bootstrap/less/wells.less": {
-                "rank": 1
-            },
-            "havok/docs/src/less/docs.less": {
-                "rank": 4
-            }
-        },
         "di": {
             "havok/validator/factory": {
                 "gets": {
@@ -150,6 +130,10 @@ var profile = {
         {
             "name": "mystique",
             "location": "mystique"
+        },
+        {
+            "name": "mystique-common",
+            "location": "mystique-common"
         }
     ],
     "staticHasFeatures": {
@@ -188,11 +172,12 @@ var profile = {
         "havok/proxy": "havok/build/plugin/proxy",
         "havok/get": "havok/build/plugin/get",
         "havok/less": "havok/build/plugin/less",
+        "mystique/messages": "havok/build/plugin/messages",
         "dojo/text": "havok/build/plugin/text"
     },
     "transforms": {
         "writeAmd": [
-            "havok/build/writeAmd",
+            "havok/build/transforms/writeAmd",
             "write"
         ]
     },
@@ -221,6 +206,26 @@ var profile = {
                 "havok/exception/renderer/UI"
             ],
             "boot": 1
+        }
+    },
+    "less": {
+        "havok/less/havok-defs.less": {
+            "defs": true
+        },
+        "havok/less/havok-rank1.less": {
+            "rank": 1
+        },
+        "havok/less/havok-rank3.less": {
+            "rank": 3
+        },
+        "havok/vendor/bootstrap/less/labels-badges.less": {
+            "rank": 1
+        },
+        "havok/vendor/bootstrap/less/wells.less": {
+            "rank": 1
+        },
+        "havok/docs/module/less/docs.less": {
+            "rank": 4
         }
     }
 }
