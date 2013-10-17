@@ -35,6 +35,10 @@ return {
         {
             name:"mystique",
             location:"mystique"
+        },
+        {
+            name:"mystique-common",
+            location:"mystique-common"
         }
     ],
     staticHasFeatures: {
@@ -73,6 +77,7 @@ return {
         "havok/proxy":"havok/build/plugin/proxy",
         "havok/get":"havok/build/plugin/get",
         "havok/less":"havok/build/plugin/less",
+        "mystique/messages":"havok/build/plugin/messages",
         "dojo/text":"havok/build/plugin/text"
     },
     transforms: {

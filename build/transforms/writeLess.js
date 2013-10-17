@@ -106,10 +106,6 @@ define([
             }
         }
 
-        pieces = resource.dest.split('.');
-        pieces.pop();
-
-
         for(i = 0; i < defsLess.length; i++){
             rawLess.push("@import '" + getRelativePath(defsLess[i].dest, resource.dest) + "';");
         }
@@ -121,6 +117,8 @@ define([
 
         rawLess = rawLess.join('\n');
 
+        pieces = resource.dest.split('.');
+        pieces.pop();
         rawLessFilename = pieces.join('.') + '.less';
         if (bc.layerOptimize){
             rawCssFilename = pieces.join('.') + '.uncompressed.css';
@@ -141,8 +139,8 @@ define([
             //note: the lessc global is defined in the buildconfig.js
             var parser = new lessc.Parser({
                     relativeUrls: true,
-                    paths: [bc.basePath + '/havok/'],
-                    filename: 'havok.less'
+                    paths: [fileUtils.getFilepath(rawLessFilename)],
+                    filename: fileUtils.getFilename(rawLessFilename)
                 }),
                 rawCss,
                 optCss;

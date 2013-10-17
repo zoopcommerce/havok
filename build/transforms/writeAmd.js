@@ -8,7 +8,9 @@ define([
         callback
     ){
         writeLess(resource, function(resource, err){
-            writeAmd(resource, callback, err);
+            if (writeAmd(resource, callback, err) == 0){
+                callback(resource, err);
+            }
         });
         return callback;
     };
