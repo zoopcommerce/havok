@@ -4,6 +4,7 @@ define([
     'dojo/Deferred',
     'dojo/when',
     'dojo/on',
+    'dojo/query',
     'dojo/dom-attr',
     'dojo/dom-construct',
     'dojo/dom-class',
@@ -12,7 +13,6 @@ define([
     './_WidgetBase',
     './_StoreMixin',
     'dojo/text!./template/Carousel.html',
-    'dojo/text!./template/CarouselItem.html',
     '../less!../vendor/bootstrap/less/carousel.less'
 ],
 function(
@@ -21,6 +21,7 @@ function(
     Deferred,
     when,
     on,
+    query,
     domAttr,
     domConstruct,
     domClass,
@@ -28,8 +29,7 @@ function(
     string,
     WidgetBase,
     StoreMixin,
-    template,
-    itemTemplate
+    template
 ) {
     // module:
     //		havok/widget/Carousel
@@ -39,7 +39,9 @@ function(
         {
             templateString: template,
 
-            itemTemplate: itemTemplate,
+            itemTemplate: '<div class="item">${fig}${figcaption}</div>',
+
+            captionTemplate: '<div class="carousel-caption">${figcaption}</div>',
 
             interval: 5000,
 
@@ -53,16 +55,24 @@ function(
                 if (!this.store){
                     var i,
                         node,
+                        figCaptions,
+                        figcaption,
                         item,
                         storeData = [];
 
                     for (i = 0; i < this.srcNodeRef.children.length; i++){
                         node = this.srcNodeRef.children[i];
+                        caption = '';
+                        figCaptions = query('figcaption', node);
+                        if (figCaptions.length > 0) {
+                            figcaption = figCaptions[0].innerHTML;
+                            node.removeChild(figCaptions[0]);
+                        }
+
                         item = {
                             id: i,
-                            title: domAttr.get(node, 'title'),
-                            caption: node.lastChild.textContent,
-                            img: node.firstElementChild.src
+                            figcaption: figcaption,
+                            fig: node.innerHTML
                         };
                         if (domClass.contains(node, 'active')) {
                             this.active = i;
@@ -121,11 +131,30 @@ function(
                     }
 
                     if (!found) {
-                        var indicatorNode = domConstruct.place('<li></li>', this.indicatorsNode, 'last');
+                        var indicatorNode = domConstruct.place('<li></li>', this.indicatorsNode, 'last'),
+                            figcaption = '';
+
                         this._indicatorClick(indicatorNode);
+
+                        if (data[i].title) {
+                            figcaption = '<h4>' + data[i].title + '</h4>';
+                        }
+                        if (data[i].caption) {
+                            figcaption = figcaption + '<p>' + data[i].caption + '</p>';
+                        }
+                        if (figcaption != ''){
+                            data[i].figcaption = figcaption;
+                        }
+                        if (data[i].figcaption) {
+                            figcaption = string.substitute(this.captionTemplate, data[i]);
+                        }
+                        if (data[i].src){
+                            data[i].fig = '<img alt="" src="' + data[i].src + '">';
+                        }
+
                         this.items.push({
                             id: id,
-                            itemNode: domConstruct.place(string.substitute(this.itemTemplate, data[i]), this.itemsNode, 'last'),
+                            itemNode: domConstruct.place(string.substitute(this.itemTemplate, {fig: data[i].fig, figcaption: figcaption}), this.itemsNode, 'last'),
                             indicatorNode: indicatorNode
                         });
 
