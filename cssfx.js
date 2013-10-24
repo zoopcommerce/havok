@@ -4,9 +4,6 @@ define([
 function(
     sniff
 ) {
-    // module:
-    //		havok/transition
-    //
     // Utility methods for working with css3 transitions
     //
 

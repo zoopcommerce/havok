@@ -6,8 +6,6 @@ define([
         when,
         sharedDi
     ){
-        // module:
-        //		havok/di/proxy
         //
         // An AMD plugin that return a Proxy to the requested object from the
         // shared di

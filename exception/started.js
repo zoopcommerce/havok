@@ -4,8 +4,6 @@ define([
 function(
     handler
 ){
-    // module:
-    //		havok/exception/started
     //
     // An AMD plugin that return an instance of havok/exception/Handler that has been
     // configured by the shared di, and has had startup() called

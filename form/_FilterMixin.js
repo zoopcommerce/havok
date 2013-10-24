@@ -19,7 +19,6 @@ function (
         [],
         {
             // filter: an instance of havok/filter/Base.
-            //filter: undefined,
 
             //_filterDeferred: undefined,
 

@@ -27,7 +27,6 @@ function (
 
             //_settingStore: undefined,
 
-            // queryThrottle: integer
             // A value in milliseconds
             // The store will not be queried at a rate faster than the set queryThrottle interval.
             // Query results are cached and used to update the typeahead options while

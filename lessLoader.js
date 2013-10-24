@@ -18,8 +18,6 @@ function(
     dojoConfig,
     lessc
 ){
-    // module:
-    //      havok/lessLoader
     //
     // An AMD plugin that loads and parses less
 

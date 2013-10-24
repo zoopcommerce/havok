@@ -6,9 +6,7 @@ define([
         when,
         sharedDi
     ){
-        // module:
-        //		havok/get
-        //
+
         // An AMD plugin that returns an instance of the requested object from the
         // shared di
 

@@ -19,8 +19,7 @@ function (
         [],
         {
 
-            // placeholder: string
-            //placeholder: undefined,
+            //placeholder: undefined string
 
             buildRendering: function(){
 

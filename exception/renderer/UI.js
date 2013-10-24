@@ -14,8 +14,6 @@ function (
     footerTemplate,
     bodyTemplate
 ){
-    // module:
-    // havok/exception/UserNotifyRenderer
 
     return declare(
         [],

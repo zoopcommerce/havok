@@ -16,13 +16,11 @@ function (
         [],
         {
 
-            // prepend: array
+            // prepend: undefined array
             //      An array of prepend nodes.
-            //prepend: undefined,
 
-            // append: array
+            // append: undefined array
             //      Same as prepend
-            //append: undefined,
 
             buildRendering: function(){
                 if (this.srcNodeRef && this.srcNodeRef.nodeName != 'SELECT'){

@@ -5,8 +5,6 @@ define([
     function(
         Di
     ){
-        // module:
-        //		havok/di/sharedDi
         //
         // An AMD plugin that returns an instance of the Di configured
         // by dojo config

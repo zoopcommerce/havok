@@ -28,9 +28,6 @@ function(
         },
         null,
         {
-            //
-            //severity: string
-            //    One of the Exception.severities. Indicates how serious the exception is
             severity: severity.ERROR
         }
     )
