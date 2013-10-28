@@ -1,5 +1,5 @@
 define([
-        'dojo/parser',
+        './parser',
         'dojo/domReady!'
     ],
     function(

@@ -1,12 +1,12 @@
 define([
     'dojo/_base/declare',
-    'dojo/dom-class',
+    'dojo/dom-construct',
     'dijit/_WidgetBase',
     'dijit/_TemplatedMixin'
 ],
 function (
     declare,
-    domClass,
+    domConstruct,
     WidgetBase,
     TemplatedMixin
 ){
@@ -16,9 +16,6 @@ function (
     return declare(
         [WidgetBase, TemplatedMixin],
         {
-
-            //defaultClass: undefined,
-
             templateString: '<${tag} data-dojo-attach-point="containerNode"></{tag}>',
 
             defaultTag: 'div',
@@ -33,11 +30,11 @@ function (
                     }
                 }
 
-                this.inherited(arguments);
-
-                if (this.defaultClass){
-                    domClass.add(this.domNode, this.defaultClass);
+                if (!this.srcNodeRef && this.innerHTML){
+                    this.srcNodeRef = domConstruct.create('div', {innerHTML: this.innerHTML});
                 }
+
+                this.inherited(arguments);
             }
         }
     );

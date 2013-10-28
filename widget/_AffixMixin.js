@@ -24,10 +24,9 @@ function(
 
             //affixTarget: undefined,
 
-            viewportOffset: {
-                top: 0,
-                bottom: 0
-            },
+            viewportOffsetTop: 0,
+
+            viewportOffsetBottom: 0,
 
             //_affixScrollSignal: undefined,
 
@@ -69,15 +68,15 @@ function(
                     add,
                     remove;
 
-                if (typeof this.viewportOffset.top == 'function'){
-                    offsetTop = this.viewportOffset.top();
+                if (typeof this.viewportOffsetTop == 'function'){
+                    offsetTop = this.viewportOffsetTop();
                 } else {
-                    offsetTop = this.viewportOffset.top;
+                    offsetTop = this.viewportOffsetTop;
                 }
-                if (typeof this.viewportOffset.bottom == 'function'){
-                    offsetBottom = this.viewportOffset.bottom();
+                if (typeof this.viewportOffsetBottom == 'function'){
+                    offsetBottom = this.viewportOffsetBottom();
                 } else {
-                    offsetBottom = this.viewportOffset.bottom;
+                    offsetBottom = this.viewportOffsetBottom;
                 }
 
                 if (targetNodePos.y - scrollTop - offsetTop > 0){

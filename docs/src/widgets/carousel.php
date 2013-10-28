@@ -7,6 +7,14 @@
           <p>Simply use <code>havok/widget/Carousel</code>. Eg:</p>
 
           <div class="bs-docs-example">
+            <carousel>
+                <img class="active" alt="" src="img/carousel-01.jpg">
+                <img alt="" src="img/carousel-02.jpg">
+                <img alt="" src="img/carousel-03.jpg">
+            </carousel>
+          </div>
+<!--
+          <div class="bs-docs-example">
             <div data-dojo-type="havok/widget/Carousel">
                 <figure class="active">
                     <img alt="" src="img/carousel-01.jpg">
@@ -114,5 +122,5 @@
     &lt;/figure&gt;
 &lt;/div&gt;
 </pre>
-
+-->
         </section>

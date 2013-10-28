@@ -54,9 +54,8 @@
 
   <body onload="prettyPrint()">
 
-    <!-- Navbar
-    ================================================== -->
-  <div class="navbar navbar-inverse navbar-fixed-top" data-dojo-type="havok/widget/NavBar">
+
+  <nav-bar class="navbar-inverse navbar-fixed-top">
       <div class="container">
         <a data-dojo-attach-point="toggleNode">
           <span class="icon-bar"></span>
@@ -65,43 +64,25 @@
         </a>
         <a class="brand" href="./index.html">Havok</a>
         <div data-dojo-attach-point="toggleTarget">
-            <ul class="nav" data-dojo-type="havok/widget/NavBarLinks">
-              <li>
+            <nav-bar-links>
                 <a href="index.html">Home</a>
-              </li>
-              <li>
                 <a href="getting-started.html">Get started</a>
-              </li>
-              <li>
                 <a href="widgets.html">Widgets</a>
-              </li>
-              <li>
                 <a href="forms.html">Forms</a>
-              </li>
-              <li>
                 <a href="data-quality.html">Data Quality</a>
-              </li>
-              <li>
                 <a href="services.html">Services</a>
-              </li>
-              <li>
                 <a href="di.html">DI</a>
-              </li>
-              <li>
                 <a href="builds.html">Builds</a>
-              </li>
-            </ul>
+            </nav-bar-links>
         </div>
       </div>
-  </div>
+  </nav-bar>
 
     <div id="contentWrapper" style="min-height: 1000px">
     <?php echo $content;?>
     </div>
-    <div id="contentWrapperOverlay" data-dojo-type="havok/widget/Overlay" data-dojo-props="target: document.body">Loading more havok...</div>
+    <overlay id="contentWrapperOverlay" target="document.body">Loading more havok...</overlay>
 
-    <!-- Footer
-    ================================================== -->
     <footer class="footer">
       <div class="container">
         <p>Created by <a href="http://github.com/superdweebie">@superdweebie</a> and <a href="http://github.com/crimsonronin">@crimsonronin</a>.</p>

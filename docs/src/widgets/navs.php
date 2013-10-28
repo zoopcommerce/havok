@@ -6,121 +6,84 @@
           </div>
 
           <h2>Basic tabs</h2>
-          <p>Use <code>havok/widget/NavTab</code>:</p>
+          <p>Use the <code>nav-tab</code> tag to create an instance of <code>havok/widget/NavTab</code>:</p>
           <div class="bs-docs-example">
-            <ul data-dojo-type="havok/widget/NavTab">
-              <li class="active"><a href="">Home</a></li>
-              <li><a href="">Profile</a></li>
-              <li><a href="">Messages</a></li>
-            </ul>
+            <nav-tab>
+              <a class="active" href="">Home</a>
+              <a href="">Profile</a>
+              <a href="">Messages</a>
+            </nav-tab>
           </div>
 <pre class="prettyprint linenums">
-&lt;ul data-dojo-type=&quot;havok/widget/NavTab&quot;&gt;
-  &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;&quot;&gt;Profile&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;&quot;&gt;Messages&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+
 </pre>
 
           <h3>Basic pills</h3>
-          <p>Use <code>havok/widget/NavPill</code>:</p>
+          <p>Use the <code>nav-pill</code> tag to create an instance of <code>havok/widget/NavPill</code>:</p>
           <div class="bs-docs-example">
-            <ul data-dojo-type="havok/widget/NavPill">
-              <li class="active"><a href="">Home</a></li>
-              <li><a href="">Profile</a></li>
-              <li><a href="">Messages</a></li>
-            </ul>
+            <nav-pill>
+              <a class="active" href="">Home</a>
+              <a href="">Profile</a>
+              <a href="">Messages</a>
+            </nav-pill>
           </div>
 <pre class="prettyprint linenums">
-&lt;ul data-dojo-type=&quot;havok/widget/NavPill&quot;&gt;
-  &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;&quot;&gt;Profile&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;&quot;&gt;Messages&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+
 </pre>
 
           <h3>Click events</h3>
           <p>If the <code>href</code> attribute is an empty string, the active nav item will be changed. If the <code>href</code> attribute is not empty, the link will be followed. Eg:</p>
           <div class="bs-docs-example">
-            <ul data-dojo-type="havok/widget/NavTab">
-              <li class="active"><a href="">Home</a></li>
-              <li><a href="">tab 1</a></li>
-              <li><a href="">tab 2</a></li>
-              <li><a href="#navs">#navs anchor</a></li>
-              <li><a href="http://github.com">github.com</a></li>
-            </ul>
+            <nav-tab>
+              <a class="active" href="">Home</a>
+              <a href="">tab 1</a>
+              <a href="">tab 2</a>
+              <a href="#navs">#navs anchor</a>
+              <a href="http://github.com">github.com</a>
+            </nav-tab>
           </div>
 <pre class="prettyprint linenums">
-&lt;ul data-dojo-type=&quot;havok/widget/NavTab&quot;&gt;
-  &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;&quot;&gt;tab 1&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;&quot;&gt;tab 2&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#navs&quot;&gt;#navs anchor&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://github.com&quot;&gt;github.com&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+
 </pre>
 
           <p>To listen to click events, use the <code>.on('item-click', callback)</code> method. Eg:
           <div class="bs-docs-example">
-            <ul id="navTabs1" data-dojo-type="havok/widget/NavTab">
-              <li class="active"><a href="">tab 0</a></li>
-              <li><a href="">tab 1</a></li>
-              <li><a href="">tab 2</a></li>
-            </ul>
+            <nav-tab id="navTabs1">
+              <a class="active" href="">tab 0</a>
+              <a href="">tab 1</a>
+              <a href="">tab 2</a>
+            </nav-tab>
             <script type="text/javascript">
                 require(['dijit/registry', 'havok/parseComplete!'], function(registry){
                     registry.byId('navTabs1').on('item-click', function(item){
-                        alert('Just clicked item: ' + item.id)
+                        alert('Just clicked item: ' + item.innerHTML)
                     })
                 })
             </script>
           </div>
 <pre class="prettyprint linenums">
-&lt;ul id=&quot;navTabs1&quot; data-dojo-type=&quot;havok/widget/NavTab&quot;&gt;
-  &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;&quot;&gt;tab 0&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;&quot;&gt;tab 1&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;&quot;&gt;tab 2&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;script type=&quot;text/javascript&quot;&gt;
-    require(['dijit/registry', 'havok/parseComplete!'], function(registry){
-        registry.byId('navTabs1').on('item-click', function(item){
-            alert('Just clicked item: ' + item.id)
-        })
-    })
-&lt;/script&gt;
+
 </pre>
 
           <h4>Watching active item</h4>
           <p>To watch the active item in code, use the <code>.watch('active', callback)</code> method. Note, this is different to <code>.on('item-click', callback)</code>, as it will only fire when the active item is changed, not on every click. Eg:
           <div class="bs-docs-example">
-            <ul id="navTabs2" data-dojo-type="havok/widget/NavTab">
-              <li class="active"><a href="">tab 0</a></li>
-              <li><a href="">tab 1</a></li>
-              <li><a href="">tab 2</a></li>
-            </ul>
+            <nav-tab id="navTabs2">
+              <a class="active" href="">tab 0</a>
+              <a href="">tab 1</a>
+              <a href="">tab 2</a>
+            </nav-tab>
             <script type="text/javascript">
                 require(['dijit/registry', 'havok/parseComplete!'], function(registry){
                     registry.byId('navTabs2').watch('active', function(property, oldValue, newValue){
-                        alert('Previously active tab: ' + oldValue.id + '. Currently active tab: ' + newValue.id)
+                        alert('Previously active tab: ' + oldValue.innerHTML + '. Currently active tab: ' + newValue.innerHTML)
                     })
                 })
             </script>
           </div>
 <pre class="prettyprint linenums">
-&lt;ul id=&quot;navTabs1&quot; data-dojo-type=&quot;havok/widget/NavTab&quot; &gt;
-  &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;&quot;&gt;tab 0&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;&quot;&gt;tab 1&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;&quot;&gt;tab 2&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;script type=&quot;text/javascript&quot;&gt;
-    require(['dijit/registry', 'havok/parseComplete!'], function(registry){
-        registry.byId('navTabs1').watch('active', function(property, oldValue, newValue){
-            alert('Previously active tab: ' + oldValue.id + '. Currently active tab: ' + newValue.id)
-        })
-    })
-&lt;/script&gt;
-</pre>
 
+</pre>
 
           <h3>Component alignment</h3>
           <p>To align nav links, use the <code>.pull-left</code> or <code>.pull-right</code> utility classes. Both classes will add a CSS float in the specified direction.</p>
@@ -130,55 +93,37 @@
             <div id="nav1"></div>
             <script type="text/javascript">
                 require(['dojo/dom', 'havok/widget/NavPill', 'dojo/domReady!'], function(dom, NavPill){
-                    var nav = new NavPill({
-                        innerHTML: [
-                            '<li class="active"><a href="">Home</a></li>',
-                            '<li><a href="">Profile</a></li>',
-                            '<li><a href="">Messages</a></li>'
-                        ].join('')
-                    });
+                    var nav = new NavPill;
+                    nav.addItem('<a class="active" href="">Home</a>');
+                    nav.addItem('<a href="">Profile</a>');
+                    nav.addItem('<a href="">Messages</a>');
                     dom.byId('nav1').appendChild(nav.domNode);
                     nav.startup();
                 })
             </script>
           </div>
 <pre class="prettyprint linenums">
-<div id="nav1"></div>
-&lt;div id=&quot;nav1&quot;&gt;&lt;/div&gt;
-&lt;script type=&quot;text/javascript&quot;&gt;
-    require(['dojo/dom', 'havok/widget/NavPill', 'dojo/domReady!'], function(dom, NavPill){
-        var nav = new NavPill({
-            innerHTML: [
-                '&lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;',
-                '&lt;li&gt;&lt;a href=&quot;&quot;&gt;Profile&lt;/a&gt;&lt;/li&gt;',
-                '&lt;li&gt;&lt;a href=&quot;&quot;&gt;Messages&lt;/a&gt;&lt;/li&gt;'
-            ].join('')
-        });
-        dom.byId('nav1').appendChild(nav.domNode);
-        nav.startup();
-    })
-&lt;/script&gt;
+
 </pre>
 
           <h3>Disabled state</h3>
-          <p>For any nav component (tabs, pills, or list), add <code>.disabled</code> to the <code>li</code> or set <code>'type': 'disabled'</code> on the store item for <strong>gray links and no hover effects</strong>. Links will not be clickable.</p>
+          <p>For any nav component (tabs, pills, or list), add <code>.disabled</code> to the item for <strong>gray links and no hover effects</strong>. Links will not be clickable.</p>
           <div class="bs-docs-example">
-            <ul data-dojo-type="havok/widget/NavPill">
-              <li><a href="">Clickable link</a></li>
-              <li><a href="">Clickable link</a></li>
-              <li class="disabled"><a href="">Disabled link</a></li>
-            </ul>
+            <nav-pill>
+              <a href="">Clickable link</a>
+              <a href="">Clickable link</a>
+              <a class="disabled" href="">Disabled link</a>
+            </nav-pill>
           </div>
 <pre class="prettyprint linenums">
-&lt;ul data-dojo-type="havok/widget/NavPill"&gt;
-  ...
-  &lt;li class="disabled"&gt;&lt;a href=""&gt;Home&lt;/a&gt;&lt;/li&gt;
-  ...
-&lt;/ul&gt;
+
 </pre>
 
           <hr class="bs-docs-separator">
 
+          <h2>Data Store</h2>
+          <p>The <code>havok/widget/_StoreMixin</code> can be used with navs.<p>
+<!--
           <h2>Data Store</h2>
           <p>Nav uses a <code>havok/widget/_StoreMixin</code> for the nav items.<p>
 
@@ -389,7 +334,7 @@
                 <hr />
                 <li><a href="">Help</a></li>
               </ul>
-            </div> <!-- /well -->
+            </div>
           </div>
 <pre class="prettyprint linenums">
 &lt;ul data-dojo-type=&quot;havok/widget/NavList&quot;&gt;
@@ -428,7 +373,7 @@
                     }"
               >
               </ul>
-            </div> <!-- /well -->
+            </div>
           </div>
 <pre class="prettyprint linenums">
 &lt;ul data-dojo-type=&quot;havok/widget/NavList&quot;
@@ -451,5 +396,5 @@
 &gt;
 &lt;/ul&gt;
 </pre>
-
+-->
         </section>

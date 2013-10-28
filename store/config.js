@@ -1,6 +1,11 @@
 define([],
 function(){
     return {
+        parser: {
+            tags: {
+                'memory-store' : 'havok/store/Memory'
+            }
+        },
         di: {
             'havok/store/manager': {
                 gets: {

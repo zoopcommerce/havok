@@ -3,8 +3,6 @@ define([
     'dojo/_base/lang',
     'dojo/Deferred',
     'dojo/when',
-    'dojo/string',
-    'dojo/query',
     'dojo/store/Memory',
     '../proxy!../store/manager'
 ],
@@ -13,14 +11,13 @@ function (
     lang,
     Deferred,
     when,
-    string,
     Memory,
     storeManager
 ){
     return declare(
         [],
         {
-            store: {},
+            // store: dojo/store/api/Store
 
             // query: object
             //		A query to use when fetching items from our store
@@ -73,35 +70,6 @@ function (
                 } else {
                     return this.store;
                 }
-            },
-
-            _setActiveAttr: function(value){
-                if (typeof value == 'string'){
-                    value = query('[store-id=' + value, this.containerNode)[0].parentNode;
-                }
-                this.inherited(arguments, [value]);
-            },
-
-            _renderNodes: function(){
-                when(this.get('data'), lang.hitch(this, function(data){
-                    var i,
-                        item,
-                        vars,
-                        linkTemplate = '<a ${attr} store-id="${storeId} href="${href}">${text}</a>';
-
-                    for (i; i < data.length; i++){
-                        vars = {attr: '', href: '', storeId: data[i][this.store.idProperty]};
-                        switch (data[i].type){
-                            case 'disabled':
-                                vars.attr = 'class="disabled"';
-                            case 'link':
-                            default:
-                                lang.mixin(vars, data[i]);
-                                item = string.subsitute(linkTemplate, vars);
-                        }
-                        this.addItem(item);
-                    }
-                }));
             },
 
             _getDataAttr: function(){

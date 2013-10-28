@@ -15,19 +15,19 @@ define([], function(){
 
             var index = ref.lastIndexOf('/'),
                 id = ref.substring(index + 1),
-                name = ref.substring(0, index);
+                storeId = ref.substring(0, index);
 
-            return this.getStore(name).get(id);
+            return this.getStore(storeId).get(id);
         },
 
-        getStore: function(name){
+        getStore: function(id){
             // Function will return a store based on the store name.
 
-            if (this.stores[name]){
-                if (!this.stores[name].idProperty){
-                    this.stores[name].idProperty = 'id';
+            if (this.stores[id]){
+                if (!this.stores[id].idProperty){
+                    this.stores[id].idProperty = 'id';
                 }
-                return this.stores[name];
+                return this.stores[id];
             }
         }
     }

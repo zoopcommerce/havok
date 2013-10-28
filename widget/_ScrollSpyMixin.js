@@ -3,7 +3,9 @@ define([
     'dojo/_base/lang',
     'dojo/dom-attr',
     'dojo/dom-geometry',
+    'dojo/dom-construct',
     'dojo/dom',
+    'dojo/string',
     'dojo/query'
 ],
 function(
@@ -11,7 +13,9 @@ function(
     lang,
     domAttr,
     domGeom,
+    domConstruct,
     dom,
+    string,
     query
 ) {
     // module:
@@ -25,32 +29,26 @@ function(
 
             //spyTarget: undefined,
 
-            generateSpyStore: true,
+            itemTemplate: '<li spy-target="${id}"><a href="#${id}">${text}</a></li>',
 
             startup: function(){
                 this.inherited(arguments);
                 this.updateScrollSpy();
             },
 
-            _domToStoreData: function(){
-                if ( ! this.generateSpyStore){
-                    return this.inherited(arguments);
-                }
+            _renderNodes: function(){
 
                 var spyNodes = query('> [id]', this.spyTarget),
-                    storeData = [],
                     text;
 
-                spyNodes.forEach(function(node){
+                spyNodes.forEach(lang.hitch(this, function(node){
                     if (domAttr.has(node, 'title')){
                         text = domAttr.get(node, 'title');
                     } else {
                         text = node.id;
                     }
-                    storeData.push({id: node.id, type: 'link', href: '#' + node.id, text: text, spy: node});
-                });
-
-                return {data: storeData};
+                    domConstruct.place(string.substitute(this.itemTemplate, {id: node.id, text: text}), this.containerNode, 'last');
+                }));
             },
 
             _setScrollSpyAttr: function(value){
@@ -75,17 +73,12 @@ function(
 
                 var useDocScroll = false,
                     scrollTop,
-                    active = this.active,
+                    newActive,
+                    activeSpyNode,
                     activeY,
                     y,
                     i,
-                    spyNode,
-                    getNode = function(node){
-                        if (node && typeof node == 'string'){
-                            return dom.byId(node);
-                        }
-                        return node;
-                    };
+                    spyNode;
 
                 if (this.spyTarget.scrollHeight > this.spyTarget.clientHeight){
                     // The target is scrollable.
@@ -96,12 +89,12 @@ function(
                     useDocScroll = true;
                 }
 
-                if (active && active.spy){
-                    active.spy = getNode(active.spy);
+                if (this.active){
+                    activeSpyNode = query('#' + domAttr.get(this.active, 'spy-target'), this.spyTarget)[0];
                     if (useDocScroll){
-                        activeY = domGeom.position(active.spy, true).y;
+                        activeY = domGeom.position(activeSpyNode, true).y;
                     } else {
-                        activeY = active.spy.offsetTop;
+                        activeY = activeSpyNode.offsetTop;
                     }
                     if (activeY > scrollTop){
                         activeY = 0;
@@ -110,24 +103,25 @@ function(
                     activeY = 0;
                 }
 
-                for ( i = 0; i < this.store.data.length; i++){
-                    spyNode = this.store.data[i].spy = getNode(this.store.data[i].spy);
+                for (i = 0; i < this.containerNode.children.length; i++){
+                    var id = domAttr.get(this.containerNode.children[i], 'spy-target');
+                    spyNode = query('#' + domAttr.get(this.containerNode.children[i], 'spy-target'), this.spyTarget)[0];
                     if (!spyNode){
                         continue;
                     }
                     if (useDocScroll){
-                        y = domGeom.position(this.store.data[i].spy, true).y;
+                        y = domGeom.position(spyNode, true).y;
                     } else {
                         y = spyNode.offsetTop;
                     }
                     if (y <= scrollTop && y > activeY){
-                        active = this.store.data[i];
+                        newActive = this.containerNode.children[i];
                         activeY = y;
                     }
                 }
 
-                if (active !== this.active){
-                    this.set('active', active);
+                if (newActive){
+                    this.set('active', newActive);
                 }
 
                 setTimeout(lang.hitch(this, 'updateScrollSpy'), 250);

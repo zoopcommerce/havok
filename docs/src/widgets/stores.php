@@ -3,62 +3,27 @@
     <h1>Stores</h1>
   </div>
 
-  <p>Many of the havok widgets use the <code>havok/widget/_StoreMixin</code> to manage lists of items. Stores allow great flexibility. Items may be fetched via ajax, filtered, sorted, and reused throughout your application.</p>
+  <p>Many of the havok widgets can optionally use the <code>havok/widget/_StoreMixin</code> to manage lists of items. Stores allow great flexibility. Items may be fetched via ajax, filtered, sorted, and reused throughout your application.</p>
 
-  <h2>Properties</h2>
-  <p>This mixin adds four properties to any widget using it:</p>
+  <h2>Nav example</h2>
 
-<table class="table table-bordered table-striped">
-  <thead>
-   <tr>
-     <th style="width: 100px;">name</th>
-     <th style="width: 50px;">type</th>
-     <th style="width: 50px;">default</th>
-     <th>description</th>
-   </tr>
-  </thead>
-  <tbody>
-    <tr>
-        <td>store</td>
-        <td>object</td>
-        <td>undefined</td>
-        <td><p>The <code>dojo/store</code> instance used by the widget. May be set in one of three different ways:</p>
-            <ul>
-                <li><em>string</em> if a string is passed, it is treated as the name of a store in the <code>havok/store/manager</code>, and retrieved from there.</li>
-                <li><em>data object</em> if an object is passed that does not have a query property, it is treated as the construtor options to create an instance of <code>dojo/store/Memory</code>.</li>
-                <li><em>store object</em> if an object is passed that does have a query property, it is expected to implement the <code>dojo/store/api</code>.</li>
-                <li><em>implicit</em> if the store is not explicitly set, a store will be created by reading the dom.</li>
-            </ul>
-            <p>When getting, the store object is returned</p>
-        </td>
-    </tr>
-    <tr>
-        <td>query</td>
-        <td>object</td>
-        <td>undefined</td>
-        <td>A query object used to interogate the store.</td>
-    </tr>
-    <tr>
-        <td>queryOptions</td>
-        <td>object</td>
-        <td>undefined</td>
-        <td>Options for <code>start</code> <code>count</code> and <code>sort</code>.</td>
-    </tr>
-    <tr>
-        <td>queryThrottle</td>
-        <td>integer</td>
-        <td>0</td>
-        <td>Minimum time in milliseconds between queries on the store. Great for ajax backed stores on a Typeahead to prevent too many requests.</td>
-    </tr>
-    <tr>
-        <td>data</td>
-        <td>object</td>
-        <td>undefined</td>
-        <td>Read only. Returns a data set from the store using the query and queryOptions.</td>
-    </tr>
-  </tbody>
-</table>
+    <div class="bs-docs-example">
+      <memory-store id="navStore1" id-property="text">
+          <i text="home" />
+          <i text="#navs anchor" href="#stores" />
+          <i text="disabled pill" type="disabled" />
+      </memory-store>
+      <nav-pill
+          mixins = "store"
+          active = "home"
+          store  = "navStore1"
+      ></nav-pill>
+    </div>
+<pre class="prettyprint linenums">
 
+</pre>
+
+  <!--
   <h2>Examples</h2>
 
     <h3>Declative store</h3>
@@ -332,5 +297,5 @@
 &gt;
 &lt;/ul&gt;
 </pre>
-
+-->
 </section>

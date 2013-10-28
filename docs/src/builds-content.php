@@ -1,6 +1,6 @@
 <!-- Subhead
 ================================================== -->
-<header class="jumbotron subhead" id="overview">
+<header class="jumbotron subhead">
   <div class="container">
     <h1>Builds</h1>
     <p class="lead">Make your production code small and fast</p>
@@ -13,19 +13,8 @@
     <!-- Docs nav
     ================================================== -->
     <div class="row">
-      <div class="span3 bs-docs-sidebar">
-        <ul data-dojo-type="havok/widget/NavList"
-            data-dojo-mixins="havok/widget/_AffixMixin, havok/widget/_ScrollSpyMixin"
-            data-dojo-props="
-               linkTemplate: '&lt;a role=&quot;navitem&quot; href=&quot;${href}&quot;&gt;&lt;i class=&quot;icon-chevron-right&quot;&gt;&lt;/i&gt; ${text}&lt;/a&gt;',
-               viewportOffset: {top: 40, bottom: 0},
-               affixTarget: 'mainContent',
-               spyTarget: 'mainContent'
-            "
-            class="nav-stacked bs-docs-sidenav"
-        >
-        </ul>
-      </div>
+      <?php include 'side-nav.php';?>
+
     <div class="span9" id="mainContent">
 
         <?php

@@ -4,12 +4,9 @@ define([
     'dojo/Deferred',
     'dojo/when',
     'dojo/on',
-    'dojo/query',
-    'dojo/dom-attr',
     'dojo/dom-construct',
     'dojo/dom-class',
     '../cssfx',
-    '../string',
     './_WidgetBase',
     './_StoreMixin',
     'dojo/text!./template/Carousel.html',
@@ -21,12 +18,9 @@ function(
     Deferred,
     when,
     on,
-    query,
-    domAttr,
     domConstruct,
     domClass,
     cssfx,
-    string,
     WidgetBase,
     StoreMixin,
     template
@@ -38,10 +32,6 @@ function(
         [WidgetBase, StoreMixin],
         {
             templateString: template,
-
-            itemTemplate: '<div class="item">${fig}${figcaption}</div>',
-
-            captionTemplate: '<div class="carousel-caption">${figcaption}</div>',
 
             interval: 5000,
 
@@ -55,24 +45,15 @@ function(
                 if (!this.store){
                     var i,
                         node,
-                        figCaptions,
-                        figcaption,
                         item,
                         storeData = [];
 
                     for (i = 0; i < this.srcNodeRef.children.length; i++){
                         node = this.srcNodeRef.children[i];
-                        caption = '';
-                        figCaptions = query('figcaption', node);
-                        if (figCaptions.length > 0) {
-                            figcaption = figCaptions[0].innerHTML;
-                            node.removeChild(figCaptions[0]);
-                        }
 
                         item = {
                             id: i,
-                            figcaption: figcaption,
-                            fig: node.innerHTML
+                            item: node
                         };
                         if (domClass.contains(node, 'active')) {
                             this.active = i;
@@ -124,37 +105,22 @@ function(
                     found = false;
                     for (j = 0; j < this.items.length; j++){
                         if (this.items[j].id == id){
-                            domConstruct.place(this.items[j].itemNode, this.itemsNode, 'last');
-                            domConstruct.place(this.indicators[j].inicatorNode, this.indicatorsNode, 'last');
+                            domConstruct.place(this.items[j].itemNode, this.itemsNode);
+                            domConstruct.place(this.indicators[j].inicatorNode, this.indicatorsNode);
                             found = true;
                         }
                     }
 
                     if (!found) {
-                        var indicatorNode = domConstruct.place('<li></li>', this.indicatorsNode, 'last'),
-                            figcaption = '';
+                        var indicatorNode = domConstruct.place('<li></li>', this.indicatorsNode),
+                            itemNode = domConstruct.place('<div class="item"></div>', this.itemsNode);
 
                         this._indicatorClick(indicatorNode);
-
-                        if (data[i].title) {
-                            figcaption = '<h4>' + data[i].title + '</h4>';
-                        }
-                        if (data[i].caption) {
-                            figcaption = figcaption + '<p>' + data[i].caption + '</p>';
-                        }
-                        if (figcaption != ''){
-                            data[i].figcaption = figcaption;
-                        }
-                        if (data[i].figcaption) {
-                            figcaption = string.substitute(this.captionTemplate, data[i]);
-                        }
-                        if (data[i].src){
-                            data[i].fig = '<img alt="" src="' + data[i].src + '">';
-                        }
+                        domConstruct.place(data[i].item, itemNode);
 
                         this.items.push({
                             id: id,
-                            itemNode: domConstruct.place(string.substitute(this.itemTemplate, {fig: data[i].fig, figcaption: figcaption}), this.itemsNode, 'last'),
+                            itemNode: itemNode,
                             indicatorNode: indicatorNode
                         });
 

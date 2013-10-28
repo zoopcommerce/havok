@@ -13,7 +13,6 @@ define([
     'dijit/a11yclick',
     'dijit/registry',
     './_WidgetBase',
-    'dojo/text!./template/NavBar.html',
     '../less!../vendor/bootstrap/less/navbar.less'
 ],
 function (
@@ -30,8 +29,7 @@ function (
     domGeom,
     a11yclick,
     registry,
-    WidgetBase,
-    template
+    WidgetBase
 ){
     // module:
     //    	havok/widget/NavBar
@@ -43,7 +41,9 @@ function (
 
             //toggleTarget: undefined,
 
-            templateString: template,
+            baseClass: 'navbar',
+
+            templateString: '<div><div class="navbar-inner" data-dojo-attach-point="containerNode"></div></div>',
 
             startup: function(){
                 this.inherited(arguments);
