@@ -1,7 +1,6 @@
 define([
     'dojo/_base/declare',
     'dojo/_base/lang',
-    'dojo/dom-construct',
     './_WidgetBase',
     'dojo/text!./template/DropdownBase.html',
     '../less!./less/dropdowns.less'
@@ -9,7 +8,6 @@ define([
 function (
     declare,
     lang,
-    domConstruct,
     WidgetBase,
     template
 ){
@@ -23,17 +21,9 @@ function (
             //This is a really basic empty dropdown.
             //
 
-            defaultClass: 'dropdown-menu',
+            baseClass: 'dropdown-menu',
 
             templateString: template,
-
-            buildRendering: function(){
-
-                if (!this.srcNodeRef && this.innerHTML){
-                    this.srcNodeRef = domConstruct.create(this.tag, {innerHTML: this.innerHTML});
-                }
-                this.inherited(arguments);
-            },
 
             startup: function(){
                 this.inherited(arguments);

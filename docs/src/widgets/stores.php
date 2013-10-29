@@ -8,16 +8,16 @@
   <h2>Nav example</h2>
 
     <div class="bs-docs-example">
-      <memory-store id="navStore1" id-property="text">
-          <i text="home" />
-          <i text="#navs anchor" href="#stores" />
-          <i text="disabled pill" type="disabled" />
-      </memory-store>
-      <nav-pill
-          mixins = "store"
-          active = "home"
-          store  = "navStore1"
-      ></nav-pill>
+        <memory-store id="navStore1" id-property="text">
+            <br text="home" />
+            <br text="#navs anchor" href="#stores" />
+            <br text="disabled pill" type="disabled" />
+        </memory-store>
+        <nav-pill
+            mixins = "store"
+            active = "home"
+            store  = "navStore1"
+        ></nav-pill>
     </div>
 <pre class="prettyprint linenums">
 

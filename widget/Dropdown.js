@@ -11,11 +11,7 @@ define([
     'dojo/dom-construct',
     './DropdownSubmenu',
     './_DropdownBase',
-    './_StoreMixin',
-    './_ListMixin',
-    'dojo/text!./template/DropdownLink.html',
-    'dojo/text!./template/Divider.html',
-    'dojo/text!./template/NavHeader.html'
+    './_ListMixin'
 ],
 function (
     declare,
@@ -30,30 +26,18 @@ function (
     domConstruct,
     DropdownSubmenu,
     DropdownBase,
-    StoreMixin,
-    ListMixin,
-    linkTemplate,
-    dividerTemplate,
-    headerTemplate
+    ListMixin
 ){
     // module:
     //    	havok/widget/Dropdown
 
     var Dropdown = declare(
-        [DropdownBase, StoreMixin, ListMixin],
+        [DropdownBase, ListMixin],
         {
 
             //This is a really basic dropdown. It doesn't do much except
             //show a list of links.
             //
-
-            tag: 'ul',
-
-            linkTemplate: linkTemplate,
-
-            dividerTemplate: dividerTemplate,
-
-            headerTemplate: headerTemplate,
 
             startup: function(){
                 this.inherited(arguments);
@@ -65,55 +49,55 @@ function (
                 this.inherited(arguments);
             },
 
-            _getQueryAttr: function(){
-                return lang.mixin({parent: undefined}, this.query);
-            },
+//            _getQueryAttr: function(){
+//                return lang.mixin({parent: undefined}, this.query);
+//            },
 
-            _createNode: function(item){
-
-                if (item.type){
-                    this['_create' + array.map(item.type.split('-'), function(part){return string.ucFirst(part)}).join('')](item);
-                } else {
-                    this._createLink(item);
-                }
-
-                return this.containerNode.lastElementChild;
-            },
-
-            _createDisabled: function(item){
-                domConstruct.place(string.substitute('<li>' + this.linkTemplate, lang.mixin({href: ''}, item)) + '</li>', this.containerNode, 'last');
-                domClass.add(this.containerNode.lastElementChild, 'disabled');
-            },
-
-            _createDivider: function(item){
-                domConstruct.place(string.substitute(this.dividerTemplate, item), this.containerNode, 'last');
-            },
-
-            _createNavHeader: function(item){
-                domConstruct.place(string.substitute(this.headerTemplate, item), this.containerNode, 'last');
-            },
-
-            _createDropdown: function(item){
-                var dropdown = new DropdownSubmenu({
-                    tag: 'li',
-                    innerHTML: string.substitute(this.linkTemplate, lang.mixin({href: ''}, item)),
-                    dropdown: new Dropdown({
-                        store: this.store,
-                        query: {parent: item[this.store.idProperty]}
-                    })
-                });
-                this.containerNode.appendChild(dropdown.domNode);
-                dropdown.startup();
-                this.watchChildHasMouse(dropdown);
-            },
-
-            _createLink: function(item){
-                domConstruct.place(
-                    '<li>' + string.substitute(this.linkTemplate, lang.mixin({href: ''}, item)) + '</li>',
-                    this.containerNode,
-                    'last'
-                );
-            },
+//            _createNode: function(item){
+//
+//                if (item.type){
+//                    this['_create' + array.map(item.type.split('-'), function(part){return string.ucFirst(part)}).join('')](item);
+//                } else {
+//                    this._createLink(item);
+//                }
+//
+//                return this.containerNode.lastElementChild;
+//            },
+//
+//            _createDisabled: function(item){
+//                domConstruct.place(string.substitute('<li>' + this.linkTemplate, lang.mixin({href: ''}, item)) + '</li>', this.containerNode, 'last');
+//                domClass.add(this.containerNode.lastElementChild, 'disabled');
+//            },
+//
+//            _createDivider: function(item){
+//                domConstruct.place(string.substitute(this.dividerTemplate, item), this.containerNode, 'last');
+//            },
+//
+//            _createNavHeader: function(item){
+//                domConstruct.place(string.substitute(this.headerTemplate, item), this.containerNode, 'last');
+//            },
+//
+//            _createDropdown: function(item){
+//                var dropdown = new DropdownSubmenu({
+//                    tag: 'li',
+//                    innerHTML: string.substitute(this.linkTemplate, lang.mixin({href: ''}, item)),
+//                    dropdown: new Dropdown({
+//                        store: this.store,
+//                        query: {parent: item[this.store.idProperty]}
+//                    })
+//                });
+//                this.containerNode.appendChild(dropdown.domNode);
+//                dropdown.startup();
+//                this.watchChildHasMouse(dropdown);
+//            },
+//
+//            _createLink: function(item){
+//                domConstruct.place(
+//                    '<li>' + string.substitute(this.linkTemplate, lang.mixin({href: ''}, item)) + '</li>',
+//                    this.containerNode,
+//                    'last'
+//                );
+//            },
 
             _removeKeypressHandler: function(){
                 if (this._keypressHandler){

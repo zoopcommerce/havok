@@ -123,116 +123,64 @@
 
           <h2>Data Store</h2>
           <p>The <code>havok/widget/_StoreMixin</code> can be used with navs.<p>
-<!--
-          <h2>Data Store</h2>
-          <p>Nav uses a <code>havok/widget/_StoreMixin</code> for the nav items.<p>
-
-          <h3>Example</h3>
-          <p>The active nav item can be set using the <code>data-dojo-props: active</code> attribute</p>
-          <div class="bs-docs-example">
-            <ul data-dojo-type="havok/widget/NavPill"
-                data-dojo-props="
-                    active: 'home',
-                    store: {
-                        idProperty: 'text',
-                        data: [
-                            {text: 'home'},
-                            {href: '#navs', text: '#navs anchor'},
-                            {type: 'disabled', text: 'disabled'}
-                        ]
-                    }"
-            ></ul>
-          </div>
-<pre class="prettyprint linenums">
-&lt;ul data-dojo-type=&quot;havok/widget/NavPill&quot;
-    data-dojo-props=&quot;
-        active: 'home',
-        store: {
-            idProperty: 'text',
-            data: [
-                {text: 'home'},
-                {href: '#navs', text: '#navs anchor'},
-                {type: 'disabled', text: 'distabled'}
-            ]
-        }&quot;
-&gt;&lt;/ul&gt;
-</pre>
 
           <hr class="bs-docs-separator">
-
 
           <h2>Stackable</h2>
           <p>As tabs and pills are horizontal by default, just add a class, <code>.nav-stacked</code>, to make them appear vertically stacked.</p>
 
           <h3>Stacked tabs</h3>
           <div class="bs-docs-example">
-            <ul data-dojo-type="havok/widget/NavTab" class="nav-stacked">
-              <li class="active"><a href="">Home</a></li>
-              <li><a href="">Profile</a></li>
-              <li><a href="">Messages</a></li>
-            </ul>
+            <nav-tab class="nav-stacked">
+              <a class="active" href="">Home</a>
+              <a href="">Profile</a>
+              <a href="">Messages</a>
+            </nav-tab>
           </div>
 <pre class="prettyprint linenums">
-&lt;ul data-dojo-type="havok/widget/NavTab" class="nav-stacked"&gt;
-  ...
-&lt;/ul&gt;
+
 </pre>
 
           <h3>Stacked pills</h3>
           <div class="bs-docs-example">
-            <ul data-dojo-type="havok/widget/NavPill" class="nav-stacked">
-              <li class="active"><a href="">Home</a></li>
-              <li><a href="">Profile</a></li>
-              <li><a href="">Messages</a></li>
-            </ul>
+            <nav-pill class="nav-stacked">
+              <a class="active" href="">Home</a>
+              <a href="">Profile</a>
+              <a href="">Messages</a>
+            </nav-pill>
           </div>
 <pre class="prettyprint linenums">
-&lt;ul data-dojo-type="havok/widget/NavPill" class="nav-stacked"&gt;
-  ...
-&lt;/ul&gt;
+
 </pre>
 
 
           <hr class="bs-docs-separator">
 
-
           <h2>Dropdowns</h2>
-          <p>Add dropdown menus with the <code>havok/widget/DropdownToggle</code> widget.</p>
+          <p>Add dropdown menus with the <code>dropdown-toggle</code> tag.</p>
 
           <h3>Tabs with dropdowns</h3>
           <div class="bs-docs-example">
-            <ul data-dojo-type="havok/widget/NavTab">
-              <li class="active"><a href="">Home</a></li>
-              <li><a href="">Help</a></li>
-              <li data-dojo-type="havok/widget/DropdownToggle">
+            <nav-tab>
+              <a class="active" href="">Home</a>
+              <a href="">Help</a>
+              <dropdown-toggle>
                 <a href="">Dropdown <b class="caret"></b></a>
-                <ul data-dojo-type="havok/widget/Dropdown">
-                  <li><a href="">Action</a></li>
-                  <li><a href="">Another action</a></li>
-                  <li><a href="">Something else here</a></li>
+                <dropdown>
+                  <a href="">Action</a>
+                  <a href="">Another action</a>
+                  <a href="">Something else here</a>
                   <hr />
-                  <li><a href="">Separated link</a></li>
-                </ul>
-              </li>
-            </ul>
+                  <a href="">Separated link</a>
+                </dropdown>
+              </dropdown-toggle>
+            </nav-tab>
           </div>
 <pre class="prettyprint linenums">
-&lt;ul data-dojo-type=&quot;havok/widget/NavTab&quot; &gt;
-  &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;&quot;&gt;Help&lt;/a&gt;&lt;/li&gt;
-  &lt;li data-dojo-type=&quot;havok/widget/DropdownToggle&quot;&gt;
-    &lt;a href=&quot;&quot;&gt;Dropdown &lt;b class=&quot;caret&quot;&gt;&lt;/b&gt;&lt;/a&gt;
-    &lt;ul data-dojo-type=&quot;havok/widget/Dropdown&quot;&gt;
-      &lt;li&gt;&lt;a href=&quot;&quot;&gt;Action&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;&quot;&gt;Another action&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;&quot;&gt;Something else here&lt;/a&gt;&lt;/li&gt;
-      &lt;hr /&gt;
-      &lt;li&gt;&lt;a href=&quot;&quot;&gt;Separated link&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+
 </pre>
 
+<!--
           <h3>Pills with dropdowns</h3>
           <div class="bs-docs-example">
            <ul data-dojo-type="havok/widget/NavPill">

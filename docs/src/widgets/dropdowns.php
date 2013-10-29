@@ -9,26 +9,21 @@
          <p>The <code>havok/widget/DropdownContainer</code> widget. An empty dropdown that can be filled with whatever content you choose.</p>
 
           <h2>Example</h2>
-          <p>Toggleable, contextual menu for displaying anything.</p>
+          <p>Menu for displaying anything.</p>
 
           <h3>Declarative Example</h3>
           <div class="bs-docs-example">
             <div class="dropdown clearfix">
-              <div data-dojo-type="havok/widget/DropdownContainer" style="display: block; position: static; margin-bottom: 5px; *width: 180px;">
+              <dropdown-container style="display: block; position: static; margin-bottom: 5px; *width: 180px;">
                   <div>
                     <h5>Stuff here</h5>
                     <p>This is stuff inside a dropdown</p>
                   </div>
-              </div>
+              </dropdown-container>
             </div>
           </div>
 <pre class="prettyprint linenums">
-&lt;div data-dojo-type=&quot;havok/widget/DropdownContainer&quot;&gt;
-    &lt;div&gt;
-      &lt;h5&gt;Stuff here&lt;/h5&gt;
-      &lt;p&gt;This is stuff inside a dropdown&lt;/p&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
+
 </pre>
 
           <h2>Dropdown</h2>
@@ -91,44 +86,35 @@
 </table>
 
           <h2>Example</h2>
-          <p>Toggleable, contextual menu for displaying lists of links.</p>
+          <p>Menu for displaying lists of links.</p>
 
           <h3>Declarative Example</h3>
           <div class="bs-docs-example">
             <div class="dropdown clearfix">
-              <ul data-dojo-type="havok/widget/Dropdown" style="display: block; position: static; margin-bottom: 5px; *width: 180px;">
-                <li><a href="">Action</a></li>
-                <li><a href="">Another action</a></li>
-                <li><a href="">Something else here</a></li>
+              <dropdown style="display: block; position: static; margin-bottom: 5px; *width: 180px;">
+                <a href="">Action</a>
+                <a href="">Another action</a>
+                <a href="">Something else here</a>
                 <hr />
-                <li><a href="">Separated link</a></li>
-              </ul>
+                <a href="">Separated link</a>
+              </dropdown>
             </div>
           </div>
 <pre class="prettyprint linenums">
-&lt;ul data-dojo-type="havok/widget/Dropdown"&gt;
-  &lt;li&gt;&lt;a href=""&gt;Action&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=""&gt;Another action&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=""&gt;Something else here&lt;/a&gt;&lt;/li&gt;
-  &lt;hr /&gt;
-  &lt;li&gt;&lt;a href=""&gt;Separated link&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+
 </pre>
+
           <h3>Programatic Example</h3>
           <div class="bs-docs-example">
             <div id="dropdown1" class="dropdown clearfix">
                 <script type="text/javascript">
                     require(['dojo/dom', 'havok/widget/Dropdown', 'dojo/domReady!'], function(dom, Dropdown){
-                        var dropdown = new Dropdown({
-                            innerHTML: [
-                                '<li><a href="">Action</a></li>',
-                                '<li><a href="">Another action</a></li>',
-                                '<li><a href="">Something else here</a></li>',
-                                '<hr />',
-                                '<li><a href="">Separated link</a></li>'
-                            ].join(''),
-                            style: 'display: block; position: static; margin-bottom: 5px; *width: 180px;'
-                        });
+                        var dropdown = new Dropdown({style: 'display: block; position: static; margin-bottom: 5px; *width: 180px;'});
+                        dropdown.addItem('<a href="">Action</a>');
+                        dropdown.addItem('<a href="">Another Action</a>');
+                        dropdown.addItem('<a href="">Something else here</a>');
+                        dropdown.addItem('<hr />');
+                        dropdown.addItem('<a href="">Separated link</a>');
                         dom.byId('dropdown1').appendChild(dropdown.domNode);
                         dropdown.startup();
                     })
@@ -136,22 +122,7 @@
             </div>
           </div>
 <pre class="prettyprint linenums">
-&lt;div id=&quot;dropdown1&quot;&gt;&lt;/div&gt;
-&lt;script type=&quot;text/javascript&quot;&gt;
-    require(['dojo/dom', 'havok/widget/Dropdown', 'dojo/domReady!'], function(dom, Dropdown){
-        var dropdown = new Dropdown({
-            innerHTML: [
-                '&lt;li&gt;&lt;a tabindex=&quot;-1&quot; href=&quot;&quot;&gt;Action&lt;/a&gt;&lt;/li&gt;',
-                '&lt;li&gt;&lt;a tabindex=&quot;-1&quot; href=&quot;&quot;&gt;Another action&lt;/a&gt;&lt;/li&gt;',
-                '&lt;li&gt;&lt;a tabindex=&quot;-1&quot; href=&quot;&quot;&gt;Something else here&lt;/a&gt;&lt;/li&gt;',
-                '&lt;hr /&gt;',
-                '&lt;li&gt;&lt;a tabindex=&quot;-1&quot; href=&quot;&quot;&gt;Separated link&lt;/a&gt;&lt;/li&gt;'
-            ].join('')
-        });
-        dom.byId('dropdown1').appendChild(dropdown.domNode);
-        dropdown.startup();
-    })
-&lt;/script&gt;
+
 </pre>
 
           <hr class="bs-docs-separator">
@@ -160,53 +131,38 @@
           <p>If the <code>href</code> attribute is an empty string, the active property will be changed. If the <code>href</code> attribute is not empty, the link will be followed. Eg:</p>
           <div class="bs-docs-example">
             <div class="dropdown clearfix">
-                <ul data-dojo-type="havok/widget/Dropdown" style="display: block; position: static; margin-bottom: 5px; *width: 180px;">
-                  <li><a href="">item 1</a></li>
-                  <li><a href="">item 2</a></li>
-                  <li><a href="">item 3</a></li>
-                  <li><a href="#dropdowns">#dropdowns anchor</a></li>
-                  <li><a href="http://github.com">github.com</a></li>
-                </ul>
+                <dropdown style="display: block; position: static; margin-bottom: 5px; *width: 180px;">
+                  <a href="">item 1</a>
+                  <a href="">item 2</a>
+                  <a href="">item 3</a>
+                  <a href="#dropdowns">#dropdowns anchor</a>
+                  <a href="http://github.com">github.com</a>
+                </dropdown>
             </div>
           </div>
 <pre class="prettyprint linenums">
-&lt;ul data-dojo-type=&quot;havok/widget/Dropdown&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;&quot;&gt;item 1&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;&quot;&gt;item 2&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;&quot;&gt;item 3&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#dropdowns&quot;&gt;#dropdowns anchor&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://github.com&quot;&gt;github.com&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+
 </pre>
 
           <p>To listen to click events, use the <code>.on('item-click', callback)</code> method. Eg:
           <div class="bs-docs-example">
             <div class="dropdown clearfix">
-                <ul id="dropdownClick1" data-dojo-type="havok/widget/Dropdown" style="display: block; position: static; margin-bottom: 5px; *width: 180px;">
-                  <li><a href="">item 0</a></li>
-                  <li><a href="">item 1</a></li>
-                  <li><a href="">item 2</a></li>
-                </ul>
+                <dropdown id="dropdownClick1" style="display: block; position: static; margin-bottom: 5px; *width: 180px;">
+                  <a href="">item 0</a>
+                  <a href="">item 1</a>
+                  <a href="">item 2</a>
+                </dropdown>
                 <script type="text/javascript">
                     require(['dijit/registry', 'havok/parseComplete!'], function(registry){
                         registry.byId('dropdownClick1').on('item-click', function(item){
-                            alert('Just clicked item: ' + item.id)
+                            alert('Just clicked item: ' + item.innerHTML)
                         })
                     })
                 </script>
             </div>
           </div>
 <pre class="prettyprint linenums">
-&lt;ul id=&quot;dropdownClick1&quot; data-dojo-type=&quot;havok/widget/Dropdown&quot;&gt;
-    ...
-&lt;/ul&gt;
-&lt;script type=&quot;text/javascript&quot;&gt;
-    require(['dijit/registry', 'havok/parseComplete!'], function(registry){
-        registry.byId('dropdownClick1').on('item-click', function(item){
-            alert('Just clicked item: ' + item.id)
-        })
-    })
-&lt;/script&gt;
+
 </pre>
 
           <hr class="bs-docs-separator">
@@ -216,24 +172,20 @@
           <h2>Options</h2>
 
           <h3>Disabled menu options</h3>
-          <p>Add <code>.disabled</code> to a <code>&lt;li&gt;</code> in the dropdown to disable the link, or set <code>'type': 'disabled'</code> on the store item. Disabled links are not clickable.</p>
+          <p>Add <code>.disabled</code> to an item in the dropdown to disable the link. Disabled links are not clickable.</p>
           <div class="bs-docs-example">
             <div class="dropdown clearfix">
-              <ul data-dojo-type="havok/widget/Dropdown" style="display: block; position: static; margin-bottom: 5px; *width: 180px;">
-                <li><a href="">Regular link</a></li>
-                <li class="disabled"><a href="">Disabled link</a></li>
-                <li><a href="">Another link</a></li>
-              </ul>
+              <dropdown style="display: block; position: static; margin-bottom: 5px; *width: 180px;">
+                <a href="">Regular link</a>
+                <a class="disabled" href="">Disabled link</a>
+                <a href="">Another link</a>
+              </dropdown>
             </div>
           </div>
 <pre class="prettyprint linenums">
-&lt;ul data-dojo-type="havok/widget/Dropdown"&gt;
-  &lt;li&gt;&lt;a href=""&gt;Regular link&lt;/a&gt;&lt;/li&gt;
-  &lt;li class="disabled"&gt;&lt;a href=""&gt;Disabled link&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=""&gt;Another link&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</pre>
 
+</pre>
+<!--
           <h3>Sub menus on dropdowns</h3>
           <p>To add an extra level of dropdown menus, wrap the submenu in <code>havok/widget/DropdownSubmenu</code></p>
           <p><span class="label label-info">Heads up!</span> <code>havok/widget/DropdownSubmenu</code> inherits from <code>havok/widget/DropdownToggle</code>, and so exposes all the same methods.</p>
@@ -397,5 +349,5 @@
 
           <h2>Markup</h2>
           <p>To use a dropdown menu, you would normally place it inside a <code>havok/widget/DropdownToggle</code>.</p>
-
+-->
         </section>

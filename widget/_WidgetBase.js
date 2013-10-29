@@ -16,22 +16,12 @@ function (
     return declare(
         [WidgetBase, TemplatedMixin],
         {
-            templateString: '<${tag} data-dojo-attach-point="containerNode"></{tag}>',
-
-            defaultTag: 'div',
+            templateString: '<span data-dojo-attach-point="containerNode"></span>',
 
             buildRendering: function(){
 
-                if (!this.tag){
-                    if (this.srcNodeRef){
-                        this.tag = this.srcNodeRef.nodeName;
-                    } else {
-                        this.tag = this.defaultTag;
-                    }
-                }
-
                 if (!this.srcNodeRef && this.innerHTML){
-                    this.srcNodeRef = domConstruct.create('div', {innerHTML: this.innerHTML});
+                    this.srcNodeRef = domConstruct.create('span', {innerHTML: this.innerHTML});
                 }
 
                 this.inherited(arguments);

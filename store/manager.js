@@ -21,7 +21,7 @@ define([], function(){
         },
 
         getStore: function(id){
-            // Function will return a store based on the store name.
+            // Function will return a store based on the store id.
 
             if (this.stores[id]){
                 if (!this.stores[id].idProperty){

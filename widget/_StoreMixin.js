@@ -5,7 +5,6 @@ define([
     'dojo/when',
     'dojo/string',
     'dojo/query',
-    'dojo/store/Memory',
     '../proxy!../store/manager'
 ],
 function (
@@ -14,13 +13,13 @@ function (
     Deferred,
     when,
     string,
-    Memory,
+    query,
     storeManager
 ){
     return declare(
         [],
         {
-            store: {},
+            //store: undefined,
 
             // query: object
             //		A query to use when fetching items from our store
@@ -28,7 +27,7 @@ function (
             // queryOptions: object
             //		Query options to use when fetching from the store
 
-            //_settingStore: undefined,
+            //_gettingStore: undefined,
 
             // A value in milliseconds
             // The store will not be queried at a rate faster than the set queryThrottle interval.
@@ -44,40 +43,35 @@ function (
 
             //_pendingQuery: undefined,
 
-            _setStoreAttr: function(value){
-                this._settingStore = new Deferred;
-                if (value && typeof value == 'string'){
-                    //get store from storeManager
-                    value = storeManager.getStore(value);
-                } else if (value && !value.query){
-                    value = new Memory(value);
-                }
-                if (value.then){
-                    value.then(lang.hitch(this, function(value){
-                        this._set('store', value);
-                        this._settingStore.resolve();
-                    }));
-                    return;
-                }
-                this._set('store', value);
-                this._settingStore.resolve();
-            },
+            //_rendered: undefined,
 
             _getStoreAttr: function(){
-                if (this._settingStore){
-                    var result = new Deferred;
-                    this._settingStore.then(lang.hitch(this, function(){
-                        result.resolve(this.store);
-                    }));
-                    return result;
-                } else {
-                    return this.store;
+
+                var store = this.store;
+                if (store && typeof store == 'string'){
+                    //get store from storeManager
+                    store = storeManager.getStore(store);
+
+                    if (store.then){
+                        this._gettingStore = new Deferred;
+                        store.then(lang.hitch(this, function(value){
+                            this._set('store', value);
+                            this._gettingStore.resolve(value);
+                        }));
+                        return this._gettingStore;
+                    }
+                    this._set('store', store);
                 }
+                return store;
             },
 
             _setActiveAttr: function(value){
+                if (!this._rendered) {
+                    return;
+                }
+
                 if (typeof value == 'string'){
-                    value = query('[store-id=' + value, this.containerNode)[0].parentNode;
+                    value = query('[store-id=' + value + ']', this.containerNode)[0].parentNode;
                 }
                 this.inherited(arguments, [value]);
             },
@@ -87,9 +81,9 @@ function (
                     var i,
                         item,
                         vars,
-                        linkTemplate = '<a ${attr} store-id="${storeId} href="${href}">${text}</a>';
+                        linkTemplate = '<a ${attr} store-id="${storeId}" href="${href}">${text}</a>';
 
-                    for (i; i < data.length; i++){
+                    for (i = 0; i < data.length; i++){
                         vars = {attr: '', href: '', storeId: data[i][this.store.idProperty]};
                         switch (data[i].type){
                             case 'disabled':
@@ -97,10 +91,12 @@ function (
                             case 'link':
                             default:
                                 lang.mixin(vars, data[i]);
-                                item = string.subsitute(linkTemplate, vars);
+                                item = string.substitute(linkTemplate, vars);
                         }
                         this.addItem(item);
                     }
+                    this._rendered = true;
+                    this.set('active', this.active);
                 }));
             },
 

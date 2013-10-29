@@ -62,7 +62,7 @@ function (
             },
 
             _setActiveAttr: function(value){
-                if (this.active){
+                if (typeof this.active == 'object'){
                     domClass.remove(this.active, 'active');
                 }
                 domClass.add(value, 'active');

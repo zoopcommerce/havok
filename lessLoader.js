@@ -1,5 +1,4 @@
 less = {async: true};
-
 define([
     'dojo/json',
     'dojo/when',
@@ -73,9 +72,11 @@ function(
         parseLess = function(item, useDefs){
             //function parses less into a token tree
             var result = new Deferred;
-
+console.log('parsing');
             when(getParser(), function(parser){
+console.log('got parser');
                 parser.parse(item.less, function(err, root) {
+console.log('parsed');
                     if (useDefs){
                         deferredDefsRoot.then(function(){
                             root.rules = root.rules.concat(defRoot.rules); //add the defs so undefined definition errors don't occur
@@ -193,7 +194,7 @@ function(
 
     return {
         load: function(id, require, callback){
-
+console.log('less');
             //this is the callback executed by the plugin
             var item,
                 pieces = id.split('!'),
@@ -229,7 +230,7 @@ function(
             }
 
             require(['dojo/text!' + id], function(styles){
-
+console.log('lesst');
                 var fileType = id.split('.').pop();
                 if (fileType != 'less' && fileType != 'css'){
                     throw new Error('Unknown filetype. Should be less or css. Got ' + requireOrder[i]);
@@ -248,6 +249,7 @@ function(
                 } else {
                     item.less = rewriteUrls(id, item.less);
                     parseLess(item, true).then(function(){
+console.log('lessp');
                         toCss(item);
                         injectCss(item);
                         initalLoad.then(function(){callback(item.css)});

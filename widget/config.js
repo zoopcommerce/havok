@@ -4,13 +4,15 @@ define(
         return {
             parser: {
                 tags: {
-                    'carousel'      : 'havok/widget/Carousel',
-                    'nav-bar'       : 'havok/widget/NavBar',
-                    'nav-bar-links' : 'havok/widget/NavBarLinks',
-                    'nav-list'      : 'havok/widget/NavList',
-                    'nav-pill'      : 'havok/widget/NavPill',
-                    'nav-tab'       : 'havok/widget/NavTab',
-                    'overlay'       : 'havok/widget/Overlay'
+                    'dropdown'           : 'havok/widget/Dropdown',
+                    'dropdown-container' : 'havok/widget/DropdownContainer',
+                    'carousel'           : 'havok/widget/Carousel',
+                    'nav-bar'            : 'havok/widget/NavBar',
+                    'nav-bar-links'      : 'havok/widget/NavBarLinks',
+                    'nav-list'           : 'havok/widget/NavList',
+                    'nav-pill'           : 'havok/widget/NavPill',
+                    'nav-tab'            : 'havok/widget/NavTab',
+                    'overlay'            : 'havok/widget/Overlay'
                 },
                 mixins: {
                     'affix'     : 'havok/widget/_AffixMixin',

@@ -21,8 +21,13 @@
     ?>
     <!-- Placed at the start of the document so require is available for examples -->
     <script type="text/javascript">
+        document.createElement('overlay');
+        document.createElement('nav-bar');
+        document.createElement('nav-bar-links');
+
         dojoConfig = {
             isDebug: true,
+            selectorEngine: "lite",
             locale: 'en-au',
             async: true,
             merge: [
