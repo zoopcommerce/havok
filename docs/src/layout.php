@@ -9,6 +9,11 @@
 
     <link href="js/google-code-prettify/prettify.css" rel="stylesheet">
 
+    <!--Must be placed in head for layout and parser to work in ie8 -->
+    <!--[if lt IE 9]>
+        <script src="../../../havok/parser/ie8shim.js"></script>
+    <![endif]-->
+
     <?php
     if (isset($build) && $build == 'dist'){
     ?>
@@ -21,10 +26,6 @@
     ?>
     <!-- Placed at the start of the document so require is available for examples -->
     <script type="text/javascript">
-        document.createElement('overlay');
-        document.createElement('nav-bar');
-        document.createElement('nav-bar-links');
-
         dojoConfig = {
             isDebug: true,
             selectorEngine: "lite",
@@ -47,17 +48,10 @@
     <?php
     }
     ?>
-
-    <script type="text/javascript">
-        require([
-            'havok/exception/started!',
-            'havok/router/started!',
-            'havok/parseComplete!'
-        ], function(){})
-    </script>
+    <script type="text/javascript">require(['havok/bootstrap!'], function(){})</script>
   </head>
 
-  <body onload="prettyPrint()">
+  <body id="docBody" onload="prettyPrint()">
 
 
   <nav-bar class="navbar-inverse navbar-fixed-top">
@@ -86,7 +80,7 @@
     <div id="contentWrapper" style="min-height: 1000px">
     <?php echo $content;?>
     </div>
-    <overlay id="contentWrapperOverlay" target="document.body">Loading more havok...</overlay>
+    <overlay id="contentWrapperOverlay" target="docBody">Loading more havok...</overlay>
 
     <footer class="footer">
       <div class="container">

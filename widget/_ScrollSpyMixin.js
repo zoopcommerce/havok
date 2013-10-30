@@ -31,6 +31,8 @@ function(
 
             itemTemplate: '<li spy-target="${id}"><a href="#${id}">${text}</a></li>',
 
+            //_scrollSpyTimer: undefined,
+
             startup: function(){
                 this.inherited(arguments);
                 this.updateScrollSpy();
@@ -124,7 +126,12 @@ function(
                     this.set('active', newActive);
                 }
 
-                setTimeout(lang.hitch(this, 'updateScrollSpy'), 250);
+                this._scrollSpyTimer = setTimeout(lang.hitch(this, 'updateScrollSpy'), 250);
+            },
+
+            destroy: function(){
+                clearTimeout(this._scrollSpyTimer);
+                this.inherited(arguments);
             }
         }
     );

@@ -1,5 +1,6 @@
 define([
 	'dojo/_base/declare',
+    'dojo/dom',
     'dojo/dom-class',
     'dojo/dom-construct',
     'dojo/dom-geometry',
@@ -13,6 +14,7 @@ define([
 
 function(
     declare,
+    dom,
     domClass,
     domConstruct,
     domGeom,
@@ -46,7 +48,9 @@ return declare([WidgetBase, HideableMixin],{
 
     startup: function(){
 
-        if ( ! this.target){
+        if (typeof this.target == 'string') {
+            this.target = dom.byId(this.target);
+        } else if ( ! this.target){
             this.target = this.domNode.previousElementSibling;
         }
         this.inherited(arguments);

@@ -1,12 +1,11 @@
 define([
-        './parser',
-        'dojo/domReady!'
+        './parser'
     ],
     function(
         parser
     ){
         // module:
-        //		havok/parseComplete
+        //		havok/complete
         //
 
         var complete;
@@ -19,11 +18,9 @@ define([
                     parser.parse().then(function(){
                         complete = true;
                         callback();
-                    });
+                    })
                 }
             }
         };
     }
 );
-
-

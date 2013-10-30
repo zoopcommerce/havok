@@ -2,6 +2,9 @@ define(
     [],
     function(){
         return {
+            bootstrap: [
+                'havok/exception/started!'
+            ],
             di: {
                 'havok/exception/Handler': {
                     gets: {

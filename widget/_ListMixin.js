@@ -24,6 +24,8 @@ function (
         {
             //active: undefined,
 
+            templateString: '<ul data-dojo-attach-point="containerNode"></ul>',
+
             itemTemplate: '<li></li>',
 
             dividerTemplate: '<li class="divider"></li>',

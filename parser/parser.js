@@ -6,8 +6,9 @@ define ([
     'dojo/dom-attr',
     'dojo/Deferred',
     'dojo/DeferredList',
-    './string',
-    './config/ready!',
+    '../string',
+    'dojo/domReady!',
+    '../config/ready!',
     'dojo/sniff'
 ],
 function (
@@ -54,10 +55,8 @@ function (
                     }
                 })
             }
-console.log(requires);
 
             require(requires, function(){
-                result.resolve();
                 var Module = arguments[0],
                     i,
                     params = {},
@@ -94,7 +93,6 @@ console.log(requires);
                             }
                     }
                 }
-console.debug(params);
                 result.resolve(new Module(params, refNode));
             });
 
@@ -116,15 +114,12 @@ console.debug(params);
 
             for (tag in dojoConfig.parser.tags) {
 
-//                if (has('ie') == 8) {
-//                    document.createElement(tag);
-//                }
                 nodes = root.getElementsByTagName(tag);
                 for (i = 0; i < nodes.length; i++){
                     instanceDefs.push(_createInstance(nodes[i]));
                 }
             }
-console.log(instanceDefs.length);
+
             if (instanceDefs.length == 0){
                 result.resolve();
                 return result;
@@ -132,7 +127,6 @@ console.log(instanceDefs.length);
 
             instanceDefList = new DeferredList(instanceDefs);
             instanceDefList.then(function(list){
-console.log(list.length);
                 array.forEach(list, function(item){
                     if (item[1].startup){
                         item[1].startup();

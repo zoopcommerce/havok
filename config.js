@@ -3,10 +3,15 @@ define(
     function(){
         //This file will merge all the standard havok configs in one go.
         return {
+            bootstrap: [
+                'havok/less!'
+            ],
+
             merge: [
                 'havok/validator/config',
                 'havok/filter/config',
                 'havok/exception/config',
+                'havok/parser/config',
                 'havok/router/config',
                 'havok/store/config',
                 'havok/widget/config'

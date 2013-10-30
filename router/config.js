@@ -1,6 +1,9 @@
 define([],
 function(){
     return {
+        bootstrap: [
+            'havok/router/started!'
+        ],
         di: {
             'havok/router/router': {
                 gets: {
