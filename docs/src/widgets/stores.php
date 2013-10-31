@@ -8,17 +8,44 @@
   <h2>Nav example</h2>
 
     <div class="bs-docs-example">
-        <memory-store id="navStore1" id-property="text">
-            <br text="home" />
-            <br text="#navs anchor" href="#stores" />
-            <br text="disabled pill" type="disabled" />
-        </memory-store>
+        <datalist id="navStore1" id-property="text">
+            <option text="home">
+            <option text="#navs anchor" href="#stores">
+            <option text="disabled pill" state="disabled">
+        </datalist>
         <nav-pill
             mixins = "store"
             active = "home"
             store  = "navStore1"
         ></nav-pill>
     </div>
+<pre class="prettyprint linenums">
+
+</pre>
+
+    <h4>Nested dropdown example</h4>
+    <p>Use the <code>type: 'dropdown'</code> to mark parent items. Use <code>parent: id</code> property to specify child items in the store. Now that's nice syntax!</p>
+
+    <div class="bs-docs-example bs-docs-example-submenus">
+        <div class="dropdown clearfix">
+            <datalist id="dropdownStore1">
+                <option id="0" text="Action">
+                <option id="1" text="Another Action">
+                <option id="2" text="Something else here">
+                <option id="3" type="divider">
+                <option id="4" type="dropdown" text="More options">
+                <option id="5" parent="4" text="Second level link">
+                <option id="6" parent="4" text="Second level link">
+                <option id="7" parent="4" text="Second level link">
+                <option id="8" parent="4" text="Second level link">
+            </datalist>
+            <dropdown
+                mixins = "store"
+                store  = "dropdownStore1"
+            ></dropdown>
+        </div>
+    </div>
+
 <pre class="prettyprint linenums">
 
 </pre>

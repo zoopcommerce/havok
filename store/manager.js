@@ -1,4 +1,7 @@
-define([], function(){
+define([
+    'dojo/dom',
+    './Datalist'
+], function(dom, Datalist){
     // module:
     //		havok/store/manager
     // summary:
@@ -28,6 +31,12 @@ define([], function(){
                     this.stores[id].idProperty = 'id';
                 }
                 return this.stores[id];
+            } else {
+                var node;
+                if (!this.stores[id] && (node = dom.byId(id)) && node.nodeName == 'DATALIST'){
+                    this.stores[id] = new Datalist(null, node);
+                    return this.stores[id];
+                }
             }
         }
     }

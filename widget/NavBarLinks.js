@@ -1,12 +1,10 @@
 define([
     'dojo/_base/declare',
-    './_NavBase',
-    'dojo/text!./template/NavBarLinksDivider.html'
+    './_NavBase'
 ],
 function (
     declare,
-    NavBase,
-    NavBarLinksDivider
+    NavBase
 ){
     // module:
     //    	havok/widget/NavBarLinks
@@ -14,7 +12,7 @@ function (
     return declare(
         [NavBase],
         {
-            dividerTemplate: NavBarLinksDivider
+            dividerTemplate: '<li class="divider-vertical"></li>'
         }
     );
 });

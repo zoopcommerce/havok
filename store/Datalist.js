@@ -3,20 +3,16 @@ define([
     'dojo/_base/array',
     'dojo/has',
     'dojo/dom-attr',
-    'dojo/dom-construct',
     '../string',
-    'dojo/store/Memory',
-    '../get!../store/manager'
+    'dojo/store/Memory'
 ],
 function(
     declare,
     array,
     has,
     domAttr,
-    domConstruct,
     string,
-    Memory,
-    storeManager
+    Memory
 ){
     return declare (
         [Memory],
@@ -63,12 +59,9 @@ function(
 
                         params.data.push(item);
                     }
-                    domConstruct.destroy(srcNodeRef);
                 }
 
                 this.inherited(arguments, [params]);
-
-                storeManager.stores[params.id] = this;
             }
         }
     );

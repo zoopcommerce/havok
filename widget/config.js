@@ -4,8 +4,11 @@ define(
         return {
             parser: {
                 tags: {
+                    'date-dropdown'      : 'havok/widget/DateDropdown',
                     'dropdown'           : 'havok/widget/Dropdown',
                     'dropdown-container' : 'havok/widget/DropdownContainer',
+                    'dropdown-submenu'   : 'havok/widget/DropdownSubmenu',
+                    'dropdown-toggle'    : 'havok/widget/DropdownToggle',
                     'carousel'           : 'havok/widget/Carousel',
                     'nav-bar'            : 'havok/widget/NavBar',
                     'nav-bar-links'      : 'havok/widget/NavBarLinks',

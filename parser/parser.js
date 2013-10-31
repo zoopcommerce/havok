@@ -114,10 +114,14 @@ function (
 
             for (tag in dojoConfig.parser.tags) {
 
-                nodes = root.getElementsByTagName(tag);
-                for (i = 0; i < nodes.length; i++){
-                    instanceDefs.push(_createInstance(nodes[i]));
-                }
+                //getElementsByTagName returns a live list, so it needs to be cached first
+                nodes = [];
+                array.forEach(root.getElementsByTagName(tag), function(node){
+                    nodes.push(node);
+                });
+                array.forEach(nodes, function(node){
+                    instanceDefs.push(_createInstance(node));
+                })
             }
 
             if (instanceDefs.length == 0){

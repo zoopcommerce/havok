@@ -12,7 +12,7 @@
             <span id="overlay1" data-dojo-type="havok/widget/Overlay">This is overlayed</span>
             <button id="overlayToggle1" data-dojo-type="havok/widget/ToggleButton">Toggle overlay</button>
             <script>
-                require(['dijit/registry', 'havok/parseComplete!'], function(registry){
+                require(['dijit/registry', 'havok/parser/complete!'], function(registry){
                     registry.byId('overlayToggle1').watch('active', function(){
                         registry.byId('overlay1').toggle();
                     });

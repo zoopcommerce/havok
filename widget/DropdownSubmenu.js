@@ -1,18 +1,20 @@
 define([
     'dojo/_base/declare',
+    'dojo/_base/lang',
     'dojo/_base/array',
+    'dojo/on',
     '../string',
     'dojo/dom-style',
-    './DropdownToggle',
-    'dojo/text!./template/DropdownBase.html'
+    './DropdownToggle'
 ],
 function (
     declare,
+    lang,
     array,
+    on,
     string,
     domStyle,
-    DropdownToggle,
-    template
+    DropdownToggle
 ){
     // module:
     //    	havok/widget/DropdownSubmenu
@@ -20,17 +22,27 @@ function (
     return declare(
         [DropdownToggle],
         {
+            baseClass: 'dropdown-submenu',
 
-            defaultClass: 'dropdown-submenu',
+            togglePlacement: 'top-right',
 
-            templateString: template,
+            dropdownPlacement: 'top-left',
 
-            placement: {
-                toggle: 'top-right',
-                dropdown: 'top-left'
+            buildRendering: function(){
+
+                if (this.srcNodeRef && this.srcNodeRef.parentElement.nodeName == 'DROPDOWN'){
+                    this.tag = 'li';
+                }
+                this.inherited(arguments);
             },
 
-            onMouseenter: function(e){
+            startup: function(){
+
+                this.inherited(arguments);
+                on(this.button, 'mouseenter', lang.hitch(this, 'onMouseenter'));
+            },
+
+            onMouseenter: function(){
                 this.show();
             },
 
@@ -40,7 +52,7 @@ function (
                 domStyle.set(
                     this.dropdown.domNode,
                     'border' +
-                    array.map(this._activePlacement.dropdown.split('-'), function(item){return string.ucFirst(item)}).join('') +
+                    array.map(this._activeDropdownPlacement.split('-'), function(item){return string.ucFirst(item)}).join('') +
                     'Radius',
                     '0px'
                 );

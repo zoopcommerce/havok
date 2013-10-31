@@ -4,7 +4,10 @@ define([
     'dojo/Deferred',
     'dojo/when',
     'dojo/string',
-    'dojo/query',
+    'dojo/dom-attr',
+    'dojo/dom-construct',
+    './Dropdown',
+    './DropdownSubmenu',
     '../proxy!../store/manager'
 ],
 function (
@@ -13,10 +16,13 @@ function (
     Deferred,
     when,
     string,
-    query,
+    domAttr,
+    domConstruct,
+    Dropdown,
+    DropdownSubmenu,
     storeManager
 ){
-    return declare(
+    var StoreMixin = declare(
         [],
         {
             //store: undefined,
@@ -43,10 +49,9 @@ function (
 
             //_pendingQuery: undefined,
 
-            //_rendered: undefined,
+            //_nodesRendered: undefined,
 
             _getStoreAttr: function(){
-
                 var store = this.store;
                 if (store && typeof store == 'string'){
                     //get store from storeManager
@@ -66,12 +71,16 @@ function (
             },
 
             _setActiveAttr: function(value){
-                if (!this._rendered) {
+                if (!this._nodesRendered) {
                     return;
                 }
 
                 if (typeof value == 'string'){
-                    value = query('[store-id=' + value + ']', this.containerNode)[0].parentNode;
+                    for (var i = 0; i < this.containerNode.children.length; i++){
+                        if (domAttr.get(this.containerNode.children[i], 'data-havok-store-id') == value){
+                            value = this.containerNode.children[i];
+                        }
+                    }
                 }
                 this.inherited(arguments, [value]);
             },
@@ -81,23 +90,45 @@ function (
                     var i,
                         item,
                         vars,
-                        linkTemplate = '<a ${attr} store-id="${storeId}" href="${href}">${text}</a>';
+                        itemTemplate = '<a ${attr} href="${href}">${text}</a>';
 
                     for (i = 0; i < data.length; i++){
                         vars = {attr: '', href: '', storeId: data[i][this.store.idProperty]};
-                        switch (data[i].type){
-                            case 'disabled':
-                                vars.attr = 'class="disabled"';
-                            case 'link':
-                            default:
-                                lang.mixin(vars, data[i]);
-                                item = string.substitute(linkTemplate, vars);
+                        if (data[i].state == 'disabled'){
+                            vars.attr = 'class="disabled"';
                         }
-                        this.addItem(item);
+                        if (data[i].type == 'divider'){
+                            item = this.dividerTemplate;
+                        } else {
+                            lang.mixin(vars, data[i]);
+                            item = string.substitute(itemTemplate, vars);
+                        }
+                        if (data[i].type == 'dropdown'){
+                            item = domConstruct.place(item, this.containerNode);
+                            var dropdown = new (declare([Dropdown, StoreMixin], {}))({store: this.store, query: {parent: 4}}),
+                                submenu = new DropdownSubmenu({dropdown: dropdown, button: item, tag: 'li'});
+                            this.containerNode.appendChild(submenu.domNode);
+                            submenu.containerNode.appendChild(item);
+                            submenu.startup();
+                            item = submenu.domNode;
+                        }
+                        this.addItem(item, vars.storeId);
                     }
-                    this._rendered = true;
-                    this.set('active', this.active);
+                    this._nodesRendered = true;
+                    if (this.active){
+                        this.set('active', this.active);
+                    }
                 }));
+            },
+
+            addItem: function(item, id){
+                item = this.inherited(arguments);
+                domAttr.set(item, 'data-havok-store-id', id);
+                return item;
+            },
+
+            _getQueryAttr: function(){
+                return lang.mixin({parent: undefined}, this.query);
             },
 
             _getDataAttr: function(){
@@ -131,5 +162,6 @@ function (
                 }
             }
         }
-    )
+    );
+    return StoreMixin;
 });

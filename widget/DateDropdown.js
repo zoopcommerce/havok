@@ -20,7 +20,7 @@ function (
         [DropdownBase],
         {
 
-            defaultClass: 'dropdown-menu datepicker',
+            baseClass: 'dropdown-menu datepicker',
 
             templateString: template,
 
@@ -44,21 +44,7 @@ function (
                     today.setHours(0,0,0,0);
                     this.set('date', today);
                 }
-
-                //this.set('date', this.get('date')); //make sure a date is set
-                //this.openTo = new Date(this.get('date').getTime());
-
-                //this._fill();
             },
-
-//            _getDateAttr: function(){
-//                if (!this.date){
-//                    var today = new Date();
-//                    today.setHours(0,0,0,0);
-//                    this.set('date', today);
-//                }
-//                return this.date;
-//            },
 
             _setDateAttr: function(value){
                 this._set('date', value);

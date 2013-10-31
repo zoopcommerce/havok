@@ -1,15 +1,15 @@
 define([
     'dojo/_base/declare',
     'dojo/_base/lang',
+    'dojo/on',
     './_WidgetBase',
-    'dojo/text!./template/DropdownBase.html',
     '../less!./less/dropdowns.less'
 ],
 function (
     declare,
     lang,
-    WidgetBase,
-    template
+    on,
+    WidgetBase
 ){
     // module:
     //    	havok/widget/_DropdownBase
@@ -23,10 +23,13 @@ function (
 
             baseClass: 'dropdown-menu',
 
-            templateString: template,
+            templateString: '<span data-dojo-attach-point="containerNode"></span>',
 
             startup: function(){
                 this.inherited(arguments);
+
+                on(this.containerNode, 'mouseenter', lang.hitch(this, 'onMouseenter'));
+                on(this.containerNode, 'mouseleave', lang.hitch(this, 'onMouseleave'));
 
                 var i,
                     children = this.getChildren();
@@ -35,12 +38,12 @@ function (
                 }
             },
 
-            onMouseenter: function(e){
+            onMouseenter: function(){
                 this.set('hasMouse', true);
                 this.set('_primaryHasMouse', true);
             },
 
-            onMouseleave: function(e){
+            onMouseleave: function(){
                 this.set('_primaryHasMouse', false);
                 setTimeout(lang.hitch(this, function(){
                     if (!this.childHasMouse){

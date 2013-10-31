@@ -41,7 +41,10 @@ function (
                     item = domConstruct.place(item, this.containerNode);
                 }
                 if (item.nodeName == 'HR'){
-                    domConstruct.place(this.dividerTemplate, item, 'replace');
+                    return domConstruct.place(this.dividerTemplate, item, 'replace');
+                } else if (item.nodeName == 'LI'){
+                    this._attachClickListener(item);
+                    return item;
                 } else {
                     var outerItem = domConstruct.place(this.itemTemplate, item, 'after');
                     domConstruct.place(item, outerItem);
@@ -54,6 +57,7 @@ function (
                         domClass.remove(item, 'disabled');
                         domClass.add(outerItem, 'disabled');
                     }
+                    return outerItem;
                 }
             },
 

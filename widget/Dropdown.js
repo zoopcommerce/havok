@@ -31,7 +31,7 @@ function (
     // module:
     //    	havok/widget/Dropdown
 
-    var Dropdown = declare(
+    return declare(
         [DropdownBase, ListMixin],
         {
 
@@ -139,5 +139,4 @@ function (
             }
         }
     );
-    return Dropdown;
 });

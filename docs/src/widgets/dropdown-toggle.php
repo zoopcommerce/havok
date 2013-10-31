@@ -4,7 +4,7 @@
             <h1>Dropdown Toggle</h1>
           </div>
 
-          <p>Use <code>havok/widget/DropdownToggle</code> to make a <code>havok/widget/Dropdown</code> show and hide.</p>
+          <p>Use <code>dropdown-toggle</code> to make a <code>havok/widget/Dropdown</code> show and hide.</p>
 
   <h2>Properties</h2>
 
@@ -94,107 +94,97 @@
                 <div class="container" style="width: auto;">
                   <a class="brand" href="">Project Name</a>
                   <ul class="nav" role="navigation">
-                    <li data-dojo-type="havok/widget/DropdownToggle">
+                    <dropdown-toggle>
                       <a href="">Dropdown <b class="caret"></b></a>
-                      <ul data-dojo-type="havok/widget/Dropdown" aria-labelledby="drop1">
-                        <li><a href="http://google.com">Action</a></li>
-                        <li><a href="anotherAction">Another action</a></li>
-                        <li><a href="">Something else here</a></li>
+                      <dropdown>
+                        <a href="http://google.com">Action</a>
+                        <a href="anotherAction">Another action</a>
+                        <a href="">Something else here</a>
                         <hr />
-                        <li><a href="">Separated link</a></li>
-                      </ul>
-                    </li>
-                    <li data-dojo-type="havok/widget/DropdownToggle">
+                        <a href="">Separated link</a>
+                      </dropdown>
+                    </dropdown-toggle>
+                    <dropdown-toggle>
                       <a href="">Dropdown Container<b class="caret"></b></a>
-                      <div data-dojo-type="havok/widget/DropdownContainer" aria-labelledby="drop2">
+                      <dropdown-container>
                         <div>
                           <h5>Stuff here</h5>
                           <p>This is stuff inside a dropdown</p>
                         </div>
-                      </div>
-                    </li>
+                      </dropdown-container>
+                    </dropdown-toggle>
                   </ul>
                   <ul class="nav pull-right">
-                    <li data-dojo-type="havok/widget/DropdownToggle">
+                    <dropdown-toggle>
                       <a href="" >Dropdown Right <b class="caret"></b></a>
-                      <ul data-dojo-type="havok/widget/Dropdown" aria-labelledby="drop3">
-                        <li><a href="">Action</a></li>
-                        <li><a href="">Another action</a></li>
-                        <li><a href="">Something else here</a></li>
+                      <dropdown>
+                        <a href="">Action</a>
+                        <a href="">Another action</a>
+                        <a href="">Something else here</a>
                         <hr />
-                        <li><a href="">Separated link</a></li>
-                      </ul>
-                    </li>
+                        <a href="">Separated link</a>
+                      </dropdown>
+                    </dropdown-toggle>
                   </ul>
                 </div>
               </div>
             </div>
           </div>
 <pre class="prettyprint linenums">
-&lt;li data-dojo-type=&quot;havok/widget/DropdownToggle&quot;&gt;
-  &lt;a href=&quot;&quot;&gt;Dropdown &lt;b class=&quot;caret&quot;&gt;&lt;/b&gt;&lt;/a&gt;
-  &lt;ul data-dojo-type=&quot;havok/widget/Dropdown&quot; aria-labelledby=&quot;drop1&quot;&gt;
-    &lt;li&gt;&lt;a href=&quot;http://google.com&quot;&gt;Action&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;anotherAction&quot;&gt;Another action&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;&quot;&gt;Something else here&lt;/a&gt;&lt;/li&gt;
-    &lt;hr /&gt;
-    &lt;li&gt;&lt;a href=&quot;&quot;&gt;Separated link&lt;/a&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/li&gt;
-...
+
 </pre>
 
           <h3>Within pills</h3>
           <div class="bs-docs-example">
             <ul class="nav nav-pills">
               <li class="active"><a href="">Regular link</a></li>
-              <li data-dojo-type="havok/widget/DropdownToggle">
+              <dropdown-toggle>
                 <a href="">Dropdown <b class="caret"></b></a>
-                <ul data-dojo-type="havok/widget/Dropdown" aria-labelledby="drop4">
-                    <li><a href="">Action</a></li>
-                    <li><a href="">Another action</a></li>
-                    <li><a href="">Something else here</a></li>
+                <dropdown>
+                    <a href="">Action</a>
+                    <a href="">Another action</a>
+                    <a href="">Something else here</a>
                     <hr />
-                    <li><a href="">Separated link</a></li>
-                </ul>
-              </li>
-              <li data-dojo-type="havok/widget/DropdownToggle">
+                    <a href="">Separated link</a>
+                </dropdown>
+              </dropdown-toggle>
+              <dropdown-toggle>
                 <a href="">Dropdown 2 <b class="caret"></b></a>
-                <ul data-dojo-type="havok/widget/Dropdown" aria-labelledby="drop5">
-                    <li><a href="">Action</a></li>
-                    <li><a href="">Another action</a></li>
-                    <li><a href="">Something else here</a></li>
+                <dropdown>
+                    <a href="">Action</a>
+                    <a href="">Another action</a>
+                    <a href="">Something else here</a>
                     <hr />
-                    <li><a href="">Separated link</a></li>
-                </ul>
-              </li>
-              <li data-dojo-type="havok/widget/DropdownToggle">
+                    <a href="">Separated link</a>
+                </dropdown>
+              </dropdown-toggle>
+              <dropdown-toggle>
                 <a href="">Dropdown 3 <b class="caret"></b></a>
-                <ul data-dojo-type="havok/widget/Dropdown" aria-labelledby="drop5">
-                    <li><a href="">Action</a></li>
-                    <li><a href="">Another action</a></li>
-                    <li><a href="">Something else here</a></li>
+                <dropdown>
+                    <a href="">Action</a>
+                    <a href="">Another action</a>
+                    <a href="">Something else here</a>
                     <hr />
-                    <li><a href="">Separated link</a></li>
-                </ul>
-              </li>
-            </ul> <!-- /tabs -->
+                    <a href="">Separated link</a>
+                </dropdown>
+              </dropdown-toggle>
+            </ul>
           </div>
 
           <h3>Within overflow hidden element</h3>
           <p>The Dropdown dom nodes is moved to the end of the document, removing any clipping problems, or display issues with dropdowns in modals.</p>
           <div class="bs-docs-example">
               <div style="width: 100px; overflow: hidden">
-                    <div style="width:300px" data-dojo-type="havok/widget/DropdownToggle">
+                    <dropdown-toggle style="width:300px">
                       <button class="btn">Dropdown <b class="caret"></b></button>
-                      <ul data-dojo-type="havok/widget/Dropdown">
-                          <li><a href="">Action</a></li>
-                          <li><a href="">Another action</a></li>
-                          <li><a href="">Something else here</a></li>
+                      <dropdown>
+                          <a href="">Action</a>
+                          <a href="">Another action</a>
+                          <a href="">Something else here</a>
                           <hr />
-                          <li><a href="">Separated link</a></li>
-                      </ul>
-                    </div>
+                          <a href="">Separated link</a>
+                      </dropdown>
+                    </dropdown-toggle>
                   <p style="width:300px">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.</p>
               </div>
           </div>
@@ -207,108 +197,69 @@
           <h3>Declarative</h3>
           <p>The first child element inside a <code>havok/widget/DropdownToggle</code> is the `button` which will toggle the dropdown. The first <code>havok/widget/Dropdown</code> child widget inside a <code>havok/widget/DropdownToggle</code> will be toggled.</p>
 <pre class="prettyprint linenums">
-&lt;div data-dojo-type=&quot;havok/widget/DropdownToggle&quot;&gt;
-  &lt;button&gt;Show dropdown&lt;/button&gt; &lt;!--this node will show/hide the dropdown--&gt;
-  &lt;ul data-dojo-type=&quot;havok/widget/Dropdown&quot; data-dojo-props=&quot;store: mystore&quot;&gt; &lt;!--this is the dropdown which will be shown/hidden--&gt;
-  &lt;/ul&gt;
-&lt;/div&gt;
+
 </pre>
           <h3>Programatic</h3>
 
-          <p>To create a <code>havok/widget/DropdownToggle</code> programatically, pass an instance of <code>havok/widget/Dropdown</code> to the <code>dropdown</code> property, and the markup to create the button to the <code>innerHTML</code> property.</p>
+          <p>To create a <code>havok/widget/DropdownToggle</code> programatically, pass an instance of <code>havok/widget/_BaseDropdown</code> to the <code>dropdown</code> property, and the markup to create the button to the <code>innerHTML</code> property.</p>
           <div class="bs-docs-example">
-            <div id="dropdownButton1">
+            <div id="dropdownPosition1">
                 <script type="text/javascript">
                     require([
                         'dojo/dom',
+                        'dojo/dom-construct',
                         'havok/widget/Dropdown',
                         'havok/widget/DropdownToggle',
                         'dojo/domReady!'
                     ],
                     function(
                         dom,
+                        domConstruct,
                         Dropdown,
                         DropdownToggle
                     ){
-                        var dropdownToggle = new DropdownToggle({
-                            innerHTML: '<button class="btn">Click me</button>',
-                            dropdown:  new Dropdown({store: {
-                                data: [
-                                    {id: 0, text: 'Action'},
-                                    {id: 1, text: 'Another Action'},
-                                    {id: 2, text: 'Something else here'},
-                                    {id: 3, type: 'divider'},
-                                    {id: 4, text: 'Separated Link'}
-                                ]
-                            }})
-                        });
+                        //create the button
+                        var button = domConstruct.place('<button class="btn">Click me</button>', dom.byId('dropdownPosition1'));
 
-                        dom.byId('dropdownButton1').appendChild(dropdownToggle.domNode);
+                        //create the dropdown
+                        var dropdown = new Dropdown;
+                        dropdown.addItem('<a href="">Action</a>');
+                        dropdown.addItem('<a href="">Another Action</a>');
+                        dropdown.addItem('<a href="">Something else here</a>');
+                        dropdown.addItem('<hr />');
+                        dropdown.addItem('<a href="">Separated Link</a>');
+                        dom.byId('dropdownPosition1').appendChild(dropdown.domNode);
 
+                        //create and start the dropdown toggle
+                        var dropdownToggle = new DropdownToggle({dropdown: dropdown, button: button});
+                        dom.byId('dropdownPosition1').appendChild(dropdownToggle.domNode);
                         dropdownToggle.startup();
                     })
                 </script>
             </div>
           </div>
 <pre class="prettyprint linenums">
-&lt;div id=&quot;dropdownButton1&quot;&gt;
-    &lt;script type=&quot;text/javascript&quot;&gt;
-        require([
-            'dojo/dom',
-            'havok/widget/Dropdown',
-            'havok/widget/DropdownToggle',
-            'dojo/domReady!'
-        ],
-        function(
-            dom,
-            Dropdown,
-            DropdownToggle
-        ){
-            var dropdownToggle = new DropdownToggle({
-                innerHTML: '&lt;button class=&quot;btn&quot;&gt;Click me&lt;/button&gt;',
-                dropdown:  new Dropdown({store: {
-                    data: [
-                        {id: 0, text: 'Action'},
-                        {id: 1, text: 'Another Action'},
-                        {id: 2, text: 'Something else here'},
-                        {id: 3, type: 'divider'},
-                        {id: 4, text: 'Separated Link'}
-                    ]
-                }})
-            });
 
-            dom.byId('dropdownButton1').appendChild(dropdownToggle.domNode);
-
-            dropdownToggle.startup();
-        })
-    &lt;/script&gt;
-&lt;/div&gt;
 </pre>
 
           <h3>Fine grained control</h3>
 
           <p>Use attach points to control exactly which element in the markup will respond to a click.</p>
           <div class="bs-docs-example">
-            <div data-dojo-type="havok/widget/DropdownToggle" class="well">
+            <dropdown-toggle button="dropdownToggleButtonExample" dropdown="dropdownToggleExample" class="well">
               <p>Extra text</p>
-              <button data-dojo-attach-point="button" class="btn">Show Dropdown</button>
-              <ul data-dojo-type="havok/widget/Dropdown">
-                  <li><a href="">Action</a></li>
-                  <li><a href="">Another action</a></li>
-                  <li><a href="">Something else here</a></li>
+              <button id="dropdownToggleButtonExample" class="btn">Show Dropdown</button>
+            </dropdown-toggle>
+              <dropdown id="dropdownToggleExample">
+                  <a href="">Action</a>
+                  <a href="">Another action</a>
+                  <a href="">Something else here</a>
                   <hr />
-                  <li><a href="">Separated link</a></li>
-              </ul>
-            </div>
+                  <a href="">Separated link</a>
+              </dropdown>
           </div>
 <pre class="prettyprint linenums">
-&lt;div data-dojo-type=&quot;havok/widget/DropdownToggle&quot; class=&quot;well&quot;&gt;
-  &lt;p&gt;Extra text&lt;/p&gt;
-  &lt;button data-dojo-attach-point=&quot;button&quot; class=&quot;btn&quot;&gt;Show Dropdown&lt;/button&gt;
-  &lt;ul data-dojo-type=&quot;havok/widget/Dropdown&quot;&gt;
-      ...
-  &lt;/ul&gt;
-&lt;/div&gt;
+
 </pre>
 
         </section>

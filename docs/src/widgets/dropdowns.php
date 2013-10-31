@@ -153,7 +153,7 @@
                   <a href="">item 2</a>
                 </dropdown>
                 <script type="text/javascript">
-                    require(['dijit/registry', 'havok/parseComplete!'], function(registry){
+                    require(['dijit/registry', 'havok/parser/complete!'], function(registry){
                         registry.byId('dropdownClick1').on('item-click', function(item){
                             alert('Just clicked item: ' + item.innerHTML)
                         })
@@ -185,9 +185,9 @@
 <pre class="prettyprint linenums">
 
 </pre>
-<!--
+
           <h3>Sub menus on dropdowns</h3>
-          <p>To add an extra level of dropdown menus, wrap the submenu in <code>havok/widget/DropdownSubmenu</code></p>
+          <p>To add an extra level of dropdown menus, wrap the <code>dropdown-submenu</code> tag.</p>
           <p><span class="label label-info">Heads up!</span> <code>havok/widget/DropdownSubmenu</code> inherits from <code>havok/widget/DropdownToggle</code>, and so exposes all the same methods.</p>
 
           <h4>Example</h4>
@@ -196,158 +196,97 @@
             <div class="pull-left">
               <p class="muted">Default</p>
               <div class="dropdown clearfix">
-                <ul data-dojo-type="havok/widget/Dropdown">
-                  <li><a href="">Action</a></li>
-                  <li><a href="">Another action</a></li>
-                  <li><a href="">Something else here</a></li>
+                <dropdown>
+                  <a href="">Action</a>
+                  <a href="">Another action</a>
+                  <a href="">Something else here</a>
                   <hr />
-                  <li data-dojo-type="havok/widget/DropdownSubmenu">
+                  <dropdown-submenu>
                     <a href="">More options</a>
-                    <ul data-dojo-type="havok/widget/Dropdown">
-                      <li><a href="">Second level link</a></li>
-                      <li><a href="">Second level link</a></li>
-                      <li><a href="">Second level link</a></li>
-                      <li><a href="">Second level link</a></li>
-                      <li><a href="">Second level link</a></li>
-                    </ul>
-                  </li>
-                </ul>
+                    <dropdown>
+                      <a href="">Second level link</a>
+                      <a href="">Second level link</a>
+                      <a href="">Second level link</a>
+                      <a href="">Second level link</a>
+                      <a href="">Second level link</a>
+                    </dropdown>
+                  </dropdown-submenu>
+                </dropdown>
               </div>
             </div>
 
             <div class="pull-left">
               <p class="muted">Dropup</p>
               <div class="dropdown clearfix">
-                <ul data-dojo-type="havok/widget/Dropdown">
-                  <li><a href="">Action</a></li>
-                  <li><a href="">Another action</a></li>
-                  <li><a href="">Something else here</a></li>
+                <dropdown>
+                  <a href="">Action</a>
+                  <a href="">Another action</a>
+                  <a href="">Something else here</a>
                   <hr />
-                  <li data-dojo-type="havok/widget/DropdownSubmenu">
+                  <dropdown-submenu toggle-placement="bottom-right" dropdown-placement="bottom-left">
                     <a href="">More options</a>
-                    <ul data-dojo-type="havok/widget/Dropdown">
-                      <li><a href="">Second level link</a></li>
-                      <li><a href="">Second level link</a></li>
-                      <li><a href="">Second level link</a></li>
-                      <li><a href="">Second level link</a></li>
-                      <li><a href="">Second level link</a></li>
-                    </ul>
-                  </li>
-                </ul>
+                    <dropdown>
+                      <a href="">Second level link</a>
+                      <a href="">Second level link</a>
+                      <a href="">Second level link</a>
+                      <a href="">Second level link</a>
+                      <a href="">Second level link</a>
+                    </dropdown>
+                  </dropdown-submenu>
+                </dropdown>
               </div>
             </div>
 
             <div class="pull-left">
               <p class="muted">Left submenu</p>
               <div class="dropdown">
-                <ul data-dojo-type="havok/widget/Dropdown">
-                  <li><a href="">Action</a></li>
-                  <li><a href="">Another action</a></li>
-                  <li><a href="">Something else here</a></li>
+                <dropdown>
+                  <a href="">Action</a>
+                  <a href="">Another action</a>
+                  <a href="">Something else here</a>
                   <hr />
-                  <li data-dojo-type="havok/widget/DropdownSubmenu">
+                  <dropdown-submenu toggle-placement="top-left" dropdown-placement="top-right">
                     <a href="">More options</a>
-                    <ul data-dojo-type="havok/widget/Dropdown">
-                      <li><a href="">Second level link</a></li>
-                      <li><a href="">Second level link</a></li>
-                      <li><a href="">Second level link</a></li>
-                      <li><a href="">Second level link</a></li>
-                      <li><a href="">Second level link</a></li>
-                    </ul>
-                  </li>
-                </ul>
+                    <dropdown>
+                      <a href="">Second level link</a>
+                      <a href="">Second level link</a>
+                      <a href="">Second level link</a>
+                      <a href="">Second level link</a>
+                      <a href="">Second level link</a>
+                    </dropdown>
+                  </dropdown-submenu>
+                </dropdown>
               </div>
             </div>
+
           </div>
 <pre class="prettyprint linenums">
-&lt;ul data-dojo-type=&quot;havok/widget/Dropdown&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;&quot;&gt;Action&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;&quot;&gt;Another action&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;&quot;&gt;Something else here&lt;/a&gt;&lt;/li&gt;
-  &lt;hr /&gt;
-  &lt;li data-dojo-type=&quot;havok/widget/DropdownSubmenu&quot;&gt;
-    &lt;a href=&quot;&quot;&gt;More options&lt;/a&gt;
-    &lt;ul data-dojo-type=&quot;havok/widget/Dropdown&quot;&gt;
-      &lt;li&gt;&lt;a href=&quot;&quot;&gt;Second level link&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;&quot;&gt;Second level link&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;&quot;&gt;Second level link&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;&quot;&gt;Second level link&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;&quot;&gt;Second level link&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+
 </pre>
 
-          <h4>Example with a store</h4>
-          <p>Use the <code>type: 'dropdown'</code> to mark parent items. Use <code>parent: id</code> property to specify child items in the store. Now that's nice syntax!</p>
-
-          <div class="bs-docs-example bs-docs-example-submenus">
-              <div class="dropdown clearfix">
-                <ul data-dojo-type="havok/widget/Dropdown"
-                    data-dojo-props="
-                        store: {
-                            data: [
-                                {id: 0, text: 'Action'},
-                                {id: 1, text: 'Another Action'},
-                                {id: 2, text: 'Something else here'},
-                                {id: 3, type: 'divider'},
-                                {id: 4, type: 'dropdown', text: 'More options'},
-                                {id: 5, parent: 4, text: 'Second level link'},
-                                {id: 6, parent: 4, text: 'Second level link'},
-                                {id: 7, parent: 4, text: 'Second level link'},
-                                {id: 8, parent: 4, text: 'Second level link'}
-                            ]
-                        }
-                    "
-                >
-                </ul>
-              </div>
-          </div>
-
-<pre class="prettyprint linenums">
-&lt;ul data-dojo-type=&quot;havok/widget/Dropdown&quot;
-    data-dojo-props=&quot;
-        store: {
-            data: [
-                {id: 0, text: 'Action'},
-                {id: 1, text: 'Another Action'},
-                {id: 2, text: 'Something else here'},
-                {id: 3, type: 'divider'},
-                {id: 4, type: 'dropdown', text: 'More options'},
-                {id: 5, parent: 4, text: 'Second level link'},
-                {id: 6, parent: 4, text: 'Second level link'},
-                {id: 7, parent: 4, text: 'Second level link'},
-                {id: 8, parent: 4, text: 'Second level link'}
-            ]
-        }
-    &quot;
-&gt;
-&lt;/ul&gt;
-</pre>
 
           <h2>Date Dropdown</h2>
 
           <div class="bs-docs-example bs-docs-example-submenus">
                 <script type="text/javascript">
-                    require(['dijit/registry', 'dojo/dom', 'havok/parseComplete!'], function(registry, dom){
+                    require(['dijit/registry', 'dojo/dom', 'havok/bootstrap!'], function(registry, dom){
                         registry.byId('dateDropdown1').watch('date', function(property, oldValue, newValue){
                             dom.byId('dateValue1').innerHTML = newValue;
                         })
                     })
                 </script>
               <div class="dropdown clearfix">
-                <div data-dojo-type="havok/widget/DateDropdown" id="dateDropdown1">
-                </div>
+                <date-dropdown id="dateDropdown1">
+                </date-dropdown>
               </div>
               <div class="well"><p>Date: <span id="dateValue1"></span></p></div>
           </div>
 
 <pre class="prettyprint linenums">
-&lt;div data-dojo-type=&quot;havok/widget/DateDropdown&quot;&gt;
-&lt;/div&gt;
+
 </pre>
 
           <h2>Markup</h2>
           <p>To use a dropdown menu, you would normally place it inside a <code>havok/widget/DropdownToggle</code>.</p>
--->
+
         </section>

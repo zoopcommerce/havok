@@ -4,9 +4,9 @@ define([
     'dojo/_base/array',
     'dojo/on',
     'dojo/window',
-    'dojo/query',
     'dojo/keys',
     'dijit/focus',
+    'dojo/dom',
     'dojo/dom-style',
     'dojo/dom-class',
     'dojo/dom-construct',
@@ -23,9 +23,9 @@ function (
     array,
     on,
     win,
-    query,
     keys,
     focus,
+    dom,
     domStyle,
     domClass,
     domConstruct,
@@ -43,20 +43,21 @@ function (
         [WidgetBase, HideableMixin],
         {
 
-            templateString: '<${tag} data-dojo-attach-point="containerNode" data-dojo-attach-event="mouseleave: onMouseleave"></{tag}>',
+            //tag: undefined,
 
-            defaultClass: 'dropdown',
+            templateString: '<${tag} data-dojo-attach-point="containerNode"></${tag}>',
 
             //dropdown: undefined,
 
             //dropdownContainer: undefined,
 
-            placement: {
-                toggle: 'bottom-left',
-                dropdown: 'top-left'
-            },
+            togglePlacement: 'bottom-left',
 
-            //_activePlacement: undefined,
+            dropdownPlacement: 'top-left',
+
+            //_activeTogglePlacement: undefined,
+
+            //_activeDropdownPlacement: undefined,
 
             //hasMouse: undefined,
 
@@ -67,33 +68,26 @@ function (
                 if (!this.tag){
                     this.tag = 'div';
                 }
-                if (this.srcNodeRef){
-                    this.tag = this.srcNodeRef.nodeName;
-                }
-                if (!this.srcNodeRef && this.innerHTML){
-                    this.srcNodeRef = domConstruct.create(this.tag, {innerHTML: this.innerHTML});
+                if (this.srcNodeRef && this.srcNodeRef.parentElement.nodeName == 'UL'){
+                    this.tag = 'li';
                 }
                 this.inherited(arguments);
             },
 
             startup: function(){
 
-                query('[data-dojo-attach-point]', this.containerNode).forEach(lang.hitch(this, function(attachNode){
-                    if (registry.getEnclosingWidget(attachNode) === this){
-                        array.forEach(domAttr.get(attachNode, 'data-dojo-attach-point').split(','), lang.hitch(this, function(point){
-                            this[lang.trim(point)] = attachNode;
-                        }))
-                    }
-                }));
-
-                if (!this.button){
+                if (typeof this.button == 'string'){
+                    this.button = dom.byId(this.button);
+                } else if (!this.button){
                     this.button = this.domNode;
                 }
 
                 domClass.add(this.button, 'dropdown-toggle');
                 domAttr.set(this.button, 'role', 'button');
 
-                if (!this.dropdown){
+                if (typeof this.dropdown == 'string'){
+                    this.dropdown = registry.byId(this.dropdown);
+                } else if (!this.dropdown){
                     var children = this.getChildren();
                     this.dropdown = children[children.length -1];
                 }
@@ -101,7 +95,9 @@ function (
 
                 this.inherited(arguments);
 
+                on(this.button, 'mouseleave', lang.hitch(this, 'onMouseleave'));
                 on(this.button, a11yclick.click, lang.hitch(this, 'onClick'));
+
                 this.dropdown.watch('hasMouse', lang.hitch(this, function(property, oldValue, newValue){
                     this.set('hasMouse', newValue);
                     if (!newValue){
@@ -171,17 +167,11 @@ function (
                     })),
                     on(this.domNode, 'keydown', lang.hitch(this, function(evt){
                         if (evt.keyCode == keys.DOWN_ARROW){
-                            var node = this.dropdown.containerNode.firstElementChild,
-                                nodeList;
-
-                            while (node){
-                                nodeList = query('A', node);
-                                if (nodeList.length > 0){
-                                    focus.focus(nodeList[0]);
-                                    evt.preventDefault();
-                                    return;
-                                }
-                                node = node.nextElementSibling;
+                            var nodes = this.dropdown.containerNode.getElementsByTagName('a');
+                            if (nodes.length > 0){
+                                focus.focus(nodes[0]);
+                                evt.preventDefault();
+                                return;
                             }
                         }
                     }))
@@ -189,7 +179,8 @@ function (
             },
 
             position: function() {
-                var placement = lang.clone(this.placement),
+                var togglePlacement = this.togglePlacement,
+                    dropdownPlacement = this.dropdownPlacement,
                     placementNodePos = domGeom.position(this.domNode, true),
                     dropdownPos = domGeom.position(this.dropdown.domNode, true),
                     box = win.getBox(),
@@ -200,25 +191,25 @@ function (
                     anchor = {},
                     target = {},
                     calcTarget = function(){
-                        if (placement.toggle.indexOf('top') !== -1){
+                        if (togglePlacement.indexOf('top') !== -1){
                             anchor.y = placementNodePos.y;
                         } else {
                             anchor.y = placementNodePos.y + placementNodePos.h;
                         }
 
-                        if (placement.toggle.indexOf('left') !== -1){
+                        if (togglePlacement.indexOf('left') !== -1){
                             anchor.x = placementNodePos.x;
                         } else {
                             anchor.x = placementNodePos.x + placementNodePos.w;
                         }
 
-                        if (placement.dropdown.indexOf('top') !== -1){
+                        if (dropdownPlacement.indexOf('top') !== -1){
                             target.y = anchor.y;
                         } else {
                             target.y = anchor.y - dropdownPos.h;
                         }
 
-                        if (placement.dropdown.indexOf('left') !== -1){
+                        if (dropdownPlacement.indexOf('left') !== -1){
                             target.x = anchor.x;
                         } else {
                             target.x = anchor.x - dropdownPos.w;
@@ -227,62 +218,63 @@ function (
 
                 calcTarget();
                 if (target.x < 0){
-                    if (placement.toggle.indexOf('left') !== -1){
-                        placement.toggle = placement.toggle.replace('left', 'right');
+                    if (togglePlacement.indexOf('left') !== -1){
+                        togglePlacement = togglePlacement.replace('left', 'right');
                     } else {
-                        placement.toggle = placement.toggle.replace('right', 'left');
+                        togglePlacement = togglePlacement.replace('right', 'left');
                     }
-                    if (placement.dropdown.indexOf('right') !== -1){
-                        placement.dropdown = placement.dropdown.replace('right', 'left');
+                    if (dropdownPlacement.indexOf('right') !== -1){
+                        dropdownPlacement = dropdownPlacement.replace('right', 'left');
                     } else {
-                        placement.dropdown = placement.dropdown.replace('left', 'right');
+                        dropdownPlacement = dropdownPlacement.replace('left', 'right');
                     }
                     calcTarget();
                 }
 
                 if (target.x + dropdownPos.w > windowWidth){
-                    if (placement.toggle.indexOf('right') !== -1){
-                        placement.toggle = placement.toggle.replace('right', 'left');
+                    if (togglePlacement.indexOf('right') !== -1){
+                        togglePlacement = togglePlacement.replace('right', 'left');
                     } else {
-                        placement.toggle = placement.toggle.replace('left', 'right');
+                        togglePlacement = togglePlacement.replace('left', 'right');
                     }
-                    if (placement.dropdown.indexOf('left') !== -1){
-                        placement.dropdown = placement.dropdown.replace('left', 'right');
+                    if (dropdownPlacement.indexOf('left') !== -1){
+                        dropdownPlacement = dropdownPlacement.replace('left', 'right');
                     } else {
-                        placement.dropdown = placement.dropdown.replace('right', 'left');
+                        dropdownPlacement = dropdownPlacement.replace('right', 'left');
                     }
                     calcTarget();
                 }
 
                 if (target.y < scrollTop){
-                    if (placement.toggle.indexOf('top') !== -1){
-                        placement.toggle = placement.toggle.replace('top', 'bottom');
+                    if (togglePlacement.indexOf('top') !== -1){
+                        togglePlacement = togglePlacement.replace('top', 'bottom');
                     } else {
-                        placement.toggle = placement.toggle.replace('bottom', 'top');
+                        togglePlacement = togglePlacement.replace('bottom', 'top');
                     }
-                    if (placement.dropdown.indexOf('bottom') !== -1){
-                        placement.dropdown = placement.dropdown.replace('bottom', 'top');
+                    if (dropdownPlacement.indexOf('bottom') !== -1){
+                        dropdownPlacement = dropdownPlacement.replace('bottom', 'top');
                     } else {
-                        placement.dropdown = placement.dropdown.replace('top', 'bottom');
+                        dropdownPlacement = dropdownPlacement.replace('top', 'bottom');
                     }
                     calcTarget();
                 }
 
                 if (target.y + dropdownPos.h > scrollBottom){
-                    if (placement.toggle.indexOf('bottom') !== -1){
-                        placement.toggle = placement.toggle.replace('bottom', 'top');
+                    if (togglePlacement.indexOf('bottom') !== -1){
+                        togglePlacement = togglePlacement.replace('bottom', 'top');
                     } else {
-                        placement.toggle = placement.toggle.replace('top', 'bottom');
+                        togglePlacement = togglePlacement.replace('top', 'bottom');
                     }
-                    if (placement.dropdown.indexOf('top') !== -1){
-                        placement.dropdown = placement.dropdown.replace('top', 'bottom');
+                    if (dropdownPlacement.indexOf('top') !== -1){
+                        dropdownPlacement = dropdownPlacement.replace('top', 'bottom');
                     } else {
-                        placement.dropdown = placement.dropdown.replace('bottom', 'top');
+                        dropdownPlacement = dropdownPlacement.replace('bottom', 'top');
                     }
                     calcTarget();
                 }
 
-                this._activePlacement = placement;
+                this._activeTogglePlacement = togglePlacement;
+                this._activeDropdownPlacement = dropdownPlacement;
                 domStyle.set(this.dropdown.domNode, 'top', target.y + 'px');
                 domStyle.set(this.dropdown.domNode, 'left', target.x + 'px');
             }

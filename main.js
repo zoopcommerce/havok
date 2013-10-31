@@ -2,7 +2,7 @@ define ([
     './array',
     './is',
     './lang',
-    './parseComplete',
+    './parser/main',
     './string',
     './config/main',
     './di/main',

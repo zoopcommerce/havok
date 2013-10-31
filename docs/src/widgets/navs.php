@@ -54,7 +54,7 @@
               <a href="">tab 2</a>
             </nav-tab>
             <script type="text/javascript">
-                require(['dijit/registry', 'havok/parseComplete!'], function(registry){
+                require(['dijit/registry', 'havok/parser/complete!'], function(registry){
                     registry.byId('navTabs1').on('item-click', function(item){
                         alert('Just clicked item: ' + item.innerHTML)
                     })
@@ -74,7 +74,7 @@
               <a href="">tab 2</a>
             </nav-tab>
             <script type="text/javascript">
-                require(['dijit/registry', 'havok/parseComplete!'], function(registry){
+                require(['dijit/registry', 'havok/parser/complete!'], function(registry){
                     registry.byId('navTabs2').watch('active', function(property, oldValue, newValue){
                         alert('Previously active tab: ' + oldValue.innerHTML + '. Currently active tab: ' + newValue.innerHTML)
                     })
