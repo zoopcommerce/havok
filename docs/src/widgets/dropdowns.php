@@ -15,10 +15,8 @@
           <div class="bs-docs-example">
             <div class="dropdown clearfix">
               <dropdown-container style="display: block; position: static; margin-bottom: 5px; *width: 180px;">
-                  <div>
-                    <h5>Stuff here</h5>
-                    <p>This is stuff inside a dropdown</p>
-                  </div>
+                <h5>Stuff here</h5>
+                <p>This is stuff inside a dropdown</p>
               </dropdown-container>
             </div>
           </div>

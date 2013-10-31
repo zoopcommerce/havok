@@ -107,10 +107,8 @@
                     <dropdown-toggle>
                       <a href="">Dropdown Container<b class="caret"></b></a>
                       <dropdown-container>
-                        <div>
                           <h5>Stuff here</h5>
                           <p>This is stuff inside a dropdown</p>
-                        </div>
                       </dropdown-container>
                     </dropdown-toggle>
                   </ul>

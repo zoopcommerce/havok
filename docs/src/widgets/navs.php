@@ -180,88 +180,28 @@
 
 </pre>
 
-<!--
           <h3>Pills with dropdowns</h3>
           <div class="bs-docs-example">
-           <ul data-dojo-type="havok/widget/NavPill">
-              <li class="active"><a href="">Home</a></li>
-              <li><a href="">Help</a></li>
-              <li data-dojo-type="havok/widget/DropdownToggle">
+           <nav-pill>
+              <a class="active" href="">Home</a>
+              <a href="">Help</a>
+              <dropdown-toggle>
                 <a href="">Dropdown <b class="caret"></b></a>
-                <ul data-dojo-type="havok/widget/Dropdown">
-                  <li><a href="">Action</a></li>
-                  <li><a href="">Another action</a></li>
-                  <li><a href="">Something else here</a></li>
+                <dropdown>
+                  <a href="">Action</a>
+                  <a href="">Another action</a>
+                  <a href="">Something else here</a>
                   <hr />
-                  <li><a href="">Separated link</a></li>
-                </ul>
-              </li>
-            </ul>
+                  <a href="">Separated link</a>
+                </dropdown>
+              </dropdown-toggle>
+            </nav-pill>
           </div>
 <pre class="prettyprint linenums">
-&lt;ul data-dojo-type=&quot;havok/widget/NavPill&quot; &gt;
-   &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
-   &lt;li&gt;&lt;a href=&quot;&quot;&gt;Help&lt;/a&gt;&lt;/li&gt;
-   &lt;li data-dojo-type=&quot;havok/widget/DropdownToggle&quot;&gt;
-     &lt;a href=&quot;&quot;&gt;Dropdown &lt;b class=&quot;caret&quot;&gt;&lt;/b&gt;&lt;/a&gt;
-     &lt;ul data-dojo-type=&quot;havok/widget/Dropdown&quot;&gt;
-       &lt;li&gt;&lt;a href=&quot;&quot;&gt;Action&lt;/a&gt;&lt;/li&gt;
-       &lt;li&gt;&lt;a href=&quot;&quot;&gt;Another action&lt;/a&gt;&lt;/li&gt;
-       &lt;li&gt;&lt;a href=&quot;&quot;&gt;Something else here&lt;/a&gt;&lt;/li&gt;
-       &lt;hr /&gt;
-       &lt;li&gt;&lt;a href=&quot;&quot;&gt;Separated link&lt;/a&gt;&lt;/li&gt;
-     &lt;/ul&gt;
-   &lt;/li&gt;
- &lt;/ul&gt;
-</pre>
 
-          <h3>Nav dropdowns created from a store</h3>
-          <p>Using a store, add dropdown menus with the <code>type: 'dropdown'</code> property.</p>
-          <div class="bs-docs-example">
-              <ul data-dojo-type="havok/widget/NavPill"
-                  data-dojo-props="
-                    active: 'home',
-                    store: {
-                        idProperty: 'text',
-                        data: [
-                            {text: 'home'},
-                            {type: 'dropdown', text: 'help'},
-                            {text: 'action', parent: 'Help'},
-                            {text: 'another action', parent: 'help'},
-                            {text: 'something else here', parent: 'help'},
-                            {type: 'divider', parent: 'help'},
-                            {type: 'dropdown', text: 'deeper submenu', parent: 'help'},
-                            {text: 'Deep menu 1', parent: 'deeper submenu'},
-                            {text: 'Deep menu 2', parent: 'deeper submenu'},
-                        ]
-                    }"
-              >
-              </ul>
-          </div>
-<pre class="prettyprint linenums">
-&lt;ul data-dojo-type=&quot;havok/widget/NavPill&quot;
-    data-dojo-props=&quot;
-      active: 'home',
-      store: {
-          idProperty: 'text',
-          data: [
-              {text: 'home'},
-              {type: 'dropdown', text: 'help'},
-              {text: 'action', parent: 'Help'},
-              {text: 'another action', parent: 'help'},
-              {text: 'something else here', parent: 'help'},
-              {type: 'divider', parent: 'help'},
-              {type: 'dropdown', text: 'deeper submenu', parent: 'help'},
-              {text: 'Deep menu 1', parent: 'deeper submenu'},
-              {text: 'Deep menu 2', parent: 'deeper submenu'},
-          ]
-      }&quot;
-&gt;
-&lt;/ul&gt;
 </pre>
 
           <hr class="bs-docs-separator">
-
 
           <h2>Nav lists</h2>
           <p>A simple and easy way to build groups of nav links with optional headers. They're best used in sidebars like the Finder in OS X.</p>
@@ -271,78 +211,21 @@
           <p>If using markup, add <code>class="nav-header"</code> to create headers:</p>
           <div class="bs-docs-example">
             <div class="well" style="max-width: 340px; padding: 8px 0;">
-              <ul data-dojo-type="havok/widget/NavList">
+              <nav-list>
                 <li class="nav-header">List header</li>
-                <li class="active"><a href="">Home</a></li>
-                <li><a href="">Library</a></li>
-                <li><a href="">Applications</a></li>
+                <a class="active" href="">Home</a>
+                <a href="">Library</a>
+                <a href="">Applications</a>
                 <li class="nav-header">Another list header</li>
-                <li><a href="">Profile</a></li>
-                <li><a href="">Settings</a></li>
+                <a href="">Profile</a>
+                <a href="">Settings</a>
                 <hr />
-                <li><a href="">Help</a></li>
-              </ul>
+                <a href="">Help</a>
+              </nav-list>
             </div>
           </div>
 <pre class="prettyprint linenums">
-&lt;ul data-dojo-type=&quot;havok/widget/NavList&quot;&gt;
-  &lt;li class=&quot;nav-header&quot;&gt;List header&lt;/li&gt;
-  &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;&quot;&gt;Library&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;&quot;&gt;Applications&lt;/a&gt;&lt;/li&gt;
-  &lt;li class=&quot;nav-header&quot;&gt;Another list header&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;&quot;&gt;Profile&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;&quot;&gt;Settings&lt;/a&gt;&lt;/li&gt;
-  &lt;hr /&gt;
-  &lt;li&gt;&lt;a href=&quot;&quot;&gt;Help&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+
 </pre>
 
-          <h3>Store nav list Example</h3>
-          <p>If using a store, set <code>type: 'nav-header'</code> to create headers:</p>
-          <div class="bs-docs-example">
-            <div class="well" style="max-width: 340px; padding: 8px 0;">
-              <ul data-dojo-type="havok/widget/NavList"
-                  data-dojo-props="
-                    activeId: 'Home',
-                    store: {
-                        idProperty: 'text',
-                        data: [
-                            {type: 'nav-header', text: 'List Header'},
-                            {text: 'Home'},
-                            {text: 'Library'},
-                            {text: 'Applications'},
-                            {type: 'nav-header', text: 'Another List Header'},
-                            {text: 'Profile'},
-                            {text: 'Settings'},
-                            {type: 'divider', text: 'divider1'},
-                            {text: 'Help'}
-                        ]
-                    }"
-              >
-              </ul>
-            </div>
-          </div>
-<pre class="prettyprint linenums">
-&lt;ul data-dojo-type=&quot;havok/widget/NavList&quot;
-    data-dojo-props=&quot;
-      activeId: 'Home',
-      store: {
-          idProperty: 'text',
-          data: [
-              {type: 'nav-header', text: 'List Header'},
-              {text: 'Home'},
-              {text: 'Library'},
-              {text: 'Applications'},
-              {type: 'nav-header', text: 'Another List Header'},
-              {text: 'Profile'},
-              {text: 'Settings'},
-              {type: 'divider', text: 'divider1'},
-              {text: 'Help'}
-          ]
-      }&quot;
-&gt;
-&lt;/ul&gt;
-</pre>
--->
         </section>

@@ -42,7 +42,7 @@ function (
                 }
                 if (item.nodeName == 'HR'){
                     return domConstruct.place(this.dividerTemplate, item, 'replace');
-                } else if (item.nodeName == 'LI'){
+                } else if (['LI', 'DROPDOWN-SUBMENU'].indexOf(item.nodeName) != -1){
                     this._attachClickListener(item);
                     return item;
                 } else {

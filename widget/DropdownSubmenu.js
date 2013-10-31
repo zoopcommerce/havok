@@ -28,13 +28,7 @@ function (
 
             dropdownPlacement: 'top-left',
 
-            buildRendering: function(){
-
-                if (this.srcNodeRef && this.srcNodeRef.parentElement.nodeName == 'DROPDOWN'){
-                    this.tag = 'li';
-                }
-                this.inherited(arguments);
-            },
+            tag: 'li',
 
             startup: function(){
 

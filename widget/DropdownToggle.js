@@ -68,7 +68,7 @@ function (
                 if (!this.tag){
                     this.tag = 'div';
                 }
-                if (this.srcNodeRef && this.srcNodeRef.parentElement.nodeName == 'UL'){
+                if (this.srcNodeRef && ['UL', 'NAV-TAB', 'NAV-PILL'].indexOf(this.srcNodeRef.parentElement.nodeName) != -1){
                     this.tag = 'li';
                 }
                 this.inherited(arguments);

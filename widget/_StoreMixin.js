@@ -7,6 +7,7 @@ define([
     'dojo/dom-attr',
     'dojo/dom-construct',
     './Dropdown',
+    './DropdownToggle',
     './DropdownSubmenu',
     '../proxy!../store/manager'
 ],
@@ -19,6 +20,7 @@ function (
     domAttr,
     domConstruct,
     Dropdown,
+    DropdownToggle,
     DropdownSubmenu,
     storeManager
 ){
@@ -90,12 +92,15 @@ function (
                     var i,
                         item,
                         vars,
-                        itemTemplate = '<a ${attr} href="${href}">${text}</a>';
+                        itemTemplate = '<a ${attr} href="${href}">${label}</a>';
 
                     for (i = 0; i < data.length; i++){
                         vars = {attr: '', href: '', storeId: data[i][this.store.idProperty]};
-                        if (data[i].state == 'disabled'){
+                        if (data[i].disabled){
                             vars.attr = 'class="disabled"';
+                        }
+                        if (data[i].type == 'nav-header') {
+                            vars.attr = 'class="nav-header"';
                         }
                         if (data[i].type == 'divider'){
                             item = this.dividerTemplate;
@@ -103,10 +108,16 @@ function (
                             lang.mixin(vars, data[i]);
                             item = string.substitute(itemTemplate, vars);
                         }
-                        if (data[i].type == 'dropdown'){
+                        if (data[i].type == 'group'){
                             item = domConstruct.place(item, this.containerNode);
-                            var dropdown = new (declare([Dropdown, StoreMixin], {}))({store: this.store, query: {parent: 4}}),
+                            var dropdown = new (declare([Dropdown, StoreMixin], {}))({store: this.store, query: {parent: data[i][this.store.idProperty]}}),
+                                submenu;
+
+                            if (this.isInstanceOf(Dropdown)){
                                 submenu = new DropdownSubmenu({dropdown: dropdown, button: item, tag: 'li'});
+                            } else {
+                                submenu = new DropdownToggle({dropdown: dropdown, button: item, tag: 'li'});
+                            }
                             this.containerNode.appendChild(submenu.domNode);
                             submenu.containerNode.appendChild(item);
                             submenu.startup();

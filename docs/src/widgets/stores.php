@@ -8,17 +8,39 @@
   <h2>Nav example</h2>
 
     <div class="bs-docs-example">
-        <datalist id="navStore1" id-property="text">
-            <option text="home">
-            <option text="#navs anchor" href="#stores">
-            <option text="disabled pill" state="disabled">
+        <datalist id="navStore1">
+            <option>home</option>
+            <option href="#stores">#navs anchor</option>
+            <option disabled=true>disabled pill</option>
         </datalist>
         <nav-pill
             mixins = "store"
-            active = "home"
+            active = 0
             store  = "navStore1"
         ></nav-pill>
     </div>
+<pre class="prettyprint linenums">
+
+</pre>
+
+          <h3>Nav dropdowns created from a store</h3>
+          <p>Using a store, add dropdown menus with the <code>type: 'dropdown'</code> property.</p>
+          <div class="bs-docs-example">
+            <datalist id="navStore2">
+                <option>home</option>
+                <optgroup label="help <b class='caret'></b>">
+                    <option>action</option>
+                    <option>another action</option>
+                    <option>something else</option>
+                    <option type="divider">
+                    <optgroup label="deeper submenu">
+                        <option>deep menu 1</option>
+                        <option>deep menu 2</option>
+                    </optgroup>
+                </optgroup>
+            </datalist>
+              <nav-pill store="navStore2" mixins="store" active=0></nav-pill>
+          </div>
 <pre class="prettyprint linenums">
 
 </pre>
@@ -29,15 +51,16 @@
     <div class="bs-docs-example bs-docs-example-submenus">
         <div class="dropdown clearfix">
             <datalist id="dropdownStore1">
-                <option id="0" text="Action">
-                <option id="1" text="Another Action">
-                <option id="2" text="Something else here">
-                <option id="3" type="divider">
-                <option id="4" type="dropdown" text="More options">
-                <option id="5" parent="4" text="Second level link">
-                <option id="6" parent="4" text="Second level link">
-                <option id="7" parent="4" text="Second level link">
-                <option id="8" parent="4" text="Second level link">
+                <option>Action</option>
+                <option>Another Action</option>
+                <option>Something else here</option>
+                <option type="divider">
+                <optgroup label="More options">
+                    <option>Second level link</option>
+                    <option>Second level link</option>
+                    <option>Second level link</option>
+                    <option>Second level link</option>
+                </optgroup>
             </datalist>
             <dropdown
                 mixins = "store"
@@ -49,6 +72,31 @@
 <pre class="prettyprint linenums">
 
 </pre>
+
+<
+          <h3>Store nav list Example</h3>
+          <p>If using a store, set <code>type: 'nav-header'</code> to create headers:</p>
+          <div class="bs-docs-example">
+            <div class="well" style="max-width: 340px; padding: 8px 0;">
+                <datalist id="navListStore1">
+                    <option type="nav-header">List header</option>
+                    <option>Home</option>
+                    <option>Library</option>
+                    <option>Applications</option>
+                    <option type="nav-header">Another list header</option>
+                    <option>Profile</option>
+                    <option>Settings</option>
+                    <option type="divider">
+                    <option>Help</option>
+                </datalist>
+              <nav-list mixins="store" store="navListStore1">
+              </nav-list>
+            </div>
+          </div>
+<pre class="prettyprint linenums">
+
+</pre>
+
 
   <!--
   <h2>Examples</h2>
