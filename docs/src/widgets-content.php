@@ -22,7 +22,7 @@
         include 'widgets/dropdown-toggle.php';
         include 'widgets/buttons.php';
         include 'widgets/navs.php';
-//        include 'widgets/tabs.php';
+        include 'widgets/tabs.php';
 //        include 'widgets/navbar.php';
 //        include 'widgets/sortable.php';
 //        include 'widgets/affix.php';

@@ -20,6 +20,7 @@ define(
                     'nav-tab'            : 'havok/widget/NavTab',
                     'overlay'            : 'havok/widget/Overlay',
                     'radio-group'        : 'havok/widget/RadioGroup',
+                    'tab-container'      : 'havok/widget/TabContainer',
                     'toggle-button'      : 'havok/widget/ToggleButton'
                 },
                 mixins: {

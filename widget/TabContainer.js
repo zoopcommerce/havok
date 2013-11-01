@@ -35,16 +35,14 @@ function (
 
                 this.inherited(arguments);
 
-                this.nav = declare.safeMixin(new NavTab, new SortableMixin);
+                this.nav = new (declare([NavTab, SortableMixin], null));
             },
 
             startup: function(){
                 this.inherited(arguments);
 
                 var i,
-                    type,
-                    navData = [],
-                    active;
+                    classes;
 
                 if (!this.tabPanes){
                     this.tabPanes = {};
@@ -55,21 +53,19 @@ function (
                 }
 
                 for (i in this.tabPanes){
+                    classes = [];
                     if (domClass.contains(this.tabPanes[i], 'active')){
-                        active = i;
+                        classes.push('active');
                     }
-                    type = 'link';
                     if (domClass.contains(this.tabPanes[i], 'disabled')){
-                        type = 'disabled';
+                        classes.push = 'disabled';
                     }
-                    navData.push({type: type, text: i});
+                    domAttr.set(this.nav.addItem('<a class="' + classes.join('') + '" href="">' + i + '</a>'), 'tab-id', i);
                 }
 
-                this.nav.set('store', {idProperty: 'text', data: navData});
-                this.nav.set('active', active);
                 this.nav.watch('active', lang.hitch(this, function(property, oldValue, newValue){
-                    domClass.remove(this.tabPanes[oldValue.text], 'active');
-                    domClass.add(this.tabPanes[newValue.text], 'active');
+                    domClass.remove(this.tabPanes[domAttr.get(oldValue, 'tab-id')], 'active');
+                    domClass.add(this.tabPanes[domAttr.get(newValue, 'tab-id')], 'active');
                 }));
                 this.nav.startup();
             },

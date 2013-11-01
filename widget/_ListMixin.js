@@ -46,6 +46,9 @@ function (
                     return domConstruct.place(this.dividerTemplate, item, 'replace');
                 } else if (['LI', 'DROPDOWN-SUBMENU'].indexOf(item.nodeName) != -1 || this.itemTemplate == ''){
                     this._attachClickListener(item);
+                    if (domClass.contains(item, 'active')){
+                        this.set('active', item);
+                    }
                     return item;
                 } else {
                     var outerItem = domConstruct.place(this.itemTemplate, item, 'after');
