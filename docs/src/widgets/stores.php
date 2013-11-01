@@ -98,6 +98,24 @@
 </pre>
 
 
+<p>NavBar Dropdown example using a store.</p>
+<div class="bs-docs-example">
+                <datalist id="navBarStore1">
+                    <option>Home</option>
+                    <optgroup label="Dropdown <span class='caret'></span>">
+                        <option>Item 1</option>
+                        <option>Item 2</option>
+                    </optgroup>
+                </datalist>
+  <nav-bar>
+      <nav-bar-links mixins="store" store="navBarStore1">
+      </nav-bar-links>
+  </nav-bar>
+</div>
+<pre class="prettyprint linenums">
+
+</pre>
+
   <!--
   <h2>Examples</h2>
 

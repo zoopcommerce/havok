@@ -3,7 +3,6 @@ define([
     'dojo/_base/lang',
     'dojo/_base/fx',
     'dojo/fx/easing',
-    'dojo/query',
     'dojo/on',
     'dojo/dom-attr',
     'dojo/dom-construct',
@@ -11,7 +10,6 @@ define([
     'dojo/dom-style',
     'dojo/dom-geometry',
     'dijit/a11yclick',
-    'dijit/registry',
     './_WidgetBase',
     '../less!../vendor/bootstrap/less/navbar.less'
 ],
@@ -20,7 +18,6 @@ function (
     lang,
     baseFx,
     easing,
-    query,
     on,
     domAttr,
     domConstruct,
@@ -28,7 +25,6 @@ function (
     domStyle,
     domGeom,
     a11yclick,
-    registry,
     WidgetBase
 ){
     // module:
@@ -48,11 +44,18 @@ function (
             startup: function(){
                 this.inherited(arguments);
 
-                query('[data-dojo-attach-point]', this.containerNode).forEach(lang.hitch(this, function(attachNode){
-                    if (registry.getEnclosingWidget(attachNode) === this){
-                        this[domAttr.get(attachNode, 'data-dojo-attach-point')] = attachNode;
+                var i,
+                    node;
+
+                for (i = 0; i < this.containerNode.children.length; i++){
+                    node = this.containerNode.children[i];
+                    if (domAttr.has(node, 'nav-bar-toggle')){
+                        this.toggleNode = node;
                     }
-                }));
+                    if (domAttr.has(node, 'nav-bar-toggle-target')){
+                        this.toggleTarget = node;
+                    }
+                }
 
                 if (this.toggleNode){
                     domClass.add(this.toggleNode, 'btn btn-navbar');
