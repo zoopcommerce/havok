@@ -24,7 +24,9 @@ function (
         {
             //active: undefined,
 
-            templateString: '<ul data-dojo-attach-point="containerNode"></ul>',
+            tag: 'ul',
+
+            templateString: '<${tag} data-dojo-attach-point="containerNode"></${tag}>',
 
             itemTemplate: '<li></li>',
 
@@ -42,7 +44,7 @@ function (
                 }
                 if (item.nodeName == 'HR'){
                     return domConstruct.place(this.dividerTemplate, item, 'replace');
-                } else if (['LI', 'DROPDOWN-SUBMENU'].indexOf(item.nodeName) != -1){
+                } else if (['LI', 'DROPDOWN-SUBMENU'].indexOf(item.nodeName) != -1 || this.itemTemplate == ''){
                     this._attachClickListener(item);
                     return item;
                 } else {

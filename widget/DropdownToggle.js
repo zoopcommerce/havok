@@ -6,14 +6,12 @@ define([
     'dojo/window',
     'dojo/keys',
     'dijit/focus',
-    'dojo/dom',
     'dojo/dom-style',
     'dojo/dom-class',
     'dojo/dom-construct',
     'dojo/dom-geometry',
     'dojo/dom-attr',
     'dijit/a11yclick',
-    'dijit/registry',
     './_WidgetBase',
     './_HideableMixin'
 ],
@@ -25,14 +23,12 @@ function (
     win,
     keys,
     focus,
-    dom,
     domStyle,
     domClass,
     domConstruct,
     domGeom,
     domAttr,
     a11yclick,
-    registry,
     WidgetBase,
     HideableMixin
 ){
@@ -76,18 +72,26 @@ function (
 
             startup: function(){
 
-                if (typeof this.button == 'string'){
-                    this.button = dom.byId(this.button);
-                } else if (!this.button){
+                if (!this.button){
+                    var i,
+                        node;
+
+                    for (i = 0; i < this.containerNode.children.length; i++){
+                        node = this.containerNode.children[i];
+                        if (domAttr.has(node, 'dropdown-toggle-target')){
+                            this.button = node;
+                            break;
+                        }
+                    }
+                }
+                if (!this.button){
                     this.button = this.domNode;
                 }
 
                 domClass.add(this.button, 'dropdown-toggle');
                 domAttr.set(this.button, 'role', 'button');
 
-                if (typeof this.dropdown == 'string'){
-                    this.dropdown = registry.byId(this.dropdown);
-                } else if (!this.dropdown){
+                if (!this.dropdown){
                     var children = this.getChildren();
                     this.dropdown = children[children.length -1];
                 }

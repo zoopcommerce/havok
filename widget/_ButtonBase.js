@@ -1,24 +1,22 @@
 define([
     'dojo/_base/declare',
     './_WidgetBase',
-    './_KeypressMixin',
-    'dojo/text!./template/Button.html',
     '../less!../vendor/bootstrap/less/buttons.less'
 ],
 function (
     declare,
-    WidgetBase,
-    KeypressMixin,
-    template
+    WidgetBase
 ){
     // module:
-    //    	havok/widget/Button
+    //    	havok/widget/_ButtonBase
 
     return declare(
-        [WidgetBase, KeypressMixin],
+        [WidgetBase],
         {
 
-            templateString: template,
+            baseClass: 'btn',
+
+            templateString: '<button>${!text}</button>',
 
             //text: undefined,
 
@@ -31,6 +29,8 @@ function (
                     }
                 }
                 this.inherited(arguments);
+
+                this.button = this.domNode;
             }
         }
     );

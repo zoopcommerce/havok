@@ -1,25 +1,13 @@
 define([
     'dojo/_base/declare',
     'dojo/_base/lang',
-    'dojo/_base/array',
-    'dojo/Deferred',
-    'dojo/DeferredList',
-    'dojo/on',
-    'dojo/when',
     'dojo/dom-class',
-    'dijit/a11yclick',
     './ButtonGroup'
 ],
 function (
     declare,
     lang,
-    array,
-    Deferred,
-    DeferredList,
-    on,
-    when,
     domClass,
-    a11yclick,
     ButtonGroup
 ){
     // module:
@@ -28,99 +16,45 @@ function (
     return declare(
         [ButtonGroup],
         {
-
-            _attachClickListener: function(node, item){
-
-                on(node, a11yclick.click, lang.hitch(this, function(e){
-                    e.preventDefault();
-                    if (domClass.contains(e.target, 'disabled')){
-                        return;
-                    }
-
-                    var active = this.get('active'),
-                        i,
-                        removed = false;
-                    if (!active){
-                        active = [];
-                    }
-                    active = array.map(active, lang.hitch(this, function(item){
-                        if (typeof item == 'object'){
-                            return item[this.store.idProperty];
-                        } else {
-                            return item;
-                        }
-                    }));
-                    for (i = 0; i < active.length; i++){
-                        if (active[i] == item[this.store.idProperty]){
-                            active.splice(i, i+1);
-                            removed = true;
-                            break;
-                        }
-                    }
-                    if (!removed){
-                        active.push(item);
-                    }
-                    this.set('active', active);
-                    this.emit('item-click', item);
-                }));
-            },
-
             _setActiveAttr: function(value){
 
+                var i,
+                    node;
+
                 if (!value){
+                    //deactivate all
+                    for (i = 0; i < this.containerNode.children.length; i++){
+                        domClass.remove(this.containerNode.children[i], 'active');
+                    }
+                    this._set('active', null);
+                    return;
+                }
+                if (lang.isArray(value)){
+                    //active only those in array
+                    for (i = 0; i < this.containerNode.children.length; i++){
+                        node = this.containerNode.children[i];
+                        if (value.indexOf(node) == -1){
+                            domClass.remove(node, 'active');
+                        } else {
+                            domClass.add(node, 'active');
+                        }
+                    }
                     this._set('active', value);
                     return;
                 }
-                if (!lang.isArray(value)){
-                    value = [value];
+
+                //otherwise, toggle value in the active array
+                if (!this.active){
+                    this.active = [];
                 }
-
-                var list = [];
-                array.forEach(value, lang.hitch(this, function(valueItem){
-                    var deferred = new Deferred,
-                        id;
-
-                    if (this.store && this.store.get){
-                        if (typeof valueItem == 'object'){
-                            id = valueItem[this.store.idProperty];
-                        } else {
-                            id = valueItem;
-                        }
-                        when(this.store.get(id), lang.hitch(this, function(storeItem){
-                            deferred.resolve(storeItem);
-                        }))
-                    } else {
-                        deferred.resolve(valueItem);
-                    }
-                    list.push(deferred);
-                }));
-
-                var deferredList = new DeferredList(list);
-
-                deferredList.then(lang.hitch(this, function(value){
-                    var fliteredValues = array.map(
-                        array.filter(value, function(valueItem){
-                            if (valueItem[0] && valueItem[1]){
-                                return true;
-                            }
-                        }),
-                        function(valueItem){
-                            return valueItem[1];
-                        }
-                    );
-                    array.forEach(this.active, lang.hitch(this, function(activeItem){
-                        if (typeof activeItem == 'object'){
-                            domClass.remove(this.nodes[activeItem.id], 'active');
-                        }
-                    }));
-                    array.forEach(fliteredValues, lang.hitch(this, function(valueItem){
-                        if (this.nodes[valueItem.id]){
-                            domClass.add(this.nodes[valueItem.id], 'active');
-                        }
-                    }));
-
-                    this._set('active', fliteredValues);
-                }));
+                if (this.active.indexOf(value) == -1){
+                    domClass.add(value, 'active');
+                    this.active.push(value);
+                } else {
+                    domClass.remove(value, 'active');
+                    this.active.splice(this.active.indexOf(value), 1);
+                }
+                this._set('active', this.active);
             }
         }
     );

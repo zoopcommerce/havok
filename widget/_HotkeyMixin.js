@@ -13,7 +13,7 @@ function (
     on
 ){
     // module:
-    //    	havok/widget/_KeypressMixin
+    //    	havok/widget/_HotkeyMixin
 
     return declare(
         [],
@@ -28,6 +28,35 @@ function (
             },
 
             _setKeysAttr: function(value){
+                if (typeof value == 'string'){
+                    var i,
+                        j,
+                        combos = value.split(';'),
+                        combo,
+                        keys;
+
+                    value = [];
+                    for (i = 0; i < combos.length; i++){
+                        keys = combos[i].split(' ');
+                        combo = {};
+                        for(j = 0; j < keys.length; j++){
+                            switch (keys[j]){
+                                case 'ctrl':
+                                    combo.ctrl = true;
+                                    break;
+                                case 'alt':
+                                    combo.alt = true;
+                                    break;
+                                case 'shift':
+                                    combo.shift = true;
+                                    break;
+                                default:
+                                    combo['char'] = keys[j];
+                            }
+                        }
+                        value.push(combo);
+                    }
+                }
                 if (!lang.isArray(value)){
                     value = [value];
                 }

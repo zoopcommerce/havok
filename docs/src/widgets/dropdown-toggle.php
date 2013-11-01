@@ -244,17 +244,17 @@
 
           <p>Use attach points to control exactly which element in the markup will respond to a click.</p>
           <div class="bs-docs-example">
-            <dropdown-toggle button="dropdownToggleButtonExample" dropdown="dropdownToggleExample" class="well">
+            <dropdown-toggle class="well">
               <p>Extra text</p>
-              <button id="dropdownToggleButtonExample" class="btn">Show Dropdown</button>
-            </dropdown-toggle>
-              <dropdown id="dropdownToggleExample">
+              <button dropdown-toggle-target class="btn">Show Dropdown</button>
+              <dropdown>
                   <a href="">Action</a>
                   <a href="">Another action</a>
                   <a href="">Something else here</a>
                   <hr />
                   <a href="">Separated link</a>
               </dropdown>
+            </dropdown-toggle>
           </div>
 <pre class="prettyprint linenums">
 

@@ -9,11 +9,18 @@ function(
     //		havok/bootstrap
     //
 
+    var complete;
+
     return {
         load: function(id, require, callback){
-            require(dojoConfig.bootstrap, function(){
-                callback()
-            })
+            if (complete){
+                callback();
+            } else {
+                require(dojoConfig.bootstrap, function(){
+                    complete = true;
+                    callback();
+                })
+            }
         }
     };
 });
