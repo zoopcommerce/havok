@@ -1,0 +1,9 @@
+{% extends "pageContent.twig" %}
+
+{% set title='Data Quality' %}
+{% set byline='Keep your data clean and tidy without annoying your users.' %}
+
+{% block mainContent %}
+    <section id="filters" title="Filters">{% include 'data-quality/filters.twig' %}</section>
+    <section id="validators" title="Validators">{% include 'data-quality/validators.twig' %}</section>
+{% endblock %}

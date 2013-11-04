@@ -1,0 +1,29 @@
+<div class="page-header">
+    <h1>Plugins</h1>
+</div>
+
+<p>There are two AMD plugins provided which mean you can largely forget di in your actual code.</p>
+
+<h2>get!</h2>
+
+<p>Using <code>havok/get!my/module</code> will return an instance of <code>my/module</code> retrieved through the shared di container. Eg:</p>
+
+<p>When creating a proxy, the di needs to be told what methods are available for proxying. This is what the <code>proxyMethods</code> configuration is used for.</p>
+
+<p>For example, with this config <code>di.get('my/zoo')</code> will return an instance of <code>my/zoo</code> populated with a proxy lion. The <code>my/lion/module</code> will not be created until <code>zoo.lion.roar()</code> is called.</p>
+
+<pre class="prettyprint linenums">
+require(['havok/get!my/module'], function(myModule){
+    //do something
+})
+</pre>
+
+<h2>proxy!</h2>
+
+<p><code>havok/proxy!</code> works exactly the same as <code>havok/get!</code>, it just returns a proxy instead:</p>
+
+<pre class="prettyprint linenums">
+require(['havok/proxy!my/module'], function(myModule){
+    //do something
+})
+</pre>

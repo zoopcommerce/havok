@@ -1,0 +1,26 @@
+{% extends "pageContent.twig" %}
+
+{% set title='Widgets' %}
+{% set byline='Dozens of reusable widgets built to provide navigation, alerts, text editing, and more.' %}
+
+{% block mainContent %}
+    <section id="using-widgets" title="Using Widgets">{#% include 'widgets/using-widgets.twig' %#}</section>
+    <section id="stores" title="Stores">{% include 'widgets/stores.twig' %}</section>
+    <section id="dropdowns" title="Dropdowns">{% include 'widgets/dropdowns.twig' %}</section>
+    <section id="dropdown-toggle" title="Dropdown Toggles">{% include 'widgets/dropdown-toggle.twig' %}</section>
+    <section id="buttons" title="Buttons">{% include 'widgets/buttons.twig' %}</section>
+    <section id="navs" title="Navs">{% include 'widgets/navs.twig' %}</section>
+    <section id="tabs" title="Tabs">{% include 'widgets/tabs.twig' %}</section>
+    <section id="navbar" title="Navbar">{% include 'widgets/navbar.twig' %}</section>
+    {#% include 'widgets/sortable.twig' %}
+    {% include 'widgets/affix.twig' %}
+    {% include 'widgets/scrollspy.twig' %}
+    {% include 'widgets/accordion.twig' %}
+    {% include 'widgets/modals.twig' %}
+    {% include 'widgets/tooltips.twig' %}
+    {% include 'widgets/alerts.twig' %}
+    {% include 'widgets/overlay.twig' %}
+    {% include 'widgets/dragable.twig' %}
+    {% include 'widgets/carousel.twig' %}
+    {% include 'widgets/text-editor.twig' %#}
+{% endblock %}

@@ -1,0 +1,17 @@
+<header class="jumbotron subhead">
+    <div class="container">
+        <h1>{{title}}</h1>
+        <p class="lead">{{byline}}</p>
+    </div>
+</header>
+
+<div class="container">
+    <div class="row">
+        {% include 'side-nav.twig' %}
+        <div class="span9" id="mainContent">
+        {% block mainContent %}
+            <h1>Havok by Zoop</h1>
+        {% endblock %}
+        </div>
+    </div>
+</div>

@@ -7,7 +7,7 @@ define([
     'dojo/dom',
     'dojo/Deferred',
     'dojo/dom-construct',
-    'dojo/parser',
+    '../parser/parser',
     'dijit/registry',
     '../../exception/Application'
 ],
@@ -26,8 +26,6 @@ function(
 ){
     return declare([],
         {
-            type: 'html',
-
             //node: undefined,
 
             constructor: function(){
@@ -43,11 +41,11 @@ function(
 
                 var href = window.location.href;
                 if (href.slice(-1) == '/'){
-                    //default to index.<type>
+                    //default to index.html
                     href = href + 'index.html';
                 }
 
-                this.load(href.replace('.html', '-content.' + this.type)).then(lang.hitch(this, function(html){
+                this.load(href.replace('.html', '-content.html')).then(lang.hitch(this, function(html){
                     this.node.innerHTML = html;
                     prettyPrint();
 
