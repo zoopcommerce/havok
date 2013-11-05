@@ -5,8 +5,8 @@ define([
     'dojo/dom-geometry',
     'dojo/dom-construct',
     'dojo/dom',
-    'dojo/string',
-    'dojo/query'
+    'dojo/on',
+    'dojo/string'
 ],
 function(
     declare,
@@ -15,8 +15,8 @@ function(
     domGeom,
     domConstruct,
     dom,
-    string,
-    query
+    on,
+    string
 ) {
     // module:
     //		havok/widget/_ScrollSpyMixin
@@ -24,62 +24,85 @@ function(
     return declare(
         [],
         {
-
-            scrollSpy: true,
-
             //spyTarget: undefined,
 
-            itemTemplate: '<li spy-target="${id}"><a href="#${id}">${text}</a></li>',
+            itemTemplate: '<li data-havok-spy-target="${id}"><a href="#${id}">${text}</a></li>',
 
             //_scrollSpyTimer: undefined,
+
+            //_scrollHandler
 
             startup: function(){
                 this.inherited(arguments);
                 this.updateScrollSpy();
             },
 
-            _renderNodes: function(){
-
-                var spyNodes = query('> [id]', this.spyTarget),
-                    text;
-
-                spyNodes.forEach(lang.hitch(this, function(node){
-                    if (domAttr.has(node, 'title')){
-                        text = domAttr.get(node, 'title');
-                    } else {
-                        text = node.id;
-                    }
-                    domConstruct.place(string.substitute(this.itemTemplate, {id: node.id, text: text}), this.containerNode, 'last');
-                }));
+            destroy: function(){
+                if (this._scrollHandler){
+                    this._scrollHandler.remove();
+                }
+                this.inherited(arguments);
             },
 
-            _setScrollSpyAttr: function(value){
-                if (value){
-                    this.updateScrollSpy();
+            _renderNodes: function(){
+
+                var node,
+                    i,
+                    text,
+                    target = this.spyTarget;
+
+                if (typeof target == 'string'){
+                    target = dom.byId(target);
                 }
-                this._set('scrollSpy', !!value);
+
+                for (i = 0; i < target.children.length; i++) {
+                    node = target.children[i];
+                    if (node.id){
+                        if (domAttr.has(node, 'title')){
+                            text = domAttr.get(node, 'title');
+                        } else {
+                            text = node.id;
+                        }
+                        domConstruct.place(string.substitute(this.itemTemplate, {id: node.id, text: text}), this.containerNode, 'last');
+                    }
+                }
             },
 
             _setSpyTargetAttr: function(value){
                 if (typeof value == 'string'){
                     value = dom.byId(value);
                 }
+
+                var listenTo;
+                if (value.scrollHeight > value.clientHeight){
+                    // The target is scrollable.
+                    listenTo = value;
+                } else {
+                    listenTo = window;
+                }
+                if (this._scrollHandler){
+                    this._scrollHandler.remove();
+                }
+                this._scrollHandler = on(listenTo, 'scroll', lang.hitch(this, this.updateScrollSpy));
                 this._set('spyTarget', value);
             },
 
             updateScrollSpy: function(){
 
-                if (!this.scrollSpy || !this._started){
+                if (!this._started){
                     return;
                 }
 
                 var useDocScroll = false,
                     scrollTop,
                     newActive,
+                    activeTargetId,
                     activeSpyNode,
                     activeY,
                     y,
                     i,
+                    j,
+                    spyTargetId,
                     spyNode;
 
                 if (this.spyTarget.scrollHeight > this.spyTarget.clientHeight){
@@ -92,7 +115,13 @@ function(
                 }
 
                 if (this.active){
-                    activeSpyNode = query('#' + domAttr.get(this.active, 'spy-target'), this.spyTarget)[0];
+                    activeTargetId = domAttr.get(this.active, 'data-havok-spy-target');
+                    for (i=0; i < this.spyTarget.children.length; i++){
+                        if (this.spyTarget.children[i].id == activeTargetId){
+                            activeSpyNode = this.spyTarget.children[i];
+                            break;
+                        }
+                    }
                     if (useDocScroll){
                         activeY = domGeom.position(activeSpyNode, true).y;
                     } else {
@@ -105,9 +134,15 @@ function(
                     activeY = 0;
                 }
 
+                j = 0;
                 for (i = 0; i < this.containerNode.children.length; i++){
-                    var id = domAttr.get(this.containerNode.children[i], 'spy-target');
-                    spyNode = query('#' + domAttr.get(this.containerNode.children[i], 'spy-target'), this.spyTarget)[0];
+                    spyTargetId = domAttr.get(this.containerNode.children[i], 'data-havok-spy-target');
+                    for (j; j < this.spyTarget.children.length; j++){
+                        if (this.spyTarget.children[j].id == spyTargetId){
+                            spyNode = this.spyTarget.children[j];
+                            break;
+                        }
+                    }
                     if (!spyNode){
                         continue;
                     }
@@ -125,13 +160,6 @@ function(
                 if (newActive){
                     this.set('active', newActive);
                 }
-
-                this._scrollSpyTimer = setTimeout(lang.hitch(this, 'updateScrollSpy'), 250);
-            },
-
-            destroy: function(){
-                clearTimeout(this._scrollSpyTimer);
-                this.inherited(arguments);
             }
         }
     );
