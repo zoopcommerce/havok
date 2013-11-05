@@ -49,10 +49,10 @@ function (
 
                 for (i = 0; i < this.containerNode.children.length; i++){
                     node = this.containerNode.children[i];
-                    if (domAttr.has(node, 'nav-bar-toggle')){
+                    if (domAttr.has(node, 'data-havok-nav-bar-toggle')){
                         this.toggleNode = node;
                     }
-                    if (domAttr.has(node, 'nav-bar-toggle-target')){
+                    if (domAttr.has(node, 'data-havok-nav-bar-toggle-target')){
                         this.toggleTarget = node;
                     }
                 }
