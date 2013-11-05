@@ -1,7 +1,9 @@
 define([
+        'dojo/Deferred',
         './parser'
     ],
     function(
+        Deferred,
         parser
     ){
         // module:
@@ -12,14 +14,13 @@ define([
 
         return {
             load: function(id, require, callback){
-                if (complete){
-                    callback();
-                } else {
+                if (!complete){
+                    complete = new Deferred;
                     parser.parse().then(function(){
-                        complete = true;
-                        callback();
+                        complete.resolve();
                     })
                 }
+                complete.then(callback);
             }
         };
     }
