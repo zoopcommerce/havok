@@ -7,9 +7,10 @@ define([
     'dojo/dom',
     'dojo/Deferred',
     'dojo/dom-construct',
-    '../parser/parser',
+    '../../parser/parser',
     'dijit/registry',
-    '../../exception/Application'
+    '../../exception/Application',
+    '../../parser/complete!'
 ],
 function(
     declare,
@@ -36,6 +37,7 @@ function(
             go: function(){
                 //if the node is full, it must be first load
                 if (this.node.children.length > 0){
+                    this._setActiveNav(window.location.href);
                     return;
                 }
 
@@ -48,6 +50,7 @@ function(
                 this.load(href.replace('.html', '-content.html')).then(lang.hitch(this, function(html){
                     this.node.innerHTML = html;
                     prettyPrint();
+                    this._setActiveNav(href);
 
                     //parse the new content
                     parser.parse(this.node).then(lang.hitch(this, function(){
@@ -87,6 +90,24 @@ function(
                 }
 
                 return result;
+            },
+
+            _setActiveNav: function(href){
+                var topNav = registry.byId('topNav'),
+                    i;
+
+                if (href.slice(-1) == '/'){
+                    //default to index.html
+                    href = href + 'index.html';
+                }
+
+                for (i = 0; i < topNav.containerNode.children.length; i++){
+                    if (topNav.containerNode.children[i].firstElementChild.href == href){
+                        topNav.set('active', topNav.containerNode.children[i]);
+                        document.title = topNav.containerNode.children[i].firstElementChild.innerHTML + ' | Havok by Zoop';
+                        break;
+                    }
+                }
             }
         }
     );
