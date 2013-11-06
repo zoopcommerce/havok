@@ -1,0 +1,26 @@
+{% set title='API' %}
+{% set byline='API documentation for all havok modules and their dependencies.' %}
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12 well">
+            <div class="head">
+                <h1>{{title}}</h1>
+                <p>{{byline}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span3">
+            <script>
+                require(['dojo/store/Memory', 'get!havok/store/manager'], function(Memory, storeManager){
+                    storeManager.stores.apiTree = new Memory({% include 'api-tree-data.twig' %});
+                })
+            </script>
+            <tree mixins="store" store="apiTree"></tree>
+        </div>
+        <div class="span9" id="mainContent">
+            <section id="overview" title="Overview">{% include 'api/overview.twig' %}</section>
+        </div>
+    </div>
+</div>

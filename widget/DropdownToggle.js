@@ -41,8 +41,6 @@ function (
 
             //tag: undefined,
 
-            templateString: '<${tag} data-dojo-attach-point="containerNode"></${tag}>',
-
             //dropdown: undefined,
 
             //dropdownContainer: undefined,

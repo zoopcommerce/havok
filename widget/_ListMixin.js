@@ -26,8 +26,6 @@ function (
 
             tag: 'ul',
 
-            templateString: '<${tag} data-dojo-attach-point="containerNode"></${tag}>',
-
             itemTemplate: '<li></li>',
 
             dividerTemplate: '<li class="divider"></li>',
@@ -44,7 +42,7 @@ function (
                 }
                 if (item.nodeName == 'HR'){
                     return domConstruct.place(this.dividerTemplate, item, 'replace');
-                } else if (['LI', 'DROPDOWN-SUBMENU'].indexOf(item.nodeName) != -1 || this.itemTemplate == ''){
+                } else if (['LI', 'DROPDOWN-SUBMENU', 'FOLDER'].indexOf(item.nodeName) != -1 || this.itemTemplate == ''){
                     this._attachClickListener(item);
                     if (domClass.contains(item, 'active')){
                         this.set('active', item);

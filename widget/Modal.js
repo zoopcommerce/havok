@@ -13,7 +13,7 @@ define([
     'dojo/text!./template/ModalFooter.html',
     'dojo/text!./template/CloseButton.html',
     '../less!./less/modals.less',
-    './Button'
+    './HotkeyButton'
 ],
 function (
     declare,

@@ -23,7 +23,7 @@ function (
 
             baseClass: 'dropdown-menu',
 
-            templateString: '<span data-dojo-attach-point="containerNode"></span>',
+            tag: 'span',
 
             startup: function(){
                 this.inherited(arguments);

@@ -12,6 +12,7 @@ define(
                     'dropdown-toggle'    : 'havok/widget/DropdownToggle',
                     'carousel'           : 'havok/widget/Carousel',
                     'checkbox-group'     : 'havok/widget/CheckboxGroup',
+                    'folder'             : 'havok/widget/Folder',
                     'hotkey-button'      : 'havok/widget/HotkeyButton',
                     'nav-bar'            : 'havok/widget/NavBar',
                     'nav-bar-links'      : 'havok/widget/NavBarLinks',
@@ -21,6 +22,7 @@ define(
                     'overlay'            : 'havok/widget/Overlay',
                     'radio-group'        : 'havok/widget/RadioGroup',
                     'tab-container'      : 'havok/widget/TabContainer',
+                    'tree'               : 'havok/widget/Tree',
                     'toggle-button'      : 'havok/widget/ToggleButton'
                 },
                 mixins: {

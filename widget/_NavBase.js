@@ -15,7 +15,6 @@ function (
     return declare(
         [WidgetBase, ListMixin],
         {
-
             tag: 'ul',
 
             baseClass: 'nav'
