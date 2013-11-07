@@ -5,16 +5,30 @@
     <p>Use the <code>tree</code> tag to create an instance of <code>havok/widget/Tree</code>:</p>
     <div class="bs-docs-example">
         <tree>
-            <folder>
-                <a href="">Home</a>
-                <tree>
-                    <a href="">Profile</a>
-                    <a href="">Messages</a>
-                </tree>
-            </folder>
-            <a href="">Home</a>
-            <a href="">Profile</a>
-            <a href="">Messages</a>
+            <li>
+                <a>One</a>
+                <ol>
+                    <li>
+                        <a>One One</a>
+                        <ol>
+                            <li><a>One One One</a></li>
+                            <li><a>One One Two</a></li>
+                        </ol>
+                    </li>
+                    <li><a>One Two</a></li>
+                    <li><a>One Three</a></li>
+                </ol>
+            </li>
+            <li>
+                <a>Two</a>
+                <ol>
+                    <li><a>Two One</a></li>
+                    <li><a>Two Two</a></li>
+                </ol>
+            </li>
+            <li><a>Three</a></li>
+            <li><a>Four</a></li>
+            <li><a>Five</a></li>
         </tree>
     </div>
     <pre class="prettyprint linenums">

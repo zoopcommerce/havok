@@ -1,20 +1,13 @@
 define([
     'dojo/_base/declare',
-    'dojo/_base/lang',
-    'dojo/_base/array',
-    'dojo/json',
-    'dojo/on',
     'dojo/dom-construct',
     'dojo/dom-class',
     './_WidgetBase',
-    './_ListMixin'
+    './_ListMixin',
+    '../less!./less/tree.less'
 ],
 function (
     declare,
-    lang,
-    array,
-    json,
-    on,
     domConstruct,
     domClass,
     WidgetBase,
@@ -26,60 +19,45 @@ function (
     return declare(
         [WidgetBase, ListMixin],
         {
-            tag: 'ul'//,
+            baseClass: 'nav nav-list tree',
 
-//            startup: function(){
-//
-//                this.data = json.parse(data);
-//
-//                array.forEach(this.data.children, lang.hitch(this, function(item){
-//                    this.addChild(this.root, item);
-//                }));
-//            },
-//
-//            addChild: function(parent, data){
-//                var node,
-//                    i;
-//                if (data.type == 'folder'){
-//                    for (i = 0; i < parent.children.length; i++){
-//                        if (!domClass.contains(parent.children[i], 'folder')){
-//                            node = domConstruct.create('li', {id: data.id, 'class': data.type, innerHTML: '<a href="">' + data.name + '</a>'}, parent.children[i], 'before');
-//                            break;
-//                        }
-//                    }
-//                }
-//                if (!node) {
-//                    node = domConstruct.create('li', {id: data.id, 'class': data.type, innerHTML: '<a href="">' + data.name + '</a>'}, parent);
-//                }
-//                on(
-//                    node,
-//                    'click',
-//                    lang.hitch(this, function(e){
-//                        this.onClick(e, node, data);
-//                    })
-//                );
-//            },
-//
-//            onClick: function(e, node, data) {
-//                e.preventDefault();
-//                e.stopPropagation();
-//                if (data.type == 'folder') {
-//                    var list;
-//                    if (node.children.length == 1) {
-//                        list = domConstruct.create('ul', {'class': 'hide'}, node);
-//                        array.forEach(data.children, lang.hitch(this, function(item){
-//                            this.addChild(list, item);
-//                        }));
-//                    } else {
-//                        list = node.children[1];
-//                    }
-//                    if (domClass.contains(list, 'hide')) {
-//                        domClass.remove(list, 'hide');
-//                    } else {
-//                        domClass.add(list, 'hide');
-//                    }
-//                }
-//            }
+            tag: 'ol',
+
+            storeAdapter: './_TreeStoreAdapterMixin',
+
+            addItem: function(item){
+
+                item = this.inherited(arguments);
+
+                if (item.children.length > 1){
+                    domClass.add(item, 'folder-close');
+                    domConstruct.place('<span class="icon-folder"></span> ', item.firstElementChild, 'first');
+
+                    var innerParent = item.lastElementChild,
+                        i;
+                    domClass.add(innerParent, 'nav nav-list');
+                    for ( i = 0; i < innerParent.children.length; i++){
+                        this.addItem(innerParent.children[i], {refNode: innerParent});
+                    }
+                } else {
+                    domConstruct.place('<span class="icon-file-text"></span> ', item.firstElementChild, 'first');
+                }
+
+                return item;
+            },
+
+            onClick: function(e, item){
+
+                if (domClass.contains(item, 'folder-open')){
+                    domClass.remove(item, 'folder-open');
+                    domClass.add(item, 'folder-close');
+                } else if (domClass.contains(item, 'folder-close')){
+                    domClass.remove(item, 'folder-close');
+                    domClass.add(item, 'folder-open');
+                }
+                this.inherited(arguments);
+                e.stopPropagation();
+            }
         }
     );
 });

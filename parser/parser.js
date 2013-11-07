@@ -33,7 +33,8 @@ function (
         _createInstance = function(refNode){
 
             var result = new Deferred,
-                requires = [dojoConfig.parser.tags[refNode.tagName.toLowerCase()]],
+                type = dojoConfig.parser.tags[refNode.tagName.toLowerCase()],
+                requires = [type],
                 attributes;
 
             if(has("dom-attributes-explicit")){
@@ -60,7 +61,8 @@ function (
                 var Module = arguments[0],
                     i,
                     params = {},
-                    item;
+                    item,
+                    instance;
 
                 if (arguments.length > 1){
                     Module = declare(Array.prototype.slice.call(arguments, 0), {});
@@ -93,7 +95,9 @@ function (
                             }
                     }
                 }
-                result.resolve(new Module(params, refNode));
+                instance = new Module(params, refNode);
+                domAttr.set(instance.domNode, 'data-dojo-type', type);
+                result.resolve(instance);
             });
 
             return result;

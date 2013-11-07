@@ -12,7 +12,6 @@ define(
                     'dropdown-toggle'    : 'havok/widget/DropdownToggle',
                     'carousel'           : 'havok/widget/Carousel',
                     'checkbox-group'     : 'havok/widget/CheckboxGroup',
-                    'folder'             : 'havok/widget/Folder',
                     'hotkey-button'      : 'havok/widget/HotkeyButton',
                     'nav-bar'            : 'havok/widget/NavBar',
                     'nav-bar-links'      : 'havok/widget/NavBarLinks',

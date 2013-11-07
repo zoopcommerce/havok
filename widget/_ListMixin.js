@@ -36,13 +36,22 @@ function (
                 this._renderNodes();
             },
 
-            addItem: function(item){
-                if (typeof item == 'string'){
-                    item = domConstruct.place(item, this.containerNode);
+            addItem: function(item, options){
+
+                if (!options) options = {};
+
+                var refNode = options.refNode;
+                if (!refNode){
+                    refNode = this.containerNode;
                 }
+
+                if (typeof item == 'string' || item.parentElement != refNode){
+                    item = domConstruct.place(item, refNode);
+                }
+
                 if (item.nodeName == 'HR'){
                     return domConstruct.place(this.dividerTemplate, item, 'replace');
-                } else if (['LI', 'DROPDOWN-SUBMENU', 'FOLDER'].indexOf(item.nodeName) != -1 || this.itemTemplate == ''){
+                } else if (['LI', 'DROPDOWN-SUBMENU'].indexOf(item.nodeName) != -1 || this.itemTemplate == ''){
                     this._attachClickListener(item);
                     if (domClass.contains(item, 'active')){
                         this.set('active', item);
@@ -71,33 +80,32 @@ function (
             },
 
             _setActiveAttr: function(value){
-                if (typeof this.active == 'object'){
+                if (this.active && this.active.nodeType){
                     domClass.remove(this.active, 'active');
                 }
-                domClass.add(value, 'active');
+                if (value && value.nodeType){
+                    domClass.add(value, 'active');
+                }
                 this._set('active', value);
             },
 
             _attachClickListener: function(node, item){
-
                 on(node, a11yclick.click, lang.hitch(this, function(e){
-                    var item = node;
-
-                    while (item.parentNode != this.containerNode){
-                        item = item.parentNode;
-                    }
-
-                    if (domClass.contains(e.target, 'disabled') || domClass.contains(item, 'disabled')){
-                        e.preventDefault();
-                        return;
-                    }
-                    if (e.target.nodeName == 'A' && domAttr.has(e.target, 'href') && domAttr.get(e.target, 'href') != ''){
-                        return;
-                    }
-                    e.preventDefault();
-                    this.set('active', item);
-                    this.emit('item-click', item);
+                    this.onClick(e, node);
                 }));
+            },
+
+            onClick: function(e, item){
+                if (domClass.contains(e.target, 'disabled') || domClass.contains(item, 'disabled')){
+                    e.preventDefault();
+                    return;
+                }
+                if (e.target.nodeName == 'A' && domAttr.has(e.target, 'href') && domAttr.get(e.target, 'href') != ''){
+                    return;
+                }
+                e.preventDefault();
+                this.set('active', item);
+                this.emit('item-click', item);
             }
         }
     );

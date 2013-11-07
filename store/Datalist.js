@@ -40,7 +40,7 @@ function(
                             for(i = 0; i < nodes.length; i++){
                                 node = nodes[i];
                                 item = {id: id};
-                                if (parent){
+                                if (parent != null){
                                     item.parent = parent;
                                 }
                                 id++;
@@ -72,28 +72,6 @@ function(
                         };
 
                     process(srcNodeRef.children);
-
-//                    for(i = 0; i < srcNodeRef.children.length; i++){
-//                        node = srcNodeRef.children[i];
-//                        item = {text: node.innerHTML};
-//
-//                        if(has("dom-attributes-explicit")){
-//                            // Standard path to get list of user specified attributes
-//                            attributes = node.attributes;
-//                        }else if(has("dom-attributes-specified-flag")){
-//                            // Special processing needed for IE8, to skip a few faux values in attributes[]
-//                            attributes = array.filter(node.attributes, function(a){
-//                                return a.specified;
-//                            });
-//                        }
-//
-//                        j = 0;
-//                        while(attribute = attributes[j++]){
-//                            item[string.camelCase(attribute.name)] = attribute.value;
-//                        }
-//
-//                        params.data.push(item);
-//                    }
                 }
 
                 this.inherited(arguments, [params]);

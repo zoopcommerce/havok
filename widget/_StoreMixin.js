@@ -1,4 +1,5 @@
 define([
+    'require',
     'dojo/_base/declare',
     'dojo/_base/lang',
     'dojo/Deferred',
@@ -6,12 +7,10 @@ define([
     'dojo/string',
     'dojo/dom-attr',
     'dojo/dom-construct',
-    './Dropdown',
-    './DropdownToggle',
-    './DropdownSubmenu',
     '../proxy!../store/manager'
 ],
 function (
+    require,
     declare,
     lang,
     Deferred,
@@ -19,12 +18,9 @@ function (
     string,
     domAttr,
     domConstruct,
-    Dropdown,
-    DropdownToggle,
-    DropdownSubmenu,
     storeManager
 ){
-    var StoreMixin = declare(
+    return declare(
         [],
         {
             //store: undefined,
@@ -52,6 +48,22 @@ function (
             //_pendingQuery: undefined,
 
             //_nodesRendered: undefined,
+
+            //_storeAdapterMixedin: undefined,
+
+            constructor: function(){
+
+                //auto mixin of a store adapter to handle custom rendering
+                if (!this.storeAdapter){
+                    this.storeAdapter = './_DropdownStoreAdapterMixin';
+                }
+
+                this._storeAdapterMixedin = new Deferred;
+                require([this.storeAdapter], lang.hitch(this, function(Adapter){
+                    declare.safeMixin(this, new Adapter);
+                    this._storeAdapterMixedin.resolve();
+                }));
+            },
 
             _getStoreAttr: function(){
                 var store = this.store;
@@ -89,52 +101,48 @@ function (
 
             _renderNodes: function(){
                 when(this.get('data'), lang.hitch(this, function(data){
-                    var i,
-                        item,
-                        vars,
-                        itemTemplate = '<a ${attr} href="${href}">${label}</a>';
-
-                    for (i = 0; i < data.length; i++){
-                        vars = {attr: '', href: '', storeId: data[i][this.store.idProperty]};
-                        if (data[i].disabled){
-                            vars.attr = 'class="disabled"';
+                    this._storeAdapterMixedin.then(lang.hitch(this, function(){
+                        for (var i = 0; i < data.length; i++){
+                            this.addItem(data[i], {fromStore: true, storeId: data[i][this.store.idProperty]});
                         }
-                        if (data[i].type == 'nav-header') {
-                            vars.attr = 'class="nav-header"';
+                        this._nodesRendered = true;
+                        if (this.active){
+                            this.set('active', this.active);
                         }
-                        if (data[i].type == 'divider'){
-                            item = this.dividerTemplate;
-                        } else {
-                            lang.mixin(vars, data[i]);
-                            item = string.substitute(itemTemplate, vars);
-                        }
-                        if (data[i].type == 'group'){
-                            item = domConstruct.place(item, this.containerNode);
-                            var dropdown = new (declare([Dropdown, StoreMixin], {}))({store: this.store, query: {parent: data[i][this.store.idProperty]}}),
-                                submenu;
-
-                            if (this.isInstanceOf(Dropdown)){
-                                submenu = new DropdownSubmenu({dropdown: dropdown, button: item, tag: 'li'});
-                            } else {
-                                submenu = new DropdownToggle({dropdown: dropdown, button: item, tag: 'li'});
-                            }
-                            this.containerNode.appendChild(submenu.domNode);
-                            submenu.containerNode.appendChild(item);
-                            submenu.startup();
-                            item = submenu.domNode;
-                        }
-                        this.addItem(item, vars.storeId);
-                    }
-                    this._nodesRendered = true;
-                    if (this.active){
-                        this.set('active', this.active);
-                    }
+                    }))
                 }));
             },
 
-            addItem: function(item, id){
+            addItem: function(item, options){
+                if (!options) options = {};
+
+                if (options.fromStore){
+                    //the item object is from a store, and needs to be transformed into a html string/node
+                    var node,
+                        vars,
+                        itemTemplate = '<a ${attr} href="${href}">${label}</a>';
+
+                    vars = {attr: '', href: '', storeId: item[this.store.idProperty]};
+                    if (item.disabled){
+                        vars.attr = 'class="disabled"';
+                    }
+                    if (item.type == 'nav-header') {
+                        vars.attr = 'class="nav-header"';
+                    }
+                    if (item.type == 'divider'){
+                        node = this.dividerTemplate;
+                    } else {
+                        lang.mixin(vars, item);
+                        node = string.substitute(itemTemplate, vars);
+                    }
+                    if (item.type == 'group'){
+                        node = this._renderGroup(domConstruct.place(node, this.containerNode), item);
+                    }
+                    item = node;
+                }
+
                 item = this.inherited(arguments);
-                domAttr.set(item, 'data-havok-store-id', id);
+                domAttr.set(item, 'data-havok-store-id', options.storeId);
                 return item;
             },
 
@@ -174,5 +182,4 @@ function (
             }
         }
     );
-    return StoreMixin;
 });
