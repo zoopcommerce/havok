@@ -3,7 +3,7 @@
     "type": "function",
     "parameters": [],
     "returnTypes": [],
-    "summary": "<p>A class that can be used as a mixin or base class,\nto add on() and emit() methods to a class\nfor listening for events and emitting events:\n\n\n</p>\n<pre><code>define([&quot;dojo/Evented&quot;], function(Evented){\n    var EventedWidget = dojo.declare([Evented, dijit._Widget], {...});\n    widget = new EventedWidget();\n    widget.on(&quot;open&quot;, function(event){\n    ... do something with event\n });\n\nwidget.emit(&quot;open&quot;, {name:&quot;some event&quot;, ...});</code></pre>\n",
+    "summary": "<p>A class that can be used as a mixin or base class,\nto add on() and emit() methods to a class\nfor listening for events and emitting events:\n\n\n</p>\ndefine([&quot;dojo/Evented&quot;], function(Evented){\n    var EventedWidget = dojo.declare([Evented, dijit._Widget], {...});\n    widget = new EventedWidget();\n    widget.on(&quot;open&quot;, function(event){\n    ... do something with event\n });\n\nwidget.emit(&quot;open&quot;, {name:&quot;some event&quot;, ...});\n",
     "methods": [
         {
             "name": "emit",

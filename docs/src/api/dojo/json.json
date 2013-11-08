@@ -69,7 +69,7 @@
             "summary": "<p>Returns a <a href=\"http://json.org\">JSON</a> serialization of an object.</p>\n",
             "description": "<p>Returns a <a href=\"http://json.org\">JSON</a> serialization of an object.\nThis function follows <a href=\"https://developer.mozilla.org/en/JSON\">native JSON API</a>\nNote that this doesn&#39;t check for infinite recursion, so don&#39;t do that!</p>\n",
             "examples": [
-                "<p>simple serialization of a trivial object\n\n</p>\n<pre><code>define([&quot;dojo/json&quot;], function(JSON){\n    var jsonStr = JSON.stringify({ howdy: &quot;stranger!&quot;, isStrange: true });\n    doh.is(&#39;{&quot;howdy&quot;:&quot;stranger!&quot;,&quot;isStrange&quot;:true}&#39;, jsonStr);</code></pre>\n"
+                "<p>simple serialization of a trivial object\n\n</p>\ndefine([&quot;dojo/json&quot;], function(JSON){\n    var jsonStr = JSON.stringify({ howdy: &quot;stranger!&quot;, isStrange: true });\n    doh.is(&#39;{&quot;howdy&quot;:&quot;stranger!&quot;,&quot;isStrange&quot;:true}&#39;, jsonStr);\n"
             ]
         }
     ]

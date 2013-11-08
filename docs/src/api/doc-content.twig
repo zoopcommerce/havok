@@ -1,13 +1,71 @@
 {% extends "api-content.twig" %}
 
 {% block mainContent %}
-    <section>
-        <h1>{{location}}</h1>
-        <p class="lead">{{summary}}</p>
+<section>
+    <div class="well">
+    <h1>{{location}}</h1>
+    <p class="lead">{{summary}}</p>
 
-        <h2>Methods</h2>
-        {% for method in methods %}
-            <h3>{{method.name}}</h3>
-        {% endfor %}
-    </section>
+        {% if properties %}
+    <h2>Properties</h2>
+    <accordion>
+            {% for prop in properties %}
+            <div title="{{prop.name}}">
+                <h4>{{prop.name}}</h4>
+                    {% if prop.from is defined %}<p>Defined by <a href="">{{prop.from}}</a></p>{% endif %}
+                    {% if prop.summary is defined %}<p class="lead">{{prop.summary}}</p>{% endif %}
+                    {% if prop.description is defined %}{{prop.description}}{% endif %}
+            </div>
+            {% endfor %}
+            </accordion>
+        {% endif %}
+
+        {% if methods %}
+    <h2>Methods</h2>
+    <accordion>
+            {% for method in methods %}
+            <div title="{{method.name}}">
+                <h4>{{method.name}}({% for param in method.parameters %}{{param.name}}{% if not loop.last %}, {% endif %}{% endfor %})</h4>
+                    {% if method.from is defined %}<p>Defined by <a href="">{{method.from}}</a></p>{% endif %}
+                    {% if method.summary is defined %}<p class="lead">{{method.summary}}</p>{% endif %}
+                    {% if method.description is defined %}{{method.description}}{% endif %}
+                    {% if method.parameters|length > 0 %}
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th style="width: 100px;">Parameter</th>
+                            <th style="width: 50px;">Type</th>
+                            <th style="width: 50px;">Usage</th>
+                            <th>Summary</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for param in method.parameters %}
+                            <tr>
+                                <td>{{param.name}}</td>
+                                <td>{% for type in param.types %}{{type}}{% if not loop.last %} | {% endif %}{% endfor %}</td>
+                                <td>{{param.usage}}</td>
+                                <td>{{param.summary}}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    {% endif %}
+
+                    {% if method.returnTypes|length > 0 %}
+                    <p><span class="strong">Returns:</span> {% for type in method.returnTypes %}{{type}}{% if not loop.last %} | {% endif %}{% endfor %}</p>
+                    {% endif %}
+
+                    {% if method.examples %}
+                    <h5>Examples</h5>
+                        {% for example in method.examples %}
+                            <pre class="prettyprint linenums">{{example}}</pre>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            {% endfor %}
+            </accordion>
+        {% endif %}
+    </div>
+        </section>
 {% endblock %}

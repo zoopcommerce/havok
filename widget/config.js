@@ -4,6 +4,7 @@ define(
         return {
             parser: {
                 tags: {
+                    'accordion'          : 'havok/widget/Accordion',
                     'button-group'       : 'havok/widget/ButtonGroup',
                     'date-dropdown'      : 'havok/widget/DateDropdown',
                     'dropdown'           : 'havok/widget/Dropdown',

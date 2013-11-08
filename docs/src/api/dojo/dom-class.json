@@ -33,10 +33,10 @@
             "returnTypes": [],
             "summary": "<p>Adds the specified classes to the end of the class list on the\npassed node. Will not re-apply duplicate classes.\n</p>\n",
             "examples": [
-                "<p>Add a class to some node:\n\n</p>\n<pre><code>require([&quot;dojo/dom-class&quot;], function(domClass){\n    domClass.add(&quot;someNode&quot;, &quot;anewClass&quot;);\n});</code></pre>\n",
-                "<p>Add two classes at once:\n\n</p>\n<pre><code>require([&quot;dojo/dom-class&quot;], function(domClass){\n    domClass.add(&quot;someNode&quot;, &quot;firstClass secondClass&quot;);\n});</code></pre>\n",
-                "<p>Add two classes at once (using array):\n\n</p>\n<pre><code>require([&quot;dojo/dom-class&quot;], function(domClass){\n    domClass.add(&quot;someNode&quot;, [&quot;firstClass&quot;, &quot;secondClass&quot;]);\n});</code></pre>\n",
-                "<p>Available in <code>dojo/NodeList</code> for multiple additions\n\n</p>\n<pre><code>require([&quot;dojo/query&quot;], function(query){\n    query(&quot;ul &gt; li&quot;).addClass(&quot;firstLevel&quot;);\n});</code></pre>\n"
+                "<p>Add a class to some node:\n\n</p>\nrequire([&quot;dojo/dom-class&quot;], function(domClass){\n    domClass.add(&quot;someNode&quot;, &quot;anewClass&quot;);\n});\n",
+                "<p>Add two classes at once:\n\n</p>\nrequire([&quot;dojo/dom-class&quot;], function(domClass){\n    domClass.add(&quot;someNode&quot;, &quot;firstClass secondClass&quot;);\n});\n",
+                "<p>Add two classes at once (using array):\n\n</p>\nrequire([&quot;dojo/dom-class&quot;], function(domClass){\n    domClass.add(&quot;someNode&quot;, [&quot;firstClass&quot;, &quot;secondClass&quot;]);\n});\n",
+                "<p>Available in <code>dojo/NodeList</code> for multiple additions\n\n</p>\nrequire([&quot;dojo/query&quot;], function(query){\n    query(&quot;ul &gt; li&quot;).addClass(&quot;firstLevel&quot;);\n});\n"
             ]
         },
         {
@@ -70,7 +70,7 @@
             ],
             "summary": "<p>Returns whether or not the specified classes are a portion of the\nclass list currently applied to the node.</p>\n",
             "examples": [
-                "<p>Do something if a node with id=&quot;someNode&quot; has class=&quot;aSillyClassName&quot; present\n\n</p>\n<pre><code>if(dojo.hasClass(&quot;someNode&quot;,&quot;aSillyClassName&quot;)){ ... }</code></pre>\n"
+                "<p>Do something if a node with id=&quot;someNode&quot; has class=&quot;aSillyClassName&quot; present\n\n</p>\nif(dojo.hasClass(&quot;someNode&quot;,&quot;aSillyClassName&quot;)){ ... }\n"
             ]
         },
         {
@@ -103,11 +103,11 @@
             "returnTypes": [],
             "summary": "<p>Removes the specified classes from node. No <code>contains()</code>\ncheck is required.\n</p>\n",
             "examples": [
-                "<p>Remove a class from some node:\n\n</p>\n<pre><code>require([&quot;dojo/dom-class&quot;], function(domClass){\n    domClass.remove(&quot;someNode&quot;, &quot;firstClass&quot;);\n});</code></pre>\n",
-                "<p>Remove two classes from some node:\n\n</p>\n<pre><code>require([&quot;dojo/dom-class&quot;], function(domClass){\n    domClass.remove(&quot;someNode&quot;, &quot;firstClass secondClass&quot;);\n});</code></pre>\n",
-                "<p>Remove two classes from some node (using array):\n\n</p>\n<pre><code>require([&quot;dojo/dom-class&quot;], function(domClass){\n    domClass.remove(&quot;someNode&quot;, [&quot;firstClass&quot;, &quot;secondClass&quot;]);\n});</code></pre>\n",
-                "<p>Remove all classes from some node:\n\n</p>\n<pre><code>require([&quot;dojo/dom-class&quot;], function(domClass){\n    domClass.remove(&quot;someNode&quot;);\n});</code></pre>\n",
-                "<p>Available in <code>dojo/NodeList</code> for multiple removal\n\n</p>\n<pre><code>require([&quot;dojo/query&quot;], function(query){\n    query(&quot;ul &gt; li&quot;).removeClass(&quot;foo&quot;);\n});</code></pre>\n"
+                "<p>Remove a class from some node:\n\n</p>\nrequire([&quot;dojo/dom-class&quot;], function(domClass){\n    domClass.remove(&quot;someNode&quot;, &quot;firstClass&quot;);\n});\n",
+                "<p>Remove two classes from some node:\n\n</p>\nrequire([&quot;dojo/dom-class&quot;], function(domClass){\n    domClass.remove(&quot;someNode&quot;, &quot;firstClass secondClass&quot;);\n});\n",
+                "<p>Remove two classes from some node (using array):\n\n</p>\nrequire([&quot;dojo/dom-class&quot;], function(domClass){\n    domClass.remove(&quot;someNode&quot;, [&quot;firstClass&quot;, &quot;secondClass&quot;]);\n});\n",
+                "<p>Remove all classes from some node:\n\n</p>\nrequire([&quot;dojo/dom-class&quot;], function(domClass){\n    domClass.remove(&quot;someNode&quot;);\n});\n",
+                "<p>Available in <code>dojo/NodeList</code> for multiple removal\n\n</p>\nrequire([&quot;dojo/query&quot;], function(query){\n    query(&quot;ul &gt; li&quot;).removeClass(&quot;foo&quot;);\n});\n"
             ]
         },
         {
@@ -149,9 +149,9 @@
             "returnTypes": [],
             "summary": "<p>Replaces one or more classes on a node if not present.\nOperates more quickly than calling dojo.removeClass and dojo.addClass\n</p>\n",
             "examples": [
-                "<pre><code>require([&quot;dojo/dom-class&quot;], function(domClass){\n    domClass.replace(&quot;someNode&quot;, &quot;add1 add2&quot;, &quot;remove1 remove2&quot;);\n});</code></pre>\n",
-                "<p>Replace all classes with addMe\n\n</p>\n<pre><code>require([&quot;dojo/dom-class&quot;], function(domClass){\n    domClass.replace(&quot;someNode&quot;, &quot;addMe&quot;);\n});</code></pre>\n",
-                "<p>Available in <code>dojo/NodeList</code> for multiple toggles\n\n</p>\n<pre><code>require([&quot;dojo/query&quot;], function(query){\n    query(&quot;.findMe&quot;).replaceClass(&quot;addMe&quot;, &quot;removeMe&quot;);\n});</code></pre>\n"
+                "require([&quot;dojo/dom-class&quot;], function(domClass){\n    domClass.replace(&quot;someNode&quot;, &quot;add1 add2&quot;, &quot;remove1 remove2&quot;);\n});\n",
+                "<p>Replace all classes with addMe\n\n</p>\nrequire([&quot;dojo/dom-class&quot;], function(domClass){\n    domClass.replace(&quot;someNode&quot;, &quot;addMe&quot;);\n});\n",
+                "<p>Available in <code>dojo/NodeList</code> for multiple toggles\n\n</p>\nrequire([&quot;dojo/query&quot;], function(query){\n    query(&quot;.findMe&quot;).replaceClass(&quot;addMe&quot;, &quot;removeMe&quot;);\n});\n"
             ]
         },
         {
@@ -195,9 +195,9 @@
             "returnDescription": "<p>If passed, true means to add the class, false means to remove.\nOtherwise dojo.hasClass(node, classStr) is used to detect the class presence.\n</p>\n",
             "summary": "<p>Adds a class to node if not present, or removes if present.\nPass a boolean condition if you want to explicitly add or remove.\nReturns the condition that was specified directly or indirectly.\n</p>\n",
             "examples": [
-                "<pre><code>require([&quot;dojo/dom-class&quot;], function(domClass){\n    domClass.toggle(&quot;someNode&quot;, &quot;hovered&quot;);\n});</code></pre>\n",
-                "<p>Forcefully add a class\n\n</p>\n<pre><code>require([&quot;dojo/dom-class&quot;], function(domClass){\n    domClass.toggle(&quot;someNode&quot;, &quot;hovered&quot;, true);\n});</code></pre>\n",
-                "<p>Available in <code>dojo/NodeList</code> for multiple toggles\n\n</p>\n<pre><code>require([&quot;dojo/query&quot;], function(query){\n    query(&quot;.toggleMe&quot;).toggleClass(&quot;toggleMe&quot;);\n});</code></pre>\n"
+                "require([&quot;dojo/dom-class&quot;], function(domClass){\n    domClass.toggle(&quot;someNode&quot;, &quot;hovered&quot;);\n});\n",
+                "<p>Forcefully add a class\n\n</p>\nrequire([&quot;dojo/dom-class&quot;], function(domClass){\n    domClass.toggle(&quot;someNode&quot;, &quot;hovered&quot;, true);\n});\n",
+                "<p>Available in <code>dojo/NodeList</code> for multiple toggles\n\n</p>\nrequire([&quot;dojo/query&quot;], function(query){\n    query(&quot;.toggleMe&quot;).toggleClass(&quot;toggleMe&quot;);\n});\n"
             ]
         }
     ]

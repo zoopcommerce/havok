@@ -25,7 +25,7 @@
             "summary": "<p>A map of available XHR transport handle types. Name matches the\n<code>handleAs</code> attribute passed to XHR calls.</p>\n",
             "description": "<p>A map of available XHR transport handle types. Name matches the\n<code>handleAs</code> attribute passed to XHR calls. Each contentHandler is\ncalled, passing the xhr object for manipulation. The return value\nfrom the contentHandler will be passed to the <code>load</code> or <code>handle</code>\nfunctions defined in the original xhr call.</p>\n",
             "examples": [
-                "<p>Creating a custom content-handler:\n\n</p>\n<pre><code>xhr.contentHandlers.makeCaps = function(xhr){\n    return xhr.responseText.toUpperCase();\n}\n// and later:\ndojo.xhrGet({\n    url:&quot;foo.txt&quot;,\n    handleAs:&quot;makeCaps&quot;,\n    load: function(data){ /* data is a toUpper version of foo.txt */ }\n});</code></pre>\n"
+                "<p>Creating a custom content-handler:\n\n</p>\nxhr.contentHandlers.makeCaps = function(xhr){\n    return xhr.responseText.toUpperCase();\n}\n// and later:\ndojo.xhrGet({\n    url:&quot;foo.txt&quot;,\n    handleAs:&quot;makeCaps&quot;,\n    load: function(data){ /* data is a toUpper version of foo.txt */ }\n});\n"
             ]
         },
         {
@@ -84,7 +84,7 @@
             "summary": "<p>This module defines the user configuration during bootstrap.</p>\n",
             "description": "<p>By defining user configuration as a module value, an entire configuration can be specified in a build,\nthereby eliminating the need for sniffing and or explicitly setting in the global variable dojoConfig.\nAlso, when multiple instances of dojo exist in a single application, each will necessarily be located\nat an unique absolute module identifier as given by the package configuration. Implementing configuration\nas a module allows for specifying unique, per-instance configurations.</p>\n",
             "examples": [
-                "<p>Create a second instance of dojo with a different, instance-unique configuration (assume the loader and\ndojo.js are already loaded).\n\n</p>\n<pre><code>// specify a configuration that creates a new instance of dojo at the absolute module identifier &quot;myDojo&quot;\nrequire({\n    packages:[{\n        name:&quot;myDojo&quot;,\n        location:&quot;.&quot;, //assume baseUrl points to dojo.js\n    }]\n});\n\n// specify a configuration for the myDojo instance\ndefine(&quot;myDojo/config&quot;, {\n    // normal configuration variables go here, e.g.,\n    locale:&quot;fr-ca&quot;\n});\n\n// load and use the new instance of dojo\nrequire([&quot;myDojo&quot;], function(dojo){\n    // dojo is the new instance of dojo\n    // use as required\n});</code></pre>\n"
+                "<p>Create a second instance of dojo with a different, instance-unique configuration (assume the loader and\ndojo.js are already loaded).\n\n</p>\n// specify a configuration that creates a new instance of dojo at the absolute module identifier &quot;myDojo&quot;\nrequire({\n    packages:[{\n        name:&quot;myDojo&quot;,\n        location:&quot;.&quot;, //assume baseUrl points to dojo.js\n    }]\n});\n\n// specify a configuration for the myDojo instance\ndefine(&quot;myDojo/config&quot;, {\n    // normal configuration variables go here, e.g.,\n    locale:&quot;fr-ca&quot;\n});\n\n// load and use the new instance of dojo\nrequire([&quot;myDojo&quot;], function(dojo){\n    // dojo is the new instance of dojo\n    // use as required\n});\n"
             ]
         },
         {
@@ -98,7 +98,7 @@
             "summary": "<p>A map of available XHR transport handle types. Name matches the\n<code>handleAs</code> attribute passed to XHR calls.</p>\n",
             "description": "<p>A map of available XHR transport handle types. Name matches the\n<code>handleAs</code> attribute passed to XHR calls. Each contentHandler is\ncalled, passing the xhr object for manipulation. The return value\nfrom the contentHandler will be passed to the <code>load</code> or <code>handle</code>\nfunctions defined in the original xhr call.</p>\n",
             "examples": [
-                "<p>Creating a custom content-handler:\n\n</p>\n<pre><code>xhr.contentHandlers.makeCaps = function(xhr){\n    return xhr.responseText.toUpperCase();\n}\n// and later:\ndojo.xhrGet({\n    url:&quot;foo.txt&quot;,\n    handleAs:&quot;makeCaps&quot;,\n    load: function(data){ /* data is a toUpper version of foo.txt */ }\n});</code></pre>\n"
+                "<p>Creating a custom content-handler:\n\n</p>\nxhr.contentHandlers.makeCaps = function(xhr){\n    return xhr.responseText.toUpperCase();\n}\n// and later:\ndojo.xhrGet({\n    url:&quot;foo.txt&quot;,\n    handleAs:&quot;makeCaps&quot;,\n    load: function(data){ /* data is a toUpper version of foo.txt */ }\n});\n"
             ]
         },
         {
@@ -140,7 +140,7 @@
             "summary": "<p>Alias for the current document. &#39;doc&#39; can be modified\nfor temporary context shifting. See also withDoc().</p>\n",
             "description": "<p>Use this rather than referring to &#39;window.document&#39; to ensure your code runs\ncorrectly in managed contexts.</p>\n",
             "examples": [
-                "<pre><code>n.appendChild(dojo.doc.createElement(&#39;div&#39;));</code></pre>\n"
+                "n.appendChild(dojo.doc.createElement(&#39;div&#39;));\n"
             ]
         },
         {
@@ -475,11 +475,11 @@
             "extensionModule": true,
             "summary": "<p>This module provides unified touch event handlers by exporting\npress, move, release and cancel which can also run well on desktop.\nBased on <a href=\"http://dvcs.w3.org/hg/webevents/raw-file/tip/touchevents.html\">http://dvcs.w3.org/hg/webevents/raw-file/tip/touchevents.html</a>\nAlso, if the dojoClick property is set to true on a DOM node, dojo/touch generates\nclick events immediately for this node and its descendants, to avoid the\ndelay before native browser click events, and regardless of whether evt.preventDefault()\nwas called in a touch.press event listener.\n</p>\n",
             "examples": [
-                "<p>Used with dojo.on\n\n</p>\n<pre><code>define([&quot;dojo/on&quot;, &quot;dojo/touch&quot;], function(on, touch){\n    on(node, touch.press, function(e){});\n    on(node, touch.move, function(e){});\n    on(node, touch.release, function(e){});\n    on(node, touch.cancel, function(e){});</code></pre>\n",
-                "<p>Used with touch.* directly\n\n</p>\n<pre><code>touch.press(node, function(e){});\ntouch.move(node, function(e){});\ntouch.release(node, function(e){});\ntouch.cancel(node, function(e){});</code></pre>\n",
-                "<p>Have dojo/touch generate clicks without delay, with a default move threshold of 4 pixels\n\n</p>\n<pre><code>node.dojoClick = true;</code></pre>\n",
-                "<p>Have dojo/touch generate clicks without delay, with a move threshold of 10 pixels horizontally and vertically\n\n</p>\n<pre><code>node.dojoClick = 10;</code></pre>\n",
-                "<p>Have dojo/touch generate clicks without delay, with a move threshold of 50 pixels horizontally and 10 pixels vertically\n\n</p>\n<pre><code>node.dojoClick = {x:50, y:5};</code></pre>\n"
+                "<p>Used with dojo.on\n\n</p>\ndefine([&quot;dojo/on&quot;, &quot;dojo/touch&quot;], function(on, touch){\n    on(node, touch.press, function(e){});\n    on(node, touch.move, function(e){});\n    on(node, touch.release, function(e){});\n    on(node, touch.cancel, function(e){});\n",
+                "<p>Used with touch.* directly\n\n</p>\ntouch.press(node, function(e){});\ntouch.move(node, function(e){});\ntouch.release(node, function(e){});\ntouch.cancel(node, function(e){});\n",
+                "<p>Have dojo/touch generate clicks without delay, with a default move threshold of 4 pixels\n\n</p>\nnode.dojoClick = true;\n",
+                "<p>Have dojo/touch generate clicks without delay, with a move threshold of 10 pixels horizontally and vertically\n\n</p>\nnode.dojoClick = 10;\n",
+                "<p>Have dojo/touch generate clicks without delay, with a move threshold of 50 pixels horizontally and 10 pixels vertically\n\n</p>\nnode.dojoClick = {x:50, y:5};\n"
             ]
         },
         {
@@ -635,7 +635,7 @@
             "summary": "<p>Returns a <a href=\"http://json.org\">JSON</a> serialization of an object.</p>\n",
             "description": "<p>Returns a <a href=\"http://json.org\">JSON</a> serialization of an object.\nThis function follows <a href=\"https://developer.mozilla.org/en/JSON\">native JSON API</a>\nNote that this doesn&#39;t check for infinite recursion, so don&#39;t do that!</p>\n",
             "examples": [
-                "<p>simple serialization of a trivial object\n\n</p>\n<pre><code>define([&quot;dojo/json&quot;], function(JSON){\n    var jsonStr = JSON.stringify({ howdy: &quot;stranger!&quot;, isStrange: true });\n    doh.is(&#39;{&quot;howdy&quot;:&quot;stranger!&quot;,&quot;isStrange&quot;:true}&#39;, jsonStr);</code></pre>\n"
+                "<p>simple serialization of a trivial object\n\n</p>\ndefine([&quot;dojo/json&quot;], function(JSON){\n    var jsonStr = JSON.stringify({ howdy: &quot;stranger!&quot;, isStrange: true });\n    doh.is(&#39;{&quot;howdy&quot;:&quot;stranger!&quot;,&quot;isStrange&quot;:true}&#39;, jsonStr);\n"
             ]
         },
         {
@@ -1009,10 +1009,10 @@
             "returnTypes": [],
             "summary": "<p>Add a function to execute on DOM content loaded and all requested modules have arrived and been evaluated.\nIn most cases, the <code>domReady</code> plug-in should suffice and this method should not be needed.\n\n</p>\n<p>When called in a non-browser environment, just checks that all requested modules have arrived and been\nevaluated.</p>\n",
             "examples": [
-                "<p>Simple DOM and Modules ready syntax\n\n</p>\n<pre><code>require([&quot;dojo/ready&quot;], function(ready){\n    ready(function(){ alert(&quot;Dom ready!&quot;); });\n});</code></pre>\n",
-                "<p>Using a priority\n\n</p>\n<pre><code>require([&quot;dojo/ready&quot;], function(ready){\n    ready(2, function(){ alert(&quot;low priority ready!&quot;); })\n});</code></pre>\n",
-                "<p>Using context\n\n</p>\n<pre><code>require([&quot;dojo/ready&quot;], function(ready){\n    ready(foo, function(){\n        // in here, this == foo\n    });\n});</code></pre>\n",
-                "<p>Using dojo/hitch style args:\n\n</p>\n<pre><code>require([&quot;dojo/ready&quot;], function(ready){\n    var foo = { dojoReady: function(){ console.warn(this, &quot;dojo dom and modules ready.&quot;); } };\n    ready(foo, &quot;dojoReady&quot;);\n});</code></pre>\n"
+                "<p>Simple DOM and Modules ready syntax\n\n</p>\nrequire([&quot;dojo/ready&quot;], function(ready){\n    ready(function(){ alert(&quot;Dom ready!&quot;); });\n});\n",
+                "<p>Using a priority\n\n</p>\nrequire([&quot;dojo/ready&quot;], function(ready){\n    ready(2, function(){ alert(&quot;low priority ready!&quot;); })\n});\n",
+                "<p>Using context\n\n</p>\nrequire([&quot;dojo/ready&quot;], function(ready){\n    ready(foo, function(){\n        // in here, this == foo\n    });\n});\n",
+                "<p>Using dojo/hitch style args:\n\n</p>\nrequire([&quot;dojo/ready&quot;], function(ready){\n    var foo = { dojoReady: function(){ console.warn(this, &quot;dojo dom and modules ready.&quot;); } };\n    ready(foo, &quot;dojoReady&quot;);\n});\n"
             ]
         },
         {
@@ -1077,8 +1077,8 @@
             "summary": "<p>A simpler interface to <code>animateProperty()</code>, also returns\nan instance of <code>Animation</code> but begins the animation\nimmediately, unlike nearly every other Dojo animation API.</p>\n",
             "description": "<p>Simpler (but somewhat less powerful) version\nof <code>animateProperty</code>.  It uses defaults for many basic properties\nand allows for positional parameters to be used in place of the\npacked &quot;property bag&quot; which is used for other Dojo animation\nmethods.\n\n</p>\n<p>The <code>Animation</code> object returned will be already playing, so\ncalling play() on it again is (usually) a no-op.</p>\n",
             "examples": [
-                "<p>Fade out a node\n\n</p>\n<pre><code>basefx.anim(&quot;id&quot;, { opacity: 0 });</code></pre>\n",
-                "<p>Fade out a node over a full second\n\n</p>\n<pre><code>basefx.anim(&quot;id&quot;, { opacity: 0 }, 1000);</code></pre>\n"
+                "<p>Fade out a node\n\n</p>\nbasefx.anim(&quot;id&quot;, { opacity: 0 });\n",
+                "<p>Fade out a node over a full second\n\n</p>\nbasefx.anim(&quot;id&quot;, { opacity: 0 }, 1000);\n"
             ]
         },
         {
@@ -1106,11 +1106,11 @@
             "summary": "<p>Returns an animation that will transition the properties of\nnode defined in <code>args</code> depending how they are defined in\n<code>args.properties</code>\n</p>\n",
             "description": "<p>Foundation of most <code>dojo/_base/fx</code>\nanimations. It takes an object of &quot;properties&quot; corresponding to\nstyle properties, and animates them in parallel over a set\nduration.\n</p>\n",
             "examples": [
-                "<p>A simple animation that changes the width of the specified node.\n\n</p>\n<pre><code>basefx.animateProperty({\n    node: &quot;nodeId&quot;,\n    properties: { width: 400 },\n}).play();</code></pre>\n<p>Dojo figures out the start value for the width and converts the\n\n</p>\n<p>integer specified for the width to the more expressive but\nverbose form <code>{ width: { end: &#39;400&#39;, units: &#39;px&#39; } }</code> which you\ncan also specify directly. Defaults to &#39;px&#39; if omitted.\n</p>\n",
-                "<p>Animate width, height, and padding over 2 seconds... the\npedantic way:\n\n</p>\n<pre><code>basefx.animateProperty({ node: node, duration:2000,\n    properties: {\n        width: { start: &#39;200&#39;, end: &#39;400&#39;, units:&quot;px&quot; },\n        height: { start:&#39;200&#39;, end: &#39;400&#39;, units:&quot;px&quot; },\n        paddingTop: { start:&#39;5&#39;, end:&#39;50&#39;, units:&quot;px&quot; }\n    }\n}).play();</code></pre>\n<p>Note &#39;paddingTop&#39; is used over &#39;padding-top&#39;. Multi-name CSS properties\n\n</p>\n<p>are written using &quot;mixed case&quot;, as the hyphen is illegal as an object key.\n</p>\n",
-                "<p>Plug in a different easing function and register a callback for\nwhen the animation ends. Easing functions accept values between\nzero and one and return a value on that basis. In this case, an\nexponential-in curve.\n\n</p>\n<pre><code>basefx.animateProperty({\n    node: &quot;nodeId&quot;,\n    // dojo figures out the start value\n    properties: { width: { end: 400 } },\n    easing: function(n){\n        return (n==0) ? 0 : Math.pow(2, 10 * (n - 1));\n    },\n    onEnd: function(node){\n        // called when the animation finishes. The animation\n        // target is passed to this function\n    }\n}).play(500); // delay playing half a second</code></pre>\n",
-                "<p>Like all <code>Animation</code>s, animateProperty returns a handle to the\nAnimation instance, which fires the events common to Dojo FX. Use <code>aspect.after</code>\nto access these events outside of the Animation definition:\n\n</p>\n<pre><code>var anim = basefx.animateProperty({\n    node:&quot;someId&quot;,\n    properties:{\n        width:400, height:500\n    }\n});\naspect.after(anim, &quot;onEnd&quot;, function(){\n    console.log(&quot;animation ended&quot;);\n}, true);\n// play the animation now:\nanim.play();</code></pre>\n",
-                "<p>Each property can be a function whose return value is substituted along.\nAdditionally, each measurement (eg: start, end) can be a function. The node\nreference is passed directly to callbacks.\n\n</p>\n<pre><code>basefx.animateProperty({\n    node:&quot;mine&quot;,\n    properties:{\n        height:function(node){\n            // shrink this node by 50%\n            return domGeom.position(node).h / 2\n        },\n        width:{\n            start:function(node){ return 100; },\n            end:function(node){ return 200; }\n        }\n    }\n}).play();</code></pre>\n"
+                "<p>A simple animation that changes the width of the specified node.\n\n</p>\nbasefx.animateProperty({\n    node: &quot;nodeId&quot;,\n    properties: { width: 400 },\n}).play();\n<p>Dojo figures out the start value for the width and converts the\n\n</p>\n<p>integer specified for the width to the more expressive but\nverbose form <code>{ width: { end: &#39;400&#39;, units: &#39;px&#39; } }</code> which you\ncan also specify directly. Defaults to &#39;px&#39; if omitted.\n</p>\n",
+                "<p>Animate width, height, and padding over 2 seconds... the\npedantic way:\n\n</p>\nbasefx.animateProperty({ node: node, duration:2000,\n    properties: {\n        width: { start: &#39;200&#39;, end: &#39;400&#39;, units:&quot;px&quot; },\n        height: { start:&#39;200&#39;, end: &#39;400&#39;, units:&quot;px&quot; },\n        paddingTop: { start:&#39;5&#39;, end:&#39;50&#39;, units:&quot;px&quot; }\n    }\n}).play();\n<p>Note &#39;paddingTop&#39; is used over &#39;padding-top&#39;. Multi-name CSS properties\n\n</p>\n<p>are written using &quot;mixed case&quot;, as the hyphen is illegal as an object key.\n</p>\n",
+                "<p>Plug in a different easing function and register a callback for\nwhen the animation ends. Easing functions accept values between\nzero and one and return a value on that basis. In this case, an\nexponential-in curve.\n\n</p>\nbasefx.animateProperty({\n    node: &quot;nodeId&quot;,\n    // dojo figures out the start value\n    properties: { width: { end: 400 } },\n    easing: function(n){\n        return (n==0) ? 0 : Math.pow(2, 10 * (n - 1));\n    },\n    onEnd: function(node){\n        // called when the animation finishes. The animation\n        // target is passed to this function\n    }\n}).play(500); // delay playing half a second\n",
+                "<p>Like all <code>Animation</code>s, animateProperty returns a handle to the\nAnimation instance, which fires the events common to Dojo FX. Use <code>aspect.after</code>\nto access these events outside of the Animation definition:\n\n</p>\nvar anim = basefx.animateProperty({\n    node:&quot;someId&quot;,\n    properties:{\n        width:400, height:500\n    }\n});\naspect.after(anim, &quot;onEnd&quot;, function(){\n    console.log(&quot;animation ended&quot;);\n}, true);\n// play the animation now:\nanim.play();\n",
+                "<p>Each property can be a function whose return value is substituted along.\nAdditionally, each measurement (eg: start, end) can be a function. The node\nreference is passed directly to callbacks.\n\n</p>\nbasefx.animateProperty({\n    node:&quot;mine&quot;,\n    properties:{\n        height:function(node){\n            // shrink this node by 50%\n            return domGeom.position(node).h / 2\n        },\n        width:{\n            start:function(node){ return 100; },\n            end:function(node){ return 200; }\n        }\n    }\n}).play();\n"
             ]
         },
         {
@@ -1198,7 +1198,7 @@
             ],
             "summary": "<p>Return the body element of the specified document or of dojo/_base/window::doc.</p>\n",
             "examples": [
-                "<pre><code>win.body().appendChild(dojo.doc.createElement(&#39;div&#39;));</code></pre>\n"
+                "win.body().appendChild(dojo.doc.createElement(&#39;div&#39;));\n"
             ]
         },
         {
@@ -1244,9 +1244,9 @@
             "summary": "<p>A getter and setter for storing the string content associated with the\nmodule and url arguments.</p>\n",
             "description": "<p>If module is a string that contains slashes, then it is interpretted as a fully\nresolved path (typically a result returned by require.toUrl), and url should not be\nprovided. This is the preferred signature. If module is a string that does not\ncontain slashes, then url must also be provided and module and url are used to\ncall <code>dojo.moduleUrl()</code> to generate a module URL. This signature is deprecated.\nIf value is specified, the cache value for the moduleUrl will be set to\nthat value. Otherwise, dojo.cache will fetch the moduleUrl and store it\nin its internal cache and return that cached value for the URL. To clear\na cache value pass null for value. Since XMLHttpRequest (XHR) is used to fetch the\nthe URL contents, only modules on the same domain of the page can use this capability.\nThe build system can inline the cache values though, to allow for xdomain hosting.</p>\n",
             "examples": [
-                "<p>To ask dojo.cache to fetch content and store it in the cache (the dojo[&quot;cache&quot;] style\nof call is used to avoid an issue with the build system erroneously trying to intern\nthis example. To get the build system to intern your dojo.cache calls, use the\n&quot;dojo.cache&quot; style of call):\n\n</p>\n<pre><code>//If template.html contains &quot;&lt;h1&gt;Hello&lt;/h1&gt;&quot; that will be\n//the value for the text variable.\nvar text = dojo[&quot;cache&quot;](&quot;my.module&quot;, &quot;template.html&quot;);</code></pre>\n",
-                "<p>To ask dojo.cache to fetch content and store it in the cache, and sanitize the input\n (the dojo[&quot;cache&quot;] style of call is used to avoid an issue with the build system\nerroneously trying to intern this example. To get the build system to intern your\ndojo.cache calls, use the &quot;dojo.cache&quot; style of call):\n\n</p>\n<pre><code>//If template.html contains &quot;&lt;html&gt;&lt;body&gt;&lt;h1&gt;Hello&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&quot;, the\n//text variable will contain just &quot;&lt;h1&gt;Hello&lt;/h1&gt;&quot;.\nvar text = dojo[&quot;cache&quot;](&quot;my.module&quot;, &quot;template.html&quot;, {sanitize: true});</code></pre>\n",
-                "<p>Same example as previous, but demonstrates how an object can be passed in as\nthe first argument, then the value argument can then be the second argument.\n\n</p>\n<pre><code>//If template.html contains &quot;&lt;html&gt;&lt;body&gt;&lt;h1&gt;Hello&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&quot;, the\n//text variable will contain just &quot;&lt;h1&gt;Hello&lt;/h1&gt;&quot;.\nvar text = dojo[&quot;cache&quot;](new dojo._Url(&quot;my/module/template.html&quot;), {sanitize: true});</code></pre>\n"
+                "<p>To ask dojo.cache to fetch content and store it in the cache (the dojo[&quot;cache&quot;] style\nof call is used to avoid an issue with the build system erroneously trying to intern\nthis example. To get the build system to intern your dojo.cache calls, use the\n&quot;dojo.cache&quot; style of call):\n\n</p>\n//If template.html contains &quot;&lt;h1&gt;Hello&lt;/h1&gt;&quot; that will be\n//the value for the text variable.\nvar text = dojo[&quot;cache&quot;](&quot;my.module&quot;, &quot;template.html&quot;);\n",
+                "<p>To ask dojo.cache to fetch content and store it in the cache, and sanitize the input\n (the dojo[&quot;cache&quot;] style of call is used to avoid an issue with the build system\nerroneously trying to intern this example. To get the build system to intern your\ndojo.cache calls, use the &quot;dojo.cache&quot; style of call):\n\n</p>\n//If template.html contains &quot;&lt;html&gt;&lt;body&gt;&lt;h1&gt;Hello&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&quot;, the\n//text variable will contain just &quot;&lt;h1&gt;Hello&lt;/h1&gt;&quot;.\nvar text = dojo[&quot;cache&quot;](&quot;my.module&quot;, &quot;template.html&quot;, {sanitize: true});\n",
+                "<p>Same example as previous, but demonstrates how an object can be passed in as\nthe first argument, then the value argument can then be the second argument.\n\n</p>\n//If template.html contains &quot;&lt;html&gt;&lt;body&gt;&lt;h1&gt;Hello&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&quot;, the\n//text variable will contain just &quot;&lt;h1&gt;Hello&lt;/h1&gt;&quot;.\nvar text = dojo[&quot;cache&quot;](new dojo._Url(&quot;my/module/template.html&quot;), {sanitize: true});\n"
             ]
         },
         {
@@ -1282,8 +1282,8 @@
             "returnTypes": [],
             "summary": "<p>Takes a named string, hex string, array of rgb or rgba values,\nan object with r, g, b, and a properties, or another <code>Color</code> object\nand creates a new Color instance to work from.\n</p>\n",
             "examples": [
-                "<p>Work with a Color instance:\n\n</p>\n<pre><code>var c = new Color();\nc.setColor([0,0,0]); // black\nvar hex = c.toHex(); // #000000</code></pre>\n",
-                "<p>Work with a node&#39;s color:\n\n</p>\n<pre><code>var color = dojo.style(&quot;someNode&quot;, &quot;backgroundColor&quot;);\nvar n = new Color(color);\n// adjust the color some\nn.r *= .5;\nconsole.log(n.toString()); // rgb(128, 255, 255);</code></pre>\n"
+                "<p>Work with a Color instance:\n\n</p>\nvar c = new Color();\nc.setColor([0,0,0]); // black\nvar hex = c.toHex(); // #000000\n",
+                "<p>Work with a node&#39;s color:\n\n</p>\nvar color = dojo.style(&quot;someNode&quot;, &quot;backgroundColor&quot;);\nvar n = new Color(color);\n// adjust the color some\nn.r *= .5;\nconsole.log(n.toString()); // rgb(128, 255, 255);\n"
             ]
         },
         {
@@ -1316,7 +1316,7 @@
             "returnDescription": "<p>A Color object. If obj is passed, it will be the return value.</p>\n",
             "summary": "<p>Builds a <code>Color</code> from a 3 or 4 element array, mapping each\nelement in sequence to the rgb(a) values of the color.</p>\n",
             "examples": [
-                "<pre><code>var myColor = dojo.colorFromArray([237,237,237,0.5]); // grey, 50% alpha</code></pre>\n"
+                "var myColor = dojo.colorFromArray([237,237,237,0.5]); // grey, 50% alpha\n"
             ]
         },
         {
@@ -1351,8 +1351,8 @@
             "returnDescription": "<p>A Color object. If obj is passed, it will be the return value.\n</p>\n",
             "summary": "<p>Converts a hex string with a &#39;#&#39; prefix to a color object.\nSupports 12-bit #rgb shorthand. Optionally accepts a\n<code>Color</code> object to update with the parsed value.\n</p>\n",
             "examples": [
-                "<pre><code>var thing = dojo.colorFromHex(&quot;#ededed&quot;); // grey, longhand</code></pre>\n",
-                "<pre><code>var thing = dojo.colorFromHex(&quot;#000&quot;); // black, shorthand</code></pre>\n"
+                "var thing = dojo.colorFromHex(&quot;#ededed&quot;); // grey, longhand\n",
+                "var thing = dojo.colorFromHex(&quot;#000&quot;); // black, shorthand\n"
             ]
         },
         {
@@ -1474,12 +1474,12 @@
             "summary": "<p><code>dojo.connect</code> is a deprecated event handling and delegation method in\nDojo. It allows one function to &quot;listen in&quot; on the execution of\nany other, triggering the second whenever the first is called. Many\nlisteners may be attached to a function, and source functions may\nbe either regular function calls or DOM events.\n</p>\n",
             "description": "<p>Connects listeners to actions, so that after event fires, a\nlistener is called with the same arguments passed to the original\nfunction.\n\n</p>\n<p>Since <code>dojo.connect</code> allows the source of events to be either a\n&quot;regular&quot; JavaScript function or a DOM event, it provides a uniform\ninterface for listening to all the types of events that an\napplication is likely to deal with though a single, unified\ninterface. DOM programmers may want to think of it as\n&quot;addEventListener for everything and anything&quot;.\n\n</p>\n<p>When setting up a connection, the <code>event</code> parameter must be a\nstring that is the name of the method/event to be listened for. If\n<code>obj</code> is null, <code>kernel.global</code> is assumed, meaning that connections\nto global methods are supported but also that you may inadvertently\nconnect to a global by passing an incorrect object name or invalid\nreference.\n\n</p>\n<p><code>dojo.connect</code> generally is forgiving. If you pass the name of a\nfunction or method that does not yet exist on <code>obj</code>, connect will\nnot fail, but will instead set up a stub method. Similarly, null\narguments may simply be omitted such that fewer than 4 arguments\nmay be required to set up a connection See the examples for details.\n\n</p>\n<p>The return value is a handle that is needed to\nremove this connection with <code>dojo.disconnect</code>.\n</p>\n",
             "examples": [
-                "<p>When obj.onchange(), do ui.update():\n\n</p>\n<pre><code>dojo.connect(obj, &quot;onchange&quot;, ui, &quot;update&quot;);\ndojo.connect(obj, &quot;onchange&quot;, ui, ui.update); // same</code></pre>\n",
-                "<p>Using return value for disconnect:\n\n</p>\n<pre><code>var link = dojo.connect(obj, &quot;onchange&quot;, ui, &quot;update&quot;);\n...\ndojo.disconnect(link);</code></pre>\n",
-                "<p>When onglobalevent executes, watcher.handler is invoked:\n\n</p>\n<pre><code>dojo.connect(null, &quot;onglobalevent&quot;, watcher, &quot;handler&quot;);</code></pre>\n",
-                "<p>When ob.onCustomEvent executes, customEventHandler is invoked:\n\n</p>\n<pre><code>dojo.connect(ob, &quot;onCustomEvent&quot;, null, &quot;customEventHandler&quot;);\ndojo.connect(ob, &quot;onCustomEvent&quot;, &quot;customEventHandler&quot;); // same</code></pre>\n",
-                "<p>When ob.onCustomEvent executes, customEventHandler is invoked\nwith the same scope (this):\n\n</p>\n<pre><code>dojo.connect(ob, &quot;onCustomEvent&quot;, null, customEventHandler);\ndojo.connect(ob, &quot;onCustomEvent&quot;, customEventHandler); // same</code></pre>\n",
-                "<p>When globalEvent executes, globalHandler is invoked\nwith the same scope (this):\n\n</p>\n<pre><code>dojo.connect(null, &quot;globalEvent&quot;, null, globalHandler);\ndojo.connect(&quot;globalEvent&quot;, globalHandler); // same</code></pre>\n"
+                "<p>When obj.onchange(), do ui.update():\n\n</p>\ndojo.connect(obj, &quot;onchange&quot;, ui, &quot;update&quot;);\ndojo.connect(obj, &quot;onchange&quot;, ui, ui.update); // same\n",
+                "<p>Using return value for disconnect:\n\n</p>\nvar link = dojo.connect(obj, &quot;onchange&quot;, ui, &quot;update&quot;);\n...\ndojo.disconnect(link);\n",
+                "<p>When onglobalevent executes, watcher.handler is invoked:\n\n</p>\ndojo.connect(null, &quot;onglobalevent&quot;, watcher, &quot;handler&quot;);\n",
+                "<p>When ob.onCustomEvent executes, customEventHandler is invoked:\n\n</p>\ndojo.connect(ob, &quot;onCustomEvent&quot;, null, &quot;customEventHandler&quot;);\ndojo.connect(ob, &quot;onCustomEvent&quot;, &quot;customEventHandler&quot;); // same\n",
+                "<p>When ob.onCustomEvent executes, customEventHandler is invoked\nwith the same scope (this):\n\n</p>\ndojo.connect(ob, &quot;onCustomEvent&quot;, null, customEventHandler);\ndojo.connect(ob, &quot;onCustomEvent&quot;, customEventHandler); // same\n",
+                "<p>When globalEvent executes, globalHandler is invoked\nwith the same scope (this):\n\n</p>\ndojo.connect(null, &quot;globalEvent&quot;, null, globalHandler);\ndojo.connect(&quot;globalEvent&quot;, globalHandler); // same\n"
             ]
         },
         {
@@ -1521,7 +1521,7 @@
             ],
             "summary": "<p>Ensure that every time obj.event() is called, a message is published\non the topic. Returns a handle which can be passed to\ndojo.disconnect() to disable subsequent automatic publication on\nthe topic.</p>\n",
             "examples": [
-                "<pre><code>dojo.connectPublisher(&quot;/ajax/start&quot;, dojo, &quot;xhrGet&quot;);</code></pre>\n"
+                "dojo.connectPublisher(&quot;/ajax/start&quot;, dojo, &quot;xhrGet&quot;);\n"
             ]
         },
         {
@@ -1567,12 +1567,12 @@
             "summary": "<p>Create a feature-rich constructor from compact notation.</p>\n",
             "description": "<p>Create a constructor using a compact notation for inheritance and\nprototype extension.\n\n</p>\n<p>Mixin ancestors provide a type of multiple inheritance.\nPrototypes of mixin ancestors are copied to the new class:\nchanges to mixin prototypes will not affect classes to which\nthey have been mixed in.\n\n</p>\n<p>Ancestors can be compound classes created by this version of\ndeclare(). In complex cases all base classes are going to be\nlinearized according to C3 MRO algorithm\n(see <a href=\"http://www.python.org/download/releases/2.3/mro/\">http://www.python.org/download/releases/2.3/mro/</a> for more\ndetails).\n\n</p>\n<p>&quot;className&quot; is cached in &quot;declaredClass&quot; property of the new class,\nif it was supplied. The immediate super class will be cached in\n&quot;superclass&quot; property of the new class.\n\n</p>\n<p>Methods in &quot;props&quot; will be copied and modified: &quot;nom&quot; property\n(the declared name of the method) will be added to all copied\nfunctions to help identify them for the internal machinery. Be\nvery careful, while reusing methods: if you use the same\nfunction under different names, it can produce errors in some\ncases.\n\n</p>\n<p>It is possible to use constructors created &quot;manually&quot; (without\ndeclare()) as bases. They will be called as usual during the\ncreation of an instance, their methods will be chained, and even\ncalled by &quot;this.inherited()&quot;.\n\n</p>\n<p>Special property &quot;-chains-&quot; governs how to chain methods. It is\na dictionary, which uses method names as keys, and hint strings\nas values. If a hint string is &quot;after&quot;, this method will be\ncalled after methods of its base classes. If a hint string is\n&quot;before&quot;, this method will be called before methods of its base\nclasses.\n\n</p>\n<p>If &quot;constructor&quot; is not mentioned in &quot;-chains-&quot; property, it will\nbe chained using the legacy mode: using &quot;after&quot; chaining,\ncalling preamble() method before each constructor, if available,\nand calling postscript() after all constructors were executed.\nIf the hint is &quot;after&quot;, it is chained as a regular method, but\npostscript() will be called after the chain of constructors.\n&quot;constructor&quot; cannot be chained &quot;before&quot;, but it allows\na special hint string: &quot;manual&quot;, which means that constructors\nare not going to be chained in any way, and programmer will call\nthem manually using this.inherited(). In the latter case\npostscript() will be called after the construction.\n\n</p>\n<p>All chaining hints are &quot;inherited&quot; from base classes and\npotentially can be overridden. Be very careful when overriding\nhints! Make sure that all chained methods can work in a proposed\nmanner of chaining.\n\n</p>\n<p>Once a method was chained, it is impossible to unchain it. The\nonly exception is &quot;constructor&quot;. You don&#39;t need to define a\nmethod in order to supply a chaining hint.\n\n</p>\n<p>If a method is chained, it cannot use this.inherited() because\nall other methods in the hierarchy will be called automatically.\n\n</p>\n<p>Usually constructors and initializers of any kind are chained\nusing &quot;after&quot; and destructors of any kind are chained as\n&quot;before&quot;. Note that chaining assumes that chained methods do not\nreturn any value: any returned value will be discarded.\n</p>\n",
             "examples": [
-                "<pre><code>declare(&quot;my.classes.bar&quot;, my.classes.foo, {\n    // properties to be added to the class prototype\n    someValue: 2,\n    // initialization function\n    constructor: function(){\n        this.myComplicatedObject = new ReallyComplicatedObject();\n    },\n    // other functions\n    someMethod: function(){\n        doStuff();\n    }\n});</code></pre>\n",
-                "<pre><code>var MyBase = declare(null, {\n    // constructor, properties, and methods go here\n    // ...\n});\nvar MyClass1 = declare(MyBase, {\n    // constructor, properties, and methods go here\n    // ...\n});\nvar MyClass2 = declare(MyBase, {\n    // constructor, properties, and methods go here\n    // ...\n});\nvar MyDiamond = declare([MyClass1, MyClass2], {\n    // constructor, properties, and methods go here\n    // ...\n});</code></pre>\n",
-                "<pre><code>var F = function(){ console.log(&quot;raw constructor&quot;); };\nF.prototype.method = function(){\n    console.log(&quot;raw method&quot;);\n};\nvar A = declare(F, {\n    constructor: function(){\n        console.log(&quot;A.constructor&quot;);\n    },\n    method: function(){\n        console.log(&quot;before calling F.method...&quot;);\n        this.inherited(arguments);\n        console.log(&quot;...back in A&quot;);\n    }\n});\nnew A().method();\n// will print:\n// raw constructor\n// A.constructor\n// before calling F.method...\n// raw method\n// ...back in A</code></pre>\n",
-                "<pre><code>var A = declare(null, {\n    &quot;-chains-&quot;: {\n        destroy: &quot;before&quot;\n    }\n});\nvar B = declare(A, {\n    constructor: function(){\n        console.log(&quot;B.constructor&quot;);\n    },\n    destroy: function(){\n        console.log(&quot;B.destroy&quot;);\n    }\n});\nvar C = declare(B, {\n    constructor: function(){\n        console.log(&quot;C.constructor&quot;);\n    },\n    destroy: function(){\n        console.log(&quot;C.destroy&quot;);\n    }\n});\nnew C().destroy();\n// prints:\n// B.constructor\n// C.constructor\n// C.destroy\n// B.destroy</code></pre>\n",
-                "<pre><code>var A = declare(null, {\n    &quot;-chains-&quot;: {\n        constructor: &quot;manual&quot;\n    }\n});\nvar B = declare(A, {\n    constructor: function(){\n        // ...\n        // call the base constructor with new parameters\n        this.inherited(arguments, [1, 2, 3]);\n        // ...\n    }\n});</code></pre>\n",
-                "<pre><code>var A = declare(null, {\n    &quot;-chains-&quot;: {\n        m1: &quot;before&quot;\n    },\n    m1: function(){\n        console.log(&quot;A.m1&quot;);\n    },\n    m2: function(){\n        console.log(&quot;A.m2&quot;);\n    }\n});\nvar B = declare(A, {\n    &quot;-chains-&quot;: {\n        m2: &quot;after&quot;\n    },\n    m1: function(){\n        console.log(&quot;B.m1&quot;);\n    },\n    m2: function(){\n        console.log(&quot;B.m2&quot;);\n    }\n});\nvar x = new B();\nx.m1();\n// prints:\n// B.m1\n// A.m1\nx.m2();\n// prints:\n// A.m2\n// B.m2</code></pre>\n"
+                "declare(&quot;my.classes.bar&quot;, my.classes.foo, {\n    // properties to be added to the class prototype\n    someValue: 2,\n    // initialization function\n    constructor: function(){\n        this.myComplicatedObject = new ReallyComplicatedObject();\n    },\n    // other functions\n    someMethod: function(){\n        doStuff();\n    }\n});\n",
+                "var MyBase = declare(null, {\n    // constructor, properties, and methods go here\n    // ...\n});\nvar MyClass1 = declare(MyBase, {\n    // constructor, properties, and methods go here\n    // ...\n});\nvar MyClass2 = declare(MyBase, {\n    // constructor, properties, and methods go here\n    // ...\n});\nvar MyDiamond = declare([MyClass1, MyClass2], {\n    // constructor, properties, and methods go here\n    // ...\n});\n",
+                "var F = function(){ console.log(&quot;raw constructor&quot;); };\nF.prototype.method = function(){\n    console.log(&quot;raw method&quot;);\n};\nvar A = declare(F, {\n    constructor: function(){\n        console.log(&quot;A.constructor&quot;);\n    },\n    method: function(){\n        console.log(&quot;before calling F.method...&quot;);\n        this.inherited(arguments);\n        console.log(&quot;...back in A&quot;);\n    }\n});\nnew A().method();\n// will print:\n// raw constructor\n// A.constructor\n// before calling F.method...\n// raw method\n// ...back in A\n",
+                "var A = declare(null, {\n    &quot;-chains-&quot;: {\n        destroy: &quot;before&quot;\n    }\n});\nvar B = declare(A, {\n    constructor: function(){\n        console.log(&quot;B.constructor&quot;);\n    },\n    destroy: function(){\n        console.log(&quot;B.destroy&quot;);\n    }\n});\nvar C = declare(B, {\n    constructor: function(){\n        console.log(&quot;C.constructor&quot;);\n    },\n    destroy: function(){\n        console.log(&quot;C.destroy&quot;);\n    }\n});\nnew C().destroy();\n// prints:\n// B.constructor\n// C.constructor\n// C.destroy\n// B.destroy\n",
+                "var A = declare(null, {\n    &quot;-chains-&quot;: {\n        constructor: &quot;manual&quot;\n    }\n});\nvar B = declare(A, {\n    constructor: function(){\n        // ...\n        // call the base constructor with new parameters\n        this.inherited(arguments, [1, 2, 3]);\n        // ...\n    }\n});\n",
+                "var A = declare(null, {\n    &quot;-chains-&quot;: {\n        m1: &quot;before&quot;\n    },\n    m1: function(){\n        console.log(&quot;A.m1&quot;);\n    },\n    m2: function(){\n        console.log(&quot;A.m2&quot;);\n    }\n});\nvar B = declare(A, {\n    &quot;-chains-&quot;: {\n        m2: &quot;after&quot;\n    },\n    m1: function(){\n        console.log(&quot;B.m1&quot;);\n    },\n    m2: function(){\n        console.log(&quot;B.m2&quot;);\n    }\n});\nvar x = new B();\nx.m1();\n// prints:\n// B.m1\n// A.m1\nx.m2();\n// prints:\n// A.m2\n// B.m2\n"
             ]
         },
         {
@@ -1594,12 +1594,12 @@
             ],
             "returnTypes": [],
             "summary": "<p>Deprecated.   This module defines the legacy dojo/_base/Deferred API.\nNew code should use dojo/Deferred instead.</p>\n",
-            "description": "<p>The Deferred API is based on the concept of promises that provide a\ngeneric interface into the eventual completion of an asynchronous action.\nThe motivation for promises fundamentally is about creating a\nseparation of concerns that allows one to achieve the same type of\ncall patterns and logical data flow in asynchronous code as can be\nachieved in synchronous code. Promises allows one\nto be able to call a function purely with arguments needed for\nexecution, without conflating the call with concerns of whether it is\nsync or async. One shouldn&#39;t need to alter a call&#39;s arguments if the\nimplementation switches from sync to async (or vice versa). By having\nasync functions return promises, the concerns of making the call are\nseparated from the concerns of asynchronous interaction (which are\nhandled by the promise).\n\n</p>\n<p>The Deferred is a type of promise that provides methods for fulfilling the\npromise with a successful result or an error. The most important method for\nworking with Dojo&#39;s promises is the then() method, which follows the\nCommonJS proposed promise API. An example of using a Dojo promise:\n\n\n</p>\n<pre><code>var resultingPromise = someAsyncOperation.then(function(result){\n    ... handle result ...\n},\nfunction(error){\n    ... handle error ...\n});</code></pre>\n<p>The .then() call returns a new promise that represents the result of the\nexecution of the callback. The callbacks will never affect the original promises value.\n\n</p>\n<p>The Deferred instances also provide the following functions for backwards compatibility:\n\n</p>\n<ul>\n<li>addCallback(handler)</li>\n<li>addErrback(handler)</li>\n<li>callback(result)</li>\n<li>errback(result)</li>\n</ul>\n<p>Callbacks are allowed to return promises themselves, so\nyou can build complicated sequences of events with ease.\n\n</p>\n<p>The creator of the Deferred may specify a canceller.  The canceller\nis a function that will be called if Deferred.cancel is called\nbefore the Deferred fires. You can use this to implement clean\naborting of an XMLHttpRequest, etc. Note that cancel will fire the\ndeferred with a CancelledError (unless your canceller returns\nanother kind of error), so the errbacks should be prepared to\nhandle that error for cancellable Deferreds.</p>\n",
+            "description": "<p>The Deferred API is based on the concept of promises that provide a\ngeneric interface into the eventual completion of an asynchronous action.\nThe motivation for promises fundamentally is about creating a\nseparation of concerns that allows one to achieve the same type of\ncall patterns and logical data flow in asynchronous code as can be\nachieved in synchronous code. Promises allows one\nto be able to call a function purely with arguments needed for\nexecution, without conflating the call with concerns of whether it is\nsync or async. One shouldn&#39;t need to alter a call&#39;s arguments if the\nimplementation switches from sync to async (or vice versa). By having\nasync functions return promises, the concerns of making the call are\nseparated from the concerns of asynchronous interaction (which are\nhandled by the promise).\n\n</p>\n<p>The Deferred is a type of promise that provides methods for fulfilling the\npromise with a successful result or an error. The most important method for\nworking with Dojo&#39;s promises is the then() method, which follows the\nCommonJS proposed promise API. An example of using a Dojo promise:\n\n\n</p>\nvar resultingPromise = someAsyncOperation.then(function(result){\n    ... handle result ...\n},\nfunction(error){\n    ... handle error ...\n});\n<p>The .then() call returns a new promise that represents the result of the\nexecution of the callback. The callbacks will never affect the original promises value.\n\n</p>\n<p>The Deferred instances also provide the following functions for backwards compatibility:\n\n</p>\n<ul>\n<li>addCallback(handler)</li>\n<li>addErrback(handler)</li>\n<li>callback(result)</li>\n<li>errback(result)</li>\n</ul>\n<p>Callbacks are allowed to return promises themselves, so\nyou can build complicated sequences of events with ease.\n\n</p>\n<p>The creator of the Deferred may specify a canceller.  The canceller\nis a function that will be called if Deferred.cancel is called\nbefore the Deferred fires. You can use this to implement clean\naborting of an XMLHttpRequest, etc. Note that cancel will fire the\ndeferred with a CancelledError (unless your canceller returns\nanother kind of error), so the errbacks should be prepared to\nhandle that error for cancellable Deferreds.</p>\n",
             "examples": [
-                "<pre><code>var deferred = new Deferred();\nsetTimeout(function(){ deferred.callback({success: true}); }, 1000);\nreturn deferred;</code></pre>\n",
-                "<p>Deferred objects are often used when making code asynchronous. It\nmay be easiest to write functions in a synchronous manner and then\nsplit code using a deferred to trigger a response to a long-lived\noperation. For example, instead of register a callback function to\ndenote when a rendering operation completes, the function can\nsimply return a deferred:\n\n\n</p>\n<pre><code>// callback style:\nfunction renderLotsOfData(data, callback){\n    var success = false\n    try{\n        for(var x in data){\n            renderDataitem(data[x]);\n        }\n        success = true;\n    }catch(e){ }\n    if(callback){\n        callback(success);\n    }\n}\n\n\n// using callback style\nrenderLotsOfData(someDataObj, function(success){\n    // handles success or failure\n    if(!success){\n        promptUserToRecover();\n    }\n});\n// NOTE: no way to add another callback here!!</code></pre>\n",
-                "<p>Using a Deferred doesn&#39;t simplify the sending code any, but it\nprovides a standard interface for callers and senders alike,\nproviding both with a simple way to service multiple callbacks for\nan operation and freeing both sides from worrying about details\nsuch as &quot;did this get called already?&quot;. With Deferreds, new\ncallbacks can be added at any time.\n\n\n</p>\n<pre><code>// Deferred style:\nfunction renderLotsOfData(data){\n    var d = new Deferred();\n    try{\n        for(var x in data){\n            renderDataitem(data[x]);\n        }\n        d.callback(true);\n    }catch(e){\n        d.errback(new Error(&quot;rendering failed&quot;));\n    }\n    return d;\n}\n\n\n// using Deferred style\nrenderLotsOfData(someDataObj).then(null, function(){\n    promptUserToRecover();\n});\n// NOTE: addErrback and addCallback both return the Deferred\n// again, so we could chain adding callbacks or save the\n// deferred for later should we need to be notified again.</code></pre>\n",
-                "<p>In this example, renderLotsOfData is synchronous and so both\nversions are pretty artificial. Putting the data display on a\ntimeout helps show why Deferreds rock:\n\n\n</p>\n<pre><code>// Deferred style and async func\nfunction renderLotsOfData(data){\n    var d = new Deferred();\n    setTimeout(function(){\n        try{\n            for(var x in data){\n                renderDataitem(data[x]);\n            }\n            d.callback(true);\n        }catch(e){\n            d.errback(new Error(&quot;rendering failed&quot;));\n        }\n    }, 100);\n    return d;\n}\n\n\n// using Deferred style\nrenderLotsOfData(someDataObj).then(null, function(){\n    promptUserToRecover();\n});</code></pre>\n<p>Note that the caller doesn&#39;t have to change his code at all to\nhandle the asynchronous case.</p>\n"
+                "var deferred = new Deferred();\nsetTimeout(function(){ deferred.callback({success: true}); }, 1000);\nreturn deferred;\n",
+                "<p>Deferred objects are often used when making code asynchronous. It\nmay be easiest to write functions in a synchronous manner and then\nsplit code using a deferred to trigger a response to a long-lived\noperation. For example, instead of register a callback function to\ndenote when a rendering operation completes, the function can\nsimply return a deferred:\n\n\n</p>\n// callback style:\nfunction renderLotsOfData(data, callback){\n    var success = false\n    try{\n        for(var x in data){\n            renderDataitem(data[x]);\n        }\n        success = true;\n    }catch(e){ }\n    if(callback){\n        callback(success);\n    }\n}\n\n\n// using callback style\nrenderLotsOfData(someDataObj, function(success){\n    // handles success or failure\n    if(!success){\n        promptUserToRecover();\n    }\n});\n// NOTE: no way to add another callback here!!\n",
+                "<p>Using a Deferred doesn&#39;t simplify the sending code any, but it\nprovides a standard interface for callers and senders alike,\nproviding both with a simple way to service multiple callbacks for\nan operation and freeing both sides from worrying about details\nsuch as &quot;did this get called already?&quot;. With Deferreds, new\ncallbacks can be added at any time.\n\n\n</p>\n// Deferred style:\nfunction renderLotsOfData(data){\n    var d = new Deferred();\n    try{\n        for(var x in data){\n            renderDataitem(data[x]);\n        }\n        d.callback(true);\n    }catch(e){\n        d.errback(new Error(&quot;rendering failed&quot;));\n    }\n    return d;\n}\n\n\n// using Deferred style\nrenderLotsOfData(someDataObj).then(null, function(){\n    promptUserToRecover();\n});\n// NOTE: addErrback and addCallback both return the Deferred\n// again, so we could chain adding callbacks or save the\n// deferred for later should we need to be notified again.\n",
+                "<p>In this example, renderLotsOfData is synchronous and so both\nversions are pretty artificial. Putting the data display on a\ntimeout helps show why Deferreds rock:\n\n\n</p>\n// Deferred style and async func\nfunction renderLotsOfData(data){\n    var d = new Deferred();\n    setTimeout(function(){\n        try{\n            for(var x in data){\n                renderDataitem(data[x]);\n            }\n            d.callback(true);\n        }catch(e){\n            d.errback(new Error(&quot;rendering failed&quot;));\n        }\n    }, 100);\n    return d;\n}\n\n\n// using Deferred style\nrenderLotsOfData(someDataObj).then(null, function(){\n    promptUserToRecover();\n});\n<p>Note that the caller doesn&#39;t have to change his code at all to\nhandle the asynchronous case.</p>\n"
             ]
         },
         {
@@ -1690,7 +1690,7 @@
             "returnTypes": [],
             "summary": "<p>Log a debug message to indicate that a behavior has been\ndeprecated.</p>\n",
             "examples": [
-                "<pre><code>dojo.deprecated(&quot;myApp.getTemp()&quot;, &quot;use myApp.getLocaleTemp() instead&quot;, &quot;1.0&quot;);</code></pre>\n"
+                "dojo.deprecated(&quot;myApp.getTemp()&quot;, &quot;use myApp.getLocaleTemp() instead&quot;, &quot;1.0&quot;);\n"
             ]
         },
         {
@@ -1781,8 +1781,8 @@
             "summary": "<p>Determines whether or not every item in arr satisfies the\ncondition implemented by callback.</p>\n",
             "description": "<p>This function corresponds to the JavaScript 1.6 Array.every() method, with one difference: when\nrun over sparse arrays, this implementation passes the &quot;holes&quot; in the sparse array to\nthe callback function with a value of undefined. JavaScript 1.6&#39;s every skips the holes in the sparse array.\nFor more details, see:\n<a href=\"https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/every\">https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/every</a></p>\n",
             "examples": [
-                "<pre><code>// returns false\narray.every([1, 2, 3, 4], function(item){ return item&gt;1; });</code></pre>\n",
-                "<pre><code>// returns true\narray.every([1, 2, 3, 4], function(item){ return item&gt;0; });</code></pre>\n"
+                "// returns false\narray.every([1, 2, 3, 4], function(item){ return item&gt;1; });\n",
+                "// returns true\narray.every([1, 2, 3, 4], function(item){ return item&gt;0; });\n"
             ]
         },
         {
@@ -1824,8 +1824,8 @@
             "summary": "<p>Marks code as experimental.</p>\n",
             "description": "<p>This can be used to mark a function, file, or module as\nexperimental.    Experimental code is not ready to be used, and the\nAPIs are subject to change without notice.  Experimental code may be\ncompleted deleted without going through the normal deprecation\nprocess.</p>\n",
             "examples": [
-                "<pre><code>dojo.experimental(&quot;dojo.data.Result&quot;);</code></pre>\n",
-                "<pre><code>dojo.experimental(&quot;dojo.weather.toKelvin()&quot;, &quot;PENDING approval from NOAA&quot;);</code></pre>\n"
+                "dojo.experimental(&quot;dojo.data.Result&quot;);\n",
+                "dojo.experimental(&quot;dojo.weather.toKelvin()&quot;, &quot;PENDING approval from NOAA&quot;);\n"
             ]
         },
         {
@@ -1936,7 +1936,7 @@
             "summary": "<p>Returns a new Array with those items from arr that match the\ncondition implemented by callback.</p>\n",
             "description": "<p>This function corresponds to the JavaScript 1.6 Array.filter() method, with one difference: when\nrun over sparse arrays, this implementation passes the &quot;holes&quot; in the sparse array to\nthe callback function with a value of undefined. JavaScript 1.6&#39;s filter skips the holes in the sparse array.\nFor more details, see:\n<a href=\"https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/filter\">https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/filter</a></p>\n",
             "examples": [
-                "<pre><code>// returns [2, 3, 4]\narray.filter([1, 2, 3, 4], function(item){ return item&gt;1; });</code></pre>\n"
+                "// returns [2, 3, 4]\narray.filter([1, 2, 3, 4], function(item){ return item&gt;1; });\n"
             ]
         },
         {
@@ -2008,9 +2008,9 @@
             "summary": "<p>for every item in arr, callback is invoked. Return values are ignored.\nIf you want to break out of the loop, consider using array.every() or array.some().\nforEach does not allow breaking out of the loop over the items in arr.</p>\n",
             "description": "<p>This function corresponds to the JavaScript 1.6 Array.forEach() method, with one difference: when\nrun over sparse arrays, this implementation passes the &quot;holes&quot; in the sparse array to\nthe callback function with a value of undefined. JavaScript 1.6&#39;s forEach skips the holes in the sparse array.\nFor more details, see:\n<a href=\"https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/forEach\">https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/forEach</a></p>\n",
             "examples": [
-                "<pre><code>// log out all members of the array:\narray.forEach(\n      [ &quot;thinger&quot;, &quot;blah&quot;, &quot;howdy&quot;, 10 ],\n      function(item){\n          console.log(item);\n      }\n);</code></pre>\n",
-                "<pre><code>// log out the members and their indexes\narray.forEach(\n      [ &quot;thinger&quot;, &quot;blah&quot;, &quot;howdy&quot;, 10 ],\n      function(item, idx, arr){\n          console.log(item, &quot;at index:&quot;, idx);\n      }\n);</code></pre>\n",
-                "<pre><code>// use a scoped object member as the callback\n\nvar obj = {\n      prefix: &quot;logged via obj.callback:&quot;,\n      callback: function(item){\n          console.log(this.prefix, item);\n      }\n};\n\n// specifying the scope function executes the callback in that scope\narray.forEach(\n      [ &quot;thinger&quot;, &quot;blah&quot;, &quot;howdy&quot;, 10 ],\n      obj.callback,\n      obj\n);\n\n// alternately, we can accomplish the same thing with lang.hitch()\narray.forEach(\n      [ &quot;thinger&quot;, &quot;blah&quot;, &quot;howdy&quot;, 10 ],\n      lang.hitch(obj, &quot;callback&quot;)\n);</code></pre>\n"
+                "// log out all members of the array:\narray.forEach(\n      [ &quot;thinger&quot;, &quot;blah&quot;, &quot;howdy&quot;, 10 ],\n      function(item){\n          console.log(item);\n      }\n);\n",
+                "// log out the members and their indexes\narray.forEach(\n      [ &quot;thinger&quot;, &quot;blah&quot;, &quot;howdy&quot;, 10 ],\n      function(item, idx, arr){\n          console.log(item, &quot;at index:&quot;, idx);\n      }\n);\n",
+                "// use a scoped object member as the callback\n\nvar obj = {\n      prefix: &quot;logged via obj.callback:&quot;,\n      callback: function(item){\n          console.log(this.prefix, item);\n      }\n};\n\n// specifying the scope function executes the callback in that scope\narray.forEach(\n      [ &quot;thinger&quot;, &quot;blah&quot;, &quot;howdy&quot;, 10 ],\n      obj.callback,\n      obj\n);\n\n// alternately, we can accomplish the same thing with lang.hitch()\narray.forEach(\n      [ &quot;thinger&quot;, &quot;blah&quot;, &quot;howdy&quot;, 10 ],\n      lang.hitch(obj, &quot;callback&quot;)\n);\n"
             ]
         },
         {
@@ -2068,7 +2068,7 @@
             "summary": "<p>Serialize a form node to a JavaScript object.</p>\n",
             "description": "<p>Returns the values encoded in an HTML form as\nstring properties in an object which it then returns. Disabled form\nelements, buttons, and other non-value form elements are skipped.\nMulti-select elements are returned as an array of string values.</p>\n",
             "examples": [
-                "<p>This form:\n\n</p>\n<pre><code>&lt;form id=&quot;test_form&quot;&gt;\n    &lt;input type=&quot;text&quot; name=&quot;blah&quot; value=&quot;blah&quot;&gt;\n    &lt;input type=&quot;text&quot; name=&quot;no_value&quot; value=&quot;blah&quot; disabled&gt;\n    &lt;input type=&quot;button&quot; name=&quot;no_value2&quot; value=&quot;blah&quot;&gt;\n    &lt;select type=&quot;select&quot; multiple name=&quot;multi&quot; size=&quot;5&quot;&gt;\n        &lt;option value=&quot;blah&quot;&gt;blah&lt;/option&gt;\n        &lt;option value=&quot;thud&quot; selected&gt;thud&lt;/option&gt;\n        &lt;option value=&quot;thonk&quot; selected&gt;thonk&lt;/option&gt;\n    &lt;/select&gt;\n&lt;/form&gt;</code></pre>\n<p>yields this object structure as the result of a call to\nformToObject():\n\n\n</p>\n<pre><code>{\n    blah: &quot;blah&quot;,\n    multi: [\n        &quot;thud&quot;,\n        &quot;thonk&quot;\n    ]\n};</code></pre>\n"
+                "<p>This form:\n\n</p>\n&lt;form id=&quot;test_form&quot;&gt;\n    &lt;input type=&quot;text&quot; name=&quot;blah&quot; value=&quot;blah&quot;&gt;\n    &lt;input type=&quot;text&quot; name=&quot;no_value&quot; value=&quot;blah&quot; disabled&gt;\n    &lt;input type=&quot;button&quot; name=&quot;no_value2&quot; value=&quot;blah&quot;&gt;\n    &lt;select type=&quot;select&quot; multiple name=&quot;multi&quot; size=&quot;5&quot;&gt;\n        &lt;option value=&quot;blah&quot;&gt;blah&lt;/option&gt;\n        &lt;option value=&quot;thud&quot; selected&gt;thud&lt;/option&gt;\n        &lt;option value=&quot;thonk&quot; selected&gt;thonk&lt;/option&gt;\n    &lt;/select&gt;\n&lt;/form&gt;\n<p>yields this object structure as the result of a call to\nformToObject():\n\n\n</p>\n{\n    blah: &quot;blah&quot;,\n    multi: [\n        &quot;thud&quot;,\n        &quot;thonk&quot;\n    ]\n};\n"
             ]
         },
         {
@@ -2307,7 +2307,7 @@
             "summary": "<p>applies callback to each element of arr and returns\nan Array with the results</p>\n",
             "description": "<p>This function corresponds to the JavaScript 1.6 Array.map() method, with one difference: when\nrun over sparse arrays, this implementation passes the &quot;holes&quot; in the sparse array to\nthe callback function with a value of undefined. JavaScript 1.6&#39;s map skips the holes in the sparse array.\nFor more details, see:\n<a href=\"https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/map\">https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/map</a></p>\n",
             "examples": [
-                "<pre><code>// returns [2, 3, 4, 5]\narray.map([1, 2, 3, 4], function(item){ return item+1 });</code></pre>\n"
+                "// returns [2, 3, 4, 5]\narray.map([1, 2, 3, 4], function(item){ return item+1 });\n"
             ]
         },
         {
@@ -2337,8 +2337,8 @@
             "returnTypes": [],
             "summary": "<p>Returns a URL relative to a module.</p>\n",
             "examples": [
-                "<pre><code>var pngPath = dojo.moduleUrl(&quot;acme&quot;,&quot;images/small.png&quot;);\nconsole.dir(pngPath); // list the object properties\n// create an image and set it&#39;s source to pngPath&#39;s value:\nvar img = document.createElement(&quot;img&quot;);\nimg.src = pngPath;\n// add our image to the document\ndojo.body().appendChild(img);</code></pre>\n",
-                "<p>you may de-reference as far as you like down the package\nhierarchy.  This is sometimes handy to avoid lenghty relative\nurls or for building portable sub-packages. In this example,\nthe <code>acme.widget</code> and <code>acme.util</code> directories may be located\nunder different roots (see <code>dojo.registerModulePath</code>) but the\nthe modules which reference them can be unaware of their\nrelative locations on the filesystem:\n\n</p>\n<pre><code>// somewhere in a configuration block\ndojo.registerModulePath(&quot;acme.widget&quot;, &quot;../../acme/widget&quot;);\ndojo.registerModulePath(&quot;acme.util&quot;, &quot;../../util&quot;);\n\n// ...\n\n// code in a module using acme resources\nvar tmpltPath = dojo.moduleUrl(&quot;acme.widget&quot;,&quot;templates/template.html&quot;);\nvar dataPath = dojo.moduleUrl(&quot;acme.util&quot;,&quot;resources/data.json&quot;);</code></pre>\n"
+                "var pngPath = dojo.moduleUrl(&quot;acme&quot;,&quot;images/small.png&quot;);\nconsole.dir(pngPath); // list the object properties\n// create an image and set it&#39;s source to pngPath&#39;s value:\nvar img = document.createElement(&quot;img&quot;);\nimg.src = pngPath;\n// add our image to the document\ndojo.body().appendChild(img);\n",
+                "<p>you may de-reference as far as you like down the package\nhierarchy.  This is sometimes handy to avoid lenghty relative\nurls or for building portable sub-packages. In this example,\nthe <code>acme.widget</code> and <code>acme.util</code> directories may be located\nunder different roots (see <code>dojo.registerModulePath</code>) but the\nthe modules which reference them can be unaware of their\nrelative locations on the filesystem:\n\n</p>\n// somewhere in a configuration block\ndojo.registerModulePath(&quot;acme.widget&quot;, &quot;../../acme/widget&quot;);\ndojo.registerModulePath(&quot;acme.util&quot;, &quot;../../util&quot;);\n\n// ...\n\n// code in a module using acme resources\nvar tmpltPath = dojo.moduleUrl(&quot;acme.widget&quot;,&quot;templates/template.html&quot;);\nvar dataPath = dojo.moduleUrl(&quot;acme.util&quot;,&quot;resources/data.json&quot;);\n"
             ]
         },
         {
@@ -2364,13 +2364,13 @@
             "summary": "<p>Array-like object which adds syntactic\nsugar for chaining, common iteration operations, animation, and\nnode manipulation. NodeLists are most often returned as the\nresult of dojo.query() calls.</p>\n",
             "description": "<p>NodeList instances provide many utilities that reflect\ncore Dojo APIs for Array iteration and manipulation, DOM\nmanipulation, and event handling. Instead of needing to dig up\nfunctions in the dojo.* namespace, NodeLists generally make the\nfull power of Dojo available for DOM manipulation tasks in a\nsimple, chainable way.</p>\n",
             "examples": [
-                "<p>create a node list from a node\n\n</p>\n<pre><code>new query.NodeList(dojo.byId(&quot;foo&quot;));</code></pre>\n",
-                "<p>get a NodeList from a CSS query and iterate on it\n\n</p>\n<pre><code>var l = dojo.query(&quot;.thinger&quot;);\nl.forEach(function(node, index, nodeList){\n    console.log(index, node.innerHTML);\n});</code></pre>\n",
-                "<p>use native and Dojo-provided array methods to manipulate a\nNodeList without needing to use dojo.* functions explicitly:\n\n</p>\n<pre><code>var l = dojo.query(&quot;.thinger&quot;);\n// since NodeLists are real arrays, they have a length\n// property that is both readable and writable and\n// push/pop/shift/unshift methods\nconsole.log(l.length);\nl.push(dojo.create(&quot;span&quot;));\n\n// dojo&#39;s normalized array methods work too:\nconsole.log( l.indexOf(dojo.byId(&quot;foo&quot;)) );\n// ...including the special &quot;function as string&quot; shorthand\nconsole.log( l.every(&quot;item.nodeType == 1&quot;) );\n\n// NodeLists can be [..] indexed, or you can use the at()\n// function to get specific items wrapped in a new NodeList:\nvar node = l[3]; // the 4th element\nvar newList = l.at(1, 3); // the 2nd and 4th elements</code></pre>\n",
-                "<p>the style functions you expect are all there too:\n\n</p>\n<pre><code>// style() as a getter...\nvar borders = dojo.query(&quot;.thinger&quot;).style(&quot;border&quot;);\n// ...and as a setter:\ndojo.query(&quot;.thinger&quot;).style(&quot;border&quot;, &quot;1px solid black&quot;);\n// class manipulation\ndojo.query(&quot;li:nth-child(even)&quot;).addClass(&quot;even&quot;);\n// even getting the coordinates of all the items\nvar coords = dojo.query(&quot;.thinger&quot;).coords();</code></pre>\n",
-                "<p>DOM manipulation functions from the dojo.* namespace area also available:\n\n</p>\n<pre><code>// remove all of the elements in the list from their\n// parents (akin to &quot;deleting&quot; them from the document)\ndojo.query(&quot;.thinger&quot;).orphan();\n// place all elements in the list at the front of #foo\ndojo.query(&quot;.thinger&quot;).place(&quot;foo&quot;, &quot;first&quot;);</code></pre>\n",
-                "<p>Event handling couldn&#39;t be easier. <code>dojo.connect</code> is mapped in,\nand shortcut handlers are provided for most DOM events:\n\n</p>\n<pre><code>// like dojo.connect(), but with implicit scope\ndojo.query(&quot;li&quot;).connect(&quot;onclick&quot;, console, &quot;log&quot;);\n\n// many common event handlers are already available directly:\ndojo.query(&quot;li&quot;).onclick(console, &quot;log&quot;);\nvar toggleHovered = dojo.hitch(dojo, &quot;toggleClass&quot;, &quot;hovered&quot;);\ndojo.query(&quot;p&quot;)\n    .onmouseenter(toggleHovered)\n    .onmouseleave(toggleHovered);</code></pre>\n",
-                "<p>chainability is a key advantage of NodeLists:\n\n</p>\n<pre><code>dojo.query(&quot;.thinger&quot;)\n    .onclick(function(e){ /* ... */ })\n    .at(1, 3, 8) // get a subset\n        .style(&quot;padding&quot;, &quot;5px&quot;)\n        .forEach(console.log);</code></pre>\n"
+                "<p>create a node list from a node\n\n</p>\nnew query.NodeList(dojo.byId(&quot;foo&quot;));\n",
+                "<p>get a NodeList from a CSS query and iterate on it\n\n</p>\nvar l = dojo.query(&quot;.thinger&quot;);\nl.forEach(function(node, index, nodeList){\n    console.log(index, node.innerHTML);\n});\n",
+                "<p>use native and Dojo-provided array methods to manipulate a\nNodeList without needing to use dojo.* functions explicitly:\n\n</p>\nvar l = dojo.query(&quot;.thinger&quot;);\n// since NodeLists are real arrays, they have a length\n// property that is both readable and writable and\n// push/pop/shift/unshift methods\nconsole.log(l.length);\nl.push(dojo.create(&quot;span&quot;));\n\n// dojo&#39;s normalized array methods work too:\nconsole.log( l.indexOf(dojo.byId(&quot;foo&quot;)) );\n// ...including the special &quot;function as string&quot; shorthand\nconsole.log( l.every(&quot;item.nodeType == 1&quot;) );\n\n// NodeLists can be [..] indexed, or you can use the at()\n// function to get specific items wrapped in a new NodeList:\nvar node = l[3]; // the 4th element\nvar newList = l.at(1, 3); // the 2nd and 4th elements\n",
+                "<p>the style functions you expect are all there too:\n\n</p>\n// style() as a getter...\nvar borders = dojo.query(&quot;.thinger&quot;).style(&quot;border&quot;);\n// ...and as a setter:\ndojo.query(&quot;.thinger&quot;).style(&quot;border&quot;, &quot;1px solid black&quot;);\n// class manipulation\ndojo.query(&quot;li:nth-child(even)&quot;).addClass(&quot;even&quot;);\n// even getting the coordinates of all the items\nvar coords = dojo.query(&quot;.thinger&quot;).coords();\n",
+                "<p>DOM manipulation functions from the dojo.* namespace area also available:\n\n</p>\n// remove all of the elements in the list from their\n// parents (akin to &quot;deleting&quot; them from the document)\ndojo.query(&quot;.thinger&quot;).orphan();\n// place all elements in the list at the front of #foo\ndojo.query(&quot;.thinger&quot;).place(&quot;foo&quot;, &quot;first&quot;);\n",
+                "<p>Event handling couldn&#39;t be easier. <code>dojo.connect</code> is mapped in,\nand shortcut handlers are provided for most DOM events:\n\n</p>\n// like dojo.connect(), but with implicit scope\ndojo.query(&quot;li&quot;).connect(&quot;onclick&quot;, console, &quot;log&quot;);\n\n// many common event handlers are already available directly:\ndojo.query(&quot;li&quot;).onclick(console, &quot;log&quot;);\nvar toggleHovered = dojo.hitch(dojo, &quot;toggleClass&quot;, &quot;hovered&quot;);\ndojo.query(&quot;p&quot;)\n    .onmouseenter(toggleHovered)\n    .onmouseleave(toggleHovered);\n",
+                "<p>chainability is a key advantage of NodeLists:\n\n</p>\ndojo.query(&quot;.thinger&quot;)\n    .onclick(function(e){ /* ... */ })\n    .at(1, 3, 8) // get a subset\n        .style(&quot;padding&quot;, &quot;5px&quot;)\n        .forEach(console.log);\n"
             ]
         },
         {
@@ -2395,7 +2395,7 @@
             ],
             "summary": "<p>takes a name/value mapping object and returns a string representing\na URL-encoded version of that object.</p>\n",
             "examples": [
-                "<p>this object:\n\n\n</p>\n<pre><code>{\n    blah: &quot;blah&quot;,\n    multi: [\n        &quot;thud&quot;,\n        &quot;thonk&quot;\n    ]\n};</code></pre>\n<p>yields the following query string:\n\n\n</p>\n<pre><code>&quot;blah=blah&amp;multi=thud&amp;multi=thonk&quot;</code></pre>\n"
+                "<p>this object:\n\n\n</p>\n{\n    blah: &quot;blah&quot;,\n    multi: [\n        &quot;thud&quot;,\n        &quot;thonk&quot;\n    ]\n};\n<p>yields the following query string:\n\n\n</p>\n&quot;blah=blah&amp;multi=thud&amp;multi=thonk&quot;\n"
             ]
         },
         {
@@ -2429,7 +2429,7 @@
             ],
             "summary": "<p>Invoke all listener method subscribed to topic.</p>\n",
             "examples": [
-                "<pre><code>dojo.subscribe(&quot;alerts&quot;, null, function(caption, message){ alert(caption + &quot;\\n&quot; + message); };\ndojo.publish(&quot;alerts&quot;, [ &quot;read this&quot;, &quot;hello world&quot; ]);</code></pre>\n"
+                "dojo.subscribe(&quot;alerts&quot;, null, function(caption, message){ alert(caption + &quot;\\n&quot; + message); };\ndojo.publish(&quot;alerts&quot;, [ &quot;read this&quot;, &quot;hello world&quot; ]);\n"
             ]
         },
         {
@@ -2454,7 +2454,7 @@
             ],
             "summary": "<p>Create an object representing a de-serialized query section of a\nURL. Query keys with multiple values are returned in an array.\n</p>\n",
             "examples": [
-                "<p>This string:\n\n\n</p>\n<pre><code>&quot;foo=bar&amp;foo=baz&amp;thinger=%20spaces%20=blah&amp;zonk=blarg&amp;&quot;</code></pre>\n<p>results in this object structure:\n\n\n</p>\n<pre><code>{\n    foo: [ &quot;bar&quot;, &quot;baz&quot; ],\n    thinger: &quot; spaces =blah&quot;,\n    zonk: &quot;blarg&quot;\n}</code></pre>\n<p>Note that spaces and other urlencoded entities are correctly\nhandled.</p>\n"
+                "<p>This string:\n\n\n</p>\n&quot;foo=bar&amp;foo=baz&amp;thinger=%20spaces%20=blah&amp;zonk=blarg&amp;&quot;\n<p>results in this object structure:\n\n\n</p>\n{\n    foo: [ &quot;bar&quot;, &quot;baz&quot; ],\n    thinger: &quot; spaces =blah&quot;,\n    zonk: &quot;blarg&quot;\n}\n<p>Note that spaces and other urlencoded entities are correctly\nhandled.</p>\n"
             ]
         },
         {
@@ -2540,10 +2540,10 @@
             "returnTypes": [],
             "summary": "<p>Add a function to execute on DOM content loaded and all requested modules have arrived and been evaluated.\nIn most cases, the <code>domReady</code> plug-in should suffice and this method should not be needed.\n\n</p>\n<p>When called in a non-browser environment, just checks that all requested modules have arrived and been\nevaluated.</p>\n",
             "examples": [
-                "<p>Simple DOM and Modules ready syntax\n\n</p>\n<pre><code>require([&quot;dojo/ready&quot;], function(ready){\n    ready(function(){ alert(&quot;Dom ready!&quot;); });\n});</code></pre>\n",
-                "<p>Using a priority\n\n</p>\n<pre><code>require([&quot;dojo/ready&quot;], function(ready){\n    ready(2, function(){ alert(&quot;low priority ready!&quot;); })\n});</code></pre>\n",
-                "<p>Using context\n\n</p>\n<pre><code>require([&quot;dojo/ready&quot;], function(ready){\n    ready(foo, function(){\n        // in here, this == foo\n    });\n});</code></pre>\n",
-                "<p>Using dojo/hitch style args:\n\n</p>\n<pre><code>require([&quot;dojo/ready&quot;], function(ready){\n    var foo = { dojoReady: function(){ console.warn(this, &quot;dojo dom and modules ready.&quot;); } };\n    ready(foo, &quot;dojoReady&quot;);\n});</code></pre>\n"
+                "<p>Simple DOM and Modules ready syntax\n\n</p>\nrequire([&quot;dojo/ready&quot;], function(ready){\n    ready(function(){ alert(&quot;Dom ready!&quot;); });\n});\n",
+                "<p>Using a priority\n\n</p>\nrequire([&quot;dojo/ready&quot;], function(ready){\n    ready(2, function(){ alert(&quot;low priority ready!&quot;); })\n});\n",
+                "<p>Using context\n\n</p>\nrequire([&quot;dojo/ready&quot;], function(ready){\n    ready(foo, function(){\n        // in here, this == foo\n    });\n});\n",
+                "<p>Using dojo/hitch style args:\n\n</p>\nrequire([&quot;dojo/ready&quot;], function(ready){\n    var foo = { dojoReady: function(){ console.warn(this, &quot;dojo dom and modules ready.&quot;); } };\n    ready(foo, &quot;dojoReady&quot;);\n});\n"
             ]
         },
         {
@@ -2579,7 +2579,7 @@
             "summary": "<p>Mix in properties skipping a constructor and decorating functions\nlike it is done by declare().</p>\n",
             "description": "<p>This function is used to mix in properties like lang.mixin does,\nbut it skips a constructor property and decorates functions like\ndeclare() does.\n\n</p>\n<p>It is meant to be used with classes and objects produced with\ndeclare. Functions mixed in with dojo.safeMixin can use\nthis.inherited() like normal methods.\n\n</p>\n<p>This function is used to implement extend() method of a constructor\nproduced with declare().\n</p>\n",
             "examples": [
-                "<pre><code>var A = declare(null, {\n    m1: function(){\n        console.log(&quot;A.m1&quot;);\n    },\n    m2: function(){\n        console.log(&quot;A.m2&quot;);\n    }\n});\nvar B = declare(A, {\n    m1: function(){\n        this.inherited(arguments);\n        console.log(&quot;B.m1&quot;);\n    }\n});\nB.extend({\n    m2: function(){\n        this.inherited(arguments);\n        console.log(&quot;B.m2&quot;);\n    }\n});\nvar x = new B();\ndojo.safeMixin(x, {\n    m1: function(){\n        this.inherited(arguments);\n        console.log(&quot;X.m1&quot;);\n    },\n    m2: function(){\n        this.inherited(arguments);\n        console.log(&quot;X.m2&quot;);\n    }\n});\nx.m2();\n// prints:\n// A.m1\n// B.m1\n// X.m1</code></pre>\n"
+                "var A = declare(null, {\n    m1: function(){\n        console.log(&quot;A.m1&quot;);\n    },\n    m2: function(){\n        console.log(&quot;A.m2&quot;);\n    }\n});\nvar B = declare(A, {\n    m1: function(){\n        this.inherited(arguments);\n        console.log(&quot;B.m1&quot;);\n    }\n});\nB.extend({\n    m2: function(){\n        this.inherited(arguments);\n        console.log(&quot;B.m2&quot;);\n    }\n});\nvar x = new B();\ndojo.safeMixin(x, {\n    m1: function(){\n        this.inherited(arguments);\n        console.log(&quot;X.m1&quot;);\n    },\n    m2: function(){\n        this.inherited(arguments);\n        console.log(&quot;X.m2&quot;);\n    }\n});\nx.m2();\n// prints:\n// A.m1\n// B.m1\n// X.m1\n"
             ]
         },
         {
@@ -2651,8 +2651,8 @@
             "summary": "<p>Determines whether or not any item in arr satisfies the\ncondition implemented by callback.</p>\n",
             "description": "<p>This function corresponds to the JavaScript 1.6 Array.some() method, with one difference: when\nrun over sparse arrays, this implementation passes the &quot;holes&quot; in the sparse array to\nthe callback function with a value of undefined. JavaScript 1.6&#39;s some skips the holes in the sparse array.\nFor more details, see:\n<a href=\"https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/some\">https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/some</a></p>\n",
             "examples": [
-                "<pre><code>// is true\narray.some([1, 2, 3, 4], function(item){ return item&gt;1; });</code></pre>\n",
-                "<pre><code>// is false\narray.some([1, 2, 3, 4], function(item){ return item&lt;1; });</code></pre>\n"
+                "// is true\narray.some([1, 2, 3, 4], function(item){ return item&gt;1; });\n",
+                "// is false\narray.some([1, 2, 3, 4], function(item){ return item&lt;1; });\n"
             ]
         },
         {
@@ -2727,7 +2727,7 @@
             ],
             "summary": "<p>Attach a listener to a named topic. The listener function is invoked whenever the\nnamed topic is published (see: dojo.publish).\nReturns a handle which is needed to unsubscribe this listener.</p>\n",
             "examples": [
-                "<pre><code>dojo.subscribe(&quot;alerts&quot;, null, function(caption, message){ alert(caption + &quot;\\n&quot; + message); });\ndojo.publish(&quot;alerts&quot;, [ &quot;read this&quot;, &quot;hello world&quot; ]);</code></pre>\n"
+                "dojo.subscribe(&quot;alerts&quot;, null, function(caption, message){ alert(caption + &quot;\\n&quot; + message); });\ndojo.publish(&quot;alerts&quot;, [ &quot;read this&quot;, &quot;hello world&quot; ]);\n"
             ]
         },
         {
@@ -2763,8 +2763,8 @@
             "summary": "<p>Returns a <a href=\"http://json.org\">JSON</a> serialization of an object.</p>\n",
             "description": "<p>Returns a <a href=\"http://json.org\">JSON</a> serialization of an object.\nNote that this doesn&#39;t check for infinite recursion, so don&#39;t do that!\nIt is recommend that you use dojo/json&#39;s stringify function for an lighter\nand faster implementation that matches the native JSON API and uses the\nnative JSON serializer when available.</p>\n",
             "examples": [
-                "<p>simple serialization of a trivial object\n\n</p>\n<pre><code>var jsonStr = dojo.toJson({ howdy: &quot;stranger!&quot;, isStrange: true });\ndoh.is(&#39;{&quot;howdy&quot;:&quot;stranger!&quot;,&quot;isStrange&quot;:true}&#39;, jsonStr);</code></pre>\n",
-                "<p>a custom serializer for an objects of a particular class:\n\n</p>\n<pre><code>dojo.declare(&quot;Furby&quot;, null, {\n    furbies: &quot;are strange&quot;,\n    furbyCount: 10,\n    __json__: function(){\n    },\n});</code></pre>\n"
+                "<p>simple serialization of a trivial object\n\n</p>\nvar jsonStr = dojo.toJson({ howdy: &quot;stranger!&quot;, isStrange: true });\ndoh.is(&#39;{&quot;howdy&quot;:&quot;stranger!&quot;,&quot;isStrange&quot;:true}&#39;, jsonStr);\n",
+                "<p>a custom serializer for an objects of a particular class:\n\n</p>\ndojo.declare(&quot;Furby&quot;, null, {\n    furbies: &quot;are strange&quot;,\n    furbyCount: 10,\n    __json__: function(){\n    },\n});\n"
             ]
         },
         {
@@ -2788,7 +2788,7 @@
             "returnTypes": [],
             "summary": "<p>Remove a topic listener.</p>\n",
             "examples": [
-                "<pre><code>var alerter = dojo.subscribe(&quot;alerts&quot;, null, function(caption, message){ alert(caption + &quot;\\n&quot; + message); };\n...\ndojo.unsubscribe(alerter);</code></pre>\n"
+                "var alerter = dojo.subscribe(&quot;alerts&quot;, null, function(caption, message){ alert(caption + &quot;\\n&quot; + message); };\n...\ndojo.unsubscribe(alerter);\n"
             ]
         },
         {

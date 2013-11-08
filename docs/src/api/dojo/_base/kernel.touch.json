@@ -3,11 +3,11 @@
     "type": "object",
     "summary": "<p>This module provides unified touch event handlers by exporting\npress, move, release and cancel which can also run well on desktop.\nBased on <a href=\"http://dvcs.w3.org/hg/webevents/raw-file/tip/touchevents.html\">http://dvcs.w3.org/hg/webevents/raw-file/tip/touchevents.html</a>\nAlso, if the dojoClick property is set to true on a DOM node, dojo/touch generates\nclick events immediately for this node and its descendants, to avoid the\ndelay before native browser click events, and regardless of whether evt.preventDefault()\nwas called in a touch.press event listener.\n</p>\n",
     "examples": [
-        "<p>Used with dojo.on\n\n</p>\n<pre><code>define([&quot;dojo/on&quot;, &quot;dojo/touch&quot;], function(on, touch){\n    on(node, touch.press, function(e){});\n    on(node, touch.move, function(e){});\n    on(node, touch.release, function(e){});\n    on(node, touch.cancel, function(e){});</code></pre>\n",
-        "<p>Used with touch.* directly\n\n</p>\n<pre><code>touch.press(node, function(e){});\ntouch.move(node, function(e){});\ntouch.release(node, function(e){});\ntouch.cancel(node, function(e){});</code></pre>\n",
-        "<p>Have dojo/touch generate clicks without delay, with a default move threshold of 4 pixels\n\n</p>\n<pre><code>node.dojoClick = true;</code></pre>\n",
-        "<p>Have dojo/touch generate clicks without delay, with a move threshold of 10 pixels horizontally and vertically\n\n</p>\n<pre><code>node.dojoClick = 10;</code></pre>\n",
-        "<p>Have dojo/touch generate clicks without delay, with a move threshold of 50 pixels horizontally and 10 pixels vertically\n\n</p>\n<pre><code>node.dojoClick = {x:50, y:5};</code></pre>\n"
+        "<p>Used with dojo.on\n\n</p>\ndefine([&quot;dojo/on&quot;, &quot;dojo/touch&quot;], function(on, touch){\n    on(node, touch.press, function(e){});\n    on(node, touch.move, function(e){});\n    on(node, touch.release, function(e){});\n    on(node, touch.cancel, function(e){});\n",
+        "<p>Used with touch.* directly\n\n</p>\ntouch.press(node, function(e){});\ntouch.move(node, function(e){});\ntouch.release(node, function(e){});\ntouch.cancel(node, function(e){});\n",
+        "<p>Have dojo/touch generate clicks without delay, with a default move threshold of 4 pixels\n\n</p>\nnode.dojoClick = true;\n",
+        "<p>Have dojo/touch generate clicks without delay, with a move threshold of 10 pixels horizontally and vertically\n\n</p>\nnode.dojoClick = 10;\n",
+        "<p>Have dojo/touch generate clicks without delay, with a move threshold of 50 pixels horizontally and 10 pixels vertically\n\n</p>\nnode.dojoClick = {x:50, y:5};\n"
     ],
     "methods": [
         {

@@ -54,8 +54,8 @@
             "summary": "<p>Determines whether or not every item in arr satisfies the\ncondition implemented by callback.</p>\n",
             "description": "<p>This function corresponds to the JavaScript 1.6 Array.every() method, with one difference: when\nrun over sparse arrays, this implementation passes the &quot;holes&quot; in the sparse array to\nthe callback function with a value of undefined. JavaScript 1.6&#39;s every skips the holes in the sparse array.\nFor more details, see:\n<a href=\"https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/every\">https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/every</a></p>\n",
             "examples": [
-                "<pre><code>// returns false\narray.every([1, 2, 3, 4], function(item){ return item&gt;1; });</code></pre>\n",
-                "<pre><code>// returns true\narray.every([1, 2, 3, 4], function(item){ return item&gt;0; });</code></pre>\n"
+                "// returns false\narray.every([1, 2, 3, 4], function(item){ return item&gt;1; });\n",
+                "// returns true\narray.every([1, 2, 3, 4], function(item){ return item&gt;0; });\n"
             ]
         },
         {
@@ -98,7 +98,7 @@
             "summary": "<p>Returns a new Array with those items from arr that match the\ncondition implemented by callback.</p>\n",
             "description": "<p>This function corresponds to the JavaScript 1.6 Array.filter() method, with one difference: when\nrun over sparse arrays, this implementation passes the &quot;holes&quot; in the sparse array to\nthe callback function with a value of undefined. JavaScript 1.6&#39;s filter skips the holes in the sparse array.\nFor more details, see:\n<a href=\"https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/filter\">https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/filter</a></p>\n",
             "examples": [
-                "<pre><code>// returns [2, 3, 4]\narray.filter([1, 2, 3, 4], function(item){ return item&gt;1; });</code></pre>\n"
+                "// returns [2, 3, 4]\narray.filter([1, 2, 3, 4], function(item){ return item&gt;1; });\n"
             ]
         },
         {
@@ -137,9 +137,9 @@
             "summary": "<p>for every item in arr, callback is invoked. Return values are ignored.\nIf you want to break out of the loop, consider using array.every() or array.some().\nforEach does not allow breaking out of the loop over the items in arr.</p>\n",
             "description": "<p>This function corresponds to the JavaScript 1.6 Array.forEach() method, with one difference: when\nrun over sparse arrays, this implementation passes the &quot;holes&quot; in the sparse array to\nthe callback function with a value of undefined. JavaScript 1.6&#39;s forEach skips the holes in the sparse array.\nFor more details, see:\n<a href=\"https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/forEach\">https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/forEach</a></p>\n",
             "examples": [
-                "<pre><code>// log out all members of the array:\narray.forEach(\n      [ &quot;thinger&quot;, &quot;blah&quot;, &quot;howdy&quot;, 10 ],\n      function(item){\n          console.log(item);\n      }\n);</code></pre>\n",
-                "<pre><code>// log out the members and their indexes\narray.forEach(\n      [ &quot;thinger&quot;, &quot;blah&quot;, &quot;howdy&quot;, 10 ],\n      function(item, idx, arr){\n          console.log(item, &quot;at index:&quot;, idx);\n      }\n);</code></pre>\n",
-                "<pre><code>// use a scoped object member as the callback\n\nvar obj = {\n      prefix: &quot;logged via obj.callback:&quot;,\n      callback: function(item){\n          console.log(this.prefix, item);\n      }\n};\n\n// specifying the scope function executes the callback in that scope\narray.forEach(\n      [ &quot;thinger&quot;, &quot;blah&quot;, &quot;howdy&quot;, 10 ],\n      obj.callback,\n      obj\n);\n\n// alternately, we can accomplish the same thing with lang.hitch()\narray.forEach(\n      [ &quot;thinger&quot;, &quot;blah&quot;, &quot;howdy&quot;, 10 ],\n      lang.hitch(obj, &quot;callback&quot;)\n);</code></pre>\n"
+                "// log out all members of the array:\narray.forEach(\n      [ &quot;thinger&quot;, &quot;blah&quot;, &quot;howdy&quot;, 10 ],\n      function(item){\n          console.log(item);\n      }\n);\n",
+                "// log out the members and their indexes\narray.forEach(\n      [ &quot;thinger&quot;, &quot;blah&quot;, &quot;howdy&quot;, 10 ],\n      function(item, idx, arr){\n          console.log(item, &quot;at index:&quot;, idx);\n      }\n);\n",
+                "// use a scoped object member as the callback\n\nvar obj = {\n      prefix: &quot;logged via obj.callback:&quot;,\n      callback: function(item){\n          console.log(this.prefix, item);\n      }\n};\n\n// specifying the scope function executes the callback in that scope\narray.forEach(\n      [ &quot;thinger&quot;, &quot;blah&quot;, &quot;howdy&quot;, 10 ],\n      obj.callback,\n      obj\n);\n\n// alternately, we can accomplish the same thing with lang.hitch()\narray.forEach(\n      [ &quot;thinger&quot;, &quot;blah&quot;, &quot;howdy&quot;, 10 ],\n      lang.hitch(obj, &quot;callback&quot;)\n);\n"
             ]
         },
         {
@@ -271,7 +271,7 @@
             "summary": "<p>applies callback to each element of arr and returns\nan Array with the results</p>\n",
             "description": "<p>This function corresponds to the JavaScript 1.6 Array.map() method, with one difference: when\nrun over sparse arrays, this implementation passes the &quot;holes&quot; in the sparse array to\nthe callback function with a value of undefined. JavaScript 1.6&#39;s map skips the holes in the sparse array.\nFor more details, see:\n<a href=\"https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/map\">https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/map</a></p>\n",
             "examples": [
-                "<pre><code>// returns [2, 3, 4, 5]\narray.map([1, 2, 3, 4], function(item){ return item+1 });</code></pre>\n"
+                "// returns [2, 3, 4, 5]\narray.map([1, 2, 3, 4], function(item){ return item+1 });\n"
             ]
         },
         {
@@ -315,8 +315,8 @@
             "summary": "<p>Determines whether or not any item in arr satisfies the\ncondition implemented by callback.</p>\n",
             "description": "<p>This function corresponds to the JavaScript 1.6 Array.some() method, with one difference: when\nrun over sparse arrays, this implementation passes the &quot;holes&quot; in the sparse array to\nthe callback function with a value of undefined. JavaScript 1.6&#39;s some skips the holes in the sparse array.\nFor more details, see:\n<a href=\"https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/some\">https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/some</a></p>\n",
             "examples": [
-                "<pre><code>// is true\narray.some([1, 2, 3, 4], function(item){ return item&gt;1; });</code></pre>\n",
-                "<pre><code>// is false\narray.some([1, 2, 3, 4], function(item){ return item&lt;1; });</code></pre>\n"
+                "// is true\narray.some([1, 2, 3, 4], function(item){ return item&gt;1; });\n",
+                "// is false\narray.some([1, 2, 3, 4], function(item){ return item&lt;1; });\n"
             ]
         },
         {

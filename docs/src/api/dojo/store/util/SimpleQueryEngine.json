@@ -27,7 +27,7 @@
     "summary": "<p>Simple query engine that matches using filter functions, named filter\nfunctions or objects by name-value on a query object hash\n</p>\n",
     "description": "<p>The SimpleQueryEngine provides a way of getting a QueryResults through\nthe use of a simple object hash as a filter.  The hash will be used to\nmatch properties on data objects with the corresponding value given. In\nother words, only exact matches will be returned.\n\n</p>\n<p>This function can be used as a template for more complex query engines;\nfor example, an engine can be created that accepts an object hash that\ncontains filtering functions, or a string that gets evaluated, etc.\n\n</p>\n<p>When creating a new dojo.store, simply set the store&#39;s queryEngine\nfield as a reference to this function.\n</p>\n",
     "examples": [
-        "<p>Define a store with a reference to this engine, and set up a query method.\n\n\n</p>\n<pre><code>var myStore = function(options){\n    //  ...more properties here\n    this.queryEngine = SimpleQueryEngine;\n    //  define our query method\n    this.query = function(query, options){\n        return QueryResults(this.queryEngine(query, options)(this.data));\n    };\n};</code></pre>\n"
+        "<p>Define a store with a reference to this engine, and set up a query method.\n\n\n</p>\nvar myStore = function(options){\n    //  ...more properties here\n    this.queryEngine = SimpleQueryEngine;\n    //  define our query method\n    this.query = function(query, options){\n        return QueryResults(this.queryEngine(query, options)(this.data));\n    };\n};\n"
     ],
     "methods": [
         {
@@ -63,7 +63,7 @@
             "summary": "<p>Simple query engine that matches using filter functions, named filter\nfunctions or objects by name-value on a query object hash\n</p>\n",
             "description": "<p>The SimpleQueryEngine provides a way of getting a QueryResults through\nthe use of a simple object hash as a filter.  The hash will be used to\nmatch properties on data objects with the corresponding value given. In\nother words, only exact matches will be returned.\n\n</p>\n<p>This function can be used as a template for more complex query engines;\nfor example, an engine can be created that accepts an object hash that\ncontains filtering functions, or a string that gets evaluated, etc.\n\n</p>\n<p>When creating a new dojo.store, simply set the store&#39;s queryEngine\nfield as a reference to this function.\n</p>\n",
             "examples": [
-                "<p>Define a store with a reference to this engine, and set up a query method.\n\n\n</p>\n<pre><code>var myStore = function(options){\n    //  ...more properties here\n    this.queryEngine = SimpleQueryEngine;\n    //  define our query method\n    this.query = function(query, options){\n        return QueryResults(this.queryEngine(query, options)(this.data));\n    };\n};</code></pre>\n"
+                "<p>Define a store with a reference to this engine, and set up a query method.\n\n\n</p>\nvar myStore = function(options){\n    //  ...more properties here\n    this.queryEngine = SimpleQueryEngine;\n    //  define our query method\n    this.query = function(query, options){\n        return QueryResults(this.queryEngine(query, options)(this.data));\n    };\n};\n"
             ]
         }
     ]

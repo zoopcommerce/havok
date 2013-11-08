@@ -40,8 +40,9 @@ function (
     return declare(
         [WidgetBase],
         {
+            tag: 'div',
 
-            defaultClass: 'accordion',
+            baseClass: 'accordion',
 
             itemTemplate: itemTemplate,
 
@@ -56,11 +57,6 @@ function (
                         this._renderItem(node);
                     }
                 }));
-            },
-
-            startup: function(){
-                this.inherited(arguments);
-                this._toggleItem(this.items[0]);
             },
 
             _renderItem: function(srcNode){

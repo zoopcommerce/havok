@@ -13,7 +13,10 @@ var fs = require('fs'),
                 console.log(err);
                 return;
             }
-            fs.writeFile(path + '/' + file, JSON.stringify(item, null, 4), function(err) {
+            var string = JSON.stringify(item, null, 4);
+            string = string.replace(/<pre><code>/g, '');
+            string = string.replace(/<\/code><\/pre>/g, '');
+            fs.writeFile(path + '/' + file, string, function(err) {
                 if(err) {
                     console.log(err);
                 } else {

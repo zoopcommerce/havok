@@ -146,7 +146,7 @@
                 "object"
             ],
             "summary": "<p>returns the offset in x and y from the document body to the\nvisual edge of the page for IE</p>\n",
-            "description": "<p>The following values in IE contain an offset:\n\n</p>\n<pre><code>event.clientX\nevent.clientY\nnode.getBoundingClientRect().left\nnode.getBoundingClientRect().top</code></pre>\n<p>But other position related values do not contain this offset,\n\n</p>\n<p>such as node.offsetLeft, node.offsetTop, node.style.left and\nnode.style.top. The offset is always (2, 2) in LTR direction.\nWhen the body is in RTL direction, the offset counts the width\nof left scroll bar&#39;s width.  This function computes the actual\noffset.</p>\n"
+            "description": "<p>The following values in IE contain an offset:\n\n</p>\nevent.clientX\nevent.clientY\nnode.getBoundingClientRect().left\nnode.getBoundingClientRect().top\n<p>But other position related values do not contain this offset,\n\n</p>\n<p>such as node.offsetLeft, node.offsetTop, node.style.left and\nnode.style.top. The offset is always (2, 2) in LTR direction.\nWhen the body is in RTL direction, the offset counts the width\nof left scroll bar&#39;s width.  This function computes the actual\noffset.</p>\n"
         },
         {
             "name": "getMarginBox",
@@ -288,7 +288,7 @@
                 "object"
             ],
             "summary": "<p>Returns object with special values specifically useful for node\nfitting.</p>\n",
-            "description": "<p>Returns an object with <code>w</code>, <code>h</code>, <code>l</code>, <code>t</code> properties:\n\n</p>\n<pre><code>l/t/r/b = left/top/right/bottom padding (respectively)\nw = the total of the left and right padding\nh = the total of the top and bottom padding</code></pre>\n<p>If &#39;node&#39; has position, l/t forms the origin for child nodes.\n\n</p>\n<p>The w/h are used for calculating boxes.\nNormally application code will not need to invoke this\ndirectly, and will use the ...box... functions instead.</p>\n"
+            "description": "<p>Returns an object with <code>w</code>, <code>h</code>, <code>l</code>, <code>t</code> properties:\n\n</p>\nl/t/r/b = left/top/right/bottom padding (respectively)\nw = the total of the left and right padding\nh = the total of the top and bottom padding\n<p>If &#39;node&#39; has position, l/t forms the origin for child nodes.\n\n</p>\n<p>The w/h are used for calculating boxes.\nNormally application code will not need to invoke this\ndirectly, and will use the ...box... functions instead.</p>\n"
         },
         {
             "name": "isBodyLtr",

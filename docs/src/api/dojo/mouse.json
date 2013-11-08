@@ -3,7 +3,7 @@
     "type": "object",
     "summary": "<p>This module provide mouse event handling utility functions and exports\nmouseenter and mouseleave event emulation.</p>\n",
     "examples": [
-        "<p>To use these events, you register a mouseenter like this:\n\n</p>\n<pre><code>define([&quot;dojo/on&quot;, dojo/mouse&quot;], function(on, mouse){\n    on(targetNode, mouse.enter, function(event){\n        dojo.addClass(targetNode, &quot;highlighted&quot;);\n    });\n    on(targetNode, mouse.leave, function(event){\n        dojo.removeClass(targetNode, &quot;highlighted&quot;);\n    });</code></pre>\n"
+        "<p>To use these events, you register a mouseenter like this:\n\n</p>\ndefine([&quot;dojo/on&quot;, dojo/mouse&quot;], function(on, mouse){\n    on(targetNode, mouse.enter, function(event){\n        dojo.addClass(targetNode, &quot;highlighted&quot;);\n    });\n    on(targetNode, mouse.leave, function(event){\n        dojo.removeClass(targetNode, &quot;highlighted&quot;);\n    });\n"
     ],
     "properties": [
         {

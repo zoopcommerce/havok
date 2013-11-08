@@ -43,7 +43,7 @@
             "summary": "<p>A map of available XHR transport handle types. Name matches the\n<code>handleAs</code> attribute passed to XHR calls.</p>\n",
             "description": "<p>A map of available XHR transport handle types. Name matches the\n<code>handleAs</code> attribute passed to XHR calls. Each contentHandler is\ncalled, passing the xhr object for manipulation. The return value\nfrom the contentHandler will be passed to the <code>load</code> or <code>handle</code>\nfunctions defined in the original xhr call.</p>\n",
             "examples": [
-                "<p>Creating a custom content-handler:\n\n</p>\n<pre><code>xhr.contentHandlers.makeCaps = function(xhr){\n    return xhr.responseText.toUpperCase();\n}\n// and later:\ndojo.xhrGet({\n    url:&quot;foo.txt&quot;,\n    handleAs:&quot;makeCaps&quot;,\n    load: function(data){ /* data is a toUpper version of foo.txt */ }\n});</code></pre>\n"
+                "<p>Creating a custom content-handler:\n\n</p>\nxhr.contentHandlers.makeCaps = function(xhr){\n    return xhr.responseText.toUpperCase();\n}\n// and later:\ndojo.xhrGet({\n    url:&quot;foo.txt&quot;,\n    handleAs:&quot;makeCaps&quot;,\n    load: function(data){ /* data is a toUpper version of foo.txt */ }\n});\n"
             ]
         }
     ],
@@ -386,7 +386,7 @@
             "summary": "<p>Serialize a form node to a JavaScript object.</p>\n",
             "description": "<p>Returns the values encoded in an HTML form as\nstring properties in an object which it then returns. Disabled form\nelements, buttons, and other non-value form elements are skipped.\nMulti-select elements are returned as an array of string values.</p>\n",
             "examples": [
-                "<p>This form:\n\n</p>\n<pre><code>&lt;form id=&quot;test_form&quot;&gt;\n    &lt;input type=&quot;text&quot; name=&quot;blah&quot; value=&quot;blah&quot;&gt;\n    &lt;input type=&quot;text&quot; name=&quot;no_value&quot; value=&quot;blah&quot; disabled&gt;\n    &lt;input type=&quot;button&quot; name=&quot;no_value2&quot; value=&quot;blah&quot;&gt;\n    &lt;select type=&quot;select&quot; multiple name=&quot;multi&quot; size=&quot;5&quot;&gt;\n        &lt;option value=&quot;blah&quot;&gt;blah&lt;/option&gt;\n        &lt;option value=&quot;thud&quot; selected&gt;thud&lt;/option&gt;\n        &lt;option value=&quot;thonk&quot; selected&gt;thonk&lt;/option&gt;\n    &lt;/select&gt;\n&lt;/form&gt;</code></pre>\n<p>yields this object structure as the result of a call to\nformToObject():\n\n\n</p>\n<pre><code>{\n    blah: &quot;blah&quot;,\n    multi: [\n        &quot;thud&quot;,\n        &quot;thonk&quot;\n    ]\n};</code></pre>\n"
+                "<p>This form:\n\n</p>\n&lt;form id=&quot;test_form&quot;&gt;\n    &lt;input type=&quot;text&quot; name=&quot;blah&quot; value=&quot;blah&quot;&gt;\n    &lt;input type=&quot;text&quot; name=&quot;no_value&quot; value=&quot;blah&quot; disabled&gt;\n    &lt;input type=&quot;button&quot; name=&quot;no_value2&quot; value=&quot;blah&quot;&gt;\n    &lt;select type=&quot;select&quot; multiple name=&quot;multi&quot; size=&quot;5&quot;&gt;\n        &lt;option value=&quot;blah&quot;&gt;blah&lt;/option&gt;\n        &lt;option value=&quot;thud&quot; selected&gt;thud&lt;/option&gt;\n        &lt;option value=&quot;thonk&quot; selected&gt;thonk&lt;/option&gt;\n    &lt;/select&gt;\n&lt;/form&gt;\n<p>yields this object structure as the result of a call to\nformToObject():\n\n\n</p>\n{\n    blah: &quot;blah&quot;,\n    multi: [\n        &quot;thud&quot;,\n        &quot;thonk&quot;\n    ]\n};\n"
             ]
         },
         {
@@ -455,7 +455,7 @@
             ],
             "summary": "<p>takes a name/value mapping object and returns a string representing\na URL-encoded version of that object.</p>\n",
             "examples": [
-                "<p>this object:\n\n\n</p>\n<pre><code>{\n    blah: &quot;blah&quot;,\n    multi: [\n        &quot;thud&quot;,\n        &quot;thonk&quot;\n    ]\n};</code></pre>\n<p>yields the following query string:\n\n\n</p>\n<pre><code>&quot;blah=blah&amp;multi=thud&amp;multi=thonk&quot;</code></pre>\n"
+                "<p>this object:\n\n\n</p>\n{\n    blah: &quot;blah&quot;,\n    multi: [\n        &quot;thud&quot;,\n        &quot;thonk&quot;\n    ]\n};\n<p>yields the following query string:\n\n\n</p>\n&quot;blah=blah&amp;multi=thud&amp;multi=thonk&quot;\n"
             ]
         },
         {
@@ -523,7 +523,7 @@
             ],
             "summary": "<p>Create an object representing a de-serialized query section of a\nURL. Query keys with multiple values are returned in an array.\n</p>\n",
             "examples": [
-                "<p>This string:\n\n\n</p>\n<pre><code>&quot;foo=bar&amp;foo=baz&amp;thinger=%20spaces%20=blah&amp;zonk=blarg&amp;&quot;</code></pre>\n<p>results in this object structure:\n\n\n</p>\n<pre><code>{\n    foo: [ &quot;bar&quot;, &quot;baz&quot; ],\n    thinger: &quot; spaces =blah&quot;,\n    zonk: &quot;blarg&quot;\n}</code></pre>\n<p>Note that spaces and other urlencoded entities are correctly\nhandled.</p>\n"
+                "<p>This string:\n\n\n</p>\n&quot;foo=bar&amp;foo=baz&amp;thinger=%20spaces%20=blah&amp;zonk=blarg&amp;&quot;\n<p>results in this object structure:\n\n\n</p>\n{\n    foo: [ &quot;bar&quot;, &quot;baz&quot; ],\n    thinger: &quot; spaces =blah&quot;,\n    zonk: &quot;blarg&quot;\n}\n<p>Note that spaces and other urlencoded entities are correctly\nhandled.</p>\n"
             ]
         }
     ]

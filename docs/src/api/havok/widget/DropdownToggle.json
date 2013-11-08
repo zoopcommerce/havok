@@ -167,7 +167,7 @@
             "tags": [
                 "protected"
             ],
-            "summary": "<p>Deprecated. Instead of attributeMap, widget should have a _setXXXAttr attribute\nfor each XXX attribute to be mapped to the DOM.\n\n</p>\n<p>attributeMap sets up a &quot;binding&quot; between attributes (aka properties)\nof the widget and the widget&#39;s DOM.\nChanges to widget attributes listed in attributeMap will be\nreflected into the DOM.\n\n</p>\n<p>For example, calling set(&#39;title&#39;, &#39;hello&#39;)\non a TitlePane will automatically cause the TitlePane&#39;s DOM to update\nwith the new title.\n\n</p>\n<p>attributeMap is a hash where the key is an attribute of the widget,\nand the value reflects a binding to a:\n\n</p>\n<ul>\n<li><p>DOM node attribute</p>\n<p>  focus: {node: &quot;focusNode&quot;, type: &quot;attribute&quot;}\nMaps this.focus to this.focusNode.focus</p>\n</li>\n</ul>\n<ul>\n<li><p>DOM node innerHTML</p>\n<p>  title: { node: &quot;titleNode&quot;, type: &quot;innerHTML&quot; }\nMaps this.title to this.titleNode.innerHTML</p>\n</li>\n</ul>\n<ul>\n<li><p>DOM node innerText</p>\n<p>  title: { node: &quot;titleNode&quot;, type: &quot;innerText&quot; }\nMaps this.title to this.titleNode.innerText</p>\n</li>\n</ul>\n<ul>\n<li><p>DOM node CSS class</p>\n<p>  myClass: { node: &quot;domNode&quot;, type: &quot;class&quot; }\nMaps this.myClass to this.domNode.className</p>\n</li>\n</ul>\n<p>If the value is an array, then each element in the array matches one of the\nformats of the above list.\n\n</p>\n<p>There are also some shorthands for backwards compatibility:\n\n</p>\n<ul>\n<li>string --&gt; { node: string, type: &quot;attribute&quot; }, for example:</li>\n</ul>\n<pre><code>&quot;focusNode&quot; ---&gt; { node: &quot;focusNode&quot;, type: &quot;attribute&quot; }</code></pre>\n<ul>\n<li>&quot;&quot; --&gt; { node: &quot;domNode&quot;, type: &quot;attribute&quot; }</li>\n</ul>\n"
+            "summary": "<p>Deprecated. Instead of attributeMap, widget should have a _setXXXAttr attribute\nfor each XXX attribute to be mapped to the DOM.\n\n</p>\n<p>attributeMap sets up a &quot;binding&quot; between attributes (aka properties)\nof the widget and the widget&#39;s DOM.\nChanges to widget attributes listed in attributeMap will be\nreflected into the DOM.\n\n</p>\n<p>For example, calling set(&#39;title&#39;, &#39;hello&#39;)\non a TitlePane will automatically cause the TitlePane&#39;s DOM to update\nwith the new title.\n\n</p>\n<p>attributeMap is a hash where the key is an attribute of the widget,\nand the value reflects a binding to a:\n\n</p>\n<ul>\n<li><p>DOM node attribute</p>\n<p>  focus: {node: &quot;focusNode&quot;, type: &quot;attribute&quot;}\nMaps this.focus to this.focusNode.focus</p>\n</li>\n</ul>\n<ul>\n<li><p>DOM node innerHTML</p>\n<p>  title: { node: &quot;titleNode&quot;, type: &quot;innerHTML&quot; }\nMaps this.title to this.titleNode.innerHTML</p>\n</li>\n</ul>\n<ul>\n<li><p>DOM node innerText</p>\n<p>  title: { node: &quot;titleNode&quot;, type: &quot;innerText&quot; }\nMaps this.title to this.titleNode.innerText</p>\n</li>\n</ul>\n<ul>\n<li><p>DOM node CSS class</p>\n<p>  myClass: { node: &quot;domNode&quot;, type: &quot;class&quot; }\nMaps this.myClass to this.domNode.className</p>\n</li>\n</ul>\n<p>If the value is an array, then each element in the array matches one of the\nformats of the above list.\n\n</p>\n<p>There are also some shorthands for backwards compatibility:\n\n</p>\n<ul>\n<li>string --&gt; { node: string, type: &quot;attribute&quot; }, for example:</li>\n</ul>\n&quot;focusNode&quot; ---&gt; { node: &quot;focusNode&quot;, type: &quot;attribute&quot; }\n<ul>\n<li>&quot;&quot; --&gt; { node: &quot;domNode&quot;, type: &quot;attribute&quot; }</li>\n</ul>\n"
         },
         {
             "name": "baseClass",
@@ -199,7 +199,7 @@
             "tags": [
                 "readonly"
             ],
-            "summary": "<p>Designates where children of the source DOM node will be placed.\n&quot;Children&quot; in this case refers to both DOM nodes and widgets.\nFor example, for myWidget:\n\n\n</p>\n<pre><code>&lt;div data-dojo-type=myWidget&gt;\n    &lt;b&gt; here&#39;s a plain DOM node\n    &lt;span data-dojo-type=subWidget&gt;and a widget&lt;/span&gt;\n    &lt;i&gt; and another plain DOM node &lt;/i&gt;\n&lt;/div&gt;</code></pre>\n<p>containerNode would point to:\n\n\n</p>\n<pre><code>&lt;b&gt; here&#39;s a plain DOM node\n&lt;span data-dojo-type=subWidget&gt;and a widget&lt;/span&gt;\n&lt;i&gt; and another plain DOM node &lt;/i&gt;</code></pre>\n<p>In templated widgets, &quot;containerNode&quot; is set via a\ndata-dojo-attach-point assignment.\n\n</p>\n<p>containerNode must be defined for any widget that accepts innerHTML\n(like ContentPane or BorderContainer or even Button), and conversely\nis null for widgets that don&#39;t, like TextBox.</p>\n"
+            "summary": "<p>Designates where children of the source DOM node will be placed.\n&quot;Children&quot; in this case refers to both DOM nodes and widgets.\nFor example, for myWidget:\n\n\n</p>\n&lt;div data-dojo-type=myWidget&gt;\n    &lt;b&gt; here&#39;s a plain DOM node\n    &lt;span data-dojo-type=subWidget&gt;and a widget&lt;/span&gt;\n    &lt;i&gt; and another plain DOM node &lt;/i&gt;\n&lt;/div&gt;\n<p>containerNode would point to:\n\n\n</p>\n&lt;b&gt; here&#39;s a plain DOM node\n&lt;span data-dojo-type=subWidget&gt;and a widget&lt;/span&gt;\n&lt;i&gt; and another plain DOM node &lt;/i&gt;\n<p>In templated widgets, &quot;containerNode&quot; is set via a\ndata-dojo-attach-point assignment.\n\n</p>\n<p>containerNode must be defined for any widget that accepts innerHTML\n(like ContentPane or BorderContainer or even Button), and conversely\nis null for widgets that don&#39;t, like TextBox.</p>\n"
         },
         {
             "name": "dir",
@@ -631,7 +631,7 @@
             "private": true,
             "parameters": [],
             "returnTypes": [],
-            "summary": "<p>Collect metadata about this widget (only once per class, not once per instance):\n\n</p>\n<pre><code>- list of attributes with custom setters, storing in this.constructor._setterAttrs\n- generate this.constructor._onMap, mapping names like &quot;mousedown&quot; to functions like onMouseDown</code></pre>\n"
+            "summary": "<p>Collect metadata about this widget (only once per class, not once per instance):\n\n</p>\n- list of attributes with custom setters, storing in this.constructor._setterAttrs\n- generate this.constructor._onMap, mapping names like &quot;mousedown&quot; to functions like onMouseDown\n"
         },
         {
             "name": "_processTemplateNode",
@@ -862,7 +862,7 @@
             "returnDescription": "<p>A handle that can be passed to <code>disconnect</code> in order to disconnect before\nthe widget is destroyed.</p>\n",
             "summary": "<p>Deprecated, will be removed in 2.0, use this.own(on(...)) or this.own(aspect.after(...)) instead.\n\n</p>\n<p>Connects specified obj/event to specified method of this object\nand registers for disconnect() on widget destroy.\n\n</p>\n<p>Provide widget-specific analog to dojo.connect, except with the\nimplicit use of this widget as the target object.\nEvents connected with <code>this.connect</code> are disconnected upon\ndestruction.</p>\n",
             "examples": [
-                "<pre><code>var btn = new Button();\n// when foo.bar() is called, call the listener we&#39;re going to\n// provide in the scope of btn\nbtn.connect(foo, &quot;bar&quot;, function(){\n    console.debug(this.toString());\n});</code></pre>\n"
+                "var btn = new Button();\n// when foo.bar() is called, call the listener we&#39;re going to\n// provide in the scope of btn\nbtn.connect(foo, &quot;bar&quot;, function(){\n    console.debug(this.toString());\n});\n"
             ]
         },
         {
@@ -1093,7 +1093,7 @@
             "returnTypes": [
                 "undefined"
             ],
-            "summary": "<p>Used by widgets to signal that a synthetic event occurred, ex:\n\n</p>\n<pre><code>myWidget.emit(&quot;attrmodified-selectedChildWidget&quot;, {}).</code></pre>\n<p>Emits an event on this.domNode named type.toLowerCase(), based on eventObj.\nAlso calls onType() method, if present, and returns value from that method.\nBy default passes eventObj to callback, but will pass callbackArgs instead, if specified.\nModifies eventObj by adding missing parameters (bubbles, cancelable, widget).</p>\n"
+            "summary": "<p>Used by widgets to signal that a synthetic event occurred, ex:\n\n</p>\nmyWidget.emit(&quot;attrmodified-selectedChildWidget&quot;, {}).\n<p>Emits an event on this.domNode named type.toLowerCase(), based on eventObj.\nAlso calls onType() method, if present, and returns value from that method.\nBy default passes eventObj to callback, but will pass callbackArgs instead, if specified.\nModifies eventObj by adding missing parameters (bubbles, cancelable, widget).</p>\n"
         },
         {
             "name": "get",
@@ -1229,7 +1229,7 @@
                 "any",
                 "undefined"
             ],
-            "returnDescription": "<p>The array of specified handles, so you can do for example:\n\n</p>\n<pre><code>var handle = this.own(on(...))[0];</code></pre>\n",
+            "returnDescription": "<p>The array of specified handles, so you can do for example:\n\n</p>\nvar handle = this.own(on(...))[0];\n",
             "summary": "<p>Track specified handles and remove/destroy them when this instance is destroyed, unless they were\nalready removed/destroyed manually.</p>\n"
         },
         {
@@ -1268,10 +1268,10 @@
             "summary": "<p>Place this widget somewhere in the DOM based\non standard domConstruct.place() conventions.</p>\n",
             "description": "<p>A convenience function provided in all _Widgets, providing a simple\nshorthand mechanism to put an existing (or newly created) Widget\nsomewhere in the dom, and allow chaining.</p>\n",
             "examples": [
-                "<pre><code>// create a Button with no srcNodeRef, and place it in the body:\nvar button = new Button({ label:&quot;click&quot; }).placeAt(win.body());\n// now, &#39;button&#39; is still the widget reference to the newly created button\nbutton.on(&quot;click&quot;, function(e){ console.log(&#39;click&#39;); }));</code></pre>\n",
-                "<pre><code>// create a button out of a node with id=&quot;src&quot; and append it to id=&quot;wrapper&quot;:\nvar button = new Button({},&quot;src&quot;).placeAt(&quot;wrapper&quot;);</code></pre>\n",
-                "<pre><code>// place a new button as the first element of some div\nvar button = new Button({ label:&quot;click&quot; }).placeAt(&quot;wrapper&quot;,&quot;first&quot;);</code></pre>\n",
-                "<pre><code>// create a contentpane and add it to a TabContainer\nvar tc = dijit.byId(&quot;myTabs&quot;);\nnew ContentPane({ href:&quot;foo.html&quot;, title:&quot;Wow!&quot; }).placeAt(tc)</code></pre>\n"
+                "// create a Button with no srcNodeRef, and place it in the body:\nvar button = new Button({ label:&quot;click&quot; }).placeAt(win.body());\n// now, &#39;button&#39; is still the widget reference to the newly created button\nbutton.on(&quot;click&quot;, function(e){ console.log(&#39;click&#39;); }));\n",
+                "// create a button out of a node with id=&quot;src&quot; and append it to id=&quot;wrapper&quot;:\nvar button = new Button({},&quot;src&quot;).placeAt(&quot;wrapper&quot;);\n",
+                "// place a new button as the first element of some div\nvar button = new Button({ label:&quot;click&quot; }).placeAt(&quot;wrapper&quot;,&quot;first&quot;);\n",
+                "// create a contentpane and add it to a TabContainer\nvar tc = dijit.byId(&quot;myTabs&quot;);\nnew ContentPane({ href:&quot;foo.html&quot;, title:&quot;Wow!&quot; }).placeAt(tc)\n"
             ]
         },
         {
@@ -1375,7 +1375,7 @@
             ],
             "returnDescription": "<p>Set a property on a widget</p>\n",
             "summary": "<p>Set a property on a widget</p>\n",
-            "description": "<p>Sets named properties on a widget which may potentially be handled by a\nsetter in the widget.\n\n</p>\n<p>For example, if the widget has properties <code>foo</code> and <code>bar</code>\nand a method named <code>_setFooAttr()</code>, calling\n<code>myWidget.set(&quot;foo&quot;, &quot;Howdy!&quot;)</code> would be equivalent to calling\n<code>widget._setFooAttr(&quot;Howdy!&quot;)</code> and <code>myWidget.set(&quot;bar&quot;, 3)</code>\nwould be equivalent to the statement <code>widget.bar = 3;</code>\n\n</p>\n<p>set() may also be called with a hash of name/value pairs, ex:\n\n\n</p>\n<pre><code>myWidget.set({\n    foo: &quot;Howdy&quot;,\n    bar: 3\n});</code></pre>\n<p>This is equivalent to calling <code>set(foo, &quot;Howdy&quot;)</code> and <code>set(bar, 3)</code></p>\n"
+            "description": "<p>Sets named properties on a widget which may potentially be handled by a\nsetter in the widget.\n\n</p>\n<p>For example, if the widget has properties <code>foo</code> and <code>bar</code>\nand a method named <code>_setFooAttr()</code>, calling\n<code>myWidget.set(&quot;foo&quot;, &quot;Howdy!&quot;)</code> would be equivalent to calling\n<code>widget._setFooAttr(&quot;Howdy!&quot;)</code> and <code>myWidget.set(&quot;bar&quot;, 3)</code>\nwould be equivalent to the statement <code>widget.bar = 3;</code>\n\n</p>\n<p>set() may also be called with a hash of name/value pairs, ex:\n\n\n</p>\nmyWidget.set({\n    foo: &quot;Howdy&quot;,\n    bar: 3\n});\n<p>This is equivalent to calling <code>set(foo, &quot;Howdy&quot;)</code> and <code>set(bar, 3)</code></p>\n"
         },
         {
             "name": "show",
@@ -1430,7 +1430,7 @@
             ],
             "summary": "<p>Deprecated, will be removed in 2.0, use this.own(topic.subscribe()) instead.\n\n</p>\n<p>Subscribes to the specified topic and calls the specified method\nof this object and registers for unsubscribe() on widget destroy.\n\n</p>\n<p>Provide widget-specific analog to dojo.subscribe, except with the\nimplicit use of this widget as the target object.</p>\n",
             "examples": [
-                "<pre><code>var btn = new Button();\n// when /my/topic is published, this button changes its label to\n// be the parameter of the topic.\nbtn.subscribe(&quot;/my/topic&quot;, function(v){\n    this.set(&quot;label&quot;, v);\n});</code></pre>\n"
+                "var btn = new Button();\n// when /my/topic is published, this button changes its label to\n// be the parameter of the topic.\nbtn.subscribe(&quot;/my/topic&quot;, function(v){\n    this.set(&quot;label&quot;, v);\n});\n"
             ]
         },
         {
@@ -1524,7 +1524,7 @@
                 "any",
                 "object"
             ],
-            "returnDescription": "<p>An object handle for the watch. The unwatch method of this object\ncan be used to discontinue watching this property:\n\n</p>\n<pre><code>var watchHandle = obj.watch(&quot;foo&quot;, callback);\nwatchHandle.unwatch(); // callback won&#39;t be called now</code></pre>\n",
+            "returnDescription": "<p>An object handle for the watch. The unwatch method of this object\ncan be used to discontinue watching this property:\n\n</p>\nvar watchHandle = obj.watch(&quot;foo&quot;, callback);\nwatchHandle.unwatch(); // callback won&#39;t be called now\n",
             "summary": "<p>Watches a property for changes</p>\n"
         }
     ],

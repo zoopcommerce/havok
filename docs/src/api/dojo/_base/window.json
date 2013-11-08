@@ -13,7 +13,7 @@
             "summary": "<p>Alias for the current document. &#39;doc&#39; can be modified\nfor temporary context shifting. See also withDoc().</p>\n",
             "description": "<p>Use this rather than referring to &#39;window.document&#39; to ensure your code runs\ncorrectly in managed contexts.</p>\n",
             "examples": [
-                "<pre><code>n.appendChild(dojo.doc.createElement(&#39;div&#39;));</code></pre>\n"
+                "n.appendChild(dojo.doc.createElement(&#39;div&#39;));\n"
             ]
         },
         {
@@ -49,7 +49,7 @@
             ],
             "summary": "<p>Return the body element of the specified document or of dojo/_base/window::doc.</p>\n",
             "examples": [
-                "<pre><code>win.body().appendChild(dojo.doc.createElement(&#39;div&#39;));</code></pre>\n"
+                "win.body().appendChild(dojo.doc.createElement(&#39;div&#39;));\n"
             ]
         },
         {

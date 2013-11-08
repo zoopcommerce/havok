@@ -35,8 +35,8 @@
             "summary": "<p>Accesses styles on a node.</p>\n",
             "description": "<p>Getting the style value uses the computed style for the node, so the value\nwill be a calculated value, not just the immediate node.style value.\nAlso when getting values, use specific style names,\nlike &quot;borderBottomWidth&quot; instead of &quot;border&quot; since compound values like\n&quot;border&quot; are not necessarily reflected as expected.\nIf you want to get node dimensions, use <code>dojo.marginBox()</code>,\n<code>dojo.contentBox()</code> or <code>dojo.position()</code>.</p>\n",
             "examples": [
-                "<p>Passing only an ID or node returns the computed style object of\nthe node:\n\n</p>\n<pre><code>dojo.getStyle(&quot;thinger&quot;);</code></pre>\n",
-                "<p>Passing a node and a style property returns the current\nnormalized, computed value for that property:\n\n</p>\n<pre><code>dojo.getStyle(&quot;thinger&quot;, &quot;opacity&quot;); // 1 by default</code></pre>\n"
+                "<p>Passing only an ID or node returns the computed style object of\nthe node:\n\n</p>\ndojo.getStyle(&quot;thinger&quot;);\n",
+                "<p>Passing a node and a style property returns the current\nnormalized, computed value for that property:\n\n</p>\ndojo.getStyle(&quot;thinger&quot;, &quot;opacity&quot;); // 1 by default\n"
             ]
         },
         {
@@ -60,8 +60,8 @@
             "summary": "<p>Returns a &quot;computed style&quot; object.\n</p>\n",
             "description": "<p>Gets a &quot;computed style&quot; object which can be used to gather\ninformation about the current state of the rendered node.\n\n</p>\n<p>Note that this may behave differently on different browsers.\nValues may have different formats and value encodings across\nbrowsers.\n\n</p>\n<p>Note also that this method is expensive.  Wherever possible,\nreuse the returned object.\n\n</p>\n<p>Use the dojo.style() method for more consistent (pixelized)\nreturn values.\n</p>\n",
             "examples": [
-                "<pre><code>dojo.getComputedStyle(dojo.byId(&#39;foo&#39;)).borderWidth;</code></pre>\n",
-                "<p>Reusing the returned object, avoiding multiple lookups:\n\n</p>\n<pre><code>var cs = dojo.getComputedStyle(dojo.byId(&quot;someNode&quot;));\nvar w = cs.width, h = cs.height;</code></pre>\n"
+                "dojo.getComputedStyle(dojo.byId(&#39;foo&#39;)).borderWidth;\n",
+                "<p>Reusing the returned object, avoiding multiple lookups:\n\n</p>\nvar cs = dojo.getComputedStyle(dojo.byId(&quot;someNode&quot;));\nvar w = cs.width, h = cs.height;\n"
             ]
         },
         {
@@ -106,10 +106,10 @@
             "returnDescription": "<p>If passed, sets value on the node for style, handling\ncross-browser concerns.  When setting a pixel value,\nbe sure to include &quot;px&quot; in the value. For instance, top: &quot;200px&quot;.\nOtherwise, in some cases, some browsers will not apply the style.\n</p>\n",
             "summary": "<p>Sets styles on a node.</p>\n",
             "examples": [
-                "<p>Passing a node, a style property, and a value changes the\ncurrent display of the node and returns the new computed value\n\n</p>\n<pre><code>dojo.setStyle(&quot;thinger&quot;, &quot;opacity&quot;, 0.5); // == 0.5</code></pre>\n",
-                "<p>Passing a node, an object-style style property sets each of the values in turn and returns the computed style object of the node:\n\n</p>\n<pre><code>dojo.setStyle(&quot;thinger&quot;, {\n    &quot;opacity&quot;: 0.5,\n    &quot;border&quot;: &quot;3px solid black&quot;,\n    &quot;height&quot;: &quot;300px&quot;\n});</code></pre>\n",
-                "<p>When the CSS style property is hyphenated, the JavaScript property is camelCased.\nfont-size becomes fontSize, and so on.\n\n</p>\n<pre><code>dojo.setStyle(&quot;thinger&quot;,{\n    fontSize:&quot;14pt&quot;,\n    letterSpacing:&quot;1.2em&quot;\n});</code></pre>\n",
-                "<p>dojo/NodeList implements .style() using the same syntax, omitting the &quot;node&quot; parameter, calling\ndojo.style() on every element of the list. See: <code>dojo.query()</code> and <code>dojo/NodeList</code>\n\n</p>\n<pre><code>dojo.query(&quot;.someClassName&quot;).style(&quot;visibility&quot;,&quot;hidden&quot;);\n// or\ndojo.query(&quot;#baz &gt; div&quot;).style({\n    opacity:0.75,\n    fontSize:&quot;13pt&quot;\n});</code></pre>\n"
+                "<p>Passing a node, a style property, and a value changes the\ncurrent display of the node and returns the new computed value\n\n</p>\ndojo.setStyle(&quot;thinger&quot;, &quot;opacity&quot;, 0.5); // == 0.5\n",
+                "<p>Passing a node, an object-style style property sets each of the values in turn and returns the computed style object of the node:\n\n</p>\ndojo.setStyle(&quot;thinger&quot;, {\n    &quot;opacity&quot;: 0.5,\n    &quot;border&quot;: &quot;3px solid black&quot;,\n    &quot;height&quot;: &quot;300px&quot;\n});\n",
+                "<p>When the CSS style property is hyphenated, the JavaScript property is camelCased.\nfont-size becomes fontSize, and so on.\n\n</p>\ndojo.setStyle(&quot;thinger&quot;,{\n    fontSize:&quot;14pt&quot;,\n    letterSpacing:&quot;1.2em&quot;\n});\n",
+                "<p>dojo/NodeList implements .style() using the same syntax, omitting the &quot;node&quot; parameter, calling\ndojo.style() on every element of the list. See: <code>dojo.query()</code> and <code>dojo/NodeList</code>\n\n</p>\ndojo.query(&quot;.someClassName&quot;).style(&quot;visibility&quot;,&quot;hidden&quot;);\n// or\ndojo.query(&quot;#baz &gt; div&quot;).style({\n    opacity:0.75,\n    fontSize:&quot;13pt&quot;\n});\n"
             ]
         },
         {

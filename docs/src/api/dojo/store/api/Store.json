@@ -20,7 +20,7 @@
                 "Function"
             ],
             "from": "dojo/store/api/Store",
-            "summary": "<p>If the store can be queried locally (on the client side in JS), this defines\nthe query engine to use for querying the data store.\nThis takes a query and query options and returns a function that can execute\nthe provided query on a JavaScript array. The queryEngine may be replace to\nprovide more sophisticated querying capabilities. For example:\n\n</p>\n<pre><code>var query = store.queryEngine({foo:&quot;bar&quot;}, {count:10});\nquery(someArray) -&gt; filtered array</code></pre>\n<p>The returned query function may have a &quot;matches&quot; property that can be\n\n</p>\n<p>used to determine if an object matches the query. For example:\n\n</p>\n<pre><code>query.matches({id:&quot;some-object&quot;, foo:&quot;bar&quot;}) -&gt; true\nquery.matches({id:&quot;some-object&quot;, foo:&quot;something else&quot;}) -&gt; false</code></pre>\n"
+            "summary": "<p>If the store can be queried locally (on the client side in JS), this defines\nthe query engine to use for querying the data store.\nThis takes a query and query options and returns a function that can execute\nthe provided query on a JavaScript array. The queryEngine may be replace to\nprovide more sophisticated querying capabilities. For example:\n\n</p>\nvar query = store.queryEngine({foo:&quot;bar&quot;}, {count:10});\nquery(someArray) -&gt; filtered array\n<p>The returned query function may have a &quot;matches&quot; property that can be\n\n</p>\n<p>used to determine if an object matches the query. For example:\n\n</p>\nquery.matches({id:&quot;some-object&quot;, foo:&quot;bar&quot;}) -&gt; true\nquery.matches({id:&quot;some-object&quot;, foo:&quot;something else&quot;}) -&gt; false\n"
         }
     ],
     "methods": [
@@ -226,7 +226,7 @@
             "returnDescription": "<p>The results of the query, extended with iterative methods.\n</p>\n",
             "summary": "<p>Queries the store for objects. This does not alter the store, but returns a\nset of data from the store.</p>\n",
             "examples": [
-                "<p>Given the following store:\n\n</p>\n<p>...find all items where &quot;prime&quot; is true:\n\n\n</p>\n<pre><code>store.query({ prime: true }).forEach(function(object){\n    // handle each object\n});</code></pre>\n"
+                "<p>Given the following store:\n\n</p>\n<p>...find all items where &quot;prime&quot; is true:\n\n\n</p>\nstore.query({ prime: true }).forEach(function(object){\n    // handle each object\n});\n"
             ]
         },
         {

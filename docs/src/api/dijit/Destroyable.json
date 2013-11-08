@@ -39,7 +39,7 @@
                 "any",
                 "undefined"
             ],
-            "returnDescription": "<p>The array of specified handles, so you can do for example:\n\n</p>\n<pre><code>var handle = this.own(on(...))[0];</code></pre>\n",
+            "returnDescription": "<p>The array of specified handles, so you can do for example:\n\n</p>\nvar handle = this.own(on(...))[0];\n",
             "summary": "<p>Track specified handles and remove/destroy them when this instance is destroyed, unless they were\nalready removed/destroyed manually.</p>\n"
         }
     ]

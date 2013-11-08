@@ -3,8 +3,8 @@
     "type": "object",
     "summary": "<p>provides aspect oriented programming functionality, allowing for\none to add before, around, or after advice on existing methods.</p>\n",
     "examples": [
-        "<pre><code>define([&quot;dojo/aspect&quot;], function(aspect){\n    var signal = aspect.after(targetObject, &quot;methodName&quot;, function(someArgument){\n        this will be called when targetObject.methodName() is called, after the original function is called\n    });</code></pre>\n",
-        "<p>The returned signal object can be used to cancel the advice.\n\n</p>\n<pre><code>signal.remove(); // this will stop the advice from being executed anymore\naspect.before(targetObject, &quot;methodName&quot;, function(someArgument){\n    // this will be called when targetObject.methodName() is called, before the original function is called\n });</code></pre>\n"
+        "define([&quot;dojo/aspect&quot;], function(aspect){\n    var signal = aspect.after(targetObject, &quot;methodName&quot;, function(someArgument){\n        this will be called when targetObject.methodName() is called, after the original function is called\n    });\n",
+        "<p>The returned signal object can be used to cancel the advice.\n\n</p>\nsignal.remove(); // this will stop the advice from being executed anymore\naspect.before(targetObject, &quot;methodName&quot;, function(someArgument){\n    // this will be called when targetObject.methodName() is called, before the original function is called\n });\n"
     ],
     "methods": [
         {
@@ -90,7 +90,7 @@
             "returnTypes": [],
             "summary": "<p>The &quot;around&quot; export of the aspect module is a function that can be used to attach\n&quot;around&quot; advice to a method. The advisor function is immediately executed when\nthe around() is called, is passed a single argument that is a function that can be\ncalled to continue execution of the original method (or the next around advisor).\nThe advisor function should return a function, and this function will be called whenever\nthe method is called. It will be called with the arguments used to call the method.\nWhatever this function returns will be returned as the result of the method call (unless after advise changes it).</p>\n",
             "examples": [
-                "<p>If there are multiple &quot;around&quot; advisors, the most recent one is executed first,\nwhich can then delegate to the next one and so on. For example:\n\n</p>\n<pre><code>around(obj, &quot;foo&quot;, function(originalFoo){\n    return function(){\n        var start = new Date().getTime();\n        var results = originalFoo.apply(this, arguments); // call the original\n        var end = new Date().getTime();\n        console.log(&quot;foo execution took &quot; + (end - start) + &quot; ms&quot;);\n        return results;\n    };\n});</code></pre>\n"
+                "<p>If there are multiple &quot;around&quot; advisors, the most recent one is executed first,\nwhich can then delegate to the next one and so on. For example:\n\n</p>\naround(obj, &quot;foo&quot;, function(originalFoo){\n    return function(){\n        var start = new Date().getTime();\n        var results = originalFoo.apply(this, arguments); // call the original\n        var end = new Date().getTime();\n        console.log(&quot;foo execution took &quot; + (end - start) + &quot; ms&quot;);\n        return results;\n    };\n});\n"
             ]
         },
         {

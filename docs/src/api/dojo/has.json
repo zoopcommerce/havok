@@ -75,9 +75,9 @@
             ],
             "summary": "<p>Register a new feature test for some named feature.</p>\n",
             "examples": [
-                "<p>A redundant test, testFn with immediate execution:\n\n</p>\n<pre><code>has.add(&quot;javascript&quot;, function(){ return true; }, true);</code></pre>\n",
-                "<p>Again with the redundantness. You can do this in your tests, but we should\nnot be doing this in any internal has.js tests\n\n</p>\n<pre><code>has.add(&quot;javascript&quot;, true);</code></pre>\n",
-                "<p>Three things are passed to the testFunction. <code>global</code>, <code>document</code>, and a generic element\nfrom which to work your test should the need arise.\n\n</p>\n<pre><code>has.add(&quot;bug-byid&quot;, function(g, d, el){\n    // g    == global, typically window, yadda yadda\n    // d    == document object\n    // el == the generic element. a `has` element.\n    return false; // fake test, byid-when-form-has-name-matching-an-id is slightly longer\n});</code></pre>\n"
+                "<p>A redundant test, testFn with immediate execution:\n\n</p>\nhas.add(&quot;javascript&quot;, function(){ return true; }, true);\n",
+                "<p>Again with the redundantness. You can do this in your tests, but we should\nnot be doing this in any internal has.js tests\n\n</p>\nhas.add(&quot;javascript&quot;, true);\n",
+                "<p>Three things are passed to the testFunction. <code>global</code>, <code>document</code>, and a generic element\nfrom which to work your test should the need arise.\n\n</p>\nhas.add(&quot;bug-byid&quot;, function(g, d, el){\n    // g    == global, typically window, yadda yadda\n    // d    == document object\n    // el == the generic element. a `has` element.\n    return false; // fake test, byid-when-form-has-name-matching-an-id is slightly longer\n});\n"
             ]
         },
         {

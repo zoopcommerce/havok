@@ -3,7 +3,7 @@
     "type": "object",
     "summary": "<p>Pubsub hub.</p>\n",
     "examples": [
-        "<pre><code>topic.subscribe(&quot;some/topic&quot;, function(event){\n... do something with event\n});\ntopic.publish(&quot;some/topic&quot;, {name:&quot;some event&quot;, ...});</code></pre>\n"
+        "topic.subscribe(&quot;some/topic&quot;, function(event){\n... do something with event\n});\ntopic.publish(&quot;some/topic&quot;, {name:&quot;some event&quot;, ...});\n"
     ],
     "methods": [
         {

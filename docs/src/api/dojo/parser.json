@@ -61,7 +61,7 @@
                         "Array"
                     ],
                     "usage": "required",
-                    "summary": "<p>Array of objects like\n\n</p>\n<pre><code>{\n    ctor: Function (may be null)\n    types: [&quot;dijit/form/Button&quot;, &quot;acme/MyMixin&quot;] (used if ctor not specified)\n    node: DOMNode,\n    scripts: [ ... ],   // array of &lt;script type=&quot;dojo/...&quot;&gt; children of node\n    inherited: { ... }  // settings inherited from ancestors like dir, theme, etc.\n}</code></pre>\n"
+                    "summary": "<p>Array of objects like\n\n</p>\n{\n    ctor: Function (may be null)\n    types: [&quot;dijit/form/Button&quot;, &quot;acme/MyMixin&quot;] (used if ctor not specified)\n    node: DOMNode,\n    scripts: [ ... ],   // array of &lt;script type=&quot;dojo/...&quot;&gt; children of node\n    inherited: { ... }  // settings inherited from ancestors like dir, theme, etc.\n}\n"
                 },
                 {
                     "name": "mixin",
@@ -293,10 +293,10 @@
             "summary": "<p>Scan the DOM for class instances, and instantiate them.</p>\n",
             "description": "<p>Search specified node (or root node) recursively for class instances,\nand instantiate them. Searches for either data-dojo-type=&quot;Class&quot; or\ndojoType=&quot;Class&quot; where &quot;Class&quot; is a a fully qualified class name,\nlike <code>dijit/form/Button</code>\n\n</p>\n<p>Using <code>data-dojo-type</code>:\nAttributes using can be mixed into the parameters used to instantiate the\nClass by using a <code>data-dojo-props</code> attribute on the node being converted.\n<code>data-dojo-props</code> should be a string attribute to be converted from JSON.\n\n</p>\n<p>Using <code>dojoType</code>:\nAttributes are read from the original domNode and converted to appropriate\ntypes by looking up the Class prototype values. This is the default behavior\nfrom Dojo 1.0 to Dojo 1.5. <code>dojoType</code> support is deprecated, and will\ngo away in Dojo 2.0.</p>\n",
             "examples": [
-                "<p>Parse all widgets on a page:\n\n</p>\n<pre><code>parser.parse();</code></pre>\n",
-                "<p>Parse all classes within the node with id=&quot;foo&quot;\n\n</p>\n<pre><code>parser.parse(dojo.byId(&#39;foo&#39;));</code></pre>\n",
-                "<p>Parse all classes in a page, but do not call .startup() on any\nchild\n\n</p>\n<pre><code>parser.parse({ noStart: true })</code></pre>\n",
-                "<p>Parse all classes in a node, but do not call .startup()\n\n</p>\n<pre><code>parser.parse(someNode, { noStart:true });\n// or\nparser.parse({ noStart:true, rootNode: someNode });</code></pre>\n"
+                "<p>Parse all widgets on a page:\n\n</p>\nparser.parse();\n",
+                "<p>Parse all classes within the node with id=&quot;foo&quot;\n\n</p>\nparser.parse(dojo.byId(&#39;foo&#39;));\n",
+                "<p>Parse all classes in a page, but do not call .startup() on any\nchild\n\n</p>\nparser.parse({ noStart: true })\n",
+                "<p>Parse all classes in a node, but do not call .startup()\n\n</p>\nparser.parse(someNode, { noStart:true });\n// or\nparser.parse({ noStart:true, rootNode: someNode });\n"
             ]
         },
         {

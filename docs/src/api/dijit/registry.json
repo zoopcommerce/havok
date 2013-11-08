@@ -203,7 +203,7 @@
             ],
             "summary": "<p>Convert registry into a true Array\n</p>\n",
             "examples": [
-                "<p>Work with the widget .domNodes in a real Array\n\n</p>\n<pre><code>array.map(registry.toArray(), function(w){ return w.domNode; });</code></pre>\n"
+                "<p>Work with the widget .domNodes in a real Array\n\n</p>\narray.map(registry.toArray(), function(w){ return w.domNode; });\n"
             ]
         }
     ]

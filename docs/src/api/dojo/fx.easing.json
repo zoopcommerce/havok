@@ -4,7 +4,7 @@
     "summary": "<p>Collection of easing functions to use beyond the default\n<code>dojo._defaultEasing</code> function.</p>\n",
     "description": "<p>Easing functions are used to manipulate the iteration through\nan <code>dojo.Animation</code>s _Line. _Line being the properties of an Animation,\nand the easing function progresses through that Line determining\nhow quickly (or slowly) it should go. Or more accurately: modify\nthe value of the _Line based on the percentage of animation completed.\n\n</p>\n<p>All functions follow a simple naming convention of &quot;ease type&quot; + &quot;when&quot;.\nIf the name of the function ends in Out, the easing described appears\ntowards the end of the animation. &quot;In&quot; means during the beginning,\nand InOut means both ranges of the Animation will applied, both\nbeginning and end.\n\n</p>\n<p>One does not call the easing function directly, it must be passed to\nthe <code>easing</code> property of an animation.</p>\n",
     "examples": [
-        "<pre><code>dojo.require(&quot;dojo.fx.easing&quot;);\nvar anim = dojo.fadeOut({\n    node: &#39;node&#39;,\n    duration: 2000,\n    //  note there is no ()\n    easing: dojo.fx.easing.quadIn\n}).play();</code></pre>\n"
+        "dojo.require(&quot;dojo.fx.easing&quot;);\nvar anim = dojo.fadeOut({\n    node: &#39;node&#39;,\n    duration: 2000,\n    //  note there is no ()\n    easing: dojo.fx.easing.quadIn\n}).play();\n"
     ],
     "methods": [
         {

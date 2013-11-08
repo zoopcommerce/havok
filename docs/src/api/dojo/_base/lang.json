@@ -198,7 +198,7 @@
             "summary": "<p>Returns a new object which &quot;looks&quot; to obj for properties which it\ndoes not have a value for. Optionally takes a bag of properties to\nseed the returned object with initially.</p>\n",
             "description": "<p>This is a small implementation of the Boodman/Crockford delegation\npattern in JavaScript. An intermediate object constructor mediates\nthe prototype chain for the returned object, using it to delegate\ndown to obj for property lookup when object-local lookup fails.\nThis can be thought of similarly to ES4&#39;s &quot;wrap&quot;, save that it does\nnot act on types but rather on pure objects.</p>\n",
             "examples": [
-                "<pre><code>var foo = { bar: &quot;baz&quot; };\nvar thinger = lang.delegate(foo, { thud: &quot;xyzzy&quot;});\nthinger.bar == &quot;baz&quot;; // delegated to foo\nfoo.thud == undefined; // by definition\nthinger.thud == &quot;xyzzy&quot;; // mixed in from props\nfoo.bar = &quot;thonk&quot;;\nthinger.bar == &quot;thonk&quot;; // still delegated to foo&#39;s bar</code></pre>\n"
+                "var foo = { bar: &quot;baz&quot; };\nvar thinger = lang.delegate(foo, { thud: &quot;xyzzy&quot;});\nthinger.bar == &quot;baz&quot;; // delegated to foo\nfoo.thud == undefined; // by definition\nthinger.thud == &quot;xyzzy&quot;; // mixed in from props\nfoo.bar = &quot;thonk&quot;;\nthinger.bar == &quot;thonk&quot;; // still delegated to foo&#39;s bar\n"
             ]
         },
         {
@@ -232,7 +232,7 @@
             "summary": "<p>determine if an object supports a given method</p>\n",
             "description": "<p>useful for longer api chains where you have to test each object in\nthe chain. Useful for object and method detection.</p>\n",
             "examples": [
-                "<pre><code>// define an object\nvar foo = {\n      bar: { }\n};\n\n// search the global scope\nlang.exists(&quot;foo.bar&quot;); // true\nlang.exists(&quot;foo.bar.baz&quot;); // false\n\n// search from a particular scope\nlang.exists(&quot;bar&quot;, foo); // true\nlang.exists(&quot;bar.baz&quot;, foo); // false</code></pre>\n"
+                "// define an object\nvar foo = {\n      bar: { }\n};\n\n// search the global scope\nlang.exists(&quot;foo.bar&quot;); // true\nlang.exists(&quot;foo.bar.baz&quot;); // false\n\n// search from a particular scope\nlang.exists(&quot;bar&quot;, foo); // true\nlang.exists(&quot;bar.baz&quot;, foo); // false\n"
             ]
         },
         {
@@ -337,10 +337,10 @@
             ],
             "summary": "<p>Returns a function that will only ever execute in the a given scope.\nThis allows for easy use of object member functions\nin callbacks and other places in which the &quot;this&quot; keyword may\notherwise not reference the expected scope.\nAny number of default positional arguments may be passed as parameters\nbeyond &quot;method&quot;.\nEach of these values will be used to &quot;placehold&quot; (similar to curry)\nfor the hitched function.</p>\n",
             "examples": [
-                "<pre><code>lang.hitch(foo, &quot;bar&quot;)();</code></pre>\n<p>runs foo.bar() in the scope of foo\n</p>\n",
-                "<pre><code>lang.hitch(foo, myFunction);</code></pre>\n<p>returns a function that runs myFunction in the scope of foo\n</p>\n",
-                "<p>Expansion on the default positional arguments passed along from\nhitch. Passed args are mixed first, additional args after.\n\n</p>\n<pre><code>var foo = { bar: function(a, b, c){ console.log(a, b, c); } };\nvar fn = lang.hitch(foo, &quot;bar&quot;, 1, 2);\nfn(3); // logs &quot;1, 2, 3&quot;</code></pre>\n",
-                "<pre><code>var foo = { bar: 2 };\nlang.hitch(foo, function(){ this.bar = 10; })();</code></pre>\n<p>execute an anonymous function in scope of foo\n</p>\n"
+                "lang.hitch(foo, &quot;bar&quot;)();\n<p>runs foo.bar() in the scope of foo\n</p>\n",
+                "lang.hitch(foo, myFunction);\n<p>returns a function that runs myFunction in the scope of foo\n</p>\n",
+                "<p>Expansion on the default positional arguments passed along from\nhitch. Passed args are mixed first, additional args after.\n\n</p>\nvar foo = { bar: function(a, b, c){ console.log(a, b, c); } };\nvar fn = lang.hitch(foo, &quot;bar&quot;, 1, 2);\nfn(3); // logs &quot;1, 2, 3&quot;\n",
+                "var foo = { bar: 2 };\nlang.hitch(foo, function(){ this.bar = 10; })();\n<p>execute an anonymous function in scope of foo\n</p>\n"
             ]
         },
         {
@@ -510,9 +510,9 @@
             "summary": "<p>Copies/adds all properties of one or more sources to dest; returns dest.</p>\n",
             "description": "<p>All properties, including functions (sometimes termed &quot;methods&quot;), excluding any non-standard extensions\nfound in Object.prototype, are copied/added from sources to dest. sources are processed left to right.\nThe Javascript assignment operator is used to copy/add each property; therefore, by default, mixin\nexecutes a so-called &quot;shallow copy&quot; and aggregate types are copied/added by reference.</p>\n",
             "examples": [
-                "<p>make a shallow copy of an object\n\n</p>\n<pre><code>var copy = lang.mixin({}, source);</code></pre>\n",
-                "<p>many class constructors often take an object which specifies\nvalues to be configured on the object. In this case, it is\noften simplest to call <code>lang.mixin</code> on the <code>this</code> object:\n\n</p>\n<pre><code>declare(&quot;acme.Base&quot;, null, {\n    constructor: function(properties){\n        // property configuration:\n        lang.mixin(this, properties);\n\n        console.log(this.quip);\n        //  ...\n    },\n    quip: &quot;I wasn&#39;t born yesterday, you know - I&#39;ve seen movies.&quot;,\n    // ...\n});\n\n// create an instance of the class and configure it\nvar b = new acme.Base({quip: &quot;That&#39;s what it does!&quot; });</code></pre>\n",
-                "<p>copy in properties from multiple objects\n\n</p>\n<pre><code>var flattened = lang.mixin(\n    {\n        name: &quot;Frylock&quot;,\n        braces: true\n    },\n    {\n        name: &quot;Carl Brutanananadilewski&quot;\n    }\n);\n\n// will print &quot;Carl Brutanananadilewski&quot;\nconsole.log(flattened.name);\n// will print &quot;true&quot;\nconsole.log(flattened.braces);</code></pre>\n"
+                "<p>make a shallow copy of an object\n\n</p>\nvar copy = lang.mixin({}, source);\n",
+                "<p>many class constructors often take an object which specifies\nvalues to be configured on the object. In this case, it is\noften simplest to call <code>lang.mixin</code> on the <code>this</code> object:\n\n</p>\ndeclare(&quot;acme.Base&quot;, null, {\n    constructor: function(properties){\n        // property configuration:\n        lang.mixin(this, properties);\n\n        console.log(this.quip);\n        //  ...\n    },\n    quip: &quot;I wasn&#39;t born yesterday, you know - I&#39;ve seen movies.&quot;,\n    // ...\n});\n\n// create an instance of the class and configure it\nvar b = new acme.Base({quip: &quot;That&#39;s what it does!&quot; });\n",
+                "<p>copy in properties from multiple objects\n\n</p>\nvar flattened = lang.mixin(\n    {\n        name: &quot;Frylock&quot;,\n        braces: true\n    },\n    {\n        name: &quot;Carl Brutanananadilewski&quot;\n    }\n);\n\n// will print &quot;Carl Brutanananadilewski&quot;\nconsole.log(flattened.name);\n// will print &quot;true&quot;\nconsole.log(flattened.braces);\n"
             ]
         },
         {
@@ -566,7 +566,7 @@
                 "undefined"
             ],
             "summary": "<p>similar to hitch() except that the scope object is left to be\nwhatever the execution context eventually becomes.</p>\n",
-            "description": "<p>Calling lang.partial is the functional equivalent of calling:\n\n</p>\n<pre><code>lang.hitch(null, funcName, ...);</code></pre>\n"
+            "description": "<p>Calling lang.partial is the functional equivalent of calling:\n\n</p>\nlang.hitch(null, funcName, ...);\n"
         },
         {
             "name": "replace",
@@ -609,10 +609,10 @@
             "returnDescription": "<p>Returns the substituted string.</p>\n",
             "summary": "<p>Performs parameterized substitutions on a string. Throws an\nexception if any parameter is unmatched.</p>\n",
             "examples": [
-                "<pre><code>// uses a dictionary for substitutions:\nlang.replace(&quot;Hello, {name.first} {name.last} AKA {nick}!&quot;,\n    {\n        nick: &quot;Bob&quot;,\n        name: {\n            first:  &quot;Robert&quot;,\n            middle: &quot;X&quot;,\n            last:       &quot;Cringely&quot;\n        }\n    });\n// returns: Hello, Robert Cringely AKA Bob!</code></pre>\n",
-                "<pre><code>// uses an array for substitutions:\nlang.replace(&quot;Hello, {0} {2}!&quot;,\n    [&quot;Robert&quot;, &quot;X&quot;, &quot;Cringely&quot;]);\n// returns: Hello, Robert Cringely!</code></pre>\n",
-                "<pre><code>// uses a function for substitutions:\nfunction sum(a){\n    var t = 0;\n    arrayforEach(a, function(x){ t += x; });\n    return t;\n}\nlang.replace(\n    &quot;{count} payments averaging {avg} USD per payment.&quot;,\n    lang.hitch(\n        { payments: [11, 16, 12] },\n        function(_, key){\n            switch(key){\n                case &quot;count&quot;: return this.payments.length;\n                case &quot;min&quot;:     return Math.min.apply(Math, this.payments);\n                case &quot;max&quot;:     return Math.max.apply(Math, this.payments);\n                case &quot;sum&quot;:     return sum(this.payments);\n                case &quot;avg&quot;:     return sum(this.payments) / this.payments.length;\n            }\n        }\n    )\n);\n// prints: 3 payments averaging 13 USD per payment.</code></pre>\n",
-                "<pre><code>// uses an alternative PHP-like pattern for substitutions:\nlang.replace(&quot;Hello, ${0} ${2}!&quot;,\n    [&quot;Robert&quot;, &quot;X&quot;, &quot;Cringely&quot;], /\\$\\{([^\\}]+)\\}/g);\n// returns: Hello, Robert Cringely!</code></pre>\n"
+                "// uses a dictionary for substitutions:\nlang.replace(&quot;Hello, {name.first} {name.last} AKA {nick}!&quot;,\n    {\n        nick: &quot;Bob&quot;,\n        name: {\n            first:  &quot;Robert&quot;,\n            middle: &quot;X&quot;,\n            last:       &quot;Cringely&quot;\n        }\n    });\n// returns: Hello, Robert Cringely AKA Bob!\n",
+                "// uses an array for substitutions:\nlang.replace(&quot;Hello, {0} {2}!&quot;,\n    [&quot;Robert&quot;, &quot;X&quot;, &quot;Cringely&quot;]);\n// returns: Hello, Robert Cringely!\n",
+                "// uses a function for substitutions:\nfunction sum(a){\n    var t = 0;\n    arrayforEach(a, function(x){ t += x; });\n    return t;\n}\nlang.replace(\n    &quot;{count} payments averaging {avg} USD per payment.&quot;,\n    lang.hitch(\n        { payments: [11, 16, 12] },\n        function(_, key){\n            switch(key){\n                case &quot;count&quot;: return this.payments.length;\n                case &quot;min&quot;:     return Math.min.apply(Math, this.payments);\n                case &quot;max&quot;:     return Math.max.apply(Math, this.payments);\n                case &quot;sum&quot;:     return sum(this.payments);\n                case &quot;avg&quot;:     return sum(this.payments) / this.payments.length;\n            }\n        }\n    )\n);\n// prints: 3 payments averaging 13 USD per payment.\n",
+                "// uses an alternative PHP-like pattern for substitutions:\nlang.replace(&quot;Hello, ${0} ${2}!&quot;,\n    [&quot;Robert&quot;, &quot;X&quot;, &quot;Cringely&quot;], /\\$\\{([^\\}]+)\\}/g);\n// returns: Hello, Robert Cringely!\n"
             ]
         },
         {
@@ -654,8 +654,8 @@
             "summary": "<p>Set a property from a dot-separated string, such as &quot;A.B.C&quot;</p>\n",
             "description": "<p>Useful for longer api chains where you have to test each object in\nthe chain, or when you have an object reference in string format.\nObjects are created as needed along <code>path</code>. Returns the passed\nvalue if setting is successful or <code>undefined</code> if not.</p>\n",
             "examples": [
-                "<p>set the value of <code>foo.bar.baz</code>, regardless of whether\nintermediate objects already exist:\n\n</p>\n<pre><code>lang.setObject(&quot;foo.bar.baz&quot;, value);</code></pre>\n",
-                "<p>without <code>lang.setObject</code>, we often see code like this:\n\n</p>\n<pre><code>// ensure that intermediate objects are available\nif(!obj[&quot;parent&quot;]){ obj.parent = {}; }\nif(!obj.parent[&quot;child&quot;]){ obj.parent.child = {}; }\n// now we can safely set the property\nobj.parent.child.prop = &quot;some value&quot;;</code></pre>\n<p>whereas with <code>lang.setObject</code>, we can shorten that to:\n\n\n</p>\n<pre><code>lang.setObject(&quot;parent.child.prop&quot;, &quot;some value&quot;, obj);</code></pre>\n"
+                "<p>set the value of <code>foo.bar.baz</code>, regardless of whether\nintermediate objects already exist:\n\n</p>\nlang.setObject(&quot;foo.bar.baz&quot;, value);\n",
+                "<p>without <code>lang.setObject</code>, we often see code like this:\n\n</p>\n// ensure that intermediate objects are available\nif(!obj[&quot;parent&quot;]){ obj.parent = {}; }\nif(!obj.parent[&quot;child&quot;]){ obj.parent.child = {}; }\n// now we can safely set the property\nobj.parent.child.prop = &quot;some value&quot;;\n<p>whereas with <code>lang.setObject</code>, we can shorten that to:\n\n\n</p>\nlang.setObject(&quot;parent.child.prop&quot;, &quot;some value&quot;, obj);\n"
             ]
         },
         {

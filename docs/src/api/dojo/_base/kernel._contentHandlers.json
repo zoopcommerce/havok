@@ -4,7 +4,7 @@
     "summary": "<p>A map of available XHR transport handle types. Name matches the\n<code>handleAs</code> attribute passed to XHR calls.</p>\n",
     "description": "<p>A map of available XHR transport handle types. Name matches the\n<code>handleAs</code> attribute passed to XHR calls. Each contentHandler is\ncalled, passing the xhr object for manipulation. The return value\nfrom the contentHandler will be passed to the <code>load</code> or <code>handle</code>\nfunctions defined in the original xhr call.</p>\n",
     "examples": [
-        "<p>Creating a custom content-handler:\n\n</p>\n<pre><code>xhr.contentHandlers.makeCaps = function(xhr){\n    return xhr.responseText.toUpperCase();\n}\n// and later:\ndojo.xhrGet({\n    url:&quot;foo.txt&quot;,\n    handleAs:&quot;makeCaps&quot;,\n    load: function(data){ /* data is a toUpper version of foo.txt */ }\n});</code></pre>\n"
+        "<p>Creating a custom content-handler:\n\n</p>\nxhr.contentHandlers.makeCaps = function(xhr){\n    return xhr.responseText.toUpperCase();\n}\n// and later:\ndojo.xhrGet({\n    url:&quot;foo.txt&quot;,\n    handleAs:&quot;makeCaps&quot;,\n    load: function(data){ /* data is a toUpper version of foo.txt */ }\n});\n"
     ],
     "methods": [
         {

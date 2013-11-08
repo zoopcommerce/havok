@@ -45,7 +45,7 @@
             "summary": "<p>Gets a property on an HTML element.</p>\n",
             "description": "<p>Handles normalized getting of properties on DOM nodes.\n</p>\n",
             "examples": [
-                "<pre><code>// get the current value of the &quot;foo&quot; property on a node\ndojo.getProp(dojo.byId(&quot;nodeId&quot;), &quot;foo&quot;);\n// or we can just pass the id:\ndojo.getProp(&quot;nodeId&quot;, &quot;foo&quot;);</code></pre>\n"
+                "// get the current value of the &quot;foo&quot; property on a node\ndojo.getProp(dojo.byId(&quot;nodeId&quot;), &quot;foo&quot;);\n// or we can just pass the id:\ndojo.getProp(&quot;nodeId&quot;, &quot;foo&quot;);\n"
             ]
         },
         {
@@ -91,10 +91,10 @@
             "summary": "<p>Sets a property on an HTML element.</p>\n",
             "description": "<p>Handles normalized setting of properties on DOM nodes.\n\n</p>\n<p>When passing functions as values, note that they will not be\ndirectly assigned to slots on the node, but rather the default\nbehavior will be removed and the new behavior will be added\nusing <code>dojo.connect()</code>, meaning that event handler properties\nwill be normalized and that some caveats with regards to\nnon-standard behaviors for onsubmit apply. Namely that you\nshould cancel form submission using <code>dojo.stopEvent()</code> on the\npassed event object instead of returning a boolean value from\nthe handler itself.</p>\n",
             "examples": [
-                "<pre><code>// use prop() to set the tab index\ndojo.setProp(&quot;nodeId&quot;, &quot;tabIndex&quot;, 3);</code></pre>\n",
-                "<p>Set multiple values at once, including event handlers:\n\n</p>\n<pre><code>dojo.setProp(&quot;formId&quot;, {\n    &quot;foo&quot;: &quot;bar&quot;,\n    &quot;tabIndex&quot;: -1,\n    &quot;method&quot;: &quot;POST&quot;,\n    &quot;onsubmit&quot;: function(e){\n        // stop submitting the form. Note that the IE behavior\n        // of returning true or false will have no effect here\n        // since our handler is connect()ed to the built-in\n        // onsubmit behavior and so we need to use\n        // dojo.stopEvent() to ensure that the submission\n        // doesn&#39;t proceed.\n        dojo.stopEvent(e);\n\n        // submit the form with Ajax\n        dojo.xhrPost({ form: &quot;formId&quot; });\n    }\n});</code></pre>\n",
-                "<p>Style is s special case: Only set with an object hash of styles\n\n</p>\n<pre><code>dojo.setProp(&quot;someNode&quot;,{\n    id:&quot;bar&quot;,\n    style:{\n        width:&quot;200px&quot;, height:&quot;100px&quot;, color:&quot;#000&quot;\n    }\n});</code></pre>\n",
-                "<p>Again, only set style as an object hash of styles:\n\n</p>\n<pre><code>var obj = { color:&quot;#fff&quot;, backgroundColor:&quot;#000&quot; };\ndojo.setProp(&quot;someNode&quot;, &quot;style&quot;, obj);\n\n// though shorter to use `dojo.style()` in this case:\ndojo.style(&quot;someNode&quot;, obj);</code></pre>\n"
+                "// use prop() to set the tab index\ndojo.setProp(&quot;nodeId&quot;, &quot;tabIndex&quot;, 3);\n",
+                "<p>Set multiple values at once, including event handlers:\n\n</p>\ndojo.setProp(&quot;formId&quot;, {\n    &quot;foo&quot;: &quot;bar&quot;,\n    &quot;tabIndex&quot;: -1,\n    &quot;method&quot;: &quot;POST&quot;,\n    &quot;onsubmit&quot;: function(e){\n        // stop submitting the form. Note that the IE behavior\n        // of returning true or false will have no effect here\n        // since our handler is connect()ed to the built-in\n        // onsubmit behavior and so we need to use\n        // dojo.stopEvent() to ensure that the submission\n        // doesn&#39;t proceed.\n        dojo.stopEvent(e);\n\n        // submit the form with Ajax\n        dojo.xhrPost({ form: &quot;formId&quot; });\n    }\n});\n",
+                "<p>Style is s special case: Only set with an object hash of styles\n\n</p>\ndojo.setProp(&quot;someNode&quot;,{\n    id:&quot;bar&quot;,\n    style:{\n        width:&quot;200px&quot;, height:&quot;100px&quot;, color:&quot;#000&quot;\n    }\n});\n",
+                "<p>Again, only set style as an object hash of styles:\n\n</p>\nvar obj = { color:&quot;#fff&quot;, backgroundColor:&quot;#000&quot; };\ndojo.setProp(&quot;someNode&quot;, &quot;style&quot;, obj);\n\n// though shorter to use `dojo.style()` in this case:\ndojo.style(&quot;someNode&quot;, obj);\n"
             ]
         }
     ]

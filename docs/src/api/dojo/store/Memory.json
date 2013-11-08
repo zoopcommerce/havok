@@ -263,7 +263,7 @@
             "returnDescription": "<p>The results of the query, extended with iterative methods.\n</p>\n",
             "summary": "<p>Queries the store for objects.</p>\n",
             "examples": [
-                "<p>Given the following store:\n\n\n</p>\n<pre><code>var store = new Memory({\n    data: [\n        {id: 1, name: &quot;one&quot;, prime: false },\n        {id: 2, name: &quot;two&quot;, even: true, prime: true},\n        {id: 3, name: &quot;three&quot;, prime: true},\n        {id: 4, name: &quot;four&quot;, even: true, prime: false},\n        {id: 5, name: &quot;five&quot;, prime: true}\n    ]\n});</code></pre>\n<p>...find all items where &quot;prime&quot; is true:\n\n\n</p>\n<pre><code>var results = store.query({ prime: true });</code></pre>\n<p>...or find all items where &quot;even&quot; is true:\n\n\n</p>\n<pre><code>var results = store.query({ even: true });</code></pre>\n"
+                "<p>Given the following store:\n\n\n</p>\nvar store = new Memory({\n    data: [\n        {id: 1, name: &quot;one&quot;, prime: false },\n        {id: 2, name: &quot;two&quot;, even: true, prime: true},\n        {id: 3, name: &quot;three&quot;, prime: true},\n        {id: 4, name: &quot;four&quot;, even: true, prime: false},\n        {id: 5, name: &quot;five&quot;, prime: true}\n    ]\n});\n<p>...find all items where &quot;prime&quot; is true:\n\n\n</p>\nvar results = store.query({ prime: true });\n<p>...or find all items where &quot;even&quot; is true:\n\n\n</p>\nvar results = store.query({ even: true });\n"
             ]
         },
         {

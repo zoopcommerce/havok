@@ -20,7 +20,7 @@
                 "dojo/store/api/Store.SortInformation[]"
             ],
             "from": "dojo/store/api/Store",
-            "summary": "<p>A list of attributes to sort on, as well as direction\nFor example:\n\n</p>\n<pre><code>[{attribute:&quot;price, descending: true}].</code></pre>\n<p>If the sort parameter is omitted, then the natural order of the store may be\n\n</p>\n<p>applied if there is a natural order.</p>\n"
+            "summary": "<p>A list of attributes to sort on, as well as direction\nFor example:\n\n</p>\n[{attribute:&quot;price, descending: true}].\n<p>If the sort parameter is omitted, then the natural order of the store may be\n\n</p>\n<p>applied if there is a natural order.</p>\n"
         },
         {
             "name": "start",

@@ -32,9 +32,9 @@
             "returnTypes": [],
             "summary": "<p>Returns DOM node with matching <code>id</code> attribute or falsy value (ex: null or undefined)\nif not found.  If <code>id</code> is a DomNode, this function is a no-op.\n</p>\n",
             "examples": [
-                "<p>Look up a node by ID:\n\n</p>\n<pre><code>var n = dojo.byId(&quot;foo&quot;);</code></pre>\n",
-                "<p>Check if a node exists, and use it.\n\n</p>\n<pre><code>var n = dojo.byId(&quot;bar&quot;);\nif(n){ doStuff() ... }</code></pre>\n",
-                "<p>Allow string or DomNode references to be passed to a custom function:\n\n</p>\n<pre><code>var foo = function(nodeOrId){\n    nodeOrId = dojo.byId(nodeOrId);\n    // ... more stuff\n}</code></pre>\n"
+                "<p>Look up a node by ID:\n\n</p>\nvar n = dojo.byId(&quot;foo&quot;);\n",
+                "<p>Check if a node exists, and use it.\n\n</p>\nvar n = dojo.byId(&quot;bar&quot;);\nif(n){ doStuff() ... }\n",
+                "<p>Allow string or DomNode references to be passed to a custom function:\n\n</p>\nvar foo = function(nodeOrId){\n    nodeOrId = dojo.byId(nodeOrId);\n    // ... more stuff\n}\n"
             ]
         },
         {
@@ -67,7 +67,7 @@
             "returnTypes": [],
             "summary": "<p>Returns true if node is a descendant of ancestor</p>\n",
             "examples": [
-                "<p>Test is node id=&quot;bar&quot; is a descendant of node id=&quot;foo&quot;\n\n</p>\n<pre><code>if(dojo.isDescendant(&quot;bar&quot;, &quot;foo&quot;)){ ... }</code></pre>\n"
+                "<p>Test is node id=&quot;bar&quot; is a descendant of node id=&quot;foo&quot;\n\n</p>\nif(dojo.isDescendant(&quot;bar&quot;, &quot;foo&quot;)){ ... }\n"
             ]
         },
         {

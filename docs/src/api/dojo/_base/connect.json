@@ -88,12 +88,12 @@
             "summary": "<p><code>dojo.connect</code> is a deprecated event handling and delegation method in\nDojo. It allows one function to &quot;listen in&quot; on the execution of\nany other, triggering the second whenever the first is called. Many\nlisteners may be attached to a function, and source functions may\nbe either regular function calls or DOM events.\n</p>\n",
             "description": "<p>Connects listeners to actions, so that after event fires, a\nlistener is called with the same arguments passed to the original\nfunction.\n\n</p>\n<p>Since <code>dojo.connect</code> allows the source of events to be either a\n&quot;regular&quot; JavaScript function or a DOM event, it provides a uniform\ninterface for listening to all the types of events that an\napplication is likely to deal with though a single, unified\ninterface. DOM programmers may want to think of it as\n&quot;addEventListener for everything and anything&quot;.\n\n</p>\n<p>When setting up a connection, the <code>event</code> parameter must be a\nstring that is the name of the method/event to be listened for. If\n<code>obj</code> is null, <code>kernel.global</code> is assumed, meaning that connections\nto global methods are supported but also that you may inadvertently\nconnect to a global by passing an incorrect object name or invalid\nreference.\n\n</p>\n<p><code>dojo.connect</code> generally is forgiving. If you pass the name of a\nfunction or method that does not yet exist on <code>obj</code>, connect will\nnot fail, but will instead set up a stub method. Similarly, null\narguments may simply be omitted such that fewer than 4 arguments\nmay be required to set up a connection See the examples for details.\n\n</p>\n<p>The return value is a handle that is needed to\nremove this connection with <code>dojo.disconnect</code>.\n</p>\n",
             "examples": [
-                "<p>When obj.onchange(), do ui.update():\n\n</p>\n<pre><code>dojo.connect(obj, &quot;onchange&quot;, ui, &quot;update&quot;);\ndojo.connect(obj, &quot;onchange&quot;, ui, ui.update); // same</code></pre>\n",
-                "<p>Using return value for disconnect:\n\n</p>\n<pre><code>var link = dojo.connect(obj, &quot;onchange&quot;, ui, &quot;update&quot;);\n...\ndojo.disconnect(link);</code></pre>\n",
-                "<p>When onglobalevent executes, watcher.handler is invoked:\n\n</p>\n<pre><code>dojo.connect(null, &quot;onglobalevent&quot;, watcher, &quot;handler&quot;);</code></pre>\n",
-                "<p>When ob.onCustomEvent executes, customEventHandler is invoked:\n\n</p>\n<pre><code>dojo.connect(ob, &quot;onCustomEvent&quot;, null, &quot;customEventHandler&quot;);\ndojo.connect(ob, &quot;onCustomEvent&quot;, &quot;customEventHandler&quot;); // same</code></pre>\n",
-                "<p>When ob.onCustomEvent executes, customEventHandler is invoked\nwith the same scope (this):\n\n</p>\n<pre><code>dojo.connect(ob, &quot;onCustomEvent&quot;, null, customEventHandler);\ndojo.connect(ob, &quot;onCustomEvent&quot;, customEventHandler); // same</code></pre>\n",
-                "<p>When globalEvent executes, globalHandler is invoked\nwith the same scope (this):\n\n</p>\n<pre><code>dojo.connect(null, &quot;globalEvent&quot;, null, globalHandler);\ndojo.connect(&quot;globalEvent&quot;, globalHandler); // same</code></pre>\n"
+                "<p>When obj.onchange(), do ui.update():\n\n</p>\ndojo.connect(obj, &quot;onchange&quot;, ui, &quot;update&quot;);\ndojo.connect(obj, &quot;onchange&quot;, ui, ui.update); // same\n",
+                "<p>Using return value for disconnect:\n\n</p>\nvar link = dojo.connect(obj, &quot;onchange&quot;, ui, &quot;update&quot;);\n...\ndojo.disconnect(link);\n",
+                "<p>When onglobalevent executes, watcher.handler is invoked:\n\n</p>\ndojo.connect(null, &quot;onglobalevent&quot;, watcher, &quot;handler&quot;);\n",
+                "<p>When ob.onCustomEvent executes, customEventHandler is invoked:\n\n</p>\ndojo.connect(ob, &quot;onCustomEvent&quot;, null, &quot;customEventHandler&quot;);\ndojo.connect(ob, &quot;onCustomEvent&quot;, &quot;customEventHandler&quot;); // same\n",
+                "<p>When ob.onCustomEvent executes, customEventHandler is invoked\nwith the same scope (this):\n\n</p>\ndojo.connect(ob, &quot;onCustomEvent&quot;, null, customEventHandler);\ndojo.connect(ob, &quot;onCustomEvent&quot;, customEventHandler); // same\n",
+                "<p>When globalEvent executes, globalHandler is invoked\nwith the same scope (this):\n\n</p>\ndojo.connect(null, &quot;globalEvent&quot;, null, globalHandler);\ndojo.connect(&quot;globalEvent&quot;, globalHandler); // same\n"
             ]
         },
         {
@@ -134,7 +134,7 @@
             ],
             "summary": "<p>Ensure that every time obj.event() is called, a message is published\non the topic. Returns a handle which can be passed to\ndojo.disconnect() to disable subsequent automatic publication on\nthe topic.</p>\n",
             "examples": [
-                "<pre><code>dojo.connectPublisher(&quot;/ajax/start&quot;, dojo, &quot;xhrGet&quot;);</code></pre>\n"
+                "dojo.connectPublisher(&quot;/ajax/start&quot;, dojo, &quot;xhrGet&quot;);\n"
             ]
         },
         {
@@ -210,7 +210,7 @@
             ],
             "summary": "<p>Invoke all listener method subscribed to topic.</p>\n",
             "examples": [
-                "<pre><code>dojo.subscribe(&quot;alerts&quot;, null, function(caption, message){ alert(caption + &quot;\\n&quot; + message); };\ndojo.publish(&quot;alerts&quot;, [ &quot;read this&quot;, &quot;hello world&quot; ]);</code></pre>\n"
+                "dojo.subscribe(&quot;alerts&quot;, null, function(caption, message){ alert(caption + &quot;\\n&quot; + message); };\ndojo.publish(&quot;alerts&quot;, [ &quot;read this&quot;, &quot;hello world&quot; ]);\n"
             ]
         },
         {
@@ -252,7 +252,7 @@
             ],
             "summary": "<p>Attach a listener to a named topic. The listener function is invoked whenever the\nnamed topic is published (see: dojo.publish).\nReturns a handle which is needed to unsubscribe this listener.</p>\n",
             "examples": [
-                "<pre><code>dojo.subscribe(&quot;alerts&quot;, null, function(caption, message){ alert(caption + &quot;\\n&quot; + message); });\ndojo.publish(&quot;alerts&quot;, [ &quot;read this&quot;, &quot;hello world&quot; ]);</code></pre>\n"
+                "dojo.subscribe(&quot;alerts&quot;, null, function(caption, message){ alert(caption + &quot;\\n&quot; + message); });\ndojo.publish(&quot;alerts&quot;, [ &quot;read this&quot;, &quot;hello world&quot; ]);\n"
             ]
         },
         {
@@ -275,7 +275,7 @@
             "returnTypes": [],
             "summary": "<p>Remove a topic listener.</p>\n",
             "examples": [
-                "<pre><code>var alerter = dojo.subscribe(&quot;alerts&quot;, null, function(caption, message){ alert(caption + &quot;\\n&quot; + message); };\n...\ndojo.unsubscribe(alerter);</code></pre>\n"
+                "var alerter = dojo.subscribe(&quot;alerts&quot;, null, function(caption, message){ alert(caption + &quot;\\n&quot; + message); };\n...\ndojo.unsubscribe(alerter);\n"
             ]
         }
     ]
