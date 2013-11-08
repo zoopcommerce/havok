@@ -1,0 +1,36 @@
+{
+    "location": "havok/form/_LabelMixin",
+    "type": "constructor",
+    "classlike": true,
+    "methods": [
+        {
+            "name": "_setLabelAttr",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/form/_LabelMixin",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "value",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
+        },
+        {
+            "name": "buildRendering",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/form/_LabelMixin",
+            "parameters": [],
+            "returnTypes": []
+        }
+    ]
+}

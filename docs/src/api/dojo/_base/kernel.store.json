@@ -1,0 +1,39 @@
+{
+    "location": "dojo/_base/kernel.store",
+    "type": "object",
+    "properties": [
+        {
+            "name": "util",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "dojo/store/util/QueryResults",
+            "extensionModule": true
+        }
+    ],
+    "methods": [
+        {
+            "name": "JsonRest",
+            "scope": "normal",
+            "types": [
+                "constructor"
+            ],
+            "from": "dojo/store/JsonRest",
+            "extensionModule": true,
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "Memory",
+            "scope": "normal",
+            "types": [
+                "constructor"
+            ],
+            "from": "dojo/store/Memory",
+            "extensionModule": true,
+            "parameters": [],
+            "returnTypes": []
+        }
+    ]
+}

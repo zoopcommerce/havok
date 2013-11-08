@@ -1,0 +1,80 @@
+{
+    "location": "dojo/text",
+    "type": "object",
+    "summary": "<p>This module implements the dojo/text! plugin and the dojo.cache API.</p>\n",
+    "description": "<p>We choose to include our own plugin to leverage functionality already contained in dojo\nand thereby reduce the size of the plugin compared to various foreign loader implementations.\nAlso, this allows foreign AMD loaders to be used without their plugins.\n\n</p>\n<p>CAUTION: this module is designed to optionally function synchronously to support the dojo v1.x synchronous\nloader. This feature is outside the scope of the CommonJS plugins specification.</p>\n",
+    "properties": [
+        {
+            "name": "dynamic",
+            "scope": "normal",
+            "types": [
+                "boolean"
+            ],
+            "from": "dojo/text"
+        }
+    ],
+    "methods": [
+        {
+            "name": "load",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/text",
+            "parameters": [
+                {
+                    "name": "id",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Path to the resource.</p>\n"
+                },
+                {
+                    "name": "require",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Object that include the function toUrl with given id returns a valid URL from which to load the text.</p>\n"
+                },
+                {
+                    "name": "load",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Callback function which will be called, when the loading finished.</p>\n"
+                }
+            ],
+            "returnTypes": []
+        },
+        {
+            "name": "normalize",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/text",
+            "parameters": [
+                {
+                    "name": "id",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "toAbsMid",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "string"
+            ]
+        }
+    ]
+}

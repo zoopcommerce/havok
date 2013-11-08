@@ -1,0 +1,98 @@
+{
+    "location": "havok/widget/_HotkeyMixin",
+    "type": "constructor",
+    "classlike": true,
+    "properties": [
+        {
+            "name": "keyTarget",
+            "scope": "prototype",
+            "types": [
+                "object"
+            ],
+            "from": "havok/widget/_HotkeyMixin"
+        }
+    ],
+    "methods": [
+        {
+            "name": "_addKeypressHandler",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_HotkeyMixin",
+            "private": true,
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "_removeKeypressHandler",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_HotkeyMixin",
+            "private": true,
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "_resetKeypressHandler",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_HotkeyMixin",
+            "private": true,
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "_setKeysAttr",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_HotkeyMixin",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "value",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
+        },
+        {
+            "name": "_setKeyTargetAttr",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_HotkeyMixin",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "value",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
+        },
+        {
+            "name": "destroy",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_HotkeyMixin",
+            "parameters": [],
+            "returnTypes": []
+        }
+    ]
+}

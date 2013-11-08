@@ -1,0 +1,34 @@
+{
+    "location": "mystique/Result",
+    "type": "function",
+    "parameters": [
+        {
+            "name": "options",
+            "types": [
+                "undefined"
+            ],
+            "usage": "required"
+        }
+    ],
+    "returnTypes": [],
+    "methods": [
+        {
+            "name": "constructor",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "mystique/Result",
+            "parameters": [
+                {
+                    "name": "options",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
+        }
+    ]
+}

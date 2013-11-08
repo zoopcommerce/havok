@@ -1,0 +1,394 @@
+{
+    "location": "havok/di/Di",
+    "type": "constructor",
+    "classlike": true,
+    "parameters": [
+        {
+            "name": "config",
+            "types": [
+                "object"
+            ],
+            "usage": "required"
+        }
+    ],
+    "returnTypes": [],
+    "summary": "<p>An object used for dependency injection.\n</p>\n",
+    "description": "<p>The config property may be populated with a config object that\ndefines what to inject.\n</p>\n",
+    "methods": [
+        {
+            "name": "_create",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/di/Di",
+            "private": true,
+            "tags": [
+                "protected"
+            ],
+            "parameters": [
+                {
+                    "name": "identifier",
+                    "types": [
+                        "mixed"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "null",
+                "instance"
+            ],
+            "summary": "<p>Used to create an object with the supplied identifier</p>\n"
+        },
+        {
+            "name": "_createProxy",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/di/Di",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "identifier",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined",
+                "instance"
+            ]
+        },
+        {
+            "name": "_get",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/di/Di",
+            "private": true,
+            "tags": [
+                "protected"
+            ],
+            "parameters": [
+                {
+                    "name": "identifier",
+                    "types": [
+                        "mixed"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "mixed"
+            ],
+            "summary": "<p>Used to get an object with the supplied identifier</p>\n"
+        },
+        {
+            "name": "_getCached",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/di/Di",
+            "private": true,
+            "tags": [
+                "protected"
+            ],
+            "parameters": [
+                {
+                    "name": "identifier",
+                    "types": [
+                        "string"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined",
+                "null"
+            ],
+            "summary": "<p>Will return an instance of object with the supplied identifier\nif it already exists. If not, will return null.</p>\n"
+        },
+        {
+            "name": "_inject",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/di/Di",
+            "private": true,
+            "tags": [
+                "protected"
+            ],
+            "parameters": [
+                {
+                    "name": "object",
+                    "types": [
+                        "object"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "config",
+                    "types": [
+                        "object"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "object",
+                "instance"
+            ],
+            "summary": "<p>Used to inject an object with the objects defined in the\nsupplied config\n</p>\n"
+        },
+        {
+            "name": "_proxy",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/di/Di",
+            "private": true,
+            "tags": [
+                "protected"
+            ],
+            "parameters": [
+                {
+                    "name": "identifier",
+                    "types": [
+                        "string"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "string"
+            ],
+            "summary": "<p>Used to get a proxy to the object with the supplied identifier.\nIf a cache already exists, that will be returned instead of the\nproxy.</p>\n"
+        },
+        {
+            "name": "_proxyMethod",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/di/Di",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "method",
+                    "types": [
+                        "string"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "function"
+            ]
+        },
+        {
+            "name": "clearCache",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/di/Di",
+            "parameters": [],
+            "returnTypes": [],
+            "summary": "<p>Empties the cache</p>\n"
+        },
+        {
+            "name": "constructor",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/di/Di",
+            "parameters": [
+                {
+                    "name": "config",
+                    "types": [
+                        "object"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
+        },
+        {
+            "name": "get",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/di/Di",
+            "parameters": [
+                {
+                    "name": "identifier",
+                    "types": [
+                        "string"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Return a deferred that will resolve to the identifier requested.\nWill return cached object if one exists.</p>\n"
+        },
+        {
+            "name": "getConfig",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/di/Di",
+            "parameters": [],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Return the complete config object</p>\n"
+        },
+        {
+            "name": "getIdentifierConfig",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/di/Di",
+            "parameters": [
+                {
+                    "name": "identifier",
+                    "types": [
+                        "string"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined",
+                "null"
+            ],
+            "summary": "<p>Return the config object for a particular identifier</p>\n"
+        },
+        {
+            "name": "inject",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/di/Di",
+            "parameters": [
+                {
+                    "name": "object",
+                    "types": [
+                        "object"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "identifier",
+                    "types": [
+                        "string"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Use inject to inject an object created outside the di\nwith the di config</p>\n"
+        },
+        {
+            "name": "mergeConfig",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/di/Di",
+            "parameters": [
+                {
+                    "name": "merge",
+                    "types": [
+                        "object"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Merge a config object with the existing config object.</p>\n"
+        },
+        {
+            "name": "proxy",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/di/Di",
+            "parameters": [
+                {
+                    "name": "identifier",
+                    "types": [
+                        "string"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Return a Proxy object that will proxy the identifier requested.</p>\n"
+        },
+        {
+            "name": "setConfig",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/di/Di",
+            "parameters": [
+                {
+                    "name": "config",
+                    "types": [
+                        "object"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
+        },
+        {
+            "name": "setIdentifierConfig",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/di/Di",
+            "parameters": [
+                {
+                    "name": "identifier",
+                    "types": [
+                        "string"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "config",
+                    "types": [
+                        "object"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Set the config object for a particular identifier</p>\n"
+        }
+    ]
+}

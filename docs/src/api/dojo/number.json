@@ -1,0 +1,351 @@
+{
+    "location": "dojo/number",
+    "type": "object",
+    "summary": "<p>localized formatting and parsing routines for Number</p>\n",
+    "properties": [
+        {
+            "name": "_numberPatternRE",
+            "scope": "normal",
+            "types": [
+                "RegExp"
+            ],
+            "from": "dojo/number",
+            "private": true
+        }
+    ],
+    "methods": [
+        {
+            "name": "__FormatAbsoluteOptions",
+            "scope": "normal",
+            "types": [
+                "constructor"
+            ],
+            "from": "dojo/number",
+            "private": true,
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "__FormatOptions",
+            "scope": "normal",
+            "types": [
+                "constructor"
+            ],
+            "from": "dojo/number",
+            "private": true,
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "__IntegerRegexpFlags",
+            "scope": "normal",
+            "types": [
+                "constructor"
+            ],
+            "from": "dojo/number",
+            "private": true,
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "__ParseOptions",
+            "scope": "normal",
+            "types": [
+                "constructor"
+            ],
+            "from": "dojo/number",
+            "private": true,
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "__RealNumberRegexpFlags",
+            "scope": "normal",
+            "types": [
+                "constructor"
+            ],
+            "from": "dojo/number",
+            "private": true,
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "__RegexpOptions",
+            "scope": "normal",
+            "types": [
+                "constructor"
+            ],
+            "from": "dojo/number",
+            "private": true,
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "_applyPattern",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/number",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "value",
+                    "types": [
+                        "Number"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>the number to be formatted.</p>\n"
+                },
+                {
+                    "name": "pattern",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>a pattern string as described by\n<a href=\"http://www.unicode.org/reports/tr35/#Number_Format_Patterns\">unicode.org TR35</a></p>\n"
+                },
+                {
+                    "name": "options",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>_applyPattern is usually called via <code>dojo/number.format()</code> which\npopulates an extra property in the options parameter, &quot;customs&quot;.\nThe customs object specifies group and decimal parameters if set.</p>\n",
+                    "description": "<p>An object with the following properties:</p><ul><li>pattern (String, optional): <p>override <a href=\"http://www.unicode.org/reports/tr35/#Number_Format_Patterns\">formatting pattern</a>\nwith this string.  Default value is based on locale.  Overriding this property will defeat\nlocalization.  Literal characters in patterns are not supported.</p>\n</li><li>type (String, optional): <p>choose a format type based on the locale from the following:\ndecimal, scientific (not yet supported), percent, currency. decimal by default.</p>\n</li><li>places (Number, optional): <p>fixed number of decimal places to show.  This overrides any\ninformation in the provided pattern.</p>\n</li><li>round (Number, optional): <p>5 rounds to nearest .5; 0 rounds to nearest whole (default). -1\nmeans do not round.</p>\n</li><li>locale (String, optional): <p>override the locale used to determine formatting rules</p>\n</li><li>fractional (Boolean, optional): <p>If false, show no decimal places, overriding places and pattern settings.</p>\n</li></ul>"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Apply pattern to format value as a string using options. Gives no\nconsideration to local customs.</p>\n"
+        },
+        {
+            "name": "_formatAbsolute",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/number",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "value",
+                    "types": [
+                        "Number"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>the number to be formatted, ignores sign</p>\n"
+                },
+                {
+                    "name": "pattern",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>the number portion of a pattern (e.g. <code>#,##0.00</code>)</p>\n"
+                },
+                {
+                    "name": "options",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "optional",
+                    "description": "<p>An object with the following properties:</p><ul><li>decimal (String, optional): <p>the decimal separator</p>\n</li><li>group (String, optional): <p>the group separator</p>\n</li><li>places (Number|String, optional): <p>number of decimal places.  the range &quot;n,m&quot; will format to m places.</p>\n</li><li>round (Number, optional): <p>5 rounds to nearest .5; 0 rounds to nearest whole (default). -1\nmeans don&#39;t round.</p>\n</li></ul>"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Apply numeric pattern to absolute value using options. Gives no\nconsideration to local customs.</p>\n"
+        },
+        {
+            "name": "_integerRegexp",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/number",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "flags",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "optional",
+                    "description": "<p>An object with the following properties:</p><ul><li>signed (Boolean, optional): <p>The leading plus-or-minus sign. Can be true, false, or <code>[true,false]</code>.\nDefault is <code>[true, false]</code>, (i.e. will match if it is signed\nor unsigned).</p>\n</li><li>separator (String, optional): <p>The character used as the thousands separator. Default is no\nseparator. For more than one symbol use an array, e.g. <code>[&quot;,&quot;, &quot;&quot;]</code>,\nmakes &#39;,&#39; optional.</p>\n</li><li>groupSize (Number, optional): <p>group size between separators</p>\n</li><li>groupSize2 (Number, optional): <p>second grouping, where separators 2..n have a different interval than the first separator (for India)</p>\n</li></ul>"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Builds a regular expression that matches an integer</p>\n"
+        },
+        {
+            "name": "_parseInfo",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/number",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "options",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "optional"
+                }
+            ],
+            "returnTypes": [
+                "object"
+            ]
+        },
+        {
+            "name": "_realNumberRegexp",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/number",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "flags",
+                    "types": [
+                        "__RealNumberRegexpFlags"
+                    ],
+                    "usage": "optional"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Builds a regular expression to match a real number in exponential\nnotation</p>\n"
+        },
+        {
+            "name": "format",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/number",
+            "parameters": [
+                {
+                    "name": "value",
+                    "types": [
+                        "Number"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>the number to be formatted</p>\n"
+                },
+                {
+                    "name": "options",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "optional",
+                    "description": "<p>An object with the following properties:</p><ul><li>pattern (String, optional): <p>override <a href=\"http://www.unicode.org/reports/tr35/#Number_Format_Patterns\">formatting pattern</a>\nwith this string.  Default value is based on locale.  Overriding this property will defeat\nlocalization.  Literal characters in patterns are not supported.</p>\n</li><li>type (String, optional): <p>choose a format type based on the locale from the following:\ndecimal, scientific (not yet supported), percent, currency. decimal by default.</p>\n</li><li>places (Number, optional): <p>fixed number of decimal places to show.  This overrides any\ninformation in the provided pattern.</p>\n</li><li>round (Number, optional): <p>5 rounds to nearest .5; 0 rounds to nearest whole (default). -1\nmeans do not round.</p>\n</li><li>locale (String, optional): <p>override the locale used to determine formatting rules</p>\n</li><li>fractional (Boolean, optional): <p>If false, show no decimal places, overriding places and pattern settings.</p>\n</li></ul>"
+                }
+            ],
+            "returnTypes": [
+                "null",
+                "undefined"
+            ],
+            "summary": "<p>Format a Number as a String, using locale-specific settings</p>\n",
+            "description": "<p>Create a string from a Number using a known localized pattern.\nFormatting patterns appropriate to the locale are chosen from the\n<a href=\"http://unicode.org/cldr\">Common Locale Data Repository</a> as well as the appropriate symbols and\ndelimiters.\nIf value is Infinity, -Infinity, or is not a valid JavaScript number, return null.</p>\n"
+        },
+        {
+            "name": "parse",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/number",
+            "parameters": [
+                {
+                    "name": "expression",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>A string representation of a Number</p>\n"
+                },
+                {
+                    "name": "options",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "optional",
+                    "description": "<p>An object with the following properties:</p><ul><li>pattern (String, optional): <p>override <a href=\"http://www.unicode.org/reports/tr35/#Number_Format_Patterns\">formatting pattern</a>\nwith this string.  Default value is based on locale.  Overriding this property will defeat\nlocalization.  Literal characters in patterns are not supported.</p>\n</li><li>type (String, optional): <p>choose a format type based on the locale from the following:\ndecimal, scientific (not yet supported), percent, currency. decimal by default.</p>\n</li><li>locale (String, optional): <p>override the locale used to determine formatting rules</p>\n</li><li>strict (Boolean, optional): <p>strict parsing, false by default.  Strict parsing requires input as produced by the format() method.\nNon-strict is more permissive, e.g. flexible on white space, omitting thousands separators</p>\n</li><li>fractional (Boolean|Array, optional): <p>Whether to include the fractional portion, where the number of decimal places are implied by pattern\nor explicit &#39;places&#39; parameter.  The value [true,false] makes the fractional portion optional.</p>\n</li></ul>"
+                }
+            ],
+            "returnTypes": [
+                "number"
+            ],
+            "summary": "<p>Convert a properly formatted string to a primitive Number, using\nlocale-specific settings.</p>\n",
+            "description": "<p>Create a Number from a string using a known localized pattern.\nFormatting patterns are chosen appropriate to the locale\nand follow the syntax described by\n<a href=\"http://www.unicode.org/reports/tr35/#Number_Format_Patterns\">unicode.org TR35</a>\nNote that literal characters in patterns are not supported.</p>\n"
+        },
+        {
+            "name": "regexp",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/number",
+            "parameters": [
+                {
+                    "name": "options",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "optional",
+                    "description": "<p>An object with the following properties:</p><ul><li>pattern (String, optional): <p>override <a href=\"http://www.unicode.org/reports/tr35/#Number_Format_Patterns\">formatting pattern</a>\nwith this string.  Default value is based on locale.  Overriding this property will defeat\nlocalization.</p>\n</li><li>type (String, optional): <p>choose a format type based on the locale from the following:\ndecimal, scientific (not yet supported), percent, currency. decimal by default.</p>\n</li><li>locale (String, optional): <p>override the locale used to determine formatting rules</p>\n</li><li>strict (Boolean, optional): <p>strict parsing, false by default.  Strict parsing requires input as produced by the format() method.\nNon-strict is more permissive, e.g. flexible on white space, omitting thousands separators</p>\n</li><li>places (Number|String, optional): <p>number of decimal places to accept: Infinity, a positive number, or\na range &quot;n,m&quot;.  Defined by pattern or Infinity if pattern not provided.</p>\n</li></ul>"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Builds the regular needed to parse a number</p>\n",
+            "description": "<p>Returns regular expression with positive and negative match, group\nand decimal separators</p>\n"
+        },
+        {
+            "name": "round",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/number",
+            "parameters": [
+                {
+                    "name": "value",
+                    "types": [
+                        "Number"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The number to round</p>\n"
+                },
+                {
+                    "name": "places",
+                    "types": [
+                        "Number"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>The number of decimal places where rounding takes place.  Defaults to 0 for whole rounding.\nMust be non-negative.</p>\n"
+                },
+                {
+                    "name": "increment",
+                    "types": [
+                        "Number"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>Rounds next place to nearest value of increment/10.  10 by default.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "number"
+            ],
+            "summary": "<p>Rounds to the nearest value with the given number of decimal places, away from zero</p>\n",
+            "description": "<p>Rounds to the nearest value with the given number of decimal places, away from zero if equal.\nSimilar to Number.toFixed(), but compensates for browser quirks. Rounding can be done by\nfractional increments also, such as the nearest quarter.\nNOTE: Subject to floating point errors.  See dojox/math/round for experimental workaround.</p>\n",
+            "examples": [
+                "<pre><code>&gt;&gt;&gt; number.round(-0.5)\n-1\n&gt;&gt;&gt; number.round(162.295, 2)\n162.29  // note floating point error.  Should be 162.3\n&gt;&gt;&gt; number.round(10.71, 0, 2.5)\n10.75</code></pre>\n"
+            ]
+        }
+    ]
+}

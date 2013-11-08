@@ -1,0 +1,26 @@
+{
+    "location": "havok/parser/parser",
+    "type": "object",
+    "methods": [
+        {
+            "name": "parse",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "havok/parser/parser",
+            "parameters": [
+                {
+                    "name": "root",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "instance"
+            ]
+        }
+    ]
+}

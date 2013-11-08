@@ -1,0 +1,109 @@
+{
+    "location": "dojo/request/xhr.__Options",
+    "type": "constructor",
+    "classlike": true,
+    "properties": [
+        {
+            "name": "data",
+            "scope": "prototype",
+            "types": [
+                "String",
+                "Object",
+                "FormData"
+            ],
+            "from": "dojo/request/xhr",
+            "summary": "<p>Data to transfer. This is ignored for GET and DELETE\nrequests.</p>\n"
+        },
+        {
+            "name": "handleAs",
+            "scope": "prototype",
+            "types": [
+                "String"
+            ],
+            "from": "dojo/request",
+            "summary": "<p>How to handle the response from the server.  Default is\n&#39;text&#39;.  Other values are &#39;json&#39;, &#39;javascript&#39;, and &#39;xml&#39;.</p>\n"
+        },
+        {
+            "name": "headers",
+            "scope": "prototype",
+            "types": [
+                "Object"
+            ],
+            "from": "dojo/request/xhr",
+            "summary": "<p>Headers to use for the request.</p>\n"
+        },
+        {
+            "name": "method",
+            "scope": "prototype",
+            "types": [
+                "String"
+            ],
+            "from": "dojo/request/xhr",
+            "summary": "<p>The HTTP method to use to make the request. Must be\nuppercase. Default is <code>&quot;GET&quot;</code>.</p>\n"
+        },
+        {
+            "name": "password",
+            "scope": "prototype",
+            "types": [
+                "String"
+            ],
+            "from": "dojo/request/xhr",
+            "summary": "<p>Password to use during the request.</p>\n"
+        },
+        {
+            "name": "preventCache",
+            "scope": "prototype",
+            "types": [
+                "Boolean"
+            ],
+            "from": "dojo/request",
+            "summary": "<p>Whether to append a cache-busting parameter to the URL.</p>\n"
+        },
+        {
+            "name": "query",
+            "scope": "prototype",
+            "types": [
+                "String",
+                "Object"
+            ],
+            "from": "dojo/request",
+            "summary": "<p>Query parameters to append to the URL.</p>\n"
+        },
+        {
+            "name": "sync",
+            "scope": "prototype",
+            "types": [
+                "Boolean"
+            ],
+            "from": "dojo/request/xhr",
+            "summary": "<p>Whether to make a synchronous request or not. Default\nis <code>false</code> (asynchronous).</p>\n"
+        },
+        {
+            "name": "timeout",
+            "scope": "prototype",
+            "types": [
+                "Integer"
+            ],
+            "from": "dojo/request",
+            "summary": "<p>Milliseconds to wait for the response.  If this time\npasses, the then the promise is rejected.</p>\n"
+        },
+        {
+            "name": "user",
+            "scope": "prototype",
+            "types": [
+                "String"
+            ],
+            "from": "dojo/request/xhr",
+            "summary": "<p>Username to use during the request.</p>\n"
+        },
+        {
+            "name": "withCredentials",
+            "scope": "prototype",
+            "types": [
+                "Boolean"
+            ],
+            "from": "dojo/request/xhr",
+            "summary": "<p>For cross-site requests, whether to send credentials\nor not.</p>\n"
+        }
+    ]
+}

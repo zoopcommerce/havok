@@ -1,0 +1,38 @@
+{
+    "location": "mystique/Base",
+    "type": "function",
+    "parameters": [],
+    "returnTypes": [],
+    "methods": [
+        {
+            "name": "constructor",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "mystique/Base",
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "extend",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "mystique/Base",
+            "parameters": [
+                {
+                    "name": "mixin",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "function"
+            ]
+        }
+    ]
+}

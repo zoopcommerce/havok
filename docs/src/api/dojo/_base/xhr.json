@@ -1,0 +1,530 @@
+{
+    "location": "dojo/_base/xhr",
+    "type": "function",
+    "parameters": [
+        {
+            "name": "method",
+            "types": [
+                "String"
+            ],
+            "usage": "required",
+            "summary": "<p>HTTP method to be used, such as GET, POST, PUT, DELETE. Should be uppercase.</p>\n"
+        },
+        {
+            "name": "args",
+            "types": [
+                "Object"
+            ],
+            "usage": "required",
+            "description": "<p>An object with the following properties:</p><ul><li>handleAs (String, optional): <p>Acceptable values are: text (default), json, json-comment-optional,\njson-comment-filtered, javascript, xml. See <code>dojo/_base/xhr.contentHandlers</code></p>\n</li><li>sync (Boolean, optional): <p>false is default. Indicates whether the request should\nbe a synchronous (blocking) request.</p>\n</li><li>headers (Object, optional): <p>Additional HTTP headers to send in the request.</p>\n</li><li>failOk (Boolean, optional): <p>false is default. Indicates whether a request should be\nallowed to fail (and therefore no console error message in\nthe event of a failure)</p>\n</li><li>contentType (String|Boolean): <p>&quot;application/x-www-form-urlencoded&quot; is default. Set to false to\nprevent a Content-Type header from being sent, or to a string\nto send a different Content-Type.</p>\n</li><li>load: <p>This function will be\ncalled on a successful HTTP response code.</p>\n</li><li>error: <p>This function will\nbe called when the request fails due to a network or server error, the url\nis invalid, etc. It will also be called if the load or handle callback throws an\nexception, unless djConfig.debugAtAllCosts is true.  This allows deployed applications\nto continue to run even when a logic error happens in the callback, while making\nit easier to troubleshoot while in debug mode.</p>\n</li><li>handle: <p>This function will\nbe called at the end of every request, whether or not an error occurs.</p>\n</li><li>url (String): <p>URL to server endpoint.</p>\n</li><li>content (Object, optional): <p>Contains properties with string values. These\nproperties will be serialized as name1=value2 and\npassed in the request.</p>\n</li><li>timeout (Integer, optional): <p>Milliseconds to wait for the response. If this time\npasses, the then error callbacks are called.</p>\n</li><li>form (DOMNode, optional): <p>DOM node for a form. Used to extract the form values\nand send to the server.</p>\n</li><li>preventCache (Boolean, optional): <p>Default is false. If true, then a\n&quot;dojo.preventCache&quot; parameter is sent in the request\nwith a value that changes with each request\n(timestamp). Useful only with GET-type requests.</p>\n</li><li>rawBody (String, optional): <p>Sets the raw body for an HTTP request. If this is used, then the content\nproperty is ignored. This is mostly useful for HTTP methods that have\na body to their requests, like PUT or POST. This property can be used instead\nof postData and putData for dojo/_base/xhr.rawXhrPost and dojo/_base/xhr.rawXhrPut respectively.</p>\n</li><li>ioPublish (Boolean, optional): <p>Set this explicitly to false to prevent publishing of topics related to\nIO operations. Otherwise, if djConfig.ioPublish is set to true, topics\nwill be published via dojo/topic.publish() for different phases of an IO operation.\nSee dojo/main.__IoPublish for a list of topics that are published.</p>\n</li></ul>"
+        },
+        {
+            "name": "hasBody",
+            "types": [
+                "Boolean"
+            ],
+            "usage": "optional",
+            "summary": "<p>If the request has an HTTP body, then pass true for hasBody.</p>\n"
+        }
+    ],
+    "returnTypes": [
+        "undefined"
+    ],
+    "summary": "<p>Deprecated.   Use dojo/request instead.</p>\n",
+    "description": "<p>Sends an HTTP request with the given method.\nSee also dojo.xhrGet(), xhrPost(), xhrPut() and dojo.xhrDelete() for shortcuts\nfor those HTTP methods. There are also methods for &quot;raw&quot; PUT and POST methods\nvia dojo.rawXhrPut() and dojo.rawXhrPost() respectively.</p>\n",
+    "properties": [
+        {
+            "name": "contentHandlers",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "dojo/_base/xhr",
+            "summary": "<p>A map of available XHR transport handle types. Name matches the\n<code>handleAs</code> attribute passed to XHR calls.</p>\n",
+            "description": "<p>A map of available XHR transport handle types. Name matches the\n<code>handleAs</code> attribute passed to XHR calls. Each contentHandler is\ncalled, passing the xhr object for manipulation. The return value\nfrom the contentHandler will be passed to the <code>load</code> or <code>handle</code>\nfunctions defined in the original xhr call.</p>\n",
+            "examples": [
+                "<p>Creating a custom content-handler:\n\n</p>\n<pre><code>xhr.contentHandlers.makeCaps = function(xhr){\n    return xhr.responseText.toUpperCase();\n}\n// and later:\ndojo.xhrGet({\n    url:&quot;foo.txt&quot;,\n    handleAs:&quot;makeCaps&quot;,\n    load: function(data){ /* data is a toUpper version of foo.txt */ }\n});</code></pre>\n"
+            ]
+        }
+    ],
+    "methods": [
+        {
+            "name": "_getText",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "url",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ]
+        },
+        {
+            "name": "_ioAddQueryToUrl",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "ioArgs",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "description": "<p>An object with the following properties:</p><ul><li>args (Object): <p>the original object argument to the IO call.</p>\n</li><li>xhr (XMLHttpRequest): <p>For XMLHttpRequest calls only, the\nXMLHttpRequest object that was used for the\nrequest.</p>\n</li><li>url (String): <p>The final URL used for the call. Many times it\nwill be different than the original args.url\nvalue.</p>\n</li><li>query (String): <p>For non-GET requests, the\nname1=value1&amp;name2=value2 parameters sent up in\nthe request.</p>\n</li><li>handleAs (String): <p>The final indicator on how the response will be\nhandled.</p>\n</li><li>id (String): <p>For dojo/io/script calls only, the internal\nscript ID used for the request.</p>\n</li><li>canDelete (Boolean): <p>For dojo/io/script calls only, indicates\nwhether the script tag that represents the\nrequest can be deleted after callbacks have\nbeen called. Used internally to know when\ncleanup can happen on JSONP-type requests.</p>\n</li><li>json (Object): <p>For dojo/io/script calls only: holds the JSON\nresponse for JSONP-type requests. Used\ninternally to hold on to the JSON responses.\nYou should not need to access it directly --\nthe same object should be passed to the success\ncallbacks directly.</p>\n</li></ul>"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Adds query params discovered by the io deferred construction to the URL.\nOnly use this for operations which are fundamentally GET-type operations.</p>\n"
+        },
+        {
+            "name": "_ioCancelAll",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "private": true,
+            "parameters": [],
+            "returnTypes": [],
+            "summary": "<p>Cancels all pending IO requests, regardless of IO type\n(xhr, script, iframe).</p>\n"
+        },
+        {
+            "name": "_ioNotifyStart",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "dfd",
+                    "types": [
+                        "dojo/_base/Deferred"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>If dojo.publish is available, publish topics\nabout the start of a request queue and/or the\nthe beginning of request.\n\n</p>\n<p>Used by IO transports. An IO transport should\ncall this method before making the network connection.</p>\n"
+        },
+        {
+            "name": "_ioSetArgs",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "args",
+                    "types": [
+                        "dojo/main.__IoArgs"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The args object passed into the public io call. Recognized properties on\nthe args object are:</p>\n"
+                },
+                {
+                    "name": "canceller",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The canceller function used for the Deferred object. The function\nwill receive one argument, the Deferred object that is related to the\ncanceller.</p>\n"
+                },
+                {
+                    "name": "okHandler",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The first OK callback to be registered with Deferred. It has the opportunity\nto transform the OK response. It will receive one argument -- the Deferred\nobject returned from this function.</p>\n"
+                },
+                {
+                    "name": "errHandler",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The first error callback to be registered with Deferred. It has the opportunity\nto do cleanup on an error. It will receive two arguments: error (the\nError object) and dfd, the Deferred object returned from this function.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "instance"
+            ],
+            "summary": "<p>sets up the Deferred and ioArgs property on the Deferred so it\ncan be used in an io call.</p>\n"
+        },
+        {
+            "name": "_ioWatch",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "dfd",
+                    "types": [
+                        "dojo/_base/Deferred"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The Deferred object to watch.</p>\n"
+                },
+                {
+                    "name": "validCheck",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Function used to check if the IO request is still valid. Gets the dfd\nobject as its only argument.</p>\n"
+                },
+                {
+                    "name": "ioCheck",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Function used to check if basic IO call worked. Gets the dfd\nobject as its only argument.</p>\n"
+                },
+                {
+                    "name": "resHandle",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Function used to process response. Gets the dfd\nobject as its only argument.</p>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Watches the io request represented by dfd to see if it completes.</p>\n"
+        },
+        {
+            "name": "_isDocumentOk",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "x",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ]
+        },
+        {
+            "name": "_xhrObj",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "private": true,
+            "parameters": [],
+            "returnTypes": [
+                "instance"
+            ]
+        },
+        {
+            "name": "constructor",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "parameters": [
+                {
+                    "name": "method",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>HTTP method to be used, such as GET, POST, PUT, DELETE. Should be uppercase.</p>\n"
+                },
+                {
+                    "name": "args",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "description": "<p>An object with the following properties:</p><ul><li>handleAs (String, optional): <p>Acceptable values are: text (default), json, json-comment-optional,\njson-comment-filtered, javascript, xml. See <code>dojo/_base/xhr.contentHandlers</code></p>\n</li><li>sync (Boolean, optional): <p>false is default. Indicates whether the request should\nbe a synchronous (blocking) request.</p>\n</li><li>headers (Object, optional): <p>Additional HTTP headers to send in the request.</p>\n</li><li>failOk (Boolean, optional): <p>false is default. Indicates whether a request should be\nallowed to fail (and therefore no console error message in\nthe event of a failure)</p>\n</li><li>contentType (String|Boolean): <p>&quot;application/x-www-form-urlencoded&quot; is default. Set to false to\nprevent a Content-Type header from being sent, or to a string\nto send a different Content-Type.</p>\n</li><li>load: <p>This function will be\ncalled on a successful HTTP response code.</p>\n</li><li>error: <p>This function will\nbe called when the request fails due to a network or server error, the url\nis invalid, etc. It will also be called if the load or handle callback throws an\nexception, unless djConfig.debugAtAllCosts is true.  This allows deployed applications\nto continue to run even when a logic error happens in the callback, while making\nit easier to troubleshoot while in debug mode.</p>\n</li><li>handle: <p>This function will\nbe called at the end of every request, whether or not an error occurs.</p>\n</li><li>url (String): <p>URL to server endpoint.</p>\n</li><li>content (Object, optional): <p>Contains properties with string values. These\nproperties will be serialized as name1=value2 and\npassed in the request.</p>\n</li><li>timeout (Integer, optional): <p>Milliseconds to wait for the response. If this time\npasses, the then error callbacks are called.</p>\n</li><li>form (DOMNode, optional): <p>DOM node for a form. Used to extract the form values\nand send to the server.</p>\n</li><li>preventCache (Boolean, optional): <p>Default is false. If true, then a\n&quot;dojo.preventCache&quot; parameter is sent in the request\nwith a value that changes with each request\n(timestamp). Useful only with GET-type requests.</p>\n</li><li>rawBody (String, optional): <p>Sets the raw body for an HTTP request. If this is used, then the content\nproperty is ignored. This is mostly useful for HTTP methods that have\na body to their requests, like PUT or POST. This property can be used instead\nof postData and putData for dojo/_base/xhr.rawXhrPost and dojo/_base/xhr.rawXhrPut respectively.</p>\n</li><li>ioPublish (Boolean, optional): <p>Set this explicitly to false to prevent publishing of topics related to\nIO operations. Otherwise, if djConfig.ioPublish is set to true, topics\nwill be published via dojo/topic.publish() for different phases of an IO operation.\nSee dojo/main.__IoPublish for a list of topics that are published.</p>\n</li></ul>"
+                },
+                {
+                    "name": "hasBody",
+                    "types": [
+                        "Boolean"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>If the request has an HTTP body, then pass true for hasBody.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Deprecated.   Use dojo/request instead.</p>\n",
+            "description": "<p>Sends an HTTP request with the given method.\nSee also dojo.xhrGet(), xhrPost(), xhrPut() and dojo.xhrDelete() for shortcuts\nfor those HTTP methods. There are also methods for &quot;raw&quot; PUT and POST methods\nvia dojo.rawXhrPut() and dojo.rawXhrPost() respectively.</p>\n"
+        },
+        {
+            "name": "del",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "parameters": [
+                {
+                    "name": "args",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "description": "<p>An object with the following properties:</p><ul><li>handleAs (String, optional): <p>Acceptable values are: text (default), json, json-comment-optional,\njson-comment-filtered, javascript, xml. See <code>dojo/_base/xhr.contentHandlers</code></p>\n</li><li>sync (Boolean, optional): <p>false is default. Indicates whether the request should\nbe a synchronous (blocking) request.</p>\n</li><li>headers (Object, optional): <p>Additional HTTP headers to send in the request.</p>\n</li><li>failOk (Boolean, optional): <p>false is default. Indicates whether a request should be\nallowed to fail (and therefore no console error message in\nthe event of a failure)</p>\n</li><li>contentType (String|Boolean): <p>&quot;application/x-www-form-urlencoded&quot; is default. Set to false to\nprevent a Content-Type header from being sent, or to a string\nto send a different Content-Type.</p>\n</li><li>load: <p>This function will be\ncalled on a successful HTTP response code.</p>\n</li><li>error: <p>This function will\nbe called when the request fails due to a network or server error, the url\nis invalid, etc. It will also be called if the load or handle callback throws an\nexception, unless djConfig.debugAtAllCosts is true.  This allows deployed applications\nto continue to run even when a logic error happens in the callback, while making\nit easier to troubleshoot while in debug mode.</p>\n</li><li>handle: <p>This function will\nbe called at the end of every request, whether or not an error occurs.</p>\n</li><li>url (String): <p>URL to server endpoint.</p>\n</li><li>content (Object, optional): <p>Contains properties with string values. These\nproperties will be serialized as name1=value2 and\npassed in the request.</p>\n</li><li>timeout (Integer, optional): <p>Milliseconds to wait for the response. If this time\npasses, the then error callbacks are called.</p>\n</li><li>form (DOMNode, optional): <p>DOM node for a form. Used to extract the form values\nand send to the server.</p>\n</li><li>preventCache (Boolean, optional): <p>Default is false. If true, then a\n&quot;dojo.preventCache&quot; parameter is sent in the request\nwith a value that changes with each request\n(timestamp). Useful only with GET-type requests.</p>\n</li><li>rawBody (String, optional): <p>Sets the raw body for an HTTP request. If this is used, then the content\nproperty is ignored. This is mostly useful for HTTP methods that have\na body to their requests, like PUT or POST. This property can be used instead\nof postData and putData for dojo/_base/xhr.rawXhrPost and dojo/_base/xhr.rawXhrPut respectively.</p>\n</li><li>ioPublish (Boolean, optional): <p>Set this explicitly to false to prevent publishing of topics related to\nIO operations. Otherwise, if djConfig.ioPublish is set to true, topics\nwill be published via dojo/topic.publish() for different phases of an IO operation.\nSee dojo/main.__IoPublish for a list of topics that are published.</p>\n</li></ul>"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Sends an HTTP DELETE request to the server.</p>\n"
+        },
+        {
+            "name": "fieldToObject",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "parameters": [
+                {
+                    "name": "inputNode",
+                    "types": [
+                        "DOMNode",
+                        "String"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "Object",
+                "undefined"
+            ],
+            "summary": "<p>Serialize a form field to a JavaScript object.</p>\n",
+            "description": "<p>Returns the value encoded in a form field as\nas a string or an array of strings. Disabled form elements\nand unchecked radio and checkboxes are skipped. Multi-select\nelements are returned as an array of string values.</p>\n"
+        },
+        {
+            "name": "formToJson",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "parameters": [
+                {
+                    "name": "formNode",
+                    "types": [
+                        "DOMNode",
+                        "String"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "prettyPrint",
+                    "types": [
+                        "Boolean"
+                    ],
+                    "usage": "optional"
+                }
+            ],
+            "returnTypes": [
+                "String",
+                "undefined"
+            ],
+            "summary": "<p>Create a serialized JSON string from a form node or string\nID identifying the form to serialize</p>\n"
+        },
+        {
+            "name": "formToObject",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "parameters": [
+                {
+                    "name": "formNode",
+                    "types": [
+                        "DOMNode",
+                        "String"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "object"
+            ],
+            "summary": "<p>Serialize a form node to a JavaScript object.</p>\n",
+            "description": "<p>Returns the values encoded in an HTML form as\nstring properties in an object which it then returns. Disabled form\nelements, buttons, and other non-value form elements are skipped.\nMulti-select elements are returned as an array of string values.</p>\n",
+            "examples": [
+                "<p>This form:\n\n</p>\n<pre><code>&lt;form id=&quot;test_form&quot;&gt;\n    &lt;input type=&quot;text&quot; name=&quot;blah&quot; value=&quot;blah&quot;&gt;\n    &lt;input type=&quot;text&quot; name=&quot;no_value&quot; value=&quot;blah&quot; disabled&gt;\n    &lt;input type=&quot;button&quot; name=&quot;no_value2&quot; value=&quot;blah&quot;&gt;\n    &lt;select type=&quot;select&quot; multiple name=&quot;multi&quot; size=&quot;5&quot;&gt;\n        &lt;option value=&quot;blah&quot;&gt;blah&lt;/option&gt;\n        &lt;option value=&quot;thud&quot; selected&gt;thud&lt;/option&gt;\n        &lt;option value=&quot;thonk&quot; selected&gt;thonk&lt;/option&gt;\n    &lt;/select&gt;\n&lt;/form&gt;</code></pre>\n<p>yields this object structure as the result of a call to\nformToObject():\n\n\n</p>\n<pre><code>{\n    blah: &quot;blah&quot;,\n    multi: [\n        &quot;thud&quot;,\n        &quot;thonk&quot;\n    ]\n};</code></pre>\n"
+            ]
+        },
+        {
+            "name": "formToQuery",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "parameters": [
+                {
+                    "name": "formNode",
+                    "types": [
+                        "DOMNode",
+                        "String"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "String",
+                "undefined"
+            ],
+            "summary": "<p>Returns a URL-encoded string representing the form passed as either a\nnode or string ID identifying the form to serialize</p>\n"
+        },
+        {
+            "name": "get",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "parameters": [
+                {
+                    "name": "args",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "description": "<p>An object with the following properties:</p><ul><li>handleAs (String, optional): <p>Acceptable values are: text (default), json, json-comment-optional,\njson-comment-filtered, javascript, xml. See <code>dojo/_base/xhr.contentHandlers</code></p>\n</li><li>sync (Boolean, optional): <p>false is default. Indicates whether the request should\nbe a synchronous (blocking) request.</p>\n</li><li>headers (Object, optional): <p>Additional HTTP headers to send in the request.</p>\n</li><li>failOk (Boolean, optional): <p>false is default. Indicates whether a request should be\nallowed to fail (and therefore no console error message in\nthe event of a failure)</p>\n</li><li>contentType (String|Boolean): <p>&quot;application/x-www-form-urlencoded&quot; is default. Set to false to\nprevent a Content-Type header from being sent, or to a string\nto send a different Content-Type.</p>\n</li><li>load: <p>This function will be\ncalled on a successful HTTP response code.</p>\n</li><li>error: <p>This function will\nbe called when the request fails due to a network or server error, the url\nis invalid, etc. It will also be called if the load or handle callback throws an\nexception, unless djConfig.debugAtAllCosts is true.  This allows deployed applications\nto continue to run even when a logic error happens in the callback, while making\nit easier to troubleshoot while in debug mode.</p>\n</li><li>handle: <p>This function will\nbe called at the end of every request, whether or not an error occurs.</p>\n</li><li>url (String): <p>URL to server endpoint.</p>\n</li><li>content (Object, optional): <p>Contains properties with string values. These\nproperties will be serialized as name1=value2 and\npassed in the request.</p>\n</li><li>timeout (Integer, optional): <p>Milliseconds to wait for the response. If this time\npasses, the then error callbacks are called.</p>\n</li><li>form (DOMNode, optional): <p>DOM node for a form. Used to extract the form values\nand send to the server.</p>\n</li><li>preventCache (Boolean, optional): <p>Default is false. If true, then a\n&quot;dojo.preventCache&quot; parameter is sent in the request\nwith a value that changes with each request\n(timestamp). Useful only with GET-type requests.</p>\n</li><li>rawBody (String, optional): <p>Sets the raw body for an HTTP request. If this is used, then the content\nproperty is ignored. This is mostly useful for HTTP methods that have\na body to their requests, like PUT or POST. This property can be used instead\nof postData and putData for dojo/_base/xhr.rawXhrPost and dojo/_base/xhr.rawXhrPut respectively.</p>\n</li><li>ioPublish (Boolean, optional): <p>Set this explicitly to false to prevent publishing of topics related to\nIO operations. Otherwise, if djConfig.ioPublish is set to true, topics\nwill be published via dojo/topic.publish() for different phases of an IO operation.\nSee dojo/main.__IoPublish for a list of topics that are published.</p>\n</li></ul>"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Sends an HTTP GET request to the server.</p>\n"
+        },
+        {
+            "name": "objectToQuery",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "parameters": [
+                {
+                    "name": "map",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>takes a name/value mapping object and returns a string representing\na URL-encoded version of that object.</p>\n",
+            "examples": [
+                "<p>this object:\n\n\n</p>\n<pre><code>{\n    blah: &quot;blah&quot;,\n    multi: [\n        &quot;thud&quot;,\n        &quot;thonk&quot;\n    ]\n};</code></pre>\n<p>yields the following query string:\n\n\n</p>\n<pre><code>&quot;blah=blah&amp;multi=thud&amp;multi=thonk&quot;</code></pre>\n"
+            ]
+        },
+        {
+            "name": "post",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "parameters": [
+                {
+                    "name": "args",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "description": "<p>An object with the following properties:</p><ul><li>handleAs (String, optional): <p>Acceptable values are: text (default), json, json-comment-optional,\njson-comment-filtered, javascript, xml. See <code>dojo/_base/xhr.contentHandlers</code></p>\n</li><li>sync (Boolean, optional): <p>false is default. Indicates whether the request should\nbe a synchronous (blocking) request.</p>\n</li><li>headers (Object, optional): <p>Additional HTTP headers to send in the request.</p>\n</li><li>failOk (Boolean, optional): <p>false is default. Indicates whether a request should be\nallowed to fail (and therefore no console error message in\nthe event of a failure)</p>\n</li><li>contentType (String|Boolean): <p>&quot;application/x-www-form-urlencoded&quot; is default. Set to false to\nprevent a Content-Type header from being sent, or to a string\nto send a different Content-Type.</p>\n</li><li>load: <p>This function will be\ncalled on a successful HTTP response code.</p>\n</li><li>error: <p>This function will\nbe called when the request fails due to a network or server error, the url\nis invalid, etc. It will also be called if the load or handle callback throws an\nexception, unless djConfig.debugAtAllCosts is true.  This allows deployed applications\nto continue to run even when a logic error happens in the callback, while making\nit easier to troubleshoot while in debug mode.</p>\n</li><li>handle: <p>This function will\nbe called at the end of every request, whether or not an error occurs.</p>\n</li><li>url (String): <p>URL to server endpoint.</p>\n</li><li>content (Object, optional): <p>Contains properties with string values. These\nproperties will be serialized as name1=value2 and\npassed in the request.</p>\n</li><li>timeout (Integer, optional): <p>Milliseconds to wait for the response. If this time\npasses, the then error callbacks are called.</p>\n</li><li>form (DOMNode, optional): <p>DOM node for a form. Used to extract the form values\nand send to the server.</p>\n</li><li>preventCache (Boolean, optional): <p>Default is false. If true, then a\n&quot;dojo.preventCache&quot; parameter is sent in the request\nwith a value that changes with each request\n(timestamp). Useful only with GET-type requests.</p>\n</li><li>rawBody (String, optional): <p>Sets the raw body for an HTTP request. If this is used, then the content\nproperty is ignored. This is mostly useful for HTTP methods that have\na body to their requests, like PUT or POST. This property can be used instead\nof postData and putData for dojo/_base/xhr.rawXhrPost and dojo/_base/xhr.rawXhrPut respectively.</p>\n</li><li>ioPublish (Boolean, optional): <p>Set this explicitly to false to prevent publishing of topics related to\nIO operations. Otherwise, if djConfig.ioPublish is set to true, topics\nwill be published via dojo/topic.publish() for different phases of an IO operation.\nSee dojo/main.__IoPublish for a list of topics that are published.</p>\n</li></ul>"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Sends an HTTP POST request to the server. In addition to the properties\nlisted for the dojo.__XhrArgs type, the following property is allowed:</p>\n"
+        },
+        {
+            "name": "put",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "parameters": [
+                {
+                    "name": "args",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "description": "<p>An object with the following properties:</p><ul><li>handleAs (String, optional): <p>Acceptable values are: text (default), json, json-comment-optional,\njson-comment-filtered, javascript, xml. See <code>dojo/_base/xhr.contentHandlers</code></p>\n</li><li>sync (Boolean, optional): <p>false is default. Indicates whether the request should\nbe a synchronous (blocking) request.</p>\n</li><li>headers (Object, optional): <p>Additional HTTP headers to send in the request.</p>\n</li><li>failOk (Boolean, optional): <p>false is default. Indicates whether a request should be\nallowed to fail (and therefore no console error message in\nthe event of a failure)</p>\n</li><li>contentType (String|Boolean): <p>&quot;application/x-www-form-urlencoded&quot; is default. Set to false to\nprevent a Content-Type header from being sent, or to a string\nto send a different Content-Type.</p>\n</li><li>load: <p>This function will be\ncalled on a successful HTTP response code.</p>\n</li><li>error: <p>This function will\nbe called when the request fails due to a network or server error, the url\nis invalid, etc. It will also be called if the load or handle callback throws an\nexception, unless djConfig.debugAtAllCosts is true.  This allows deployed applications\nto continue to run even when a logic error happens in the callback, while making\nit easier to troubleshoot while in debug mode.</p>\n</li><li>handle: <p>This function will\nbe called at the end of every request, whether or not an error occurs.</p>\n</li><li>url (String): <p>URL to server endpoint.</p>\n</li><li>content (Object, optional): <p>Contains properties with string values. These\nproperties will be serialized as name1=value2 and\npassed in the request.</p>\n</li><li>timeout (Integer, optional): <p>Milliseconds to wait for the response. If this time\npasses, the then error callbacks are called.</p>\n</li><li>form (DOMNode, optional): <p>DOM node for a form. Used to extract the form values\nand send to the server.</p>\n</li><li>preventCache (Boolean, optional): <p>Default is false. If true, then a\n&quot;dojo.preventCache&quot; parameter is sent in the request\nwith a value that changes with each request\n(timestamp). Useful only with GET-type requests.</p>\n</li><li>rawBody (String, optional): <p>Sets the raw body for an HTTP request. If this is used, then the content\nproperty is ignored. This is mostly useful for HTTP methods that have\na body to their requests, like PUT or POST. This property can be used instead\nof postData and putData for dojo/_base/xhr.rawXhrPost and dojo/_base/xhr.rawXhrPut respectively.</p>\n</li><li>ioPublish (Boolean, optional): <p>Set this explicitly to false to prevent publishing of topics related to\nIO operations. Otherwise, if djConfig.ioPublish is set to true, topics\nwill be published via dojo/topic.publish() for different phases of an IO operation.\nSee dojo/main.__IoPublish for a list of topics that are published.</p>\n</li></ul>"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Sends an HTTP PUT request to the server. In addition to the properties\nlisted for the dojo.__XhrArgs type, the following property is allowed:</p>\n"
+        },
+        {
+            "name": "queryToObject",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "parameters": [
+                {
+                    "name": "str",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "object"
+            ],
+            "summary": "<p>Create an object representing a de-serialized query section of a\nURL. Query keys with multiple values are returned in an array.\n</p>\n",
+            "examples": [
+                "<p>This string:\n\n\n</p>\n<pre><code>&quot;foo=bar&amp;foo=baz&amp;thinger=%20spaces%20=blah&amp;zonk=blarg&amp;&quot;</code></pre>\n<p>results in this object structure:\n\n\n</p>\n<pre><code>{\n    foo: [ &quot;bar&quot;, &quot;baz&quot; ],\n    thinger: &quot; spaces =blah&quot;,\n    zonk: &quot;blarg&quot;\n}</code></pre>\n<p>Note that spaces and other urlencoded entities are correctly\nhandled.</p>\n"
+            ]
+        }
+    ]
+}

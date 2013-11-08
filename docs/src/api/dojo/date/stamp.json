@@ -1,0 +1,65 @@
+{
+    "location": "dojo/date/stamp",
+    "type": "object",
+    "summary": "<p>TODOC</p>\n",
+    "methods": [
+        {
+            "name": "fromISOString",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/date/stamp",
+            "parameters": [
+                {
+                    "name": "formattedString",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>A string such as 2005-06-30T08:05:00-07:00 or 2005-06-30 or T08:05:00</p>\n"
+                },
+                {
+                    "name": "defaultTime",
+                    "types": [
+                        "Number"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>Used for defaults for fields omitted in the formattedString.\nUses 1970-01-01T00:00:00.0Z by default.</p>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Returns a Date object given a string formatted according to a subset of the ISO-8601 standard.\n</p>\n",
+            "description": "<p>Accepts a string formatted according to a profile of ISO8601 as defined by\n<a href=\"http://www.ietf.org/rfc/rfc3339.txt\">RFC3339</a>, except that partial input is allowed.\nCan also process dates as specified <a href=\"http://www.w3.org/TR/NOTE-datetime\">by the W3C</a>\nThe following combinations are valid:\n\n</p>\n<ul>\n<li>dates only<ul>\n<li>yyyy</li>\n<li>yyyy-MM</li>\n<li>yyyy-MM-dd</li>\n</ul>\n</li>\n<li>times only, with an optional time zone appended<ul>\n<li>THH:mm</li>\n<li>THH:mm:ss</li>\n<li>THH:mm:ss.SSS</li>\n</ul>\n</li>\n<li>and &quot;datetimes&quot; which could be any combination of the above</li>\n</ul>\n<p>timezones may be specified as Z (for UTC) or +/- followed by a time expression HH:mm\nAssumes the local time zone if not specified.  Does not validate.  Improperly formatted\ninput may return null.  Arguments which are out of bounds will be handled\nby the Date constructor (e.g. January 32nd typically gets resolved to February 1st)\nOnly years between 100 and 9999 are supported.</p>\n"
+        },
+        {
+            "name": "toISOString",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/date/stamp",
+            "parameters": [
+                {
+                    "name": "dateObject",
+                    "types": [
+                        "Date"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>A Date object</p>\n"
+                },
+                {
+                    "name": "options",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "optional",
+                    "description": "<p>An object with the following properties:</p><ul><li>selector (String): <p>&quot;date&quot; or &quot;time&quot; for partial formatting of the Date object.\nBoth date and time will be formatted by default.</p>\n</li><li>zulu (Boolean): <p>if true, UTC/GMT is used for a timezone</p>\n</li><li>milliseconds (Boolean): <p>if true, output milliseconds</p>\n</li></ul>"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Format a Date object as a string according a subset of the ISO-8601 standard\n</p>\n",
+            "description": "<p>When options.selector is omitted, output follows <a href=\"http://www.ietf.org/rfc/rfc3339.txt\">RFC3339</a>\nThe local time zone is included as an offset from GMT, except when selector==&#39;time&#39; (time without a date)\nDoes not check bounds.  Only years between 100 and 9999 are supported.\n</p>\n"
+        }
+    ]
+}

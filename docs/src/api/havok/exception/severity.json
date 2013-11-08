@@ -1,0 +1,53 @@
+{
+    "location": "havok/exception/severity",
+    "type": "object",
+    "properties": [
+        {
+            "name": "ERROR",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "havok/exception/severity"
+        },
+        {
+            "name": "NOTICE",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "havok/exception/severity"
+        },
+        {
+            "name": "WARNING",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "havok/exception/severity"
+        }
+    ],
+    "methods": [
+        {
+            "name": "codeToString",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "havok/exception/severity",
+            "parameters": [
+                {
+                    "name": "code",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "string",
+                "undefined"
+            ]
+        }
+    ]
+}

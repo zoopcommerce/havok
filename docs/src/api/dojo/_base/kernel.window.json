@@ -1,0 +1,79 @@
+{
+    "location": "dojo/_base/kernel.window",
+    "type": "object",
+    "summary": "<p>TODOC</p>\n",
+    "methods": [
+        {
+            "name": "get",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/window",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "doc",
+                    "types": [
+                        "Document"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The document to get the associated window for.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Get window object associated with document doc.</p>\n"
+        },
+        {
+            "name": "getBox",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/window",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "doc",
+                    "types": [
+                        "Document"
+                    ],
+                    "usage": "optional"
+                }
+            ],
+            "returnTypes": [
+                "object"
+            ],
+            "summary": "<p>Returns the dimensions and scroll position of the viewable area of a browser window</p>\n"
+        },
+        {
+            "name": "scrollIntoView",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/window",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "node",
+                    "types": [
+                        "DomNode"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "pos",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "optional"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Scroll the passed node into view using minimal movement, if it is not already.</p>\n"
+        }
+    ]
+}

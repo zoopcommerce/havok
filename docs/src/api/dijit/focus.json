@@ -1,0 +1,481 @@
+{
+    "location": "dijit/focus",
+    "type": "instance",
+    "classlike": true,
+    "superclass": "dojo/Stateful",
+    "mixins": [
+        "dojo/Stateful",
+        "dojo/Evented"
+    ],
+    "parameters": [],
+    "returnTypes": [],
+    "summary": "<p>Tracks the currently focused node, and which widgets are currently &quot;active&quot;.\nAccess via require([&quot;dijit/focus&quot;], function(focus){ ... }).\n\n</p>\n<p>A widget is considered active if it or a descendant widget has focus,\nor if a non-focusable node of this widget or a descendant was recently clicked.\n\n</p>\n<p>Call focus.watch(&quot;curNode&quot;, callback) to track the current focused DOMNode,\nor focus.watch(&quot;activeStack&quot;, callback) to track the currently focused stack of widgets.\n\n</p>\n<p>Call focus.on(&quot;widget-blur&quot;, func) or focus.on(&quot;widget-focus&quot;, ...) to monitor when\nwhen widgets become active/inactive\n\n</p>\n<p>Finally, focus(node) will focus a node, suppressing errors if the node doesn&#39;t exist.</p>\n",
+    "properties": [
+        {
+            "name": "_attrPairNames",
+            "scope": "prototype",
+            "types": [
+                "Hash"
+            ],
+            "from": "dojo/Stateful",
+            "private": true,
+            "summary": "<p>Used across all instances a hash to cache attribute names and their getter \nand setter names.</p>\n"
+        },
+        {
+            "name": "activeStack",
+            "scope": "prototype",
+            "types": [
+                "dijit/_WidgetBase[]"
+            ],
+            "from": "dijit/focus",
+            "summary": "<p>List of currently active widgets (focused widget and it&#39;s ancestors)</p>\n"
+        },
+        {
+            "name": "curNode",
+            "scope": "prototype",
+            "types": [
+                "DomNode"
+            ],
+            "from": "dijit/focus",
+            "summary": "<p>Currently focused item on screen</p>\n"
+        }
+    ],
+    "methods": [
+        {
+            "name": "_changeAttrValue",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/Stateful",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "name",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The property to set.</p>\n"
+                },
+                {
+                    "name": "value",
+                    "types": [
+                        "Mixed"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The value to set in the property.\n</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "function"
+            ],
+            "returnDescription": "<p>Internal helper for directly changing an attribute value.\n</p>\n",
+            "summary": "<p>Internal helper for directly changing an attribute value.\n</p>\n",
+            "description": "<p>Directly change the value of an attribute on an object, bypassing any \naccessor setter.  Also handles the calling of watch and emitting events. \nIt is designed to be used by descendent class when there are two values \nof attributes that are linked, but calling .set() is not appropriate.</p>\n"
+        },
+        {
+            "name": "_get",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/Stateful",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "name",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "names",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Hash of names of custom attributes</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Private function that does a get based off a hash of names</p>\n"
+        },
+        {
+            "name": "_getAttrNames",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/Stateful",
+            "private": true,
+            "tags": [
+                "private"
+            ],
+            "parameters": [
+                {
+                    "name": "name",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined",
+                "object"
+            ],
+            "summary": "<p>Helper function for get() and set().\nCaches attribute name values so we don&#39;t do the string ops every time.</p>\n"
+        },
+        {
+            "name": "_setStack",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/focus",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "newStack",
+                    "types": [
+                        "String[]"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>array of widget id&#39;s, starting from the top (outermost) widget</p>\n"
+                },
+                {
+                    "name": "by",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>&quot;mouse&quot; if the focus/touch was caused by a mouse down event</p>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>The stack of active widgets has changed.  Send out appropriate events and records new stack.</p>\n"
+        },
+        {
+            "name": "constructor",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/focus",
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "emit",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/Evented",
+            "parameters": [
+                {
+                    "name": "type",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "event",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ]
+        },
+        {
+            "name": "focus",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/focus",
+            "parameters": [
+                {
+                    "name": "node",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Focus the specified node, suppressing errors if they occur</p>\n"
+        },
+        {
+            "name": "get",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/Stateful",
+            "parameters": [
+                {
+                    "name": "name",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The property to get.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "any",
+                "undefined"
+            ],
+            "returnDescription": "<p>The property value on this Stateful instance.</p>\n",
+            "summary": "<p>Get a property on a Stateful instance.</p>\n",
+            "description": "<p>Get a named property on a Stateful object. The property may\npotentially be retrieved via a getter method in subclasses. In the base class\nthis just retrieves the object&#39;s property.\nFor example:\n\n</p>\n<pre><code>stateful = new dojo.Stateful({foo: 3});\nstateful.get(&quot;foo&quot;) // returns 3\nstateful.foo // returns 3</code></pre>\n"
+        },
+        {
+            "name": "on",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/Evented",
+            "parameters": [
+                {
+                    "name": "type",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "listener",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ]
+        },
+        {
+            "name": "postscript",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/Stateful",
+            "parameters": [
+                {
+                    "name": "params",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "optional"
+                }
+            ],
+            "returnTypes": []
+        },
+        {
+            "name": "registerIframe",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/focus",
+            "parameters": [
+                {
+                    "name": "iframe",
+                    "types": [
+                        "DomNode"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "any",
+                "undefined"
+            ],
+            "returnDescription": "<p>Handle with remove() method to deregister.</p>\n",
+            "summary": "<p>Registers listeners on the specified iframe so that any click\nor focus event on that iframe (or anything in it) is reported\nas a focus/click event on the <code>&lt;iframe&gt;</code> itself.</p>\n",
+            "description": "<p>Currently only used by editor.</p>\n"
+        },
+        {
+            "name": "registerWin",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/focus",
+            "parameters": [
+                {
+                    "name": "targetWindow",
+                    "types": [
+                        "Window"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>If specified this is the window associated with the iframe,\ni.e. iframe.contentWindow.</p>\n"
+                },
+                {
+                    "name": "effectiveNode",
+                    "types": [
+                        "DomNode"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>If specified, report any focus events inside targetWindow as\nan event on effectiveNode, rather than on evt.target.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "any"
+            ],
+            "returnDescription": "<p>Handle with remove() method to deregister.</p>\n",
+            "summary": "<p>Registers listeners on the specified window (either the main\nwindow or an iframe&#39;s window) to detect when the user has clicked somewhere\nor focused somewhere.</p>\n",
+            "description": "<p>Users should call registerIframe() instead of this method.</p>\n"
+        },
+        {
+            "name": "set",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/Stateful",
+            "parameters": [
+                {
+                    "name": "name",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The property to set.</p>\n"
+                },
+                {
+                    "name": "value",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The value to set in the property.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "any",
+                "function"
+            ],
+            "returnDescription": "<p>The function returns this dojo.Stateful instance.</p>\n",
+            "summary": "<p>Set a property on a Stateful instance</p>\n",
+            "description": "<p>Sets named properties on a stateful object and notifies any watchers of\nthe property. A programmatic setter may be defined in subclasses.\nFor example:\n\n</p>\n<pre><code>stateful = new dojo.Stateful();\nstateful.watch(function(name, oldValue, value){\n    // this will be called on the set below\n}\nstateful.set(foo, 5);</code></pre>\n<p>set() may also be called with a hash of name/value pairs, ex:\n\n</p>\n<pre><code>myObj.set({\n    foo: &quot;Howdy&quot;,\n    bar: 3\n})</code></pre>\n<p>This is equivalent to calling set(foo, &quot;Howdy&quot;) and set(bar, 3)\n</p>\n"
+        },
+        {
+            "name": "watch",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/Stateful",
+            "parameters": [
+                {
+                    "name": "name",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>Indicates the property to watch. This is optional (the callback may be the\nonly parameter), and if omitted, all the properties will be watched</p>\n"
+                },
+                {
+                    "name": "callback",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The function to execute when the property changes. This will be called after\nthe property has been changed. The callback will be called with the |this|\nset to the instance, the first argument as the name of the property, the\nsecond argument as the old value and the third argument as the new value.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "any",
+                "object"
+            ],
+            "returnDescription": "<p>An object handle for the watch. The unwatch method of this object\ncan be used to discontinue watching this property:\n\n</p>\n<pre><code>var watchHandle = obj.watch(&quot;foo&quot;, callback);\nwatchHandle.unwatch(); // callback won&#39;t be called now</code></pre>\n",
+            "summary": "<p>Watches a property for changes</p>\n"
+        }
+    ],
+    "events": [
+        {
+            "name": "_onBlurNode",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/focus",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "node",
+                    "types": [
+                        "DomNode"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Called when focus leaves a node.\nUsually ignored, <em>unless</em> it <em>isn&#39;t</em> followed by touching another node,\nwhich indicates that we tabbed off the last field on the page,\nin which case every widget is marked inactive</p>\n"
+        },
+        {
+            "name": "_onFocusNode",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/focus",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "node",
+                    "types": [
+                        "DomNode"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Callback when node is focused</p>\n"
+        },
+        {
+            "name": "_onTouchNode",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/focus",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "node",
+                    "types": [
+                        "DomNode"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The node that was touched.</p>\n"
+                },
+                {
+                    "name": "by",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>&quot;mouse&quot; if the focus/touch was caused by a mouse down event</p>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Callback when node is focused or mouse-downed</p>\n"
+        }
+    ]
+}

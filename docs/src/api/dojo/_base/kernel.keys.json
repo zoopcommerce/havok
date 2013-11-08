@@ -1,0 +1,583 @@
+{
+    "location": "dojo/_base/kernel.keys",
+    "type": "object",
+    "summary": "<p>Definitions for common key values.  Client code should test keyCode against these named constants,\nas the actual codes can vary by browser.</p>\n",
+    "properties": [
+        {
+            "name": "ALT",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "BACKSPACE",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "CAPS_LOCK",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "CLEAR",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "copyKey",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "CTRL",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "DELETE",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "DOWN_ARROW",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "DOWN_DPAD",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "END",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "ENTER",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "ESCAPE",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "F1",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "F10",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "F11",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "F12",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "F13",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "F14",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "F15",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "F2",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "F3",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "F4",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "F5",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "F6",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "F7",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "F8",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "F9",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "HELP",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "HOME",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "INSERT",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "LEFT_ARROW",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "LEFT_DPAD",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "LEFT_WINDOW",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "META",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "NUM_LOCK",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "NUMPAD_0",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "NUMPAD_1",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "NUMPAD_2",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "NUMPAD_3",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "NUMPAD_4",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "NUMPAD_5",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "NUMPAD_6",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "NUMPAD_7",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "NUMPAD_8",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "NUMPAD_9",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "NUMPAD_DIVIDE",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "NUMPAD_ENTER",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "NUMPAD_MINUS",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "NUMPAD_MULTIPLY",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "NUMPAD_PERIOD",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "NUMPAD_PLUS",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "PAGE_DOWN",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "PAGE_UP",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "PAUSE",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "RIGHT_ARROW",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "RIGHT_DPAD",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "RIGHT_WINDOW",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "SCROLL_LOCK",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "SELECT",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "SHIFT",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "SPACE",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "TAB",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "UP_ARROW",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        },
+        {
+            "name": "UP_DPAD",
+            "scope": "normal",
+            "types": [
+                "number"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true
+        }
+    ]
+}

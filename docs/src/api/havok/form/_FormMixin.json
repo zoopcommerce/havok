@@ -1,0 +1,307 @@
+{
+    "location": "havok/form/_FormMixin",
+    "type": "constructor",
+    "classlike": true,
+    "superclass": "dijit/form/_FormMixin",
+    "mixins": [
+        "dijit/form/_FormMixin"
+    ],
+    "properties": [
+        {
+            "name": "state",
+            "scope": "prototype",
+            "types": [
+                "String"
+            ],
+            "from": "dijit/form/_FormMixin",
+            "tags": [
+                "readonly"
+            ],
+            "summary": "<p>Will be &quot;Error&quot; if one or more of the child widgets has an invalid value,\n&quot;Incomplete&quot; if not all of the required child widgets are filled in.  Otherwise, &quot;&quot;,\nwhich indicates that the form is ready to be submitted.</p>\n"
+        }
+    ],
+    "methods": [
+        {
+            "name": "_getDescendantFormWidgets",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/form/_FormMixin",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "children",
+                    "types": [
+                        "dijit/_WidgetBase[]"
+                    ],
+                    "usage": "optional"
+                }
+            ],
+            "returnTypes": [
+                "Array"
+            ],
+            "summary": "<p>Returns all form widget descendants, searching through non-form child widgets like BorderContainer</p>\n"
+        },
+        {
+            "name": "_getInvalidWidgetsAttr",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/form/_FormMixin",
+            "private": true,
+            "parameters": [],
+            "returnTypes": [
+                "undefined"
+            ]
+        },
+        {
+            "name": "_getState",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/form/_FormMixin",
+            "private": true,
+            "parameters": [],
+            "returnTypes": [
+                "string"
+            ],
+            "summary": "<p>Compute what this.state should be based on state of children</p>\n"
+        },
+        {
+            "name": "_getValueAttr",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/form/_FormMixin",
+            "private": true,
+            "parameters": [],
+            "returnTypes": [
+                "object"
+            ],
+            "summary": "<p>Returns Object representing form values.   See description of <code>value</code> for details.</p>\n"
+        },
+        {
+            "name": "_setInputsAttr",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/form/_FormMixin",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "value",
+                    "types": [
+                        "havok/array"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
+        },
+        {
+            "name": "_setPostActivityAttr",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/form/_FormMixin",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "value",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
+        },
+        {
+            "name": "_setValueAttr",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/form/_FormMixin",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "obj",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Fill in form values from according to an Object (in the format returned by get(&#39;value&#39;))</p>\n"
+        },
+        {
+            "name": "connectChildren",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/form/_FormMixin",
+            "parameters": [
+                {
+                    "name": "inStartup",
+                    "types": [
+                        "Boolean"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>You can call this function directly, ex. in the event that you\nprogrammatically add a widget to the form <em>after</em> the form has been\ninitialized.</p>\n"
+        },
+        {
+            "name": "destroy",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/form/_FormMixin",
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "disconnectChildren",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/form/_FormMixin",
+            "parameters": [],
+            "returnTypes": [],
+            "summary": "<p>Deprecated method.   Applications no longer need to call this.   Remove for 2.0.</p>\n"
+        },
+        {
+            "name": "getValues",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/form/_FormMixin",
+            "parameters": [],
+            "returnTypes": [
+                "undefined"
+            ],
+            "deprecated": "undefined::getValues() is deprecated. Use get('value') instead. -- will be removed in version: 2.0"
+        },
+        {
+            "name": "isValid",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/form/_FormMixin",
+            "parameters": [],
+            "returnTypes": [
+                "boolean"
+            ],
+            "summary": "<p>Returns true if all of the widgets are valid.\nDeprecated, will be removed in 2.0.  Use get(&quot;state&quot;) instead.</p>\n"
+        },
+        {
+            "name": "reset",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/form/_FormMixin",
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "setValues",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/form/_FormMixin",
+            "parameters": [
+                {
+                    "name": "val",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "deprecated": "undefined::setValues() is deprecated. Use set('value', val) instead. -- will be removed in version: 2.0"
+        },
+        {
+            "name": "startup",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/form/_FormMixin",
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "validate",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/form/_FormMixin",
+            "parameters": [],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>returns if the form is valid - same as isValid - but\nprovides a few additional (ui-specific) features:\n\n</p>\n<ol>\n<li>it will highlight any sub-widgets that are not valid</li>\n<li>it will call focus() on the first invalid sub-widget</li>\n</ol>\n"
+        }
+    ],
+    "events": [
+        {
+            "name": "_onChildChange",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/form/_FormMixin",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "attr",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Called when child&#39;s value or disabled state changes</p>\n"
+        },
+        {
+            "name": "onValidStateChange",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/form/_FormMixin",
+            "parameters": [
+                {
+                    "name": "isValid",
+                    "types": [
+                        "Boolean"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Stub function to connect to if you want to do something\n(like disable/enable a submit button) when the valid\nstate changes on the form as a whole.\n\n</p>\n<p>Deprecated.  Will be removed in 2.0.  Use watch(&quot;state&quot;, ...) instead.</p>\n"
+        }
+    ]
+}

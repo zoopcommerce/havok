@@ -1,0 +1,26 @@
+{
+    "location": "dojo/_base/kernel.cldr",
+    "type": "object",
+    "properties": [
+        {
+            "name": "monetary",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "dojo/cldr/monetary",
+            "extensionModule": true,
+            "summary": "<p>TODOC</p>\n"
+        },
+        {
+            "name": "supplemental",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "dojo/cldr/supplemental",
+            "extensionModule": true,
+            "summary": "<p>TODOC</p>\n"
+        }
+    ]
+}

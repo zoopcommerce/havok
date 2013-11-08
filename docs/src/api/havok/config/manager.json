@@ -1,0 +1,36 @@
+{
+    "location": "havok/config/manager",
+    "type": "object",
+    "summary": "<p>Allows the merging of multiple config objects into dojo config.</p>\n",
+    "methods": [
+        {
+            "name": "merge",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "havok/config/manager",
+            "parameters": [
+                {
+                    "name": "mergeConfigs",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "target",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>optional. Object.\nAn object to merged the config objects into.\nIf null, dojoConfig itself will be used.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "instance"
+            ],
+            "summary": "<p>Merges multiple config modules\n</p>\n"
+        }
+    ]
+}

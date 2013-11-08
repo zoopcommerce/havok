@@ -1,0 +1,55 @@
+{
+    "location": "havok/widget/_SortableMixin",
+    "type": "constructor",
+    "classlike": true,
+    "properties": [
+        {
+            "name": "dropTargets",
+            "scope": "prototype",
+            "types": [
+                "Array"
+            ],
+            "from": "havok/widget/_SortableMixin"
+        }
+    ],
+    "methods": [
+        {
+            "name": "_makeDragable",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_SortableMixin",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "item",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
+        },
+        {
+            "name": "_refresh",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_SortableMixin",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "data",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
+        }
+    ]
+}

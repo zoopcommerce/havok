@@ -1,0 +1,48 @@
+{
+    "location": "dojo/promise/all",
+    "type": "function",
+    "parameters": [
+        {
+            "name": "objectOrArray",
+            "types": [
+                "Object",
+                "Array"
+            ],
+            "usage": "optional",
+            "summary": "<p>The promise will be fulfilled with a list of results if invoked with an\narray, or an object of results when passed an object (using the same\nkeys). If passed neither an object or array it is resolved with an\nundefined value.</p>\n"
+        }
+    ],
+    "returnTypes": [
+        "dojo/promise/Promise",
+        "undefined"
+    ],
+    "summary": "<p>Takes multiple promises and returns a new promise that is fulfilled\nwhen all promises have been fulfilled.</p>\n",
+    "description": "<p>Takes multiple promises and returns a new promise that is fulfilled\nwhen all promises have been fulfilled. If one of the promises is rejected,\nthe returned promise is also rejected. Canceling the returned promise will\n<em>not</em> cancel any passed promises.</p>\n",
+    "methods": [
+        {
+            "name": "constructor",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/promise/all",
+            "parameters": [
+                {
+                    "name": "objectOrArray",
+                    "types": [
+                        "Object",
+                        "Array"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>The promise will be fulfilled with a list of results if invoked with an\narray, or an object of results when passed an object (using the same\nkeys). If passed neither an object or array it is resolved with an\nundefined value.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "dojo/promise/Promise",
+                "undefined"
+            ],
+            "summary": "<p>Takes multiple promises and returns a new promise that is fulfilled\nwhen all promises have been fulfilled.</p>\n",
+            "description": "<p>Takes multiple promises and returns a new promise that is fulfilled\nwhen all promises have been fulfilled. If one of the promises is rejected,\nthe returned promise is also rejected. Canceling the returned promise will\n<em>not</em> cancel any passed promises.</p>\n"
+        }
+    ]
+}

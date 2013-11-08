@@ -1,0 +1,16 @@
+{
+    "location": "dojo/request.__MethodOptions",
+    "type": "constructor",
+    "classlike": true,
+    "properties": [
+        {
+            "name": "method",
+            "scope": "prototype",
+            "types": [
+                "String"
+            ],
+            "from": "dojo/request",
+            "summary": "<p>The HTTP method to use to make the request.  Must be\nuppercase.</p>\n"
+        }
+    ]
+}

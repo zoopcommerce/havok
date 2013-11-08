@@ -1,0 +1,76 @@
+{
+    "location": "havok/widget/_HideableMixin",
+    "type": "constructor",
+    "classlike": true,
+    "properties": [
+        {
+            "name": "hidden",
+            "scope": "prototype",
+            "types": [
+                "boolean"
+            ],
+            "from": "havok/widget/_HideableMixin"
+        }
+    ],
+    "methods": [
+        {
+            "name": "_setHiddenAttr",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_HideableMixin",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "value",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
+        },
+        {
+            "name": "hide",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_HideableMixin",
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "show",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_HideableMixin",
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "startup",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_HideableMixin",
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "toggle",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_HideableMixin",
+            "parameters": [],
+            "returnTypes": []
+        }
+    ]
+}

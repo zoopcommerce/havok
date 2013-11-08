@@ -1,0 +1,14 @@
+{
+    "location": "havok/store/config",
+    "type": "object",
+    "properties": [
+        {
+            "name": "di",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "havok/store/config"
+        }
+    ]
+}

@@ -1,0 +1,57 @@
+{
+    "location": "havok/validator/factory",
+    "type": "object",
+    "properties": [
+        {
+            "name": "abreviations",
+            "scope": "normal",
+            "types": [
+                "Array"
+            ],
+            "from": "havok/validator/factory"
+        }
+    ],
+    "methods": [
+        {
+            "name": "create",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "havok/validator/factory",
+            "parameters": [
+                {
+                    "name": "config",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ]
+        },
+        {
+            "name": "expand",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "havok/validator/factory",
+            "parameters": [
+                {
+                    "name": "base",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "string",
+                "undefined"
+            ]
+        }
+    ]
+}

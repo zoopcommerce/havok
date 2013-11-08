@@ -1,0 +1,14 @@
+{
+    "location": "havok/validator/config",
+    "type": "object",
+    "properties": [
+        {
+            "name": "di",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "havok/validator/config"
+        }
+    ]
+}

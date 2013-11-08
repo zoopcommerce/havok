@@ -1,0 +1,128 @@
+{
+    "location": "havok/is",
+    "type": "object",
+    "methods": [
+        {
+            "name": "isDate",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "havok/is",
+            "parameters": [
+                {
+                    "name": "value",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "boolean"
+            ],
+            "summary": "<p>Checks if a value is a date object. Will not attempt to cast a string\ninto a date. If you need to cast strings to dates, look at dojo/date</p>\n"
+        },
+        {
+            "name": "isDeferred",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "havok/is",
+            "parameters": [
+                {
+                    "name": "object",
+                    "types": [
+                        "object"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ]
+        },
+        {
+            "name": "isFilter",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "havok/filter/Base",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "filter",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
+        },
+        {
+            "name": "isFloat",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "havok/is",
+            "parameters": [
+                {
+                    "name": "value",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "boolean"
+            ],
+            "summary": "<p>Checks if a value is a float or can be cast into an integer</p>\n"
+        },
+        {
+            "name": "isInt",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "havok/is",
+            "parameters": [
+                {
+                    "name": "value",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "boolean"
+            ],
+            "summary": "<p>Checks if a value is an integer or can be cast into an integer</p>\n"
+        },
+        {
+            "name": "isStatic",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "havok/is",
+            "parameters": [
+                {
+                    "name": "value",
+                    "types": [
+                        "object"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ]
+        }
+    ]
+}

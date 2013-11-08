@@ -1,0 +1,22 @@
+{
+    "location": "havok/exception/config",
+    "type": "object",
+    "properties": [
+        {
+            "name": "bootstrap",
+            "scope": "normal",
+            "types": [
+                "Array"
+            ],
+            "from": "havok/exception/config"
+        },
+        {
+            "name": "di",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "havok/exception/config"
+        }
+    ]
+}

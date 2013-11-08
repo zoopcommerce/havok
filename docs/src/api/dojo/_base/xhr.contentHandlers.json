@@ -1,0 +1,138 @@
+{
+    "location": "dojo/_base/xhr.contentHandlers",
+    "type": "object",
+    "summary": "<p>A map of available XHR transport handle types. Name matches the\n<code>handleAs</code> attribute passed to XHR calls.</p>\n",
+    "description": "<p>A map of available XHR transport handle types. Name matches the\n<code>handleAs</code> attribute passed to XHR calls. Each contentHandler is\ncalled, passing the xhr object for manipulation. The return value\nfrom the contentHandler will be passed to the <code>load</code> or <code>handle</code>\nfunctions defined in the original xhr call.</p>\n",
+    "examples": [
+        "<p>Creating a custom content-handler:\n\n</p>\n<pre><code>xhr.contentHandlers.makeCaps = function(xhr){\n    return xhr.responseText.toUpperCase();\n}\n// and later:\ndojo.xhrGet({\n    url:&quot;foo.txt&quot;,\n    handleAs:&quot;makeCaps&quot;,\n    load: function(data){ /* data is a toUpper version of foo.txt */ }\n});</code></pre>\n"
+    ],
+    "methods": [
+        {
+            "name": "javascript",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "parameters": [
+                {
+                    "name": "xhr",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>A contentHandler which evaluates the response data, expecting it to be valid JavaScript</p>\n"
+        },
+        {
+            "name": "json",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "parameters": [
+                {
+                    "name": "xhr",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>A contentHandler which returns a JavaScript object created from the response data</p>\n"
+        },
+        {
+            "name": "json-comment-filtered",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "parameters": [
+                {
+                    "name": "xhr",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>A contentHandler which expects comment-filtered JSON.</p>\n",
+            "description": "<p>A contentHandler which expects comment-filtered JSON.\nthe json-comment-filtered option was implemented to prevent\n&quot;JavaScript Hijacking&quot;, but it is less secure than standard JSON. Use\nstandard JSON instead. JSON prefixing can be used to subvert hijacking.\n\n</p>\n<p>Will throw a notice suggesting to use application/json mimetype, as\njson-commenting can introduce security issues. To decrease the chances of hijacking,\nuse the standard <code>json</code> contentHandler, and prefix your &quot;JSON&quot; with: {}&amp;&amp;\n\n</p>\n<p>use djConfig.useCommentedJson = true to turn off the notice</p>\n"
+        },
+        {
+            "name": "json-comment-optional",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "parameters": [
+                {
+                    "name": "xhr",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>A contentHandler which checks the presence of comment-filtered JSON and\nalternates between the <code>json</code> and <code>json-comment-filtered</code> contentHandlers.</p>\n"
+        },
+        {
+            "name": "text",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "parameters": [
+                {
+                    "name": "xhr",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>A contentHandler which simply returns the plaintext response data</p>\n"
+        },
+        {
+            "name": "xml",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "parameters": [
+                {
+                    "name": "xhr",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>A contentHandler returning an XML Document parsed from the response data</p>\n"
+        }
+    ]
+}

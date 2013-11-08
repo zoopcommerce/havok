@@ -1,0 +1,76 @@
+{
+    "location": "dojo/json",
+    "type": "object",
+    "summary": "<p>Functions to parse and serialize JSON</p>\n",
+    "methods": [
+        {
+            "name": "parse",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/json",
+            "parameters": [
+                {
+                    "name": "str",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>a string literal of a JSON item, for instance:\n<code>&#39;{ &quot;foo&quot;: [ &quot;bar&quot;, 1, { &quot;baz&quot;: &quot;thud&quot; } ] }&#39;</code></p>\n"
+                },
+                {
+                    "name": "strict",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>When set to true, this will ensure that only valid, secure JSON is ever parsed.\nMake sure this is set to true for untrusted content. Note that on browsers/engines\nwithout native JSON support, setting this to true will run slower.</p>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Parses a <a href=\"http://json.org\">JSON</a> string to return a JavaScript object.</p>\n",
+            "description": "<p>This function follows <a href=\"https://developer.mozilla.org/en/JSON\">native JSON API</a>\nThrows for invalid JSON strings. This delegates to eval() if native JSON\nsupport is not available. By default this will evaluate any valid JS expression.\nWith the strict parameter set to true, the parser will ensure that only\nvalid JSON strings are parsed (otherwise throwing an error). Without the strict\nparameter, the content passed to this method must come\nfrom a trusted source.</p>\n"
+        },
+        {
+            "name": "stringify",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/json",
+            "parameters": [
+                {
+                    "name": "value",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>A value to be serialized.</p>\n"
+                },
+                {
+                    "name": "replacer",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>A replacer function that is called for each value and can return a replacement</p>\n"
+                },
+                {
+                    "name": "spacer",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>A spacer string to be used for pretty printing of JSON</p>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Returns a <a href=\"http://json.org\">JSON</a> serialization of an object.</p>\n",
+            "description": "<p>Returns a <a href=\"http://json.org\">JSON</a> serialization of an object.\nThis function follows <a href=\"https://developer.mozilla.org/en/JSON\">native JSON API</a>\nNote that this doesn&#39;t check for infinite recursion, so don&#39;t do that!</p>\n",
+            "examples": [
+                "<p>simple serialization of a trivial object\n\n</p>\n<pre><code>define([&quot;dojo/json&quot;], function(JSON){\n    var jsonStr = JSON.stringify({ howdy: &quot;stranger!&quot;, isStrange: true });\n    doh.is(&#39;{&quot;howdy&quot;:&quot;stranger!&quot;,&quot;isStrange&quot;:true}&#39;, jsonStr);</code></pre>\n"
+            ]
+        }
+    ]
+}

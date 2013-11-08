@@ -1,0 +1,20 @@
+{
+    "location": "dojo/errors/RequestTimeoutError",
+    "type": "function",
+    "parameters": [],
+    "returnTypes": [],
+    "summary": "<p>TODOC</p>\n",
+    "methods": [
+        {
+            "name": "constructor",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/errors/RequestTimeoutError",
+            "parameters": [],
+            "returnTypes": [],
+            "summary": "<p>TODOC</p>\n"
+        }
+    ]
+}

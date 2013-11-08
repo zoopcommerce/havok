@@ -1,0 +1,80 @@
+{
+    "location": "dojo/errors/create",
+    "type": "function",
+    "parameters": [
+        {
+            "name": "name",
+            "types": [
+                "undefined"
+            ],
+            "usage": "required"
+        },
+        {
+            "name": "ctor",
+            "types": [
+                "undefined"
+            ],
+            "usage": "required"
+        },
+        {
+            "name": "base",
+            "types": [
+                "undefined"
+            ],
+            "usage": "required"
+        },
+        {
+            "name": "props",
+            "types": [
+                "undefined"
+            ],
+            "usage": "required"
+        }
+    ],
+    "returnTypes": [
+        "function"
+    ],
+    "methods": [
+        {
+            "name": "constructor",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/errors/create",
+            "parameters": [
+                {
+                    "name": "name",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "ctor",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "base",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "props",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "function"
+            ]
+        }
+    ]
+}

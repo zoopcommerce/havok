@@ -1,0 +1,54 @@
+{
+    "location": "havok/form/_ActivityMixin",
+    "type": "constructor",
+    "classlike": true,
+    "superclass": "dijit/_FocusMixin",
+    "mixins": [
+        "dijit/_FocusMixin"
+    ],
+    "properties": [
+        {
+            "name": "_focusManager",
+            "scope": "prototype",
+            "types": [
+                "instance"
+            ],
+            "from": "dijit/_FocusMixin",
+            "private": true
+        }
+    ],
+    "methods": [
+        {
+            "name": "startup",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/form/_ActivityMixin",
+            "parameters": [],
+            "returnTypes": []
+        }
+    ],
+    "events": [
+        {
+            "name": "onBlur",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/form/_ActivityMixin",
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "onFocus",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/form/_ActivityMixin",
+            "parameters": [],
+            "returnTypes": []
+        }
+    ]
+}

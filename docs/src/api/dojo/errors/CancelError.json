@@ -1,0 +1,20 @@
+{
+    "location": "dojo/errors/CancelError",
+    "type": "function",
+    "parameters": [],
+    "returnTypes": [],
+    "summary": "<p>Default error if a promise is canceled without a reason.</p>\n",
+    "methods": [
+        {
+            "name": "constructor",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/errors/CancelError",
+            "parameters": [],
+            "returnTypes": [],
+            "summary": "<p>Default error if a promise is canceled without a reason.</p>\n"
+        }
+    ]
+}

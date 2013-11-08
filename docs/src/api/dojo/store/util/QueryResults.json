@@ -1,0 +1,58 @@
+{
+    "location": "dojo/store/util/QueryResults",
+    "type": "function",
+    "parameters": [
+        {
+            "name": "results",
+            "types": [
+                "Array",
+                "dojo/promise/Promise"
+            ],
+            "usage": "required",
+            "summary": "<p>The result set as an array, or a promise for an array.</p>\n"
+        }
+    ],
+    "returnTypes": [
+        "any",
+        "Array|dojo/promise/Promise",
+        "undefined"
+    ],
+    "returnDescription": "<p>An array-like object that can be used for iterating over.</p>\n",
+    "summary": "<p>A function that wraps the results of a store query with additional\nmethods.</p>\n",
+    "description": "<p>QueryResults is a basic wrapper that allows for array-like iteration\nover any kind of returned data from a query.  While the simplest store\nwill return a plain array of data, other stores may return deferreds or\npromises; this wrapper makes sure that <em>all</em> results can be treated\nthe same.\n\n</p>\n<p>Additional methods include <code>forEach</code>, <code>filter</code> and <code>map</code>.</p>\n",
+    "examples": [
+        "<p>Query a store and iterate over the results.\n\n\n</p>\n<pre><code>store.query({ prime: true }).forEach(function(item){\n    //  do something\n});</code></pre>\n"
+    ],
+    "methods": [
+        {
+            "name": "constructor",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/store/util/QueryResults",
+            "parameters": [
+                {
+                    "name": "results",
+                    "types": [
+                        "Array",
+                        "dojo/promise/Promise"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The result set as an array, or a promise for an array.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "any",
+                "Array|dojo/promise/Promise",
+                "undefined"
+            ],
+            "returnDescription": "<p>An array-like object that can be used for iterating over.</p>\n",
+            "summary": "<p>A function that wraps the results of a store query with additional\nmethods.</p>\n",
+            "description": "<p>QueryResults is a basic wrapper that allows for array-like iteration\nover any kind of returned data from a query.  While the simplest store\nwill return a plain array of data, other stores may return deferreds or\npromises; this wrapper makes sure that <em>all</em> results can be treated\nthe same.\n\n</p>\n<p>Additional methods include <code>forEach</code>, <code>filter</code> and <code>map</code>.</p>\n",
+            "examples": [
+                "<p>Query a store and iterate over the results.\n\n\n</p>\n<pre><code>store.query({ prime: true }).forEach(function(item){\n    //  do something\n});</code></pre>\n"
+            ]
+        }
+    ]
+}

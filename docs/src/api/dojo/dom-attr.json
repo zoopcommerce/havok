@@ -1,0 +1,187 @@
+{
+    "location": "dojo/dom-attr",
+    "type": "object",
+    "methods": [
+        {
+            "name": "get",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/dom-attr",
+            "parameters": [
+                {
+                    "name": "node",
+                    "types": [
+                        "DOMNode",
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>id or reference to the element to get the attribute on</p>\n"
+                },
+                {
+                    "name": "name",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>the name of the attribute to get.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "any",
+                "undefined",
+                "null"
+            ],
+            "returnDescription": "<p>the value of the requested attribute or null if that attribute does not have a specified or\ndefault value;\n</p>\n",
+            "summary": "<p>Gets an attribute on an HTML element.</p>\n",
+            "description": "<p>Handles normalized getting of attributes on DOM Nodes.</p>\n",
+            "examples": [
+                "<pre><code>// get the current value of the &quot;foo&quot; attribute on a node\ndojo.getAttr(dojo.byId(&quot;nodeId&quot;), &quot;foo&quot;);\n// or we can just pass the id:\ndojo.getAttr(&quot;nodeId&quot;, &quot;foo&quot;);</code></pre>\n"
+            ]
+        },
+        {
+            "name": "getNodeProp",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/dom-attr",
+            "parameters": [
+                {
+                    "name": "node",
+                    "types": [
+                        "DOMNode",
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>id or reference to the element to remove the attribute from</p>\n"
+                },
+                {
+                    "name": "name",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>the name of the attribute</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "any"
+            ],
+            "returnDescription": "<p>the value of the attribute</p>\n",
+            "summary": "<p>Returns an effective value of a property or an attribute.</p>\n"
+        },
+        {
+            "name": "has",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/dom-attr",
+            "parameters": [
+                {
+                    "name": "node",
+                    "types": [
+                        "DOMNode",
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>id or reference to the element to check</p>\n"
+                },
+                {
+                    "name": "name",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>the name of the attribute</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "Boolean",
+                "undefined"
+            ],
+            "returnDescription": "<p>true if the requested attribute is specified on the\ngiven element, and false otherwise</p>\n",
+            "summary": "<p>Returns true if the requested attribute is specified on the\ngiven element, and false otherwise.</p>\n"
+        },
+        {
+            "name": "remove",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/dom-attr",
+            "parameters": [
+                {
+                    "name": "node",
+                    "types": [
+                        "DOMNode",
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>id or reference to the element to remove the attribute from</p>\n"
+                },
+                {
+                    "name": "name",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>the name of the attribute to remove</p>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Removes an attribute from an HTML element.</p>\n"
+        },
+        {
+            "name": "set",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/dom-attr",
+            "parameters": [
+                {
+                    "name": "node",
+                    "types": [
+                        "DOMNode",
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>id or reference to the element to set the attribute on</p>\n"
+                },
+                {
+                    "name": "name",
+                    "types": [
+                        "String",
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>the name of the attribute to set, or a hash of key-value pairs to set.</p>\n"
+                },
+                {
+                    "name": "value",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>the value to set for the attribute, if the name is a string.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "any",
+                "undefined"
+            ],
+            "returnDescription": "<p>the DOM node\n</p>\n",
+            "summary": "<p>Sets an attribute on an HTML element.</p>\n",
+            "description": "<p>Handles normalized setting of attributes on DOM Nodes.\n\n</p>\n<p>When passing functions as values, note that they will not be\ndirectly assigned to slots on the node, but rather the default\nbehavior will be removed and the new behavior will be added\nusing <code>dojo.connect()</code>, meaning that event handler properties\nwill be normalized and that some caveats with regards to\nnon-standard behaviors for onsubmit apply. Namely that you\nshould cancel form submission using <code>dojo.stopEvent()</code> on the\npassed event object instead of returning a boolean value from\nthe handler itself.</p>\n",
+            "examples": [
+                "<pre><code>// use attr() to set the tab index\ndojo.setAttr(&quot;nodeId&quot;, &quot;tabIndex&quot;, 3);</code></pre>\n",
+                "<p>Set multiple values at once, including event handlers:\n\n</p>\n<pre><code>dojo.setAttr(&quot;formId&quot;, {\n    &quot;foo&quot;: &quot;bar&quot;,\n    &quot;tabIndex&quot;: -1,\n    &quot;method&quot;: &quot;POST&quot;,\n    &quot;onsubmit&quot;: function(e){\n        // stop submitting the form. Note that the IE behavior\n        // of returning true or false will have no effect here\n        // since our handler is connect()ed to the built-in\n        // onsubmit behavior and so we need to use\n        // dojo.stopEvent() to ensure that the submission\n        // doesn&#39;t proceed.\n        dojo.stopEvent(e);\n\n        // submit the form with Ajax\n        dojo.xhrPost({ form: &quot;formId&quot; });\n    }\n});</code></pre>\n",
+                "<p>Style is s special case: Only set with an object hash of styles\n\n</p>\n<pre><code>dojo.setAttr(&quot;someNode&quot;,{\n    id:&quot;bar&quot;,\n    style:{\n        width:&quot;200px&quot;, height:&quot;100px&quot;, color:&quot;#000&quot;\n    }\n});</code></pre>\n",
+                "<p>Again, only set style as an object hash of styles:\n\n</p>\n<pre><code>var obj = { color:&quot;#fff&quot;, backgroundColor:&quot;#000&quot; };\ndojo.setAttr(&quot;someNode&quot;, &quot;style&quot;, obj);\n\n// though shorter to use `dojo.style()` in this case:\ndojo.setStyle(&quot;someNode&quot;, obj);</code></pre>\n"
+            ]
+        }
+    ]
+}

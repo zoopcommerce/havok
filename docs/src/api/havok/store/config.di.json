@@ -1,0 +1,22 @@
+{
+    "location": "havok/store/config.di",
+    "type": "object",
+    "properties": [
+        {
+            "name": "havok/store/manager",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "havok/store/config"
+        },
+        {
+            "name": "havok/store/stores",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "havok/store/config"
+        }
+    ]
+}

@@ -1,0 +1,195 @@
+{
+    "location": "dojo/request/util",
+    "type": "object",
+    "methods": [
+        {
+            "name": "addCommonMethods",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/request/util",
+            "parameters": [
+                {
+                    "name": "provider",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "methods",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
+        },
+        {
+            "name": "checkStatus",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/request/util",
+            "parameters": [
+                {
+                    "name": "stat",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "boolean"
+            ]
+        },
+        {
+            "name": "deepCopy",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/request/util",
+            "parameters": [
+                {
+                    "name": "target",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "source",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ]
+        },
+        {
+            "name": "deepCreate",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/request/util",
+            "parameters": [
+                {
+                    "name": "source",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "properties",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ]
+        },
+        {
+            "name": "deferred",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/request/util",
+            "parameters": [
+                {
+                    "name": "response",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The object used as the value of the request promise.</p>\n"
+                },
+                {
+                    "name": "cancel",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "isValid",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "isReady",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "handleResponse",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "last",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "instance"
+            ]
+        },
+        {
+            "name": "parseArgs",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/request/util",
+            "parameters": [
+                {
+                    "name": "url",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "options",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "skipData",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "object"
+            ]
+        }
+    ]
+}

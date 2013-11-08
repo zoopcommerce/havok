@@ -1,0 +1,53 @@
+{
+    "location": "dojo/number.__RegexpOptions",
+    "type": "constructor",
+    "classlike": true,
+    "properties": [
+        {
+            "name": "locale",
+            "scope": "prototype",
+            "types": [
+                "String"
+            ],
+            "from": "dojo/number",
+            "summary": "<p>override the locale used to determine formatting rules</p>\n"
+        },
+        {
+            "name": "pattern",
+            "scope": "prototype",
+            "types": [
+                "String"
+            ],
+            "from": "dojo/number",
+            "summary": "<p>override <a href=\"http://www.unicode.org/reports/tr35/#Number_Format_Patterns\">formatting pattern</a>\nwith this string.  Default value is based on locale.  Overriding this property will defeat\nlocalization.</p>\n"
+        },
+        {
+            "name": "places",
+            "scope": "prototype",
+            "types": [
+                "Number",
+                "String"
+            ],
+            "from": "dojo/number",
+            "summary": "<p>number of decimal places to accept: Infinity, a positive number, or\na range &quot;n,m&quot;.  Defined by pattern or Infinity if pattern not provided.</p>\n"
+        },
+        {
+            "name": "strict",
+            "scope": "prototype",
+            "types": [
+                "Boolean"
+            ],
+            "from": "dojo/number",
+            "summary": "<p>strict parsing, false by default.  Strict parsing requires input as produced by the format() method.\nNon-strict is more permissive, e.g. flexible on white space, omitting thousands separators</p>\n"
+        },
+        {
+            "name": "type",
+            "scope": "prototype",
+            "types": [
+                "String"
+            ],
+            "from": "dojo/number",
+            "summary": "<p>choose a format type based on the locale from the following:\ndecimal, scientific (not yet supported), percent, currency. decimal by default.</p>\n"
+        }
+    ]
+}

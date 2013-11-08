@@ -1,0 +1,73 @@
+{
+    "location": "havok/router/router",
+    "type": "object",
+    "properties": [
+        {
+            "name": "routes",
+            "scope": "normal",
+            "types": [
+                "array"
+            ],
+            "from": "havok/router/router"
+        }
+    ],
+    "methods": [
+        {
+            "name": "go",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "havok/router/router",
+            "parameters": [
+                {
+                    "name": "route",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "surpressPushState",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "boolean"
+            ]
+        },
+        {
+            "name": "resolve",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "havok/router/router",
+            "parameters": [
+                {
+                    "name": "route",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "object"
+            ]
+        },
+        {
+            "name": "startup",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "havok/router/router",
+            "parameters": [],
+            "returnTypes": []
+        }
+    ]
+}

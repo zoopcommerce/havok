@@ -1,0 +1,114 @@
+{
+    "location": "havok/widget/_AffixMixin",
+    "type": "constructor",
+    "classlike": true,
+    "properties": [
+        {
+            "name": "affix",
+            "scope": "prototype",
+            "types": [
+                "boolean"
+            ],
+            "from": "havok/widget/_AffixMixin"
+        },
+        {
+            "name": "viewportOffsetBottom",
+            "scope": "prototype",
+            "types": [
+                "number"
+            ],
+            "from": "havok/widget/_AffixMixin"
+        },
+        {
+            "name": "viewportOffsetTop",
+            "scope": "prototype",
+            "types": [
+                "number"
+            ],
+            "from": "havok/widget/_AffixMixin"
+        }
+    ],
+    "methods": [
+        {
+            "name": "_getAffixTargetAttr",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_AffixMixin",
+            "private": true,
+            "parameters": [],
+            "returnTypes": [
+                "undefined"
+            ]
+        },
+        {
+            "name": "_setAffixAttr",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_AffixMixin",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "value",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
+        },
+        {
+            "name": "_setAffixTargetAttr",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_AffixMixin",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "value",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
+        },
+        {
+            "name": "destroy",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_AffixMixin",
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "startup",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_AffixMixin",
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "updateAffix",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_AffixMixin",
+            "parameters": [],
+            "returnTypes": []
+        }
+    ]
+}

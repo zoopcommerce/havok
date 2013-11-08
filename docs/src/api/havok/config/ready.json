@@ -1,0 +1,38 @@
+{
+    "location": "havok/config/ready",
+    "type": "object",
+    "methods": [
+        {
+            "name": "load",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "havok/config/ready",
+            "parameters": [
+                {
+                    "name": "id",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "require",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "callback",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
+        }
+    ]
+}

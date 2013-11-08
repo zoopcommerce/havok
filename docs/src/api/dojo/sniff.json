@@ -1,0 +1,20 @@
+{
+    "location": "dojo/sniff",
+    "type": "function",
+    "parameters": [],
+    "returnTypes": [],
+    "summary": "<p>This module sets has() flags based on the current browser.\nIt returns the has() function.</p>\n",
+    "methods": [
+        {
+            "name": "constructor",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/sniff",
+            "parameters": [],
+            "returnTypes": [],
+            "summary": "<p>This module sets has() flags based on the current browser.\nIt returns the has() function.</p>\n"
+        }
+    ]
+}

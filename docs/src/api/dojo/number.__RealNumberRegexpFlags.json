@@ -1,0 +1,55 @@
+{
+    "location": "dojo/number.__RealNumberRegexpFlags",
+    "type": "constructor",
+    "classlike": true,
+    "properties": [
+        {
+            "name": "decimal",
+            "scope": "prototype",
+            "types": [
+                "String"
+            ],
+            "from": "dojo/number",
+            "summary": "<p>A string for the character used as the decimal point.  Default\nis &quot;.&quot;.</p>\n"
+        },
+        {
+            "name": "eSigned",
+            "scope": "prototype",
+            "types": [
+                "Boolean",
+                "Array"
+            ],
+            "from": "dojo/number",
+            "summary": "<p>The leading plus-or-minus sign on the exponent.  Can be true,\nfalse, or [true, false].  Default is [true, false], (i.e. will\nmatch if it is signed or unsigned).  flags in regexp.integer can be\napplied.</p>\n"
+        },
+        {
+            "name": "exponent",
+            "scope": "prototype",
+            "types": [
+                "Boolean",
+                "Array"
+            ],
+            "from": "dojo/number",
+            "summary": "<p>Express in exponential notation.  Can be true, false, or [true,\nfalse]. Default is [true, false], (i.e. will match if the\nexponential part is present are not).</p>\n"
+        },
+        {
+            "name": "fractional",
+            "scope": "prototype",
+            "types": [
+                "Boolean",
+                "Array"
+            ],
+            "from": "dojo/number",
+            "summary": "<p>Whether decimal places are used.  Can be true, false, or [true,\nfalse].  Default is [true, false] which means optional.</p>\n"
+        },
+        {
+            "name": "places",
+            "scope": "prototype",
+            "types": [
+                "Number"
+            ],
+            "from": "dojo/number",
+            "summary": "<p>The integer number of decimal places or a range given as &quot;n,m&quot;.  If\nnot given, the decimal part is optional and the number of places is\nunlimited.</p>\n"
+        }
+    ]
+}

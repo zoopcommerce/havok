@@ -1,0 +1,201 @@
+{
+    "location": "havok/form/_DropdownMixin",
+    "type": "constructor",
+    "classlike": true,
+    "methods": [
+        {
+            "name": "_getQueryAttr",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/form/_DropdownMixin",
+            "private": true,
+            "parameters": [],
+            "returnTypes": [
+                "undefined"
+            ]
+        },
+        {
+            "name": "_getQueryOptionsAttr",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/form/_DropdownMixin",
+            "private": true,
+            "parameters": [],
+            "returnTypes": [
+                "undefined"
+            ]
+        },
+        {
+            "name": "_getQueryThrottleAttr",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/form/_DropdownMixin",
+            "private": true,
+            "parameters": [],
+            "returnTypes": [
+                "undefined"
+            ]
+        },
+        {
+            "name": "_getStoreAttr",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/form/_DropdownMixin",
+            "private": true,
+            "parameters": [],
+            "returnTypes": [
+                "undefined"
+            ]
+        },
+        {
+            "name": "_setPlaceholderAttr",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/form/_DropdownMixin",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "value",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
+        },
+        {
+            "name": "_setQueryAttr",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/form/_DropdownMixin",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "value",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ]
+        },
+        {
+            "name": "_setQueryOptionsAttr",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/form/_DropdownMixin",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "value",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ]
+        },
+        {
+            "name": "_setQueryThrottleAttr",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/form/_DropdownMixin",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "value",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ]
+        },
+        {
+            "name": "_setStoreAttr",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/form/_DropdownMixin",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "value",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ]
+        },
+        {
+            "name": "_setValueAttr",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/form/_DropdownMixin",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "value",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
+        },
+        {
+            "name": "buildRendering",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/form/_DropdownMixin",
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "startup",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/form/_DropdownMixin",
+            "parameters": [],
+            "returnTypes": []
+        }
+    ]
+}

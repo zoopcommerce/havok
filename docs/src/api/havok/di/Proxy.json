@@ -1,0 +1,82 @@
+{
+    "location": "havok/di/Proxy",
+    "type": "constructor",
+    "classlike": true,
+    "parameters": [
+        {
+            "name": "identity",
+            "types": [
+                "undefined"
+            ],
+            "usage": "required"
+        },
+        {
+            "name": "di",
+            "types": [
+                "undefined"
+            ],
+            "usage": "required"
+        }
+    ],
+    "returnTypes": [],
+    "summary": "<p>A proxy to get or use an object.</p>\n",
+    "properties": [
+        {
+            "name": "_di",
+            "scope": "prototype",
+            "types": [
+                "undefined"
+            ],
+            "from": "havok/di/Proxy",
+            "private": true
+        },
+        {
+            "name": "_identity",
+            "scope": "prototype",
+            "types": [
+                "undefined"
+            ],
+            "from": "havok/di/Proxy",
+            "private": true
+        }
+    ],
+    "methods": [
+        {
+            "name": "constructor",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/di/Proxy",
+            "parameters": [
+                {
+                    "name": "identity",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "di",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
+        },
+        {
+            "name": "diGet",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/di/Proxy",
+            "parameters": [],
+            "returnTypes": [
+                "undefined"
+            ]
+        }
+    ]
+}

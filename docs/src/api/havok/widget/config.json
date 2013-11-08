@@ -1,0 +1,22 @@
+{
+    "location": "havok/widget/config",
+    "type": "object",
+    "properties": [
+        {
+            "name": "di",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "havok/widget/config"
+        },
+        {
+            "name": "parser",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "havok/widget/config"
+        }
+    ]
+}

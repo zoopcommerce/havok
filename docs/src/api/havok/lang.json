@@ -1,0 +1,684 @@
+{
+    "location": "havok/lang",
+    "type": "object",
+    "summary": "<p>This module defines Javascript language extensions.</p>\n",
+    "properties": [
+        {
+            "name": "_extraNames",
+            "scope": "normal",
+            "types": [
+                "String[]"
+            ],
+            "from": "dojo/_base/lang",
+            "private": true,
+            "summary": "<p>Lists property names that must be explicitly processed during for-in iteration\nin environments that have has(&quot;bug-for-in-skips-shadowed&quot;) true.</p>\n"
+        }
+    ],
+    "methods": [
+        {
+            "name": "_hitchArgs",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/lang",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "scope",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "method",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "function"
+            ]
+        },
+        {
+            "name": "_mixin",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/lang",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "dest",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The object to which to copy/add all properties contained in source.</p>\n"
+                },
+                {
+                    "name": "source",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The object from which to draw all properties to copy into dest.</p>\n"
+                },
+                {
+                    "name": "copyFunc",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>The process used to copy/add a property in source; defaults to the Javascript assignment operator.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "any",
+                "Object"
+            ],
+            "returnDescription": "<p>dest, as modified</p>\n",
+            "summary": "<p>Copies/adds all properties of source to dest; returns dest.</p>\n",
+            "description": "<p>All properties, including functions (sometimes termed &quot;methods&quot;), excluding any non-standard extensions\nfound in Object.prototype, are copied/added to dest. Copying/adding each particular property is\ndelegated to copyFunc (if any); copyFunc defaults to the Javascript assignment operator if not provided.\nNotice that by default, _mixin executes a so-called &quot;shallow copy&quot; and aggregate types are copied/added by reference.</p>\n"
+        },
+        {
+            "name": "_toArray",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/lang",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "obj",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>the object to &quot;arrayify&quot;. We expect the object to have, at a\nminimum, a length property which corresponds to integer-indexed\nproperties.</p>\n"
+                },
+                {
+                    "name": "offset",
+                    "types": [
+                        "Number"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>the location in obj to start iterating from. Defaults to 0.\nOptional.</p>\n"
+                },
+                {
+                    "name": "startWith",
+                    "types": [
+                        "Array"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>An array to pack with the properties of obj. If provided,\nproperties in obj are appended at the end of startWith and\nstartWith is the returned array.</p>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Converts an array-like object (i.e. arguments, DOMCollection) to an\narray. Returns a new Array with the elements of obj.</p>\n"
+        },
+        {
+            "name": "clone",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/lang",
+            "parameters": [
+                {
+                    "name": "src",
+                    "types": [
+                        "anything"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The object to clone</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "anything",
+                "undefined",
+                "instance"
+            ],
+            "returnDescription": "<p>The object to clone</p>\n",
+            "summary": "<p>Clones objects (including DOM nodes) and all children.\nWarning: do not clone cyclic structures.</p>\n"
+        },
+        {
+            "name": "countProperties",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "havok/lang",
+            "parameters": [
+                {
+                    "name": "object",
+                    "types": [
+                        "object"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
+        },
+        {
+            "name": "delegate",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/lang",
+            "parameters": [
+                {
+                    "name": "obj",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The object to delegate to for properties not found directly on the\nreturn object or in props.</p>\n"
+                },
+                {
+                    "name": "props",
+                    "types": [
+                        "Object..."
+                    ],
+                    "usage": "required",
+                    "summary": "<p>an object containing properties to assign to the returned object</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "any"
+            ],
+            "returnDescription": "<p>an Object of anonymous type</p>\n",
+            "summary": "<p>Returns a new object which &quot;looks&quot; to obj for properties which it\ndoes not have a value for. Optionally takes a bag of properties to\nseed the returned object with initially.</p>\n",
+            "description": "<p>This is a small implementation of the Boodman/Crockford delegation\npattern in JavaScript. An intermediate object constructor mediates\nthe prototype chain for the returned object, using it to delegate\ndown to obj for property lookup when object-local lookup fails.\nThis can be thought of similarly to ES4&#39;s &quot;wrap&quot;, save that it does\nnot act on types but rather on pure objects.</p>\n",
+            "examples": [
+                "<pre><code>var foo = { bar: &quot;baz&quot; };\nvar thinger = lang.delegate(foo, { thud: &quot;xyzzy&quot;});\nthinger.bar == &quot;baz&quot;; // delegated to foo\nfoo.thud == undefined; // by definition\nthinger.thud == &quot;xyzzy&quot;; // mixed in from props\nfoo.bar = &quot;thonk&quot;;\nthinger.bar == &quot;thonk&quot;; // still delegated to foo&#39;s bar</code></pre>\n"
+            ]
+        },
+        {
+            "name": "exists",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/lang",
+            "parameters": [
+                {
+                    "name": "name",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Path to an object, in the form &quot;A.B.C&quot;.</p>\n"
+                },
+                {
+                    "name": "obj",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>Object to use as root of path. Defaults to\n&#39;dojo.global&#39;. Null may be passed.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "boolean"
+            ],
+            "summary": "<p>determine if an object supports a given method</p>\n",
+            "description": "<p>useful for longer api chains where you have to test each object in\nthe chain. Useful for object and method detection.</p>\n",
+            "examples": [
+                "<pre><code>// define an object\nvar foo = {\n      bar: { }\n};\n\n// search the global scope\nlang.exists(&quot;foo.bar&quot;); // true\nlang.exists(&quot;foo.bar.baz&quot;); // false\n\n// search from a particular scope\nlang.exists(&quot;bar&quot;, foo); // true\nlang.exists(&quot;bar.baz&quot;, foo); // false</code></pre>\n"
+            ]
+        },
+        {
+            "name": "extend",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/lang",
+            "parameters": [
+                {
+                    "name": "ctor",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Target constructor to extend.</p>\n"
+                },
+                {
+                    "name": "props",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>One or more objects to mix into ctor.prototype</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "Object"
+            ],
+            "returnDescription": "<p>Target constructor to extend.</p>\n",
+            "summary": "<p>Adds all properties and methods of props to constructor&#39;s\nprototype, making them available to all instances created with\nconstructor.</p>\n"
+        },
+        {
+            "name": "getObject",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/lang",
+            "parameters": [
+                {
+                    "name": "name",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Path to an property, in the form &quot;A.B.C&quot;.</p>\n"
+                },
+                {
+                    "name": "create",
+                    "types": [
+                        "Boolean"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>Optional. Defaults to <code>false</code>. If <code>true</code>, Objects will be\ncreated at any point along the &#39;path&#39; that is undefined.</p>\n"
+                },
+                {
+                    "name": "context",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>Optional. Object to use as root of path. Defaults to\n&#39;dojo.global&#39;. Null may be passed.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Get a property from a dot-separated string, such as &quot;A.B.C&quot;</p>\n",
+            "description": "<p>Useful for longer api chains where you have to test each object in\nthe chain, or when you have an object reference in string format.</p>\n"
+        },
+        {
+            "name": "hitch",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/lang",
+            "parameters": [
+                {
+                    "name": "scope",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The scope to use when method executes. If method is a string,\nscope is also the object containing method.</p>\n"
+                },
+                {
+                    "name": "method",
+                    "types": [
+                        "Function",
+                        "String..."
+                    ],
+                    "usage": "required",
+                    "summary": "<p>A function to be hitched to scope, or the name of the method in\nscope to be hitched.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "undefined",
+                "function"
+            ],
+            "summary": "<p>Returns a function that will only ever execute in the a given scope.\nThis allows for easy use of object member functions\nin callbacks and other places in which the &quot;this&quot; keyword may\notherwise not reference the expected scope.\nAny number of default positional arguments may be passed as parameters\nbeyond &quot;method&quot;.\nEach of these values will be used to &quot;placehold&quot; (similar to curry)\nfor the hitched function.</p>\n",
+            "examples": [
+                "<pre><code>lang.hitch(foo, &quot;bar&quot;)();</code></pre>\n<p>runs foo.bar() in the scope of foo\n</p>\n",
+                "<pre><code>lang.hitch(foo, myFunction);</code></pre>\n<p>returns a function that runs myFunction in the scope of foo\n</p>\n",
+                "<p>Expansion on the default positional arguments passed along from\nhitch. Passed args are mixed first, additional args after.\n\n</p>\n<pre><code>var foo = { bar: function(a, b, c){ console.log(a, b, c); } };\nvar fn = lang.hitch(foo, &quot;bar&quot;, 1, 2);\nfn(3); // logs &quot;1, 2, 3&quot;</code></pre>\n",
+                "<pre><code>var foo = { bar: 2 };\nlang.hitch(foo, function(){ this.bar = 10; })();</code></pre>\n<p>execute an anonymous function in scope of foo\n</p>\n"
+            ]
+        },
+        {
+            "name": "isAlien",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/lang",
+            "parameters": [
+                {
+                    "name": "it",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Returns true if it is a built-in function or some other kind of\noddball that <em>should</em> report as a function but doesn&#39;t</p>\n"
+        },
+        {
+            "name": "isArray",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/lang",
+            "parameters": [
+                {
+                    "name": "it",
+                    "types": [
+                        "anything"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Item to test.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Return true if it is an Array.\nDoes not work on Arrays created in other windows.</p>\n"
+        },
+        {
+            "name": "isArrayLike",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/lang",
+            "parameters": [
+                {
+                    "name": "it",
+                    "types": [
+                        "anything"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Item to test.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "any",
+                "Boolean"
+            ],
+            "returnDescription": "<p>If it walks like a duck and quacks like a duck, return <code>true</code></p>\n",
+            "summary": "<p>similar to isArray() but more permissive</p>\n",
+            "description": "<p>Doesn&#39;t strongly test for &quot;arrayness&quot;.  Instead, settles for &quot;isn&#39;t\na string or number and has a length property&quot;. Arguments objects\nand DOM collections will return true when passed to\nisArrayLike(), but will return false when passed to\nisArray().</p>\n"
+        },
+        {
+            "name": "isFunction",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/lang",
+            "parameters": [
+                {
+                    "name": "it",
+                    "types": [
+                        "anything"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Item to test.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "boolean"
+            ],
+            "summary": "<p>Return true if it is a Function</p>\n"
+        },
+        {
+            "name": "isObject",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/lang",
+            "parameters": [
+                {
+                    "name": "it",
+                    "types": [
+                        "anything"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Item to test.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "boolean"
+            ],
+            "summary": "<p>Returns true if it is a JavaScript object (or an Array, a Function\nor null)</p>\n"
+        },
+        {
+            "name": "isString",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/lang",
+            "parameters": [
+                {
+                    "name": "it",
+                    "types": [
+                        "anything"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Item to test.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "boolean"
+            ],
+            "summary": "<p>Return true if it is a String</p>\n"
+        },
+        {
+            "name": "mixin",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/lang",
+            "parameters": [
+                {
+                    "name": "dest",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The object to which to copy/add all properties contained in source. If dest is falsy, then\na new object is manufactured before copying/adding properties begins.</p>\n"
+                },
+                {
+                    "name": "sources",
+                    "types": [
+                        "Object..."
+                    ],
+                    "usage": "required",
+                    "summary": "<p>One of more objects from which to draw all properties to copy into dest. sources are processed\nleft-to-right and if more than one of these objects contain the same property name, the right-most\nvalue &quot;wins&quot;.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "Object",
+                "object"
+            ],
+            "returnDescription": "<p>dest, as modified</p>\n",
+            "summary": "<p>Copies/adds all properties of one or more sources to dest; returns dest.</p>\n",
+            "description": "<p>All properties, including functions (sometimes termed &quot;methods&quot;), excluding any non-standard extensions\nfound in Object.prototype, are copied/added from sources to dest. sources are processed left to right.\nThe Javascript assignment operator is used to copy/add each property; therefore, by default, mixin\nexecutes a so-called &quot;shallow copy&quot; and aggregate types are copied/added by reference.</p>\n",
+            "examples": [
+                "<p>make a shallow copy of an object\n\n</p>\n<pre><code>var copy = lang.mixin({}, source);</code></pre>\n",
+                "<p>many class constructors often take an object which specifies\nvalues to be configured on the object. In this case, it is\noften simplest to call <code>lang.mixin</code> on the <code>this</code> object:\n\n</p>\n<pre><code>declare(&quot;acme.Base&quot;, null, {\n    constructor: function(properties){\n        // property configuration:\n        lang.mixin(this, properties);\n\n        console.log(this.quip);\n        //  ...\n    },\n    quip: &quot;I wasn&#39;t born yesterday, you know - I&#39;ve seen movies.&quot;,\n    // ...\n});\n\n// create an instance of the class and configure it\nvar b = new acme.Base({quip: &quot;That&#39;s what it does!&quot; });</code></pre>\n",
+                "<p>copy in properties from multiple objects\n\n</p>\n<pre><code>var flattened = lang.mixin(\n    {\n        name: &quot;Frylock&quot;,\n        braces: true\n    },\n    {\n        name: &quot;Carl Brutanananadilewski&quot;\n    }\n);\n\n// will print &quot;Carl Brutanananadilewski&quot;\nconsole.log(flattened.name);\n// will print &quot;true&quot;\nconsole.log(flattened.braces);</code></pre>\n"
+            ]
+        },
+        {
+            "name": "mixinDeep",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "havok/lang",
+            "parameters": [
+                {
+                    "name": "dest",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "source",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Recursively mix the properties of two objects</p>\n"
+        },
+        {
+            "name": "partial",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/lang",
+            "parameters": [
+                {
+                    "name": "method",
+                    "types": [
+                        "Function",
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The function to &quot;wrap&quot;</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>similar to hitch() except that the scope object is left to be\nwhatever the execution context eventually becomes.</p>\n",
+            "description": "<p>Calling lang.partial is the functional equivalent of calling:\n\n</p>\n<pre><code>lang.hitch(null, funcName, ...);</code></pre>\n"
+        },
+        {
+            "name": "replace",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/lang",
+            "parameters": [
+                {
+                    "name": "tmpl",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>String to be used as a template.</p>\n"
+                },
+                {
+                    "name": "map",
+                    "types": [
+                        "Object",
+                        "Function"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>If an object, it is used as a dictionary to look up substitutions.\nIf a function, it is called for every substitution with following parameters:\na whole match, a name, an offset, and the whole template\nstring (see <a href=\"https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Global_Objects/String/replace\">https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Global_Objects/String/replace</a>\nfor more details).</p>\n"
+                },
+                {
+                    "name": "pattern",
+                    "types": [
+                        "RegEx"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>Optional regular expression objects that overrides the default pattern.\nMust be global and match one item. The default is: /{([^}]+)}/g,\nwhich matches patterns like that: &quot;{xxx}&quot;, where &quot;xxx&quot; is any sequence\nof characters, which doesn&#39;t include &quot;}&quot;.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "String",
+                "undefined"
+            ],
+            "returnDescription": "<p>Returns the substituted string.</p>\n",
+            "summary": "<p>Performs parameterized substitutions on a string. Throws an\nexception if any parameter is unmatched.</p>\n",
+            "examples": [
+                "<pre><code>// uses a dictionary for substitutions:\nlang.replace(&quot;Hello, {name.first} {name.last} AKA {nick}!&quot;,\n    {\n        nick: &quot;Bob&quot;,\n        name: {\n            first:  &quot;Robert&quot;,\n            middle: &quot;X&quot;,\n            last:       &quot;Cringely&quot;\n        }\n    });\n// returns: Hello, Robert Cringely AKA Bob!</code></pre>\n",
+                "<pre><code>// uses an array for substitutions:\nlang.replace(&quot;Hello, {0} {2}!&quot;,\n    [&quot;Robert&quot;, &quot;X&quot;, &quot;Cringely&quot;]);\n// returns: Hello, Robert Cringely!</code></pre>\n",
+                "<pre><code>// uses a function for substitutions:\nfunction sum(a){\n    var t = 0;\n    arrayforEach(a, function(x){ t += x; });\n    return t;\n}\nlang.replace(\n    &quot;{count} payments averaging {avg} USD per payment.&quot;,\n    lang.hitch(\n        { payments: [11, 16, 12] },\n        function(_, key){\n            switch(key){\n                case &quot;count&quot;: return this.payments.length;\n                case &quot;min&quot;:     return Math.min.apply(Math, this.payments);\n                case &quot;max&quot;:     return Math.max.apply(Math, this.payments);\n                case &quot;sum&quot;:     return sum(this.payments);\n                case &quot;avg&quot;:     return sum(this.payments) / this.payments.length;\n            }\n        }\n    )\n);\n// prints: 3 payments averaging 13 USD per payment.</code></pre>\n",
+                "<pre><code>// uses an alternative PHP-like pattern for substitutions:\nlang.replace(&quot;Hello, ${0} ${2}!&quot;,\n    [&quot;Robert&quot;, &quot;X&quot;, &quot;Cringely&quot;], /\\$\\{([^\\}]+)\\}/g);\n// returns: Hello, Robert Cringely!</code></pre>\n"
+            ]
+        },
+        {
+            "name": "setObject",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/lang",
+            "parameters": [
+                {
+                    "name": "name",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Path to a property, in the form &quot;A.B.C&quot;.</p>\n"
+                },
+                {
+                    "name": "value",
+                    "types": [
+                        "anything"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>value or object to place at location given by name</p>\n"
+                },
+                {
+                    "name": "context",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>Optional. Object to use as root of path. Defaults to\n<code>dojo.global</code>.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Set a property from a dot-separated string, such as &quot;A.B.C&quot;</p>\n",
+            "description": "<p>Useful for longer api chains where you have to test each object in\nthe chain, or when you have an object reference in string format.\nObjects are created as needed along <code>path</code>. Returns the passed\nvalue if setting is successful or <code>undefined</code> if not.</p>\n",
+            "examples": [
+                "<p>set the value of <code>foo.bar.baz</code>, regardless of whether\nintermediate objects already exist:\n\n</p>\n<pre><code>lang.setObject(&quot;foo.bar.baz&quot;, value);</code></pre>\n",
+                "<p>without <code>lang.setObject</code>, we often see code like this:\n\n</p>\n<pre><code>// ensure that intermediate objects are available\nif(!obj[&quot;parent&quot;]){ obj.parent = {}; }\nif(!obj.parent[&quot;child&quot;]){ obj.parent.child = {}; }\n// now we can safely set the property\nobj.parent.child.prop = &quot;some value&quot;;</code></pre>\n<p>whereas with <code>lang.setObject</code>, we can shorten that to:\n\n\n</p>\n<pre><code>lang.setObject(&quot;parent.child.prop&quot;, &quot;some value&quot;, obj);</code></pre>\n"
+            ]
+        },
+        {
+            "name": "trim",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/lang",
+            "parameters": [
+                {
+                    "name": "str",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>String to be trimmed</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "String"
+            ],
+            "returnDescription": "<p>Returns the trimmed string</p>\n",
+            "summary": "<p>Trims whitespace from both sides of the string</p>\n",
+            "description": "<p>This version of trim() was selected for inclusion into the base due\nto its compact size and relatively good performance\n(see <a href=\"http://blog.stevenlevithan.com/archives/faster-trim-javascript\">Steven Levithan&#39;s blog</a>\nUses String.prototype.trim instead, if available.\nThe fastest but longest version of this function is located at\nlang.string.trim()</p>\n"
+        }
+    ]
+}

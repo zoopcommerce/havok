@@ -1,0 +1,111 @@
+{
+    "location": "dijit/a11yclick",
+    "type": "object",
+    "summary": "<p>Custom press, release, and click synthetic events\nwhich trigger on a left mouse click, touch, or space/enter keyup.</p>\n",
+    "methods": [
+        {
+            "name": "click",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/a11yclick",
+            "parameters": [
+                {
+                    "name": "node",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "listener",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Logical click operation for mouse, touch, or keyboard (space/enter key)</p>\n"
+        },
+        {
+            "name": "move",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/a11yclick",
+            "parameters": [
+                {
+                    "name": "node",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "listener",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Mouse cursor or a finger is dragged over the given node.</p>\n"
+        },
+        {
+            "name": "press",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/a11yclick",
+            "parameters": [
+                {
+                    "name": "node",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "listener",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Mousedown (left button), touchstart, or keydown (space or enter) corresponding to logical click operation.</p>\n"
+        },
+        {
+            "name": "release",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/a11yclick",
+            "parameters": [
+                {
+                    "name": "node",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "listener",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Mouseup (left button), touchend, or keyup (space or enter) corresponding to logical click operation.</p>\n"
+        }
+    ]
+}

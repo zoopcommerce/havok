@@ -1,0 +1,127 @@
+{
+    "location": "havok/widget/_ListMixin",
+    "type": "constructor",
+    "classlike": true,
+    "properties": [
+        {
+            "name": "dividerTemplate",
+            "scope": "prototype",
+            "types": [
+                "string"
+            ],
+            "from": "havok/widget/_ListMixin"
+        },
+        {
+            "name": "itemTemplate",
+            "scope": "prototype",
+            "types": [
+                "string"
+            ],
+            "from": "havok/widget/_ListMixin"
+        },
+        {
+            "name": "tag",
+            "scope": "prototype",
+            "types": [
+                "string"
+            ],
+            "from": "havok/widget/_ListMixin"
+        },
+        {
+            "name": "templateString",
+            "scope": "prototype",
+            "types": [
+                "string"
+            ],
+            "from": "havok/widget/_ListMixin"
+        }
+    ],
+    "methods": [
+        {
+            "name": "_attachClickListener",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_ListMixin",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "node",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "item",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
+        },
+        {
+            "name": "_renderNodes",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_ListMixin",
+            "private": true,
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "_setActiveAttr",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_ListMixin",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "value",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
+        },
+        {
+            "name": "addItem",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_ListMixin",
+            "parameters": [
+                {
+                    "name": "item",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ]
+        },
+        {
+            "name": "buildRendering",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_ListMixin",
+            "parameters": [],
+            "returnTypes": []
+        }
+    ]
+}

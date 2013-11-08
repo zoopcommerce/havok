@@ -1,0 +1,370 @@
+{
+    "location": "havok/store/Datalist",
+    "type": "constructor",
+    "classlike": true,
+    "superclass": "dojo/store/Memory",
+    "mixins": [
+        "dojo/store/Memory"
+    ],
+    "parameters": [
+        {
+            "name": "params",
+            "types": [
+                "undefined"
+            ],
+            "usage": "required"
+        },
+        {
+            "name": "srcNodeRef",
+            "types": [
+                "undefined"
+            ],
+            "usage": "required"
+        }
+    ],
+    "returnTypes": [],
+    "properties": [
+        {
+            "name": "data",
+            "scope": "prototype",
+            "types": [
+                "Array"
+            ],
+            "from": "dojo/store/Memory",
+            "summary": "<p>The array of all the objects in the memory store</p>\n"
+        },
+        {
+            "name": "idProperty",
+            "scope": "prototype",
+            "types": [
+                "String"
+            ],
+            "from": "dojo/store/Memory",
+            "summary": "<p>Indicates the property to use as the identity property. The values of this\nproperty should be unique.</p>\n"
+        },
+        {
+            "name": "index",
+            "scope": "prototype",
+            "types": [
+                "Object"
+            ],
+            "from": "dojo/store/Memory",
+            "summary": "<p>An index of data indices into the data array by id</p>\n"
+        }
+    ],
+    "methods": [
+        {
+            "name": "add",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/store/Memory",
+            "parameters": [
+                {
+                    "name": "object",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The object to store.</p>\n"
+                },
+                {
+                    "name": "options",
+                    "types": [
+                        "dojo/store/api/Store.PutDirectives"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>Additional metadata for storing the data.  Includes an &quot;id&quot;\nproperty if a specific id is to be used.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "Number",
+                "undefined"
+            ],
+            "summary": "<p>Creates an object, throws an error if the object already exists</p>\n"
+        },
+        {
+            "name": "constructor",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/store/Datalist",
+            "parameters": [
+                {
+                    "name": "params",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "srcNodeRef",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
+        },
+        {
+            "name": "get",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/store/Memory",
+            "parameters": [
+                {
+                    "name": "id",
+                    "types": [
+                        "Number"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The identity to use to lookup the object</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "Object",
+                "undefined"
+            ],
+            "returnDescription": "<p>The object in the store that matches the given id.</p>\n",
+            "summary": "<p>Retrieves an object by its identity</p>\n"
+        },
+        {
+            "name": "getChildren",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/store/api/Store",
+            "parameters": [
+                {
+                    "name": "parent",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The object to find the children of.</p>\n"
+                },
+                {
+                    "name": "options",
+                    "types": [
+                        "dojo/store/api/Store.QueryOptions"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>Additional options to apply to the retrieval of the children.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "dojo/store/api/Store.QueryResults"
+            ],
+            "returnDescription": "<p>A result set of the children of the parent object.</p>\n",
+            "summary": "<p>Retrieves the children of an object.</p>\n"
+        },
+        {
+            "name": "getIdentity",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/store/Memory",
+            "parameters": [
+                {
+                    "name": "object",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The object to get the identity from</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "Number",
+                "undefined"
+            ],
+            "summary": "<p>Returns an object&#39;s identity</p>\n"
+        },
+        {
+            "name": "getMetadata",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/store/api/Store",
+            "parameters": [
+                {
+                    "name": "object",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The object to return metadata for.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "Object"
+            ],
+            "returnDescription": "<p>An object containing metadata.</p>\n",
+            "summary": "<p>Returns any metadata about the object. This may include attribution,\ncache directives, history, or version information.</p>\n"
+        },
+        {
+            "name": "put",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/store/Memory",
+            "parameters": [
+                {
+                    "name": "object",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The object to store.</p>\n"
+                },
+                {
+                    "name": "options",
+                    "types": [
+                        "dojo/store/api/Store.PutDirectives"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>Additional metadata for storing the data.  Includes an &quot;id&quot;\nproperty if a specific id is to be used.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "Number",
+                "undefined"
+            ],
+            "summary": "<p>Stores an object</p>\n"
+        },
+        {
+            "name": "query",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/store/Memory",
+            "parameters": [
+                {
+                    "name": "query",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The query to use for retrieving objects from the store.</p>\n"
+                },
+                {
+                    "name": "options",
+                    "types": [
+                        "dojo/store/api/Store.QueryOptions"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>The optional arguments to apply to the resultset.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "dojo/store/api/Store.QueryResults",
+                "undefined"
+            ],
+            "returnDescription": "<p>The results of the query, extended with iterative methods.\n</p>\n",
+            "summary": "<p>Queries the store for objects.</p>\n",
+            "examples": [
+                "<p>Given the following store:\n\n\n</p>\n<pre><code>var store = new Memory({\n    data: [\n        {id: 1, name: &quot;one&quot;, prime: false },\n        {id: 2, name: &quot;two&quot;, even: true, prime: true},\n        {id: 3, name: &quot;three&quot;, prime: true},\n        {id: 4, name: &quot;four&quot;, even: true, prime: false},\n        {id: 5, name: &quot;five&quot;, prime: true}\n    ]\n});</code></pre>\n<p>...find all items where &quot;prime&quot; is true:\n\n\n</p>\n<pre><code>var results = store.query({ prime: true });</code></pre>\n<p>...or find all items where &quot;even&quot; is true:\n\n\n</p>\n<pre><code>var results = store.query({ even: true });</code></pre>\n"
+            ]
+        },
+        {
+            "name": "queryEngine",
+            "scope": "prototype",
+            "types": [
+                "Function"
+            ],
+            "from": "dojo/store/Memory",
+            "parameters": [
+                {
+                    "name": "query",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>An object hash with fields that may match fields of items in the store.\nValues in the hash will be compared by normal == operator, but regular expressions\nor any object that provides a test() method are also supported and can be\nused to match strings by more complex expressions\n(and then the regex&#39;s or object&#39;s test() method will be used to match values).\n</p>\n"
+                },
+                {
+                    "name": "options",
+                    "types": [
+                        "dojo/store/api/Store.QueryOptions"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>An object that contains optional information such as sort, start, and count.\n</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "Function",
+                "function"
+            ],
+            "returnDescription": "<p>A function that caches the passed query under the field &quot;matches&quot;.  See any\nof the &quot;query&quot; methods on dojo.stores.\n</p>\n",
+            "summary": "<p>Defines the query engine to use for querying the data store</p>\n"
+        },
+        {
+            "name": "remove",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/store/Memory",
+            "parameters": [
+                {
+                    "name": "id",
+                    "types": [
+                        "Number"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The identity to use to delete the object</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "Boolean",
+                "boolean"
+            ],
+            "returnDescription": "<p>Returns true if an object was removed, falsy (undefined) if no object matched the id</p>\n",
+            "summary": "<p>Deletes an object by its identity</p>\n"
+        },
+        {
+            "name": "setData",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/store/Memory",
+            "parameters": [
+                {
+                    "name": "data",
+                    "types": [
+                        "Object[]"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>An array of objects to use as the source of data.</p>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Sets the given data as the source for this store, and indexes it</p>\n"
+        },
+        {
+            "name": "transaction",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/store/api/Store",
+            "parameters": [],
+            "returnTypes": [
+                "dojo/store/api/Store.Transaction"
+            ],
+            "returnDescription": "<p>This represents the new current transaction.</p>\n",
+            "summary": "<p>Starts a new transaction.\nNote that a store user might not call transaction() prior to using put,\ndelete, etc. in which case these operations effectively could be thought of\nas &quot;auto-commit&quot; style actions.</p>\n"
+        }
+    ]
+}

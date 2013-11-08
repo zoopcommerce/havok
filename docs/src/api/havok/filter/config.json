@@ -1,0 +1,14 @@
+{
+    "location": "havok/filter/config",
+    "type": "object",
+    "properties": [
+        {
+            "name": "di",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "havok/filter/config"
+        }
+    ]
+}

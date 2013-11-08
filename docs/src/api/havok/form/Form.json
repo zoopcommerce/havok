@@ -1,0 +1,1713 @@
+{
+    "location": "havok/form/Form",
+    "type": "constructor",
+    "classlike": true,
+    "superclass": "havok/widget/_WidgetBase",
+    "mixins": [
+        "havok/widget/_WidgetBase",
+        "havok/form/_FormMixin"
+    ],
+    "parameters": [
+        {
+            "name": "params",
+            "types": [
+                "Object",
+                "null"
+            ],
+            "usage": "required",
+            "summary": "<p>Hash of initialization parameters for widget, including scalar values (like title, duration etc.)\nand functions, typically callbacks like onClick.\nThe hash can contain any of the widget&#39;s properties, excluding read-only properties.</p>\n"
+        },
+        {
+            "name": "srcNodeRef",
+            "types": [
+                "DOMNode",
+                "String"
+            ],
+            "usage": "optional",
+            "summary": "<p>If a srcNodeRef (DOM node) is specified:\n\n</p>\n<ul>\n<li>use srcNodeRef.innerHTML as my contents</li>\n<li>if this is a behavioral widget then apply behavior to that srcNodeRef</li>\n<li>otherwise, replace srcNodeRef with my generated DOM tree</li>\n</ul>\n"
+        }
+    ],
+    "returnTypes": [],
+    "properties": [
+        {
+            "name": "_attachEvents",
+            "scope": "prototype",
+            "types": [
+                "Handle[]"
+            ],
+            "from": "dijit/_AttachMixin",
+            "private": true,
+            "tags": [
+                "private"
+            ],
+            "summary": "<p>List of connections associated with data-dojo-attach-event=... in the\ntemplate</p>\n"
+        },
+        {
+            "name": "_attachPoints",
+            "scope": "prototype",
+            "types": [
+                "String[]"
+            ],
+            "from": "dijit/_AttachMixin",
+            "private": true,
+            "tags": [
+                "private"
+            ],
+            "summary": "<p>List of widget attribute names associated with data-dojo-attach-point=... in the\ntemplate, ex: [&quot;containerNode&quot;, &quot;labelNode&quot;]</p>\n"
+        },
+        {
+            "name": "_attrPairNames",
+            "scope": "prototype",
+            "types": [
+                "object"
+            ],
+            "from": "dijit/_WidgetBase",
+            "private": true
+        },
+        {
+            "name": "_blankGif",
+            "scope": "prototype",
+            "types": [
+                "String"
+            ],
+            "from": "dijit/_WidgetBase",
+            "private": true,
+            "tags": [
+                "protected"
+            ],
+            "summary": "<p>Path to a blank 1x1 image.\nUsed by <code>&lt;img&gt;</code> nodes in templates that really get their image via CSS background-image.</p>\n"
+        },
+        {
+            "name": "_rendered",
+            "scope": "prototype",
+            "types": [
+                "Boolean"
+            ],
+            "from": "dijit/_TemplatedMixin",
+            "private": true,
+            "summary": "<p>Not normally use, but this flag can be set by the app if the server has already rendered the template,\ni.e. already inlining the template for the widget into the main page.   Reduces _TemplatedMixin to\njust function like _AttachMixin.</p>\n"
+        },
+        {
+            "name": "_setClassAttr",
+            "scope": "prototype",
+            "types": [
+                "object"
+            ],
+            "from": "dijit/_WidgetBase",
+            "private": true
+        },
+        {
+            "name": "_setDirAttr",
+            "scope": "prototype",
+            "types": [
+                "undefined"
+            ],
+            "from": "dijit/_WidgetBase",
+            "private": true
+        },
+        {
+            "name": "_setIdAttr",
+            "scope": "prototype",
+            "types": [
+                "string"
+            ],
+            "from": "dijit/_WidgetBase",
+            "private": true
+        },
+        {
+            "name": "_setLangAttr",
+            "scope": "prototype",
+            "types": [
+                "undefined"
+            ],
+            "from": "dijit/_WidgetBase",
+            "private": true
+        },
+        {
+            "name": "_skipNodeCache",
+            "scope": "prototype",
+            "types": [
+                "boolean"
+            ],
+            "from": "dijit/_TemplatedMixin",
+            "private": true
+        },
+        {
+            "name": "_started",
+            "scope": "prototype",
+            "types": [
+                "Boolean"
+            ],
+            "from": "dijit/_WidgetBase",
+            "private": true,
+            "tags": [
+                "readonly"
+            ],
+            "summary": "<p>startup() has completed.</p>\n"
+        },
+        {
+            "name": "attachScope",
+            "scope": "prototype",
+            "types": [
+                "Object"
+            ],
+            "from": "dijit/_AttachMixin",
+            "tags": [
+                "public"
+            ],
+            "summary": "<p>Object to which attach points and events will be scoped.  Defaults\nto &#39;this&#39;.</p>\n"
+        },
+        {
+            "name": "attributeMap",
+            "scope": "prototype",
+            "types": [
+                "Object"
+            ],
+            "from": "dijit/_WidgetBase",
+            "tags": [
+                "protected"
+            ],
+            "summary": "<p>Deprecated. Instead of attributeMap, widget should have a _setXXXAttr attribute\nfor each XXX attribute to be mapped to the DOM.\n\n</p>\n<p>attributeMap sets up a &quot;binding&quot; between attributes (aka properties)\nof the widget and the widget&#39;s DOM.\nChanges to widget attributes listed in attributeMap will be\nreflected into the DOM.\n\n</p>\n<p>For example, calling set(&#39;title&#39;, &#39;hello&#39;)\non a TitlePane will automatically cause the TitlePane&#39;s DOM to update\nwith the new title.\n\n</p>\n<p>attributeMap is a hash where the key is an attribute of the widget,\nand the value reflects a binding to a:\n\n</p>\n<ul>\n<li><p>DOM node attribute</p>\n<p>  focus: {node: &quot;focusNode&quot;, type: &quot;attribute&quot;}\nMaps this.focus to this.focusNode.focus</p>\n</li>\n</ul>\n<ul>\n<li><p>DOM node innerHTML</p>\n<p>  title: { node: &quot;titleNode&quot;, type: &quot;innerHTML&quot; }\nMaps this.title to this.titleNode.innerHTML</p>\n</li>\n</ul>\n<ul>\n<li><p>DOM node innerText</p>\n<p>  title: { node: &quot;titleNode&quot;, type: &quot;innerText&quot; }\nMaps this.title to this.titleNode.innerText</p>\n</li>\n</ul>\n<ul>\n<li><p>DOM node CSS class</p>\n<p>  myClass: { node: &quot;domNode&quot;, type: &quot;class&quot; }\nMaps this.myClass to this.domNode.className</p>\n</li>\n</ul>\n<p>If the value is an array, then each element in the array matches one of the\nformats of the above list.\n\n</p>\n<p>There are also some shorthands for backwards compatibility:\n\n</p>\n<ul>\n<li>string --&gt; { node: string, type: &quot;attribute&quot; }, for example:</li>\n</ul>\n<pre><code>&quot;focusNode&quot; ---&gt; { node: &quot;focusNode&quot;, type: &quot;attribute&quot; }</code></pre>\n<ul>\n<li>&quot;&quot; --&gt; { node: &quot;domNode&quot;, type: &quot;attribute&quot; }</li>\n</ul>\n"
+        },
+        {
+            "name": "baseClass",
+            "scope": "prototype",
+            "types": [
+                "String"
+            ],
+            "from": "dijit/_WidgetBase",
+            "tags": [
+                "protected"
+            ],
+            "summary": "<p>Root CSS class of the widget (ex: dijitTextBox), used to construct CSS classes to indicate\nwidget state.</p>\n"
+        },
+        {
+            "name": "class",
+            "scope": "prototype",
+            "types": [
+                "string"
+            ],
+            "from": "dijit/_WidgetBase"
+        },
+        {
+            "name": "containerNode",
+            "scope": "prototype",
+            "types": [
+                "DomNode"
+            ],
+            "from": "dijit/_WidgetBase",
+            "tags": [
+                "readonly"
+            ],
+            "summary": "<p>Designates where children of the source DOM node will be placed.\n&quot;Children&quot; in this case refers to both DOM nodes and widgets.\nFor example, for myWidget:\n\n\n</p>\n<pre><code>&lt;div data-dojo-type=myWidget&gt;\n    &lt;b&gt; here&#39;s a plain DOM node\n    &lt;span data-dojo-type=subWidget&gt;and a widget&lt;/span&gt;\n    &lt;i&gt; and another plain DOM node &lt;/i&gt;\n&lt;/div&gt;</code></pre>\n<p>containerNode would point to:\n\n\n</p>\n<pre><code>&lt;b&gt; here&#39;s a plain DOM node\n&lt;span data-dojo-type=subWidget&gt;and a widget&lt;/span&gt;\n&lt;i&gt; and another plain DOM node &lt;/i&gt;</code></pre>\n<p>In templated widgets, &quot;containerNode&quot; is set via a\ndata-dojo-attach-point assignment.\n\n</p>\n<p>containerNode must be defined for any widget that accepts innerHTML\n(like ContentPane or BorderContainer or even Button), and conversely\nis null for widgets that don&#39;t, like TextBox.</p>\n"
+        },
+        {
+            "name": "dir",
+            "scope": "prototype",
+            "types": [
+                "String"
+            ],
+            "from": "dijit/_WidgetBase",
+            "tags": [
+                "const"
+            ],
+            "summary": "<p>Bi-directional support, as defined by the <a href=\"http://www.w3.org/TR/html401/struct/dirlang.html#adef-dir\">HTML DIR</a>\nattribute. Either left-to-right &quot;ltr&quot; or right-to-left &quot;rtl&quot;.  If undefined, widgets renders in page&#39;s\ndefault direction.</p>\n"
+        },
+        {
+            "name": "domNode",
+            "scope": "prototype",
+            "types": [
+                "DomNode"
+            ],
+            "from": "dijit/_WidgetBase",
+            "tags": [
+                "readonly"
+            ],
+            "summary": "<p>This is our visible representation of the widget! Other DOM\nNodes may by assigned to other properties, usually through the\ntemplate system&#39;s data-dojo-attach-point syntax, but the domNode\nproperty is the canonical &quot;top level&quot; node in widget UI.</p>\n"
+        },
+        {
+            "name": "id",
+            "scope": "prototype",
+            "types": [
+                "String"
+            ],
+            "from": "dijit/_WidgetBase",
+            "tags": [
+                "const"
+            ],
+            "summary": "<p>A unique, opaque ID string that can be assigned by users or by the\nsystem. If the developer passes an ID which is known not to be\nunique, the specified ID is ignored and the system-generated ID is\nused instead.</p>\n"
+        },
+        {
+            "name": "lang",
+            "scope": "prototype",
+            "types": [
+                "String"
+            ],
+            "from": "dijit/_WidgetBase",
+            "tags": [
+                "const"
+            ],
+            "summary": "<p>Rarely used.  Overrides the default Dojo locale used to render this widget,\nas defined by the <a href=\"http://www.w3.org/TR/html401/struct/dirlang.html#adef-lang\">HTML LANG</a> attribute.\nValue must be among the list of locales specified during by the Dojo bootstrap,\nformatted according to <a href=\"http://www.ietf.org/rfc/rfc3066.txt\">RFC 3066</a> (like en-us).</p>\n"
+        },
+        {
+            "name": "ownerDocument",
+            "scope": "prototype",
+            "types": [
+                "Document?"
+            ],
+            "from": "dijit/_WidgetBase",
+            "tags": [
+                "const"
+            ],
+            "summary": "<p>The document this widget belongs to.  If not specified to constructor, will default to\nsrcNodeRef.ownerDocument, or if no sourceRef specified, then to the document global</p>\n"
+        },
+        {
+            "name": "searchContainerNode",
+            "scope": "prototype",
+            "types": [
+                "boolean"
+            ],
+            "from": "dijit/_TemplatedMixin"
+        },
+        {
+            "name": "srcNodeRef",
+            "scope": "prototype",
+            "types": [
+                "DomNode"
+            ],
+            "from": "dijit/_WidgetBase",
+            "tags": [
+                "readonly"
+            ],
+            "summary": "<p>pointer to original DOM node</p>\n"
+        },
+        {
+            "name": "state",
+            "scope": "prototype",
+            "types": [
+                "String"
+            ],
+            "from": "dijit/form/_FormMixin",
+            "tags": [
+                "readonly"
+            ],
+            "summary": "<p>Will be &quot;Error&quot; if one or more of the child widgets has an invalid value,\n&quot;Incomplete&quot; if not all of the required child widgets are filled in.  Otherwise, &quot;&quot;,\nwhich indicates that the form is ready to be submitted.</p>\n"
+        },
+        {
+            "name": "style",
+            "scope": "prototype",
+            "types": [
+                "String",
+                "Object"
+            ],
+            "from": "dijit/_WidgetBase",
+            "summary": "<p>HTML style attributes as cssText string or name/value hash</p>\n"
+        },
+        {
+            "name": "templatePath",
+            "scope": "prototype",
+            "types": [
+                "String"
+            ],
+            "from": "dijit/_TemplatedMixin",
+            "tags": [
+                "deprecated",
+                "protected"
+            ],
+            "summary": "<p>Path to template (HTML file) for this widget relative to dojo.baseUrl.\nDeprecated: use templateString with require([... &quot;dojo/text!...&quot;], ...) instead</p>\n"
+        },
+        {
+            "name": "templateString",
+            "scope": "prototype",
+            "types": [
+                "string"
+            ],
+            "from": "havok/form/Form"
+        },
+        {
+            "name": "title",
+            "scope": "prototype",
+            "types": [
+                "String"
+            ],
+            "from": "dijit/_WidgetBase",
+            "summary": "<p>HTML title attribute.\n\n</p>\n<p>For form widgets this specifies a tooltip to display when hovering over\nthe widget (just like the native HTML title attribute).\n\n</p>\n<p>For TitlePane or for when this widget is a child of a TabContainer, AccordionContainer,\netc., it&#39;s used to specify the tab label, accordion pane title, etc.  In this case it&#39;s\ninterpreted as HTML.</p>\n"
+        },
+        {
+            "name": "tooltip",
+            "scope": "prototype",
+            "types": [
+                "String"
+            ],
+            "from": "dijit/_WidgetBase",
+            "summary": "<p>When this widget&#39;s title attribute is used to for a tab label, accordion pane title, etc.,\nthis specifies the tooltip to appear when the mouse is hovered over that text.</p>\n"
+        }
+    ],
+    "methods": [
+        {
+            "name": "_applyAttributes",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "private": true,
+            "tags": [
+                "private"
+            ],
+            "parameters": [],
+            "returnTypes": [],
+            "summary": "<p>Step during widget creation to copy  widget attributes to the\nDOM according to attributeMap and _setXXXAttr objects, and also to call\ncustom _setXXXAttr() methods.\n\n</p>\n<p>Skips over blank/false attribute values, unless they were explicitly specified\nas parameters to the widget, since those are the default anyway,\nand setting tabIndex=&quot;&quot; is different than not setting tabIndex at all.\n\n</p>\n<p>For backwards-compatibility reasons attributeMap overrides _setXXXAttr when\n_setXXXAttr is a hash/string/array, but _setXXXAttr as a functions override attributeMap.</p>\n"
+        },
+        {
+            "name": "_attach",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_AttachMixin",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "node",
+                    "types": [
+                        "DOMNode"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The node to setup a listener on.</p>\n"
+                },
+                {
+                    "name": "type",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Event name like &quot;click&quot;.</p>\n"
+                },
+                {
+                    "name": "func",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Roughly corresponding to dojo/on, this is the default function for processing a\ndata-dojo-attach-event.  Meant to attach to DOMNodes, not to widgets.</p>\n"
+        },
+        {
+            "name": "_attachTemplateNodes",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_AttachMixin",
+            "private": true,
+            "tags": [
+                "private"
+            ],
+            "parameters": [
+                {
+                    "name": "rootNode",
+                    "types": [
+                        "DomNode"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The node to search for properties. All descendants will be searched.</p>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Iterate through the dom nodes and attach functions and nodes accordingly.</p>\n",
+            "description": "<p>Map widget properties and functions to the handlers specified in\nthe dom node and it&#39;s descendants. This function iterates over all\nnodes and looks for these properties:\n\n</p>\n<ul>\n<li>dojoAttachPoint/data-dojo-attach-point</li>\n<li>dojoAttachEvent/data-dojo-attach-event</li>\n</ul>\n"
+        },
+        {
+            "name": "_attrToDom",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "private": true,
+            "tags": [
+                "private"
+            ],
+            "parameters": [
+                {
+                    "name": "attr",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Name of member variable (ex: &quot;focusNode&quot; maps to this.focusNode) pointing\nto DOMNode inside the widget, or alternately pointing to a subwidget</p>\n"
+                },
+                {
+                    "name": "value",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "commands",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "optional"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Reflect a widget attribute (title, tabIndex, duration etc.) to\nthe widget DOM, as specified by commands parameter.\nIf commands isn&#39;t specified then it&#39;s looked up from attributeMap.\nNote some attributes like &quot;type&quot;\ncannot be processed this way as they are not mutable.</p>\n"
+        },
+        {
+            "name": "_beforeFillContent",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_AttachMixin",
+            "private": true,
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "_changeAttrValue",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/Stateful",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "name",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The property to set.</p>\n"
+                },
+                {
+                    "name": "value",
+                    "types": [
+                        "Mixed"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The value to set in the property.\n</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "function"
+            ],
+            "returnDescription": "<p>Internal helper for directly changing an attribute value.\n</p>\n",
+            "summary": "<p>Internal helper for directly changing an attribute value.\n</p>\n",
+            "description": "<p>Directly change the value of an attribute on an object, bypassing any \naccessor setter.  Also handles the calling of watch and emitting events. \nIt is designed to be used by descendent class when there are two values \nof attributes that are linked, but calling .set() is not appropriate.</p>\n"
+        },
+        {
+            "name": "_detachTemplateNodes",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_AttachMixin",
+            "private": true,
+            "parameters": [],
+            "returnTypes": [],
+            "summary": "<p>Detach and clean up the attachments made in _attachtempalteNodes.</p>\n"
+        },
+        {
+            "name": "_fillContent",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_TemplatedMixin",
+            "private": true,
+            "tags": [
+                "protected"
+            ],
+            "parameters": [
+                {
+                    "name": "source",
+                    "types": [
+                        "DomNode"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Relocate source contents to templated container node.\nthis.containerNode must be able to receive children, or exceptions will be thrown.</p>\n"
+        },
+        {
+            "name": "_get",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "name",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Helper function to get value for specified property stored by this._set(),\ni.e. for properties with custom setters.  Used mainly by custom getters.\n\n</p>\n<p>For example, CheckBox._getValueAttr() calls this._get(&quot;value&quot;).</p>\n"
+        },
+        {
+            "name": "_getAttrNames",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "private": true,
+            "tags": [
+                "private"
+            ],
+            "parameters": [
+                {
+                    "name": "name",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined",
+                "object"
+            ],
+            "summary": "<p>Helper function for get() and set().\nCaches attribute name values so we don&#39;t do the string ops every time.</p>\n"
+        },
+        {
+            "name": "_getDescendantFormWidgets",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/form/_FormMixin",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "children",
+                    "types": [
+                        "dijit/_WidgetBase[]"
+                    ],
+                    "usage": "optional"
+                }
+            ],
+            "returnTypes": [
+                "Array"
+            ],
+            "summary": "<p>Returns all form widget descendants, searching through non-form child widgets like BorderContainer</p>\n"
+        },
+        {
+            "name": "_getInvalidWidgetsAttr",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/form/_FormMixin",
+            "private": true,
+            "parameters": [],
+            "returnTypes": [
+                "undefined"
+            ]
+        },
+        {
+            "name": "_getState",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/form/_FormMixin",
+            "private": true,
+            "parameters": [],
+            "returnTypes": [
+                "string"
+            ],
+            "summary": "<p>Compute what this.state should be based on state of children</p>\n"
+        },
+        {
+            "name": "_getValueAttr",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/form/_FormMixin",
+            "private": true,
+            "parameters": [],
+            "returnTypes": [
+                "object"
+            ],
+            "summary": "<p>Returns Object representing form values.   See description of <code>value</code> for details.</p>\n"
+        },
+        {
+            "name": "_introspect",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "private": true,
+            "parameters": [],
+            "returnTypes": [],
+            "summary": "<p>Collect metadata about this widget (only once per class, not once per instance):\n\n</p>\n<pre><code>- list of attributes with custom setters, storing in this.constructor._setterAttrs\n- generate this.constructor._onMap, mapping names like &quot;mousedown&quot; to functions like onMouseDown</code></pre>\n"
+        },
+        {
+            "name": "_processTemplateNode",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_AttachMixin",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "baseNode",
+                    "types": [
+                        "DOMNode",
+                        "Widget"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "getAttrFunc",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Function to get the specified property for a given DomNode/Widget.</p>\n"
+                },
+                {
+                    "name": "attachFunc",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>Attaches an event handler from the specified node/widget to specified function.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "boolean"
+            ],
+            "summary": "<p>Process data-dojo-attach-point and data-dojo-attach-event for given node or widget.\nReturns true if caller should process baseNode&#39;s children too.</p>\n"
+        },
+        {
+            "name": "_set",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "name",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "value",
+                    "types": [
+                        "anything"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Helper function to set new value for specified property, and call handlers\nregistered with watch() if the value has changed.</p>\n"
+        },
+        {
+            "name": "_setInputsAttr",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/form/_FormMixin",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "value",
+                    "types": [
+                        "havok/array"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
+        },
+        {
+            "name": "_setOwnerDocumentAttr",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "val",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
+        },
+        {
+            "name": "_setPostActivityAttr",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/form/_FormMixin",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "value",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
+        },
+        {
+            "name": "_setStyleAttr",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "private": true,
+            "tags": [
+                "protected"
+            ],
+            "parameters": [
+                {
+                    "name": "value",
+                    "types": [
+                        "String",
+                        "Object"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Sets the style attribute of the widget according to value,\nwhich is either a hash like {height: &quot;5px&quot;, width: &quot;3px&quot;}\nor a plain string</p>\n",
+            "description": "<p>Determines which node to set the style on based on style setting\nin attributeMap.</p>\n"
+        },
+        {
+            "name": "_setValueAttr",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/form/_FormMixin",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "obj",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Fill in form values from according to an Object (in the format returned by get(&#39;value&#39;))</p>\n"
+        },
+        {
+            "name": "_stringRepl",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_TemplatedMixin",
+            "private": true,
+            "tags": [
+                "private"
+            ],
+            "parameters": [
+                {
+                    "name": "tmpl",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Does substitution of ${foo} type properties in template string</p>\n"
+        },
+        {
+            "name": "buildRendering",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_WidgetBase",
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "connect",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "tags": [
+                "protected"
+            ],
+            "parameters": [
+                {
+                    "name": "obj",
+                    "types": [
+                        "Object",
+                        "null"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "event",
+                    "types": [
+                        "String",
+                        "Function"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "method",
+                    "types": [
+                        "String",
+                        "Function"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "any",
+                "undefined"
+            ],
+            "returnDescription": "<p>A handle that can be passed to <code>disconnect</code> in order to disconnect before\nthe widget is destroyed.</p>\n",
+            "summary": "<p>Deprecated, will be removed in 2.0, use this.own(on(...)) or this.own(aspect.after(...)) instead.\n\n</p>\n<p>Connects specified obj/event to specified method of this object\nand registers for disconnect() on widget destroy.\n\n</p>\n<p>Provide widget-specific analog to dojo.connect, except with the\nimplicit use of this widget as the target object.\nEvents connected with <code>this.connect</code> are disconnected upon\ndestruction.</p>\n",
+            "examples": [
+                "<pre><code>var btn = new Button();\n// when foo.bar() is called, call the listener we&#39;re going to\n// provide in the scope of btn\nbtn.connect(foo, &quot;bar&quot;, function(){\n    console.debug(this.toString());\n});</code></pre>\n"
+            ]
+        },
+        {
+            "name": "connectChildren",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/form/_FormMixin",
+            "parameters": [
+                {
+                    "name": "inStartup",
+                    "types": [
+                        "Boolean"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>You can call this function directly, ex. in the event that you\nprogrammatically add a widget to the form <em>after</em> the form has been\ninitialized.</p>\n"
+        },
+        {
+            "name": "constructor",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "parameters": [
+                {
+                    "name": "params",
+                    "types": [
+                        "Object",
+                        "null"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Hash of initialization parameters for widget, including scalar values (like title, duration etc.)\nand functions, typically callbacks like onClick.\nThe hash can contain any of the widget&#39;s properties, excluding read-only properties.</p>\n"
+                },
+                {
+                    "name": "srcNodeRef",
+                    "types": [
+                        "DOMNode",
+                        "String"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>If a srcNodeRef (DOM node) is specified:\n\n</p>\n<ul>\n<li>use srcNodeRef.innerHTML as my contents</li>\n<li>if this is a behavioral widget then apply behavior to that srcNodeRef</li>\n<li>otherwise, replace srcNodeRef with my generated DOM tree</li>\n</ul>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Create the widget.</p>\n"
+        },
+        {
+            "name": "create",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "private": true,
+            "tags": [
+                "private"
+            ],
+            "parameters": [
+                {
+                    "name": "params",
+                    "types": [
+                        "Object",
+                        "null"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Hash of initialization parameters for widget, including scalar values (like title, duration etc.)\nand functions, typically callbacks like onClick.\nThe hash can contain any of the widget&#39;s properties, excluding read-only properties.</p>\n"
+                },
+                {
+                    "name": "srcNodeRef",
+                    "types": [
+                        "DOMNode",
+                        "String"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>If a srcNodeRef (DOM node) is specified:\n\n</p>\n<ul>\n<li>use srcNodeRef.innerHTML as my contents</li>\n<li>if this is a behavioral widget then apply behavior to that srcNodeRef</li>\n<li>otherwise, replace srcNodeRef with my generated DOM tree</li>\n</ul>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Kick off the life-cycle of a widget</p>\n",
+            "description": "<p>Create calls a number of widget methods (postMixInProperties, buildRendering, postCreate,\netc.), some of which of you&#39;ll want to override. See <a href=\"http://dojotoolkit.org/reference-guide/dijit/_WidgetBase.html\">http://dojotoolkit.org/reference-guide/dijit/_WidgetBase.html</a>\nfor a discussion of the widget creation lifecycle.\n\n</p>\n<p>Of course, adventurous developers could override create entirely, but this should\nonly be done as a last resort.</p>\n"
+        },
+        {
+            "name": "defer",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "tags": [
+                "protected."
+            ],
+            "parameters": [
+                {
+                    "name": "fcn",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "delay",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "object"
+            ],
+            "summary": "<p>Wrapper to setTimeout to avoid deferred functions executing\nafter the originating widget has been destroyed.\nReturns an object handle with a remove method (that returns null) (replaces clearTimeout).</p>\n"
+        },
+        {
+            "name": "destroy",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "parameters": [
+                {
+                    "name": "preserveDom",
+                    "types": [
+                        "Boolean"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>If true, this method will leave the original DOM structure alone.\nNote: This will not yet work with _TemplatedMixin widgets</p>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Destroy this widget, but not its descendants.  Descendants means widgets inside of\nthis.containerNode.   Will also destroy any resources (including widgets) registered via this.own().\n\n</p>\n<p>This method will also destroy internal widgets such as those created from a template,\nassuming those widgets exist inside of this.domNode but outside of this.containerNode.\n\n</p>\n<p>For 2.0 it&#39;s planned that this method will also destroy descendant widgets, so apps should not\ndepend on the current ability to destroy a widget without destroying its descendants.   Generally\nthey should use destroyRecursive() for widgets with children.</p>\n"
+        },
+        {
+            "name": "destroyDescendants",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "parameters": [
+                {
+                    "name": "preserveDom",
+                    "types": [
+                        "Boolean"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>If true, the preserveDom attribute is passed to all descendant\nwidget&#39;s .destroy() method. Not for use with _Templated\nwidgets.</p>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Recursively destroy the children of this widget and their\ndescendants.</p>\n"
+        },
+        {
+            "name": "destroyRecursive",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "parameters": [
+                {
+                    "name": "preserveDom",
+                    "types": [
+                        "Boolean"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>If true, this method will leave the original DOM structure\nalone of descendant Widgets. Note: This will NOT work with\ndijit._TemplatedMixin widgets.</p>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Destroy this widget and its descendants</p>\n",
+            "description": "<p>This is the generic &quot;destructor&quot; function that all widget users\nshould call to cleanly discard with a widget. Once a widget is\ndestroyed, it is removed from the manager object.</p>\n"
+        },
+        {
+            "name": "destroyRendering",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "tags": [
+                "protected"
+            ],
+            "parameters": [
+                {
+                    "name": "preserveDom",
+                    "types": [
+                        "Boolean"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>If true, this method will leave the original DOM structure alone\nduring tear-down. Note: this will not work with _Templated\nwidgets yet.</p>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Destroys the DOM nodes associated with this widget.</p>\n"
+        },
+        {
+            "name": "disconnect",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "tags": [
+                "protected"
+            ],
+            "parameters": [
+                {
+                    "name": "handle",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Deprecated, will be removed in 2.0, use handle.remove() instead.\n\n</p>\n<p>Disconnects handle created by <code>connect</code>.</p>\n"
+        },
+        {
+            "name": "disconnectChildren",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/form/_FormMixin",
+            "parameters": [],
+            "returnTypes": [],
+            "summary": "<p>Deprecated method.   Applications no longer need to call this.   Remove for 2.0.</p>\n"
+        },
+        {
+            "name": "emit",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "tags": [
+                "protected"
+            ],
+            "parameters": [
+                {
+                    "name": "type",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "eventObj",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "optional"
+                },
+                {
+                    "name": "callbackArgs",
+                    "types": [
+                        "Array"
+                    ],
+                    "usage": "optional"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Used by widgets to signal that a synthetic event occurred, ex:\n\n</p>\n<pre><code>myWidget.emit(&quot;attrmodified-selectedChildWidget&quot;, {}).</code></pre>\n<p>Emits an event on this.domNode named type.toLowerCase(), based on eventObj.\nAlso calls onType() method, if present, and returns value from that method.\nBy default passes eventObj to callback, but will pass callbackArgs instead, if specified.\nModifies eventObj by adding missing parameters (bubbles, cancelable, widget).</p>\n"
+        },
+        {
+            "name": "get",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "parameters": [
+                {
+                    "name": "name",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The property to get.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Get a property from a widget.</p>\n",
+            "description": "<p>Get a named property from a widget. The property may\npotentially be retrieved via a getter method. If no getter is defined, this\njust retrieves the object&#39;s property.\n\n</p>\n<p>For example, if the widget has properties <code>foo</code> and <code>bar</code>\nand a method named <code>_getFooAttr()</code>, calling:\n<code>myWidget.get(&quot;foo&quot;)</code> would be equivalent to calling\n<code>widget._getFooAttr()</code> and <code>myWidget.get(&quot;bar&quot;)</code>\nwould be equivalent to the expression\n<code>widget.bar2</code></p>\n"
+        },
+        {
+            "name": "getChildren",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "parameters": [],
+            "returnTypes": [
+                "Array"
+            ],
+            "summary": "<p>Returns all direct children of this widget, i.e. all widgets underneath this.containerNode whose parent\nis this widget.   Note that it does not return all descendants, but rather just direct children.\nAnalogous to <a href=\"https://developer.mozilla.org/en-US/docs/DOM/Node.childNodes\">Node.childNodes</a>,\nexcept containing widgets rather than DOMNodes.\n\n</p>\n<p>The result intentionally excludes internally created widgets (a.k.a. supporting widgets)\noutside of this.containerNode.\n\n</p>\n<p>Note that the array returned is a simple array.  Application code should not assume\nexistence of methods like forEach().</p>\n"
+        },
+        {
+            "name": "getParent",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "parameters": [],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Returns the parent widget of this widget.</p>\n"
+        },
+        {
+            "name": "getValues",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/form/_FormMixin",
+            "parameters": [],
+            "returnTypes": [
+                "undefined"
+            ],
+            "deprecated": "undefined::getValues() is deprecated. Use get('value') instead. -- will be removed in version: 2.0"
+        },
+        {
+            "name": "isFocusable",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "parameters": [],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Return true if this widget can currently be focused\nand false if not</p>\n"
+        },
+        {
+            "name": "isLeftToRight",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "tags": [
+                "protected"
+            ],
+            "parameters": [],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Return this widget&#39;s explicit or implicit orientation (true for LTR, false for RTL)</p>\n"
+        },
+        {
+            "name": "isValid",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/form/_FormMixin",
+            "parameters": [],
+            "returnTypes": [
+                "boolean"
+            ],
+            "summary": "<p>Returns true if all of the widgets are valid.\nDeprecated, will be removed in 2.0.  Use get(&quot;state&quot;) instead.</p>\n"
+        },
+        {
+            "name": "on",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "parameters": [
+                {
+                    "name": "type",
+                    "types": [
+                        "String",
+                        "Function"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Name of event (ex: &quot;click&quot;) or extension event like touch.press.</p>\n"
+                },
+                {
+                    "name": "func",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Call specified function when event occurs, ex: myWidget.on(&quot;click&quot;, function(){ ... }).</p>\n",
+            "description": "<p>Call specified function when event <code>type</code> occurs, ex: <code>myWidget.on(&quot;click&quot;, function(){ ... })</code>.\nNote that the function is not run in any particular scope, so if (for example) you want it to run in the\nwidget&#39;s scope you must do <code>myWidget.on(&quot;click&quot;, lang.hitch(myWidget, func))</code>.</p>\n"
+        },
+        {
+            "name": "own",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/Destroyable",
+            "tags": [
+                "protected"
+            ],
+            "parameters": [],
+            "returnTypes": [
+                "any",
+                "undefined"
+            ],
+            "returnDescription": "<p>The array of specified handles, so you can do for example:\n\n</p>\n<pre><code>var handle = this.own(on(...))[0];</code></pre>\n",
+            "summary": "<p>Track specified handles and remove/destroy them when this instance is destroyed, unless they were\nalready removed/destroyed manually.</p>\n"
+        },
+        {
+            "name": "placeAt",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "parameters": [
+                {
+                    "name": "reference",
+                    "types": [
+                        "String",
+                        "DomNode",
+                        "_Widget"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Widget, DOMNode, or id of widget or DOMNode</p>\n"
+                },
+                {
+                    "name": "position",
+                    "types": [
+                        "String",
+                        "Int"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>If reference is a widget (or id of widget), and that widget has an &quot;.addChild&quot; method,\nit will be called passing this widget instance into that method, supplying the optional\nposition index passed.  In this case position (if specified) should be an integer.\n\n</p>\n<p>If reference is a DOMNode (or id matching a DOMNode but not a widget),\nthe position argument can be a numeric index or a string\n&quot;first&quot;, &quot;last&quot;, &quot;before&quot;, or &quot;after&quot;, same as dojo/dom-construct::place().</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "dijit/_WidgetBase",
+                "function"
+            ],
+            "returnDescription": "<p>Provides a useful return of the newly created dijit._Widget instance so you\ncan &quot;chain&quot; this function by instantiating, placing, then saving the return value\nto a variable.</p>\n",
+            "summary": "<p>Place this widget somewhere in the DOM based\non standard domConstruct.place() conventions.</p>\n",
+            "description": "<p>A convenience function provided in all _Widgets, providing a simple\nshorthand mechanism to put an existing (or newly created) Widget\nsomewhere in the dom, and allow chaining.</p>\n",
+            "examples": [
+                "<pre><code>// create a Button with no srcNodeRef, and place it in the body:\nvar button = new Button({ label:&quot;click&quot; }).placeAt(win.body());\n// now, &#39;button&#39; is still the widget reference to the newly created button\nbutton.on(&quot;click&quot;, function(e){ console.log(&#39;click&#39;); }));</code></pre>\n",
+                "<pre><code>// create a button out of a node with id=&quot;src&quot; and append it to id=&quot;wrapper&quot;:\nvar button = new Button({},&quot;src&quot;).placeAt(&quot;wrapper&quot;);</code></pre>\n",
+                "<pre><code>// place a new button as the first element of some div\nvar button = new Button({ label:&quot;click&quot; }).placeAt(&quot;wrapper&quot;,&quot;first&quot;);</code></pre>\n",
+                "<pre><code>// create a contentpane and add it to a TabContainer\nvar tc = dijit.byId(&quot;myTabs&quot;);\nnew ContentPane({ href:&quot;foo.html&quot;, title:&quot;Wow!&quot; }).placeAt(tc)</code></pre>\n"
+            ]
+        },
+        {
+            "name": "postCreate",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "tags": [
+                "protected"
+            ],
+            "parameters": [],
+            "returnTypes": [],
+            "summary": "<p>Processing after the DOM fragment is created</p>\n",
+            "description": "<p>Called after the DOM fragment has been created, but not necessarily\nadded to the document.  Do not include any operations which rely on\nnode dimensions or placement.</p>\n"
+        },
+        {
+            "name": "postMixInProperties",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "tags": [
+                "protected"
+            ],
+            "parameters": [],
+            "returnTypes": [],
+            "summary": "<p>Called after the parameters to the widget have been read-in,\nbut before the widget template is instantiated. Especially\nuseful to set properties that are referenced in the widget\ntemplate.</p>\n"
+        },
+        {
+            "name": "postscript",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "private": true,
+            "tags": [
+                "private"
+            ],
+            "parameters": [
+                {
+                    "name": "params",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "optional"
+                },
+                {
+                    "name": "srcNodeRef",
+                    "types": [
+                        "DomNode",
+                        "String"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Kicks off widget instantiation.  See create() for details.</p>\n"
+        },
+        {
+            "name": "reset",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/form/_FormMixin",
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "set",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "parameters": [
+                {
+                    "name": "name",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The property to set.</p>\n"
+                },
+                {
+                    "name": "value",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The value to set in the property.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "function",
+                "string"
+            ],
+            "returnDescription": "<p>Set a property on a widget</p>\n",
+            "summary": "<p>Set a property on a widget</p>\n",
+            "description": "<p>Sets named properties on a widget which may potentially be handled by a\nsetter in the widget.\n\n</p>\n<p>For example, if the widget has properties <code>foo</code> and <code>bar</code>\nand a method named <code>_setFooAttr()</code>, calling\n<code>myWidget.set(&quot;foo&quot;, &quot;Howdy!&quot;)</code> would be equivalent to calling\n<code>widget._setFooAttr(&quot;Howdy!&quot;)</code> and <code>myWidget.set(&quot;bar&quot;, 3)</code>\nwould be equivalent to the statement <code>widget.bar = 3;</code>\n\n</p>\n<p>set() may also be called with a hash of name/value pairs, ex:\n\n\n</p>\n<pre><code>myWidget.set({\n    foo: &quot;Howdy&quot;,\n    bar: 3\n});</code></pre>\n<p>This is equivalent to calling <code>set(foo, &quot;Howdy&quot;)</code> and <code>set(bar, 3)</code></p>\n"
+        },
+        {
+            "name": "setValues",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/form/_FormMixin",
+            "parameters": [
+                {
+                    "name": "val",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "deprecated": "undefined::setValues() is deprecated. Use set('value', val) instead. -- will be removed in version: 2.0"
+        },
+        {
+            "name": "startup",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "parameters": [],
+            "returnTypes": [],
+            "summary": "<p>Processing after the DOM fragment is added to the document</p>\n",
+            "description": "<p>Called after a widget and its children have been created and added to the page,\nand all related widgets have finished their create() cycle, up through postCreate().\n\n</p>\n<p>Note that startup() may be called while the widget is still hidden, for example if the widget is\ninside a hidden dijit/Dialog or an unselected tab of a dijit/layout/TabContainer.\nFor widgets that need to do layout, it&#39;s best to put that layout code inside resize(), and then\nextend dijit/layout/_LayoutWidget so that resize() is called when the widget is visible.</p>\n"
+        },
+        {
+            "name": "subscribe",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "tags": [
+                "protected"
+            ],
+            "parameters": [
+                {
+                    "name": "t",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The topic</p>\n"
+                },
+                {
+                    "name": "method",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The callback</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Deprecated, will be removed in 2.0, use this.own(topic.subscribe()) instead.\n\n</p>\n<p>Subscribes to the specified topic and calls the specified method\nof this object and registers for unsubscribe() on widget destroy.\n\n</p>\n<p>Provide widget-specific analog to dojo.subscribe, except with the\nimplicit use of this widget as the target object.</p>\n",
+            "examples": [
+                "<pre><code>var btn = new Button();\n// when /my/topic is published, this button changes its label to\n// be the parameter of the topic.\nbtn.subscribe(&quot;/my/topic&quot;, function(v){\n    this.set(&quot;label&quot;, v);\n});</code></pre>\n"
+            ]
+        },
+        {
+            "name": "toString",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "parameters": [],
+            "returnTypes": [
+                "string"
+            ],
+            "summary": "<p>Returns a string that represents the widget.</p>\n",
+            "description": "<p>When a widget is cast to a string, this method will be used to generate the\noutput. Currently, it does not implement any sort of reversible\nserialization.</p>\n"
+        },
+        {
+            "name": "uninitialize",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "tags": [
+                "protected"
+            ],
+            "parameters": [],
+            "returnTypes": [
+                "boolean"
+            ],
+            "summary": "<p>Deprecated. Override destroy() instead to implement custom widget tear-down\nbehavior.</p>\n"
+        },
+        {
+            "name": "unsubscribe",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "tags": [
+                "protected"
+            ],
+            "parameters": [
+                {
+                    "name": "handle",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Deprecated, will be removed in 2.0, use handle.remove() instead.\n\n</p>\n<p>Unsubscribes handle created by this.subscribe.\nAlso removes handle from this widget&#39;s list of subscriptions</p>\n"
+        },
+        {
+            "name": "validate",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/form/_FormMixin",
+            "parameters": [],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>returns if the form is valid - same as isValid - but\nprovides a few additional (ui-specific) features:\n\n</p>\n<ol>\n<li>it will highlight any sub-widgets that are not valid</li>\n<li>it will call focus() on the first invalid sub-widget</li>\n</ol>\n"
+        },
+        {
+            "name": "watch",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/Stateful",
+            "parameters": [
+                {
+                    "name": "name",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>Indicates the property to watch. This is optional (the callback may be the\nonly parameter), and if omitted, all the properties will be watched</p>\n"
+                },
+                {
+                    "name": "callback",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The function to execute when the property changes. This will be called after\nthe property has been changed. The callback will be called with the |this|\nset to the instance, the first argument as the name of the property, the\nsecond argument as the old value and the third argument as the new value.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "any",
+                "object"
+            ],
+            "returnDescription": "<p>An object handle for the watch. The unwatch method of this object\ncan be used to discontinue watching this property:\n\n</p>\n<pre><code>var watchHandle = obj.watch(&quot;foo&quot;, callback);\nwatchHandle.unwatch(); // callback won&#39;t be called now</code></pre>\n",
+            "summary": "<p>Watches a property for changes</p>\n"
+        }
+    ],
+    "events": [
+        {
+            "name": "_onChildChange",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/form/_FormMixin",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "attr",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Called when child&#39;s value or disabled state changes</p>\n"
+        },
+        {
+            "name": "_onMap",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/_WidgetBase",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "type",
+                    "types": [
+                        "String",
+                        "Function"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Maps on() type parameter (ex: &quot;mousemove&quot;) to method name (ex: &quot;onMouseMove&quot;).\nIf type is a synthetic event like touch.press then returns undefined.</p>\n"
+        },
+        {
+            "name": "onValidStateChange",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/form/_FormMixin",
+            "parameters": [
+                {
+                    "name": "isValid",
+                    "types": [
+                        "Boolean"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Stub function to connect to if you want to do something\n(like disable/enable a submit button) when the valid\nstate changes on the form as a whole.\n\n</p>\n<p>Deprecated.  Will be removed in 2.0.  Use watch(&quot;state&quot;, ...) instead.</p>\n"
+        }
+    ]
+}

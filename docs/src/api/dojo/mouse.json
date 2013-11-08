@@ -1,0 +1,119 @@
+{
+    "location": "dojo/mouse",
+    "type": "object",
+    "summary": "<p>This module provide mouse event handling utility functions and exports\nmouseenter and mouseleave event emulation.</p>\n",
+    "examples": [
+        "<p>To use these events, you register a mouseenter like this:\n\n</p>\n<pre><code>define([&quot;dojo/on&quot;, dojo/mouse&quot;], function(on, mouse){\n    on(targetNode, mouse.enter, function(event){\n        dojo.addClass(targetNode, &quot;highlighted&quot;);\n    });\n    on(targetNode, mouse.leave, function(event){\n        dojo.removeClass(targetNode, &quot;highlighted&quot;);\n    });</code></pre>\n"
+    ],
+    "properties": [
+        {
+            "name": "enter",
+            "scope": "normal",
+            "types": [
+                "undefined"
+            ],
+            "from": "dojo/mouse",
+            "summary": "<p>This is an extension event for the mouseenter that IE provides, emulating the\nbehavior on other browsers.</p>\n"
+        },
+        {
+            "name": "leave",
+            "scope": "normal",
+            "types": [
+                "undefined"
+            ],
+            "from": "dojo/mouse",
+            "summary": "<p>This is an extension event for the mouseleave that IE provides, emulating the\nbehavior on other browsers.</p>\n"
+        }
+    ],
+    "methods": [
+        {
+            "name": "_eventHandler",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/mouse",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "type",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "selectHandler",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "function"
+            ]
+        },
+        {
+            "name": "isLeft",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/mouse",
+            "parameters": [],
+            "returnTypes": [],
+            "summary": "<p>Test an event object (from a mousedown event) to see if the left button was pressed.</p>\n"
+        },
+        {
+            "name": "isMiddle",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/mouse",
+            "parameters": [],
+            "returnTypes": [],
+            "summary": "<p>Test an event object (from a mousedown event) to see if the middle button was pressed.</p>\n"
+        },
+        {
+            "name": "isRight",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/mouse",
+            "parameters": [],
+            "returnTypes": [],
+            "summary": "<p>Test an event object (from a mousedown event) to see if the right button was pressed.</p>\n"
+        },
+        {
+            "name": "wheel",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/mouse",
+            "parameters": [
+                {
+                    "name": "node",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "listener",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>This is an extension event for the mousewheel that non-Mozilla browsers provide,\nemulating the behavior on Mozilla based browsers.</p>\n"
+        }
+    ]
+}

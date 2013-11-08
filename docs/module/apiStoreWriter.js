@@ -8,9 +8,11 @@ var fs = require('fs'),
                 type: node.type
             };
 
-        if (node.name) item.name = node.name;
+        if (node.name) item.label = node.name;
         if (node.fullname) item.fullname = node.fullname;
         if (parentId) item.parent = parentId;
+        if (item.type == 'folder') item.type = 'group';
+
         data.push(item);
         if (node.children){
             for (i = 0; i < node.children.length; i++){
@@ -19,9 +21,12 @@ var fs = require('fs'),
         }
     };
 
-walk(tree);
 
-fs.writeFile(__dirname + '/../src/api-tree-data.twig', JSON.stringify({data: data}, null, 4) , function(err) {
+for (var i = 0; i < tree.children.length; i++){
+    walk(tree.children[i]);
+}
+
+fs.writeFile(__dirname + '/../src/api/api-tree-data.twig', JSON.stringify({data: data}, null, 4) , function(err) {
     if(err) {
         console.log(err);
     } else {

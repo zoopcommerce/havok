@@ -1,0 +1,17 @@
+{
+    "location": "dijit/_FocusMixin",
+    "type": "constructor",
+    "classlike": true,
+    "summary": "<p>Mixin to widget to provide _onFocus() and _onBlur() methods that\nfire when a widget or its descendants get/lose focus</p>\n",
+    "properties": [
+        {
+            "name": "_focusManager",
+            "scope": "prototype",
+            "types": [
+                "instance"
+            ],
+            "from": "dijit/_FocusMixin",
+            "private": true
+        }
+    ]
+}

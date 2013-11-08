@@ -1,0 +1,18 @@
+{
+    "location": "havok/cssfx",
+    "type": "object",
+    "methods": [
+        {
+            "name": "transitionEndEvent",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "havok/cssfx",
+            "parameters": [],
+            "returnTypes": [
+                "string"
+            ]
+        }
+    ]
+}

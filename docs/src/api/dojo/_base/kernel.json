@@ -1,0 +1,3065 @@
+{
+    "location": "dojo/_base/kernel",
+    "type": "object",
+    "summary": "<p>This module is the foundational module of the dojo boot sequence; it defines the dojo object.</p>\n",
+    "properties": [
+        {
+            "name": "_blockAsync",
+            "scope": "normal",
+            "types": [
+                "boolean"
+            ],
+            "from": "dojo/_base/xhr",
+            "private": true,
+            "extensionModule": true
+        },
+        {
+            "name": "_contentHandlers",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "dojo/_base/xhr",
+            "private": true,
+            "extensionModule": true,
+            "summary": "<p>A map of available XHR transport handle types. Name matches the\n<code>handleAs</code> attribute passed to XHR calls.</p>\n",
+            "description": "<p>A map of available XHR transport handle types. Name matches the\n<code>handleAs</code> attribute passed to XHR calls. Each contentHandler is\ncalled, passing the xhr object for manipulation. The return value\nfrom the contentHandler will be passed to the <code>load</code> or <code>handle</code>\nfunctions defined in the original xhr call.</p>\n",
+            "examples": [
+                "<p>Creating a custom content-handler:\n\n</p>\n<pre><code>xhr.contentHandlers.makeCaps = function(xhr){\n    return xhr.responseText.toUpperCase();\n}\n// and later:\ndojo.xhrGet({\n    url:&quot;foo.txt&quot;,\n    handleAs:&quot;makeCaps&quot;,\n    load: function(data){ /* data is a toUpper version of foo.txt */ }\n});</code></pre>\n"
+            ]
+        },
+        {
+            "name": "_hasResource",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "dojo/_base/kernel",
+            "private": true
+        },
+        {
+            "name": "_name",
+            "scope": "normal",
+            "types": [
+                "string"
+            ],
+            "from": "dojo/_base/sniff",
+            "private": true,
+            "extensionModule": true
+        },
+        {
+            "name": "_postLoad",
+            "scope": "normal",
+            "types": [
+                "boolean"
+            ],
+            "from": "dojo/ready",
+            "private": true,
+            "extensionModule": true
+        },
+        {
+            "name": "baseUrl",
+            "scope": "normal",
+            "types": [
+                "undefined"
+            ],
+            "from": "dojo/_base/kernel"
+        },
+        {
+            "name": "cldr",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "dojo/cldr/monetary",
+            "extensionModule": true
+        },
+        {
+            "name": "config",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "dojo/_base/kernel",
+            "summary": "<p>This module defines the user configuration during bootstrap.</p>\n",
+            "description": "<p>By defining user configuration as a module value, an entire configuration can be specified in a build,\nthereby eliminating the need for sniffing and or explicitly setting in the global variable dojoConfig.\nAlso, when multiple instances of dojo exist in a single application, each will necessarily be located\nat an unique absolute module identifier as given by the package configuration. Implementing configuration\nas a module allows for specifying unique, per-instance configurations.</p>\n",
+            "examples": [
+                "<p>Create a second instance of dojo with a different, instance-unique configuration (assume the loader and\ndojo.js are already loaded).\n\n</p>\n<pre><code>// specify a configuration that creates a new instance of dojo at the absolute module identifier &quot;myDojo&quot;\nrequire({\n    packages:[{\n        name:&quot;myDojo&quot;,\n        location:&quot;.&quot;, //assume baseUrl points to dojo.js\n    }]\n});\n\n// specify a configuration for the myDojo instance\ndefine(&quot;myDojo/config&quot;, {\n    // normal configuration variables go here, e.g.,\n    locale:&quot;fr-ca&quot;\n});\n\n// load and use the new instance of dojo\nrequire([&quot;myDojo&quot;], function(dojo){\n    // dojo is the new instance of dojo\n    // use as required\n});</code></pre>\n"
+            ]
+        },
+        {
+            "name": "contentHandlers",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "dojo/_base/xhr",
+            "extensionModule": true,
+            "summary": "<p>A map of available XHR transport handle types. Name matches the\n<code>handleAs</code> attribute passed to XHR calls.</p>\n",
+            "description": "<p>A map of available XHR transport handle types. Name matches the\n<code>handleAs</code> attribute passed to XHR calls. Each contentHandler is\ncalled, passing the xhr object for manipulation. The return value\nfrom the contentHandler will be passed to the <code>load</code> or <code>handle</code>\nfunctions defined in the original xhr call.</p>\n",
+            "examples": [
+                "<p>Creating a custom content-handler:\n\n</p>\n<pre><code>xhr.contentHandlers.makeCaps = function(xhr){\n    return xhr.responseText.toUpperCase();\n}\n// and later:\ndojo.xhrGet({\n    url:&quot;foo.txt&quot;,\n    handleAs:&quot;makeCaps&quot;,\n    load: function(data){ /* data is a toUpper version of foo.txt */ }\n});</code></pre>\n"
+            ]
+        },
+        {
+            "name": "currency",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "dojo/currency",
+            "extensionModule": true,
+            "summary": "<p>localized formatting and parsing routines for currencies</p>\n",
+            "description": "<p>extends dojo.number to provide culturally-appropriate formatting of values\nin various world currencies, including use of a currency symbol.  The currencies are specified\nby a three-letter international symbol in all uppercase, and support for the currencies is\nprovided by the data in <code>dojo.cldr</code>.  The scripts generating dojo.cldr specify which\ncurrency support is included.  A fixed number of decimal places is determined based\non the currency type and is not determined by the &#39;pattern&#39; argument.  The fractional\nportion is optional, by default, and variable length decimals are not supported.</p>\n"
+        },
+        {
+            "name": "date",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "dojo/date/stamp",
+            "extensionModule": true
+        },
+        {
+            "name": "dijit",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "dojo/_base/kernel"
+        },
+        {
+            "name": "doc",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "dojo/_base/window",
+            "extensionModule": true,
+            "summary": "<p>Alias for the current document. &#39;doc&#39; can be modified\nfor temporary context shifting. See also withDoc().</p>\n",
+            "description": "<p>Use this rather than referring to &#39;window.document&#39; to ensure your code runs\ncorrectly in managed contexts.</p>\n",
+            "examples": [
+                "<pre><code>n.appendChild(dojo.doc.createElement(&#39;div&#39;));</code></pre>\n"
+            ]
+        },
+        {
+            "name": "dojox",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "dojo/_base/kernel"
+        },
+        {
+            "name": "fx",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "dojo/fx",
+            "extensionModule": true,
+            "summary": "<p>Effects library on top of Base animations</p>\n"
+        },
+        {
+            "name": "global",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "dojo/_base/window",
+            "extensionModule": true,
+            "summary": "<p>Alias for the current window. &#39;global&#39; can be modified\nfor temporary context shifting. See also withGlobal().</p>\n",
+            "description": "<p>Use this rather than referring to &#39;window&#39; to ensure your code runs\ncorrectly in managed contexts.</p>\n"
+        },
+        {
+            "name": "i18n",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "dojo/i18n",
+            "extensionModule": true,
+            "summary": "<p>This module implements the dojo/i18n! plugin and the v1.6- i18n API</p>\n",
+            "description": "<p>We choose to include our own plugin to leverage functionality already contained in dojo\nand thereby reduce the size of the plugin compared to various loader implementations. Also, this\nallows foreign AMD loaders to be used without their plugins.</p>\n"
+        },
+        {
+            "name": "isAir",
+            "scope": "normal",
+            "types": [
+                "Boolean"
+            ],
+            "from": "dojo/_base/sniff",
+            "extensionModule": true,
+            "summary": "<p>True if client is Adobe Air</p>\n"
+        },
+        {
+            "name": "isAndroid",
+            "scope": "normal",
+            "types": [
+                "Number",
+                "undefined"
+            ],
+            "from": "dojo/_base/sniff",
+            "extensionModule": true,
+            "summary": "<p>Version as a Number if client is android browser. undefined otherwise.</p>\n"
+        },
+        {
+            "name": "isAsync",
+            "scope": "normal",
+            "types": [
+                "boolean"
+            ],
+            "from": "dojo/_base/kernel"
+        },
+        {
+            "name": "isBrowser",
+            "scope": "normal",
+            "types": [
+                "Boolean"
+            ],
+            "from": "dojo/_base/sniff",
+            "extensionModule": true,
+            "summary": "<p>True if the client is a web-browser</p>\n"
+        },
+        {
+            "name": "isChrome",
+            "scope": "normal",
+            "types": [
+                "Number",
+                "undefined"
+            ],
+            "from": "dojo/_base/sniff",
+            "extensionModule": true,
+            "summary": "<p>Version as a Number if client is Chrome browser. undefined otherwise.</p>\n"
+        },
+        {
+            "name": "isFF",
+            "scope": "normal",
+            "types": [
+                "Number",
+                "undefined"
+            ],
+            "from": "dojo/_base/sniff",
+            "extensionModule": true,
+            "summary": "<p>Version as a Number if client is FireFox. undefined otherwise. Corresponds to\nmajor detected FireFox version (1.5, 2, 3, etc.)</p>\n"
+        },
+        {
+            "name": "isIE",
+            "scope": "normal",
+            "types": [
+                "Number",
+                "undefined"
+            ],
+            "from": "dojo/_base/sniff",
+            "extensionModule": true,
+            "summary": "<p>Version as a Number if client is MSIE(PC). undefined otherwise. Corresponds to\nmajor detected IE version (6, 7, 8, etc.)</p>\n"
+        },
+        {
+            "name": "isIos",
+            "scope": "normal",
+            "types": [
+                "Number",
+                "undefined"
+            ],
+            "from": "dojo/_base/sniff",
+            "extensionModule": true,
+            "summary": "<p>Version as a Number if client is iPhone, iPod, or iPad. undefined otherwise.</p>\n"
+        },
+        {
+            "name": "isKhtml",
+            "scope": "normal",
+            "types": [
+                "Number",
+                "undefined"
+            ],
+            "from": "dojo/_base/sniff",
+            "extensionModule": true,
+            "summary": "<p>Version as a Number if client is a KHTML browser. undefined otherwise. Corresponds to major\ndetected version.</p>\n"
+        },
+        {
+            "name": "isMac",
+            "scope": "normal",
+            "types": [
+                "Boolean"
+            ],
+            "from": "dojo/_base/sniff",
+            "extensionModule": true,
+            "summary": "<p>True if the client runs on Mac</p>\n"
+        },
+        {
+            "name": "isMoz",
+            "scope": "normal",
+            "types": [
+                "Number",
+                "undefined"
+            ],
+            "from": "dojo/_base/sniff",
+            "extensionModule": true,
+            "summary": "<p>Version as a Number if client is a Mozilla-based browser (Firefox,\nSeaMonkey). undefined otherwise. Corresponds to major detected version.</p>\n"
+        },
+        {
+            "name": "isMozilla",
+            "scope": "normal",
+            "types": [
+                "Number",
+                "undefined"
+            ],
+            "from": "dojo/_base/sniff",
+            "extensionModule": true,
+            "summary": "<p>Version as a Number if client is a Mozilla-based browser (Firefox,\nSeaMonkey). undefined otherwise. Corresponds to major detected version.</p>\n"
+        },
+        {
+            "name": "isOpera",
+            "scope": "normal",
+            "types": [
+                "Number",
+                "undefined"
+            ],
+            "from": "dojo/_base/sniff",
+            "extensionModule": true,
+            "summary": "<p>Version as a Number if client is Opera. undefined otherwise. Corresponds to\nmajor detected version.</p>\n"
+        },
+        {
+            "name": "isQuirks",
+            "scope": "normal",
+            "types": [
+                "Boolean"
+            ],
+            "from": "dojo/_base/sniff",
+            "extensionModule": true,
+            "summary": "<p>Page is in quirks mode.</p>\n"
+        },
+        {
+            "name": "isSafari",
+            "scope": "normal",
+            "types": [
+                "Number",
+                "undefined"
+            ],
+            "from": "dojo/_base/sniff",
+            "extensionModule": true,
+            "summary": "<p>Version as a Number if client is Safari or iPhone. undefined otherwise.</p>\n"
+        },
+        {
+            "name": "isWebKit",
+            "scope": "normal",
+            "types": [
+                "Number",
+                "undefined"
+            ],
+            "from": "dojo/_base/sniff",
+            "extensionModule": true,
+            "summary": "<p>Version as a Number if client is a WebKit-derived browser (Konqueror,\nSafari, Chrome, etc.). undefined otherwise.</p>\n"
+        },
+        {
+            "name": "isWii",
+            "scope": "normal",
+            "types": [
+                "Boolean"
+            ],
+            "from": "dojo/_base/sniff",
+            "extensionModule": true,
+            "summary": "<p>True if client is Wii</p>\n"
+        },
+        {
+            "name": "keys",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "dojo/keys",
+            "extensionModule": true,
+            "summary": "<p>Definitions for common key values.  Client code should test keyCode against these named constants,\nas the actual codes can vary by browser.</p>\n"
+        },
+        {
+            "name": "locale",
+            "scope": "normal",
+            "types": [
+                "String"
+            ],
+            "from": "dojo/_base/config",
+            "summary": "<p>The locale to assume for loading localized resources in this page,\nspecified according to <a href=\"http://www.ietf.org/rfc/rfc3066.txt\">RFC 3066</a>.\nMust be specified entirely in lowercase, e.g. <code>en-us</code> and <code>zh-cn</code>.\nSee the documentation for <code>dojo.i18n</code> and <code>dojo.requireLocalization</code>\nfor details on loading localized resources. If no locale is specified,\nDojo assumes the locale of the user agent, according to <code>navigator.userLanguage</code>\nor <code>navigator.language</code> properties.</p>\n"
+        },
+        {
+            "name": "mouseButtons",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "dojo/mouse",
+            "extensionModule": true
+        },
+        {
+            "name": "number",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "dojo/number",
+            "extensionModule": true,
+            "summary": "<p>localized formatting and parsing routines for Number</p>\n"
+        },
+        {
+            "name": "parser",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "dojo/parser",
+            "extensionModule": true,
+            "summary": "<p>The Dom/Widget parsing package</p>\n"
+        },
+        {
+            "name": "query",
+            "scope": "normal",
+            "types": [
+                "undefined"
+            ],
+            "from": "dojo/query",
+            "extensionModule": true
+        },
+        {
+            "name": "regexp",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "dojo/regexp",
+            "extensionModule": true,
+            "summary": "<p>Regular expressions and Builder resources</p>\n"
+        },
+        {
+            "name": "scopeMap",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "dojo/_base/kernel"
+        },
+        {
+            "name": "store",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "dojo/store/util/QueryResults",
+            "extensionModule": true
+        },
+        {
+            "name": "string",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "dojo/string",
+            "extensionModule": true,
+            "summary": "<p>String utilities for Dojo</p>\n"
+        },
+        {
+            "name": "toJsonIndentStr",
+            "scope": "normal",
+            "types": [
+                "string"
+            ],
+            "from": "dojo/_base/json",
+            "extensionModule": true
+        },
+        {
+            "name": "touch",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "dojo/touch",
+            "extensionModule": true,
+            "summary": "<p>This module provides unified touch event handlers by exporting\npress, move, release and cancel which can also run well on desktop.\nBased on <a href=\"http://dvcs.w3.org/hg/webevents/raw-file/tip/touchevents.html\">http://dvcs.w3.org/hg/webevents/raw-file/tip/touchevents.html</a>\nAlso, if the dojoClick property is set to true on a DOM node, dojo/touch generates\nclick events immediately for this node and its descendants, to avoid the\ndelay before native browser click events, and regardless of whether evt.preventDefault()\nwas called in a touch.press event listener.\n</p>\n",
+            "examples": [
+                "<p>Used with dojo.on\n\n</p>\n<pre><code>define([&quot;dojo/on&quot;, &quot;dojo/touch&quot;], function(on, touch){\n    on(node, touch.press, function(e){});\n    on(node, touch.move, function(e){});\n    on(node, touch.release, function(e){});\n    on(node, touch.cancel, function(e){});</code></pre>\n",
+                "<p>Used with touch.* directly\n\n</p>\n<pre><code>touch.press(node, function(e){});\ntouch.move(node, function(e){});\ntouch.release(node, function(e){});\ntouch.cancel(node, function(e){});</code></pre>\n",
+                "<p>Have dojo/touch generate clicks without delay, with a default move threshold of 4 pixels\n\n</p>\n<pre><code>node.dojoClick = true;</code></pre>\n",
+                "<p>Have dojo/touch generate clicks without delay, with a move threshold of 10 pixels horizontally and vertically\n\n</p>\n<pre><code>node.dojoClick = 10;</code></pre>\n",
+                "<p>Have dojo/touch generate clicks without delay, with a move threshold of 50 pixels horizontally and 10 pixels vertically\n\n</p>\n<pre><code>node.dojoClick = {x:50, y:5};</code></pre>\n"
+            ]
+        },
+        {
+            "name": "version",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "dojo/_base/kernel",
+            "summary": "<p>Version number of the Dojo Toolkit</p>\n",
+            "description": "<p>Hash about the version, including\n\n</p>\n<ul>\n<li>major: Integer: Major version. If total version is &quot;1.2.0beta1&quot;, will be 1</li>\n<li>minor: Integer: Minor version. If total version is &quot;1.2.0beta1&quot;, will be 2</li>\n<li>patch: Integer: Patch version. If total version is &quot;1.2.0beta1&quot;, will be 0</li>\n<li>flag: String: Descriptor flag. If total version is &quot;1.2.0beta1&quot;, will be &quot;beta1&quot;</li>\n<li>revision: Number: The SVN rev from which dojo was pulled</li>\n</ul>\n"
+        },
+        {
+            "name": "window",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "dojo/window",
+            "extensionModule": true,
+            "summary": "<p>TODOC</p>\n"
+        }
+    ],
+    "methods": [
+        {
+            "name": "__IoArgs",
+            "scope": "normal",
+            "types": [
+                "constructor"
+            ],
+            "from": "dojo/_base/xhr",
+            "private": true,
+            "extensionModule": true,
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "__IoCallbackArgs",
+            "scope": "normal",
+            "types": [
+                "constructor"
+            ],
+            "from": "dojo/_base/xhr",
+            "private": true,
+            "extensionModule": true,
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "__IoPublish",
+            "scope": "normal",
+            "types": [
+                "constructor"
+            ],
+            "from": "dojo/_base/xhr",
+            "private": true,
+            "extensionModule": true,
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "__XhrArgs",
+            "scope": "normal",
+            "types": [
+                "constructor"
+            ],
+            "from": "dojo/_base/xhr",
+            "private": true,
+            "extensionModule": true,
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "_Animation",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/fx",
+            "private": true,
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "args",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The &#39;magic argument&#39;, mixing all the properties into this\nanimation instance.</p>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>A generic animation class that fires callbacks into its handlers\nobject at various states.</p>\n",
+            "description": "<p>A generic animation class that fires callbacks into its handlers\nobject at various states. Nearly all dojo animation functions\nreturn an instance of this method, usually without calling the\n.play() method beforehand. Therefore, you will likely need to\ncall .play() on instances of <code>Animation</code> when one is\nreturned.</p>\n"
+        },
+        {
+            "name": "_defaultEasing",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/fx",
+            "private": true,
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "n",
+                    "types": [
+                        "Decimal"
+                    ],
+                    "usage": "optional"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>The default easing function for Animation(s)</p>\n"
+        },
+        {
+            "name": "_escapeString",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/json",
+            "private": true,
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "value",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>A value to be serialized.</p>\n"
+                },
+                {
+                    "name": "replacer",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>A replacer function that is called for each value and can return a replacement</p>\n"
+                },
+                {
+                    "name": "spacer",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>A spacer string to be used for pretty printing of JSON</p>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Returns a <a href=\"http://json.org\">JSON</a> serialization of an object.</p>\n",
+            "description": "<p>Returns a <a href=\"http://json.org\">JSON</a> serialization of an object.\nThis function follows <a href=\"https://developer.mozilla.org/en/JSON\">native JSON API</a>\nNote that this doesn&#39;t check for infinite recursion, so don&#39;t do that!</p>\n",
+            "examples": [
+                "<p>simple serialization of a trivial object\n\n</p>\n<pre><code>define([&quot;dojo/json&quot;], function(JSON){\n    var jsonStr = JSON.stringify({ howdy: &quot;stranger!&quot;, isStrange: true });\n    doh.is(&#39;{&quot;howdy&quot;:&quot;stranger!&quot;,&quot;isStrange&quot;:true}&#39;, jsonStr);</code></pre>\n"
+            ]
+        },
+        {
+            "name": "_fade",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/fx",
+            "private": true,
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "args",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Returns an animation that will fade the node defined by\nargs.node from the start to end values passed (args.start\nargs.end) (end is mandatory, start is optional)</p>\n"
+        },
+        {
+            "name": "_filterQueryResult",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/query",
+            "private": true,
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "nodes",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "selector",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "root",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
+        },
+        {
+            "name": "_getText",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "private": true,
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "url",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ]
+        },
+        {
+            "name": "_ioAddQueryToUrl",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "private": true,
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "ioArgs",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "description": "<p>An object with the following properties:</p><ul><li>args (Object): <p>the original object argument to the IO call.</p>\n</li><li>xhr (XMLHttpRequest): <p>For XMLHttpRequest calls only, the\nXMLHttpRequest object that was used for the\nrequest.</p>\n</li><li>url (String): <p>The final URL used for the call. Many times it\nwill be different than the original args.url\nvalue.</p>\n</li><li>query (String): <p>For non-GET requests, the\nname1=value1&amp;name2=value2 parameters sent up in\nthe request.</p>\n</li><li>handleAs (String): <p>The final indicator on how the response will be\nhandled.</p>\n</li><li>id (String): <p>For dojo/io/script calls only, the internal\nscript ID used for the request.</p>\n</li><li>canDelete (Boolean): <p>For dojo/io/script calls only, indicates\nwhether the script tag that represents the\nrequest can be deleted after callbacks have\nbeen called. Used internally to know when\ncleanup can happen on JSONP-type requests.</p>\n</li><li>json (Object): <p>For dojo/io/script calls only: holds the JSON\nresponse for JSONP-type requests. Used\ninternally to hold on to the JSON responses.\nYou should not need to access it directly --\nthe same object should be passed to the success\ncallbacks directly.</p>\n</li></ul>"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Adds query params discovered by the io deferred construction to the URL.\nOnly use this for operations which are fundamentally GET-type operations.</p>\n"
+        },
+        {
+            "name": "_ioCancelAll",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "private": true,
+            "extensionModule": true,
+            "parameters": [],
+            "returnTypes": [],
+            "summary": "<p>Cancels all pending IO requests, regardless of IO type\n(xhr, script, iframe).</p>\n"
+        },
+        {
+            "name": "_ioNotifyStart",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "private": true,
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "dfd",
+                    "types": [
+                        "dojo/_base/Deferred"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>If dojo.publish is available, publish topics\nabout the start of a request queue and/or the\nthe beginning of request.\n\n</p>\n<p>Used by IO transports. An IO transport should\ncall this method before making the network connection.</p>\n"
+        },
+        {
+            "name": "_ioSetArgs",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "private": true,
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "args",
+                    "types": [
+                        "dojo/main.__IoArgs"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The args object passed into the public io call. Recognized properties on\nthe args object are:</p>\n"
+                },
+                {
+                    "name": "canceller",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The canceller function used for the Deferred object. The function\nwill receive one argument, the Deferred object that is related to the\ncanceller.</p>\n"
+                },
+                {
+                    "name": "okHandler",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The first OK callback to be registered with Deferred. It has the opportunity\nto transform the OK response. It will receive one argument -- the Deferred\nobject returned from this function.</p>\n"
+                },
+                {
+                    "name": "errHandler",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The first error callback to be registered with Deferred. It has the opportunity\nto do cleanup on an error. It will receive two arguments: error (the\nError object) and dfd, the Deferred object returned from this function.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "instance"
+            ],
+            "summary": "<p>sets up the Deferred and ioArgs property on the Deferred so it\ncan be used in an io call.</p>\n"
+        },
+        {
+            "name": "_ioWatch",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "private": true,
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "dfd",
+                    "types": [
+                        "dojo/_base/Deferred"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The Deferred object to watch.</p>\n"
+                },
+                {
+                    "name": "validCheck",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Function used to check if the IO request is still valid. Gets the dfd\nobject as its only argument.</p>\n"
+                },
+                {
+                    "name": "ioCheck",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Function used to check if basic IO call worked. Gets the dfd\nobject as its only argument.</p>\n"
+                },
+                {
+                    "name": "resHandle",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Function used to process response. Gets the dfd\nobject as its only argument.</p>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Watches the io request represented by dfd to see if it completes.</p>\n"
+        },
+        {
+            "name": "_isDocumentOk",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "private": true,
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "x",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ]
+        },
+        {
+            "name": "_keypress",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/connect",
+            "private": true,
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "object",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "listener",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ]
+        },
+        {
+            "name": "_Line",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/fx",
+            "private": true,
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "start",
+                    "types": [
+                        "int"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Beginning value for range</p>\n"
+                },
+                {
+                    "name": "end",
+                    "types": [
+                        "int"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Ending value for range</p>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Object used to generate values from a start value to an end value</p>\n"
+        },
+        {
+            "name": "_Url",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/url",
+            "private": true,
+            "extensionModule": true,
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "_xhrObj",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/request/xhr",
+            "private": true,
+            "extensionModule": true,
+            "parameters": [],
+            "returnTypes": [
+                "instance"
+            ]
+        },
+        {
+            "name": "addOnLoad",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/ready",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "priority",
+                    "types": [
+                        "Integer"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>The order in which to exec this callback relative to other callbacks, defaults to 1000</p>\n"
+                },
+                {
+                    "name": "context",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The context in which to run execute callback, or a callback if not using context</p>\n"
+                },
+                {
+                    "name": "callback",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>The function to execute.\n</p>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Add a function to execute on DOM content loaded and all requested modules have arrived and been evaluated.\nIn most cases, the <code>domReady</code> plug-in should suffice and this method should not be needed.\n\n</p>\n<p>When called in a non-browser environment, just checks that all requested modules have arrived and been\nevaluated.</p>\n",
+            "examples": [
+                "<p>Simple DOM and Modules ready syntax\n\n</p>\n<pre><code>require([&quot;dojo/ready&quot;], function(ready){\n    ready(function(){ alert(&quot;Dom ready!&quot;); });\n});</code></pre>\n",
+                "<p>Using a priority\n\n</p>\n<pre><code>require([&quot;dojo/ready&quot;], function(ready){\n    ready(2, function(){ alert(&quot;low priority ready!&quot;); })\n});</code></pre>\n",
+                "<p>Using context\n\n</p>\n<pre><code>require([&quot;dojo/ready&quot;], function(ready){\n    ready(foo, function(){\n        // in here, this == foo\n    });\n});</code></pre>\n",
+                "<p>Using dojo/hitch style args:\n\n</p>\n<pre><code>require([&quot;dojo/ready&quot;], function(ready){\n    var foo = { dojoReady: function(){ console.warn(this, &quot;dojo dom and modules ready.&quot;); } };\n    ready(foo, &quot;dojoReady&quot;);\n});</code></pre>\n"
+            ]
+        },
+        {
+            "name": "anim",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/fx",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "node",
+                    "types": [
+                        "DOMNode",
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>a DOM node or the id of a node to animate CSS properties on</p>\n"
+                },
+                {
+                    "name": "properties",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "duration",
+                    "types": [
+                        "Integer"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>The number of milliseconds over which the animation\nshould run. Defaults to the global animation default duration\n(350ms).</p>\n"
+                },
+                {
+                    "name": "easing",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>An easing function over which to calculate acceleration\nand deceleration of the animation through its duration.\nA default easing algorithm is provided, but you may\nplug in any you wish. A large selection of easing algorithms\nare available in <code>dojo/fx/easing</code>.</p>\n"
+                },
+                {
+                    "name": "onEnd",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>A function to be called when the animation finishes\nrunning.</p>\n"
+                },
+                {
+                    "name": "delay",
+                    "types": [
+                        "Integer"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>The number of milliseconds to delay beginning the\nanimation by. The default is 0.</p>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>A simpler interface to <code>animateProperty()</code>, also returns\nan instance of <code>Animation</code> but begins the animation\nimmediately, unlike nearly every other Dojo animation API.</p>\n",
+            "description": "<p>Simpler (but somewhat less powerful) version\nof <code>animateProperty</code>.  It uses defaults for many basic properties\nand allows for positional parameters to be used in place of the\npacked &quot;property bag&quot; which is used for other Dojo animation\nmethods.\n\n</p>\n<p>The <code>Animation</code> object returned will be already playing, so\ncalling play() on it again is (usually) a no-op.</p>\n",
+            "examples": [
+                "<p>Fade out a node\n\n</p>\n<pre><code>basefx.anim(&quot;id&quot;, { opacity: 0 });</code></pre>\n",
+                "<p>Fade out a node over a full second\n\n</p>\n<pre><code>basefx.anim(&quot;id&quot;, { opacity: 0 }, 1000);</code></pre>\n"
+            ]
+        },
+        {
+            "name": "animateProperty",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/fx",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "args",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "description": "<p>An object with the following properties:</p><ul><li>properties (Object, optional): <p>A hash map of style properties to Objects describing the transition,\nsuch as the properties of _Line with an additional &#39;units&#39; property</p>\n</li><li>node (DOMNode|String): <p>The node referenced in the animation</p>\n</li><li>duration (Integer, optional): <p>Duration of the animation in milliseconds.</p>\n</li><li>easing (Function, optional): <p>An easing function.</p>\n</li></ul>"
+                }
+            ],
+            "returnTypes": [
+                "instance",
+                "undefined"
+            ],
+            "summary": "<p>Returns an animation that will transition the properties of\nnode defined in <code>args</code> depending how they are defined in\n<code>args.properties</code>\n</p>\n",
+            "description": "<p>Foundation of most <code>dojo/_base/fx</code>\nanimations. It takes an object of &quot;properties&quot; corresponding to\nstyle properties, and animates them in parallel over a set\nduration.\n</p>\n",
+            "examples": [
+                "<p>A simple animation that changes the width of the specified node.\n\n</p>\n<pre><code>basefx.animateProperty({\n    node: &quot;nodeId&quot;,\n    properties: { width: 400 },\n}).play();</code></pre>\n<p>Dojo figures out the start value for the width and converts the\n\n</p>\n<p>integer specified for the width to the more expressive but\nverbose form <code>{ width: { end: &#39;400&#39;, units: &#39;px&#39; } }</code> which you\ncan also specify directly. Defaults to &#39;px&#39; if omitted.\n</p>\n",
+                "<p>Animate width, height, and padding over 2 seconds... the\npedantic way:\n\n</p>\n<pre><code>basefx.animateProperty({ node: node, duration:2000,\n    properties: {\n        width: { start: &#39;200&#39;, end: &#39;400&#39;, units:&quot;px&quot; },\n        height: { start:&#39;200&#39;, end: &#39;400&#39;, units:&quot;px&quot; },\n        paddingTop: { start:&#39;5&#39;, end:&#39;50&#39;, units:&quot;px&quot; }\n    }\n}).play();</code></pre>\n<p>Note &#39;paddingTop&#39; is used over &#39;padding-top&#39;. Multi-name CSS properties\n\n</p>\n<p>are written using &quot;mixed case&quot;, as the hyphen is illegal as an object key.\n</p>\n",
+                "<p>Plug in a different easing function and register a callback for\nwhen the animation ends. Easing functions accept values between\nzero and one and return a value on that basis. In this case, an\nexponential-in curve.\n\n</p>\n<pre><code>basefx.animateProperty({\n    node: &quot;nodeId&quot;,\n    // dojo figures out the start value\n    properties: { width: { end: 400 } },\n    easing: function(n){\n        return (n==0) ? 0 : Math.pow(2, 10 * (n - 1));\n    },\n    onEnd: function(node){\n        // called when the animation finishes. The animation\n        // target is passed to this function\n    }\n}).play(500); // delay playing half a second</code></pre>\n",
+                "<p>Like all <code>Animation</code>s, animateProperty returns a handle to the\nAnimation instance, which fires the events common to Dojo FX. Use <code>aspect.after</code>\nto access these events outside of the Animation definition:\n\n</p>\n<pre><code>var anim = basefx.animateProperty({\n    node:&quot;someId&quot;,\n    properties:{\n        width:400, height:500\n    }\n});\naspect.after(anim, &quot;onEnd&quot;, function(){\n    console.log(&quot;animation ended&quot;);\n}, true);\n// play the animation now:\nanim.play();</code></pre>\n",
+                "<p>Each property can be a function whose return value is substituted along.\nAdditionally, each measurement (eg: start, end) can be a function. The node\nreference is passed directly to callbacks.\n\n</p>\n<pre><code>basefx.animateProperty({\n    node:&quot;mine&quot;,\n    properties:{\n        height:function(node){\n            // shrink this node by 50%\n            return domGeom.position(node).h / 2\n        },\n        width:{\n            start:function(node){ return 100; },\n            end:function(node){ return 200; }\n        }\n    }\n}).play();</code></pre>\n"
+            ]
+        },
+        {
+            "name": "Animation",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/fx",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "args",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The &#39;magic argument&#39;, mixing all the properties into this\nanimation instance.</p>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>A generic animation class that fires callbacks into its handlers\nobject at various states.</p>\n",
+            "description": "<p>A generic animation class that fires callbacks into its handlers\nobject at various states. Nearly all dojo animation functions\nreturn an instance of this method, usually without calling the\n.play() method beforehand. Therefore, you will likely need to\ncall .play() on instances of <code>Animation</code> when one is\nreturned.</p>\n"
+        },
+        {
+            "name": "blendColors",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/Color",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "start",
+                    "types": [
+                        "havok/form/Color"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "end",
+                    "types": [
+                        "havok/form/Color"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "weight",
+                    "types": [
+                        "Number"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "obj",
+                    "types": [
+                        "havok/form/Color"
+                    ],
+                    "usage": "optional"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Blend colors end and start with weight from 0 to 1, 0.5 being a 50/50 blend,\ncan reuse a previously allocated Color object for the result</p>\n"
+        },
+        {
+            "name": "body",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/window",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "doc",
+                    "types": [
+                        "Document"
+                    ],
+                    "usage": "optional"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Return the body element of the specified document or of dojo/_base/window::doc.</p>\n",
+            "examples": [
+                "<pre><code>win.body().appendChild(dojo.doc.createElement(&#39;div&#39;));</code></pre>\n"
+            ]
+        },
+        {
+            "name": "cache",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/text",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "module",
+                    "types": [
+                        "String",
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>dojo/number</p>\n"
+                },
+                {
+                    "name": "url",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The rest of the path to append to the path derived from the module argument. If\nmodule is an object, then this second argument should be the &quot;value&quot; argument instead.</p>\n"
+                },
+                {
+                    "name": "value",
+                    "types": [
+                        "String",
+                        "Object"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>If a String, the value to use in the cache for the module/url combination.\nIf an Object, it can have two properties: value and sanitize. The value property\nshould be the value to use in the cache, and sanitize can be set to true or false,\nto indicate if XML declarations should be removed from the value and if the HTML\ninside a body tag in the value should be extracted as the real value. The value argument\nor the value property on the value argument are usually only used by the build system\nas it inlines cache content.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "undefined",
+                "null"
+            ],
+            "summary": "<p>A getter and setter for storing the string content associated with the\nmodule and url arguments.</p>\n",
+            "description": "<p>If module is a string that contains slashes, then it is interpretted as a fully\nresolved path (typically a result returned by require.toUrl), and url should not be\nprovided. This is the preferred signature. If module is a string that does not\ncontain slashes, then url must also be provided and module and url are used to\ncall <code>dojo.moduleUrl()</code> to generate a module URL. This signature is deprecated.\nIf value is specified, the cache value for the moduleUrl will be set to\nthat value. Otherwise, dojo.cache will fetch the moduleUrl and store it\nin its internal cache and return that cached value for the URL. To clear\na cache value pass null for value. Since XMLHttpRequest (XHR) is used to fetch the\nthe URL contents, only modules on the same domain of the page can use this capability.\nThe build system can inline the cache values though, to allow for xdomain hosting.</p>\n",
+            "examples": [
+                "<p>To ask dojo.cache to fetch content and store it in the cache (the dojo[&quot;cache&quot;] style\nof call is used to avoid an issue with the build system erroneously trying to intern\nthis example. To get the build system to intern your dojo.cache calls, use the\n&quot;dojo.cache&quot; style of call):\n\n</p>\n<pre><code>//If template.html contains &quot;&lt;h1&gt;Hello&lt;/h1&gt;&quot; that will be\n//the value for the text variable.\nvar text = dojo[&quot;cache&quot;](&quot;my.module&quot;, &quot;template.html&quot;);</code></pre>\n",
+                "<p>To ask dojo.cache to fetch content and store it in the cache, and sanitize the input\n (the dojo[&quot;cache&quot;] style of call is used to avoid an issue with the build system\nerroneously trying to intern this example. To get the build system to intern your\ndojo.cache calls, use the &quot;dojo.cache&quot; style of call):\n\n</p>\n<pre><code>//If template.html contains &quot;&lt;html&gt;&lt;body&gt;&lt;h1&gt;Hello&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&quot;, the\n//text variable will contain just &quot;&lt;h1&gt;Hello&lt;/h1&gt;&quot;.\nvar text = dojo[&quot;cache&quot;](&quot;my.module&quot;, &quot;template.html&quot;, {sanitize: true});</code></pre>\n",
+                "<p>Same example as previous, but demonstrates how an object can be passed in as\nthe first argument, then the value argument can then be the second argument.\n\n</p>\n<pre><code>//If template.html contains &quot;&lt;html&gt;&lt;body&gt;&lt;h1&gt;Hello&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&quot;, the\n//text variable will contain just &quot;&lt;h1&gt;Hello&lt;/h1&gt;&quot;.\nvar text = dojo[&quot;cache&quot;](new dojo._Url(&quot;my/module/template.html&quot;), {sanitize: true});</code></pre>\n"
+            ]
+        },
+        {
+            "name": "clearCache",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/array",
+            "extensionModule": true,
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "Color",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/Color",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "color",
+                    "types": [
+                        "Array",
+                        "String",
+                        "Object"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Takes a named string, hex string, array of rgb or rgba values,\nan object with r, g, b, and a properties, or another <code>Color</code> object\nand creates a new Color instance to work from.\n</p>\n",
+            "examples": [
+                "<p>Work with a Color instance:\n\n</p>\n<pre><code>var c = new Color();\nc.setColor([0,0,0]); // black\nvar hex = c.toHex(); // #000000</code></pre>\n",
+                "<p>Work with a node&#39;s color:\n\n</p>\n<pre><code>var color = dojo.style(&quot;someNode&quot;, &quot;backgroundColor&quot;);\nvar n = new Color(color);\n// adjust the color some\nn.r *= .5;\nconsole.log(n.toString()); // rgb(128, 255, 255);</code></pre>\n"
+            ]
+        },
+        {
+            "name": "colorFromArray",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/Color",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "a",
+                    "types": [
+                        "Array"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "obj",
+                    "types": [
+                        "havok/form/Color"
+                    ],
+                    "usage": "optional"
+                }
+            ],
+            "returnTypes": [
+                "any"
+            ],
+            "returnDescription": "<p>A Color object. If obj is passed, it will be the return value.</p>\n",
+            "summary": "<p>Builds a <code>Color</code> from a 3 or 4 element array, mapping each\nelement in sequence to the rgb(a) values of the color.</p>\n",
+            "examples": [
+                "<pre><code>var myColor = dojo.colorFromArray([237,237,237,0.5]); // grey, 50% alpha</code></pre>\n"
+            ]
+        },
+        {
+            "name": "colorFromHex",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/Color",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "color",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "obj",
+                    "types": [
+                        "havok/form/Color"
+                    ],
+                    "usage": "optional"
+                }
+            ],
+            "returnTypes": [
+                "any",
+                "null",
+                "string"
+            ],
+            "returnDescription": "<p>A Color object. If obj is passed, it will be the return value.\n</p>\n",
+            "summary": "<p>Converts a hex string with a &#39;#&#39; prefix to a color object.\nSupports 12-bit #rgb shorthand. Optionally accepts a\n<code>Color</code> object to update with the parsed value.\n</p>\n",
+            "examples": [
+                "<pre><code>var thing = dojo.colorFromHex(&quot;#ededed&quot;); // grey, longhand</code></pre>\n",
+                "<pre><code>var thing = dojo.colorFromHex(&quot;#000&quot;); // black, shorthand</code></pre>\n"
+            ]
+        },
+        {
+            "name": "colorFromRgb",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/Color",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "color",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "obj",
+                    "types": [
+                        "havok/form/Color"
+                    ],
+                    "usage": "optional"
+                }
+            ],
+            "returnTypes": [
+                "any"
+            ],
+            "returnDescription": "<p>A Color object. If obj is passed, it will be the return value.</p>\n",
+            "summary": "<p>Returns a <code>Color</code> instance from a string of the form\n&quot;rgb(...)&quot; or &quot;rgba(...)&quot;. Optionally accepts a <code>Color</code>\nobject to update with the parsed value and return instead of\ncreating a new object.</p>\n"
+        },
+        {
+            "name": "colorFromString",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/Color",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "str",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "obj",
+                    "types": [
+                        "havok/form/Color"
+                    ],
+                    "usage": "optional"
+                }
+            ],
+            "returnTypes": [
+                "any"
+            ],
+            "returnDescription": "<p>A Color object. If obj is passed, it will be the return value.</p>\n",
+            "summary": "<p>Parses <code>str</code> for a color value. Accepts hex, rgb, and rgba\nstyle color values.</p>\n",
+            "description": "<p>Acceptable input values for str may include arrays of any form\naccepted by dojo.colorFromArray, hex strings such as &quot;#aaaaaa&quot;, or\nrgb or rgba strings such as &quot;rgb(133, 200, 16)&quot; or &quot;rgba(10, 10,\n10, 50)&quot;</p>\n"
+        },
+        {
+            "name": "connect",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/connect",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "obj",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>The source object for the event function.\nDefaults to <code>kernel.global</code> if null.\nIf obj is a DOM node, the connection is delegated\nto the DOM event manager (unless dontFix is true).\n</p>\n"
+                },
+                {
+                    "name": "event",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>String name of the event function in obj.\nI.e. identifies a property <code>obj[event]</code>.\n</p>\n"
+                },
+                {
+                    "name": "context",
+                    "types": [
+                        "Object",
+                        "null"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The object that method will receive as &quot;this&quot;.\n\n</p>\n<p>If context is null and method is a function, then method\ninherits the context of event.\n\n</p>\n<p>If method is a string then context must be the source\nobject object for method (context[method]). If context is null,\nkernel.global is used.\n</p>\n"
+                },
+                {
+                    "name": "method",
+                    "types": [
+                        "String",
+                        "Function"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>A function reference, or name of a function in context.\nThe function identified by method fires after event does.\nmethod receives the same arguments as the event.\nSee context argument comments for information on method&#39;s scope.\n</p>\n"
+                },
+                {
+                    "name": "dontFix",
+                    "types": [
+                        "Boolean"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>If obj is a DOM node, set dontFix to true to prevent delegation\nof this connection to the DOM event manager.\n</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p><code>dojo.connect</code> is a deprecated event handling and delegation method in\nDojo. It allows one function to &quot;listen in&quot; on the execution of\nany other, triggering the second whenever the first is called. Many\nlisteners may be attached to a function, and source functions may\nbe either regular function calls or DOM events.\n</p>\n",
+            "description": "<p>Connects listeners to actions, so that after event fires, a\nlistener is called with the same arguments passed to the original\nfunction.\n\n</p>\n<p>Since <code>dojo.connect</code> allows the source of events to be either a\n&quot;regular&quot; JavaScript function or a DOM event, it provides a uniform\ninterface for listening to all the types of events that an\napplication is likely to deal with though a single, unified\ninterface. DOM programmers may want to think of it as\n&quot;addEventListener for everything and anything&quot;.\n\n</p>\n<p>When setting up a connection, the <code>event</code> parameter must be a\nstring that is the name of the method/event to be listened for. If\n<code>obj</code> is null, <code>kernel.global</code> is assumed, meaning that connections\nto global methods are supported but also that you may inadvertently\nconnect to a global by passing an incorrect object name or invalid\nreference.\n\n</p>\n<p><code>dojo.connect</code> generally is forgiving. If you pass the name of a\nfunction or method that does not yet exist on <code>obj</code>, connect will\nnot fail, but will instead set up a stub method. Similarly, null\narguments may simply be omitted such that fewer than 4 arguments\nmay be required to set up a connection See the examples for details.\n\n</p>\n<p>The return value is a handle that is needed to\nremove this connection with <code>dojo.disconnect</code>.\n</p>\n",
+            "examples": [
+                "<p>When obj.onchange(), do ui.update():\n\n</p>\n<pre><code>dojo.connect(obj, &quot;onchange&quot;, ui, &quot;update&quot;);\ndojo.connect(obj, &quot;onchange&quot;, ui, ui.update); // same</code></pre>\n",
+                "<p>Using return value for disconnect:\n\n</p>\n<pre><code>var link = dojo.connect(obj, &quot;onchange&quot;, ui, &quot;update&quot;);\n...\ndojo.disconnect(link);</code></pre>\n",
+                "<p>When onglobalevent executes, watcher.handler is invoked:\n\n</p>\n<pre><code>dojo.connect(null, &quot;onglobalevent&quot;, watcher, &quot;handler&quot;);</code></pre>\n",
+                "<p>When ob.onCustomEvent executes, customEventHandler is invoked:\n\n</p>\n<pre><code>dojo.connect(ob, &quot;onCustomEvent&quot;, null, &quot;customEventHandler&quot;);\ndojo.connect(ob, &quot;onCustomEvent&quot;, &quot;customEventHandler&quot;); // same</code></pre>\n",
+                "<p>When ob.onCustomEvent executes, customEventHandler is invoked\nwith the same scope (this):\n\n</p>\n<pre><code>dojo.connect(ob, &quot;onCustomEvent&quot;, null, customEventHandler);\ndojo.connect(ob, &quot;onCustomEvent&quot;, customEventHandler); // same</code></pre>\n",
+                "<p>When globalEvent executes, globalHandler is invoked\nwith the same scope (this):\n\n</p>\n<pre><code>dojo.connect(null, &quot;globalEvent&quot;, null, globalHandler);\ndojo.connect(&quot;globalEvent&quot;, globalHandler); // same</code></pre>\n"
+            ]
+        },
+        {
+            "name": "connectPublisher",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/connect",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "topic",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The name of the topic to publish.</p>\n"
+                },
+                {
+                    "name": "obj",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>The source object for the event function. Defaults to kernel.global\nif null.</p>\n"
+                },
+                {
+                    "name": "event",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The name of the event function in obj.\nI.e. identifies a property obj[event].</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Ensure that every time obj.event() is called, a message is published\non the topic. Returns a handle which can be passed to\ndojo.disconnect() to disable subsequent automatic publication on\nthe topic.</p>\n",
+            "examples": [
+                "<pre><code>dojo.connectPublisher(&quot;/ajax/start&quot;, dojo, &quot;xhrGet&quot;);</code></pre>\n"
+            ]
+        },
+        {
+            "name": "declare",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/declare",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "className",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>The optional name of the constructor (loosely, a &quot;class&quot;)\nstored in the &quot;declaredClass&quot; property in the created prototype.\nIt will be used as a global name for a created constructor.</p>\n"
+                },
+                {
+                    "name": "superclass",
+                    "types": [
+                        "Function",
+                        "Function[]"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>May be null, a Function, or an Array of Functions. This argument\nspecifies a list of bases (the left-most one is the most deepest\nbase).</p>\n"
+                },
+                {
+                    "name": "props",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>An object whose properties are copied to the created prototype.\nAdd an instance-initialization function by making it a property\nnamed &quot;constructor&quot;.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "dojo/_base/declare.__DeclareCreatedObject",
+                "undefined"
+            ],
+            "returnDescription": "<p>New constructor function.</p>\n",
+            "summary": "<p>Create a feature-rich constructor from compact notation.</p>\n",
+            "description": "<p>Create a constructor using a compact notation for inheritance and\nprototype extension.\n\n</p>\n<p>Mixin ancestors provide a type of multiple inheritance.\nPrototypes of mixin ancestors are copied to the new class:\nchanges to mixin prototypes will not affect classes to which\nthey have been mixed in.\n\n</p>\n<p>Ancestors can be compound classes created by this version of\ndeclare(). In complex cases all base classes are going to be\nlinearized according to C3 MRO algorithm\n(see <a href=\"http://www.python.org/download/releases/2.3/mro/\">http://www.python.org/download/releases/2.3/mro/</a> for more\ndetails).\n\n</p>\n<p>&quot;className&quot; is cached in &quot;declaredClass&quot; property of the new class,\nif it was supplied. The immediate super class will be cached in\n&quot;superclass&quot; property of the new class.\n\n</p>\n<p>Methods in &quot;props&quot; will be copied and modified: &quot;nom&quot; property\n(the declared name of the method) will be added to all copied\nfunctions to help identify them for the internal machinery. Be\nvery careful, while reusing methods: if you use the same\nfunction under different names, it can produce errors in some\ncases.\n\n</p>\n<p>It is possible to use constructors created &quot;manually&quot; (without\ndeclare()) as bases. They will be called as usual during the\ncreation of an instance, their methods will be chained, and even\ncalled by &quot;this.inherited()&quot;.\n\n</p>\n<p>Special property &quot;-chains-&quot; governs how to chain methods. It is\na dictionary, which uses method names as keys, and hint strings\nas values. If a hint string is &quot;after&quot;, this method will be\ncalled after methods of its base classes. If a hint string is\n&quot;before&quot;, this method will be called before methods of its base\nclasses.\n\n</p>\n<p>If &quot;constructor&quot; is not mentioned in &quot;-chains-&quot; property, it will\nbe chained using the legacy mode: using &quot;after&quot; chaining,\ncalling preamble() method before each constructor, if available,\nand calling postscript() after all constructors were executed.\nIf the hint is &quot;after&quot;, it is chained as a regular method, but\npostscript() will be called after the chain of constructors.\n&quot;constructor&quot; cannot be chained &quot;before&quot;, but it allows\na special hint string: &quot;manual&quot;, which means that constructors\nare not going to be chained in any way, and programmer will call\nthem manually using this.inherited(). In the latter case\npostscript() will be called after the construction.\n\n</p>\n<p>All chaining hints are &quot;inherited&quot; from base classes and\npotentially can be overridden. Be very careful when overriding\nhints! Make sure that all chained methods can work in a proposed\nmanner of chaining.\n\n</p>\n<p>Once a method was chained, it is impossible to unchain it. The\nonly exception is &quot;constructor&quot;. You don&#39;t need to define a\nmethod in order to supply a chaining hint.\n\n</p>\n<p>If a method is chained, it cannot use this.inherited() because\nall other methods in the hierarchy will be called automatically.\n\n</p>\n<p>Usually constructors and initializers of any kind are chained\nusing &quot;after&quot; and destructors of any kind are chained as\n&quot;before&quot;. Note that chaining assumes that chained methods do not\nreturn any value: any returned value will be discarded.\n</p>\n",
+            "examples": [
+                "<pre><code>declare(&quot;my.classes.bar&quot;, my.classes.foo, {\n    // properties to be added to the class prototype\n    someValue: 2,\n    // initialization function\n    constructor: function(){\n        this.myComplicatedObject = new ReallyComplicatedObject();\n    },\n    // other functions\n    someMethod: function(){\n        doStuff();\n    }\n});</code></pre>\n",
+                "<pre><code>var MyBase = declare(null, {\n    // constructor, properties, and methods go here\n    // ...\n});\nvar MyClass1 = declare(MyBase, {\n    // constructor, properties, and methods go here\n    // ...\n});\nvar MyClass2 = declare(MyBase, {\n    // constructor, properties, and methods go here\n    // ...\n});\nvar MyDiamond = declare([MyClass1, MyClass2], {\n    // constructor, properties, and methods go here\n    // ...\n});</code></pre>\n",
+                "<pre><code>var F = function(){ console.log(&quot;raw constructor&quot;); };\nF.prototype.method = function(){\n    console.log(&quot;raw method&quot;);\n};\nvar A = declare(F, {\n    constructor: function(){\n        console.log(&quot;A.constructor&quot;);\n    },\n    method: function(){\n        console.log(&quot;before calling F.method...&quot;);\n        this.inherited(arguments);\n        console.log(&quot;...back in A&quot;);\n    }\n});\nnew A().method();\n// will print:\n// raw constructor\n// A.constructor\n// before calling F.method...\n// raw method\n// ...back in A</code></pre>\n",
+                "<pre><code>var A = declare(null, {\n    &quot;-chains-&quot;: {\n        destroy: &quot;before&quot;\n    }\n});\nvar B = declare(A, {\n    constructor: function(){\n        console.log(&quot;B.constructor&quot;);\n    },\n    destroy: function(){\n        console.log(&quot;B.destroy&quot;);\n    }\n});\nvar C = declare(B, {\n    constructor: function(){\n        console.log(&quot;C.constructor&quot;);\n    },\n    destroy: function(){\n        console.log(&quot;C.destroy&quot;);\n    }\n});\nnew C().destroy();\n// prints:\n// B.constructor\n// C.constructor\n// C.destroy\n// B.destroy</code></pre>\n",
+                "<pre><code>var A = declare(null, {\n    &quot;-chains-&quot;: {\n        constructor: &quot;manual&quot;\n    }\n});\nvar B = declare(A, {\n    constructor: function(){\n        // ...\n        // call the base constructor with new parameters\n        this.inherited(arguments, [1, 2, 3]);\n        // ...\n    }\n});</code></pre>\n",
+                "<pre><code>var A = declare(null, {\n    &quot;-chains-&quot;: {\n        m1: &quot;before&quot;\n    },\n    m1: function(){\n        console.log(&quot;A.m1&quot;);\n    },\n    m2: function(){\n        console.log(&quot;A.m2&quot;);\n    }\n});\nvar B = declare(A, {\n    &quot;-chains-&quot;: {\n        m2: &quot;after&quot;\n    },\n    m1: function(){\n        console.log(&quot;B.m1&quot;);\n    },\n    m2: function(){\n        console.log(&quot;B.m2&quot;);\n    }\n});\nvar x = new B();\nx.m1();\n// prints:\n// B.m1\n// A.m1\nx.m2();\n// prints:\n// A.m2\n// B.m2</code></pre>\n"
+            ]
+        },
+        {
+            "name": "Deferred",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/Deferred",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "canceller",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "optional"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Deprecated.   This module defines the legacy dojo/_base/Deferred API.\nNew code should use dojo/Deferred instead.</p>\n",
+            "description": "<p>The Deferred API is based on the concept of promises that provide a\ngeneric interface into the eventual completion of an asynchronous action.\nThe motivation for promises fundamentally is about creating a\nseparation of concerns that allows one to achieve the same type of\ncall patterns and logical data flow in asynchronous code as can be\nachieved in synchronous code. Promises allows one\nto be able to call a function purely with arguments needed for\nexecution, without conflating the call with concerns of whether it is\nsync or async. One shouldn&#39;t need to alter a call&#39;s arguments if the\nimplementation switches from sync to async (or vice versa). By having\nasync functions return promises, the concerns of making the call are\nseparated from the concerns of asynchronous interaction (which are\nhandled by the promise).\n\n</p>\n<p>The Deferred is a type of promise that provides methods for fulfilling the\npromise with a successful result or an error. The most important method for\nworking with Dojo&#39;s promises is the then() method, which follows the\nCommonJS proposed promise API. An example of using a Dojo promise:\n\n\n</p>\n<pre><code>var resultingPromise = someAsyncOperation.then(function(result){\n    ... handle result ...\n},\nfunction(error){\n    ... handle error ...\n});</code></pre>\n<p>The .then() call returns a new promise that represents the result of the\nexecution of the callback. The callbacks will never affect the original promises value.\n\n</p>\n<p>The Deferred instances also provide the following functions for backwards compatibility:\n\n</p>\n<ul>\n<li>addCallback(handler)</li>\n<li>addErrback(handler)</li>\n<li>callback(result)</li>\n<li>errback(result)</li>\n</ul>\n<p>Callbacks are allowed to return promises themselves, so\nyou can build complicated sequences of events with ease.\n\n</p>\n<p>The creator of the Deferred may specify a canceller.  The canceller\nis a function that will be called if Deferred.cancel is called\nbefore the Deferred fires. You can use this to implement clean\naborting of an XMLHttpRequest, etc. Note that cancel will fire the\ndeferred with a CancelledError (unless your canceller returns\nanother kind of error), so the errbacks should be prepared to\nhandle that error for cancellable Deferreds.</p>\n",
+            "examples": [
+                "<pre><code>var deferred = new Deferred();\nsetTimeout(function(){ deferred.callback({success: true}); }, 1000);\nreturn deferred;</code></pre>\n",
+                "<p>Deferred objects are often used when making code asynchronous. It\nmay be easiest to write functions in a synchronous manner and then\nsplit code using a deferred to trigger a response to a long-lived\noperation. For example, instead of register a callback function to\ndenote when a rendering operation completes, the function can\nsimply return a deferred:\n\n\n</p>\n<pre><code>// callback style:\nfunction renderLotsOfData(data, callback){\n    var success = false\n    try{\n        for(var x in data){\n            renderDataitem(data[x]);\n        }\n        success = true;\n    }catch(e){ }\n    if(callback){\n        callback(success);\n    }\n}\n\n\n// using callback style\nrenderLotsOfData(someDataObj, function(success){\n    // handles success or failure\n    if(!success){\n        promptUserToRecover();\n    }\n});\n// NOTE: no way to add another callback here!!</code></pre>\n",
+                "<p>Using a Deferred doesn&#39;t simplify the sending code any, but it\nprovides a standard interface for callers and senders alike,\nproviding both with a simple way to service multiple callbacks for\nan operation and freeing both sides from worrying about details\nsuch as &quot;did this get called already?&quot;. With Deferreds, new\ncallbacks can be added at any time.\n\n\n</p>\n<pre><code>// Deferred style:\nfunction renderLotsOfData(data){\n    var d = new Deferred();\n    try{\n        for(var x in data){\n            renderDataitem(data[x]);\n        }\n        d.callback(true);\n    }catch(e){\n        d.errback(new Error(&quot;rendering failed&quot;));\n    }\n    return d;\n}\n\n\n// using Deferred style\nrenderLotsOfData(someDataObj).then(null, function(){\n    promptUserToRecover();\n});\n// NOTE: addErrback and addCallback both return the Deferred\n// again, so we could chain adding callbacks or save the\n// deferred for later should we need to be notified again.</code></pre>\n",
+                "<p>In this example, renderLotsOfData is synchronous and so both\nversions are pretty artificial. Putting the data display on a\ntimeout helps show why Deferreds rock:\n\n\n</p>\n<pre><code>// Deferred style and async func\nfunction renderLotsOfData(data){\n    var d = new Deferred();\n    setTimeout(function(){\n        try{\n            for(var x in data){\n                renderDataitem(data[x]);\n            }\n            d.callback(true);\n        }catch(e){\n            d.errback(new Error(&quot;rendering failed&quot;));\n        }\n    }, 100);\n    return d;\n}\n\n\n// using Deferred style\nrenderLotsOfData(someDataObj).then(null, function(){\n    promptUserToRecover();\n});</code></pre>\n<p>Note that the caller doesn&#39;t have to change his code at all to\nhandle the asynchronous case.</p>\n"
+            ]
+        },
+        {
+            "name": "DeferredList",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/DeferredList",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "list",
+                    "types": [
+                        "Array"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The list of deferreds to be synchronizied with this DeferredList</p>\n"
+                },
+                {
+                    "name": "fireOnOneCallback",
+                    "types": [
+                        "Boolean"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>Will cause the DeferredLists callback to be fired as soon as any\nof the deferreds in its list have been fired instead of waiting until\nthe entire list has finished</p>\n"
+                },
+                {
+                    "name": "fireOnOneErrback",
+                    "types": [
+                        "Boolean"
+                    ],
+                    "usage": "optional"
+                },
+                {
+                    "name": "consumeErrors",
+                    "types": [
+                        "Boolean"
+                    ],
+                    "usage": "optional"
+                },
+                {
+                    "name": "canceller",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>A deferred canceller function, see dojo.Deferred</p>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Deprecated, use dojo/promise/all instead.\nProvides event handling for a group of Deferred objects.</p>\n",
+            "description": "<p>DeferredList takes an array of existing deferreds and returns a new deferred of its own\nthis new deferred will typically have its callback fired when all of the deferreds in\nthe given list have fired their own deferreds.  The parameters <code>fireOnOneCallback</code> and\nfireOnOneErrback, will fire before all the deferreds as appropriate</p>\n"
+        },
+        {
+            "name": "deprecated",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/kernel",
+            "parameters": [
+                {
+                    "name": "behaviour",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The API or behavior being deprecated. Usually in the form\nof &quot;myApp.someFunction()&quot;.</p>\n"
+                },
+                {
+                    "name": "extra",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>Text to append to the message. Often provides advice on a\nnew function or facility to achieve the same goal during\nthe deprecation period.</p>\n"
+                },
+                {
+                    "name": "removal",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>Text to indicate when in the future the behavior will be\nremoved. Usually a version number.</p>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Log a debug message to indicate that a behavior has been\ndeprecated.</p>\n",
+            "examples": [
+                "<pre><code>dojo.deprecated(&quot;myApp.getTemp()&quot;, &quot;use myApp.getLocaleTemp() instead&quot;, &quot;1.0&quot;);</code></pre>\n"
+            ]
+        },
+        {
+            "name": "disconnect",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/connect",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "handle",
+                    "types": [
+                        "Handle"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>the return value of the dojo.connect call that created the connection.</p>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Remove a link created by dojo.connect.</p>\n",
+            "description": "<p>Removes the connection between event and the method referenced by handle.</p>\n"
+        },
+        {
+            "name": "eval",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/kernel",
+            "parameters": [
+                {
+                    "name": "scriptText",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The text to evaluation.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "any"
+            ],
+            "returnDescription": "<p>The result of the evaluation. Often <code>undefined</code></p>\n",
+            "summary": "<p>A legacy method created for use exclusively by internal Dojo methods. Do not use this method\ndirectly unless you understand its possibly-different implications on the platforms your are targeting.</p>\n",
+            "description": "<p>Makes an attempt to evaluate scriptText in the global scope. The function works correctly for browsers\nthat support indirect eval.\n\n</p>\n<p>As usual, IE does not. On IE, the only way to implement global eval is to\nuse execScript. Unfortunately, execScript does not return a value and breaks some current usages of dojo.eval.\nThis implementation uses the technique of executing eval in the scope of a function that is a single scope\nframe below the global scope; thereby coming close to the global scope. Note carefully that\n\n</p>\n<p>dojo.eval(&quot;var pi = 3.14;&quot;);\n\n</p>\n<p>will define global pi in non-IE environments, but define pi only in a temporary local scope for IE. If you want\nto define a global variable using dojo.eval, write something like\n\n</p>\n<p>dojo.eval(&quot;window.pi = 3.14;&quot;)</p>\n"
+        },
+        {
+            "name": "every",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/array",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "arr",
+                    "types": [
+                        "Array",
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>the array to iterate on. If a string, operates on individual characters.</p>\n"
+                },
+                {
+                    "name": "callback",
+                    "types": [
+                        "Function",
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>a function is invoked with three arguments: item, index,\nand array and returns true if the condition is met.</p>\n"
+                },
+                {
+                    "name": "thisObject",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>may be used to scope the call to callback</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "Boolean"
+            ],
+            "summary": "<p>Determines whether or not every item in arr satisfies the\ncondition implemented by callback.</p>\n",
+            "description": "<p>This function corresponds to the JavaScript 1.6 Array.every() method, with one difference: when\nrun over sparse arrays, this implementation passes the &quot;holes&quot; in the sparse array to\nthe callback function with a value of undefined. JavaScript 1.6&#39;s every skips the holes in the sparse array.\nFor more details, see:\n<a href=\"https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/every\">https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/every</a></p>\n",
+            "examples": [
+                "<pre><code>// returns false\narray.every([1, 2, 3, 4], function(item){ return item&gt;1; });</code></pre>\n",
+                "<pre><code>// returns true\narray.every([1, 2, 3, 4], function(item){ return item&gt;0; });</code></pre>\n"
+            ]
+        },
+        {
+            "name": "exit",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/kernel",
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "experimental",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/kernel",
+            "parameters": [
+                {
+                    "name": "moduleName",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The name of a module, or the name of a module file or a specific\nfunction</p>\n"
+                },
+                {
+                    "name": "extra",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>some additional message for the user</p>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Marks code as experimental.</p>\n",
+            "description": "<p>This can be used to mark a function, file, or module as\nexperimental.    Experimental code is not ready to be used, and the\nAPIs are subject to change without notice.  Experimental code may be\ncompleted deleted without going through the normal deprecation\nprocess.</p>\n",
+            "examples": [
+                "<pre><code>dojo.experimental(&quot;dojo.data.Result&quot;);</code></pre>\n",
+                "<pre><code>dojo.experimental(&quot;dojo.weather.toKelvin()&quot;, &quot;PENDING approval from NOAA&quot;);</code></pre>\n"
+            ]
+        },
+        {
+            "name": "fadeIn",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/fx",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "args",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "description": "<p>An object with the following properties:</p><ul><li>node (DOMNode|String): <p>The node referenced in the animation</p>\n</li><li>duration (Integer, optional): <p>Duration of the animation in milliseconds.</p>\n</li><li>easing (Function, optional): <p>An easing function.</p>\n</li></ul>"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Returns an animation that will fade node defined in &#39;args&#39; from\nits current opacity to fully opaque.</p>\n"
+        },
+        {
+            "name": "fadeOut",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/fx",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "args",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "description": "<p>An object with the following properties:</p><ul><li>node (DOMNode|String): <p>The node referenced in the animation</p>\n</li><li>duration (Integer, optional): <p>Duration of the animation in milliseconds.</p>\n</li><li>easing (Function, optional): <p>An easing function.</p>\n</li></ul>"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Returns an animation that will fade node defined in &#39;args&#39;\nfrom its current opacity to fully transparent.</p>\n"
+        },
+        {
+            "name": "fieldToObject",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/dom-form",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "inputNode",
+                    "types": [
+                        "DOMNode",
+                        "String"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "Object",
+                "undefined"
+            ],
+            "summary": "<p>Serialize a form field to a JavaScript object.</p>\n",
+            "description": "<p>Returns the value encoded in a form field as\nas a string or an array of strings. Disabled form elements\nand unchecked radio and checkboxes are skipped. Multi-select\nelements are returned as an array of string values.</p>\n"
+        },
+        {
+            "name": "filter",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/array",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "arr",
+                    "types": [
+                        "Array"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>the array to iterate over.</p>\n"
+                },
+                {
+                    "name": "callback",
+                    "types": [
+                        "Function",
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>a function that is invoked with three arguments (item,\nindex, array). The return of this function is expected to\nbe a boolean which determines whether the passed-in item\nwill be included in the returned array.</p>\n"
+                },
+                {
+                    "name": "thisObject",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>may be used to scope the call to callback</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "Array"
+            ],
+            "summary": "<p>Returns a new Array with those items from arr that match the\ncondition implemented by callback.</p>\n",
+            "description": "<p>This function corresponds to the JavaScript 1.6 Array.filter() method, with one difference: when\nrun over sparse arrays, this implementation passes the &quot;holes&quot; in the sparse array to\nthe callback function with a value of undefined. JavaScript 1.6&#39;s filter skips the holes in the sparse array.\nFor more details, see:\n<a href=\"https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/filter\">https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/filter</a></p>\n",
+            "examples": [
+                "<pre><code>// returns [2, 3, 4]\narray.filter([1, 2, 3, 4], function(item){ return item&gt;1; });</code></pre>\n"
+            ]
+        },
+        {
+            "name": "fixEvent",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/event",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "evt",
+                    "types": [
+                        "Event"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>native event object</p>\n"
+                },
+                {
+                    "name": "sender",
+                    "types": [
+                        "DOMNode"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>node to treat as &quot;currentTarget&quot;</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "Event"
+            ],
+            "returnDescription": "<p>native event object</p>\n",
+            "summary": "<p>normalizes properties on the event object including event\nbubbling methods, keystroke normalization, and x/y positions</p>\n"
+        },
+        {
+            "name": "forEach",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/array",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "arr",
+                    "types": [
+                        "Array",
+                        "String"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "callback",
+                    "types": [
+                        "Function",
+                        "String"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "thisObject",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "optional"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>for every item in arr, callback is invoked. Return values are ignored.\nIf you want to break out of the loop, consider using array.every() or array.some().\nforEach does not allow breaking out of the loop over the items in arr.</p>\n",
+            "description": "<p>This function corresponds to the JavaScript 1.6 Array.forEach() method, with one difference: when\nrun over sparse arrays, this implementation passes the &quot;holes&quot; in the sparse array to\nthe callback function with a value of undefined. JavaScript 1.6&#39;s forEach skips the holes in the sparse array.\nFor more details, see:\n<a href=\"https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/forEach\">https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/forEach</a></p>\n",
+            "examples": [
+                "<pre><code>// log out all members of the array:\narray.forEach(\n      [ &quot;thinger&quot;, &quot;blah&quot;, &quot;howdy&quot;, 10 ],\n      function(item){\n          console.log(item);\n      }\n);</code></pre>\n",
+                "<pre><code>// log out the members and their indexes\narray.forEach(\n      [ &quot;thinger&quot;, &quot;blah&quot;, &quot;howdy&quot;, 10 ],\n      function(item, idx, arr){\n          console.log(item, &quot;at index:&quot;, idx);\n      }\n);</code></pre>\n",
+                "<pre><code>// use a scoped object member as the callback\n\nvar obj = {\n      prefix: &quot;logged via obj.callback:&quot;,\n      callback: function(item){\n          console.log(this.prefix, item);\n      }\n};\n\n// specifying the scope function executes the callback in that scope\narray.forEach(\n      [ &quot;thinger&quot;, &quot;blah&quot;, &quot;howdy&quot;, 10 ],\n      obj.callback,\n      obj\n);\n\n// alternately, we can accomplish the same thing with lang.hitch()\narray.forEach(\n      [ &quot;thinger&quot;, &quot;blah&quot;, &quot;howdy&quot;, 10 ],\n      lang.hitch(obj, &quot;callback&quot;)\n);</code></pre>\n"
+            ]
+        },
+        {
+            "name": "formToJson",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/dom-form",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "formNode",
+                    "types": [
+                        "DOMNode",
+                        "String"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "prettyPrint",
+                    "types": [
+                        "Boolean"
+                    ],
+                    "usage": "optional"
+                }
+            ],
+            "returnTypes": [
+                "String",
+                "undefined"
+            ],
+            "summary": "<p>Create a serialized JSON string from a form node or string\nID identifying the form to serialize</p>\n"
+        },
+        {
+            "name": "formToObject",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/dom-form",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "formNode",
+                    "types": [
+                        "DOMNode",
+                        "String"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "object"
+            ],
+            "summary": "<p>Serialize a form node to a JavaScript object.</p>\n",
+            "description": "<p>Returns the values encoded in an HTML form as\nstring properties in an object which it then returns. Disabled form\nelements, buttons, and other non-value form elements are skipped.\nMulti-select elements are returned as an array of string values.</p>\n",
+            "examples": [
+                "<p>This form:\n\n</p>\n<pre><code>&lt;form id=&quot;test_form&quot;&gt;\n    &lt;input type=&quot;text&quot; name=&quot;blah&quot; value=&quot;blah&quot;&gt;\n    &lt;input type=&quot;text&quot; name=&quot;no_value&quot; value=&quot;blah&quot; disabled&gt;\n    &lt;input type=&quot;button&quot; name=&quot;no_value2&quot; value=&quot;blah&quot;&gt;\n    &lt;select type=&quot;select&quot; multiple name=&quot;multi&quot; size=&quot;5&quot;&gt;\n        &lt;option value=&quot;blah&quot;&gt;blah&lt;/option&gt;\n        &lt;option value=&quot;thud&quot; selected&gt;thud&lt;/option&gt;\n        &lt;option value=&quot;thonk&quot; selected&gt;thonk&lt;/option&gt;\n    &lt;/select&gt;\n&lt;/form&gt;</code></pre>\n<p>yields this object structure as the result of a call to\nformToObject():\n\n\n</p>\n<pre><code>{\n    blah: &quot;blah&quot;,\n    multi: [\n        &quot;thud&quot;,\n        &quot;thonk&quot;\n    ]\n};</code></pre>\n"
+            ]
+        },
+        {
+            "name": "formToQuery",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/dom-form",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "formNode",
+                    "types": [
+                        "DOMNode",
+                        "String"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "String",
+                "undefined"
+            ],
+            "summary": "<p>Returns a URL-encoded string representing the form passed as either a\nnode or string ID identifying the form to serialize</p>\n"
+        },
+        {
+            "name": "fromJson",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/json",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "js",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>a string literal of a JavaScript expression, for instance:\n<code>&#39;{ &quot;foo&quot;: [ &quot;bar&quot;, 1, { &quot;baz&quot;: &quot;thud&quot; } ] }&#39;</code></p>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Parses a JavaScript expression and returns a JavaScript value.</p>\n",
+            "description": "<p>Throws for invalid JavaScript expressions. It does not use a strict JSON parser. It\nalways delegates to eval(). The content passed to this method must therefore come\nfrom a trusted source.\nIt is recommend that you use dojo/json&#39;s parse function for an\nimplementation uses the (faster) native JSON parse when available.</p>\n"
+        },
+        {
+            "name": "getL10nName",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/i18n",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "moduleName",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "bundleName",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "locale",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "string"
+            ]
+        },
+        {
+            "name": "indexOf",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/array",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "arr",
+                    "types": [
+                        "Array"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "value",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "fromIndex",
+                    "types": [
+                        "Integer"
+                    ],
+                    "usage": "optional"
+                },
+                {
+                    "name": "findLast",
+                    "types": [
+                        "Boolean"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>Makes indexOf() work like lastIndexOf().  Used internally; not meant for external usage.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "Number"
+            ],
+            "summary": "<p>locates the first index of the provided value in the\npassed array. If the value is not found, -1 is returned.</p>\n",
+            "description": "<p>This method corresponds to the JavaScript 1.6 Array.indexOf method, with two differences:\n\n</p>\n<ol>\n<li>when run over sparse arrays, the Dojo function invokes the callback for every index\nwhereas JavaScript 1.6&#39;s indexOf skips the holes in the sparse array.</li>\n<li>uses equality (==) rather than strict equality (===)</li>\n</ol>\n<p>For details on this method, see:\n<a href=\"https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/indexOf\">https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/indexOf</a></p>\n"
+        },
+        {
+            "name": "isCopyKey",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/connect",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "e",
+                    "types": [
+                        "Event"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Event object to examine</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Checks an event for the copy key (meta on Mac, and ctrl anywhere else)</p>\n"
+        },
+        {
+            "name": "lastIndexOf",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/array",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "arr",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "value",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "fromIndex",
+                    "types": [
+                        "Integer"
+                    ],
+                    "usage": "optional"
+                }
+            ],
+            "returnTypes": [
+                "Number"
+            ],
+            "summary": "<p>locates the last index of the provided value in the passed\narray. If the value is not found, -1 is returned.</p>\n",
+            "description": "<p>This method corresponds to the JavaScript 1.6 Array.lastIndexOf method, with two differences:\n\n</p>\n<ol>\n<li>when run over sparse arrays, the Dojo function invokes the callback for every index\nwhereas JavaScript 1.6&#39;s lasIndexOf skips the holes in the sparse array.</li>\n<li>uses equality (==) rather than strict equality (===)</li>\n</ol>\n<p>For details on this method, see:\n<a href=\"https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/lastIndexOf\">https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/lastIndexOf</a></p>\n"
+        },
+        {
+            "name": "map",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/array",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "arr",
+                    "types": [
+                        "Array",
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>the array to iterate on. If a string, operates on\nindividual characters.</p>\n"
+                },
+                {
+                    "name": "callback",
+                    "types": [
+                        "Function",
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>a function is invoked with three arguments, (item, index,\narray),  and returns a value</p>\n"
+                },
+                {
+                    "name": "thisObject",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>may be used to scope the call to callback</p>\n"
+                },
+                {
+                    "name": "Ctr",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "Array",
+                "instance"
+            ],
+            "summary": "<p>applies callback to each element of arr and returns\nan Array with the results</p>\n",
+            "description": "<p>This function corresponds to the JavaScript 1.6 Array.map() method, with one difference: when\nrun over sparse arrays, this implementation passes the &quot;holes&quot; in the sparse array to\nthe callback function with a value of undefined. JavaScript 1.6&#39;s map skips the holes in the sparse array.\nFor more details, see:\n<a href=\"https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/map\">https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/map</a></p>\n",
+            "examples": [
+                "<pre><code>// returns [2, 3, 4, 5]\narray.map([1, 2, 3, 4], function(item){ return item+1 });</code></pre>\n"
+            ]
+        },
+        {
+            "name": "moduleUrl",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/kernel",
+            "parameters": [
+                {
+                    "name": "module",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>dojo/text</p>\n"
+                },
+                {
+                    "name": "url",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "optional"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Returns a URL relative to a module.</p>\n",
+            "examples": [
+                "<pre><code>var pngPath = dojo.moduleUrl(&quot;acme&quot;,&quot;images/small.png&quot;);\nconsole.dir(pngPath); // list the object properties\n// create an image and set it&#39;s source to pngPath&#39;s value:\nvar img = document.createElement(&quot;img&quot;);\nimg.src = pngPath;\n// add our image to the document\ndojo.body().appendChild(img);</code></pre>\n",
+                "<p>you may de-reference as far as you like down the package\nhierarchy.  This is sometimes handy to avoid lenghty relative\nurls or for building portable sub-packages. In this example,\nthe <code>acme.widget</code> and <code>acme.util</code> directories may be located\nunder different roots (see <code>dojo.registerModulePath</code>) but the\nthe modules which reference them can be unaware of their\nrelative locations on the filesystem:\n\n</p>\n<pre><code>// somewhere in a configuration block\ndojo.registerModulePath(&quot;acme.widget&quot;, &quot;../../acme/widget&quot;);\ndojo.registerModulePath(&quot;acme.util&quot;, &quot;../../util&quot;);\n\n// ...\n\n// code in a module using acme resources\nvar tmpltPath = dojo.moduleUrl(&quot;acme.widget&quot;,&quot;templates/template.html&quot;);\nvar dataPath = dojo.moduleUrl(&quot;acme.util&quot;,&quot;resources/data.json&quot;);</code></pre>\n"
+            ]
+        },
+        {
+            "name": "NodeList",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/query",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "array",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "Array"
+            ],
+            "summary": "<p>Array-like object which adds syntactic\nsugar for chaining, common iteration operations, animation, and\nnode manipulation. NodeLists are most often returned as the\nresult of dojo.query() calls.</p>\n",
+            "description": "<p>NodeList instances provide many utilities that reflect\ncore Dojo APIs for Array iteration and manipulation, DOM\nmanipulation, and event handling. Instead of needing to dig up\nfunctions in the dojo.* namespace, NodeLists generally make the\nfull power of Dojo available for DOM manipulation tasks in a\nsimple, chainable way.</p>\n",
+            "examples": [
+                "<p>create a node list from a node\n\n</p>\n<pre><code>new query.NodeList(dojo.byId(&quot;foo&quot;));</code></pre>\n",
+                "<p>get a NodeList from a CSS query and iterate on it\n\n</p>\n<pre><code>var l = dojo.query(&quot;.thinger&quot;);\nl.forEach(function(node, index, nodeList){\n    console.log(index, node.innerHTML);\n});</code></pre>\n",
+                "<p>use native and Dojo-provided array methods to manipulate a\nNodeList without needing to use dojo.* functions explicitly:\n\n</p>\n<pre><code>var l = dojo.query(&quot;.thinger&quot;);\n// since NodeLists are real arrays, they have a length\n// property that is both readable and writable and\n// push/pop/shift/unshift methods\nconsole.log(l.length);\nl.push(dojo.create(&quot;span&quot;));\n\n// dojo&#39;s normalized array methods work too:\nconsole.log( l.indexOf(dojo.byId(&quot;foo&quot;)) );\n// ...including the special &quot;function as string&quot; shorthand\nconsole.log( l.every(&quot;item.nodeType == 1&quot;) );\n\n// NodeLists can be [..] indexed, or you can use the at()\n// function to get specific items wrapped in a new NodeList:\nvar node = l[3]; // the 4th element\nvar newList = l.at(1, 3); // the 2nd and 4th elements</code></pre>\n",
+                "<p>the style functions you expect are all there too:\n\n</p>\n<pre><code>// style() as a getter...\nvar borders = dojo.query(&quot;.thinger&quot;).style(&quot;border&quot;);\n// ...and as a setter:\ndojo.query(&quot;.thinger&quot;).style(&quot;border&quot;, &quot;1px solid black&quot;);\n// class manipulation\ndojo.query(&quot;li:nth-child(even)&quot;).addClass(&quot;even&quot;);\n// even getting the coordinates of all the items\nvar coords = dojo.query(&quot;.thinger&quot;).coords();</code></pre>\n",
+                "<p>DOM manipulation functions from the dojo.* namespace area also available:\n\n</p>\n<pre><code>// remove all of the elements in the list from their\n// parents (akin to &quot;deleting&quot; them from the document)\ndojo.query(&quot;.thinger&quot;).orphan();\n// place all elements in the list at the front of #foo\ndojo.query(&quot;.thinger&quot;).place(&quot;foo&quot;, &quot;first&quot;);</code></pre>\n",
+                "<p>Event handling couldn&#39;t be easier. <code>dojo.connect</code> is mapped in,\nand shortcut handlers are provided for most DOM events:\n\n</p>\n<pre><code>// like dojo.connect(), but with implicit scope\ndojo.query(&quot;li&quot;).connect(&quot;onclick&quot;, console, &quot;log&quot;);\n\n// many common event handlers are already available directly:\ndojo.query(&quot;li&quot;).onclick(console, &quot;log&quot;);\nvar toggleHovered = dojo.hitch(dojo, &quot;toggleClass&quot;, &quot;hovered&quot;);\ndojo.query(&quot;p&quot;)\n    .onmouseenter(toggleHovered)\n    .onmouseleave(toggleHovered);</code></pre>\n",
+                "<p>chainability is a key advantage of NodeLists:\n\n</p>\n<pre><code>dojo.query(&quot;.thinger&quot;)\n    .onclick(function(e){ /* ... */ })\n    .at(1, 3, 8) // get a subset\n        .style(&quot;padding&quot;, &quot;5px&quot;)\n        .forEach(console.log);</code></pre>\n"
+            ]
+        },
+        {
+            "name": "objectToQuery",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/io-query",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "map",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>takes a name/value mapping object and returns a string representing\na URL-encoded version of that object.</p>\n",
+            "examples": [
+                "<p>this object:\n\n\n</p>\n<pre><code>{\n    blah: &quot;blah&quot;,\n    multi: [\n        &quot;thud&quot;,\n        &quot;thonk&quot;\n    ]\n};</code></pre>\n<p>yields the following query string:\n\n\n</p>\n<pre><code>&quot;blah=blah&amp;multi=thud&amp;multi=thonk&quot;</code></pre>\n"
+            ]
+        },
+        {
+            "name": "publish",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/connect",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "topic",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The name of the topic to publish.</p>\n"
+                },
+                {
+                    "name": "args",
+                    "types": [
+                        "Array"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>An array of arguments. The arguments will be applied\nto each topic subscriber (as first class parameters, via apply).</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Invoke all listener method subscribed to topic.</p>\n",
+            "examples": [
+                "<pre><code>dojo.subscribe(&quot;alerts&quot;, null, function(caption, message){ alert(caption + &quot;\\n&quot; + message); };\ndojo.publish(&quot;alerts&quot;, [ &quot;read this&quot;, &quot;hello world&quot; ]);</code></pre>\n"
+            ]
+        },
+        {
+            "name": "queryToObject",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/io-query",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "str",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "object"
+            ],
+            "summary": "<p>Create an object representing a de-serialized query section of a\nURL. Query keys with multiple values are returned in an array.\n</p>\n",
+            "examples": [
+                "<p>This string:\n\n\n</p>\n<pre><code>&quot;foo=bar&amp;foo=baz&amp;thinger=%20spaces%20=blah&amp;zonk=blarg&amp;&quot;</code></pre>\n<p>results in this object structure:\n\n\n</p>\n<pre><code>{\n    foo: [ &quot;bar&quot;, &quot;baz&quot; ],\n    thinger: &quot; spaces =blah&quot;,\n    zonk: &quot;blarg&quot;\n}</code></pre>\n<p>Note that spaces and other urlencoded entities are correctly\nhandled.</p>\n"
+            ]
+        },
+        {
+            "name": "rawXhrPost",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "args",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "description": "<p>An object with the following properties:</p><ul><li>handleAs (String, optional): <p>Acceptable values are: text (default), json, json-comment-optional,\njson-comment-filtered, javascript, xml. See <code>dojo/_base/xhr.contentHandlers</code></p>\n</li><li>sync (Boolean, optional): <p>false is default. Indicates whether the request should\nbe a synchronous (blocking) request.</p>\n</li><li>headers (Object, optional): <p>Additional HTTP headers to send in the request.</p>\n</li><li>failOk (Boolean, optional): <p>false is default. Indicates whether a request should be\nallowed to fail (and therefore no console error message in\nthe event of a failure)</p>\n</li><li>contentType (String|Boolean): <p>&quot;application/x-www-form-urlencoded&quot; is default. Set to false to\nprevent a Content-Type header from being sent, or to a string\nto send a different Content-Type.</p>\n</li><li>load: <p>This function will be\ncalled on a successful HTTP response code.</p>\n</li><li>error: <p>This function will\nbe called when the request fails due to a network or server error, the url\nis invalid, etc. It will also be called if the load or handle callback throws an\nexception, unless djConfig.debugAtAllCosts is true.  This allows deployed applications\nto continue to run even when a logic error happens in the callback, while making\nit easier to troubleshoot while in debug mode.</p>\n</li><li>handle: <p>This function will\nbe called at the end of every request, whether or not an error occurs.</p>\n</li><li>url (String): <p>URL to server endpoint.</p>\n</li><li>content (Object, optional): <p>Contains properties with string values. These\nproperties will be serialized as name1=value2 and\npassed in the request.</p>\n</li><li>timeout (Integer, optional): <p>Milliseconds to wait for the response. If this time\npasses, the then error callbacks are called.</p>\n</li><li>form (DOMNode, optional): <p>DOM node for a form. Used to extract the form values\nand send to the server.</p>\n</li><li>preventCache (Boolean, optional): <p>Default is false. If true, then a\n&quot;dojo.preventCache&quot; parameter is sent in the request\nwith a value that changes with each request\n(timestamp). Useful only with GET-type requests.</p>\n</li><li>rawBody (String, optional): <p>Sets the raw body for an HTTP request. If this is used, then the content\nproperty is ignored. This is mostly useful for HTTP methods that have\na body to their requests, like PUT or POST. This property can be used instead\nof postData and putData for dojo/_base/xhr.rawXhrPost and dojo/_base/xhr.rawXhrPut respectively.</p>\n</li><li>ioPublish (Boolean, optional): <p>Set this explicitly to false to prevent publishing of topics related to\nIO operations. Otherwise, if djConfig.ioPublish is set to true, topics\nwill be published via dojo/topic.publish() for different phases of an IO operation.\nSee dojo/main.__IoPublish for a list of topics that are published.</p>\n</li></ul>"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Sends an HTTP POST request to the server. In addition to the properties\nlisted for the dojo.__XhrArgs type, the following property is allowed:</p>\n"
+        },
+        {
+            "name": "rawXhrPut",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "args",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "description": "<p>An object with the following properties:</p><ul><li>handleAs (String, optional): <p>Acceptable values are: text (default), json, json-comment-optional,\njson-comment-filtered, javascript, xml. See <code>dojo/_base/xhr.contentHandlers</code></p>\n</li><li>sync (Boolean, optional): <p>false is default. Indicates whether the request should\nbe a synchronous (blocking) request.</p>\n</li><li>headers (Object, optional): <p>Additional HTTP headers to send in the request.</p>\n</li><li>failOk (Boolean, optional): <p>false is default. Indicates whether a request should be\nallowed to fail (and therefore no console error message in\nthe event of a failure)</p>\n</li><li>contentType (String|Boolean): <p>&quot;application/x-www-form-urlencoded&quot; is default. Set to false to\nprevent a Content-Type header from being sent, or to a string\nto send a different Content-Type.</p>\n</li><li>load: <p>This function will be\ncalled on a successful HTTP response code.</p>\n</li><li>error: <p>This function will\nbe called when the request fails due to a network or server error, the url\nis invalid, etc. It will also be called if the load or handle callback throws an\nexception, unless djConfig.debugAtAllCosts is true.  This allows deployed applications\nto continue to run even when a logic error happens in the callback, while making\nit easier to troubleshoot while in debug mode.</p>\n</li><li>handle: <p>This function will\nbe called at the end of every request, whether or not an error occurs.</p>\n</li><li>url (String): <p>URL to server endpoint.</p>\n</li><li>content (Object, optional): <p>Contains properties with string values. These\nproperties will be serialized as name1=value2 and\npassed in the request.</p>\n</li><li>timeout (Integer, optional): <p>Milliseconds to wait for the response. If this time\npasses, the then error callbacks are called.</p>\n</li><li>form (DOMNode, optional): <p>DOM node for a form. Used to extract the form values\nand send to the server.</p>\n</li><li>preventCache (Boolean, optional): <p>Default is false. If true, then a\n&quot;dojo.preventCache&quot; parameter is sent in the request\nwith a value that changes with each request\n(timestamp). Useful only with GET-type requests.</p>\n</li><li>rawBody (String, optional): <p>Sets the raw body for an HTTP request. If this is used, then the content\nproperty is ignored. This is mostly useful for HTTP methods that have\na body to their requests, like PUT or POST. This property can be used instead\nof postData and putData for dojo/_base/xhr.rawXhrPost and dojo/_base/xhr.rawXhrPut respectively.</p>\n</li><li>ioPublish (Boolean, optional): <p>Set this explicitly to false to prevent publishing of topics related to\nIO operations. Otherwise, if djConfig.ioPublish is set to true, topics\nwill be published via dojo/topic.publish() for different phases of an IO operation.\nSee dojo/main.__IoPublish for a list of topics that are published.</p>\n</li></ul>"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Sends an HTTP PUT request to the server. In addition to the properties\nlisted for the dojo.__XhrArgs type, the following property is allowed:</p>\n"
+        },
+        {
+            "name": "ready",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/ready",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "priority",
+                    "types": [
+                        "Integer"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>The order in which to exec this callback relative to other callbacks, defaults to 1000</p>\n"
+                },
+                {
+                    "name": "context",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The context in which to run execute callback, or a callback if not using context</p>\n"
+                },
+                {
+                    "name": "callback",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>The function to execute.\n</p>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Add a function to execute on DOM content loaded and all requested modules have arrived and been evaluated.\nIn most cases, the <code>domReady</code> plug-in should suffice and this method should not be needed.\n\n</p>\n<p>When called in a non-browser environment, just checks that all requested modules have arrived and been\nevaluated.</p>\n",
+            "examples": [
+                "<p>Simple DOM and Modules ready syntax\n\n</p>\n<pre><code>require([&quot;dojo/ready&quot;], function(ready){\n    ready(function(){ alert(&quot;Dom ready!&quot;); });\n});</code></pre>\n",
+                "<p>Using a priority\n\n</p>\n<pre><code>require([&quot;dojo/ready&quot;], function(ready){\n    ready(2, function(){ alert(&quot;low priority ready!&quot;); })\n});</code></pre>\n",
+                "<p>Using context\n\n</p>\n<pre><code>require([&quot;dojo/ready&quot;], function(ready){\n    ready(foo, function(){\n        // in here, this == foo\n    });\n});</code></pre>\n",
+                "<p>Using dojo/hitch style args:\n\n</p>\n<pre><code>require([&quot;dojo/ready&quot;], function(ready){\n    var foo = { dojoReady: function(){ console.warn(this, &quot;dojo dom and modules ready.&quot;); } };\n    ready(foo, &quot;dojoReady&quot;);\n});</code></pre>\n"
+            ]
+        },
+        {
+            "name": "safeMixin",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/declare",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "target",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Target object to accept new properties.</p>\n"
+                },
+                {
+                    "name": "source",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Source object for new properties.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "Object"
+            ],
+            "returnDescription": "<p>Target object to accept new properties.</p>\n",
+            "summary": "<p>Mix in properties skipping a constructor and decorating functions\nlike it is done by declare().</p>\n",
+            "description": "<p>This function is used to mix in properties like lang.mixin does,\nbut it skips a constructor property and decorates functions like\ndeclare() does.\n\n</p>\n<p>It is meant to be used with classes and objects produced with\ndeclare. Functions mixed in with dojo.safeMixin can use\nthis.inherited() like normal methods.\n\n</p>\n<p>This function is used to implement extend() method of a constructor\nproduced with declare().\n</p>\n",
+            "examples": [
+                "<pre><code>var A = declare(null, {\n    m1: function(){\n        console.log(&quot;A.m1&quot;);\n    },\n    m2: function(){\n        console.log(&quot;A.m2&quot;);\n    }\n});\nvar B = declare(A, {\n    m1: function(){\n        this.inherited(arguments);\n        console.log(&quot;B.m1&quot;);\n    }\n});\nB.extend({\n    m2: function(){\n        this.inherited(arguments);\n        console.log(&quot;B.m2&quot;);\n    }\n});\nvar x = new B();\ndojo.safeMixin(x, {\n    m1: function(){\n        this.inherited(arguments);\n        console.log(&quot;X.m1&quot;);\n    },\n    m2: function(){\n        this.inherited(arguments);\n        console.log(&quot;X.m2&quot;);\n    }\n});\nx.m2();\n// prints:\n// A.m1\n// B.m1\n// X.m1</code></pre>\n"
+            ]
+        },
+        {
+            "name": "setContext",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/window",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "globalObject",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "globalDocument",
+                    "types": [
+                        "DocumentElement"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>changes the behavior of many core Dojo functions that deal with\nnamespace and DOM lookup, changing them to work in a new global\ncontext (e.g., an iframe). The varibles dojo.global and dojo.doc\nare modified as a result of calling this function and the result of\n<code>dojo.body()</code> likewise differs.</p>\n"
+        },
+        {
+            "name": "some",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/array",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "arr",
+                    "types": [
+                        "Array",
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>the array to iterate over. If a string, operates on individual characters.</p>\n"
+                },
+                {
+                    "name": "callback",
+                    "types": [
+                        "Function",
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>a function is invoked with three arguments: item, index,\nand array and returns true if the condition is met.</p>\n"
+                },
+                {
+                    "name": "thisObject",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>may be used to scope the call to callback</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "Boolean"
+            ],
+            "summary": "<p>Determines whether or not any item in arr satisfies the\ncondition implemented by callback.</p>\n",
+            "description": "<p>This function corresponds to the JavaScript 1.6 Array.some() method, with one difference: when\nrun over sparse arrays, this implementation passes the &quot;holes&quot; in the sparse array to\nthe callback function with a value of undefined. JavaScript 1.6&#39;s some skips the holes in the sparse array.\nFor more details, see:\n<a href=\"https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/some\">https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/some</a></p>\n",
+            "examples": [
+                "<pre><code>// is true\narray.some([1, 2, 3, 4], function(item){ return item&gt;1; });</code></pre>\n",
+                "<pre><code>// is false\narray.some([1, 2, 3, 4], function(item){ return item&lt;1; });</code></pre>\n"
+            ]
+        },
+        {
+            "name": "Stateful",
+            "scope": "normal",
+            "types": [
+                "constructor"
+            ],
+            "from": "dojo/Stateful",
+            "extensionModule": true,
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "stopEvent",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/event",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "evt",
+                    "types": [
+                        "Event"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The event object. If omitted, window.event is used on IE.</p>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>prevents propagation and clobbers the default action of the\npassed event</p>\n"
+        },
+        {
+            "name": "subscribe",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/connect",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "topic",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The topic to which to subscribe.</p>\n"
+                },
+                {
+                    "name": "context",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>Scope in which method will be invoked, or null for default scope.</p>\n"
+                },
+                {
+                    "name": "method",
+                    "types": [
+                        "String",
+                        "Function"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The name of a function in context, or a function reference. This is the function that\nis invoked when topic is published.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Attach a listener to a named topic. The listener function is invoked whenever the\nnamed topic is published (see: dojo.publish).\nReturns a handle which is needed to unsubscribe this listener.</p>\n",
+            "examples": [
+                "<pre><code>dojo.subscribe(&quot;alerts&quot;, null, function(caption, message){ alert(caption + &quot;\\n&quot; + message); });\ndojo.publish(&quot;alerts&quot;, [ &quot;read this&quot;, &quot;hello world&quot; ]);</code></pre>\n"
+            ]
+        },
+        {
+            "name": "toJson",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/json",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "it",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>an object to be serialized. Objects may define their own\nserialization via a special &quot;<strong>json</strong>&quot; or &quot;json&quot; function\nproperty. If a specialized serializer has been defined, it will\nbe used as a fallback.\nNote that in 1.6, toJson would serialize undefined, but this no longer supported\nsince it is not supported by native JSON serializer.</p>\n"
+                },
+                {
+                    "name": "prettyPrint",
+                    "types": [
+                        "Boolean"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>if true, we indent objects and arrays to make the output prettier.\nThe variable <code>dojo.toJsonIndentStr</code> is used as the indent string --\nto use something other than the default (tab), change that variable\nbefore calling dojo.toJson().\nNote that if native JSON support is available, it will be used for serialization,\nand native implementations vary on the exact spacing used in pretty printing.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "any"
+            ],
+            "returnDescription": "<p>A JSON string serialization of the passed-in object.</p>\n",
+            "summary": "<p>Returns a <a href=\"http://json.org\">JSON</a> serialization of an object.</p>\n",
+            "description": "<p>Returns a <a href=\"http://json.org\">JSON</a> serialization of an object.\nNote that this doesn&#39;t check for infinite recursion, so don&#39;t do that!\nIt is recommend that you use dojo/json&#39;s stringify function for an lighter\nand faster implementation that matches the native JSON API and uses the\nnative JSON serializer when available.</p>\n",
+            "examples": [
+                "<p>simple serialization of a trivial object\n\n</p>\n<pre><code>var jsonStr = dojo.toJson({ howdy: &quot;stranger!&quot;, isStrange: true });\ndoh.is(&#39;{&quot;howdy&quot;:&quot;stranger!&quot;,&quot;isStrange&quot;:true}&#39;, jsonStr);</code></pre>\n",
+                "<p>a custom serializer for an objects of a particular class:\n\n</p>\n<pre><code>dojo.declare(&quot;Furby&quot;, null, {\n    furbies: &quot;are strange&quot;,\n    furbyCount: 10,\n    __json__: function(){\n    },\n});</code></pre>\n"
+            ]
+        },
+        {
+            "name": "unsubscribe",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/connect",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "handle",
+                    "types": [
+                        "Handle"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The handle returned from a call to subscribe.</p>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Remove a topic listener.</p>\n",
+            "examples": [
+                "<pre><code>var alerter = dojo.subscribe(&quot;alerts&quot;, null, function(caption, message){ alert(caption + &quot;\\n&quot; + message); };\n...\ndojo.unsubscribe(alerter);</code></pre>\n"
+            ]
+        },
+        {
+            "name": "when",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/when",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "valueOrPromise",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Either a regular value or an object with a <code>then()</code> method that\nfollows the Promises/A specification.</p>\n"
+                },
+                {
+                    "name": "callback",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>Callback to be invoked when the promise is resolved, or a non-promise\nis received.</p>\n"
+                },
+                {
+                    "name": "errback",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>Callback to be invoked when the promise is rejected.</p>\n"
+                },
+                {
+                    "name": "progback",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>Callback to be invoked when the promise emits a progress update.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "dojo/promise/Promise",
+                "undefined"
+            ],
+            "returnDescription": "<p>Promise, or if a callback is provided, the result of the callback.</p>\n",
+            "summary": "<p>Transparently applies callbacks to values and/or promises.</p>\n",
+            "description": "<p>Accepts promises but also transparently handles non-promises. If no\ncallbacks are provided returns a promise, regardless of the initial\nvalue. Foreign promises are converted.\n\n</p>\n<p>If callbacks are provided and the initial value is not a promise,\nthe callback is executed immediately with no error handling. Returns\na promise if the initial value is a promise, or the result of the\ncallback otherwise.</p>\n"
+        },
+        {
+            "name": "withDoc",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/window",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "documentObject",
+                    "types": [
+                        "DocumentElement"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "callback",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "thisObject",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "optional"
+                },
+                {
+                    "name": "cbArguments",
+                    "types": [
+                        "Array"
+                    ],
+                    "usage": "optional"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Invoke callback with documentObject as dojo/_base/window::doc.</p>\n",
+            "description": "<p>Invoke callback with documentObject as dojo/_base/window::doc. If provided,\ncallback will be executed in the context of object thisObject\nWhen callback() returns or throws an error, the dojo/_base/window::doc will\nbe restored to its previous state.</p>\n"
+        },
+        {
+            "name": "withGlobal",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/window",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "globalObject",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "callback",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "thisObject",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "optional"
+                },
+                {
+                    "name": "cbArguments",
+                    "types": [
+                        "Array"
+                    ],
+                    "usage": "optional"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Invoke callback with globalObject as dojo.global and\nglobalObject.document as dojo.doc.</p>\n",
+            "description": "<p>Invoke callback with globalObject as dojo.global and\nglobalObject.document as dojo.doc. If provided, globalObject\nwill be executed in the context of object thisObject\nWhen callback() returns or throws an error, the dojo.global\nand dojo.doc will be restored to its previous state.</p>\n"
+        },
+        {
+            "name": "xhr",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "method",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>HTTP method to be used, such as GET, POST, PUT, DELETE. Should be uppercase.</p>\n"
+                },
+                {
+                    "name": "args",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "description": "<p>An object with the following properties:</p><ul><li>handleAs (String, optional): <p>Acceptable values are: text (default), json, json-comment-optional,\njson-comment-filtered, javascript, xml. See <code>dojo/_base/xhr.contentHandlers</code></p>\n</li><li>sync (Boolean, optional): <p>false is default. Indicates whether the request should\nbe a synchronous (blocking) request.</p>\n</li><li>headers (Object, optional): <p>Additional HTTP headers to send in the request.</p>\n</li><li>failOk (Boolean, optional): <p>false is default. Indicates whether a request should be\nallowed to fail (and therefore no console error message in\nthe event of a failure)</p>\n</li><li>contentType (String|Boolean): <p>&quot;application/x-www-form-urlencoded&quot; is default. Set to false to\nprevent a Content-Type header from being sent, or to a string\nto send a different Content-Type.</p>\n</li><li>load: <p>This function will be\ncalled on a successful HTTP response code.</p>\n</li><li>error: <p>This function will\nbe called when the request fails due to a network or server error, the url\nis invalid, etc. It will also be called if the load or handle callback throws an\nexception, unless djConfig.debugAtAllCosts is true.  This allows deployed applications\nto continue to run even when a logic error happens in the callback, while making\nit easier to troubleshoot while in debug mode.</p>\n</li><li>handle: <p>This function will\nbe called at the end of every request, whether or not an error occurs.</p>\n</li><li>url (String): <p>URL to server endpoint.</p>\n</li><li>content (Object, optional): <p>Contains properties with string values. These\nproperties will be serialized as name1=value2 and\npassed in the request.</p>\n</li><li>timeout (Integer, optional): <p>Milliseconds to wait for the response. If this time\npasses, the then error callbacks are called.</p>\n</li><li>form (DOMNode, optional): <p>DOM node for a form. Used to extract the form values\nand send to the server.</p>\n</li><li>preventCache (Boolean, optional): <p>Default is false. If true, then a\n&quot;dojo.preventCache&quot; parameter is sent in the request\nwith a value that changes with each request\n(timestamp). Useful only with GET-type requests.</p>\n</li><li>rawBody (String, optional): <p>Sets the raw body for an HTTP request. If this is used, then the content\nproperty is ignored. This is mostly useful for HTTP methods that have\na body to their requests, like PUT or POST. This property can be used instead\nof postData and putData for dojo/_base/xhr.rawXhrPost and dojo/_base/xhr.rawXhrPut respectively.</p>\n</li><li>ioPublish (Boolean, optional): <p>Set this explicitly to false to prevent publishing of topics related to\nIO operations. Otherwise, if djConfig.ioPublish is set to true, topics\nwill be published via dojo/topic.publish() for different phases of an IO operation.\nSee dojo/main.__IoPublish for a list of topics that are published.</p>\n</li></ul>"
+                },
+                {
+                    "name": "hasBody",
+                    "types": [
+                        "Boolean"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>If the request has an HTTP body, then pass true for hasBody.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Deprecated.   Use dojo/request instead.</p>\n",
+            "description": "<p>Sends an HTTP request with the given method.\nSee also dojo.xhrGet(), xhrPost(), xhrPut() and dojo.xhrDelete() for shortcuts\nfor those HTTP methods. There are also methods for &quot;raw&quot; PUT and POST methods\nvia dojo.rawXhrPut() and dojo.rawXhrPost() respectively.</p>\n"
+        },
+        {
+            "name": "xhrDelete",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "args",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "description": "<p>An object with the following properties:</p><ul><li>handleAs (String, optional): <p>Acceptable values are: text (default), json, json-comment-optional,\njson-comment-filtered, javascript, xml. See <code>dojo/_base/xhr.contentHandlers</code></p>\n</li><li>sync (Boolean, optional): <p>false is default. Indicates whether the request should\nbe a synchronous (blocking) request.</p>\n</li><li>headers (Object, optional): <p>Additional HTTP headers to send in the request.</p>\n</li><li>failOk (Boolean, optional): <p>false is default. Indicates whether a request should be\nallowed to fail (and therefore no console error message in\nthe event of a failure)</p>\n</li><li>contentType (String|Boolean): <p>&quot;application/x-www-form-urlencoded&quot; is default. Set to false to\nprevent a Content-Type header from being sent, or to a string\nto send a different Content-Type.</p>\n</li><li>load: <p>This function will be\ncalled on a successful HTTP response code.</p>\n</li><li>error: <p>This function will\nbe called when the request fails due to a network or server error, the url\nis invalid, etc. It will also be called if the load or handle callback throws an\nexception, unless djConfig.debugAtAllCosts is true.  This allows deployed applications\nto continue to run even when a logic error happens in the callback, while making\nit easier to troubleshoot while in debug mode.</p>\n</li><li>handle: <p>This function will\nbe called at the end of every request, whether or not an error occurs.</p>\n</li><li>url (String): <p>URL to server endpoint.</p>\n</li><li>content (Object, optional): <p>Contains properties with string values. These\nproperties will be serialized as name1=value2 and\npassed in the request.</p>\n</li><li>timeout (Integer, optional): <p>Milliseconds to wait for the response. If this time\npasses, the then error callbacks are called.</p>\n</li><li>form (DOMNode, optional): <p>DOM node for a form. Used to extract the form values\nand send to the server.</p>\n</li><li>preventCache (Boolean, optional): <p>Default is false. If true, then a\n&quot;dojo.preventCache&quot; parameter is sent in the request\nwith a value that changes with each request\n(timestamp). Useful only with GET-type requests.</p>\n</li><li>rawBody (String, optional): <p>Sets the raw body for an HTTP request. If this is used, then the content\nproperty is ignored. This is mostly useful for HTTP methods that have\na body to their requests, like PUT or POST. This property can be used instead\nof postData and putData for dojo/_base/xhr.rawXhrPost and dojo/_base/xhr.rawXhrPut respectively.</p>\n</li><li>ioPublish (Boolean, optional): <p>Set this explicitly to false to prevent publishing of topics related to\nIO operations. Otherwise, if djConfig.ioPublish is set to true, topics\nwill be published via dojo/topic.publish() for different phases of an IO operation.\nSee dojo/main.__IoPublish for a list of topics that are published.</p>\n</li></ul>"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Sends an HTTP DELETE request to the server.</p>\n"
+        },
+        {
+            "name": "xhrGet",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "args",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "description": "<p>An object with the following properties:</p><ul><li>handleAs (String, optional): <p>Acceptable values are: text (default), json, json-comment-optional,\njson-comment-filtered, javascript, xml. See <code>dojo/_base/xhr.contentHandlers</code></p>\n</li><li>sync (Boolean, optional): <p>false is default. Indicates whether the request should\nbe a synchronous (blocking) request.</p>\n</li><li>headers (Object, optional): <p>Additional HTTP headers to send in the request.</p>\n</li><li>failOk (Boolean, optional): <p>false is default. Indicates whether a request should be\nallowed to fail (and therefore no console error message in\nthe event of a failure)</p>\n</li><li>contentType (String|Boolean): <p>&quot;application/x-www-form-urlencoded&quot; is default. Set to false to\nprevent a Content-Type header from being sent, or to a string\nto send a different Content-Type.</p>\n</li><li>load: <p>This function will be\ncalled on a successful HTTP response code.</p>\n</li><li>error: <p>This function will\nbe called when the request fails due to a network or server error, the url\nis invalid, etc. It will also be called if the load or handle callback throws an\nexception, unless djConfig.debugAtAllCosts is true.  This allows deployed applications\nto continue to run even when a logic error happens in the callback, while making\nit easier to troubleshoot while in debug mode.</p>\n</li><li>handle: <p>This function will\nbe called at the end of every request, whether or not an error occurs.</p>\n</li><li>url (String): <p>URL to server endpoint.</p>\n</li><li>content (Object, optional): <p>Contains properties with string values. These\nproperties will be serialized as name1=value2 and\npassed in the request.</p>\n</li><li>timeout (Integer, optional): <p>Milliseconds to wait for the response. If this time\npasses, the then error callbacks are called.</p>\n</li><li>form (DOMNode, optional): <p>DOM node for a form. Used to extract the form values\nand send to the server.</p>\n</li><li>preventCache (Boolean, optional): <p>Default is false. If true, then a\n&quot;dojo.preventCache&quot; parameter is sent in the request\nwith a value that changes with each request\n(timestamp). Useful only with GET-type requests.</p>\n</li><li>rawBody (String, optional): <p>Sets the raw body for an HTTP request. If this is used, then the content\nproperty is ignored. This is mostly useful for HTTP methods that have\na body to their requests, like PUT or POST. This property can be used instead\nof postData and putData for dojo/_base/xhr.rawXhrPost and dojo/_base/xhr.rawXhrPut respectively.</p>\n</li><li>ioPublish (Boolean, optional): <p>Set this explicitly to false to prevent publishing of topics related to\nIO operations. Otherwise, if djConfig.ioPublish is set to true, topics\nwill be published via dojo/topic.publish() for different phases of an IO operation.\nSee dojo/main.__IoPublish for a list of topics that are published.</p>\n</li></ul>"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Sends an HTTP GET request to the server.</p>\n"
+        },
+        {
+            "name": "xhrPost",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "args",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "description": "<p>An object with the following properties:</p><ul><li>handleAs (String, optional): <p>Acceptable values are: text (default), json, json-comment-optional,\njson-comment-filtered, javascript, xml. See <code>dojo/_base/xhr.contentHandlers</code></p>\n</li><li>sync (Boolean, optional): <p>false is default. Indicates whether the request should\nbe a synchronous (blocking) request.</p>\n</li><li>headers (Object, optional): <p>Additional HTTP headers to send in the request.</p>\n</li><li>failOk (Boolean, optional): <p>false is default. Indicates whether a request should be\nallowed to fail (and therefore no console error message in\nthe event of a failure)</p>\n</li><li>contentType (String|Boolean): <p>&quot;application/x-www-form-urlencoded&quot; is default. Set to false to\nprevent a Content-Type header from being sent, or to a string\nto send a different Content-Type.</p>\n</li><li>load: <p>This function will be\ncalled on a successful HTTP response code.</p>\n</li><li>error: <p>This function will\nbe called when the request fails due to a network or server error, the url\nis invalid, etc. It will also be called if the load or handle callback throws an\nexception, unless djConfig.debugAtAllCosts is true.  This allows deployed applications\nto continue to run even when a logic error happens in the callback, while making\nit easier to troubleshoot while in debug mode.</p>\n</li><li>handle: <p>This function will\nbe called at the end of every request, whether or not an error occurs.</p>\n</li><li>url (String): <p>URL to server endpoint.</p>\n</li><li>content (Object, optional): <p>Contains properties with string values. These\nproperties will be serialized as name1=value2 and\npassed in the request.</p>\n</li><li>timeout (Integer, optional): <p>Milliseconds to wait for the response. If this time\npasses, the then error callbacks are called.</p>\n</li><li>form (DOMNode, optional): <p>DOM node for a form. Used to extract the form values\nand send to the server.</p>\n</li><li>preventCache (Boolean, optional): <p>Default is false. If true, then a\n&quot;dojo.preventCache&quot; parameter is sent in the request\nwith a value that changes with each request\n(timestamp). Useful only with GET-type requests.</p>\n</li><li>rawBody (String, optional): <p>Sets the raw body for an HTTP request. If this is used, then the content\nproperty is ignored. This is mostly useful for HTTP methods that have\na body to their requests, like PUT or POST. This property can be used instead\nof postData and putData for dojo/_base/xhr.rawXhrPost and dojo/_base/xhr.rawXhrPut respectively.</p>\n</li><li>ioPublish (Boolean, optional): <p>Set this explicitly to false to prevent publishing of topics related to\nIO operations. Otherwise, if djConfig.ioPublish is set to true, topics\nwill be published via dojo/topic.publish() for different phases of an IO operation.\nSee dojo/main.__IoPublish for a list of topics that are published.</p>\n</li></ul>"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Sends an HTTP POST request to the server. In addition to the properties\nlisted for the dojo.__XhrArgs type, the following property is allowed:</p>\n"
+        },
+        {
+            "name": "xhrPut",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/_base/xhr",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "args",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "description": "<p>An object with the following properties:</p><ul><li>handleAs (String, optional): <p>Acceptable values are: text (default), json, json-comment-optional,\njson-comment-filtered, javascript, xml. See <code>dojo/_base/xhr.contentHandlers</code></p>\n</li><li>sync (Boolean, optional): <p>false is default. Indicates whether the request should\nbe a synchronous (blocking) request.</p>\n</li><li>headers (Object, optional): <p>Additional HTTP headers to send in the request.</p>\n</li><li>failOk (Boolean, optional): <p>false is default. Indicates whether a request should be\nallowed to fail (and therefore no console error message in\nthe event of a failure)</p>\n</li><li>contentType (String|Boolean): <p>&quot;application/x-www-form-urlencoded&quot; is default. Set to false to\nprevent a Content-Type header from being sent, or to a string\nto send a different Content-Type.</p>\n</li><li>load: <p>This function will be\ncalled on a successful HTTP response code.</p>\n</li><li>error: <p>This function will\nbe called when the request fails due to a network or server error, the url\nis invalid, etc. It will also be called if the load or handle callback throws an\nexception, unless djConfig.debugAtAllCosts is true.  This allows deployed applications\nto continue to run even when a logic error happens in the callback, while making\nit easier to troubleshoot while in debug mode.</p>\n</li><li>handle: <p>This function will\nbe called at the end of every request, whether or not an error occurs.</p>\n</li><li>url (String): <p>URL to server endpoint.</p>\n</li><li>content (Object, optional): <p>Contains properties with string values. These\nproperties will be serialized as name1=value2 and\npassed in the request.</p>\n</li><li>timeout (Integer, optional): <p>Milliseconds to wait for the response. If this time\npasses, the then error callbacks are called.</p>\n</li><li>form (DOMNode, optional): <p>DOM node for a form. Used to extract the form values\nand send to the server.</p>\n</li><li>preventCache (Boolean, optional): <p>Default is false. If true, then a\n&quot;dojo.preventCache&quot; parameter is sent in the request\nwith a value that changes with each request\n(timestamp). Useful only with GET-type requests.</p>\n</li><li>rawBody (String, optional): <p>Sets the raw body for an HTTP request. If this is used, then the content\nproperty is ignored. This is mostly useful for HTTP methods that have\na body to their requests, like PUT or POST. This property can be used instead\nof postData and putData for dojo/_base/xhr.rawXhrPost and dojo/_base/xhr.rawXhrPut respectively.</p>\n</li><li>ioPublish (Boolean, optional): <p>Set this explicitly to false to prevent publishing of topics related to\nIO operations. Otherwise, if djConfig.ioPublish is set to true, topics\nwill be published via dojo/topic.publish() for different phases of an IO operation.\nSee dojo/main.__IoPublish for a list of topics that are published.</p>\n</li></ul>"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Sends an HTTP PUT request to the server. In addition to the properties\nlisted for the dojo.__XhrArgs type, the following property is allowed:</p>\n"
+        }
+    ]
+}

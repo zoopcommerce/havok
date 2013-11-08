@@ -5,6 +5,9 @@
 //
 //to start the server use:
 //>node server.js
+//
+//then point your browser to:
+//http://locahost
 
 var http = require('http'),
     fs = require('fs'),
@@ -37,12 +40,24 @@ http.createServer(function(request, response) {
             respond(request, response, content, 'text/javascript');
         })
     } else if (fileType == 'html') {
-        Twig.renderFile(__dirname + '/../src/' + filePieces.join('.') + '.twig', {settings: {views: __dirname + '/../src/'}}, function (err, content) {
-            if (err) {
-                throw err;
-            }
-            respond(request, response, content, contentType);
-        })
+        if (pathPieces[1] == 'api') {
+
+            var params = require(__dirname + '/../src/' + filePieces.join('.') + '.json');
+            params.settings = {views: __dirname + '/../src/'};
+            Twig.renderFile(__dirname + '/../src/api/doc.twig', params, function (err, content) {
+                if (err) {
+                    throw err;
+                }
+                respond(request, response, content, contentType);
+            })
+        } else {
+            Twig.renderFile(__dirname + '/../src/' + filePieces.join('.') + '.twig', {settings: {views: __dirname + '/../src/'}}, function (err, content) {
+                if (err) {
+                    throw err;
+                }
+                respond(request, response, content, contentType);
+            })
+        }
     } else {
         switch (fileType){
             case 'png':

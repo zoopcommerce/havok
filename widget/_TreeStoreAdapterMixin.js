@@ -15,6 +15,15 @@ function (
     return declare(
         [],
         {
+            queryOptions: {
+                //this sort function ensures that folders always appear at the top of a list
+                sort: function(a, b){
+                    if (a.type == 'group' && b.type != 'group') return -1;
+                    if (a.type != 'group' && b.type == 'group') return 1;
+                    return 0;
+                }
+            },
+
             _renderGroup: function(item, data){
 
                 var outerItem = domConstruct.place('<li><ol></ol></li>', item, 'after');

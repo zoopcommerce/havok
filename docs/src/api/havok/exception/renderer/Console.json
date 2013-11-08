@@ -1,0 +1,35 @@
+{
+    "location": "havok/exception/renderer/Console",
+    "type": "constructor",
+    "classlike": true,
+    "properties": [
+        {
+            "name": "minSeverity",
+            "scope": "prototype",
+            "types": [
+                "number"
+            ],
+            "from": "havok/exception/renderer/Console"
+        }
+    ],
+    "methods": [
+        {
+            "name": "render",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/exception/renderer/Console",
+            "parameters": [
+                {
+                    "name": "exceptionModel",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
+        }
+    ]
+}

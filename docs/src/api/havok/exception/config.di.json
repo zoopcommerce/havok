@@ -1,0 +1,14 @@
+{
+    "location": "havok/exception/config.di",
+    "type": "object",
+    "properties": [
+        {
+            "name": "havok/exception/Handler",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "havok/exception/config"
+        }
+    ]
+}

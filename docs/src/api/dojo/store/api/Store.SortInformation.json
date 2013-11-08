@@ -1,0 +1,26 @@
+{
+    "location": "dojo/store/api/Store.SortInformation",
+    "type": "constructor",
+    "classlike": true,
+    "summary": "<p>An object describing what attribute to sort on, and the direction of the sort.</p>\n",
+    "properties": [
+        {
+            "name": "attribute",
+            "scope": "prototype",
+            "types": [
+                "String"
+            ],
+            "from": "dojo/store/api/Store",
+            "summary": "<p>The name of the attribute to sort on.</p>\n"
+        },
+        {
+            "name": "descending",
+            "scope": "prototype",
+            "types": [
+                "Boolean"
+            ],
+            "from": "dojo/store/api/Store",
+            "summary": "<p>The direction of the sort.  Default is false.</p>\n"
+        }
+    ]
+}

@@ -1,0 +1,308 @@
+{
+    "location": "havok/filter/Chain",
+    "type": "constructor",
+    "classlike": true,
+    "superclass": "havok/filter/Base",
+    "mixins": [
+        "havok/filter/Base"
+    ],
+    "parameters": [],
+    "returnTypes": [],
+    "properties": [
+        {
+            "name": "_attrPairNames",
+            "scope": "prototype",
+            "types": [
+                "Hash"
+            ],
+            "from": "dojo/Stateful",
+            "private": true,
+            "summary": "<p>Used across all instances a hash to cache attribute names and their getter \nand setter names.</p>\n"
+        }
+    ],
+    "methods": [
+        {
+            "name": "_changeAttrValue",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/Stateful",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "name",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The property to set.</p>\n"
+                },
+                {
+                    "name": "value",
+                    "types": [
+                        "Mixed"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The value to set in the property.\n</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "function"
+            ],
+            "returnDescription": "<p>Internal helper for directly changing an attribute value.\n</p>\n",
+            "summary": "<p>Internal helper for directly changing an attribute value.\n</p>\n",
+            "description": "<p>Directly change the value of an attribute on an object, bypassing any \naccessor setter.  Also handles the calling of watch and emitting events. \nIt is designed to be used by descendent class when there are two values \nof attributes that are linked, but calling .set() is not appropriate.</p>\n"
+        },
+        {
+            "name": "_get",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/Stateful",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "name",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "names",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Hash of names of custom attributes</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Private function that does a get based off a hash of names</p>\n"
+        },
+        {
+            "name": "_getAttrNames",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/Stateful",
+            "private": true,
+            "tags": [
+                "private"
+            ],
+            "parameters": [
+                {
+                    "name": "name",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined",
+                "object"
+            ],
+            "summary": "<p>Helper function for get() and set().\nCaches attribute name values so we don&#39;t do the string ops every time.</p>\n"
+        },
+        {
+            "name": "_getFilteredValue",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/filter/Chain",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "filter",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "value",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ]
+        },
+        {
+            "name": "_loop",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/filter/Chain",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "value",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "index",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ]
+        },
+        {
+            "name": "constructor",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/filter/Chain",
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "filter",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/filter/Chain",
+            "parameters": [
+                {
+                    "name": "value",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ]
+        },
+        {
+            "name": "get",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/Stateful",
+            "parameters": [
+                {
+                    "name": "name",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The property to get.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "any",
+                "undefined"
+            ],
+            "returnDescription": "<p>The property value on this Stateful instance.</p>\n",
+            "summary": "<p>Get a property on a Stateful instance.</p>\n",
+            "description": "<p>Get a named property on a Stateful object. The property may\npotentially be retrieved via a getter method in subclasses. In the base class\nthis just retrieves the object&#39;s property.\nFor example:\n\n</p>\n<pre><code>stateful = new dojo.Stateful({foo: 3});\nstateful.get(&quot;foo&quot;) // returns 3\nstateful.foo // returns 3</code></pre>\n"
+        },
+        {
+            "name": "postscript",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/Stateful",
+            "parameters": [
+                {
+                    "name": "params",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "optional"
+                }
+            ],
+            "returnTypes": []
+        },
+        {
+            "name": "set",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/Stateful",
+            "parameters": [
+                {
+                    "name": "name",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The property to set.</p>\n"
+                },
+                {
+                    "name": "value",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The value to set in the property.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "any",
+                "function"
+            ],
+            "returnDescription": "<p>The function returns this dojo.Stateful instance.</p>\n",
+            "summary": "<p>Set a property on a Stateful instance</p>\n",
+            "description": "<p>Sets named properties on a stateful object and notifies any watchers of\nthe property. A programmatic setter may be defined in subclasses.\nFor example:\n\n</p>\n<pre><code>stateful = new dojo.Stateful();\nstateful.watch(function(name, oldValue, value){\n    // this will be called on the set below\n}\nstateful.set(foo, 5);</code></pre>\n<p>set() may also be called with a hash of name/value pairs, ex:\n\n</p>\n<pre><code>myObj.set({\n    foo: &quot;Howdy&quot;,\n    bar: 3\n})</code></pre>\n<p>This is equivalent to calling set(foo, &quot;Howdy&quot;) and set(bar, 3)\n</p>\n"
+        },
+        {
+            "name": "watch",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/Stateful",
+            "parameters": [
+                {
+                    "name": "name",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>Indicates the property to watch. This is optional (the callback may be the\nonly parameter), and if omitted, all the properties will be watched</p>\n"
+                },
+                {
+                    "name": "callback",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The function to execute when the property changes. This will be called after\nthe property has been changed. The callback will be called with the |this|\nset to the instance, the first argument as the name of the property, the\nsecond argument as the old value and the third argument as the new value.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "any",
+                "object"
+            ],
+            "returnDescription": "<p>An object handle for the watch. The unwatch method of this object\ncan be used to discontinue watching this property:\n\n</p>\n<pre><code>var watchHandle = obj.watch(&quot;foo&quot;, callback);\nwatchHandle.unwatch(); // callback won&#39;t be called now</code></pre>\n",
+            "summary": "<p>Watches a property for changes</p>\n"
+        }
+    ]
+}

@@ -1,0 +1,96 @@
+{
+    "location": "dojo/when",
+    "type": "function",
+    "parameters": [
+        {
+            "name": "valueOrPromise",
+            "types": [
+                "undefined"
+            ],
+            "usage": "required",
+            "summary": "<p>Either a regular value or an object with a <code>then()</code> method that\nfollows the Promises/A specification.</p>\n"
+        },
+        {
+            "name": "callback",
+            "types": [
+                "Function"
+            ],
+            "usage": "optional",
+            "summary": "<p>Callback to be invoked when the promise is resolved, or a non-promise\nis received.</p>\n"
+        },
+        {
+            "name": "errback",
+            "types": [
+                "Function"
+            ],
+            "usage": "optional",
+            "summary": "<p>Callback to be invoked when the promise is rejected.</p>\n"
+        },
+        {
+            "name": "progback",
+            "types": [
+                "Function"
+            ],
+            "usage": "optional",
+            "summary": "<p>Callback to be invoked when the promise emits a progress update.</p>\n"
+        }
+    ],
+    "returnTypes": [
+        "dojo/promise/Promise",
+        "undefined"
+    ],
+    "returnDescription": "<p>Promise, or if a callback is provided, the result of the callback.</p>\n",
+    "summary": "<p>Transparently applies callbacks to values and/or promises.</p>\n",
+    "description": "<p>Accepts promises but also transparently handles non-promises. If no\ncallbacks are provided returns a promise, regardless of the initial\nvalue. Foreign promises are converted.\n\n</p>\n<p>If callbacks are provided and the initial value is not a promise,\nthe callback is executed immediately with no error handling. Returns\na promise if the initial value is a promise, or the result of the\ncallback otherwise.</p>\n",
+    "methods": [
+        {
+            "name": "constructor",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/when",
+            "parameters": [
+                {
+                    "name": "valueOrPromise",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Either a regular value or an object with a <code>then()</code> method that\nfollows the Promises/A specification.</p>\n"
+                },
+                {
+                    "name": "callback",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>Callback to be invoked when the promise is resolved, or a non-promise\nis received.</p>\n"
+                },
+                {
+                    "name": "errback",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>Callback to be invoked when the promise is rejected.</p>\n"
+                },
+                {
+                    "name": "progback",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "optional",
+                    "summary": "<p>Callback to be invoked when the promise emits a progress update.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "dojo/promise/Promise",
+                "undefined"
+            ],
+            "returnDescription": "<p>Promise, or if a callback is provided, the result of the callback.</p>\n",
+            "summary": "<p>Transparently applies callbacks to values and/or promises.</p>\n",
+            "description": "<p>Accepts promises but also transparently handles non-promises. If no\ncallbacks are provided returns a promise, regardless of the initial\nvalue. Foreign promises are converted.\n\n</p>\n<p>If callbacks are provided and the initial value is not a promise,\nthe callback is executed immediately with no error handling. Returns\na promise if the initial value is a promise, or the result of the\ncallback otherwise.</p>\n"
+        }
+    ]
+}

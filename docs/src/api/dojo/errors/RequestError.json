@@ -1,0 +1,20 @@
+{
+    "location": "dojo/errors/RequestError",
+    "type": "function",
+    "parameters": [],
+    "returnTypes": [],
+    "summary": "<p>TODOC</p>\n",
+    "methods": [
+        {
+            "name": "constructor",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/errors/RequestError",
+            "parameters": [],
+            "returnTypes": [],
+            "summary": "<p>TODOC</p>\n"
+        }
+    ]
+}

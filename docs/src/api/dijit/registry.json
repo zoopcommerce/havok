@@ -1,0 +1,210 @@
+{
+    "location": "dijit/registry",
+    "type": "object",
+    "summary": "<p>Registry of existing widget on page, plus some utility methods.</p>\n",
+    "properties": [
+        {
+            "name": "_hash",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "dijit/registry",
+            "private": true
+        },
+        {
+            "name": "length",
+            "scope": "normal",
+            "types": [
+                "Number"
+            ],
+            "from": "dijit/registry",
+            "summary": "<p>Number of registered widgets</p>\n"
+        }
+    ],
+    "methods": [
+        {
+            "name": "_destroyAll",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/registry",
+            "private": true,
+            "parameters": [],
+            "returnTypes": [],
+            "summary": "<p>Code to destroy all widgets and do other cleanup on page unload</p>\n"
+        },
+        {
+            "name": "add",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/registry",
+            "parameters": [
+                {
+                    "name": "widget",
+                    "types": [
+                        "dijit/_WidgetBase"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Any dijit/_WidgetBase subclass.</p>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Add a widget to the registry. If a duplicate ID is detected, a error is thrown.</p>\n"
+        },
+        {
+            "name": "byId",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/registry",
+            "parameters": [
+                {
+                    "name": "id",
+                    "types": [
+                        "String",
+                        "Widget"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "String|Widget"
+            ],
+            "summary": "<p>Find a widget by it&#39;s id.\nIf passed a widget then just returns the widget.</p>\n"
+        },
+        {
+            "name": "byNode",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/registry",
+            "parameters": [
+                {
+                    "name": "node",
+                    "types": [
+                        "DOMNode"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>Returns the widget corresponding to the given DOMNode</p>\n"
+        },
+        {
+            "name": "findWidgets",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/registry",
+            "parameters": [
+                {
+                    "name": "root",
+                    "types": [
+                        "DOMNode"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Node to search under.</p>\n"
+                },
+                {
+                    "name": "skipNode",
+                    "types": [
+                        "DOMNode"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>If specified, don&#39;t search beneath this node (usually containerNode).</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "Array"
+            ],
+            "summary": "<p>Search subtree under root returning widgets found.\nDoesn&#39;t search for nested widgets (ie, widgets inside other widgets).</p>\n"
+        },
+        {
+            "name": "getEnclosingWidget",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/registry",
+            "parameters": [
+                {
+                    "name": "node",
+                    "types": [
+                        "DOMNode"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined",
+                "null"
+            ],
+            "summary": "<p>Returns the widget whose DOM tree contains the specified DOMNode, or null if\nthe node is not contained within the DOM tree of any widget</p>\n"
+        },
+        {
+            "name": "getUniqueId",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/registry",
+            "parameters": [
+                {
+                    "name": "widgetType",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "string"
+            ],
+            "summary": "<p>Generates a unique id for a given widgetType</p>\n"
+        },
+        {
+            "name": "remove",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/registry",
+            "parameters": [
+                {
+                    "name": "id",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Remove a widget from the registry. Does not destroy the widget; simply\nremoves the reference.</p>\n"
+        },
+        {
+            "name": "toArray",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dijit/registry",
+            "parameters": [],
+            "returnTypes": [
+                "Array"
+            ],
+            "summary": "<p>Convert registry into a true Array\n</p>\n",
+            "examples": [
+                "<p>Work with the widget .domNodes in a real Array\n\n</p>\n<pre><code>array.map(registry.toArray(), function(w){ return w.domNode; });</code></pre>\n"
+            ]
+        }
+    ]
+}

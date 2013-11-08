@@ -1,0 +1,14 @@
+{
+    "location": "havok/router/config.di",
+    "type": "object",
+    "properties": [
+        {
+            "name": "havok/router/router",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "havok/router/config"
+        }
+    ]
+}

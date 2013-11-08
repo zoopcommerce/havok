@@ -1,0 +1,56 @@
+{
+    "location": "havok/store/manager",
+    "type": "object",
+    "properties": [
+        {
+            "name": "stores",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "havok/store/manager"
+        }
+    ],
+    "methods": [
+        {
+            "name": "get",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "havok/store/manager",
+            "parameters": [
+                {
+                    "name": "ref",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ]
+        },
+        {
+            "name": "getStore",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "havok/store/manager",
+            "parameters": [
+                {
+                    "name": "id",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ]
+        }
+    ]
+}

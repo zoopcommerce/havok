@@ -1,0 +1,164 @@
+{
+    "location": "dojo/store/api/Store.QueryResults",
+    "type": "constructor",
+    "classlike": true,
+    "summary": "<p>This is an object returned from query() calls that provides access to the results\nof a query. Queries may be executed asynchronously.</p>\n",
+    "properties": [
+        {
+            "name": "total",
+            "scope": "prototype",
+            "types": [
+                "Number",
+                "Promise?"
+            ],
+            "from": "dojo/store/api/Store",
+            "summary": "<p>This property should be included in if the query options included the &quot;count&quot;\nproperty limiting the result set. This property indicates the total number of objects\nmatching the query (as if &quot;start&quot; and &quot;count&quot; weren&#39;t present). This may be\na promise if the query is asynchronous.</p>\n"
+        }
+    ],
+    "methods": [
+        {
+            "name": "filter",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/store/api/Store",
+            "parameters": [
+                {
+                    "name": "callback",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Function that is called for each object in the query results</p>\n"
+                },
+                {
+                    "name": "thisObject",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The object to use as |this| in the callback.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "dojo/store/api/Store.QueryResults"
+            ],
+            "summary": "<p>Filters the query results, based on\n<a href=\"https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/filter\">https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/filter</a>.\nNote that this may executed asynchronously. The callback may be called\nafter this function returns.</p>\n"
+        },
+        {
+            "name": "forEach",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/store/api/Store",
+            "parameters": [
+                {
+                    "name": "callback",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Function that is called for each object in the query results</p>\n"
+                },
+                {
+                    "name": "thisObject",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The object to use as |this| in the callback.</p>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Iterates over the query results, based on\n<a href=\"https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/forEach\">https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/forEach</a>.\nNote that this may executed asynchronously. The callback may be called\nafter this function returns.</p>\n"
+        },
+        {
+            "name": "map",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/store/api/Store",
+            "parameters": [
+                {
+                    "name": "callback",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Function that is called for each object in the query results</p>\n"
+                },
+                {
+                    "name": "thisObject",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The object to use as |this| in the callback.</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "dojo/store/api/Store.QueryResults"
+            ],
+            "summary": "<p>Maps the query results, based on\n<a href=\"https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/map\">https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/map</a>.\nNote that this may executed asynchronously. The callback may be called\nafter this function returns.</p>\n"
+        },
+        {
+            "name": "observe",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/store/api/Store",
+            "parameters": [
+                {
+                    "name": "listener",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The listener function is called when objects in the query results are modified\nto affect the query result. The listener function is called with the following arguments:\n\n</p>\n<pre><code>listener(object, removedFrom, insertedInto);</code></pre>\n<ul>\n<li>The object parameter indicates the object that was create, modified, or deleted.</li>\n<li>The removedFrom parameter indicates the index in the result array where\nthe object used to be. If the value is -1, then the object is an addition to\nthis result set (due to a new object being created, or changed such that it\nis a part of the result set).</li>\n<li>The insertedInto parameter indicates the index in the result array where\nthe object should be now. If the value is -1, then the object is a removal\nfrom this result set (due to an object being deleted, or changed such that it\nis not a part of the result set).</li>\n</ul>\n"
+                },
+                {
+                    "name": "includeAllUpdates",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>This indicates whether or not to include object updates that do not affect\nthe inclusion or order of the object in the query results. By default this is false,\nwhich means that if any object is updated in such a way that it remains\nin the result set and it&#39;s position in result sets is not affected, then the listener\nwill not be fired.</p>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>This registers a callback for notification of when data is modified in the query results.\nThis is an optional method, and is usually provided by dojo/store/Observable.</p>\n"
+        },
+        {
+            "name": "then",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/store/api/Store",
+            "parameters": [
+                {
+                    "name": "callback",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>This is called when the query is completed successfully, and is passed a single argument\nthat is an array representing the query results.</p>\n"
+                },
+                {
+                    "name": "errorHandler",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>This is called if the query failed, and is passed a single argument that is the error\nfor the failure.</p>\n"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>This registers a callback for when the query is complete, if the query is asynchronous.\nThis is an optional method, and may not be present for synchronous queries.</p>\n"
+        }
+    ]
+}

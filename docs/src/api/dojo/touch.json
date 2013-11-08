@@ -1,0 +1,262 @@
+{
+    "location": "dojo/touch",
+    "type": "object",
+    "summary": "<p>This module provides unified touch event handlers by exporting\npress, move, release and cancel which can also run well on desktop.\nBased on <a href=\"http://dvcs.w3.org/hg/webevents/raw-file/tip/touchevents.html\">http://dvcs.w3.org/hg/webevents/raw-file/tip/touchevents.html</a>\nAlso, if the dojoClick property is set to true on a DOM node, dojo/touch generates\nclick events immediately for this node and its descendants, to avoid the\ndelay before native browser click events, and regardless of whether evt.preventDefault()\nwas called in a touch.press event listener.\n</p>\n",
+    "examples": [
+        "<p>Used with dojo.on\n\n</p>\n<pre><code>define([&quot;dojo/on&quot;, &quot;dojo/touch&quot;], function(on, touch){\n    on(node, touch.press, function(e){});\n    on(node, touch.move, function(e){});\n    on(node, touch.release, function(e){});\n    on(node, touch.cancel, function(e){});</code></pre>\n",
+        "<p>Used with touch.* directly\n\n</p>\n<pre><code>touch.press(node, function(e){});\ntouch.move(node, function(e){});\ntouch.release(node, function(e){});\ntouch.cancel(node, function(e){});</code></pre>\n",
+        "<p>Have dojo/touch generate clicks without delay, with a default move threshold of 4 pixels\n\n</p>\n<pre><code>node.dojoClick = true;</code></pre>\n",
+        "<p>Have dojo/touch generate clicks without delay, with a move threshold of 10 pixels horizontally and vertically\n\n</p>\n<pre><code>node.dojoClick = 10;</code></pre>\n",
+        "<p>Have dojo/touch generate clicks without delay, with a move threshold of 50 pixels horizontally and 10 pixels vertically\n\n</p>\n<pre><code>node.dojoClick = {x:50, y:5};</code></pre>\n"
+    ],
+    "methods": [
+        {
+            "name": "cancel",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/touch",
+            "parameters": [
+                {
+                    "name": "node",
+                    "types": [
+                        "Dom"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Target node to listen to</p>\n"
+                },
+                {
+                    "name": "listener",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Callback function</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "any"
+            ],
+            "returnDescription": "<p>A handle which will be used to remove the listener by handle.remove()</p>\n",
+            "summary": "<p>Register a listener to &#39;touchcancel&#39;|&#39;mouseleave&#39; for the given node</p>\n"
+        },
+        {
+            "name": "enter",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/touch",
+            "parameters": [
+                {
+                    "name": "node",
+                    "types": [
+                        "Dom"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Target node to listen to</p>\n"
+                },
+                {
+                    "name": "listener",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Callback function</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "any"
+            ],
+            "returnDescription": "<p>A handle which will be used to remove the listener by handle.remove()</p>\n",
+            "summary": "<p>Register a listener to mouse.enter or touch equivalent for the given node</p>\n"
+        },
+        {
+            "name": "leave",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/touch",
+            "parameters": [
+                {
+                    "name": "node",
+                    "types": [
+                        "Dom"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Target node to listen to</p>\n"
+                },
+                {
+                    "name": "listener",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Callback function</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "any"
+            ],
+            "returnDescription": "<p>A handle which will be used to remove the listener by handle.remove()</p>\n",
+            "summary": "<p>Register a listener to mouse.leave or touch equivalent for the given node</p>\n"
+        },
+        {
+            "name": "move",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/touch",
+            "parameters": [
+                {
+                    "name": "node",
+                    "types": [
+                        "Dom"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Target node to listen to</p>\n"
+                },
+                {
+                    "name": "listener",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Callback function</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "any"
+            ],
+            "returnDescription": "<p>A handle which will be used to remove the listener by handle.remove()</p>\n",
+            "summary": "<p>Register a listener that fires when the mouse cursor or a finger is dragged over the given node.</p>\n"
+        },
+        {
+            "name": "out",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/touch",
+            "parameters": [
+                {
+                    "name": "node",
+                    "types": [
+                        "Dom"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Target node to listen to</p>\n"
+                },
+                {
+                    "name": "listener",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Callback function</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "any"
+            ],
+            "returnDescription": "<p>A handle which will be used to remove the listener by handle.remove()</p>\n",
+            "summary": "<p>Register a listener to &#39;mouseout&#39; or touch equivalent for the given node</p>\n"
+        },
+        {
+            "name": "over",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/touch",
+            "parameters": [
+                {
+                    "name": "node",
+                    "types": [
+                        "Dom"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Target node to listen to</p>\n"
+                },
+                {
+                    "name": "listener",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Callback function</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "any"
+            ],
+            "returnDescription": "<p>A handle which will be used to remove the listener by handle.remove()</p>\n",
+            "summary": "<p>Register a listener to &#39;mouseover&#39; or touch equivalent for the given node</p>\n"
+        },
+        {
+            "name": "press",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/touch",
+            "parameters": [
+                {
+                    "name": "node",
+                    "types": [
+                        "Dom"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Target node to listen to</p>\n"
+                },
+                {
+                    "name": "listener",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Callback function</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "any"
+            ],
+            "returnDescription": "<p>A handle which will be used to remove the listener by handle.remove()</p>\n",
+            "summary": "<p>Register a listener to &#39;touchstart&#39;|&#39;mousedown&#39; for the given node</p>\n"
+        },
+        {
+            "name": "release",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/touch",
+            "parameters": [
+                {
+                    "name": "node",
+                    "types": [
+                        "Dom"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Target node to listen to</p>\n"
+                },
+                {
+                    "name": "listener",
+                    "types": [
+                        "Function"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Callback function</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "any"
+            ],
+            "returnDescription": "<p>A handle which will be used to remove the listener by handle.remove()</p>\n",
+            "summary": "<p>Register a listener to releasing the mouse button while the cursor is over the given node\n(i.e. &quot;mouseup&quot;) or for removing the finger from the screen while touching the given node.</p>\n"
+        }
+    ]
+}

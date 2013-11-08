@@ -1,0 +1,63 @@
+{
+    "location": "dojo/request/handlers",
+    "type": "function",
+    "parameters": [
+        {
+            "name": "response",
+            "types": [
+                "undefined"
+            ],
+            "usage": "required"
+        }
+    ],
+    "returnTypes": [
+        "undefined"
+    ],
+    "methods": [
+        {
+            "name": "constructor",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/request/handlers",
+            "parameters": [
+                {
+                    "name": "response",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ]
+        },
+        {
+            "name": "register",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/request/handlers",
+            "parameters": [
+                {
+                    "name": "name",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "handler",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
+        }
+    ]
+}

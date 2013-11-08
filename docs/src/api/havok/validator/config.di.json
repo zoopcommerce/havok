@@ -1,0 +1,22 @@
+{
+    "location": "havok/validator/config.di",
+    "type": "object",
+    "properties": [
+        {
+            "name": "havok/validator/factory",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "havok/validator/config"
+        },
+        {
+            "name": "mystique/Chain",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "havok/validator/config"
+        }
+    ]
+}

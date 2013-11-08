@@ -1,0 +1,68 @@
+{
+    "location": "dojo/_base/kernel.__IoPublish",
+    "type": "constructor",
+    "classlike": true,
+    "summary": "<p>This is a list of IO topics that can be published\nif djConfig.ioPublish is set to true. IO topics can be\npublished for any Input/Output, network operation. So,\ndojo.xhr, dojo.io.script and dojo.io.iframe can all\ntrigger these topics to be published.</p>\n",
+    "properties": [
+        {
+            "name": "done",
+            "scope": "prototype",
+            "types": [
+                "String"
+            ],
+            "from": "dojo/_base/xhr",
+            "extensionModule": true,
+            "summary": "<p>&quot;/dojo/io/done&quot; is sent whenever an IO request has completed,\neither by loading or by erroring. It passes the error and\nthe dojo.Deferred for the request with the topic.</p>\n"
+        },
+        {
+            "name": "error",
+            "scope": "prototype",
+            "types": [
+                "String"
+            ],
+            "from": "dojo/_base/xhr",
+            "extensionModule": true,
+            "summary": "<p>&quot;/dojo/io/error&quot; is sent whenever an IO request has errored.\nIt passes the error and the dojo.Deferred\nfor the request with the topic.</p>\n"
+        },
+        {
+            "name": "load",
+            "scope": "prototype",
+            "types": [
+                "String"
+            ],
+            "from": "dojo/_base/xhr",
+            "extensionModule": true,
+            "summary": "<p>&quot;/dojo/io/load&quot; is sent whenever an IO request has loaded\nsuccessfully. It passes the response and the dojo.Deferred\nfor the request with the topic.</p>\n"
+        },
+        {
+            "name": "send",
+            "scope": "prototype",
+            "types": [
+                "String"
+            ],
+            "from": "dojo/_base/xhr",
+            "extensionModule": true,
+            "summary": "<p>&quot;/dojo/io/send&quot; is sent whenever a new IO request is started.\nIt passes the dojo.Deferred for the request with the topic.</p>\n"
+        },
+        {
+            "name": "start",
+            "scope": "prototype",
+            "types": [
+                "String"
+            ],
+            "from": "dojo/_base/xhr",
+            "extensionModule": true,
+            "summary": "<p>&quot;/dojo/io/start&quot; is sent when there are no outstanding IO\nrequests, and a new IO request is started. No arguments\nare passed with this topic.</p>\n"
+        },
+        {
+            "name": "stop",
+            "scope": "prototype",
+            "types": [
+                "String"
+            ],
+            "from": "dojo/_base/xhr",
+            "extensionModule": true,
+            "summary": "<p>&quot;/dojo/io/stop&quot; is sent when all outstanding IO requests have\nfinished. No arguments are passed with this topic.</p>\n"
+        }
+    ]
+}

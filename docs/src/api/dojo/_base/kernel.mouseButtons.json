@@ -1,0 +1,138 @@
+{
+    "location": "dojo/_base/kernel.mouseButtons",
+    "type": "object",
+    "properties": [
+        {
+            "name": "LEFT",
+            "scope": "normal",
+            "types": [
+                "Number"
+            ],
+            "from": "dojo/mouse",
+            "extensionModule": true,
+            "summary": "<p>Numeric value of the left mouse button for the platform.</p>\n"
+        },
+        {
+            "name": "MIDDLE",
+            "scope": "normal",
+            "types": [
+                "Number"
+            ],
+            "from": "dojo/mouse",
+            "extensionModule": true,
+            "summary": "<p>Numeric value of the middle mouse button for the platform.</p>\n"
+        },
+        {
+            "name": "RIGHT",
+            "scope": "normal",
+            "types": [
+                "Number"
+            ],
+            "from": "dojo/mouse",
+            "extensionModule": true,
+            "summary": "<p>Numeric value of the right mouse button for the platform.</p>\n"
+        }
+    ],
+    "methods": [
+        {
+            "name": "isButton",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/mouse",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "e",
+                    "types": [
+                        "Event"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Event object to examine</p>\n"
+                },
+                {
+                    "name": "button",
+                    "types": [
+                        "Number"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>The button value (example: dojo.mouseButton.LEFT)</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "boolean"
+            ],
+            "summary": "<p>Checks an event object for a pressed button</p>\n"
+        },
+        {
+            "name": "isLeft",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/mouse",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "e",
+                    "types": [
+                        "Event"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Event object to examine</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "boolean"
+            ],
+            "summary": "<p>Checks an event object for the pressed left button</p>\n"
+        },
+        {
+            "name": "isMiddle",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/mouse",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "e",
+                    "types": [
+                        "Event"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Event object to examine</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "boolean"
+            ],
+            "summary": "<p>Checks an event object for the pressed middle button</p>\n"
+        },
+        {
+            "name": "isRight",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/mouse",
+            "extensionModule": true,
+            "parameters": [
+                {
+                    "name": "e",
+                    "types": [
+                        "Event"
+                    ],
+                    "usage": "required",
+                    "summary": "<p>Event object to examine</p>\n"
+                }
+            ],
+            "returnTypes": [
+                "boolean"
+            ],
+            "summary": "<p>Checks an event object for the pressed right button</p>\n"
+        }
+    ]
+}

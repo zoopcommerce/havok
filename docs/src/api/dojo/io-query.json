@@ -1,0 +1,55 @@
+{
+    "location": "dojo/io-query",
+    "type": "object",
+    "summary": "<p>This module defines query string processing functions.</p>\n",
+    "methods": [
+        {
+            "name": "objectToQuery",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/io-query",
+            "parameters": [
+                {
+                    "name": "map",
+                    "types": [
+                        "Object"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ],
+            "summary": "<p>takes a name/value mapping object and returns a string representing\na URL-encoded version of that object.</p>\n",
+            "examples": [
+                "<p>this object:\n\n\n</p>\n<pre><code>{\n    blah: &quot;blah&quot;,\n    multi: [\n        &quot;thud&quot;,\n        &quot;thonk&quot;\n    ]\n};</code></pre>\n<p>yields the following query string:\n\n\n</p>\n<pre><code>&quot;blah=blah&amp;multi=thud&amp;multi=thonk&quot;</code></pre>\n"
+            ]
+        },
+        {
+            "name": "queryToObject",
+            "scope": "normal",
+            "types": [
+                "function"
+            ],
+            "from": "dojo/io-query",
+            "parameters": [
+                {
+                    "name": "str",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "object"
+            ],
+            "summary": "<p>Create an object representing a de-serialized query section of a\nURL. Query keys with multiple values are returned in an array.\n</p>\n",
+            "examples": [
+                "<p>This string:\n\n\n</p>\n<pre><code>&quot;foo=bar&amp;foo=baz&amp;thinger=%20spaces%20=blah&amp;zonk=blarg&amp;&quot;</code></pre>\n<p>results in this object structure:\n\n\n</p>\n<pre><code>{\n    foo: [ &quot;bar&quot;, &quot;baz&quot; ],\n    thinger: &quot; spaces =blah&quot;,\n    zonk: &quot;blarg&quot;\n}</code></pre>\n<p>Note that spaces and other urlencoded entities are correctly\nhandled.</p>\n"
+            ]
+        }
+    ]
+}

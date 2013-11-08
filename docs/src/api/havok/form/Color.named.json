@@ -1,0 +1,143 @@
+{
+    "location": "havok/form/Color.named",
+    "type": "object",
+    "summary": "<p>Dictionary list of all CSS named colors, by name. Values are 3-item arrays with corresponding RG and B values.</p>\n",
+    "properties": [
+        {
+            "name": "aqua",
+            "scope": "normal",
+            "types": [
+                "Array"
+            ],
+            "from": "dojo/_base/Color"
+        },
+        {
+            "name": "black",
+            "scope": "normal",
+            "types": [
+                "Array"
+            ],
+            "from": "dojo/_base/Color"
+        },
+        {
+            "name": "blue",
+            "scope": "normal",
+            "types": [
+                "Array"
+            ],
+            "from": "dojo/_base/Color"
+        },
+        {
+            "name": "fuchsia",
+            "scope": "normal",
+            "types": [
+                "Array"
+            ],
+            "from": "dojo/_base/Color"
+        },
+        {
+            "name": "gray",
+            "scope": "normal",
+            "types": [
+                "Array"
+            ],
+            "from": "dojo/_base/Color"
+        },
+        {
+            "name": "green",
+            "scope": "normal",
+            "types": [
+                "Array"
+            ],
+            "from": "dojo/_base/Color"
+        },
+        {
+            "name": "lime",
+            "scope": "normal",
+            "types": [
+                "Array"
+            ],
+            "from": "dojo/_base/Color"
+        },
+        {
+            "name": "maroon",
+            "scope": "normal",
+            "types": [
+                "Array"
+            ],
+            "from": "dojo/_base/Color"
+        },
+        {
+            "name": "navy",
+            "scope": "normal",
+            "types": [
+                "Array"
+            ],
+            "from": "dojo/_base/Color"
+        },
+        {
+            "name": "olive",
+            "scope": "normal",
+            "types": [
+                "Array"
+            ],
+            "from": "dojo/_base/Color"
+        },
+        {
+            "name": "purple",
+            "scope": "normal",
+            "types": [
+                "Array"
+            ],
+            "from": "dojo/_base/Color"
+        },
+        {
+            "name": "red",
+            "scope": "normal",
+            "types": [
+                "Array"
+            ],
+            "from": "dojo/_base/Color"
+        },
+        {
+            "name": "silver",
+            "scope": "normal",
+            "types": [
+                "Array"
+            ],
+            "from": "dojo/_base/Color"
+        },
+        {
+            "name": "teal",
+            "scope": "normal",
+            "types": [
+                "Array"
+            ],
+            "from": "dojo/_base/Color"
+        },
+        {
+            "name": "transparent",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "dojo/_base/Color"
+        },
+        {
+            "name": "white",
+            "scope": "normal",
+            "types": [
+                "Array"
+            ],
+            "from": "dojo/_base/Color"
+        },
+        {
+            "name": "yellow",
+            "scope": "normal",
+            "types": [
+                "Array"
+            ],
+            "from": "dojo/_base/Color"
+        }
+    ]
+}
