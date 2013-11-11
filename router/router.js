@@ -21,6 +21,9 @@ function (
         // url when the router is started
         //baseUrl: undefined,
 
+        //baseUrlDefault
+        baseUrlDefault: 'page', //page | site,
+
         // routes: array
         //
         routes: [],
@@ -36,10 +39,15 @@ function (
         startup: function(){
 
             if ( ! this.baseUrl){
-                var base = window.location.href.split('/');
-                base.pop();
-                this.baseUrl = base.join('/');
+                if (this.baseUrlDefault == 'page') {
+                    var base = window.location.pathname.split('/');
+                    base.pop();
+                    this.baseUrl = base.join('/');
+                } else {
+                    this.baseUrl = window.location.protocol + window.location.port + '//' + window.location.hostname;
+                }
             }
+
 
             on(window, 'popstate', lang.hitch(this, function(e){
                 if (e.state){
@@ -50,10 +58,10 @@ function (
             // Catch click events on anchor tags
             on(document.body, 'click', lang.hitch(this, function(e){
                 if (e.target.nodeType == 1 && e.target.nodeName == 'A'){
-                    if (!e.target.attributes['href']){
+                    if (!e.target.nodeName == 'A'){
                         return;
                     }
-                    var route = e.target.attributes['href'].nodeValue;
+                    var route = e.target.href;
                     if (route && this.go(route)){
                         e.preventDefault();
                     }
@@ -111,15 +119,8 @@ function (
             }
 
             //identify the correct method
-            if (pieces[1]){
-                if (config.methods[pieces[1]]){
-                    method = config.methods[pieces[1]];
-                } else {
-                    throw new RouteNotFound(string.substitute(
-                        messages.methodNotConfigured,
-                        {method: pieces[1], controller: config.controller}
-                    ));
-                }
+            if (pieces[1] && config.methods && config.methods[pieces[1]]) {
+                method = config.methods[pieces[1]];
             } else if (config.defaultMethod) {
                 method = config.defaultMethod;
             } else {
@@ -153,16 +154,16 @@ function (
                 return true;
             }
 
-            if (this.active && route == this.active.route){
-                //Don't do anything if the route hasn't changed
-                return true;
-            }
-
             var routeMatch = this.resolve(route);
 
             if (routeMatch.ignore){
                 return false;
             }
+            if (this.active && routeMatch.route == this.active.route){
+                //Don't do anything if the route hasn't changed
+                return true;
+            }
+
             if (typeof(routeMatch.route) != 'string'){
                 history.go(routeMatch.route);
                 return true;
