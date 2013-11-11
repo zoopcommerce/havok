@@ -25,13 +25,18 @@ function (
 
             storeAdapter: './_TreeStoreAdapterMixin',
 
+            folderIcon: '<span class="icon-folder"></span> ',
+
+            itemIcon: '<span class="icon-file-text"></span> ',
+
             addItem: function(item){
 
                 item = this.inherited(arguments);
 
                 if (item.children.length > 1){
                     domClass.add(item, 'folder-close');
-                    domConstruct.place('<span class="icon-folder"></span> ', item.firstElementChild, 'first');
+
+                    if (this.folderIcon) domConstruct.place(this.folderIcon, item.firstElementChild, 'first');
 
                     var innerParent = item.lastElementChild,
                         i;
@@ -39,14 +44,18 @@ function (
                     for ( i = 0; i < innerParent.children.length; i++){
                         this.addItem(innerParent.children[i], {refNode: innerParent});
                     }
-                } else {
-                    domConstruct.place('<span class="icon-file-text"></span> ', item.firstElementChild, 'first');
+                } else if (this.itemIcon) {
+                    domConstruct.place(this.itemIcon, item.firstElementChild, 'first');
                 }
 
                 return item;
             },
 
             onClick: function(e, item){
+
+                if (e === this._eHandled){
+                    return;
+                }
 
                 if (domClass.contains(item, 'folder-open')){
                     domClass.remove(item, 'folder-open');
@@ -56,7 +65,7 @@ function (
                     domClass.add(item, 'folder-open');
                 }
                 this.inherited(arguments);
-                e.stopPropagation();
+                this._eHandled = e;
             }
         }
     );

@@ -93,6 +93,7 @@ function (
                     for (var i = 0; i < this.containerNode.children.length; i++){
                         if (domAttr.get(this.containerNode.children[i], 'data-havok-store-id') == value){
                             value = this.containerNode.children[i];
+                            break;
                         }
                     }
                 }
