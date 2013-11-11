@@ -3,14 +3,8 @@
 {% set title='API' %}
 {% set byline='API documentation for all havok modules and their dependencies.' %}
 
-
 {% block sideNav %}
-    <script>
-        require(['dojo/store/Memory', 'havok/get!havok/store/manager'], function(Memory, storeManager){
-            storeManager.stores.apiTree = new Memory({% include 'api/api-tree-data.twig' %});
-        })
-    </script>
-    <tree mixins="store" store="apiTree" class="well"></tree>
+    <tree mixins="store" store="apiTree" class="well" item-icon="" {% if location %}active="{{location}}"{% endif %}></tree>
 {% endblock %}
 
 {% block mainContent %}

@@ -3,15 +3,29 @@ var fs = require('fs'),
     data = [];
     walk = function(node, parentId){
         var i,
-            item = {
-                id: node.id,
-                type: node.type
-            };
+            item = {id: node.id};
 
         if (node.name) item.label = node.name;
-        if (node.fullname) item.fullname = node.fullname;
         if (parentId) item.parent = parentId;
-        if (item.type == 'folder') item.type = 'group';
+        item.href = '/api/' + node.id + '.html';
+        switch (node.type){
+            case 'folder':
+                item.type = 'group';
+                delete(item.href);
+                break;
+            case 'constructor':
+                item.label = '<span class="icon-wrench"></span> ' + item.label;
+                break;
+            case 'object':
+                item.label = '<span class="icon-circle-blank"></span> ' + item.label;
+                break;
+            case 'instance':
+                item.label = '<span class="icon-circle"></span> ' + item.label;
+                break;
+            case 'function':
+                item.label = '<span class="icon-cog"></span> ' + item.label;
+                break;
+        }
 
         data.push(item);
         if (node.children){

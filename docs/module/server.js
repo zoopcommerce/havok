@@ -42,9 +42,19 @@ http.createServer(function(request, response) {
     } else if (fileType == 'html') {
         if (pathPieces[1] == 'api') {
 
+            var template;
+            if (filePieces[filePieces.length - 1].indexOf('-content') != -1){
+                //return content only
+                filePieces[filePieces.length - 1] = filePieces[filePieces.length - 1].replace('-content', '');
+                template = 'doc-content.twig';
+            } else {
+                //return full page
+                template = 'doc.twig';
+            }
+
             var params = require(__dirname + '/../src/' + filePieces.join('.') + '.json');
             params.settings = {views: __dirname + '/../src/'};
-            Twig.renderFile(__dirname + '/../src/api/doc.twig', params, function (err, content) {
+            Twig.renderFile(__dirname + '/../src/api/' + template, params, function (err, content) {
                 if (err) {
                     throw err;
                 }

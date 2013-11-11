@@ -1,5 +1,10 @@
 {% extends "layout.twig" %}
 
 {% block pageContent %}
+    <script>
+        require(['dojo/store/Memory', 'havok/get!havok/store/manager'], function(Memory, storeManager){
+            storeManager.stores.apiTree = new Memory({% include 'api/api-tree-data.twig' %});
+        })
+    </script>
     {% include 'api-content.twig' %}
 {% endblock %}

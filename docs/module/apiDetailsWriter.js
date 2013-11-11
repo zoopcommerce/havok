@@ -5,7 +5,9 @@ var fs = require('fs'),
     write = function(item){
 
         var pieces = item.location.split('/'),
-            file = pieces.pop() + '.json',
+            apiPath = pieces.map(function(){return ''}).join('../'),
+            shortName = pieces.pop(),
+            file = shortName + '.json',
             path = basePath + pieces.join('/');
 
         fs.mkdir(path, null, function(err){
@@ -13,6 +15,8 @@ var fs = require('fs'),
                 console.log(err);
                 return;
             }
+            item.apiPath = apiPath;
+            item.shortName = shortName;
             var string = JSON.stringify(item, null, 4);
             string = string.replace(/<pre><code>/g, '');
             string = string.replace(/<\/code><\/pre>/g, '');

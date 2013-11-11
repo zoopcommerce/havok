@@ -15,9 +15,10 @@ function(){
             },
             'havok/router/router': {
                 params: {
+                    baseUrlDefault: 'site',
                     routes: [
                         {
-                            regex: '^$|[a-zA-Z][a-zA-Z0-9/_-]+.[html|php]',
+                            regex: '^$|api|[a-zA-Z][a-zA-Z0-9/_-]+.html',
                             controller: 'havok/docs/module/Controller',
                             defaultMethod: {
                                 enter: 'go',
