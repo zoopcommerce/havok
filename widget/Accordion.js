@@ -10,7 +10,7 @@ define([
     '../cssfx',
     './_WidgetBase',
     'dojo/text!./template/AccordionItem.html',
-    '../less!../vendor/bootstrap/less/accordion.less'
+    '../less!./less/accordion.less'
 ],
 function (
     declare,
