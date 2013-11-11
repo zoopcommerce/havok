@@ -66,5 +66,7 @@
                 "<p>Define a store with a reference to this engine, and set up a query method.\n\n\n</p>\nvar myStore = function(options){\n    //  ...more properties here\n    this.queryEngine = SimpleQueryEngine;\n    //  define our query method\n    this.query = function(query, options){\n        return QueryResults(this.queryEngine(query, options)(this.data));\n    };\n};\n"
             ]
         }
-    ]
+    ],
+    "apiPath": "../../../",
+    "shortName": "SimpleQueryEngine"
 }

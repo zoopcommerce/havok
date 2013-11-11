@@ -1,4 +1,6 @@
 {
     "location": "havok/widget/dragData",
-    "type": "object"
+    "type": "object",
+    "apiPath": "../../",
+    "shortName": "dragData"
 }

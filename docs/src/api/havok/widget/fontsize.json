@@ -1,4 +1,6 @@
 {
     "location": "havok/widget/fontsize",
-    "type": "instance"
+    "type": "instance",
+    "apiPath": "../../",
+    "shortName": "fontsize"
 }

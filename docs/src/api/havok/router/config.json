@@ -18,5 +18,7 @@
             ],
             "from": "havok/router/config"
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "config"
 }

@@ -171,5 +171,7 @@
                 "var A = declare(null, {\n    // constructor, properties, and methods go here\n    // ...\n});\nvar B = declare(null, {\n    // constructor, properties, and methods go here\n    // ...\n});\nvar C = declare([A, B], {\n    // constructor, properties, and methods go here\n    // ...\n});\nvar D = declare(A, {\n    // constructor, properties, and methods go here\n    // ...\n});\n\nvar a = new A(), b = new B(), c = new C(), d = new D();\n\nconsole.log(a.isInstanceOf(A)); // true\nconsole.log(b.isInstanceOf(A)); // false\nconsole.log(c.isInstanceOf(A)); // true\nconsole.log(d.isInstanceOf(A)); // true\n\nconsole.log(a.isInstanceOf(B)); // false\nconsole.log(b.isInstanceOf(B)); // true\nconsole.log(c.isInstanceOf(B)); // true\nconsole.log(d.isInstanceOf(B)); // false\n\nconsole.log(a.isInstanceOf(C)); // false\nconsole.log(b.isInstanceOf(C)); // false\nconsole.log(c.isInstanceOf(C)); // true\nconsole.log(d.isInstanceOf(C)); // false\n\nconsole.log(a.isInstanceOf(D)); // false\nconsole.log(b.isInstanceOf(D)); // false\nconsole.log(c.isInstanceOf(D)); // false\nconsole.log(d.isInstanceOf(D)); // true\n"
             ]
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "declare.__DeclareCreatedObject"
 }

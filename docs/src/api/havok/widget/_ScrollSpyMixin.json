@@ -73,5 +73,7 @@
             "parameters": [],
             "returnTypes": []
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "_ScrollSpyMixin"
 }

@@ -222,5 +222,7 @@
             "returnTypes": [],
             "summary": "<p>This function will be\ncalled on a successful HTTP response code.</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "kernel.__XhrArgs"
 }

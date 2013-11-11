@@ -106,5 +106,7 @@
             ],
             "summary": "<p>Returns a URL-encoded string representing the form passed as either a\nnode or string ID identifying the form to serialize</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "dom-form"
 }

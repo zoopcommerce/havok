@@ -90,5 +90,7 @@
             ],
             "returnTypes": []
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "_ExpandingTextAreaMixin"
 }

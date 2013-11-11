@@ -1,4 +1,6 @@
 {
     "location": "mystique/Length",
-    "type": "undefined"
+    "type": "undefined",
+    "apiPath": "../",
+    "shortName": "Length"
 }

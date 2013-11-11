@@ -96,5 +96,7 @@
             "from": "dojo/request/xhr",
             "summary": "<p>For cross-site requests, whether to send credentials\nor not.</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "xhr.__BaseOptions"
 }

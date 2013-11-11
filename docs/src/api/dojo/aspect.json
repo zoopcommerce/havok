@@ -129,5 +129,7 @@
             "returnTypes": [],
             "summary": "<p>The &quot;before&quot; export of the aspect module is a function that can be used to attach\n&quot;before&quot; advice to a method. This function will be executed before the original method\nis executed. This function will be called with the arguments used to call the method.\nThis function may optionally return an array as the new arguments to use to call\nthe original method (or the previous, next-to-execute before advice, if one exists).\nIf the before method doesn&#39;t return anything (returns undefined) the original arguments\nwill be preserved.\nIf there are multiple &quot;before&quot; advisors, they are executed in the reverse order they were registered.</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "aspect"
 }

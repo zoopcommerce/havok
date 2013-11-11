@@ -74,5 +74,7 @@
             "returnTypes": [],
             "summary": "<p>Watches the io request represented by dfd to see if it completes.</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "watch"
 }

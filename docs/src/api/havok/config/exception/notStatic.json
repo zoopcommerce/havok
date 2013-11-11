@@ -1,4 +1,6 @@
 {
     "location": "havok/config/exception/notStatic",
-    "type": "undefined"
+    "type": "undefined",
+    "apiPath": "../../../",
+    "shortName": "notStatic"
 }

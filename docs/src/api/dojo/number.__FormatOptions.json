@@ -57,5 +57,7 @@
             "from": "dojo/number",
             "summary": "<p>choose a format type based on the locale from the following:\ndecimal, scientific (not yet supported), percent, currency. decimal by default.</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "number.__FormatOptions"
 }

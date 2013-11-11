@@ -107,5 +107,7 @@
             "returnTypes": [],
             "summary": "<p>Mouseup (left button), touchend, or keyup (space or enter) corresponding to logical click operation.</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "a11yclick"
 }

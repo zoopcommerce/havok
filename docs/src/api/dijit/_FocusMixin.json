@@ -13,5 +13,7 @@
             "from": "dijit/_FocusMixin",
             "private": true
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "_FocusMixin"
 }

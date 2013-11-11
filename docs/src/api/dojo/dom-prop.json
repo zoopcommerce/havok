@@ -97,5 +97,7 @@
                 "<p>Again, only set style as an object hash of styles:\n\n</p>\nvar obj = { color:&quot;#fff&quot;, backgroundColor:&quot;#000&quot; };\ndojo.setProp(&quot;someNode&quot;, &quot;style&quot;, obj);\n\n// though shorter to use `dojo.style()` in this case:\ndojo.style(&quot;someNode&quot;, obj);\n"
             ]
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "dom-prop"
 }

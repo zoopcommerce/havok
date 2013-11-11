@@ -191,5 +191,7 @@
                 "object"
             ]
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "util"
 }

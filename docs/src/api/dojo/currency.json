@@ -124,5 +124,7 @@
             ],
             "returnTypes": []
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "currency"
 }

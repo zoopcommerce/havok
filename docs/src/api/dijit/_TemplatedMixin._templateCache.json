@@ -1,4 +1,6 @@
 {
     "location": "dijit/_TemplatedMixin._templateCache",
-    "type": "object"
+    "type": "object",
+    "apiPath": "../",
+    "shortName": "_TemplatedMixin._templateCache"
 }

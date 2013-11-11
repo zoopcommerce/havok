@@ -204,5 +204,7 @@
             ],
             "summary": "<p>Makes the first letter of a string uppercase</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "string"
 }

@@ -579,5 +579,7 @@
             "from": "dojo/keys",
             "extensionModule": true
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "kernel.keys"
 }

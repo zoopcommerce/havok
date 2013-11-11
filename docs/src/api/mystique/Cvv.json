@@ -1,4 +1,6 @@
 {
     "location": "mystique/Cvv",
-    "type": "undefined"
+    "type": "undefined",
+    "apiPath": "../",
+    "shortName": "Cvv"
 }

@@ -2326,5 +2326,7 @@
             "parameters": [],
             "returnTypes": []
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "HexColor"
 }

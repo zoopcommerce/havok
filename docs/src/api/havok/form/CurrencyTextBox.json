@@ -2435,5 +2435,7 @@
             "parameters": [],
             "returnTypes": []
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "CurrencyTextBox"
 }

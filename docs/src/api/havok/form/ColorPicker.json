@@ -1765,5 +1765,7 @@
             "parameters": [],
             "returnTypes": []
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "ColorPicker"
 }

@@ -49,5 +49,7 @@
                 "undefined"
             ]
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "severity"
 }

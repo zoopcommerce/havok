@@ -42,5 +42,7 @@
             "parameters": [],
             "returnTypes": []
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "_ValidationStyleMixin"
 }

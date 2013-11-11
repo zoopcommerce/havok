@@ -1,4 +1,6 @@
 {
     "location": "mystique/NotRequired",
-    "type": "undefined"
+    "type": "undefined",
+    "apiPath": "../",
+    "shortName": "NotRequired"
 }

@@ -396,5 +396,7 @@
             "returnDescription": "<p>Either string (if there are ${} variables that need to be replaced) or just\na DOM tree (if the node can be cloned directly)</p>\n",
             "summary": "<p>Static method to get a template based on the templatePath or\ntemplateString key</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "_TemplatedMixin"
 }

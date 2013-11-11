@@ -1,4 +1,6 @@
 {
     "location": "dojo/_base/kernel._hasResource",
-    "type": "object"
+    "type": "object",
+    "apiPath": "../../",
+    "shortName": "kernel._hasResource"
 }

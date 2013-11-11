@@ -58,5 +58,7 @@
                 "string"
             ]
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "kernel.version"
 }

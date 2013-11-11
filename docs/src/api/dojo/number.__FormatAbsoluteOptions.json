@@ -40,5 +40,7 @@
             "from": "dojo/number",
             "summary": "<p>5 rounds to nearest .5; 0 rounds to nearest whole (default). -1\nmeans don&#39;t round.</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "number.__FormatAbsoluteOptions"
 }

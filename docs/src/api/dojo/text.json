@@ -76,5 +76,7 @@
                 "string"
             ]
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "text"
 }

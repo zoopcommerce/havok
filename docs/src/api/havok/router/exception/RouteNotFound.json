@@ -1,4 +1,6 @@
 {
     "location": "havok/router/exception/RouteNotFound",
-    "type": "undefined"
+    "type": "undefined",
+    "apiPath": "../../../",
+    "shortName": "RouteNotFound"
 }

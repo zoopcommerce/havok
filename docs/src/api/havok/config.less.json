@@ -26,5 +26,7 @@
             ],
             "from": "havok/config"
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "config.less"
 }

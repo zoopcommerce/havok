@@ -39,5 +39,7 @@
             "from": "dojo/number",
             "summary": "<p>The leading plus-or-minus sign. Can be true, false, or <code>[true,false]</code>.\nDefault is <code>[true, false]</code>, (i.e. will match if it is signed\nor unsigned).</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "number.__IntegerRegexpFlags"
 }

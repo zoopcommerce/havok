@@ -22,5 +22,7 @@
             "from": "dojo/store/api/Store",
             "summary": "<p>The direction of the sort.  Default is false.</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../../../",
+    "shortName": "Store.SortInformation"
 }

@@ -78,5 +78,7 @@
                 "<p>Using dojo/hitch style args:\n\n</p>\nrequire([&quot;dojo/ready&quot;], function(ready){\n    var foo = { dojoReady: function(){ console.warn(this, &quot;dojo dom and modules ready.&quot;); } };\n    ready(foo, &quot;dojoReady&quot;);\n});\n"
             ]
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "ready"
 }

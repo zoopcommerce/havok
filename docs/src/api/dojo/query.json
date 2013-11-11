@@ -164,5 +164,7 @@
                 "<p>chainability is a key advantage of NodeLists:\n\n</p>\ndojo.query(&quot;.thinger&quot;)\n    .onclick(function(e){ /* ... */ })\n    .at(1, 3, 8) // get a subset\n        .style(&quot;padding&quot;, &quot;5px&quot;)\n        .forEach(console.log);\n"
             ]
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "query"
 }

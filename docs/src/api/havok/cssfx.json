@@ -14,5 +14,7 @@
                 "string"
             ]
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "cssfx"
 }

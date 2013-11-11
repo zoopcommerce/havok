@@ -164,5 +164,7 @@
             "summary": "<p>Invoke callback with globalObject as dojo.global and\nglobalObject.document as dojo.doc.</p>\n",
             "description": "<p>Invoke callback with globalObject as dojo.global and\nglobalObject.document as dojo.doc. If provided, globalObject\nwill be executed in the context of object thisObject\nWhen callback() returns or throws an error, the dojo.global\nand dojo.doc will be restored to its previous state.</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "window"
 }

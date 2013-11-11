@@ -1,4 +1,6 @@
 {
     "location": "mystique/HexColor",
-    "type": "undefined"
+    "type": "undefined",
+    "apiPath": "../",
+    "shortName": "HexColor"
 }

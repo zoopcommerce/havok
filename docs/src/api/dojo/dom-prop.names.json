@@ -66,5 +66,7 @@
             ],
             "from": "dojo/dom-prop"
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "dom-prop.names"
 }

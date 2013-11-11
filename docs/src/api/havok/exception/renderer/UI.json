@@ -31,5 +31,7 @@
             ],
             "returnTypes": []
         }
-    ]
+    ],
+    "apiPath": "../../../",
+    "shortName": "UI"
 }

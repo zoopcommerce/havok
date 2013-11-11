@@ -644,5 +644,7 @@
                 "undefined"
             ]
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "easing"
 }

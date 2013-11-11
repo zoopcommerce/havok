@@ -1,4 +1,6 @@
 {
     "location": "mystique/GreaterThanEqual",
-    "type": "undefined"
+    "type": "undefined",
+    "apiPath": "../",
+    "shortName": "GreaterThanEqual"
 }

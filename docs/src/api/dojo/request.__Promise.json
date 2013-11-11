@@ -241,5 +241,7 @@
                 "function"
             ]
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "request.__Promise"
 }

@@ -51,5 +51,7 @@
             ],
             "returnTypes": []
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "_SortableMixin"
 }

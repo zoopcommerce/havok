@@ -1,4 +1,6 @@
 {
     "location": "mystique/Regex",
-    "type": "undefined"
+    "type": "undefined",
+    "apiPath": "../",
+    "shortName": "Regex"
 }

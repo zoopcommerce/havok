@@ -5,5 +5,7 @@
     "description": "<p>Use this rather than referring to &#39;window.document&#39; to ensure your code runs\ncorrectly in managed contexts.</p>\n",
     "examples": [
         "n.appendChild(dojo.doc.createElement(&#39;div&#39;));\n"
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "window.doc"
 }

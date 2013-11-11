@@ -363,5 +363,7 @@
                 "&gt;&gt;&gt; number.round(-0.5)\n-1\n&gt;&gt;&gt; number.round(162.295, 2)\n162.29  // note floating point error.  Should be 162.3\n&gt;&gt;&gt; number.round(10.71, 0, 2.5)\n10.75\n"
             ]
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "kernel.number"
 }

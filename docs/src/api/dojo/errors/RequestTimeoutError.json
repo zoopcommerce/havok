@@ -16,5 +16,7 @@
             "returnTypes": [],
             "summary": "<p>TODOC</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "RequestTimeoutError"
 }

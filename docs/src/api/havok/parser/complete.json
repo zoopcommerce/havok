@@ -34,5 +34,7 @@
             ],
             "returnTypes": []
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "complete"
 }

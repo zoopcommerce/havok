@@ -30,5 +30,7 @@
             ],
             "returnTypes": []
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "Result"
 }

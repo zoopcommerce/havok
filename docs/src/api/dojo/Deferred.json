@@ -280,5 +280,7 @@
             ],
             "returnDescription": "<p>Returns <code>[object Deferred]</code>.</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "Deferred"
 }

@@ -25,5 +25,7 @@
             ],
             "summary": "<p>A mapping of currency code to currency-specific formatting information. Returns a unique object with properties: places, round.</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "monetary"
 }

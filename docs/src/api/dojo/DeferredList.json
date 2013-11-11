@@ -68,5 +68,7 @@
             "returnDescription": "<p>The newly created deferred list which packs results as\nparameters to its callback.</p>\n",
             "summary": "<p>Gathers the results of the deferreds for packaging\nas the parameters to the Deferred Lists&#39; callback</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "DeferredList"
 }

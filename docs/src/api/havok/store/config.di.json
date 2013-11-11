@@ -18,5 +18,7 @@
             ],
             "from": "havok/store/config"
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "config.di"
 }

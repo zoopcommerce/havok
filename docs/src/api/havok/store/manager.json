@@ -52,5 +52,7 @@
                 "undefined"
             ]
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "manager"
 }

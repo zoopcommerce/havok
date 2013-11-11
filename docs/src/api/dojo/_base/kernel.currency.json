@@ -130,5 +130,7 @@
             ],
             "returnTypes": []
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "kernel.currency"
 }

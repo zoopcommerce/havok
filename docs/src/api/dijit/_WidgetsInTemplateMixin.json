@@ -95,5 +95,7 @@
             "parameters": [],
             "returnTypes": []
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "_WidgetsInTemplateMixin"
 }

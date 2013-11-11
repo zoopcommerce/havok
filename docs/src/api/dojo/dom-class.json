@@ -200,5 +200,7 @@
                 "<p>Available in <code>dojo/NodeList</code> for multiple toggles\n\n</p>\nrequire([&quot;dojo/query&quot;], function(query){\n    query(&quot;.toggleMe&quot;).toggleClass(&quot;toggleMe&quot;);\n});\n"
             ]
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "dom-class"
 }

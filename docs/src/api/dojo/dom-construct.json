@@ -194,5 +194,7 @@
                 "<p>Create a table row:\n\n</p>\nvar tr = dojo.toDom(&quot;&lt;tr&gt;&lt;td&gt;First!&lt;/td&gt;&lt;/tr&gt;&quot;);\n"
             ]
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "dom-construct"
 }

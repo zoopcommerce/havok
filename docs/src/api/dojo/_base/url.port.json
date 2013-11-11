@@ -1,4 +1,6 @@
 {
     "location": "dojo/_base/url.port",
-    "type": "object"
+    "type": "object",
+    "apiPath": "../../",
+    "shortName": "url.port"
 }

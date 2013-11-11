@@ -1,4 +1,6 @@
 {
     "location": "dojo/_base/kernel.dojox",
-    "type": "object"
+    "type": "object",
+    "apiPath": "../../",
+    "shortName": "kernel.dojox"
 }

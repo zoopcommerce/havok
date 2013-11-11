@@ -139,5 +139,7 @@
             ],
             "from": "dojo/_base/Color"
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "Color.named"
 }

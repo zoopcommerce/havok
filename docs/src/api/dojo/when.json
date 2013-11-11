@@ -92,5 +92,7 @@
             "summary": "<p>Transparently applies callbacks to values and/or promises.</p>\n",
             "description": "<p>Accepts promises but also transparently handles non-promises. If no\ncallbacks are provided returns a promise, regardless of the initial\nvalue. Foreign promises are converted.\n\n</p>\n<p>If callbacks are provided and the initial value is not a promise,\nthe callback is executed immediately with no error handling. Returns\na promise if the initial value is a promise, or the result of the\ncallback otherwise.</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "when"
 }

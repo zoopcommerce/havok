@@ -10,5 +10,7 @@
             ],
             "from": "havok/filter/config"
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "config"
 }

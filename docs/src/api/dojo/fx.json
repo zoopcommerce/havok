@@ -140,5 +140,7 @@
                 "fx.wipeOut({ node:&quot;someId&quot; }).play()\n"
             ]
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "fx"
 }

@@ -1260,5 +1260,7 @@
             "returnTypes": [],
             "summary": "<p>Called when the widget becomes &quot;active&quot; because\nit or a widget inside of it either has focus, or has recently\nbeen clicked.</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "_WidgetBase"
 }

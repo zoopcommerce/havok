@@ -390,5 +390,7 @@
             "returnTypes": [],
             "summary": "<p>Set the config object for a particular identifier</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "Di"
 }

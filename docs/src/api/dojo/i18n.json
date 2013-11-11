@@ -222,5 +222,7 @@
             ],
             "returnDescription": "<p>The locale to assume for loading localized resources in this page,\nspecified according to <a href=\"http://www.ietf.org/rfc/rfc3066.txt\">RFC 3066</a>.\nMust be specified entirely in lowercase, e.g. <code>en-us</code> and <code>zh-cn</code>.\nSee the documentation for <code>dojo.i18n</code> and <code>dojo.requireLocalization</code>\nfor details on loading localized resources. If no locale is specified,\nDojo assumes the locale of the user agent, according to <code>navigator.userLanguage</code>\nor <code>navigator.language</code> properties.</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "i18n"
 }

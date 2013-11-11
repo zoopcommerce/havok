@@ -12,5 +12,7 @@
             "from": "dojo/request",
             "summary": "<p>The HTTP method to use to make the request.  Must be\nuppercase.</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "request.__MethodOptions"
 }

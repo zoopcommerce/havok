@@ -1,4 +1,6 @@
 {
     "location": "mystique/Alpha",
-    "type": "undefined"
+    "type": "undefined",
+    "apiPath": "../",
+    "shortName": "Alpha"
 }

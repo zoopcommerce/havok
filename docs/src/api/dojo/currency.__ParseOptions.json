@@ -76,5 +76,7 @@
             "from": "dojo/currency",
             "summary": "<p>Should not be set.  Value is assumed to be currency.</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "currency.__ParseOptions"
 }

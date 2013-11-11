@@ -216,5 +216,7 @@
             "returnDescription": "<p>An object handle for the watch. The unwatch method of this object\ncan be used to discontinue watching this property:\n\n</p>\nvar watchHandle = obj.watch(&quot;foo&quot;, callback);\nwatchHandle.unwatch(); // callback won&#39;t be called now\n",
             "summary": "<p>Watches a property for changes</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "Base"
 }

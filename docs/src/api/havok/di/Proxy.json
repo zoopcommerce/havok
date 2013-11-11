@@ -78,5 +78,7 @@
                 "undefined"
             ]
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "Proxy"
 }

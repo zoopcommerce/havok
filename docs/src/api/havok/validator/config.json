@@ -10,5 +10,7 @@
             ],
             "from": "havok/validator/config"
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "config"
 }

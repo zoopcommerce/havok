@@ -50,5 +50,7 @@
             "from": "dojo/request",
             "summary": "<p>Milliseconds to wait for the response.  If this time\npasses, the then the promise is rejected.</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "request.__BaseOptions"
 }

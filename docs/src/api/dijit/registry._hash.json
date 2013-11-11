@@ -1,4 +1,6 @@
 {
     "location": "dijit/registry._hash",
-    "type": "object"
+    "type": "object",
+    "apiPath": "../",
+    "shortName": "registry._hash"
 }

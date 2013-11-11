@@ -88,5 +88,7 @@
                 "<p>Same example as previous, but demonstrates how an object can be passed in as\nthe first argument, then the value argument can then be the second argument.\n\n</p>\n//If template.html contains &quot;&lt;html&gt;&lt;body&gt;&lt;h1&gt;Hello&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&quot;, the\n//text variable will contain just &quot;&lt;h1&gt;Hello&lt;/h1&gt;&quot;.\nvar text = dojo[&quot;cache&quot;](new dojo._Url(&quot;my/module/template.html&quot;), {sanitize: true});\n"
             ]
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "cache"
 }

@@ -206,5 +206,7 @@
                 "<p>Work with the widget .domNodes in a real Array\n\n</p>\narray.map(registry.toArray(), function(w){ return w.domNode; });\n"
             ]
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "registry"
 }

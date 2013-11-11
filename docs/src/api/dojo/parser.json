@@ -332,5 +332,7 @@
             "summary": "<p>Scan a DOM tree and return an array of objects representing the DOMNodes\nthat need to be turned into widgets.</p>\n",
             "description": "<p>Search specified node (or document root node) recursively for class instances\nand return an array of objects that represent potential widgets to be\ninstantiated. Searches for either data-dojo-type=&quot;MID&quot; or dojoType=&quot;MID&quot; where\n&quot;MID&quot; is a module ID like &quot;dijit/form/Button&quot; or a fully qualified Class name\nlike &quot;dijit/form/Button&quot;.  If the MID is not currently available, scan will\nattempt to require() in the module.\n\n</p>\n<p>See parser.parse() for details of markup.</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "parser"
 }

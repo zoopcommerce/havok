@@ -51,5 +51,7 @@
             "from": "dojo/number",
             "summary": "<p>The integer number of decimal places or a range given as &quot;n,m&quot;.  If\nnot given, the decimal part is optional and the number of places is\nunlimited.</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "number.__RealNumberRegexpFlags"
 }

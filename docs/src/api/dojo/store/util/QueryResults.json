@@ -54,5 +54,7 @@
                 "<p>Query a store and iterate over the results.\n\n\n</p>\nstore.query({ prime: true }).forEach(function(item){\n    //  do something\n});\n"
             ]
         }
-    ]
+    ],
+    "apiPath": "../../../",
+    "shortName": "QueryResults"
 }

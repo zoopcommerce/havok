@@ -59,5 +59,7 @@
                 "undefined"
             ]
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "Evented"
 }

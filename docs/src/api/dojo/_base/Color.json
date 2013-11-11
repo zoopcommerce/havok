@@ -467,5 +467,7 @@
             ],
             "summary": "<p>Returns a visual representation of the color</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "Color"
 }

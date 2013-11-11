@@ -1,4 +1,6 @@
 {
     "location": "mystique/CreditCardExpiry",
-    "type": "undefined"
+    "type": "undefined",
+    "apiPath": "../",
+    "shortName": "CreditCardExpiry"
 }

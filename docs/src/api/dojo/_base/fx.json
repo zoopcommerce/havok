@@ -229,5 +229,7 @@
             "returnTypes": [],
             "summary": "<p>Returns an animation that will fade node defined in &#39;args&#39;\nfrom its current opacity to fully transparent.</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "fx"
 }

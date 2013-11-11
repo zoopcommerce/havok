@@ -83,5 +83,7 @@
             "extensionModule": true,
             "summary": "<p>For XMLHttpRequest calls only, the\nXMLHttpRequest object that was used for the\nrequest.</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "kernel.__IoCallbackArgs"
 }

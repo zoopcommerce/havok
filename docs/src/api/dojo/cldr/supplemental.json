@@ -62,5 +62,7 @@
             "summary": "<p>Returns a hash containing the start and end days of the weekend</p>\n",
             "description": "<p>Returns a hash containing the start and end days of the weekend according to local custom using locale,\nor by default in the user&#39;s locale.\ne.g. {start:6, end:0}</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "supplemental"
 }

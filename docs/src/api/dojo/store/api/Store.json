@@ -303,5 +303,7 @@
             "parameters": [],
             "returnTypes": []
         }
-    ]
+    ],
+    "apiPath": "../../../",
+    "shortName": "Store"
 }

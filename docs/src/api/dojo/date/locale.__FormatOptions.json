@@ -84,5 +84,7 @@
             "from": "dojo/date/locale",
             "summary": "<p>override pattern with this string</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "locale.__FormatOptions"
 }

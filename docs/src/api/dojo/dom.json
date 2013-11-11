@@ -95,5 +95,7 @@
             ],
             "returnTypes": []
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "dom"
 }

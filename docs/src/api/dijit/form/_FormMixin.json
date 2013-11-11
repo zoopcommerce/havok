@@ -250,5 +250,7 @@
             "returnTypes": [],
             "summary": "<p>Stub function to connect to if you want to do something\n(like disable/enable a submit button) when the valid\nstate changes on the form as a whole.\n\n</p>\n<p>Deprecated.  Will be removed in 2.0.  Use watch(&quot;state&quot;, ...) instead.</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "_FormMixin"
 }

@@ -321,5 +321,7 @@
             "returnTypes": [],
             "summary": "<p>Builds the regular needed to parse a localized date</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "locale"
 }

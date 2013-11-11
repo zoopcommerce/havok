@@ -1,4 +1,6 @@
 {
     "location": "dojo/_base/url.authority",
-    "type": "object"
+    "type": "object",
+    "apiPath": "../../",
+    "shortName": "url.authority"
 }

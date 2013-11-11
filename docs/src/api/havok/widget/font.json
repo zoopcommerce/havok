@@ -1,4 +1,6 @@
 {
     "location": "havok/widget/font",
-    "type": "instance"
+    "type": "instance",
+    "apiPath": "../../",
+    "shortName": "font"
 }

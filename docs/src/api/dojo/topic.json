@@ -66,5 +66,7 @@
             ],
             "summary": "<p>Subscribes to a topic on the pub/sub hub</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "topic"
 }

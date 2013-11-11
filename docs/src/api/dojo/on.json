@@ -344,5 +344,7 @@
                 "require([&quot;dojo/on&quot;, &quot;dojo/mouse&quot;, &quot;dojo/query!css2&quot;], function(listen, mouse){\n    on(node, on.selector(&quot;.my-class&quot;, mouse.enter), handlerForMyHover);\n"
             ]
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "on"
 }

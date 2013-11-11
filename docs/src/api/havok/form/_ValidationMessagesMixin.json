@@ -160,5 +160,7 @@
                 "undefined"
             ]
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "_ValidationMessagesMixin"
 }

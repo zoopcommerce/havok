@@ -10,5 +10,7 @@
             ],
             "from": "havok/exception/config"
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "config.di"
 }

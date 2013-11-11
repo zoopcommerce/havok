@@ -31,5 +31,7 @@
             "from": "dojo/store/api/Store",
             "summary": "<p>The first result to begin iteration on</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../../../",
+    "shortName": "Store.QueryOptions"
 }

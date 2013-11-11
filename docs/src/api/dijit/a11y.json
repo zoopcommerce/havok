@@ -149,5 +149,7 @@
             ],
             "summary": "<p>Tests if an element is tab-navigable</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "a11y"
 }

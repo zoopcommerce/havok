@@ -675,5 +675,7 @@
                 "undefined"
             ]
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "fx.easing"
 }

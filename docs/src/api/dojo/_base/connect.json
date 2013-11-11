@@ -278,5 +278,7 @@
                 "var alerter = dojo.subscribe(&quot;alerts&quot;, null, function(caption, message){ alert(caption + &quot;\\n&quot; + message); };\n...\ndojo.unsubscribe(alerter);\n"
             ]
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "connect"
 }

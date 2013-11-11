@@ -1639,5 +1639,7 @@
             "parameters": [],
             "returnTypes": []
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "TypeaheadDropdown"
 }

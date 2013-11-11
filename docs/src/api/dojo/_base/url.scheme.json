@@ -1,4 +1,6 @@
 {
     "location": "dojo/_base/url.scheme",
-    "type": "object"
+    "type": "object",
+    "apiPath": "../../",
+    "shortName": "url.scheme"
 }

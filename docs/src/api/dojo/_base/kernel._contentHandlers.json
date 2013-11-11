@@ -140,5 +140,7 @@
             ],
             "summary": "<p>A contentHandler returning an XML Document parsed from the response data</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "kernel._contentHandlers"
 }

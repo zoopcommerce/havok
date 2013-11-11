@@ -141,5 +141,7 @@
                 "var A = declare(null, {\n    m1: function(){\n        console.log(&quot;A.m1&quot;);\n    },\n    m2: function(){\n        console.log(&quot;A.m2&quot;);\n    }\n});\nvar B = declare(A, {\n    m1: function(){\n        this.inherited(arguments);\n        console.log(&quot;B.m1&quot;);\n    }\n});\nB.extend({\n    m2: function(){\n        this.inherited(arguments);\n        console.log(&quot;B.m2&quot;);\n    }\n});\nvar x = new B();\ndojo.safeMixin(x, {\n    m1: function(){\n        this.inherited(arguments);\n        console.log(&quot;X.m1&quot;);\n    },\n    m2: function(){\n        this.inherited(arguments);\n        console.log(&quot;X.m2&quot;);\n    }\n});\nx.m2();\n// prints:\n// A.m1\n// B.m1\n// X.m1\n"
             ]
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "declare"
 }

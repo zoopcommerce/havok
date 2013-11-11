@@ -682,5 +682,7 @@
             "summary": "<p>Trims whitespace from both sides of the string</p>\n",
             "description": "<p>This version of trim() was selected for inclusion into the base due\nto its compact size and relatively good performance\n(see <a href=\"http://blog.stevenlevithan.com/archives/faster-trim-javascript\">Steven Levithan&#39;s blog</a>\nUses String.prototype.trim instead, if available.\nThe fastest but longest version of this function is located at\nlang.string.trim()</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "lang"
 }

@@ -18,5 +18,7 @@
             ],
             "from": "havok/widget/config"
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "config.parser"
 }

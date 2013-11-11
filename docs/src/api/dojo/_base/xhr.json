@@ -526,5 +526,7 @@
                 "<p>This string:\n\n\n</p>\n&quot;foo=bar&amp;foo=baz&amp;thinger=%20spaces%20=blah&amp;zonk=blarg&amp;&quot;\n<p>results in this object structure:\n\n\n</p>\n{\n    foo: [ &quot;bar&quot;, &quot;baz&quot; ],\n    thinger: &quot; spaces =blah&quot;,\n    zonk: &quot;blarg&quot;\n}\n<p>Note that spaces and other urlencoded entities are correctly\nhandled.</p>\n"
             ]
         }
-    ]
+    ],
+    "apiPath": "../../",
+    "shortName": "xhr"
 }

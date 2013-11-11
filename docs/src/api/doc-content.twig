@@ -3,33 +3,31 @@
 {% block mainContent %}
 <section>
     <div class="well">
-    <h1>{{location}}</h1>
-    <p class="lead">{{summary}}</p>
-
-        {% if properties %}
-    <h2>Properties</h2>
-    <accordion>
-            {% for prop in properties %}
-            <div title="{{prop.name}}">
-                <h4>{{prop.name}}</h4>
-                    {% if prop.from is defined %}<p>Defined by <a href="">{{prop.from}}</a></p>{% endif %}
-                    {% if prop.summary is defined %}<p class="lead">{{prop.summary}}</p>{% endif %}
-                    {% if prop.description is defined %}{{prop.description}}{% endif %}
-            </div>
-            {% endfor %}
-            </accordion>
+        <h1>
+            {% if type == 'constructor' %}<span class='icon-wrench'></span> {% endif %}
+            {% if type == 'object' %}<span class='icon-circle-blank'></span> {% endif %}
+            {% if type == 'instance' %}<span class='icon-circle'></span> {% endif %}
+            {% if type == 'function' %}<span class='icon-cog'></span> {% endif %}
+            {{location}}
+        </h1>
+        {% if superclass %}
+            <p>Inherits from <a href="{{apiPath}}{{superclass}}.html">{{superclass}}</a>
+            {% if mixins is defined %}, mixins {% for mixin in mixins %}<a href="{{apiPath}}{{mixin}}.html">{{mixin}}</a>{% if not loop.last %}, {% endif %}{% endfor %}{% endif %}
+            </p>
         {% endif %}
+        <div class="lead">{{summary}}</div>
+        {{description}}
 
-        {% if methods %}
-    <h2>Methods</h2>
-    <accordion>
-            {% for method in methods %}
-            <div title="{{method.name}}">
-                <h4>{{method.name}}({% for param in method.parameters %}{{param.name}}{% if not loop.last %}, {% endif %}{% endfor %})</h4>
-                    {% if method.from is defined %}<p>Defined by <a href="">{{method.from}}</a></p>{% endif %}
-                    {% if method.summary is defined %}<p class="lead">{{method.summary}}</p>{% endif %}
-                    {% if method.description is defined %}{{method.description}}{% endif %}
-                    {% if method.parameters|length > 0 %}
+        {% if type == 'constructor' %}
+            <h2>Usage</h2>
+
+<pre class="prettyprint linenums">
+require(['{{location}}'], function({{shortName}}){
+    var foo = new {{shortName}}({% for param in parameters %}{{param.name}}{% if not loop.last %}, {% endif %}{% endfor %});
+    //do something with foo
+});
+</pre>
+            {% if parameters|length > 0 %}
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
@@ -40,7 +38,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for param in method.parameters %}
+                        {% for param in parameters %}
                             <tr>
                                 <td>{{param.name}}</td>
                                 <td>{% for type in param.types %}{{type}}{% if not loop.last %} | {% endif %}{% endfor %}</td>
@@ -48,24 +46,76 @@
                                 <td>{{param.summary}}</td>
                             </tr>
                         {% endfor %}
-                        </tbody>
-                    </table>
-                    {% endif %}
+                    </tbody>
+                </table>
+            {% endif %}
+        {% endif %}
 
-                    {% if method.returnTypes|length > 0 %}
-                    <p><span class="strong">Returns:</span> {% for type in method.returnTypes %}{{type}}{% if not loop.last %} | {% endif %}{% endfor %}</p>
-                    {% endif %}
+        {% if returnTypes|length > 0 %}
+            <p><span class="strong">Returns:</span> {% for type in returnTypes %}{{type}}{% if not loop.last %} | {% endif %}{% endfor %}</p>
+        {% endif %}
 
-                    {% if method.examples %}
-                    <h5>Examples</h5>
-                        {% for example in method.examples %}
-                            <pre class="prettyprint linenums">{{example}}</pre>
-                        {% endfor %}
-                    {% endif %}
-                </div>
-            {% endfor %}
+        {% if properties %}
+            <h2>Properties</h2>
+            <accordion>
+                {% for prop in properties %}
+                    <div title="{% if prop.private %}<span class='icon-key'></span> {% endif %}{{prop.name}}">
+                        <h4>{{prop.name}}{% if prop.private %}<span class='muted'> - private</span>{% endif %}</h4>
+                        {% if prop.from is defined %}<p>Defined by <a href="{{apiPath}}{{prop.from}}.html">{{prop.from}}</a></p>{% endif %}
+                        <p><strong>Types:</strong> {% for type in prop.types %}{{type}}{% if not loop.last %}, {% endif %}{% endfor %}</p>
+                        {% if prop.tags is defined %}<p><strong>Tagged:</strong> {% for tag in prop.tags %}{{tag}}{% if not loop.last %}, {% endif %}{% endfor %}</p>{% endif %}
+                        {% if prop.summary is defined %}<p class="lead">{{prop.summary}}</p>{% endif %}
+                        {% if prop.description is defined %}{{prop.description}}{% endif %}
+                    </div>
+                {% endfor %}
+            </accordion>
+        {% endif %}
+
+        {% if methods %}
+            <h2>Methods</h2>
+            <accordion>
+                {% for method in methods %}
+                    <div title="{% if method.private %}<span class='icon-key'></span> {% endif %}{{method.name}}">
+                        <h4>{{method.name}}({% for param in method.parameters %}{{param.name}}{% if not loop.last %}, {% endif %}{% endfor %}){% if method.private %}<span class='muted'> - private</span>{% endif %}</h4>
+                        {% if method.from is defined %}<p>Defined by <a href="{{apiPath}}{{method.from}}.html">{{method.from}}</a></p>{% endif %}
+                        {% if method.summary is defined %}<p class="lead">{{method.summary}}</p>{% endif %}
+                        {% if method.description is defined %}{{method.description}}{% endif %}
+                        {% if method.parameters|length > 0 %}
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 100px;">Parameter</th>
+                                        <th style="width: 50px;">Type</th>
+                                        <th style="width: 50px;">Usage</th>
+                                        <th>Summary</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for param in method.parameters %}
+                                        <tr>
+                                            <td>{{param.name}}</td>
+                                            <td>{% for type in param.types %}{{type}}{% if not loop.last %} | {% endif %}{% endfor %}</td>
+                                            <td>{{param.usage}}</td>
+                                            <td>{{param.summary}}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        {% endif %}
+                        {% if method.returnTypes|length > 0 %}
+                            <p><span class="strong">Returns:</span> {% for type in method.returnTypes %}{{type}}{% if not loop.last %} | {% endif %}{% endfor %}</p>
+                        {% endif %}
+
+                        {% if method.examples %}
+                            <h5>Examples</h5>
+                            {% for example in method.examples %}
+                                <pre class="prettyprint linenums">{{example}}</pre>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                {% endfor %}
             </accordion>
         {% endif %}
     </div>
-        </section>
+</section>
 {% endblock %}

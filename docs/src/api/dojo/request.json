@@ -218,5 +218,7 @@
             ],
             "summary": "<p>Send an HTTP POST request using the default transport for the current platform.</p>\n"
         }
-    ]
+    ],
+    "apiPath": "../",
+    "shortName": "request"
 }
