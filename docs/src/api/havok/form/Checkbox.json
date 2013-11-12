@@ -1681,6 +1681,6 @@
             "returnTypes": []
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "Checkbox"
 }

@@ -1,6 +1,6 @@
 {
     "location": "havok/main",
     "type": "undefined",
-    "apiPath": "../",
+    "rootPath": "../../",
     "shortName": "main"
 }

@@ -27,6 +27,6 @@
             "from": "dojo/_base/kernel"
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "kernel.scopeMap"
 }

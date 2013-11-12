@@ -20,15 +20,6 @@ function(
 
             tag: 'span',
 
-            buildRendering: function(){
-
-                this.inherited(arguments);
-
-                if (this.defaultClass){
-                    domClass.add(this.containerNode, this.defaultClass);
-                }
-            },
-
             startup: function(){
                 this.inherited(arguments);
 

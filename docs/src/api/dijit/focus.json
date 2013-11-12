@@ -478,6 +478,6 @@
             "summary": "<p>Callback when node is focused or mouse-downed</p>\n"
         }
     ],
-    "apiPath": "../",
+    "rootPath": "../../",
     "shortName": "focus"
 }

@@ -1,6 +1,6 @@
 {
     "location": "havok/exception/Base",
     "type": "undefined",
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "Base"
 }

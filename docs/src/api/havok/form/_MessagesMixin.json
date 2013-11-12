@@ -69,6 +69,6 @@
             ]
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "_MessagesMixin"
 }

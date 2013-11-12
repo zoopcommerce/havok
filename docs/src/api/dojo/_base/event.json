@@ -55,6 +55,6 @@
             "summary": "<p>prevents propagation and clobbers the default action of the\npassed event</p>\n"
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "event"
 }

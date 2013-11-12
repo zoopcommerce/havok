@@ -2334,6 +2334,6 @@
             "returnTypes": []
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "ValidationTextBox"
 }

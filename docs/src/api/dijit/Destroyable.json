@@ -43,6 +43,6 @@
             "summary": "<p>Track specified handles and remove/destroy them when this instance is destroyed, unless they were\nalready removed/destroyed manually.</p>\n"
         }
     ],
-    "apiPath": "../",
+    "rootPath": "../../",
     "shortName": "Destroyable"
 }

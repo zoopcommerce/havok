@@ -396,6 +396,6 @@
             "returnTypes": []
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "_ValidationMixin"
 }

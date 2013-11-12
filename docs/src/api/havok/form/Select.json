@@ -1832,6 +1832,6 @@
             "returnTypes": []
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "Select"
 }

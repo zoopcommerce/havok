@@ -98,11 +98,13 @@ function(
 
                 if (href.slice(-1) == '/'){
                     //default to index.html
-                    href = href + 'index.html';
+                    href = href + 'index';
+                } else {
+                    href = href.slice(0, -5); //remove the .html extension
                 }
 
                 for (i = 0; i < topNav.containerNode.children.length; i++){
-                    if (topNav.containerNode.children[i].firstElementChild.href == href){
+                    if (href.indexOf(topNav.containerNode.children[i].firstElementChild.href.slice(0, -5)) == 0){
                         topNav.set('active', topNav.containerNode.children[i]);
                         document.title = topNav.containerNode.children[i].firstElementChild.innerHTML + ' | Havok by Zoop';
                         break;

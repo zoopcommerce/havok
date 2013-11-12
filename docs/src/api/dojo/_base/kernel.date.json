@@ -192,6 +192,6 @@
             "description": "<p>Leap years are years with an additional day YYYY-02-29, where the\nyear number is a multiple of four with the following exception: If\na year is a multiple of 100, then it is only a leap year if it is\nalso a multiple of 400. For example, 1900 was not a leap year, but\n2000 is one.</p>\n"
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "kernel.date"
 }

@@ -65,6 +65,6 @@
             "summary": "<p>&quot;/dojo/io/stop&quot; is sent when all outstanding IO requests have\nfinished. No arguments are passed with this topic.</p>\n"
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "kernel.__IoPublish"
 }

@@ -142,6 +142,6 @@
             ]
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "declare"
 }

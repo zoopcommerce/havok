@@ -116,6 +116,6 @@
             "summary": "<p>This is an extension event for the mousewheel that non-Mozilla browsers provide,\nemulating the behavior on Mozilla based browsers.</p>\n"
         }
     ],
-    "apiPath": "../",
+    "rootPath": "../../",
     "shortName": "mouse"
 }

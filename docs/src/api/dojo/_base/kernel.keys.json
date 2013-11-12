@@ -580,6 +580,6 @@
             "extensionModule": true
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "kernel.keys"
 }

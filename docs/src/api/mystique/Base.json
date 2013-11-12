@@ -35,6 +35,6 @@
             ]
         }
     ],
-    "apiPath": "../",
+    "rootPath": "../../",
     "shortName": "Base"
 }

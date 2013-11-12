@@ -168,6 +168,6 @@
             "summary": "<p>Replaceable function to convert a formatted string to a number value</p>\n"
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "_NumberTextBoxMixin"
 }

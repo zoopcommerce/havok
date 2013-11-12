@@ -161,6 +161,6 @@
             ]
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "_ValidationMessagesMixin"
 }

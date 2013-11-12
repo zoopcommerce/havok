@@ -74,7 +74,7 @@ function (
 
         resolve: function(route){
 
-            // strip off the base url first
+            // strip off the base url
             if (route.indexOf(this.baseUrl) == 0){
                 route = route.substring(this.baseUrl.length + 1);
             }
@@ -161,7 +161,7 @@ function (
             }
             if (this.active && routeMatch.route == this.active.route){
                 //Don't do anything if the route hasn't changed
-                return true;
+                return false;
             }
 
             if (typeof(routeMatch.route) != 'string'){

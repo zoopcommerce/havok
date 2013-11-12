@@ -11,6 +11,6 @@
             "from": "havok/parser/config"
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "config"
 }

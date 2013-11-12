@@ -397,6 +397,6 @@
             "summary": "<p>Static method to get a template based on the templatePath or\ntemplateString key</p>\n"
         }
     ],
-    "apiPath": "../",
+    "rootPath": "../../",
     "shortName": "_TemplatedMixin"
 }

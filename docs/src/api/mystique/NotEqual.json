@@ -1,6 +1,6 @@
 {
     "location": "mystique/NotEqual",
     "type": "undefined",
-    "apiPath": "../",
+    "rootPath": "../../",
     "shortName": "NotEqual"
 }

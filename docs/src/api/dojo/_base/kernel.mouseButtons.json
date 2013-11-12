@@ -135,6 +135,6 @@
             "summary": "<p>Checks an event object for the pressed right button</p>\n"
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "kernel.mouseButtons"
 }

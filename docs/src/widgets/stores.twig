@@ -8,26 +8,26 @@
 
 <div class="bs-docs-example">
     <datalist id="navStore1">
-        <option>home</option>
-        <option href="#stores">#navs anchor</option>
-        <option disabled=true>disabled pill</option>
+        <option data-id="home">home</option>
+        <option data-id="navs" href="#stores">#navs anchor</option>
+        <option data-id="disabled" disabled=true>disabled pill</option>
     </datalist>
     <nav-pill
         mixins = "store"
-        active = 0
+        active = "home"
         store  = "navStore1"
         ></nav-pill>
 </div>
 <pre class="prettyprint linenums">
 {% set ex1 %}
 <datalist id="navStore1">
-    <option>home</option>
-    <option href="#stores">#navs anchor</option>
-    <option disabled=true>disabled pill</option>
+    <option data-id="home">home</option>
+    <option data-id="navs" href="#stores">#navs anchor</option>
+    <option data-id="disabled" disabled=true>disabled pill</option>
 </datalist>
 <nav-pill
     mixins = "store"
-    active = 0
+    active = "home"
     store  = "navStore1"
 ></nav-pill>{% endset %}{{ex1|e}}
     </pre>
@@ -36,7 +36,7 @@
     <p>Using a store, add dropdown menus with the <code>type: 'dropdown'</code> property.</p>
     <div class="bs-docs-example">
         <datalist id="navStore2">
-            <option>home</option>
+            <option data-id="home">home</option>
             <optgroup label="help <b class='caret'></b>">
                 <option>action</option>
                 <option>another action</option>
@@ -48,7 +48,7 @@
             </optgroup>
             </optgroup>
         </datalist>
-        <nav-pill store="navStore2" mixins="store" active=0></nav-pill>
+        <nav-pill store="navStore2" mixins="store" active="home"></nav-pill>
     </div>
     <pre class="prettyprint linenums">
 

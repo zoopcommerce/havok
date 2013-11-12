@@ -90,6 +90,6 @@
             "summary": "<p>Private method overridden by dojo/ready, to notify when everything in the\ndomReady queue has been processed.  Do not use directly.\nWill be removed in 2.0, along with domReady._Q.</p>\n"
         }
     ],
-    "apiPath": "../",
+    "rootPath": "../../",
     "shortName": "domReady"
 }

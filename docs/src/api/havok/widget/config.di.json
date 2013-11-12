@@ -11,6 +11,6 @@
             "from": "havok/widget/config"
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "config.di"
 }

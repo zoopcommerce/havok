@@ -1,13 +1,13 @@
 define([
     'dojo/_base/declare',
-    'dojo/_base/array',
+    'dojo/dom-attr',
     'dojo/dom-class',
     '../widget/CheckboxGroup',
     './_FormWidgetMixin'
 ],
 function(
     declare,
-    array,
+    domAttr,
     domClass,
     CheckboxGroup,
     FormWidgetMixin
@@ -21,39 +21,38 @@ function(
         {
             tag: 'span',
 
-            buildRendering: function(){
-
-                this.inherited(arguments);
-
-                if (this.defaultClass){
-                    domClass.add(this.containerNode, this.defaultClass);
-                }
-            },
-
             startup: function(){
                 this.inherited(arguments);
 
-                this.watch('active', function(property, oldValue, newValue){
+                this.watch('active', function(){
                     var value = {},
+                        node,
+                        id,
                         i;
-                    array.forEach(this.store.data, function(storeItem){
-                        for (i = 0; i < newValue.length; i++){
-                            if (storeItem.id == newValue[i].id){
-                                value[storeItem.id] = true;
-                                break;
-                            }
+                    for (i = 0; i < this.containerNode.children.length; i++){
+                        node = this.containerNode.children[i];
+                        if (domAttr.has(node, 'data-havok-store-id')){
+                            id = domAttr.get(node, 'data-havok-store-id');
+                        } else if (node.id) {
+                            id = node.id;
+                        } else {
+                            id = i;
                         }
-                        if (!value[storeItem.id]){
-                            value[storeItem.id] = false;
-                        }
-                    });
+                        value[id] = domClass.contains(node, 'active');
+                    }
                     this._set('value', value);
                 });
             },
 
             _setValueAttr: function(value){
-                var active = [];
-                for (var i in value){
+                if (typeof value == 'string'){
+                    value = JSON.parse(value);
+                }
+
+                var active = [],
+                    i;
+
+                for (i in value){
                     if (value[i]){
                         active.push(i);
                     }

@@ -76,6 +76,6 @@
             "summary": "<p>Should not be set.  Value is assumed to be &quot;currency&quot;.</p>\n"
         }
     ],
-    "apiPath": "../",
+    "rootPath": "../../",
     "shortName": "currency.__FormatOptions"
 }

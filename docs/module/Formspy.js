@@ -18,6 +18,8 @@ function (
     return declare(
         [WidgetBase],
         {
+            baseClass: 'form-horizontal',
+
             templateString: template,
 
             startup: function(){

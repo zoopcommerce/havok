@@ -16,6 +16,8 @@ function (
     return declare(
         [ButtonGroup],
         {
+            storeAdapter: './_CheckboxGroupStoreAdapterMixin',
+
             _setActiveAttr: function(value){
 
                 var i,
@@ -44,17 +46,20 @@ function (
                 }
 
                 //otherwise, toggle value in the active array
+                var newActive;
                 if (!this.active){
-                    this.active = [];
-                }
-                if (this.active.indexOf(value) == -1){
                     domClass.add(value, 'active');
-                    this.active.push(value);
+                    newActive = [value];
+                } else if (this.active.indexOf(value) == -1){
+                    domClass.add(value, 'active');
+                    newActive = this.active.slice();
+                    newActive.push(value);
                 } else {
                     domClass.remove(value, 'active');
-                    this.active.splice(this.active.indexOf(value), 1);
+                    newActive = this.active.slice();
+                    newActive.splice(this.active.indexOf(value), 1);
                 }
-                this._set('active', this.active);
+                this._set('active', newActive);
             }
         }
     );

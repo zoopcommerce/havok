@@ -17,6 +17,6 @@
             "summary": "<p>TODOC</p>\n"
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "RequestError"
 }

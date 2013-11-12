@@ -1,6 +1,6 @@
 {
     "location": "havok/widget/main",
     "type": "undefined",
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "main"
 }

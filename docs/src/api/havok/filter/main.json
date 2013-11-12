@@ -1,6 +1,6 @@
 {
     "location": "havok/filter/main",
     "type": "undefined",
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "main"
 }

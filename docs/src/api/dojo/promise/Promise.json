@@ -228,6 +228,6 @@
             ]
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "Promise"
 }

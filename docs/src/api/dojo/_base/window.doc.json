@@ -6,6 +6,6 @@
     "examples": [
         "n.appendChild(dojo.doc.createElement(&#39;div&#39;));\n"
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "window.doc"
 }

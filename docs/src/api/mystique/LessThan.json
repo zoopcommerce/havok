@@ -1,6 +1,6 @@
 {
     "location": "mystique/LessThan",
     "type": "undefined",
-    "apiPath": "../",
+    "rootPath": "../../",
     "shortName": "LessThan"
 }

@@ -259,6 +259,6 @@
             "summary": "<p>Register a listener to releasing the mouse button while the cursor is over the given node\n(i.e. &quot;mouseup&quot;) or for removing the finger from the screen while touching the given node.</p>\n"
         }
     ],
-    "apiPath": "../",
+    "rootPath": "../../",
     "shortName": "touch"
 }

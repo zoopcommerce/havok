@@ -348,6 +348,6 @@
             ]
         }
     ],
-    "apiPath": "../",
+    "rootPath": "../../",
     "shortName": "number"
 }

@@ -1,6 +1,6 @@
 {
     "location": "mystique/Slug",
     "type": "undefined",
-    "apiPath": "../",
+    "rootPath": "../../",
     "shortName": "Slug"
 }

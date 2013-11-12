@@ -33,9 +33,16 @@ function (
         _createInstance = function(refNode){
 
             var result = new Deferred,
-                type = dojoConfig.parser.tags[refNode.tagName.toLowerCase()],
-                requires = [type],
+                type,
+                requires,
                 attributes;
+
+            if (domAttr.has(refNode, 'data-dojo-type')){
+                type = domAttr.get(refNode, 'data-dojo-type');
+            } else {
+                type = dojoConfig.parser.tags[refNode.tagName.toLowerCase()];
+            }
+            requires = [type];
 
             if(has("dom-attributes-explicit")){
                 // Standard path to get list of user specified attributes
@@ -111,10 +118,16 @@ function (
                 instanceDefs = [],
                 instanceDefList,
                 tag,
+                node,
                 nodes,
                 i;
 
             root = root ? root : document.body;
+
+            nodes = root.querySelectorAll('[data-dojo-type]');
+            for (i = 0; i < nodes.length; i++){
+                instanceDefs.push(_createInstance(nodes[i]));
+            }
 
             for (tag in dojoConfig.parser.tags) {
 

@@ -177,6 +177,6 @@
             "summary": "<p>Whether the deferred instrumentation should be used.\n\n</p>\n<ul>\n<li><code>&quot;report-rejections&quot;</code>: report each rejection as it occurs.</li>\n<li><code>true</code> or <code>1</code> or <code>&quot;report-unhandled-rejections&quot;</code>: wait 1 second\n  in an attempt to detect unhandled rejections.</li>\n</ul>\n"
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "config"
 }

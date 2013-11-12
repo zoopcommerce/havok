@@ -125,6 +125,6 @@
             ]
         }
     ],
-    "apiPath": "../",
+    "rootPath": "../../",
     "shortName": "is"
 }

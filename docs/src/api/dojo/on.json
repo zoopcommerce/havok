@@ -345,6 +345,6 @@
             ]
         }
     ],
-    "apiPath": "../",
+    "rootPath": "../../",
     "shortName": "on"
 }

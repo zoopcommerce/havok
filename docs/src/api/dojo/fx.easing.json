@@ -676,6 +676,6 @@
             ]
         }
     ],
-    "apiPath": "../",
+    "rootPath": "../../",
     "shortName": "fx.easing"
 }

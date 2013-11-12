@@ -13,6 +13,6 @@
             "summary": "<p>The HTTP method to use to make the request.  Must be\nuppercase.</p>\n"
         }
     ],
-    "apiPath": "../",
+    "rootPath": "../../",
     "shortName": "request.__MethodOptions"
 }

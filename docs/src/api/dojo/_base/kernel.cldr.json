@@ -23,6 +23,6 @@
             "summary": "<p>TODOC</p>\n"
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "kernel.cldr"
 }

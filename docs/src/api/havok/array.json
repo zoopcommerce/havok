@@ -348,6 +348,6 @@
             "summary": "<p>Remove the values in removeValues from the array removeFrom</p>\n"
         }
     ],
-    "apiPath": "../",
+    "rootPath": "../../",
     "shortName": "array"
 }

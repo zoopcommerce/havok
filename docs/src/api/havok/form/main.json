@@ -1,6 +1,6 @@
 {
     "location": "havok/form/main",
     "type": "undefined",
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "main"
 }

@@ -1,6 +1,6 @@
 define([
     'dojo/_base/declare',
-    'dojo/string',
+    'dojo/dom-class',
     './_LabelMixin',
     './_HelpMessagesMixin',
     './_RequiredStarMixin',
@@ -8,7 +8,7 @@ define([
 ],
 function (
     declare,
-    string,
+    domClass,
     LabelMixin,
     HelpMessagesMixin,
     RequiredStarMixin,
@@ -19,17 +19,20 @@ function (
         {
             //inline: false,
 
-            inlineTemplate: '<span>${input}</span>',
+            inlineTemplate: '<span data-dojo-attach-point="inputContainer">${input}</span>',
 
-            blockTemplate: '<div class="control-group"><div class="controls">${input}<span data-dojo-attach-point="messagesNode"></span></div></div>',
+            blockTemplate: '<div class="control-group"><div class="controls" data-dojo-attach-point="inputContainer">${input}<span data-dojo-attach-point="messagesNode"></span></div></div>',
 
             buildRendering: function(){
                 if (this.inline){
-                    this.templateString = string.substitute(this.inlineTemplate, {input: this.templateString});
+                    this.templateString = this.inlineTemplate.replace('${input}', this.templateString);
                 } else {
-                    this.templateString = string.substitute(this.blockTemplate, {input: this.templateString});
+                    this.templateString = this.blockTemplate.replace('${input}', this.templateString);
                 }
                 this.inherited(arguments);
+
+                domClass.remove(this.domNode, this.baseClass);
+                domClass.add(this.inputContainer.firstElementChild, this.baseClass);
             }
         }
     );

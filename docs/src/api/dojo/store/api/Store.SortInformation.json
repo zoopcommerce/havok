@@ -23,6 +23,6 @@
             "summary": "<p>The direction of the sort.  Default is false.</p>\n"
         }
     ],
-    "apiPath": "../../../",
+    "rootPath": "../../../../",
     "shortName": "Store.SortInformation"
 }

@@ -2339,6 +2339,6 @@
             "returnTypes": []
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "EmailTextBox"
 }

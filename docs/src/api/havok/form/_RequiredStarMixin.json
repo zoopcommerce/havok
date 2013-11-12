@@ -66,6 +66,6 @@
             "returnTypes": []
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "_RequiredStarMixin"
 }

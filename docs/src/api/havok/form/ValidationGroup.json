@@ -1927,6 +1927,6 @@
             "returnTypes": []
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "ValidationGroup"
 }

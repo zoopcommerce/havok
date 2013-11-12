@@ -1589,6 +1589,6 @@
             "returnTypes": []
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "DropdownToggle"
 }

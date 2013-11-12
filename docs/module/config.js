@@ -1,6 +1,11 @@
 define([],
 function(){
     return {
+        parser: {
+            tags: {
+                'formspy'            : 'havok/docs/module/Formspy'
+            },
+        },
         di: {
             'havok/store/stores': {
                 proxies: {

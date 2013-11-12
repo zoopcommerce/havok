@@ -4,6 +4,12 @@
 {% set byline='API documentation for all havok modules and their dependencies.' %}
 
 {% block sideNav %}
+    <div class="well">
+        <div data-dojo-type="havok/docs/module/Scopetoggle">
+          <button>Privates</button>
+          <button>Inherited</button>
+        </div>
+    </div>
     <tree mixins="store" store="apiTree" class="well" item-icon="" {% if location %}active="{{location}}"{% endif %}></tree>
 {% endblock %}
 

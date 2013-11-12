@@ -217,6 +217,6 @@
             "summary": "<p>Watches a property for changes</p>\n"
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "Base"
 }

@@ -53,6 +53,6 @@
             ]
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "manager"
 }

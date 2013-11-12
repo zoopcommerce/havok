@@ -434,6 +434,6 @@
             "summary": "<p>sets the size of the node&#39;s margin box and placement\n(left/top), irrespective of box model. Think of it as a\npassthrough to setBox that handles box-model vagaries for\nyou.</p>\n"
         }
     ],
-    "apiPath": "../",
+    "rootPath": "../../",
     "shortName": "dom-geometry"
 }

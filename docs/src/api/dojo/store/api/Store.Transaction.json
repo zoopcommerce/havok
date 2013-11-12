@@ -42,6 +42,6 @@
             "summary": "<p>Commits the transaction. This may throw an error if it fails. Of if the operation\nis asynchronous, it may return a promise that represents the eventual success\nor failure of the commit.</p>\n"
         }
     ],
-    "apiPath": "../../../",
+    "rootPath": "../../../../",
     "shortName": "Store.Transaction"
 }

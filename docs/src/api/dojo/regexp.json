@@ -102,6 +102,6 @@
             "summary": "<p>adds group match to expression</p>\n"
         }
     ],
-    "apiPath": "../",
+    "rootPath": "../../",
     "shortName": "regexp"
 }

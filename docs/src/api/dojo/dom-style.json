@@ -141,6 +141,6 @@
             "summary": "<p>converts style value to pixels on IE or return a numeric value.</p>\n"
         }
     ],
-    "apiPath": "../",
+    "rootPath": "../../",
     "shortName": "dom-style"
 }

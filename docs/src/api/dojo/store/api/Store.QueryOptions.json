@@ -32,6 +32,6 @@
             "summary": "<p>The first result to begin iteration on</p>\n"
         }
     ],
-    "apiPath": "../../../",
+    "rootPath": "../../../../",
     "shortName": "Store.QueryOptions"
 }

@@ -17,6 +17,6 @@
             "summary": "<p>Default error if a promise is canceled without a reason.</p>\n"
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "CancelError"
 }

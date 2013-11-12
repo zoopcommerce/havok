@@ -222,6 +222,6 @@
             "returnTypes": []
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "_FormWidgetMixin"
 }

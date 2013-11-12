@@ -55,6 +55,6 @@
             ]
         }
     ],
-    "apiPath": "../../../",
+    "rootPath": "../../../../",
     "shortName": "QueryResults"
 }

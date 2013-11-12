@@ -86,15 +86,14 @@ function (
 
             _setActiveAttr: function(value){
                 if (!this._nodesRendered) {
+                    this.active = value;
                     return;
                 }
 
                 if (typeof value == 'string'){
-                    for (var i = 0; i < this.containerNode.children.length; i++){
-                        if (domAttr.get(this.containerNode.children[i], 'data-havok-store-id') == value){
-                            value = this.containerNode.children[i];
-                            break;
-                        }
+                    var nodes = this.containerNode.querySelectorAll('[data-havok-store-id=' + value + ']');
+                    if (nodes.length > 0){
+                        value = nodes[0];
                     }
                 }
                 this.inherited(arguments, [value]);

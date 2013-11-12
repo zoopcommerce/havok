@@ -355,6 +355,6 @@
             "summary": "<p>Starts a new transaction.\nNote that a store user might not call transaction() prior to using put,\ndelete, etc. in which case these operations effectively could be thought of\nas &quot;auto-commit&quot; style actions.</p>\n"
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "JsonRest"
 }

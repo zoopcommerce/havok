@@ -1,6 +1,6 @@
 {
     "location": "havok/parser/main",
     "type": "undefined",
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "main"
 }

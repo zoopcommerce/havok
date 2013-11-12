@@ -2161,6 +2161,6 @@
             "returnTypes": []
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "ValidationTextarea"
 }

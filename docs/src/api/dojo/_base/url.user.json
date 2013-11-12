@@ -1,6 +1,6 @@
 {
     "location": "dojo/_base/url.user",
     "type": "object",
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "url.user"
 }

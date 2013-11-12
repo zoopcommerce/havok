@@ -181,6 +181,6 @@
             "summary": "<p>This function will be\ncalled on a successful HTTP response code.</p>\n"
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "kernel.__IoArgs"
 }

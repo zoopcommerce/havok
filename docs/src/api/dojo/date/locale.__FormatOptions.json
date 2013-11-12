@@ -85,6 +85,6 @@
             "summary": "<p>override pattern with this string</p>\n"
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "locale.__FormatOptions"
 }

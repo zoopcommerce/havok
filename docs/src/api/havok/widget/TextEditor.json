@@ -1489,6 +1489,6 @@
             "summary": "<p>Maps on() type parameter (ex: &quot;mousemove&quot;) to method name (ex: &quot;onMouseMove&quot;).\nIf type is a synthetic event like touch.press then returns undefined.</p>\n"
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "TextEditor"
 }

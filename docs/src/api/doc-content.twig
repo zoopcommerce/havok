@@ -1,5 +1,7 @@
 {% extends "api-content.twig" %}
 
+{% set apiPath = rootPath ~ 'api/' %}
+
 {% block mainContent %}
 <section>
     <div class="well">
@@ -11,7 +13,7 @@
             {{location}}
         </h1>
         {% if superclass %}
-            <p>Inherits from <a href="{{apiPath}}{{superclass}}.html">{{superclass}}</a>
+            <p><span class="icon-code-fork"></span> Inherits from <a href="{{apiPath}}{{superclass}}.html">{{superclass}}</a>
             {% if mixins is defined %}, mixins {% for mixin in mixins %}<a href="{{apiPath}}{{mixin}}.html">{{mixin}}</a>{% if not loop.last %}, {% endif %}{% endfor %}{% endif %}
             </p>
         {% endif %}
@@ -57,15 +59,19 @@ require(['{{location}}'], function({{shortName}}){
 
         {% if properties %}
             <h2>Properties</h2>
-            <accordion>
+            <p class="muted">All properties are filtered from view.</p>
+            <accordion style="position: relative; top: -30px; background-color: #FBFBFB;">
                 {% for prop in properties %}
-                    <div title="{% if prop.private %}<span class='icon-key'></span> {% endif %}{{prop.name}}">
+                    <div class="{% if prop.private %}private hide{% endif %} {% if prop.from != location %}inherited hide{% endif %}">
+                        <span>{% if prop.private %}<span class='icon-key'></span> {% endif %}{% if prop.from != location %}<span class="icon-code-fork"></span> {% endif %}{{prop.name}}</span>
+                        <div>
                         <h4>{{prop.name}}{% if prop.private %}<span class='muted'> - private</span>{% endif %}</h4>
                         {% if prop.from is defined %}<p>Defined by <a href="{{apiPath}}{{prop.from}}.html">{{prop.from}}</a></p>{% endif %}
                         <p><strong>Types:</strong> {% for type in prop.types %}{{type}}{% if not loop.last %}, {% endif %}{% endfor %}</p>
                         {% if prop.tags is defined %}<p><strong>Tagged:</strong> {% for tag in prop.tags %}{{tag}}{% if not loop.last %}, {% endif %}{% endfor %}</p>{% endif %}
                         {% if prop.summary is defined %}<p class="lead">{{prop.summary}}</p>{% endif %}
                         {% if prop.description is defined %}{{prop.description}}{% endif %}
+                        </div>
                     </div>
                 {% endfor %}
             </accordion>
@@ -73,9 +79,12 @@ require(['{{location}}'], function({{shortName}}){
 
         {% if methods %}
             <h2>Methods</h2>
-            <accordion>
+            <p class="muted">All methods are filtered from view.</p>
+            <accordion style="position: relative; top: -30px; background-color: #FBFBFB;">
                 {% for method in methods %}
-                    <div title="{% if method.private %}<span class='icon-key'></span> {% endif %}{{method.name}}">
+                    <div class="{% if method.private %}private hide{% endif %} {% if method.from != location %}inherited hide{% endif %}">
+                        <span>{% if method.private %}<span class='icon-key'></span> {% endif %}{% if method.from != location %}<span class="icon-code-fork"></span> {% endif %}{{method.name}}</span>
+                        <div>
                         <h4>{{method.name}}({% for param in method.parameters %}{{param.name}}{% if not loop.last %}, {% endif %}{% endfor %}){% if method.private %}<span class='muted'> - private</span>{% endif %}</h4>
                         {% if method.from is defined %}<p>Defined by <a href="{{apiPath}}{{method.from}}.html">{{method.from}}</a></p>{% endif %}
                         {% if method.summary is defined %}<p class="lead">{{method.summary}}</p>{% endif %}
@@ -112,6 +121,57 @@ require(['{{location}}'], function({{shortName}}){
                                 <pre class="prettyprint linenums">{{example}}</pre>
                             {% endfor %}
                         {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </accordion>
+        {% endif %}
+
+        {% if events %}
+            <h2>Events</h2>
+            <p class="muted">All events are filtered from view.</p>
+            <accordion style="position: relative; top: -30px; background-color: #FBFBFB;">
+                {% for event in events %}
+                    <div class="{% if event.private %}private hide{% endif %} {% if event.from != location %}inherited hide{% endif %}">
+                        <span>{% if event.private %}<span class='icon-key'></span> {% endif %}{% if event.from != location %}<span class="icon-code-fork"></span> {% endif %}{{event.name}}</span>
+                        <div>
+                        <h4>{{event.name}}({% for param in event.parameters %}{{param.name}}{% if not loop.last %}, {% endif %}{% endfor %}){% if event.private %}<span class='muted'> - private</span>{% endif %}</h4>
+                        {% if event.from is defined %}<p>Defined by <a href="{{apiPath}}{{event.from}}.html">{{event.from}}</a></p>{% endif %}
+                        {% if event.summary is defined %}<p class="lead">{{event.summary}}</p>{% endif %}
+                        {% if event.description is defined %}{{event.description}}{% endif %}
+                        {% if event.parameters|length > 0 %}
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 100px;">Parameter</th>
+                                        <th style="width: 50px;">Type</th>
+                                        <th style="width: 50px;">Usage</th>
+                                        <th>Summary</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for param in event.parameters %}
+                                        <tr>
+                                            <td>{{param.name}}</td>
+                                            <td>{% for type in param.types %}{{type}}{% if not loop.last %} | {% endif %}{% endfor %}</td>
+                                            <td>{{param.usage}}</td>
+                                            <td>{{param.summary}}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        {% endif %}
+                        {% if event.returnTypes|length > 0 %}
+                            <p><span class="strong">Returns:</span> {% for type in event.returnTypes %}{{type}}{% if not loop.last %} | {% endif %}{% endfor %}</p>
+                        {% endif %}
+
+                        {% if event.examples %}
+                            <h5>Examples</h5>
+                            {% for example in event.examples %}
+                                <pre class="prettyprint linenums">{{example}}</pre>
+                            {% endfor %}
+                        {% endif %}
+                        </div>
                     </div>
                 {% endfor %}
             </accordion>

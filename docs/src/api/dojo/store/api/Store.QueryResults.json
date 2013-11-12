@@ -161,6 +161,6 @@
             "summary": "<p>This registers a callback for when the query is complete, if the query is asynchronous.\nThis is an optional method, and may not be present for synchronous queries.</p>\n"
         }
     ],
-    "apiPath": "../../../",
+    "rootPath": "../../../../",
     "shortName": "Store.QueryResults"
 }

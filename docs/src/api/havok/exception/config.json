@@ -19,6 +19,6 @@
             "from": "havok/exception/config"
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "config"
 }

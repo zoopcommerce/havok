@@ -1,6 +1,6 @@
 {
     "location": "mystique/Boolean",
     "type": "undefined",
-    "apiPath": "../",
+    "rootPath": "../../",
     "shortName": "Boolean"
 }

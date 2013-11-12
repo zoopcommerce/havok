@@ -11,6 +11,6 @@
             "from": "havok/router/config"
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "config.di"
 }

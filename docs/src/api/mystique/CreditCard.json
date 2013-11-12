@@ -1,6 +1,6 @@
 {
     "location": "mystique/CreditCard",
     "type": "undefined",
-    "apiPath": "../",
+    "rootPath": "../../",
     "shortName": "CreditCard"
 }

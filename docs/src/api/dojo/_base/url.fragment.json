@@ -1,6 +1,6 @@
 {
     "location": "dojo/_base/url.fragment",
     "type": "object",
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "url.fragment"
 }

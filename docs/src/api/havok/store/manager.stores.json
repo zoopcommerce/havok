@@ -1,6 +1,6 @@
 {
     "location": "havok/store/manager.stores",
     "type": "object",
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "manager.stores"
 }

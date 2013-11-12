@@ -84,6 +84,6 @@
             "summary": "<p>For XMLHttpRequest calls only, the\nXMLHttpRequest object that was used for the\nrequest.</p>\n"
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "kernel.__IoCallbackArgs"
 }

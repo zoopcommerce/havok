@@ -98,6 +98,6 @@
             ]
         }
     ],
-    "apiPath": "../",
+    "rootPath": "../../",
     "shortName": "dom-prop"
 }

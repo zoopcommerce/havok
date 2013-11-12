@@ -1,6 +1,6 @@
 {
     "location": "dojo/_base/url.query",
     "type": "object",
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "url.query"
 }

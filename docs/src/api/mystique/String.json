@@ -1,6 +1,6 @@
 {
     "location": "mystique/String",
     "type": "undefined",
-    "apiPath": "../",
+    "rootPath": "../../",
     "shortName": "String"
 }

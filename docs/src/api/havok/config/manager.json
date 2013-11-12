@@ -33,6 +33,6 @@
             "summary": "<p>Merges multiple config modules\n</p>\n"
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "manager"
 }

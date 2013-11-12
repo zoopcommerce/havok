@@ -221,6 +221,6 @@
             "summary": "<p>Send an HTTP PUT request using XMLHttpRequest with the given URL and options.</p>\n"
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "xhr"
 }

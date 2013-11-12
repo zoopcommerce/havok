@@ -45,6 +45,6 @@
             ]
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "_FilterMixin"
 }

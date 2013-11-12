@@ -63,7 +63,7 @@ function(
                         } else {
                             text = node.id;
                         }
-                        domConstruct.place(string.substitute(this.itemTemplate, {id: node.id, text: text}), this.containerNode, 'last');
+                        this._attachClickListener(domConstruct.place(string.substitute(this.itemTemplate, {id: node.id, text: text}), this.containerNode, 'last'));
                     }
                 }
             },

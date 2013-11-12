@@ -1,6 +1,6 @@
 {
     "location": "mystique/Email",
     "type": "undefined",
-    "apiPath": "../",
+    "rootPath": "../../",
     "shortName": "Email"
 }

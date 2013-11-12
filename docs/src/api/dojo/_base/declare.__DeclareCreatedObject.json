@@ -172,6 +172,6 @@
             ]
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "declare.__DeclareCreatedObject"
 }

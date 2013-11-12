@@ -1,6 +1,6 @@
 {
     "location": "havok/router/main",
     "type": "undefined",
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "main"
 }

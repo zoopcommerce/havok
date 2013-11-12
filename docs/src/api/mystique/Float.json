@@ -1,6 +1,6 @@
 {
     "location": "mystique/Float",
     "type": "undefined",
-    "apiPath": "../",
+    "rootPath": "../../",
     "shortName": "Float"
 }

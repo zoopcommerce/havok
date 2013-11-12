@@ -67,6 +67,6 @@
             ]
         }
     ],
-    "apiPath": "../../../",
+    "rootPath": "../../../../",
     "shortName": "SimpleQueryEngine"
 }

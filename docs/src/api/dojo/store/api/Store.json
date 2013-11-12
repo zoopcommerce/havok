@@ -304,6 +304,6 @@
             "returnTypes": []
         }
     ],
-    "apiPath": "../../../",
+    "rootPath": "../../../../",
     "shortName": "Store"
 }

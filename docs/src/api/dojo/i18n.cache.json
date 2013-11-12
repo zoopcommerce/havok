@@ -1,6 +1,6 @@
 {
     "location": "dojo/i18n.cache",
     "type": "object",
-    "apiPath": "../",
+    "rootPath": "../../",
     "shortName": "i18n.cache"
 }

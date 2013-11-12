@@ -51,6 +51,6 @@
             "summary": "<p>Milliseconds to wait for the response.  If this time\npasses, the then the promise is rejected.</p>\n"
         }
     ],
-    "apiPath": "../",
+    "rootPath": "../../",
     "shortName": "request.__BaseOptions"
 }

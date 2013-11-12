@@ -45,6 +45,6 @@
             "description": "<p>Takes multiple promises and returns a new promise that is fulfilled\nwhen all promises have been fulfilled. If one of the promises is rejected,\nthe returned promise is also rejected. Canceling the returned promise will\n<em>not</em> cancel any passed promises.</p>\n"
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "all"
 }

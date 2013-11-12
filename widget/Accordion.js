@@ -3,13 +3,11 @@ define([
     'dojo/_base/array',
     'dojo/_base/lang',
     'dojo/on',
-    'dojo/string',
-    'dojo/dom-attr',
+    'dojo/dom-class',
     'dojo/dom-construct',
     'dijit/a11yclick',
     '../cssfx',
     './_WidgetBase',
-    'dojo/text!./template/AccordionItem.html',
     '../less!./less/accordion.less'
 ],
 function (
@@ -17,13 +15,11 @@ function (
     array,
     lang,
     on,
-    string,
-    domAttr,
+    domClass,
     domConstruct,
     a11yclick,
     cssfx,
-    WidgetBase,
-    itemTemplate
+    WidgetBase
 ){
     // module:
     //    	havok/widget/Accordion
@@ -35,50 +31,51 @@ function (
 
             baseClass: 'accordion',
 
-            itemTemplate: itemTemplate,
-
-            //items: {},
-
             buildRendering: function(){
                 this.inherited(arguments);
 
-                this.items = [];
                 array.forEach(this.containerNode.children, lang.hitch(this, function(node){
-                    if (node.title){
-                        this._renderItem(node);
-                    }
+                    this._renderItem(node);
                 }));
             },
 
             _renderItem: function(srcNode){
-                var title = srcNode.title,
-                    item;
+                var heading,
+                    body;
 
-                domConstruct.place(string.substitute(this.itemTemplate, {title: title}), srcNode, 'after');
-                item = {domNode: srcNode.nextElementSibling};
-                item.body = item.domNode.lastElementChild;
-                item.containerNode = item.body.firstElementChild;
-                domConstruct.place(srcNode, item.containerNode);
-                this.items.push(item);
+                domClass.add(srcNode, 'accordion-group');
+                heading = domConstruct.place('<div class="accordion-heading"><a class="accordion-toggle"></a></div>', srcNode);
+                domConstruct.place(srcNode.firstElementChild, heading.firstElementChild);
 
-                on(item.domNode.firstElementChild, a11yclick.click, lang.hitch(this, function(e){
+                body = domConstruct.place('<div class="accordion-body"><div class="accordion-inner"></div></div>', srcNode);
+                domConstruct.place(srcNode.firstElementChild, body.firstElementChild);
+
+                on(heading, a11yclick.click, lang.hitch(this, function(e){
                     e.preventDefault();
-                    this._toggleItem(item);
+                    this.toggle(srcNode);
                 }))
             },
 
-            _toggleItem: function(item){
-                if (domAttr.get(item.body, 'data-havok-open')){
-                    domAttr.set(item.body, 'data-havok-open', false);
-                    item.body.style['height'] = item.body.scrollHeight + 'px';
+            toggle: function(node){
+                var body = node.querySelector('.accordion-body'),
+                    nodes,
+                    i;
+
+                if (domClass.contains(node, 'open')){
+                    domClass.remove(node, 'open');
+                    body.style['height'] = body.scrollHeight + 'px';
                     setTimeout(function(){ //this brief delay is required to allow the style to switch from auto to an explicit number. Without the delay, the css transition may not fire.
-                        item.body.style['height'] = '0';
+                        body.style['height'] = '0';
                     }, 20);
                 } else {
-                    domAttr.set(item.body, 'data-havok-open', true);
-                    item.body.style['height'] = item.body.scrollHeight + 'px';
-                    on.once(item.body, cssfx.transitionEndEvent(), lang.hitch(this, function(){
-                        item.body.style['height'] = 'auto';
+                    nodes = this.domNode.querySelectorAll('.accordion-group.open');
+                    for(i=0; i<nodes.length; i++){
+                        this.toggle(nodes[i]);
+                    }
+                    domClass.add(node, 'open');
+                    body.style['height'] = body.scrollHeight + 'px';
+                    on.once(body, cssfx.transitionEndEvent(), lang.hitch(this, function(){
+                        body.style['height'] = 'auto';
                     }));
                 }
             }

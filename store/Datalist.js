@@ -39,7 +39,7 @@ function(
 
                             for(i = 0; i < nodes.length; i++){
                                 node = nodes[i];
-                                item = {id: id};
+                                item = {id: 'i' + id};
                                 if (parent != null){
                                     item.parent = parent;
                                 }
@@ -57,6 +57,9 @@ function(
 
                                 j = 0;
                                 while(attribute = attributes[j++]){
+                                    if (attribute.name.indexOf('data-') == 0){
+                                        item[string.camelCase(attribute.name.slice(5))] = attribute.value;
+                                    }
                                     item[string.camelCase(attribute.name)] = attribute.value;
                                 }
 

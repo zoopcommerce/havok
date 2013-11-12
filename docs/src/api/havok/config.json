@@ -27,6 +27,6 @@
             "from": "havok/config"
         }
     ],
-    "apiPath": "../",
+    "rootPath": "../../",
     "shortName": "config"
 }

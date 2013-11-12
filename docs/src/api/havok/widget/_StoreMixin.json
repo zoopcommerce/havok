@@ -119,6 +119,6 @@
             ]
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "_StoreMixin"
 }

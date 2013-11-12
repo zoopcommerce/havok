@@ -1,6 +1,6 @@
 {
     "location": "havok/validator/Currency",
     "type": "undefined",
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "Currency"
 }

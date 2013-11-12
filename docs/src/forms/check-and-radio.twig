@@ -1,0 +1,155 @@
+<div class="well">
+    <h1>Check and Radio</h1>
+
+    <h2>Checkbox</h2>
+    <p><code>havok/form/Checkbox</code> provides nicely styled checkbox.</p>
+
+    <h3>Example</h3>
+    <div class="bs-docs-example form-horizontal">
+        <input data-dojo-type="havok/form/Checkbox"
+               type="checkbox"
+               checked
+               label="Checked Enabled"
+               help-messages="this is a checkbox"
+               />
+        <input data-dojo-type="havok/form/Checkbox"
+               type="checkbox"
+               label="Unchecked Enabled"
+               help-messages="this is a checkbox"
+               />
+        <input data-dojo-type="havok/form/Checkbox"
+               type="checkbox"
+               checked
+               disabled
+               label="Checked Disabled"
+               help-messages="this is a checkbox"
+               />
+        <input data-dojo-type="havok/form/Checkbox"
+               type="checkbox"
+               disabled
+               label='Unchecked Disabled'
+               help-messages='this is a checkbox'
+               />
+    </div>
+
+    <pre class="prettyprint linenums">
+{% set checkExample1 %}
+<input data-dojo-type="havok/form/Checkbox"
+    type="checkbox"
+    checked
+    label="Checked Enabled"
+    help-messages="this is a checkbox"
+ />
+<input data-dojo-type="havok/form/Checkbox"
+    type="checkbox"
+    label="Unchecked Enabled"
+    help-messages="this is a checkbox"
+ />
+<input data-dojo-type="havok/form/Checkbox"
+    type="checkbox"
+    checked
+    disabled
+    label="Checked Disabled"
+    help-messages="this is a checkbox"
+ />
+<input data-dojo-type="havok/form/Checkbox"
+    type="checkbox"
+    disabled
+    label='Unchecked Disabled'
+    help-messages='this is a checkbox'
+ />
+</div>{% endset %}{{checkExample1|e}}
+</pre>
+
+<h3>Button style</h3>
+
+<p>Use <code>havok/form/ToggleButton</code> for a button style checkbox.</p>
+<div class="bs-docs-example">
+    <formspy>
+        <input data-dojo-type="havok/form/ToggleButton"
+               text='Check Me'
+               label='A checkbox'
+               help-messages='this is a button checkbox'
+               value=true
+               />
+    </formspy>
+</div>
+
+<pre class="prettyprint linenums">
+{% set checkExample2 %}
+<input data-dojo-type="havok/form/ToggleButton"
+       text='Check Me'
+       label='A checkbox'
+       help-messages='this is a button checkbox'
+       value=true
+       />{% endset %}{{checkExample2|e}}
+</pre>
+
+<h3>Grouped Button style</h3>
+
+<p>Use <code>havok/form/CheckboxGroup</code> for a group of button style checkboxes.</p>
+<div class="bs-docs-example">
+    <formspy>
+        <datalist id="optionGroupStore1">
+            <option id="l" type="button">left</option>
+            <option id="m" type="button">middle</option>
+            <option id="r" type="button">right</option>
+        </datalist>
+        <input data-dojo-type="havok/form/CheckboxGroup"
+               mixins="store"
+               label='A checkbox group'
+               help-messages='this is a checkbox group'
+               value='{"l": true, "m": false, "r": true}'
+               store="optionGroupStore1"
+               />
+    </formspy>
+</div>
+
+<pre class="prettyprint linenums">
+{% set checkExample3 %}
+<datalist id="optionGroupStore1">
+    <option id="l" type="button">left</option>
+    <option id="m" type="button">middle</option>
+    <option id="r" type="button">right</option>
+</datalist>
+<input data-dojo-type="havok/form/CheckboxGroup"
+       mixins="store"
+       label='A checkbox group'
+       help-messages='this is a checkbox group'
+       value='{"l": true, "m": false, "r": true}'
+       store="optionGroupStore1"
+       />{% endset %}{{checkExample3|e}}
+</pre>
+
+<h2>Radio Group</h2>
+
+<h3>Grouped Button style</h3>
+
+<p>Use <code>havok/form/RadioGroup</code> for a group of button style radios.</p>
+<div class="bs-docs-example">
+    <formspy>
+        <input data-dojo-type="havok/form/RadioGroup"
+               label="A radio group"
+               help-messages="this is a radio group"
+               value="m"
+               store="optionGroupStore1"
+               />
+    </formspy>
+</div>
+
+<pre class="prettyprint linenums">
+{% set checkExample4 %}
+<datalist id="optionGroupStore1">
+    <option id="l" type="button">left</option>
+    <option id="m" type="button">middle</option>
+    <option id="r" type="button">right</option>
+</datalist>
+<input data-dojo-type="havok/form/RadioGroup"
+       label="A radio group"
+       help-messages="this is a radio group"
+       value="m"
+       store="optionGroupStore1"
+       />{% endset %}{{checkExample4|e}}
+</pre>
+
+</div>

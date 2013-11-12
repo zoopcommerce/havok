@@ -257,6 +257,6 @@
             "returnTypes": []
         }
     ],
-    "apiPath": "../",
+    "rootPath": "../../",
     "shortName": "_AttachMixin"
 }

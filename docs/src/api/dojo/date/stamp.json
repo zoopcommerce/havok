@@ -62,6 +62,6 @@
             "description": "<p>When options.selector is omitted, output follows <a href=\"http://www.ietf.org/rfc/rfc3339.txt\">RFC3339</a>\nThe local time zone is included as an offset from GMT, except when selector==&#39;time&#39; (time without a date)\nDoes not check bounds.  Only years between 100 and 9999 are supported.\n</p>\n"
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "stamp"
 }

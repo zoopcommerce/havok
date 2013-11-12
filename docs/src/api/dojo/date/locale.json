@@ -322,6 +322,6 @@
             "summary": "<p>Builds the regular needed to parse a localized date</p>\n"
         }
     ],
-    "apiPath": "../../",
+    "rootPath": "../../../",
     "shortName": "locale"
 }
