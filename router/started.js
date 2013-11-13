@@ -7,7 +7,6 @@ function(
 	// module:
 	//		havok/router/started
 
-
     var startedRouter;
 
     return {

@@ -6,10 +6,14 @@ function(
     when,
     manager
 ){
-    // An AMD plugin that will wait until merged config is created
+	// module:
+	//		havok/config/started
 
     return {
-        load: function(id, require, callback){
+		// summary:
+		//		An AMD plugin that will wait until merged config is complete
+
+        load: function(/*String?*/id, /*Function?*/require, /*Callback*/callback){
             when(manager.merge(), function(){
                 callback();
             });

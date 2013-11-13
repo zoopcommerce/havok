@@ -1055,15 +1055,9 @@
         },
         {
             "id": "havok/config/exception/notStatic",
-            "label": "notStatic",
+            "label": "<span class=\"icon-cog\"></span> notStatic",
             "parent": "havok/config/exception/",
             "href": "/api/havok/config/exception/notStatic.html"
-        },
-        {
-            "id": "havok/config/main",
-            "label": "main",
-            "parent": "havok/config/",
-            "href": "/api/havok/config/main.html"
         },
         {
             "id": "havok/config/manager",
@@ -1658,12 +1652,6 @@
             "label": "<span class=\"icon-wrench\"></span> JsonRest",
             "parent": "havok/store/",
             "href": "/api/havok/store/JsonRest.html"
-        },
-        {
-            "id": "havok/store/main",
-            "label": "main",
-            "parent": "havok/store/",
-            "href": "/api/havok/store/main.html"
         },
         {
             "id": "havok/store/manager",

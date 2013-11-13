@@ -56,8 +56,7 @@ di: {
             ]
         }
     }
-}
-    </pre>
+}</pre>
 
     <p>The above router config will call the methods in the following way:</p>
 
@@ -71,8 +70,7 @@ albums/list -> myAlbumController.list()
 albums/new -> myAlbumController.new()
 albums/new/newAlbumName -> myAlbumController.list('newAlbumName')
 albums/update -> myAlbumController.update()
-albums/update/oldAlbumName -> myAlbumController.list('oldAlbumName')
-    </pre>
+albums/update/oldAlbumName -> myAlbumController.list('oldAlbumName')</pre>
 
     <h2>Starting the router</h2>
 
@@ -81,24 +79,21 @@ albums/update/oldAlbumName -> myAlbumController.list('oldAlbumName')
 require(['havok/get!havok/router/router'],
 function (router){
     router.startup();
-});
-    </pre>
+});</pre>
 
     <p>Alternately, the router can be started with the AMD plugin:</p>
     <pre class="prettyprint linenums">
 require(['havok/router/started!'],
 function (){
     //do something
-});
-    </pre>
+});</pre>
 
     <p>By default `havok/router/started!` is registered with the <a href="#bootstrap">bootstrap</a> service, which means the router can also be started with:</p>
     <pre class="prettyprint linenums">
 require(['havok/bootstrap!'],
 function (){
     //do something
-});
-    </pre>
+});</pre>
 
     <p>Note: if you are using the router, it is recommended you start it up when the page first loads.</p>
 
@@ -113,8 +108,7 @@ di: {
             ...
         }
     }
-}
-    </pre>
+}</pre>
 
     <p>Alternately the Base Url can be determined automatcially when the router is first started.</p>
 
@@ -123,16 +117,14 @@ di: {
 require(['havok/router/baseUrl!'],
 function (baseUrl){
     //do something
-});
-    </pre>
+});</pre>
 
     <h2>Arguments</h2>
 
     <p>Arguments can be passed to a controller method through the route. Routes take the following form:</p>
 
     <pre class="prettyprint linenums">
-&lt;controllerRegexMatch&gt;/&lt;method&gt;/&lt;arg1&gt;/&lt;arg2&gt;/&lt;arg3&gt;
-    </pre>
+&lt;controllerRegexMatch&gt;/&lt;method&gt;/&lt;arg1&gt;/&lt;arg2&gt;/&lt;arg3&gt;</pre>
 
     <p>For example, this config and controller could be used to add numbers together:</p>
 
@@ -152,8 +144,7 @@ di: {
             ]
         }
     }
-}
-    </pre>
+}</pre>
 
     <p>The controller:</p>
     <pre class="prettyprint linenums">
@@ -164,8 +155,7 @@ function(declare){
             console.debug(a + b);
         }
     )
-})
-    </pre>
+})</pre>
 
     <p>The markup:</p>
     <pre class="prettyprint linenums">
@@ -208,8 +198,7 @@ di: {
 require(['havok/router/started!'],
 function (router){
     router.go('my/route');
-});
-    </pre>
+});</pre>
 
     <h2>Forward and Back</h2>
 
@@ -220,8 +209,7 @@ function (router){
     router.go(-1); //go back one
     router.go(-3); //go back three
     router.go(1); //go forward one
-});
-    </pre>
+});</pre>
 
     <h2>See also</h2>
 

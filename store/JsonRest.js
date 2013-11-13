@@ -10,12 +10,17 @@ function(
     xhr,
     JsonRest
 ){
+
+    // module:
+    //		havok/store/JsonRest
+
     return declare (
         [JsonRest],
         {
             // summary:
-            //     A standard dojo/store/JsonRest store with a few
-            //     tweaks to make it work better with zf2 services
+            //      Tweaked version of dojo/store/JsonRest
+            // description:
+            //      Modifies request headers so the store plays more nicely json data
 
             '-chains-': {
                 //Turn off constructor chaining so headers don't get wiped
@@ -29,21 +34,21 @@ function(
                 Accept: 'application/json'
             },
 
-            constructor: function(options){
+            constructor: function(/*Object?*/options){
                 // summary:
                 //		This is a basic store for RESTful communicating with a server through JSON
                 //		formatted data.
-                // options: dojo/store/JsonRest
+                // options:
                 //		This provides any configuration information that will be mixed into the store
                 declare.safeMixin(this, options);
             },
 
-            remove: function(id, options){
+            remove: function(/*String*/id, /*Object?*/options){
                 // summary:
                 //		Deletes an object by its identity. This will trigger a DELETE request to the server.
-                // id: Number
+                // id:
                 //		The identity to use to delete the object
-                // options: __HeaderOptions?
+                // options:
                 //		HTTP headers.
                 options = options || {};
                 return xhr("DELETE", {

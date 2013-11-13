@@ -10,14 +10,15 @@
         {
             "name": "options",
             "types": [
-                "dojo/store/JsonRest"
+                "Object"
             ],
-            "usage": "required",
+            "usage": "optional",
             "summary": "<p>This provides any configuration information that will be mixed into the store</p>\n"
         }
     ],
     "returnTypes": [],
-    "summary": "<p>A standard dojo/store/JsonRest store with a few\ntweaks to make it work better with zf2 services</p>\n",
+    "summary": "<p>Tweaked version of dojo/store/JsonRest</p>\n",
+    "description": "<p>Modifies request headers so the store plays more nicely json data</p>\n",
     "properties": [
         {
             "name": "-chains-",
@@ -134,9 +135,9 @@
                 {
                     "name": "options",
                     "types": [
-                        "dojo/store/JsonRest"
+                        "Object"
                     ],
-                    "usage": "required",
+                    "usage": "optional",
                     "summary": "<p>This provides any configuration information that will be mixed into the store</p>\n"
                 }
             ],
@@ -328,7 +329,7 @@
                 {
                     "name": "id",
                     "types": [
-                        "Number"
+                        "String"
                     ],
                     "usage": "required",
                     "summary": "<p>The identity to use to delete the object</p>\n"
@@ -336,7 +337,7 @@
                 {
                     "name": "options",
                     "types": [
-                        "__HeaderOptions"
+                        "Object"
                     ],
                     "usage": "optional",
                     "summary": "<p>HTTP headers.</p>\n"

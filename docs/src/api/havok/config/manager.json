@@ -14,23 +14,26 @@
                 {
                     "name": "mergeConfigs",
                     "types": [
-                        "undefined"
+                        "String[]"
                     ],
-                    "usage": "required"
+                    "usage": "optional",
+                    "summary": "<p>A list of module ids to load and merge.\nIf null, the merge key of dojoConfig will be used.</p>\n"
                 },
                 {
                     "name": "target",
                     "types": [
-                        "undefined"
+                        "Object"
                     ],
-                    "usage": "required",
-                    "summary": "<p>optional. Object.\nAn object to merged the config objects into.\nIf null, dojoConfig itself will be used.</p>\n"
+                    "usage": "optional",
+                    "summary": "<p>An object to merged the config objects into.\nIf null, dojoConfig itself will be used.</p>\n"
                 }
             ],
             "returnTypes": [
+                "dojo/Deferred",
                 "instance"
             ],
-            "summary": "<p>Merges multiple config modules\n</p>\n"
+            "returnDescription": "<p>Will resolve when the merge is complete</p>\n",
+            "summary": "<p>Merges multiple config modules</p>\n"
         }
     ],
     "rootPath": "../../../",

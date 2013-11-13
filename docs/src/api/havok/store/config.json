@@ -1,6 +1,8 @@
 {
     "location": "havok/store/config",
     "type": "object",
+    "summary": "<p>Default manager config</p>\n",
+    "description": "<p>This module can be used by <a href=\"../config/manager.html\">havok/config/manager</a> to provide default store manager configuration.</p>\n",
     "properties": [
         {
             "name": "di",

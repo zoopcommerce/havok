@@ -19,19 +19,17 @@ function (
     // module:
     //		havok/config/manager
 
-    var merge = function(mergeConfigs, target) {
+    var merge = function(/*String[]?*/mergeConfigs, /*Object?*/target) {
         // summary:
         //		Merges multiple config modules
-        //
-        // merge:
-        //      optional. Array.
-        //      A list of mids to load and merge.
+        // mergeConfigs:
+        //      A list of module ids to load and merge.
         //      If null, the merge key of dojoConfig will be used.
-        //
         // target:
-        //      optional. Object.
         //      An object to merged the config objects into.
         //      If null, dojoConfig itself will be used.
+        // returns: dojo/Deferred
+        //      Will resolve when the merge is complete
 
         // Resolves when target has been merged
         var targetMerged = new Deferred;
@@ -96,6 +94,7 @@ function (
     function doMerge(unmergedConfigs){
         // summary:
         //		Merge all the configs together
+
         var mergedConfig = {};
 
         for (var index in unmergedConfigs) {

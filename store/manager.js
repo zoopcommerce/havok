@@ -2,19 +2,28 @@ define([
     'dojo/dom',
     './Datalist'
 ], function(dom, Datalist){
+
     // module:
     //		havok/store/manager
-    // summary:
-    //      Holds references to lots of different stores that allows them to be injected
-    //      whereever they are needed.
-    //
 
     return {
+        // summary:
+        //      Holds references to lots of different data stores
+        // description:
+        //      Allows data stores to be centrally managed and injected
+        //      whereever they are needed.
+
 
         stores: {},
 
-        get: function(ref){
-            // Will return an object based on the ref given
+        get: function(/*String*/ref){
+            // summary:
+            //      Will return an object based on the ref given
+            // description:
+            //      Will first fetch the store defined in the ref, then the object pointed to by the id in the ref from that store.
+            // ref:
+            //      Ref should be of the form `storeId/objectId`
+            // returns: Object
 
             var index = ref.lastIndexOf('/'),
                 id = ref.substring(index + 1),
@@ -23,8 +32,12 @@ define([
             return this.getStore(storeId).get(id);
         },
 
-        getStore: function(id){
-            // Function will return a store based on the store id.
+        getStore: function(/*String*/id){
+            // summary:
+            //      Function will return a store based on the store id.
+            // id:
+            //      Must be a member of `this.stores`
+            // returns: dojo/store/api/store
 
             if (this.stores[id]){
                 if (!this.stores[id].idProperty){

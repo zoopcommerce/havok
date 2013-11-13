@@ -1,6 +1,8 @@
 {
     "location": "havok/store/manager",
     "type": "object",
+    "summary": "<p>Holds references to lots of different data stores</p>\n",
+    "description": "<p>Allows data stores to be centrally managed and injected\nwhereever they are needed.</p>\n",
     "properties": [
         {
             "name": "stores",
@@ -23,14 +25,18 @@
                 {
                     "name": "ref",
                     "types": [
-                        "undefined"
+                        "String"
                     ],
-                    "usage": "required"
+                    "usage": "required",
+                    "summary": "<p>Ref should be of the form <code>storeId/objectId</code></p>\n"
                 }
             ],
             "returnTypes": [
+                "Object",
                 "undefined"
-            ]
+            ],
+            "summary": "<p>Will return an object based on the ref given</p>\n",
+            "description": "<p>Will first fetch the store defined in the ref, then the object pointed to by the id in the ref from that store.</p>\n"
         },
         {
             "name": "getStore",
@@ -43,14 +49,17 @@
                 {
                     "name": "id",
                     "types": [
-                        "undefined"
+                        "String"
                     ],
-                    "usage": "required"
+                    "usage": "required",
+                    "summary": "<p>Must be a member of <code>this.stores</code></p>\n"
                 }
             ],
             "returnTypes": [
+                "dojo/store/api/store",
                 "undefined"
-            ]
+            ],
+            "summary": "<p>Function will return a store based on the store id.</p>\n"
         }
     ],
     "rootPath": "../../../",

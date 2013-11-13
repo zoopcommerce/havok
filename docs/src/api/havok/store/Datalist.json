@@ -10,19 +10,23 @@
         {
             "name": "params",
             "types": [
-                "undefined"
+                "Object"
             ],
-            "usage": "required"
+            "usage": "optional"
         },
         {
             "name": "srcNodeRef",
             "types": [
-                "undefined"
+                "DomNode"
             ],
             "usage": "required"
         }
     ],
-    "returnTypes": [],
+    "returnTypes": [
+        "dojo/store/api/store"
+    ],
+    "summary": "<p>Parses a <code>datalist</code> tag into data store</p>\n",
+    "description": "<p>Allows data stores defined using markup.</p>\n",
     "properties": [
         {
             "name": "data",
@@ -95,19 +99,22 @@
                 {
                     "name": "params",
                     "types": [
-                        "undefined"
+                        "Object"
                     ],
-                    "usage": "required"
+                    "usage": "optional"
                 },
                 {
                     "name": "srcNodeRef",
                     "types": [
-                        "undefined"
+                        "DomNode"
                     ],
                     "usage": "required"
                 }
             ],
-            "returnTypes": []
+            "returnTypes": [
+                "dojo/store/api/store"
+            ],
+            "summary": "<p>Creates a memory data store from a <code>datalist</code> dom node.</p>\n"
         },
         {
             "name": "get",

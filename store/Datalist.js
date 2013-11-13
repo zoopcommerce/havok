@@ -12,11 +12,23 @@ function(
     string,
     Memory
 ){
+
+    // module:
+    //		havok/store/Datalist
+
     return declare (
         [Memory],
         {
-            constructor: function(params, srcNodeRef){
+            // summary:
+            //      Parses a `datalist` tag into data store
+            // description:
+            //      Allows data stores defined using markup.
 
+            constructor: function(/*Object?*/params, /*DomNode*/srcNodeRef){
+                // summary:
+                //		Creates a memory data store from a `datalist` dom node.
+                // returns: dojo/store/api/store
+                
                 if (!params){
                     params = {};
                 }
