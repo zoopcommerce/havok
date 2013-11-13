@@ -293,6 +293,14 @@
             "summary": "<p>pointer to original DOM node</p>\n"
         },
         {
+            "name": "storeAdapter",
+            "scope": "prototype",
+            "types": [
+                "string"
+            ],
+            "from": "havok/widget/CheckboxGroup"
+        },
+        {
             "name": "style",
             "scope": "prototype",
             "types": [
@@ -327,13 +335,9 @@
             "name": "templateString",
             "scope": "prototype",
             "types": [
-                "String"
+                "string"
             ],
-            "from": "dijit/_TemplatedMixin",
-            "tags": [
-                "protected"
-            ],
-            "summary": "<p>A string that represents the widget template.\nUse in conjunction with dojo.cache() to load from a file.</p>\n"
+            "from": "havok/widget/_WidgetBase"
         },
         {
             "name": "title",
@@ -1535,6 +1539,31 @@
                 "undefined"
             ],
             "summary": "<p>Maps on() type parameter (ex: &quot;mousemove&quot;) to method name (ex: &quot;onMouseMove&quot;).\nIf type is a synthetic event like touch.press then returns undefined.</p>\n"
+        },
+        {
+            "name": "onClick",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_ListMixin",
+            "parameters": [
+                {
+                    "name": "e",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "item",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
         }
     ],
     "rootPath": "../../../",

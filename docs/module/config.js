@@ -4,13 +4,20 @@ function(){
         parser: {
             tags: {
                 'formspy'            : 'havok/docs/module/Formspy'
-            },
+            }
         },
         di: {
             'havok/store/stores': {
                 proxies: {
                     demostates: {
                         base: 'havok/docs/module/state',
+                        proxyMethods: [
+                            'get',
+                            'query'
+                        ]
+                    },
+                    apiTree: {
+                        base: 'havok/docs/module/apiTree',
                         proxyMethods: [
                             'get',
                             'query'

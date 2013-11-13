@@ -653,18 +653,6 @@
             "href": "/api/dojo/Evented.html"
         },
         {
-            "id": "dojo/fx",
-            "label": "<span class=\"icon-circle-blank\"></span> fx",
-            "parent": "dojo/",
-            "href": "/api/dojo/fx.html"
-        },
-        {
-            "id": "dojo/fx.easing",
-            "label": "<span class=\"icon-circle-blank\"></span> easing",
-            "parent": "dojo/fx",
-            "href": "/api/dojo/fx.easing.html"
-        },
-        {
             "id": "dojo/fx/",
             "label": "fx",
             "parent": "dojo/",
@@ -1558,12 +1546,6 @@
             "href": "/api/havok/less.html"
         },
         {
-            "id": "havok/main",
-            "label": "main",
-            "parent": "havok/",
-            "href": "/api/havok/main.html"
-        },
-        {
             "id": "havok/parser/",
             "label": "parser",
             "parent": "havok/",
@@ -1631,15 +1613,9 @@
         },
         {
             "id": "havok/router/exception/RouteNotFound",
-            "label": "RouteNotFound",
+            "label": "<span class=\"icon-cog\"></span> RouteNotFound",
             "parent": "havok/router/exception/",
             "href": "/api/havok/router/exception/RouteNotFound.html"
-        },
-        {
-            "id": "havok/router/main",
-            "label": "main",
-            "parent": "havok/router/",
-            "href": "/api/havok/router/main.html"
         },
         {
             "id": "havok/router/router",
@@ -1756,10 +1732,22 @@
             "href": "/api/havok/widget/_ButtonBase.html"
         },
         {
+            "id": "havok/widget/_CheckboxGroupStoreAdapterMixin",
+            "label": "<span class=\"icon-wrench\"></span> _CheckboxGroupStoreAdapterMixin",
+            "parent": "havok/widget/",
+            "href": "/api/havok/widget/_CheckboxGroupStoreAdapterMixin.html"
+        },
+        {
             "id": "havok/widget/_DropdownBase",
             "label": "<span class=\"icon-wrench\"></span> _DropdownBase",
             "parent": "havok/widget/",
             "href": "/api/havok/widget/_DropdownBase.html"
+        },
+        {
+            "id": "havok/widget/_DropdownStoreAdapterMixin",
+            "label": "<span class=\"icon-wrench\"></span> _DropdownStoreAdapterMixin",
+            "parent": "havok/widget/",
+            "href": "/api/havok/widget/_DropdownStoreAdapterMixin.html"
         },
         {
             "id": "havok/widget/_HideableMixin",
@@ -1802,6 +1790,12 @@
             "label": "<span class=\"icon-wrench\"></span> _StoreMixin",
             "parent": "havok/widget/",
             "href": "/api/havok/widget/_StoreMixin.html"
+        },
+        {
+            "id": "havok/widget/_TreeStoreAdapterMixin",
+            "label": "<span class=\"icon-wrench\"></span> _TreeStoreAdapterMixin",
+            "parent": "havok/widget/",
+            "href": "/api/havok/widget/_TreeStoreAdapterMixin.html"
         },
         {
             "id": "havok/widget/_WidgetBase",
@@ -2014,15 +2008,15 @@
             "href": "/api/havok/widget/Tooltip.html"
         },
         {
+            "id": "havok/widget/Tree",
+            "label": "<span class=\"icon-wrench\"></span> Tree",
+            "parent": "havok/widget/",
+            "href": "/api/havok/widget/Tree.html"
+        },
+        {
             "id": "mystique/",
             "label": "mystique",
             "type": "group"
-        },
-        {
-            "id": "mystique/Alpha",
-            "label": "Alpha",
-            "parent": "mystique/",
-            "href": "/api/mystique/Alpha.html"
         },
         {
             "id": "mystique/Base",
@@ -2031,34 +2025,16 @@
             "href": "/api/mystique/Base.html"
         },
         {
-            "id": "mystique/Boolean",
-            "label": "Boolean",
-            "parent": "mystique/",
-            "href": "/api/mystique/Boolean.html"
-        },
-        {
             "id": "mystique/Chain",
             "label": "Chain",
             "parent": "mystique/",
             "href": "/api/mystique/Chain.html"
         },
         {
-            "id": "mystique/CreditCard",
-            "label": "CreditCard",
-            "parent": "mystique/",
-            "href": "/api/mystique/CreditCard.html"
-        },
-        {
             "id": "mystique/CreditCardExpiry",
             "label": "CreditCardExpiry",
             "parent": "mystique/",
             "href": "/api/mystique/CreditCardExpiry.html"
-        },
-        {
-            "id": "mystique/Cvv",
-            "label": "Cvv",
-            "parent": "mystique/",
-            "href": "/api/mystique/Cvv.html"
         },
         {
             "id": "mystique/Date",
@@ -2073,70 +2049,16 @@
             "href": "/api/mystique/Email.html"
         },
         {
-            "id": "mystique/Equal",
-            "label": "Equal",
-            "parent": "mystique/",
-            "href": "/api/mystique/Equal.html"
-        },
-        {
-            "id": "mystique/Float",
-            "label": "Float",
-            "parent": "mystique/",
-            "href": "/api/mystique/Float.html"
-        },
-        {
-            "id": "mystique/GreaterThan",
-            "label": "GreaterThan",
-            "parent": "mystique/",
-            "href": "/api/mystique/GreaterThan.html"
-        },
-        {
-            "id": "mystique/GreaterThanEqual",
-            "label": "GreaterThanEqual",
-            "parent": "mystique/",
-            "href": "/api/mystique/GreaterThanEqual.html"
-        },
-        {
             "id": "mystique/HexColor",
             "label": "HexColor",
             "parent": "mystique/",
             "href": "/api/mystique/HexColor.html"
         },
         {
-            "id": "mystique/Int",
-            "label": "Int",
-            "parent": "mystique/",
-            "href": "/api/mystique/Int.html"
-        },
-        {
             "id": "mystique/Length",
             "label": "Length",
             "parent": "mystique/",
             "href": "/api/mystique/Length.html"
-        },
-        {
-            "id": "mystique/LessThan",
-            "label": "LessThan",
-            "parent": "mystique/",
-            "href": "/api/mystique/LessThan.html"
-        },
-        {
-            "id": "mystique/LessThanEqual",
-            "label": "LessThanEqual",
-            "parent": "mystique/",
-            "href": "/api/mystique/LessThanEqual.html"
-        },
-        {
-            "id": "mystique/mystique",
-            "label": "mystique",
-            "parent": "mystique/",
-            "href": "/api/mystique/mystique.html"
-        },
-        {
-            "id": "mystique/NotEqual",
-            "label": "NotEqual",
-            "parent": "mystique/",
-            "href": "/api/mystique/NotEqual.html"
         },
         {
             "id": "mystique/NotRequired",
@@ -2151,12 +2073,6 @@
             "href": "/api/mystique/Password.html"
         },
         {
-            "id": "mystique/Regex",
-            "label": "Regex",
-            "parent": "mystique/",
-            "href": "/api/mystique/Regex.html"
-        },
-        {
             "id": "mystique/Required",
             "label": "Required",
             "parent": "mystique/",
@@ -2167,18 +2083,6 @@
             "label": "<span class=\"icon-cog\"></span> Result",
             "parent": "mystique/",
             "href": "/api/mystique/Result.html"
-        },
-        {
-            "id": "mystique/Slug",
-            "label": "Slug",
-            "parent": "mystique/",
-            "href": "/api/mystique/Slug.html"
-        },
-        {
-            "id": "mystique/String",
-            "label": "String",
-            "parent": "mystique/",
-            "href": "/api/mystique/String.html"
         }
     ]
 }

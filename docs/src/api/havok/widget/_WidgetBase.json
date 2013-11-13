@@ -308,13 +308,9 @@
             "name": "templateString",
             "scope": "prototype",
             "types": [
-                "String"
+                "string"
             ],
-            "from": "dijit/_TemplatedMixin",
-            "tags": [
-                "protected"
-            ],
-            "summary": "<p>A string that represents the widget template.\nUse in conjunction with dojo.cache() to load from a file.</p>\n"
+            "from": "havok/widget/_WidgetBase"
         },
         {
             "name": "title",

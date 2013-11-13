@@ -2,6 +2,8 @@
     "location": "havok/widget/_StoreMixin",
     "type": "constructor",
     "classlike": true,
+    "parameters": [],
+    "returnTypes": [],
     "properties": [
         {
             "name": "_readyToQuery",
@@ -107,7 +109,7 @@
                     "usage": "required"
                 },
                 {
-                    "name": "id",
+                    "name": "options",
                     "types": [
                         "undefined"
                     ],
@@ -117,6 +119,16 @@
             "returnTypes": [
                 "undefined"
             ]
+        },
+        {
+            "name": "constructor",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_StoreMixin",
+            "parameters": [],
+            "returnTypes": []
         }
     ],
     "rootPath": "../../../",

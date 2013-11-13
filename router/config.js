@@ -1,6 +1,14 @@
 define([],
 function(){
+	// module:
+	//		havok/router/config
+
     return {
+		// summary:
+		//		Default router config
+        // description:
+        //      This module can be used by [havok/config/manager](../config/manager.html) to provide default router configuration.
+
         bootstrap: [
             'havok/router/started!'
         ],

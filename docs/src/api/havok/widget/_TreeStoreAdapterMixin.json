@@ -1,50 +1,27 @@
 {
-    "location": "havok/widget/_ListMixin",
+    "location": "havok/widget/_TreeStoreAdapterMixin",
     "type": "constructor",
     "classlike": true,
     "properties": [
         {
-            "name": "dividerTemplate",
+            "name": "queryOptions",
             "scope": "prototype",
             "types": [
-                "string"
+                "object"
             ],
-            "from": "havok/widget/_ListMixin"
-        },
-        {
-            "name": "itemTemplate",
-            "scope": "prototype",
-            "types": [
-                "string"
-            ],
-            "from": "havok/widget/_ListMixin"
-        },
-        {
-            "name": "tag",
-            "scope": "prototype",
-            "types": [
-                "string"
-            ],
-            "from": "havok/widget/_ListMixin"
+            "from": "havok/widget/_TreeStoreAdapterMixin"
         }
     ],
     "methods": [
         {
-            "name": "_attachClickListener",
+            "name": "_fillFolder",
             "scope": "prototype",
             "types": [
                 "function"
             ],
-            "from": "havok/widget/_ListMixin",
+            "from": "havok/widget/_TreeStoreAdapterMixin",
             "private": true,
             "parameters": [
-                {
-                    "name": "node",
-                    "types": [
-                        "undefined"
-                    ],
-                    "usage": "required"
-                },
                 {
                     "name": "item",
                     "types": [
@@ -53,45 +30,18 @@
                     "usage": "required"
                 }
             ],
-            "returnTypes": []
+            "returnTypes": [
+                "instance"
+            ]
         },
         {
-            "name": "_renderNodes",
+            "name": "_renderGroup",
             "scope": "prototype",
             "types": [
                 "function"
             ],
-            "from": "havok/widget/_ListMixin",
+            "from": "havok/widget/_TreeStoreAdapterMixin",
             "private": true,
-            "parameters": [],
-            "returnTypes": []
-        },
-        {
-            "name": "_setActiveAttr",
-            "scope": "prototype",
-            "types": [
-                "function"
-            ],
-            "from": "havok/widget/_ListMixin",
-            "private": true,
-            "parameters": [
-                {
-                    "name": "value",
-                    "types": [
-                        "undefined"
-                    ],
-                    "usage": "required"
-                }
-            ],
-            "returnTypes": []
-        },
-        {
-            "name": "addItem",
-            "scope": "prototype",
-            "types": [
-                "function"
-            ],
-            "from": "havok/widget/_ListMixin",
             "parameters": [
                 {
                     "name": "item",
@@ -101,7 +51,7 @@
                     "usage": "required"
                 },
                 {
-                    "name": "options",
+                    "name": "data",
                     "types": [
                         "undefined"
                     ],
@@ -113,13 +63,22 @@
             ]
         },
         {
-            "name": "buildRendering",
+            "name": "_setActiveAttr",
             "scope": "prototype",
             "types": [
                 "function"
             ],
-            "from": "havok/widget/_ListMixin",
-            "parameters": [],
+            "from": "havok/widget/_TreeStoreAdapterMixin",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "value",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
             "returnTypes": []
         }
     ],
@@ -130,7 +89,7 @@
             "types": [
                 "function"
             ],
-            "from": "havok/widget/_ListMixin",
+            "from": "havok/widget/_TreeStoreAdapterMixin",
             "parameters": [
                 {
                     "name": "e",
@@ -151,5 +110,5 @@
         }
     ],
     "rootPath": "../../../",
-    "shortName": "_ListMixin"
+    "shortName": "_TreeStoreAdapterMixin"
 }

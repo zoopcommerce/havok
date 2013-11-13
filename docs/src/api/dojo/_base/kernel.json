@@ -157,9 +157,8 @@
             "types": [
                 "object"
             ],
-            "from": "dojo/fx",
-            "extensionModule": true,
-            "summary": "<p>Effects library on top of Base animations</p>\n"
+            "from": "dojo/fx/easing",
+            "extensionModule": true
         },
         {
             "name": "global",
@@ -1100,8 +1099,7 @@
                 }
             ],
             "returnTypes": [
-                "instance",
-                "undefined"
+                "instance"
             ],
             "summary": "<p>Returns an animation that will transition the properties of\nnode defined in <code>args</code> depending how they are defined in\n<code>args.properties</code>\n</p>\n",
             "description": "<p>Foundation of most <code>dojo/_base/fx</code>\nanimations. It takes an object of &quot;properties&quot; corresponding to\nstyle properties, and animates them in parallel over a set\nduration.\n</p>\n",

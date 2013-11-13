@@ -352,6 +352,14 @@
             "summary": "<p>pointer to original DOM node</p>\n"
         },
         {
+            "name": "storeAdapter",
+            "scope": "prototype",
+            "types": [
+                "string"
+            ],
+            "from": "havok/widget/CheckboxGroup"
+        },
+        {
             "name": "style",
             "scope": "prototype",
             "types": [
@@ -386,13 +394,9 @@
             "name": "templateString",
             "scope": "prototype",
             "types": [
-                "String"
+                "string"
             ],
-            "from": "dijit/_TemplatedMixin",
-            "tags": [
-                "protected"
-            ],
-            "summary": "<p>A string that represents the widget template.\nUse in conjunction with dojo.cache() to load from a file.</p>\n"
+            "from": "havok/widget/_WidgetBase"
         },
         {
             "name": "title",
@@ -967,7 +971,7 @@
             "types": [
                 "function"
             ],
-            "from": "havok/form/CheckboxGroup",
+            "from": "havok/widget/_WidgetBase",
             "parameters": [],
             "returnTypes": []
         },
@@ -1729,6 +1733,31 @@
             ],
             "from": "havok/form/_ActivityMixin",
             "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "onClick",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_ListMixin",
+            "parameters": [
+                {
+                    "name": "e",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "item",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
             "returnTypes": []
         },
         {

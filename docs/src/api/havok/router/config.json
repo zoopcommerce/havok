@@ -1,6 +1,8 @@
 {
     "location": "havok/router/config",
     "type": "object",
+    "summary": "<p>Default router config</p>\n",
+    "description": "<p>This module can be used by <a href=\"../config/manager.html\">havok/config/manager</a> to provide default router configuration.</p>\n",
     "properties": [
         {
             "name": "bootstrap",

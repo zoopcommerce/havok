@@ -1,0 +1,37 @@
+{
+    "location": "havok/widget/_DropdownStoreAdapterMixin",
+    "type": "constructor",
+    "classlike": true,
+    "methods": [
+        {
+            "name": "_renderGroup",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_DropdownStoreAdapterMixin",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "item",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "data",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ]
+        }
+    ],
+    "rootPath": "../../../",
+    "shortName": "_DropdownStoreAdapterMixin"
+}

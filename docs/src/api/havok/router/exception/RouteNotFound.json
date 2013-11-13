@@ -1,6 +1,22 @@
 {
     "location": "havok/router/exception/RouteNotFound",
-    "type": "undefined",
+    "type": "function",
+    "parameters": [],
+    "returnTypes": [],
+    "summary": "<p>Returns an exception that indicates the router could not resolve a route</p>\n",
+    "methods": [
+        {
+            "name": "constructor",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/router/exception/RouteNotFound",
+            "parameters": [],
+            "returnTypes": [],
+            "summary": "<p>Returns an exception that indicates the router could not resolve a route</p>\n"
+        }
+    ],
     "rootPath": "../../../../",
     "shortName": "RouteNotFound"
 }

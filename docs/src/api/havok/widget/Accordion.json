@@ -172,13 +172,9 @@
             "name": "baseClass",
             "scope": "prototype",
             "types": [
-                "String"
+                "string"
             ],
-            "from": "dijit/_WidgetBase",
-            "tags": [
-                "protected"
-            ],
-            "summary": "<p>Root CSS class of the widget (ex: dijitTextBox), used to construct CSS classes to indicate\nwidget state.</p>\n"
+            "from": "havok/widget/Accordion"
         },
         {
             "name": "class",
@@ -199,14 +195,6 @@
                 "readonly"
             ],
             "summary": "<p>Designates where children of the source DOM node will be placed.\n&quot;Children&quot; in this case refers to both DOM nodes and widgets.\nFor example, for myWidget:\n\n\n</p>\n&lt;div data-dojo-type=myWidget&gt;\n    &lt;b&gt; here&#39;s a plain DOM node\n    &lt;span data-dojo-type=subWidget&gt;and a widget&lt;/span&gt;\n    &lt;i&gt; and another plain DOM node &lt;/i&gt;\n&lt;/div&gt;\n<p>containerNode would point to:\n\n\n</p>\n&lt;b&gt; here&#39;s a plain DOM node\n&lt;span data-dojo-type=subWidget&gt;and a widget&lt;/span&gt;\n&lt;i&gt; and another plain DOM node &lt;/i&gt;\n<p>In templated widgets, &quot;containerNode&quot; is set via a\ndata-dojo-attach-point assignment.\n\n</p>\n<p>containerNode must be defined for any widget that accepts innerHTML\n(like ContentPane or BorderContainer or even Button), and conversely\nis null for widgets that don&#39;t, like TextBox.</p>\n"
-        },
-        {
-            "name": "defaultClass",
-            "scope": "prototype",
-            "types": [
-                "string"
-            ],
-            "from": "havok/widget/Accordion"
         },
         {
             "name": "dir",
@@ -243,14 +231,6 @@
                 "const"
             ],
             "summary": "<p>A unique, opaque ID string that can be assigned by users or by the\nsystem. If the developer passes an ID which is known not to be\nunique, the specified ID is ignored and the system-generated ID is\nused instead.</p>\n"
-        },
-        {
-            "name": "itemTemplate",
-            "scope": "prototype",
-            "types": [
-                "undefined"
-            ],
-            "from": "havok/widget/Accordion"
         },
         {
             "name": "lang",
@@ -307,6 +287,14 @@
             "summary": "<p>HTML style attributes as cssText string or name/value hash</p>\n"
         },
         {
+            "name": "tag",
+            "scope": "prototype",
+            "types": [
+                "string"
+            ],
+            "from": "havok/widget/Accordion"
+        },
+        {
             "name": "templatePath",
             "scope": "prototype",
             "types": [
@@ -323,13 +311,9 @@
             "name": "templateString",
             "scope": "prototype",
             "types": [
-                "String"
+                "string"
             ],
-            "from": "dijit/_TemplatedMixin",
-            "tags": [
-                "protected"
-            ],
-            "summary": "<p>A string that represents the widget template.\nUse in conjunction with dojo.cache() to load from a file.</p>\n"
+            "from": "havok/widget/_WidgetBase"
         },
         {
             "name": "title",
@@ -595,27 +579,6 @@
             "summary": "<p>Helper function for get() and set().\nCaches attribute name values so we don&#39;t do the string ops every time.</p>\n"
         },
         {
-            "name": "_getToggleFx",
-            "scope": "prototype",
-            "types": [
-                "function"
-            ],
-            "from": "havok/widget/Accordion",
-            "private": true,
-            "parameters": [
-                {
-                    "name": "item",
-                    "types": [
-                        "undefined"
-                    ],
-                    "usage": "required"
-                }
-            ],
-            "returnTypes": [
-                "undefined"
-            ]
-        },
-        {
             "name": "_introspect",
             "scope": "prototype",
             "types": [
@@ -780,25 +743,6 @@
                 "undefined"
             ],
             "summary": "<p>Does substitution of ${foo} type properties in template string</p>\n"
-        },
-        {
-            "name": "_toggleItem",
-            "scope": "prototype",
-            "types": [
-                "function"
-            ],
-            "from": "havok/widget/Accordion",
-            "private": true,
-            "parameters": [
-                {
-                    "name": "item",
-                    "types": [
-                        "undefined"
-                    ],
-                    "usage": "required"
-                }
-            ],
-            "returnTypes": []
         },
         {
             "name": "buildRendering",
@@ -1364,9 +1308,11 @@
             "types": [
                 "function"
             ],
-            "from": "havok/widget/Accordion",
+            "from": "dijit/_WidgetBase",
             "parameters": [],
-            "returnTypes": []
+            "returnTypes": [],
+            "summary": "<p>Processing after the DOM fragment is added to the document</p>\n",
+            "description": "<p>Called after a widget and its children have been created and added to the page,\nand all related widgets have finished their create() cycle, up through postCreate().\n\n</p>\n<p>Note that startup() may be called while the widget is still hidden, for example if the widget is\ninside a hidden dijit/Dialog or an unselected tab of a dijit/layout/TabContainer.\nFor widgets that need to do layout, it&#39;s best to put that layout code inside resize(), and then\nextend dijit/layout/_LayoutWidget so that resize() is called when the widget is visible.</p>\n"
         },
         {
             "name": "subscribe",
@@ -1403,6 +1349,24 @@
             "examples": [
                 "var btn = new Button();\n// when /my/topic is published, this button changes its label to\n// be the parameter of the topic.\nbtn.subscribe(&quot;/my/topic&quot;, function(v){\n    this.set(&quot;label&quot;, v);\n});\n"
             ]
+        },
+        {
+            "name": "toggle",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/Accordion",
+            "parameters": [
+                {
+                    "name": "node",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
         },
         {
             "name": "toString",

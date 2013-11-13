@@ -1,0 +1,28 @@
+{
+    "location": "havok/widget/_CheckboxGroupStoreAdapterMixin",
+    "type": "constructor",
+    "classlike": true,
+    "methods": [
+        {
+            "name": "_setActiveAttr",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_CheckboxGroupStoreAdapterMixin",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "value",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
+        }
+    ],
+    "rootPath": "../../../",
+    "shortName": "_CheckboxGroupStoreAdapterMixin"
+}

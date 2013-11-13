@@ -68,7 +68,7 @@ require(['{{location}}'], function({{shortName}}){
                         <h4>{{prop.name}}{% if prop.private %}<span class='muted'> - private</span>{% endif %}</h4>
                         {% if prop.from is defined %}<p>Defined by <a href="{{apiPath}}{{prop.from}}.html">{{prop.from}}</a></p>{% endif %}
                         <p><strong>Types:</strong> {% for type in prop.types %}{{type}}{% if not loop.last %}, {% endif %}{% endfor %}</p>
-                        {% if prop.tags is defined %}<p><strong>Tagged:</strong> {% for tag in prop.tags %}{{tag}}{% if not loop.last %}, {% endif %}{% endfor %}</p>{% endif %}
+                        {% if prop.tags %}<p><strong>Tagged:</strong> {% for tag in prop.tags %}{{tag}}{% if not loop.last %}, {% endif %}{% endfor %}</p>{% endif %}
                         {% if prop.summary is defined %}<p class="lead">{{prop.summary}}</p>{% endif %}
                         {% if prop.description is defined %}{{prop.description}}{% endif %}
                         </div>

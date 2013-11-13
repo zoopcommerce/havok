@@ -4,13 +4,20 @@ define([
 function(
     router
 ){
-    //
-    // An AMD plugin that return an instance of havok/router/router that has been
-    // configured by the shared service manager, and has had startup() called
+	// module:
+	//		havok/router/started
 
-    var startedRouter = undefined;
+
+    var startedRouter;
+
     return {
-        load: function(id, require, callback){
+		// summary:
+		//		An AMD plugin that returns the started router.
+        // description:
+        //      Instance of `havok/router/router` will be returned that has been configured by the shared di instance,
+        //      and has had `router.startup()` called.
+
+        load: function(/*String?*/id, /*Function?*/require, /*Callback*/callback){
             if ( ! startedRouter){
                 startedRouter = router;
                 startedRouter.startup();

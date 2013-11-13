@@ -1,6 +1,8 @@
 {
     "location": "havok/router/started",
     "type": "object",
+    "summary": "<p>An AMD plugin that returns the started router.</p>\n",
+    "description": "<p>Instance of <code>havok/router/router</code> will be returned that has been configured by the shared di instance,\nand has had <code>router.startup()</code> called.</p>\n",
     "methods": [
         {
             "name": "load",
@@ -13,21 +15,21 @@
                 {
                     "name": "id",
                     "types": [
-                        "undefined"
+                        "String"
                     ],
-                    "usage": "required"
+                    "usage": "optional"
                 },
                 {
                     "name": "require",
                     "types": [
-                        "undefined"
+                        "Function"
                     ],
-                    "usage": "required"
+                    "usage": "optional"
                 },
                 {
                     "name": "callback",
                     "types": [
-                        "undefined"
+                        "Callback"
                     ],
                     "usage": "required"
                 }

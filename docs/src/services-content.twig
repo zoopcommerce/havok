@@ -1,0 +1,13 @@
+{% extends "page-content.twig" %}
+
+{% set title='Services' %}
+{% set byline='A myriad of services to make your life easier. PushState routing, exception handling, config merging, and less styles manager.' %}
+
+{% block mainContent %}
+    <section id="router" title="Router">{% include 'services/router.twig' %}</section>
+    <section id="config-merger" title="Config Merger">{% include 'services/config-merger.twig' %}</section>
+    <section id="store-manager" title="Store Manager">{% include 'services/store-manager.twig' %}</section>
+    <section id="exception-handler" title="Exception Handler">{% include 'services/exception-handler.twig' %}</section>
+    <section id="less" title="Less">{% include 'services/less.twig' %}</section>
+    <section id="utils" title="Utils">{% include 'services/utils.twig' %}</section>
+{% endblock %}

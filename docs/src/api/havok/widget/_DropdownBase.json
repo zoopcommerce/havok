@@ -287,6 +287,14 @@
             "summary": "<p>HTML style attributes as cssText string or name/value hash</p>\n"
         },
         {
+            "name": "tag",
+            "scope": "prototype",
+            "types": [
+                "string"
+            ],
+            "from": "havok/widget/_DropdownBase"
+        },
+        {
             "name": "templatePath",
             "scope": "prototype",
             "types": [
@@ -305,7 +313,7 @@
             "types": [
                 "string"
             ],
-            "from": "havok/widget/_DropdownBase"
+            "from": "havok/widget/_WidgetBase"
         },
         {
             "name": "title",

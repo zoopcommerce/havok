@@ -309,7 +309,7 @@
             "types": [
                 "string"
             ],
-            "from": "havok/widget/_ListMixin"
+            "from": "havok/widget/_DropdownBase"
         },
         {
             "name": "templatePath",
@@ -330,7 +330,7 @@
             "types": [
                 "string"
             ],
-            "from": "havok/widget/_DropdownBase"
+            "from": "havok/widget/_WidgetBase"
         },
         {
             "name": "title",
@@ -830,6 +830,13 @@
             "parameters": [
                 {
                     "name": "item",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "options",
                     "types": [
                         "undefined"
                     ],
@@ -1560,6 +1567,31 @@
                 "undefined"
             ],
             "summary": "<p>Maps on() type parameter (ex: &quot;mousemove&quot;) to method name (ex: &quot;onMouseMove&quot;).\nIf type is a synthetic event like touch.press then returns undefined.</p>\n"
+        },
+        {
+            "name": "onClick",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_ListMixin",
+            "parameters": [
+                {
+                    "name": "e",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "item",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
         },
         {
             "name": "onMouseenter",

@@ -1,14 +1,46 @@
 {
     "location": "havok/router/router",
     "type": "object",
+    "summary": "<p>Manage page changes using html5 pushState api.</p>\n",
+    "description": "<p>The router lets you manage the browser location for simple dynamic page loading, without having to use # hacks.\nSee <a href=\"/services.html#router\">router docs</a> for usage examples.</p>\n",
     "properties": [
+        {
+            "name": "active",
+            "scope": "normal",
+            "types": [
+                "Object"
+            ],
+            "from": "havok/router/router",
+            "summary": "<p>Holds information about the currently active route.</p>\n",
+            "description": "<p>An object with the following properties:</p><ul><li>ignore (Boolean): <p>If true, no matching route was found</p>\n</li><li>path (String)</li><li>controller (String)</li><li>entry (String)</li><li>exit (String)</li><li>args (String[]): <p>Any arguments passed to the controller entry method</p>\n</li></ul>"
+        },
+        {
+            "name": "baseUrlDefault",
+            "scope": "normal",
+            "types": [
+                "String"
+            ],
+            "from": "havok/router/router",
+            "summary": "<p>If the baseUrl of the router is not explicitly given, this property defines\nhow the baseUrl should be set.\n\n</p>\n<p>If set to <code>page</code>, the baseUrl is set using\nwindown.location.pathname when the router is started.\n\n</p>\n<p>If set to <code>site</code>, the baseUrl is set using window.location.hostname when\nthe router is started.</p>\n"
+        },
+        {
+            "name": "di",
+            "scope": "normal",
+            "types": [
+                "Object"
+            ],
+            "from": "havok/router/router",
+            "summary": "<p>Must be an instance of <a href=\"../di/Di.html\">havok\\di\\Di</a>. This is where controller instances will be pulled from.</p>\n"
+        },
         {
             "name": "routes",
             "scope": "normal",
             "types": [
-                "array"
+                "Object"
             ],
-            "from": "havok/router/router"
+            "from": "havok/router/router",
+            "summary": "<p>Array of Route objects that defines the mapping between urls and controller instances</p>\n",
+            "description": "<p>An object with the following properties:</p><ul><li>regex (String): <p>Used to test if the requested path matches with this route.</p>\n</li><li>controller (String): <p>The name of a controller instance that can be retrieved through the di instance.</p>\n</li><li>defaultMethod (String|Object): <p>If a String, defines the name of the entry method to call on the controller if there is no method match.\nIf an Object, it must have the form <code>{entry: String, exit: String}</code> and can define both the entry and exit methods to call on the controller if there is no method match.</p>\n</li><li>methods (Object): <p>An array of path to method name pairs.</p>\n</li></ul>"
         }
     ],
     "methods": [
@@ -21,23 +53,28 @@
             "from": "havok/router/router",
             "parameters": [
                 {
-                    "name": "route",
+                    "name": "path",
                     "types": [
-                        "undefined"
+                        "String",
+                        "int"
                     ],
-                    "usage": "required"
+                    "usage": "required",
+                    "summary": "<p>path may be a string, which will be routed, or a number which move to a relative point in history</p>\n"
                 },
                 {
                     "name": "surpressPushState",
                     "types": [
-                        "undefined"
+                        "Boolean"
                     ],
-                    "usage": "required"
+                    "usage": "optional",
+                    "summary": "<p>if true, the pushState api will not be used. ie, the address bar will not change</p>\n"
                 }
             ],
             "returnTypes": [
                 "boolean"
-            ]
+            ],
+            "returnDescription": "<p>returns <code>true</code> if the router actively managed a page change.\nreturns <code>false</code> if the router didn&#39;t do anything</p>\n",
+            "summary": "<p>change page location to the given path</p>\n"
         },
         {
             "name": "resolve",
@@ -48,16 +85,18 @@
             "from": "havok/router/router",
             "parameters": [
                 {
-                    "name": "route",
+                    "name": "path",
                     "types": [
-                        "undefined"
+                        "String"
                     ],
                     "usage": "required"
                 }
             ],
             "returnTypes": [
+                "__RouteMatch",
                 "object"
-            ]
+            ],
+            "summary": "<p>Attempt to resolve the provided path to a configured Route</p>\n"
         },
         {
             "name": "startup",
@@ -67,7 +106,8 @@
             ],
             "from": "havok/router/router",
             "parameters": [],
-            "returnTypes": []
+            "returnTypes": [],
+            "summary": "<p>Start the router listening to click events.</p>\n"
         }
     ],
     "rootPath": "../../../",

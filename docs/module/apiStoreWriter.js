@@ -40,10 +40,10 @@ for (var i = 0; i < tree.children.length; i++){
     walk(tree.children[i]);
 }
 
-fs.writeFile(__dirname + '/../src/api/api-tree-data.twig', JSON.stringify({data: data}, null, 4) , function(err) {
+fs.writeFile(__dirname + '/../src/api/api-tree-data.json', JSON.stringify({data: data}, null, 4) , function(err) {
     if(err) {
         console.log(err);
     } else {
-        console.log('api-tree-data.twig written');
+        console.log('api-tree-data.json written');
     }
 });

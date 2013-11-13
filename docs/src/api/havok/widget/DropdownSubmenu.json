@@ -329,7 +329,7 @@
             "types": [
                 "string"
             ],
-            "from": "havok/widget/DropdownToggle"
+            "from": "havok/widget/_WidgetBase"
         },
         {
             "name": "title",
