@@ -4,7 +4,7 @@
 {% set byline='Dozens of reusable widgets built to provide navigation, alerts, text editing, and more.' %}
 
 {% block mainContent %}
-<!--    <section id="using-widgets" title="Using Widgets">{#% include 'widgets/using-widgets.twig' %#}</section>-->
+<!--    <section id="using-widgets" title="Using Widgets">{#% include 'widgets/using-widgets.twig' %}</section>-->
     <section id="stores" title="Stores">{% include 'widgets/stores.twig' %}</section>
     <section id="dropdowns" title="Dropdowns">{% include 'widgets/dropdowns.twig' %}</section>
     <section id="dropdown-toggle" title="Dropdown Toggles">{% include 'widgets/dropdown-toggle.twig' %}</section>
@@ -15,13 +15,15 @@
     <section id="tree" title="Tree">{% include 'widgets/tree.twig' %}</section>
     {#% include 'widgets/sortable.twig' %}
     {% include 'widgets/affix.twig' %}
-    {% include 'widgets/scrollspy.twig' %#}
-    <section id="accordion" title="Accordion">{% include 'widgets/accordion.twig' %}</section>
+    {% include 'widgets/scrollspy.twig' %}
+
     <section id="modals" title="Modals">{% include 'widgets/modals.twig' %}</section>
     {#% include 'widgets/tooltips.twig' %}
-    {% include 'widgets/alerts.twig' %}
-    {% include 'widgets/overlay.twig' %}
-    {% include 'widgets/dragable.twig' %}
+    {% include 'widgets/alerts.twig' %#}-->
+
+    <section id="accordion" title="Accordion"><div class="well">{% include 'widgets/accordion.twig' %}</div></section>
+    <section id="overlay" title="Overlay"><div class="well">{% include 'widgets/overlay.twig' %}</div></section>
+    {#% include 'widgets/dragable.twig' %}
     {% include 'widgets/carousel.twig' %}
     {% include 'widgets/text-editor.twig' %#}
 {% endblock %}

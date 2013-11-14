@@ -282,6 +282,14 @@
             "from": "havok/widget/Modal"
         },
         {
+            "name": "headerTemplate",
+            "scope": "prototype",
+            "types": [
+                "string"
+            ],
+            "from": "havok/widget/Modal"
+        },
+        {
             "name": "hidden",
             "scope": "prototype",
             "types": [

@@ -47,13 +47,13 @@
              fork-link="http://github.com/zoopcommerce/havok/fork"
         ></div>
 
-        <div id="contentWrapper">
+        <main>
             {% block pageContent %}
                 <h1>Havok by Zoop</h1>
             {% endblock %}
-        </div>
+        </main>
 
-        <overlay id="contentWrapperOverlay" target="docBody">Loading more havok...</overlay>
+        <overlay class='main-overlay' target="docBody"><div><span class="icon-spinner icon-spin"></span></div><p>Loading more havok...</p></overlay>
 
         <footer class="footer">
             <div class="container">

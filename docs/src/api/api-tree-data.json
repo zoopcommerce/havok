@@ -1144,12 +1144,6 @@
             "href": "/api/havok/exception/Handler.html"
         },
         {
-            "id": "havok/exception/main",
-            "label": "main",
-            "parent": "havok/exception/",
-            "href": "/api/havok/exception/main.html"
-        },
-        {
             "id": "havok/exception/renderer/",
             "label": "renderer",
             "parent": "havok/exception/",

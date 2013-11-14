@@ -1,6 +1,8 @@
 {
     "location": "havok/exception/config",
     "type": "object",
+    "summary": "<p>Default exception handler config</p>\n",
+    "description": "<p>This module can be used by <a href=\"../config/manager.html\">havok/config/manager</a> to provide default exceptin handler configuration.</p>\n",
     "properties": [
         {
             "name": "bootstrap",

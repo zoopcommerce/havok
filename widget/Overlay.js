@@ -1,6 +1,5 @@
 define([
 	'dojo/_base/declare',
-    'dojo/dom',
     'dojo/dom-class',
     'dojo/dom-construct',
     'dojo/dom-geometry',
@@ -14,7 +13,6 @@ define([
 
 function(
     declare,
-    dom,
     domClass,
     domConstruct,
     domGeom,
@@ -25,36 +23,22 @@ function(
     template
 ) {
 
+	// module:
+	//		havok/widget/Overlay
+
 return declare([WidgetBase, HideableMixin],{
 	// summary:
+    //      Overlay a dom node to block UI interaction.
+    // description:
 	//		A widget designed to act as a Standby/Busy/Disable/Blocking widget to indicate a
 	//		particular DOM node is processing and cannot be clicked on at this time.
 	//		This widget uses absolute positioning to apply the overlay and image.
     //      Inspired by dojox/widget/Standby
 
-	//target: undefined,
-
-    //content: undefined,
-
+    // templateString: [protected] String
+    //		A string that represents the widget template.
+    //		Use in conjunction with dojo.cache() to load from a file.
 	templateString: template,
-
-    buildRendering: function(){
-        this.inherited(arguments);
-
-        if (this.content){
-            this.containerNode.innerHTML = this.content;
-        }
-    },
-
-    startup: function(){
-
-        if (typeof this.target == 'string') {
-            this.target = dom.byId(this.target);
-        } else if ( ! this.target){
-            this.target = this.domNode.previousElementSibling;
-        }
-        this.inherited(arguments);
-    },
 
     destroy: function(){
         domConstruct.destroy(this.overlay);
@@ -62,36 +46,46 @@ return declare([WidgetBase, HideableMixin],{
     },
 
     refresh: function(){
+        //summary:
+        //     Refresh the position of the overlay
+        //description:
+        //     If the node the overlay is applied to changes size or position,
+        //     this method should be called to update size and position of the overlay.
         this._position();
     },
 
     _show: function(){
+        //summary:
+        //     Show the overlay
         domConstruct.place(this.overlay, document.body, 'last');
         domClass.remove(this.overlay, 'hide');
         this._position();
     },
 
     _hide: function(){
+        //summary:
+        //     Hide the overlay
         domClass.add(this.overlay, 'hide');
         return;
     },
 
     _position: function(){
-
-        var targetPos,
+        //summary:
+        //     Position the overlay to float over the target dom node
+        
+        var target = this.domNode.parentElement,
+            targetPos,
             containerPos = domGeom.position(this.containerNode);
 
-        if (this.target == document.body){
+        if (target == document.body){
             targetPos = win.getBox();
             targetPos.x = 0;
             targetPos.y = 0;
-            domClass.add(this.backdrop, 'overlay-overlay-document');
-            domClass.add(this.containerNode, 'overlay-content-document');
+            domClass.add(this.overlay, 'document');
         } else {
-            domClass.remove(this.backdrop, 'overlay-overlay-document');
-            domClass.remove(this.containerNode, 'overlay-content-document');
+            domClass.remove(this.overlay, 'document');
 
-            targetPos = domGeom.position(this.target, true);
+            targetPos = domGeom.position(target, true);
 
             //overlay position
             domStyle.set(this.backdrop, 'top', targetPos.y + 'px');

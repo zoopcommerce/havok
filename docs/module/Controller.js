@@ -4,7 +4,6 @@ define([
     'dojo/_base/array',
     'dojo/request/xhr',
     'dojo/query',
-    'dojo/dom',
     'dojo/Deferred',
     'dojo/dom-construct',
     '../../parser/parser',
@@ -18,7 +17,6 @@ function(
     array,
     xhr,
     query,
-    dom,
     Deferred,
     domConstruct,
     parser,
@@ -30,7 +28,8 @@ function(
             //node: undefined,
 
             constructor: function(){
-                this.node = dom.byId('contentWrapper');
+                this.node = document.body.querySelector('main');
+                this.overlay = registry.byNode(document.body.querySelector('.main-overlay'));
                 this.cache = {};
             },
 
@@ -60,7 +59,7 @@ function(
                         });
 
                         //hide overlay
-                        registry.byId('contentWrapperOverlay').hide();
+                        this.overlay.hide();
                     }))
                 }))
             },
@@ -70,7 +69,7 @@ function(
                     widget.destroyRecursive()
                 });
                 domConstruct.empty(this.node);
-                registry.byId('contentWrapperOverlay').show();
+                this.overlay.show();
             },
 
             load: function(src){

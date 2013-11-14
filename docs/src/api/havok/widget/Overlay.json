@@ -28,7 +28,8 @@
         }
     ],
     "returnTypes": [],
-    "summary": "<p>A widget designed to act as a Standby/Busy/Disable/Blocking widget to indicate a\nparticular DOM node is processing and cannot be clicked on at this time.\nThis widget uses absolute positioning to apply the overlay and image.\nInspired by dojox/widget/Standby</p>\n",
+    "summary": "<p>Overlay a dom node to block UI interaction.</p>\n",
+    "description": "<p>A widget designed to act as a Standby/Busy/Disable/Blocking widget to indicate a\nparticular DOM node is processing and cannot be clicked on at this time.\nThis widget uses absolute positioning to apply the overlay and image.\nInspired by dojox/widget/Standby</p>\n",
     "properties": [
         {
             "name": "_attachEvents",
@@ -317,9 +318,13 @@
             "name": "templateString",
             "scope": "prototype",
             "types": [
-                "undefined"
+                "String"
             ],
-            "from": "havok/widget/Overlay"
+            "from": "havok/widget/Overlay",
+            "tags": [
+                "protected"
+            ],
+            "summary": "<p>A string that represents the widget template.\nUse in conjunction with dojo.cache() to load from a file.</p>\n"
         },
         {
             "name": "title",
@@ -789,7 +794,7 @@
             "types": [
                 "function"
             ],
-            "from": "havok/widget/Overlay",
+            "from": "havok/widget/_WidgetBase",
             "parameters": [],
             "returnTypes": []
         },
@@ -1367,9 +1372,11 @@
             "types": [
                 "function"
             ],
-            "from": "havok/widget/Overlay",
+            "from": "dijit/_WidgetBase",
             "parameters": [],
-            "returnTypes": []
+            "returnTypes": [],
+            "summary": "<p>Processing after the DOM fragment is added to the document</p>\n",
+            "description": "<p>Called after a widget and its children have been created and added to the page,\nand all related widgets have finished their create() cycle, up through postCreate().\n\n</p>\n<p>Note that startup() may be called while the widget is still hidden, for example if the widget is\ninside a hidden dijit/Dialog or an unselected tab of a dijit/layout/TabContainer.\nFor widgets that need to do layout, it&#39;s best to put that layout code inside resize(), and then\nextend dijit/layout/_LayoutWidget so that resize() is called when the widget is visible.</p>\n"
         },
         {
             "name": "subscribe",
