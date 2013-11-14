@@ -1,4 +1,5 @@
 define ([
+    'require',
     'dojo/_base/config',
     'dojo/_base/declare',
     'dojo/_base/array',
@@ -12,6 +13,7 @@ define ([
     'dojo/sniff'
 ],
 function (
+    require,
     dojoConfig,
     declare,
     array,
@@ -28,6 +30,17 @@ function (
     //      Parses HTML looking for custom tags
     //
 
+    /*=====
+    var __Options = {
+        // startup: Boolean
+        //      Should `.startup()` be called on any created widgets?
+        //      Defaults to `true`.
+        // contextRequire: function
+        //      Context to resolve relative requires.
+        //      Defaults to the context of this module
+    };
+    =====*/
+
     var mixinsAttr = 'mixins',
         typeAttr = 'data-dojo-type',
         ignoreParams = [
@@ -35,7 +48,7 @@ function (
             string.camelCase(mixinsAttr)
         ],
 
-        _createInstance = function(refNode){
+        _createInstance = function(refNode, contextRequire){
 
             var result = new Deferred,
                 type,
@@ -69,7 +82,7 @@ function (
                 })
             }
 
-            require(requires, function(){
+            contextRequire(requires, function(){
                 var Module = arguments[0],
                     i,
                     params = {},
@@ -115,7 +128,7 @@ function (
 
     return {
 
-        parse: function(root){
+        parse: function(/*DomNode?*/root, /*__Options?*/options){
 
             var result = new Deferred,
                 instanceDefs = [],
@@ -125,11 +138,15 @@ function (
                 nodes,
                 i;
 
+            if (!options) options = {};
+            if (!options.startup) options.startup = true;
+            if (!options.contextRequire) options.contextRequire = require;
+
             root = root ? root : document.body;
 
             nodes = root.querySelectorAll('[' + typeAttr + ']');
             for (i = 0; i < nodes.length; i++){
-                instanceDefs.push(_createInstance(nodes[i]));
+                instanceDefs.push(_createInstance(nodes[i], options.contextRequire));
             }
 
             for (tag in dojoConfig.parser.tags) {
@@ -140,7 +157,7 @@ function (
                     nodes.push(node);
                 });
                 array.forEach(nodes, function(node){
-                    instanceDefs.push(_createInstance(node));
+                    instanceDefs.push(_createInstance(node, options.contextRequire));
                 })
             }
 
@@ -151,12 +168,16 @@ function (
 
             instanceDefList = new DeferredList(instanceDefs);
             instanceDefList.then(function(list){
-                array.forEach(list, function(item){
-                    if (item[1].startup){
-                        item[1].startup();
-                    }
+                var widgets = array.map(list, function(item){
+                    return item[1];
                 });
-                result.resolve();
+
+                if (options.startup){
+                    array.forEach(widgets, function(item){
+                        if (item.startup) item.startup();
+                    })
+                }
+                result.resolve(widgets);
             })
 
             return result;

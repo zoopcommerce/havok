@@ -28,6 +28,7 @@
         }
     ],
     "returnTypes": [],
+    "summary": "<p>Widget to display tooltips.</p>\n",
     "properties": [
         {
             "name": "_attachEvents",
@@ -202,14 +203,6 @@
             "summary": "<p>Designates where children of the source DOM node will be placed.\n&quot;Children&quot; in this case refers to both DOM nodes and widgets.\nFor example, for myWidget:\n\n\n</p>\n&lt;div data-dojo-type=myWidget&gt;\n    &lt;b&gt; here&#39;s a plain DOM node\n    &lt;span data-dojo-type=subWidget&gt;and a widget&lt;/span&gt;\n    &lt;i&gt; and another plain DOM node &lt;/i&gt;\n&lt;/div&gt;\n<p>containerNode would point to:\n\n\n</p>\n&lt;b&gt; here&#39;s a plain DOM node\n&lt;span data-dojo-type=subWidget&gt;and a widget&lt;/span&gt;\n&lt;i&gt; and another plain DOM node &lt;/i&gt;\n<p>In templated widgets, &quot;containerNode&quot; is set via a\ndata-dojo-attach-point assignment.\n\n</p>\n<p>containerNode must be defined for any widget that accepts innerHTML\n(like ContentPane or BorderContainer or even Button), and conversely\nis null for widgets that don&#39;t, like TextBox.</p>\n"
         },
         {
-            "name": "defaultTag",
-            "scope": "prototype",
-            "types": [
-                "string"
-            ],
-            "from": "havok/widget/Tooltip"
-        },
-        {
             "name": "dir",
             "scope": "prototype",
             "types": [
@@ -234,28 +227,22 @@
             "summary": "<p>This is our visible representation of the widget! Other DOM\nNodes may by assigned to other properties, usually through the\ntemplate system&#39;s data-dojo-attach-point syntax, but the domNode\nproperty is the canonical &quot;top level&quot; node in widget UI.</p>\n"
         },
         {
-            "name": "eventHide",
-            "scope": "prototype",
-            "types": [
-                "string"
-            ],
-            "from": "havok/widget/Tooltip"
-        },
-        {
-            "name": "eventShow",
-            "scope": "prototype",
-            "types": [
-                "string"
-            ],
-            "from": "havok/widget/Tooltip"
-        },
-        {
             "name": "hidden",
             "scope": "prototype",
             "types": [
-                "boolean"
+                "Boolean"
             ],
-            "from": "havok/widget/Tooltip"
+            "from": "havok/widget/Tooltip",
+            "summary": "<p>Is the tooltip hidden?\nDefalts to <code>true</code></p>\n"
+        },
+        {
+            "name": "hideOn",
+            "scope": "prototype",
+            "types": [
+                "String"
+            ],
+            "from": "havok/widget/Tooltip",
+            "summary": "<p>The name of the event to trigger tooltip hide</p>\n"
         },
         {
             "name": "id",
@@ -297,9 +284,10 @@
             "name": "placement",
             "scope": "prototype",
             "types": [
-                "string"
+                "String"
             ],
-            "from": "havok/widget/Tooltip"
+            "from": "havok/widget/Tooltip",
+            "summary": "<p>Where to place the tooltip relative to target.\nMay be top | bottom | left | right\nDefaults to <code>top</code></p>\n"
         },
         {
             "name": "searchContainerNode",
@@ -308,6 +296,15 @@
                 "boolean"
             ],
             "from": "dijit/_TemplatedMixin"
+        },
+        {
+            "name": "showOn",
+            "scope": "prototype",
+            "types": [
+                "String"
+            ],
+            "from": "havok/widget/Tooltip",
+            "summary": "<p>The name of the event to trigger tooltip show</p>\n"
         },
         {
             "name": "srcNodeRef",
@@ -335,9 +332,19 @@
             "name": "tag",
             "scope": "prototype",
             "types": [
-                "string"
+                "String"
             ],
-            "from": "havok/widget/_WidgetBase"
+            "from": "havok/widget/Tooltip",
+            "summary": "<p>The tag that the tooltip will be rendered with.\nDefalts to &#39;span&#39;</p>\n"
+        },
+        {
+            "name": "target",
+            "scope": "prototype",
+            "types": [
+                "DomNode"
+            ],
+            "from": "havok/widget/Tooltip",
+            "summary": "<p>The dom node which the tooltip will be displayed next to</p>\n"
         },
         {
             "name": "templatePath",
@@ -366,8 +373,8 @@
             "types": [
                 "String"
             ],
-            "from": "dijit/_WidgetBase",
-            "summary": "<p>HTML title attribute.\n\n</p>\n<p>For form widgets this specifies a tooltip to display when hovering over\nthe widget (just like the native HTML title attribute).\n\n</p>\n<p>For TitlePane or for when this widget is a child of a TabContainer, AccordionContainer,\netc., it&#39;s used to specify the tab label, accordion pane title, etc.  In this case it&#39;s\ninterpreted as HTML.</p>\n"
+            "from": "havok/widget/Tooltip",
+            "summary": "<p>The content to show in the tooltip</p>\n"
         },
         {
             "name": "tooltip",
@@ -828,7 +835,7 @@
             "types": [
                 "function"
             ],
-            "from": "havok/widget/Tooltip",
+            "from": "havok/widget/_WidgetBase",
             "parameters": [],
             "returnTypes": []
         },

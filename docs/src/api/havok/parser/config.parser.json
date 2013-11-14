@@ -1,0 +1,24 @@
+{
+    "location": "havok/parser/config.parser",
+    "type": "object",
+    "properties": [
+        {
+            "name": "mixins",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "havok/parser/config"
+        },
+        {
+            "name": "tags",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "havok/parser/config"
+        }
+    ],
+    "rootPath": "../../../",
+    "shortName": "config.parser"
+}

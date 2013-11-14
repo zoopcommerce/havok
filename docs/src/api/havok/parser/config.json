@@ -3,10 +3,10 @@
     "type": "object",
     "properties": [
         {
-            "name": "bootstrap",
+            "name": "parser",
             "scope": "normal",
             "types": [
-                "Array"
+                "object"
             ],
             "from": "havok/parser/config"
         }

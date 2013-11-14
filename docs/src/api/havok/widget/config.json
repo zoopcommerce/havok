@@ -9,14 +9,6 @@
                 "object"
             ],
             "from": "havok/widget/config"
-        },
-        {
-            "name": "parser",
-            "scope": "normal",
-            "types": [
-                "object"
-            ],
-            "from": "havok/widget/config"
         }
     ],
     "rootPath": "../../../",

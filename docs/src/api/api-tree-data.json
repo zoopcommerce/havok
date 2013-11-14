@@ -1552,10 +1552,10 @@
             "href": "/api/havok/parser/config.html"
         },
         {
-            "id": "havok/parser/main",
-            "label": "main",
-            "parent": "havok/parser/",
-            "href": "/api/havok/parser/main.html"
+            "id": "havok/parser/config.parser",
+            "label": "<span class=\"icon-circle-blank\"></span> parser",
+            "parent": "havok/parser/config",
+            "href": "/api/havok/parser/config.parser.html"
         },
         {
             "id": "havok/parser/parser",
@@ -1786,6 +1786,12 @@
             "href": "/api/havok/widget/_WidgetBase.html"
         },
         {
+            "id": "havok/widget/_WidgetsInTemplateMixin",
+            "label": "<span class=\"icon-wrench\"></span> _WidgetsInTemplateMixin",
+            "parent": "havok/widget/",
+            "href": "/api/havok/widget/_WidgetsInTemplateMixin.html"
+        },
+        {
             "id": "havok/widget/Accordion",
             "label": "<span class=\"icon-wrench\"></span> Accordion",
             "parent": "havok/widget/",
@@ -1832,12 +1838,6 @@
             "label": "<span class=\"icon-circle-blank\"></span> di",
             "parent": "havok/widget/config",
             "href": "/api/havok/widget/config.di.html"
-        },
-        {
-            "id": "havok/widget/config.parser",
-            "label": "<span class=\"icon-circle-blank\"></span> parser",
-            "parent": "havok/widget/config",
-            "href": "/api/havok/widget/config.parser.html"
         },
         {
             "id": "havok/widget/DateDropdown",

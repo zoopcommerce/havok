@@ -1,51 +1,76 @@
+<h1>Tooltips</h1>
 
-        <section id="tooltips" title="Tooltips">
-          <div class="page-header">
-            <h1>Tooltips</h1>
-          </div>
+<p class="lead">Simple stylish tooltips.</p>
 
-          <p>Use <code>havok/widget/Tooltip</code> to make a tooltip.</p>
+<p>Use the <code>tooltip</code> tag to create a <a href="/api/havok/widget/Tooltip.html">havok/widget/Tooltip</a>. Use the <code>title</code> attribute to define the content of the tooltip.</p>
 
-          <div class="bs-docs-example tooltip-demo">
-            <p class="muted" style="margin-bottom: 0;">Tight pants next level keffiyeh <a data-dojo-type="havok/widget/Tooltip" title="Default tooltip">you probably</a> haven't heard of them. Photo booth beard raw denim letterpress vegan messenger bag stumptown. Farm-to-table seitan, mcsweeney's fixie sustainable quinoa 8-bit american apparel <a data-dojo-type="havok/widget/Tooltip" title="Another tooltip">have a</a> terry richardson vinyl chambray. Beard stumptown, cardigans banh mi lomo thundercats. Tofu biodiesel williamsburg marfa, four loko mcsweeney's cleanse vegan chambray. A really ironic artisan <a data-dojo-type="havok/widget/Tooltip" title="A much longer tooltip belongs right here to demonstrate the max-width we apply.">whatever keytar</a>, scenester farm-to-table banksy Austin <a data-dojo-type="havok/widget/Tooltip" title="The last tip!">twitter handle</a> freegan cred raw denim single-origin coffee viral.</p>
-          </div>
+<div class="bs-docs-example tooltip-demo">
+    <p class="muted" style="margin-bottom: 0;">Tight pants next level keffiyeh <tooltip title="Default tooltip"><a href="">you probably</a></tooltip> haven't heard of them. Photo booth beard raw denim letterpress vegan messenger bag stumptown. Farm-to-table seitan, mcsweeney's fixie sustainable quinoa 8-bit american apparel <tooltip title="Another tooltip"><a href="">have a</a></tooltip> terry richardson vinyl chambray. Beard stumptown, cardigans banh mi lomo thundercats. Tofu biodiesel williamsburg marfa, four loko mcsweeney's cleanse vegan chambray. A really ironic artisan <tooltip title="A much longer tooltip belongs right here to demonstrate the max-width we apply."><a href="">whatever keytar</a></tooltip>, scenester farm-to-table banksy Austin <tooltip title="The last tip!"><a href="">twitter handle</a></tooltip> freegan cred raw denim single-origin coffee viral.</p>
+</div>
 
 <pre class="prettyprint linenums">
-&lt;a data-dojo-type=&quot;havok/widget/Tooltip&quot; title=&quot;Default tooltip&quot;&gt;you probably&lt;/a&gt;
+{% set tooltipExample1 %}
+<tooltip title="Default tooltip"><a href="">you probably</a></tooltip>{% endset %}{{tooltipExample1|e}}
 </pre>
 
-          <h3>Four directions</h3>
-          <div class="bs-docs-example tooltip-demo">
-            <ul class="bs-docs-tooltip-examples">
-              <li><a data-dojo-type="havok/widget/Tooltip" data-dojo-props="placement: 'top'" title="Tooltip on top">Tooltip on top</a></li>
-              <li><a data-dojo-type="havok/widget/Tooltip" data-dojo-props="placement: 'right'" title="Tooltip on right">Tooltip on right</a></li>
-              <li><a data-dojo-type="havok/widget/Tooltip" data-dojo-props="placement: 'bottom'" title="Tooltip on bottom">Tooltip on bottom</a></li>
-              <li><a data-dojo-type="havok/widget/Tooltip" data-dojo-props="placement: 'left'" title="Tooltip on left">Tooltip on left</a></li>
-            </ul>
-          </div>
+<h2>Four directions</h2>
+<div class="bs-docs-example tooltip-demo">
+    <ul class="bs-docs-tooltip-examples">
+        <li><tooltip placement="top" title="Tooltip on top">Tooltip on top</tooltip></li>
+        <li><tooltip placement="right" title="Tooltip on right">Tooltip on right</tooltip></li>
+        <li><tooltip placement="bottom" title="Tooltip on bottom">Tooltip on bottom</tooltip></li>
+        <li><tooltip placement="left" title="Tooltip on left">Tooltip on left</tooltip></li>
+    </ul>
+</div>
 
 <pre class="prettyprint linenums">
-&lt;a data-dojo-type=&quot;havok/widget/Tooltip&quot; data-dojo-props=&quot;placement: 'top'&quot; title=&quot;Tooltip on top&quot;&gt;Tooltip on top&lt;/a&gt;
+{% set tooltipExample2 %}
+<tooltip placement="top" title="Tooltip on top">Tooltip on top</tooltip>
+<tooltip placement="right" title="Tooltip on right">Tooltip on right</tooltip>
+<tooltip placement="bottom" title="Tooltip on bottom">Tooltip on bottom</tooltip>
+<tooltip placement="left" title="Tooltip on left">Tooltip on left</tooltip>{% endset %}{{tooltipExample2|e}}
 </pre>
 
-<h3>Custom trigger event</h3>
-          <div class="bs-docs-example tooltip-demo">
-            <ul class="bs-docs-tooltip-examples">
-              <li><a data-dojo-type="havok/widget/Tooltip" data-dojo-props="eventShow: 'click'" title="I was clicked">Click to show tooltip</a></li>
-            </ul>
-          </div>
+<h2>Custom trigger event</h2>
+<div class="bs-docs-example tooltip-demo">
+    <ul class="bs-docs-tooltip-examples">
+        <li><tooltip show-on="click" title="I was clicked"><a href="">Click to show tooltip</a></tooltip></li>
+    </ul>
+</div>
 <pre class="prettyprint linenums">
-&lt;a data-dojo-type=&quot;havok/widget/Tooltip&quot; data-dojo-props=&quot;eventShow: 'click'&quot; title=&quot;I was clicked&quot;&gt;Click to show tooltip&lt;/a&gt;
+{% set tooltipExample3 %}
+<tooltip show-on="click" title="I was clicked"><a href="">Click to show tooltip</a></tooltip>{% endset %}{{tooltipExample3|e}}
 </pre>
 
-<h3>Inverse tooltip</h3>
-          <div class="bs-docs-example tooltip-demo">
-            <ul class="bs-docs-tooltip-examples">
-              <li><a class="inverse" data-dojo-type="havok/widget/Tooltip" title="Inverse tooltip">Inverse Tooltip</a></li>
-            </ul>
-          </div>
+<h2>Inverse tooltip</h2>
+<div class="bs-docs-example tooltip-demo">
+    <ul class="bs-docs-tooltip-examples">
+        <li><tooltip class="inverse" title="Inverse tooltip">Inverse Tooltip</tooltip></li>
+    </ul>
+</div>
 <pre class="prettyprint linenums">
-&lt;a class=&quot;inverse&quot; data-dojo-type=&quot;havok/widget/Tooltip&quot; title=&quot;Inverse tooltip&quot;&gt;Inverse Tooltip&lt;/a&gt;
+{% set tooltipExample4 %}
+<tooltip class="inverse" title="Inverse tooltip">Inverse Tooltip</tooltip>{% endset %}{{tooltipExample4|e}}
 </pre>
 
-</section>
+<h2>Alternate target</h2>
+<p>By default a tooltip will be triggered by interaction with the dom node it wraps. To define an alternate dom node, use the <code>target</code> attribute. This allows more flexibility in markup.</p>
+<div class="bs-docs-example tooltip-demo">
+    <div class="bs-docs-tooltip-examples">
+        <button id="findOutMore" class="btn">Find out more <i class="icon-question-sign"></i></button>
+        <tooltip target="findOutMore" title="Here's some more info"></tooltip>
+    </div>
+</div>
+<pre class="prettyprint linenums">
+{% set tooltipExample5 %}
+<button id="findOutMore" class="btn">Find out more <i class="icon-question-sign"></i></button>
+<!-- other markup here -->
+<tooltip target="findOutMore" title="Here's some more info"></tooltip>{% endset %}{{tooltipExample5|e}}
+</pre>
+
+<h2>See also</h2>
+
+<p>Api documentation:</p>
+<ul>
+    <li><a href="/api/havok/widget/Tooltip.html">havok/widget/Tooltip</a></li>
+</ul>

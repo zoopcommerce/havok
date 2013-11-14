@@ -5,7 +5,7 @@
     "superclass": "havok/widget/_WidgetBase",
     "mixins": [
         "havok/widget/_WidgetBase",
-        "dijit/_WidgetsInTemplateMixin",
+        "havok/widget/_WidgetsInTemplateMixin",
         "havok/form/_FormMixin",
         "havok/widget/_HideableMixin"
     ],
@@ -79,16 +79,6 @@
                 "protected"
             ],
             "summary": "<p>Path to a blank 1x1 image.\nUsed by <code>&lt;img&gt;</code> nodes in templates that really get their image via CSS background-image.</p>\n"
-        },
-        {
-            "name": "_earlyTemplatedStartup",
-            "scope": "prototype",
-            "types": [
-                "Boolean"
-            ],
-            "from": "dijit/_WidgetsInTemplateMixin",
-            "private": true,
-            "summary": "<p>A fallback to preserve the 1.0 - 1.3 behavior of children in\ntemplates having their startup called before the parent widget\nfires postCreate. Defaults to &#39;false&#39;, causing child widgets to\nhave their .startup() called immediately before a parent widget\n.startup(), but always after the parent .postCreate(). Set to\n&#39;true&#39; to re-enable to previous, arguably broken, behavior.</p>\n"
         },
         {
             "name": "_rendered",
@@ -239,15 +229,6 @@
                 "readonly"
             ],
             "summary": "<p>Designates where children of the source DOM node will be placed.\n&quot;Children&quot; in this case refers to both DOM nodes and widgets.\nFor example, for myWidget:\n\n\n</p>\n&lt;div data-dojo-type=myWidget&gt;\n    &lt;b&gt; here&#39;s a plain DOM node\n    &lt;span data-dojo-type=subWidget&gt;and a widget&lt;/span&gt;\n    &lt;i&gt; and another plain DOM node &lt;/i&gt;\n&lt;/div&gt;\n<p>containerNode would point to:\n\n\n</p>\n&lt;b&gt; here&#39;s a plain DOM node\n&lt;span data-dojo-type=subWidget&gt;and a widget&lt;/span&gt;\n&lt;i&gt; and another plain DOM node &lt;/i&gt;\n<p>In templated widgets, &quot;containerNode&quot; is set via a\ndata-dojo-attach-point assignment.\n\n</p>\n<p>containerNode must be defined for any widget that accepts innerHTML\n(like ContentPane or BorderContainer or even Button), and conversely\nis null for widgets that don&#39;t, like TextBox.</p>\n"
-        },
-        {
-            "name": "contextRequire",
-            "scope": "prototype",
-            "types": [
-                "Function"
-            ],
-            "from": "dijit/_WidgetsInTemplateMixin",
-            "summary": "<p>Used to provide a context require to the dojo/parser in order to be\nable to use relative MIDs (e.g. <code>./Widget</code>) in the widget&#39;s template.</p>\n"
         },
         {
             "name": "dir",
@@ -421,18 +402,6 @@
             ],
             "from": "dijit/_WidgetBase",
             "summary": "<p>When this widget&#39;s title attribute is used to for a tab label, accordion pane title, etc.,\nthis specifies the tooltip to appear when the mouse is hovered over that text.</p>\n"
-        },
-        {
-            "name": "widgetsInTemplate",
-            "scope": "prototype",
-            "types": [
-                "Boolean"
-            ],
-            "from": "dijit/_WidgetsInTemplateMixin",
-            "tags": [
-                "protected"
-            ],
-            "summary": "<p>Should we parse the template to find widgets that might be\ndeclared in markup inside it?  (Remove for 2.0 and assume true)</p>\n"
         }
     ],
     "methods": [
@@ -1676,7 +1645,7 @@
                 {
                     "name": "value",
                     "types": [
-                        "object"
+                        "Object"
                     ],
                     "usage": "required"
                 }

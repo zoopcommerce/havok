@@ -1,0 +1,68 @@
+{
+    "location": "havok/widget/_WidgetsInTemplateMixin",
+    "type": "constructor",
+    "classlike": true,
+    "summary": "<p>Mixin to supplement _TemplatedMixin when template contains widgets</p>\n",
+    "methods": [
+        {
+            "name": "_beforeFillContent",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_WidgetsInTemplateMixin",
+            "private": true,
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
+            "name": "_processTemplateNode",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_WidgetsInTemplateMixin",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "baseNode",
+                    "types": [
+                        "DOMNode",
+                        "Widget"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "getAttrFunc",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "attachFunc",
+                    "types": [
+                        "undefined"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [
+                "boolean",
+                "undefined"
+            ]
+        },
+        {
+            "name": "startup",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_WidgetsInTemplateMixin",
+            "parameters": [],
+            "returnTypes": []
+        }
+    ],
+    "rootPath": "../../../",
+    "shortName": "_WidgetsInTemplateMixin"
+}

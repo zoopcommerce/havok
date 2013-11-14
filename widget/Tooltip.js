@@ -2,6 +2,7 @@ define([
     'dojo/_base/declare',
     'dojo/_base/lang',
     'dojo/on',
+    'dojo/dom',
     'dojo/dom-style',
     'dojo/dom-construct',
     'dojo/dom-class',
@@ -12,57 +13,77 @@ define([
     '../less!./less/tooltip.less'
 ],
 function(
-        declare,
-        lang,
-        on,
-        domStyle,
-        domConstruct,
-        domClass,
-        domGeom,
-        WidgetBase,
-        HideableMixin,
-        template
-        ) {
+    declare,
+    lang,
+    on,
+    dom,
+    domStyle,
+    domConstruct,
+    domClass,
+    domGeom,
+    WidgetBase,
+    HideableMixin,
+    template
+){
     // module:
     //		havok/widget/Tooltip
 
     return declare(
         [WidgetBase, HideableMixin],
         {
+            // summary:
+            //      Widget to display tooltips.
+
             templateString: template,
 
-            eventShow: 'mouseover',
+            // showOn: String
+            //      The name of the event to trigger tooltip show
+            showOn: 'mouseover',
 
-            eventHide: 'mouseout',
+            // hideOn: String
+            //      The name of the event to trigger tooltip hide
+            hideOn: 'mouseout',
 
-            //title: undefined,
+            /*=====
+            // title: String
+            //      The content to show in the tooltip
+            title: undefined,
+            =====*/
 
-            placement: 'top', //top | bottom | left | right
+            // placement: String
+            //      Where to place the tooltip relative to target.
+            //      May be top | bottom | left | right
+            //      Defaults to `top`
+            placement: 'top',
 
+            // hidden: Boolean
+            //      Is the tooltip hidden?
+            //      Defalts to `true`
             hidden: true,
 
-            //target: undefined,
+            /*=====
+            // target: DomNode
+            //      The dom node which the tooltip will be displayed next to
+            target: undefined,
+            =====*/
 
-            defaultTag: 'span',
-
-            buildRendering: function(){
-
-                this.inherited(arguments);
-
-                if (!this.target){
-                    this.target = this.domNode;
-                }
-            },
+            // tag: String
+            //      The tag that the tooltip will be rendered with.
+            //      Defalts to 'span'
+            tag: 'span',
 
             startup: function(){
 
                 this.inherited(arguments);
 
-                on(this.target, this.eventShow, lang.hitch(this, function(e){
+                if (!this.target) this.target = this.domNode;
+                if (typeof this.target == 'string') this.target = dom.byId(this.target);
+
+                on(this.target, this.showOn, lang.hitch(this, function(e){
                     e.preventDefault();
                     this.set('hidden', false)
                 }));
-                on(this.target, this.eventHide, lang.hitch(this, function(e){
+                on(this.target, this.hideOn, lang.hitch(this, function(e){
                     e.preventDefault();
                     this.set('hidden', true)
                 }));

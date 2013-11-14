@@ -5,7 +5,7 @@ define([
     'dojo/dom-construct',
     'dijit/registry',
     './_WidgetBase',
-    'dijit/_WidgetsInTemplateMixin',
+    './_WidgetsInTemplateMixin',
     '../form/_FormMixin',
     './_HideableMixin',
     'dojo/text!./template/Modal.html',
@@ -109,7 +109,7 @@ function (
                 }
             },
 
-            show: function(/*object*/value)
+            show: function(/*Object*/value)
             {
                 // summary:
                 //    Display the modal
