@@ -1,7 +1,6 @@
 define([
     'dojo/_base/declare',
     'dojo/Deferred',
-    'dojo/query',
     'dojo/dom-class',
     'dojo/dom-construct',
     'dijit/registry',
@@ -18,7 +17,6 @@ define([
 function (
     declare,
     Deferred,
-    query,
     domClass,
     domConstruct,
     registry,
@@ -47,23 +45,26 @@ function (
 
             footerTemplate: footerTemplate,
 
+            headerTemplate: '',
+
+            closeButtonTemplate: closeButtonTemplate,
+
             // button: string
             //     The button node that was clicked to close the modal.
             button: undefined,
 
-            closeButtonTemplate: closeButtonTemplate,
-
             buildRendering: function(){
 
-                var footerNode,
-                    list;
-
                 if (this.srcNodeRef){
-                    list = query('[data-dojo-attach-point="footer"]', this.srcNodeRef);
-                    if (list.length > 0){
-                        footerNode = list[0];
-                        this.footerTemplate = footerNode.innerHTML;
-                        domConstruct.destroy(footerNode);
+                    var node = this.srcNodeRef.querySelector('header');
+                    if (node){
+                        this.headerTemplate = node.innerHTML;
+                        domConstruct.destroy(node);
+                    }
+                    node = this.srcNodeRef.querySelector('footer');
+                    if (node){
+                        this.footerTemplate = node.innerHTML;
+                        domConstruct.destroy(node);
                     }
                 }
 

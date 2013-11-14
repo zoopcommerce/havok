@@ -29,6 +29,11 @@ function (
     //
 
     var mixinsAttr = 'mixins',
+        typeAttr = 'data-dojo-type',
+        ignoreParams = [
+            string.camelCase(typeAttr),
+            string.camelCase(mixinsAttr)
+        ],
 
         _createInstance = function(refNode){
 
@@ -37,8 +42,8 @@ function (
                 requires,
                 attributes;
 
-            if (domAttr.has(refNode, 'data-dojo-type')){
-                type = domAttr.get(refNode, 'data-dojo-type');
+            if (domAttr.has(refNode, typeAttr)){
+                type = domAttr.get(refNode, typeAttr);
             } else {
                 type = dojoConfig.parser.tags[refNode.tagName.toLowerCase()];
             }
@@ -79,31 +84,29 @@ function (
                 while(item = attributes[i++]){
                     var name = string.camelCase(item.name),
                         value = item.value;
-                    switch (name) {
-                        case mixinsAttr:
-                            break;
-                        default:
-                            // Set params[name] to value, doing type conversion
-                            if(name in Module.prototype){
-                                switch(typeof Module.prototype[name]){
-                                case 'string':
-                                    params[name] = value;
-                                    break;
-                                case 'number':
-                                    params[name] = value.length ? Number(value) : NaN;
-                                    break;
-                                case 'boolean':
-                                    // for checked/disabled value might be "" or "checked".	 interpret as true.
-                                    params[name] = value.toLowerCase() != "false";
-                                    break;
-                                }
-                            } else {
+                    if (ignoreParams.indexOf(name) == -1){
+                        // Set params[name] to value, doing type conversion
+                        if(name in Module.prototype){
+                            switch(typeof Module.prototype[name]){
+                            case 'string':
                                 params[name] = value;
+                                break;
+                            case 'number':
+                                params[name] = value.length ? Number(value) : NaN;
+                                break;
+                            case 'boolean':
+                                // for checked/disabled value might be "" or "checked".	 interpret as true.
+                                params[name] = value.toLowerCase() != "false";
+                                break;
                             }
+                        } else {
+                            params[name] = value;
+                        }
                     }
                 }
+
                 instance = new Module(params, refNode);
-                domAttr.set(instance.domNode, 'data-dojo-type', type);
+                domAttr.set(instance.domNode, typeAttr, type);
                 result.resolve(instance);
             });
 
@@ -124,7 +127,7 @@ function (
 
             root = root ? root : document.body;
 
-            nodes = root.querySelectorAll('[data-dojo-type]');
+            nodes = root.querySelectorAll('[' + typeAttr + ']');
             for (i = 0; i < nodes.length; i++){
                 instanceDefs.push(_createInstance(nodes[i]));
             }

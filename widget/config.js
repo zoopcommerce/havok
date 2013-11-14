@@ -14,6 +14,7 @@ define(
                     'carousel'           : 'havok/widget/Carousel',
                     'checkbox-group'     : 'havok/widget/CheckboxGroup',
                     'hotkey-button'      : 'havok/widget/HotkeyButton',
+                    'modal'              : 'havok/widget/Modal',
                     'nav-bar'            : 'havok/widget/NavBar',
                     'nav-bar-links'      : 'havok/widget/NavBarLinks',
                     'nav-list'           : 'havok/widget/NavList',
