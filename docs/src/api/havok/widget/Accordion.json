@@ -27,6 +27,8 @@
         }
     ],
     "returnTypes": [],
+    "summary": "<p>Simple accordion widget.</p>\n",
+    "description": "<p>Each <code>section</code> tag in the containerNode is an item in the accordion.\nIf there is a <code>header</code> tag inside a section, the contents of that <code>header</code> tag\nare used for the item&#39;s clickable text.</p>\n",
     "properties": [
         {
             "name": "_attachEvents",
@@ -143,6 +145,15 @@
                 "readonly"
             ],
             "summary": "<p>startup() has completed.</p>\n"
+        },
+        {
+            "name": "active",
+            "scope": "prototype",
+            "types": [
+                "DomNode"
+            ],
+            "from": "havok/widget/Accordion",
+            "summary": "<p>Holds a reference to the currently active accordion item.</p>\n"
         },
         {
             "name": "attachScope",
@@ -292,7 +303,7 @@
             "types": [
                 "string"
             ],
-            "from": "havok/widget/Accordion"
+            "from": "havok/widget/_WidgetBase"
         },
         {
             "name": "templatePath",
@@ -641,12 +652,13 @@
                 {
                     "name": "srcNode",
                     "types": [
-                        "undefined"
+                        "DomNode"
                     ],
                     "usage": "required"
                 }
             ],
-            "returnTypes": []
+            "returnTypes": [],
+            "summary": "<p>Render a node as and accordion item</p>\n"
         },
         {
             "name": "_set",
@@ -1361,12 +1373,14 @@
                 {
                     "name": "node",
                     "types": [
-                        "undefined"
+                        "DomNode"
                     ],
-                    "usage": "required"
+                    "usage": "required",
+                    "summary": "<p>Must be the <code>section</code> node that you want to show/hide</p>\n"
                 }
             ],
-            "returnTypes": []
+            "returnTypes": [],
+            "summary": "<p>Show/hide an accordion item.</p>\n"
         },
         {
             "name": "toString",

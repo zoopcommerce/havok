@@ -16,6 +16,8 @@ function (
     return declare(
         [WidgetBase, TemplatedMixin],
         {
+            tag: 'div',
+
             templateString: '<${tag} data-dojo-attach-point="containerNode"></${tag}>',
 
             buildRendering: function(){

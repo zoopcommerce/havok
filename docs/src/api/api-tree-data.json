@@ -1900,12 +1900,6 @@
             "href": "/api/havok/widget/HotkeyButton.html"
         },
         {
-            "id": "havok/widget/main",
-            "label": "main",
-            "parent": "havok/widget/",
-            "href": "/api/havok/widget/main.html"
-        },
-        {
             "id": "havok/widget/Modal",
             "label": "<span class=\"icon-wrench\"></span> Modal",
             "parent": "havok/widget/",

@@ -443,6 +443,14 @@
             "from": "havok/form/_ValidationMessagesMixin"
         },
         {
+            "name": "tag",
+            "scope": "prototype",
+            "types": [
+                "string"
+            ],
+            "from": "havok/widget/_WidgetBase"
+        },
+        {
             "name": "templatePath",
             "scope": "prototype",
             "types": [
