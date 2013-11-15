@@ -19,14 +19,25 @@ function (
     return declare(
         [DropdownBase],
         {
+            // summary:
+            //      A dropdown that shows a date picker
 
+            //baseClass: String
             baseClass: 'dropdown-menu datepicker',
 
+            //templateString: String
             templateString: template,
 
-            //openTo: undefined,
+            /*=====
+            // openTo: Date
+            //      What date to display when the date dropdown is opened
+            openTo: undefined,
+            =====*/
 
-            _mode: 'Day', //Day | Month | Year
+            // _mode: String
+            //      Which selection mode the date picker is in.
+            //      Possible values are Day | Month | Year
+            _mode: 'Day',
 
             startup: function(){
                 this.inherited(arguments);
@@ -46,14 +57,14 @@ function (
                 }
             },
 
-            _setDateAttr: function(value){
+            _setDateAttr: function(/*Date*/value){
                 this._set('date', value);
                 this._mode = 'Day';
                 this.openTo = new Date(value);
                 this._fill();
             },
 
-            onPrev: function(e){
+            onPrev: function(){
                 if (this._mode == 'Day'){
                     this.openTo.setMonth(this.openTo.getMonth() - 1);
                 } else if (this._mode == 'Month'){
@@ -64,7 +75,7 @@ function (
                 this._fill();
             },
 
-            onNext: function(e){
+            onNext: function(){
                 if (this._mode == 'Day'){
                     this.openTo.setMonth(this.openTo.getMonth() + 1);
                 } else if (this._mode == 'Month'){
@@ -75,7 +86,7 @@ function (
                 this._fill();
             },
 
-            onSelect: function(e){
+            onSelect: function(/*event*/e){
                 if (domClass.contains(e.target, 'month')){
                     this.openTo.setMonth(dateLocale.parse(e.target.innerHTML, {selector: 'date', datePattern: 'MMM'}).getMonth());
                     this._mode = 'Day';
@@ -96,7 +107,7 @@ function (
                 }
             },
 
-            onHeader: function(e){
+            onHeader: function(){
                 if (this._mode == 'Day'){
                     this._mode = 'Month';
                 } else if (this._mode == 'Month'){

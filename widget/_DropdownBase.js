@@ -17,12 +17,15 @@ function (
     return declare(
         [WidgetBase],
         {
+            // summary:
+            //      A base class for dropdown widgets to inherit from.
+            // description:
+            //      Mostly handles mouse events for dropdowns.
 
-            //This is a really basic empty dropdown.
-            //
-
+            // baseClass: String
             baseClass: 'dropdown-menu',
 
+            // tag: String
             tag: 'span',
 
             startup: function(){
@@ -34,7 +37,7 @@ function (
                 var i,
                     children = this.getChildren();
                 for (i = 0; i < children.length; i++){
-                    this.watchChildHasMouse(children[i]);
+                    this._watchChildHasMouse(children[i]);
                 }
             },
 
@@ -52,7 +55,7 @@ function (
                 }), 50);
             },
 
-            watchChildHasMouse: function(childWidget){
+            _watchChildHasMouse: function(/*havok/widget/_DropdownBase*/childWidget){
                 childWidget.watch('hasMouse', lang.hitch(this, function(property, oldValue, newValue){
                     if (newValue){
                         this.set('childHasMouse', childWidget);

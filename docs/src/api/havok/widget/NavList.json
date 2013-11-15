@@ -174,7 +174,7 @@
             "types": [
                 "string"
             ],
-            "from": "havok/widget/_NavBase"
+            "from": "havok/widget/NavList"
         },
         {
             "name": "class",
@@ -830,7 +830,7 @@
             "types": [
                 "function"
             ],
-            "from": "havok/widget/NavList",
+            "from": "havok/widget/_WidgetBase",
             "parameters": [],
             "returnTypes": []
         },

@@ -27,6 +27,7 @@
         }
     ],
     "returnTypes": [],
+    "summary": "<p>A dropdown for displaying anything.</p>\n",
     "properties": [
         {
             "name": "_attachEvents",
@@ -726,6 +727,25 @@
             "summary": "<p>Does substitution of ${foo} type properties in template string</p>\n"
         },
         {
+            "name": "_watchChildHasMouse",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_DropdownBase",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "childWidget",
+                    "types": [
+                        "havok/widget/_DropdownBase"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
+        },
+        {
             "name": "buildRendering",
             "scope": "prototype",
             "types": [
@@ -1412,24 +1432,6 @@
             ],
             "returnDescription": "<p>An object handle for the watch. The unwatch method of this object\ncan be used to discontinue watching this property:\n\n</p>\nvar watchHandle = obj.watch(&quot;foo&quot;, callback);\nwatchHandle.unwatch(); // callback won&#39;t be called now\n",
             "summary": "<p>Watches a property for changes</p>\n"
-        },
-        {
-            "name": "watchChildHasMouse",
-            "scope": "prototype",
-            "types": [
-                "function"
-            ],
-            "from": "havok/widget/_DropdownBase",
-            "parameters": [
-                {
-                    "name": "childWidget",
-                    "types": [
-                        "undefined"
-                    ],
-                    "usage": "required"
-                }
-            ],
-            "returnTypes": []
         }
     ],
     "events": [

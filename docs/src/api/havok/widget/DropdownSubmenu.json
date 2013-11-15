@@ -27,7 +27,26 @@
         }
     ],
     "returnTypes": [],
+    "summary": "<p>Displays a submenu inside a parent dropdown</p>\n",
     "properties": [
+        {
+            "name": "_activeDropdownPlacement",
+            "scope": "prototype",
+            "types": [
+                "undefined"
+            ],
+            "from": "havok/widget/DropdownToggle",
+            "private": true
+        },
+        {
+            "name": "_activeTogglePlacement",
+            "scope": "prototype",
+            "types": [
+                "undefined"
+            ],
+            "from": "havok/widget/DropdownToggle",
+            "private": true
+        },
         {
             "name": "_attachEvents",
             "scope": "prototype",
@@ -75,6 +94,15 @@
                 "protected"
             ],
             "summary": "<p>Path to a blank 1x1 image.\nUsed by <code>&lt;img&gt;</code> nodes in templates that really get their image via CSS background-image.</p>\n"
+        },
+        {
+            "name": "_keypressHandlers",
+            "scope": "prototype",
+            "types": [
+                "undefined"
+            ],
+            "from": "havok/widget/DropdownToggle",
+            "private": true
         },
         {
             "name": "_rendered",
@@ -221,12 +249,38 @@
             "summary": "<p>This is our visible representation of the widget! Other DOM\nNodes may by assigned to other properties, usually through the\ntemplate system&#39;s data-dojo-attach-point syntax, but the domNode\nproperty is the canonical &quot;top level&quot; node in widget UI.</p>\n"
         },
         {
+            "name": "dropdown",
+            "scope": "prototype",
+            "types": [
+                "havok/widget/_DropdownBase"
+            ],
+            "from": "havok/widget/DropdownToggle",
+            "summary": "<p>The dropdown widget that this toggle is linked to</p>\n"
+        },
+        {
+            "name": "dropdownContainer",
+            "scope": "prototype",
+            "types": [
+                "undefined"
+            ],
+            "from": "havok/widget/DropdownToggle"
+        },
+        {
             "name": "dropdownPlacement",
             "scope": "prototype",
             "types": [
-                "string"
+                "String"
             ],
-            "from": "havok/widget/DropdownSubmenu"
+            "from": "havok/widget/DropdownSubmenu",
+            "summary": "<p>This property defined which corner of the dropdown that the toggle will be aligned to\nPossible values are top-left | top-right | bottom-left | bottom-right\nDefault value is <code>top-left</code></p>\n"
+        },
+        {
+            "name": "hasMouse",
+            "scope": "prototype",
+            "types": [
+                "undefined"
+            ],
+            "from": "havok/widget/DropdownToggle"
         },
         {
             "name": "hidden",
@@ -344,9 +398,10 @@
             "name": "togglePlacement",
             "scope": "prototype",
             "types": [
-                "string"
+                "String"
             ],
-            "from": "havok/widget/DropdownSubmenu"
+            "from": "havok/widget/DropdownSubmenu",
+            "summary": "<p>This property defines which corner of the toggle the dropdown will be aligned to\nPossible values are top-left | top-right | bottom-left | bottom-right\nDefault value is <code>top-right</code></p>\n"
         },
         {
             "name": "tooltip",
@@ -1566,7 +1621,7 @@
                 {
                     "name": "e",
                     "types": [
-                        "undefined"
+                        "Event"
                     ],
                     "usage": "required"
                 }
@@ -1594,7 +1649,7 @@
                 {
                     "name": "e",
                     "types": [
-                        "undefined"
+                        "Event"
                     ],
                     "usage": "required"
                 }

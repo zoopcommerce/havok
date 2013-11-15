@@ -38,24 +38,51 @@ function (
     return declare(
         [WidgetBase, HideableMixin],
         {
+            // summary:
+            //      Provides a trigger to show/hide a dropdown
 
-            //tag: undefined,
+            /*=====
+            // dropdown: havok/widget/_DropdownBase
+            //      The dropdown widget that this toggle is linked to
+            dropdown: undefined,
+            =====*/
 
-            //dropdown: undefined,
+            /*=====
+            // dropdownContainer: DomNode
+            dropdownContainer: undefined,
+            =====*/
 
-            //dropdownContainer: undefined,
-
+            // togglePlacement: String
+            //      This property defines which corner of the toggle the dropdown will be aligned to
+            //      Possible values are top-left | top-right | bottom-left | bottom-right
+            //      Default value is `bottom-left`
             togglePlacement: 'bottom-left',
 
+            // dropdownPlacement: String
+            //      This property defined which corner of the dropdown that the toggle will be aligned to
+            //      Possible values are top-left | top-right | bottom-left | bottom-right
+            //      Default value is `top-left`
             dropdownPlacement: 'top-left',
 
-            //_activeTogglePlacement: undefined,
+            /*=====
+            // _activeTogglePlacement: String
+            _activeTogglePlacement: undefined,
+            =====*/
 
-            //_activeDropdownPlacement: undefined,
+            /*=====
+            // _activeDropdownPlacement: String
+            _activeDropdownPlacement: undefined,
+            =====*/
 
-            //hasMouse: undefined,
+            /*=====
+            // hasMouse: Boolean
+            hasMouse: undefined,
+            =====*/
 
-            //_keypressHandlers: undefined,
+            /*=====
+            // _keypressHandlers: Object[]
+            _keypressHandlers: undefined,
+            =====*/
 
             buildRendering: function(){
 
@@ -116,12 +143,12 @@ function (
                 this.inherited(arguments);
             },
 
-            onClick: function(e){
+            onClick: function(/*Event*/e){
                 e.preventDefault();
                 this.toggle();
             },
 
-            onMouseleave: function(e){
+            onMouseleave: function(/*Event*/e){
                 //use timeout to allow the mouse to bounce into the dropdown
                 setTimeout(lang.hitch(this, function(){
                     if (!this.dropdown.get('hasMouse')){

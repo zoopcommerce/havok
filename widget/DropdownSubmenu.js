@@ -22,16 +22,28 @@ function (
     return declare(
         [DropdownToggle],
         {
+            // summary:
+            //      Displays a submenu inside a parent dropdown
+
+            //baseClass: String
             baseClass: 'dropdown-submenu',
 
+            // togglePlacement: String
+            //      This property defines which corner of the toggle the dropdown will be aligned to
+            //      Possible values are top-left | top-right | bottom-left | bottom-right
+            //      Default value is `top-right`
             togglePlacement: 'top-right',
 
+            // dropdownPlacement: String
+            //      This property defined which corner of the dropdown that the toggle will be aligned to
+            //      Possible values are top-left | top-right | bottom-left | bottom-right
+            //      Default value is `top-left`
             dropdownPlacement: 'top-left',
 
+            //tag: String
             tag: 'li',
 
             startup: function(){
-
                 this.inherited(arguments);
                 on(this.button, 'mouseenter', lang.hitch(this, 'onMouseenter'));
             },

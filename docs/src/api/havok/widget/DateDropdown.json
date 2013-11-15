@@ -27,6 +27,7 @@
         }
     ],
     "returnTypes": [],
+    "summary": "<p>A dropdown that shows a date picker</p>\n",
     "properties": [
         {
             "name": "_attachEvents",
@@ -80,10 +81,11 @@
             "name": "_mode",
             "scope": "prototype",
             "types": [
-                "string"
+                "String"
             ],
             "from": "havok/widget/DateDropdown",
-            "private": true
+            "private": true,
+            "summary": "<p>Which selection mode the date picker is in.\nPossible values are Day | Month | Year</p>\n"
         },
         {
             "name": "_rendered",
@@ -252,6 +254,15 @@
                 "const"
             ],
             "summary": "<p>Rarely used.  Overrides the default Dojo locale used to render this widget,\nas defined by the <a href=\"http://www.w3.org/TR/html401/struct/dirlang.html#adef-lang\">HTML LANG</a> attribute.\nValue must be among the list of locales specified during by the Dojo bootstrap,\nformatted according to <a href=\"http://www.ietf.org/rfc/rfc3066.txt\">RFC 3066</a> (like en-us).</p>\n"
+        },
+        {
+            "name": "openTo",
+            "scope": "prototype",
+            "types": [
+                "Date"
+            ],
+            "from": "havok/widget/DateDropdown",
+            "summary": "<p>What date to display when the date dropdown is opened</p>\n"
         },
         {
             "name": "ownerDocument",
@@ -721,7 +732,7 @@
                 {
                     "name": "value",
                     "types": [
-                        "undefined"
+                        "Date"
                     ],
                     "usage": "required"
                 }
@@ -796,6 +807,25 @@
                 "undefined"
             ],
             "summary": "<p>Does substitution of ${foo} type properties in template string</p>\n"
+        },
+        {
+            "name": "_watchChildHasMouse",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_DropdownBase",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "childWidget",
+                    "types": [
+                        "havok/widget/_DropdownBase"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
         },
         {
             "name": "buildRendering",
@@ -1484,24 +1514,6 @@
             ],
             "returnDescription": "<p>An object handle for the watch. The unwatch method of this object\ncan be used to discontinue watching this property:\n\n</p>\nvar watchHandle = obj.watch(&quot;foo&quot;, callback);\nwatchHandle.unwatch(); // callback won&#39;t be called now\n",
             "summary": "<p>Watches a property for changes</p>\n"
-        },
-        {
-            "name": "watchChildHasMouse",
-            "scope": "prototype",
-            "types": [
-                "function"
-            ],
-            "from": "havok/widget/_DropdownBase",
-            "parameters": [
-                {
-                    "name": "childWidget",
-                    "types": [
-                        "undefined"
-                    ],
-                    "usage": "required"
-                }
-            ],
-            "returnTypes": []
         }
     ],
     "events": [
@@ -1535,15 +1547,7 @@
                 "function"
             ],
             "from": "havok/widget/DateDropdown",
-            "parameters": [
-                {
-                    "name": "e",
-                    "types": [
-                        "undefined"
-                    ],
-                    "usage": "required"
-                }
-            ],
+            "parameters": [],
             "returnTypes": []
         },
         {
@@ -1573,15 +1577,7 @@
                 "function"
             ],
             "from": "havok/widget/DateDropdown",
-            "parameters": [
-                {
-                    "name": "e",
-                    "types": [
-                        "undefined"
-                    ],
-                    "usage": "required"
-                }
-            ],
+            "parameters": [],
             "returnTypes": []
         },
         {
@@ -1591,15 +1587,7 @@
                 "function"
             ],
             "from": "havok/widget/DateDropdown",
-            "parameters": [
-                {
-                    "name": "e",
-                    "types": [
-                        "undefined"
-                    ],
-                    "usage": "required"
-                }
-            ],
+            "parameters": [],
             "returnTypes": []
         },
         {
@@ -1613,7 +1601,7 @@
                 {
                     "name": "e",
                     "types": [
-                        "undefined"
+                        "event"
                     ],
                     "usage": "required"
                 }

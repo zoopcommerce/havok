@@ -12,8 +12,8 @@ function (
     return declare(
         [DropdownBase],
         {
-            //This is a really basic empty dropdown.
-            //
+            // summary:
+            //      A dropdown for displaying anything.
 
             baseClass: 'dropdown-menu dropdown-container'
         }

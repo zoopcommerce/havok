@@ -24,10 +24,8 @@ function (
     return declare(
         [DropdownBase, ListMixin],
         {
-
-            //This is a really basic dropdown. It doesn't do much except
-            //show a list of links.
-            //
+            // summary:
+            //      A dropdown to display a list of links.
 
             startup: function(){
                 this.inherited(arguments);
