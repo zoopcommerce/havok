@@ -41,6 +41,9 @@ function (
             // summary:
             //      Provides a trigger to show/hide a dropdown
 
+            // baseClass: String
+            baseClass: 'dropdown',
+
             /*=====
             // dropdown: havok/widget/_DropdownBase
             //      The dropdown widget that this toggle is linked to
