@@ -12,6 +12,8 @@ function (
     return declare(
         [ButtonGroup],
         {
+            // summary:
+            //      Creates a button group that toggle radio button style
         }
     );
 });

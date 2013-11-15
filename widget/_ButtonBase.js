@@ -13,12 +13,20 @@ function (
     return declare(
         [WidgetBase],
         {
+            // summary:
+            //      Base class for button widgets
 
+            //baseClass: String
             baseClass: 'btn',
 
+            //templateString: String
             templateString: '<button>${!text}</button>',
 
-            //text: undefined,
+            /*=====
+            // text: String
+            //      The text to be displayed on the button
+            text: undefined,
+            =====*/
 
             buildRendering: function(){
                 if (!this.text){

@@ -14,6 +14,8 @@ function (
     return declare(
         [ButtonBase, HotkeyMixin],
         {
+            // summary:
+            //      Creates a button with configurable hotkeys
         }
     );
 });

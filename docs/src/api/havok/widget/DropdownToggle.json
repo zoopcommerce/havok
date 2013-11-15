@@ -201,13 +201,9 @@
             "name": "baseClass",
             "scope": "prototype",
             "types": [
-                "String"
+                "string"
             ],
-            "from": "dijit/_WidgetBase",
-            "tags": [
-                "protected"
-            ],
-            "summary": "<p>Root CSS class of the widget (ex: dijitTextBox), used to construct CSS classes to indicate\nwidget state.</p>\n"
+            "from": "havok/widget/DropdownToggle"
         },
         {
             "name": "class",

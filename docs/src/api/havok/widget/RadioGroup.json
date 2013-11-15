@@ -27,6 +27,7 @@
         }
     ],
     "returnTypes": [],
+    "summary": "<p>Creates a button group that toggle radio button style</p>\n",
     "properties": [
         {
             "name": "_attachEvents",
@@ -808,7 +809,7 @@
                 {
                     "name": "item",
                     "types": [
-                        "undefined"
+                        "DomNode"
                     ],
                     "usage": "required"
                 }

@@ -316,6 +316,15 @@
             "from": "havok/widget/_ButtonBase"
         },
         {
+            "name": "text",
+            "scope": "prototype",
+            "types": [
+                "String"
+            ],
+            "from": "havok/widget/_ButtonBase",
+            "summary": "<p>The text to be displayed on the button</p>\n"
+        },
+        {
             "name": "title",
             "scope": "prototype",
             "types": [

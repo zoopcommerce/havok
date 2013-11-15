@@ -2,14 +2,36 @@
     "location": "havok/widget/_HotkeyMixin",
     "type": "constructor",
     "classlike": true,
+    "summary": "<p>Provides support for classes that want to use hotkeys</p>\n",
     "properties": [
+        {
+            "name": "_keypressHandler",
+            "scope": "prototype",
+            "types": [
+                "Object"
+            ],
+            "from": "havok/widget/_HotkeyMixin",
+            "private": true,
+            "summary": "<p>Holds a reference to any active key press handler</p>\n"
+        },
+        {
+            "name": "keys",
+            "scope": "prototype",
+            "types": [
+                "Object"
+            ],
+            "from": "havok/widget/_HotkeyMixin",
+            "summary": "<p>An array of objects that define the hotkeys to be used</p>\n",
+            "description": "<p>An object with the following properties:</p><ul><li>ctrl (Boolean): <p>Should the <code>ctrl</code> key modifier be used?</p>\n</li><li>shift (Boolean): <p>Should the <code>shift</code> key modifier be used?</p>\n</li><li>alt (Boolean): <p>Should the <code>alt</code> key modifier be used?</p>\n</li><li>char (String): <p>Indicates which key should be used in combination with any modifier keys.\nFor a simple character, just use that character. Eg: <code>m</code>\n<code>ENTER</code> and <code>ESCAPE</code> are also valid values.\nFor more options see <code>dojo/keys</code></p>\n</li></ul>"
+        },
         {
             "name": "keyTarget",
             "scope": "prototype",
             "types": [
-                "object"
+                "DomNode"
             ],
-            "from": "havok/widget/_HotkeyMixin"
+            "from": "havok/widget/_HotkeyMixin",
+            "summary": "<p>The dom node to attach the key press listener to</p>\n"
         }
     ],
     "methods": [
@@ -58,12 +80,15 @@
                 {
                     "name": "value",
                     "types": [
-                        "undefined"
+                        "__Key[]",
+                        "String"
                     ],
-                    "usage": "required"
+                    "usage": "required",
+                    "summary": "<p>If value is an array, it must be an array of <strong>Key object.\nIf the value is a string, it will be parsed into an array of </strong>Key objects.\nIn a string items must be separated by <code>;</code> and attributes by space. eg:\n<code>ctrl m; shift v</code>.</p>\n"
                 }
             ],
-            "returnTypes": []
+            "returnTypes": [],
+            "summary": "<p>sets the hotkeys that will emit a click event</p>\n"
         },
         {
             "name": "_setKeyTargetAttr",
@@ -77,7 +102,7 @@
                 {
                     "name": "value",
                     "types": [
-                        "undefined"
+                        "DomNode"
                     ],
                     "usage": "required"
                 }

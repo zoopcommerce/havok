@@ -16,9 +16,14 @@ function (
     return declare(
         [ButtonGroup],
         {
+            // summary:
+            //      Creates a button group that toggle checkbox style
+
+            // storeAdapter: String
+            //      Module Id for use with the _StoreMixin
             storeAdapter: './_CheckboxGroupStoreAdapterMixin',
 
-            _setActiveAttr: function(value){
+            _setActiveAttr: function(/*DomNode|DomNode[]?*/value){
 
                 var i,
                     node;

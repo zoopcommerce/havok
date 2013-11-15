@@ -27,6 +27,7 @@
         }
     ],
     "returnTypes": [],
+    "summary": "<p>Creates a button group that toggle checkbox style</p>\n",
     "properties": [
         {
             "name": "_attachEvents",
@@ -296,9 +297,10 @@
             "name": "storeAdapter",
             "scope": "prototype",
             "types": [
-                "string"
+                "String"
             ],
-            "from": "havok/widget/CheckboxGroup"
+            "from": "havok/widget/CheckboxGroup",
+            "summary": "<p>Module Id for use with the _StoreMixin</p>\n"
         },
         {
             "name": "style",
@@ -729,9 +731,10 @@
                 {
                     "name": "value",
                     "types": [
-                        "undefined"
+                        "DomNode",
+                        "DomNode[]"
                     ],
-                    "usage": "required"
+                    "usage": "optional"
                 }
             ],
             "returnTypes": []
@@ -816,7 +819,7 @@
                 {
                     "name": "item",
                     "types": [
-                        "undefined"
+                        "DomNode"
                     ],
                     "usage": "required"
                 }

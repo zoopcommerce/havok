@@ -28,6 +28,7 @@
         }
     ],
     "returnTypes": [],
+    "summary": "<p>Creates a group of buttons that can be interacted with as a single widget.</p>\n",
     "properties": [
         {
             "name": "_attachEvents",
@@ -809,7 +810,7 @@
                 {
                     "name": "item",
                     "types": [
-                        "undefined"
+                        "DomNode"
                     ],
                     "usage": "required"
                 }

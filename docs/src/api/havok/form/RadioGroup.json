@@ -948,7 +948,7 @@
                 {
                     "name": "item",
                     "types": [
-                        "undefined"
+                        "DomNode"
                     ],
                     "usage": "required"
                 }
