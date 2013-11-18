@@ -5,6 +5,7 @@ define(
             parser: {
                 tags: {
                     'accordion'          : '../widget/Accordion',
+                    'alert'              : '../widget/Alert',
                     'button-group'       : '../widget/ButtonGroup',
                     'date-dropdown'      : '../widget/DateDropdown',
                     'dropdown'           : '../widget/Dropdown',

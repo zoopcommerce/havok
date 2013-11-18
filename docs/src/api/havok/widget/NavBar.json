@@ -1361,7 +1361,7 @@
                     "types": [
                         "Event"
                     ],
-                    "usage": "required"
+                    "usage": "optional"
                 }
             ],
             "returnTypes": []

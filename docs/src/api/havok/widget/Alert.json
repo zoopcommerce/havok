@@ -28,6 +28,7 @@
         }
     ],
     "returnTypes": [],
+    "summary": "<p>Hideable user alert</p>\n",
     "properties": [
         {
             "name": "_attachEvents",
@@ -173,13 +174,9 @@
             "name": "baseClass",
             "scope": "prototype",
             "types": [
-                "String"
+                "string"
             ],
-            "from": "dijit/_WidgetBase",
-            "tags": [
-                "protected"
-            ],
-            "summary": "<p>Root CSS class of the widget (ex: dijitTextBox), used to construct CSS classes to indicate\nwidget state.</p>\n"
+            "from": "havok/widget/Alert"
         },
         {
             "name": "class",
@@ -208,14 +205,6 @@
                 "readonly"
             ],
             "summary": "<p>Designates where children of the source DOM node will be placed.\n&quot;Children&quot; in this case refers to both DOM nodes and widgets.\nFor example, for myWidget:\n\n\n</p>\n&lt;div data-dojo-type=myWidget&gt;\n    &lt;b&gt; here&#39;s a plain DOM node\n    &lt;span data-dojo-type=subWidget&gt;and a widget&lt;/span&gt;\n    &lt;i&gt; and another plain DOM node &lt;/i&gt;\n&lt;/div&gt;\n<p>containerNode would point to:\n\n\n</p>\n&lt;b&gt; here&#39;s a plain DOM node\n&lt;span data-dojo-type=subWidget&gt;and a widget&lt;/span&gt;\n&lt;i&gt; and another plain DOM node &lt;/i&gt;\n<p>In templated widgets, &quot;containerNode&quot; is set via a\ndata-dojo-attach-point assignment.\n\n</p>\n<p>containerNode must be defined for any widget that accepts innerHTML\n(like ContentPane or BorderContainer or even Button), and conversely\nis null for widgets that don&#39;t, like TextBox.</p>\n"
-        },
-        {
-            "name": "defaultClass",
-            "scope": "prototype",
-            "types": [
-                "string"
-            ],
-            "from": "havok/widget/Alert"
         },
         {
             "name": "dir",
@@ -340,7 +329,7 @@
             "name": "templateString",
             "scope": "prototype",
             "types": [
-                "undefined"
+                "string"
             ],
             "from": "havok/widget/Alert"
         },
@@ -1551,7 +1540,7 @@
                 {
                     "name": "e",
                     "types": [
-                        "undefined"
+                        "Event"
                     ],
                     "usage": "required"
                 }

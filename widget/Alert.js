@@ -3,19 +3,14 @@ define([
     'dojo/dom-class',
     './_WidgetBase',
     './_HideableMixin',
-    'dojo/text!./template/Alert.html',
     'dojo/text!./template/CloseButton.html',
-    '../less!../vendor/bootstrap/less/close.less',
-    '../less!../vendor/bootstrap/less/buttons.less',
-    '../less!../vendor/bootstrap/less/button-groups.less',
-    '../less!../vendor/bootstrap/less/alerts.less'
+    '../less!./less/alerts.less'
 ],
 function (
     declare,
     domClass,
     WidgetBase,
     HideableMixin,
-    template,
     closeButtonTemplate
 ){
     // module:
@@ -24,14 +19,19 @@ function (
     return declare(
         [WidgetBase, HideableMixin],
         {
+            // summary:
+            //      Hideable user alert
 
-            defaultClass: 'alert',
+            // baseClass: String
+            baseClass: 'alert',
 
-            templateString: template,
+            // templateString: String
+            templateString: '<div>${!closeButtonTemplate}<span data-dojo-attach-point="containerNode"></span></div>',
 
+            // closeButtonTemplate: String
             closeButtonTemplate: closeButtonTemplate,
 
-            onCloseClick: function(e){
+            onCloseClick: function(/*Event*/e){
                 e.preventDefault();
                 this.hide();
             },
