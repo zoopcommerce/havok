@@ -6,8 +6,7 @@ define([
     'dojo/dom-attr',
     './NavTab',
     './_SortableMixin',
-    './_WidgetBase',
-    'dojo/text!./template/TabContainer.html'
+    './_WidgetBase'
 ],
 function (
     declare,
@@ -17,8 +16,7 @@ function (
     domAttr,
     NavTab,
     SortableMixin,
-    WidgetBase,
-    template
+    WidgetBase
 ){
     // module:
     //    	havok/widget/TabContainer
@@ -26,51 +24,78 @@ function (
     return declare(
         [WidgetBase],
         {
+            // summary:
+            //      Simple tab pane container widget.
+            // description:
+            //		Each `section` tag in the containerNode is an item in the tab container.
+            //		If there is a `header` tag inside a section, the contents of that `header` tag
+            //		are used for the item's tab.
 
-            placement: 'top', // top | bottom | left | right
+            // placement: String
+            //      Sets which side of the tab container the tabs should be shown.
+            //      Possible values are `top | bottom | left | right`.
+            //      Default value is `top`.
+            placement: 'top',
 
-            templateString: template,
+            // templateString: String
+            templateString: '<div class="tabbable"><div class="tab-content" data-dojo-attach-point="containerNode"></div></div>',
 
             buildRendering: function(){
-
                 this.inherited(arguments);
 
                 this.nav = new (declare([NavTab, SortableMixin], null));
+
+                var nodes = this.containerNode.querySelectorAll('section'),
+                    i;
+                for (i = 0; i < nodes.length; i++){
+                    if (nodes[i].parentElement == this.containerNode){
+                        this._renderItem(nodes[i], 'tab' + i);
+                    }
+                }
+            },
+
+            _renderItem: function(/*DomNode*/srcNode, /*String*/id){
+                // summary:
+                //      Render a node as and tab item
+
+                var heading,
+                    srcHeader,
+                    classes = [];
+
+                if (domClass.contains(srcNode, 'active')){
+                    classes.push('active');
+                }
+                if (domClass.contains(srcNode, 'disabled')){
+                    classes.push = 'disabled';
+                }
+
+                //extract header
+                heading = domConstruct.create('li', {'data-tab-target': id, 'class': classes.join(' '), innerHTML: '<a href=""></a>'});
+                srcHeader = srcNode.querySelector('header');
+                if (srcHeader) {
+                    while (srcHeader.childNodes.length > 0){
+                        domConstruct.place(srcHeader.childNodes[0], heading.firstElementChild);
+                    }
+                    domConstruct.destroy(srcHeader);
+                }
+                this.nav.addItem(heading);
+
+                domClass.add(srcNode, 'tab-pane');
+                domAttr.set(srcNode, 'data-tab-id', id);
             },
 
             startup: function(){
+
                 this.inherited(arguments);
 
-                var i,
-                    classes;
-
-                if (!this.tabPanes){
-                    this.tabPanes = {};
-                    for (i = 0; i < this.containerNode.children.length; i++){
-                        this.tabPanes[domAttr.get(this.containerNode.children[i], 'title')] = this.containerNode.children[i];
-                        domClass.add(this.containerNode.children[i], 'tab-pane');
-                    }
-                }
-
-                for (i in this.tabPanes){
-                    classes = [];
-                    if (domClass.contains(this.tabPanes[i], 'active')){
-                        classes.push('active');
-                    }
-                    if (domClass.contains(this.tabPanes[i], 'disabled')){
-                        classes.push = 'disabled';
-                    }
-                    domAttr.set(this.nav.addItem('<a class="' + classes.join('') + '" href="">' + i + '</a>'), 'tab-id', i);
-                }
-
                 this.nav.watch('active', lang.hitch(this, function(property, oldValue, newValue){
-                    domClass.remove(this.tabPanes[domAttr.get(oldValue, 'tab-id')], 'active');
-                    domClass.add(this.tabPanes[domAttr.get(newValue, 'tab-id')], 'active');
+                    domClass.remove(this.containerNode.querySelector('[data-tab-id=' + domAttr.get(oldValue, 'data-tab-target') + ']'), 'active');
+                    domClass.add(this.containerNode.querySelector('[data-tab-id=' + domAttr.get(newValue, 'data-tab-target') + ']'), 'active');
                 }));
                 this.nav.startup();
             },
 
-            _setPlacementAttr: function(value){
+            _setPlacementAttr: function(/*String*/value){
                 domClass.remove(this.domNode, 'tabs-left tabs-right tabs-below');
                 switch (value){
                     case 'left':

@@ -1,3 +1,87 @@
+<h1>Tabs and Accordion</h1>
+
+<h2>Tab Container</h2>
+<p>Bring your tabs to life with <code>tab-container</code> and <a href="/api/havok/widget/TabContainer.html">havok/widget/TabContainer</a>.</p>
+
+<div class="bs-docs-example">
+    <tab-container style="margin-bottom: 18px;">
+        <section class="active">
+            <header>Section 1</header>
+            <p>I'm in Section 1.</p>
+        </section>
+        <section>
+            <header>Section 2</header>
+            <p>Howdy, I'm in Section 2.</p>
+        </section>
+        <section>
+            <header>Section 3</header>
+            <p>What up girl, this is Section 3.</p>
+        </section>
+    </tab-container>
+</div>
+<pre class="prettyprint linenums">
+{% set tabExample1 %}
+<tab-container style="margin-bottom: 18px;">
+    <section class="active">
+        <header>Section 1</header>
+        <p>I'm in Section 1.</p>
+    </section>
+    <section>
+        <header>Section 2</header>
+        <p>Howdy, I'm in Section 2.</p>
+    </section>
+    <section>
+        <header>Section 3</header>
+        <p>What up girl, this is Section 3.</p>
+    </section>
+</tab-container>{% endset %}{{tabExample1|e}}
+</pre>
+
+<h3>Tabbable in any direction</h3>
+
+<p>Use the <code>placement</code> property of <code>havok/widget/TabContainer</code> to alter where the tabs appear.</p>
+
+<div class="bs-docs-example">
+    <tab-container id="tabContainer1" placement="bottom" style="margin-bottom: 18px;">
+        <section class="active">
+            <header>Section 1</header>
+            <p>I'm in Section 1.</p>
+        </section>
+        <section>
+            <header>Section 2</header>
+            <p>Howdy, I'm in Section 2.</p>
+        </section>
+        <section>
+            <header>Section 2</header>
+            <p>What up girl, this is Section 3.</p>
+        </section>
+    </tab-container>
+    <radio-group id="buttonGroup1">
+        <button>top</button>
+        <button>left</button>
+        <button>right</button>
+        <button class="active">bottom</button>
+    </radio-group>
+    <script type="text/javascript">
+        require(['dijit/registry', 'havok/bootstrap!'], function(registry){
+            var tabContainer = registry.byId('tabContainer1'),
+                buttonGroup = registry.byId('buttonGroup1');
+
+            buttonGroup.on('item-click', function(item){
+                tabContainer.set('placement', item.innerHTML);
+            });
+        })
+    </script>
+</div>
+<pre class="prettyprint linenums">
+{% set tabExample2 %}
+<tab-container placement="bottom">
+    ...
+</tab-container>{% endset %}{{tabExample2|e}}
+</pre>
+
+<hr class="bs-docs-separator">
+
 <h1>Accordion</h1>
 
 <p>Use the <code>accordion</code> tag to create an instance of <a href="/api/havok/widget/Accordion.html">havok/widget/Accordion</a>.</p>
@@ -21,7 +105,8 @@
     </accordion>
 </div>
 
-<pre class="prettyprint linenums">{% set accordionExample1 %}
+<pre class="prettyprint linenums">
+{% set accordionExample1 %}
 <accordion>
     <section>
         <header>one</header>
@@ -43,5 +128,6 @@
 
 <p>Api documentation:</p>
 <ul>
+    <li><a href="/api/havok/widget/TabContainer.html">havok/widget/TabContainer</a></li>
     <li><a href="/api/havok/widget/Accordion.html">havok/widget/Accordion</a></li>
 </ul>

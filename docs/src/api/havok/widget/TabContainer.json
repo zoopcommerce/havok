@@ -27,6 +27,8 @@
         }
     ],
     "returnTypes": [],
+    "summary": "<p>Simple tab pane container widget.</p>\n",
+    "description": "<p>Each <code>section</code> tag in the containerNode is an item in the tab container.\nIf there is a <code>header</code> tag inside a section, the contents of that <code>header</code> tag\nare used for the item&#39;s tab.</p>\n",
     "properties": [
         {
             "name": "_attachEvents",
@@ -264,9 +266,10 @@
             "name": "placement",
             "scope": "prototype",
             "types": [
-                "string"
+                "String"
             ],
-            "from": "havok/widget/TabContainer"
+            "from": "havok/widget/TabContainer",
+            "summary": "<p>Sets which side of the tab container the tabs should be shown.\nPossible values are <code>top | bottom | left | right</code>.\nDefault value is <code>top</code>.</p>\n"
         },
         {
             "name": "searchContainerNode",
@@ -323,7 +326,7 @@
             "name": "templateString",
             "scope": "prototype",
             "types": [
-                "undefined"
+                "string"
             ],
             "from": "havok/widget/TabContainer"
         },
@@ -642,6 +645,33 @@
             "summary": "<p>Process data-dojo-attach-point and data-dojo-attach-event for given node or widget.\nReturns true if caller should process baseNode&#39;s children too.</p>\n"
         },
         {
+            "name": "_renderItem",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/TabContainer",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "srcNode",
+                    "types": [
+                        "DomNode"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "id",
+                    "types": [
+                        "String"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": [],
+            "summary": "<p>Render a node as and tab item</p>\n"
+        },
+        {
             "name": "_set",
             "scope": "prototype",
             "types": [
@@ -699,7 +729,7 @@
                 {
                     "name": "value",
                     "types": [
-                        "undefined"
+                        "String"
                     ],
                     "usage": "required"
                 }
