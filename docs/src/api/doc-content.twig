@@ -22,34 +22,10 @@
 
         {% if type == 'constructor' %}
             <h2>Usage</h2>
-
-<pre class="prettyprint linenums">
-require(['{{location}}'], function({{shortName}}){
-    var foo = new {{shortName}}({% for param in parameters %}{{param.name}}{% if not loop.last %}, {% endif %}{% endfor %});
-    //do something with foo
-});
-</pre>
-            {% if parameters|length > 0 %}
-                <table class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th style="width: 100px;">Parameter</th>
-                            <th style="width: 50px;">Type</th>
-                            <th style="width: 50px;">Usage</th>
-                            <th>Summary</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for param in parameters %}
-                            <tr>
-                                <td>{{param.name}}</td>
-                                <td>{% for type in param.types %}{{type}}{% if not loop.last %} | {% endif %}{% endfor %}</td>
-                                <td>{{param.usage}}</td>
-                                <td>{{param.summary}}</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+            {% if shortName|slice(0,1) == '_' %}
+                {% include 'api/mixin-usage.twig' %}
+            {% else %}
+                {% include 'api/constructor-usage.twig' %}
             {% endif %}
         {% endif %}
 

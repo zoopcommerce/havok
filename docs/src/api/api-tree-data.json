@@ -1750,6 +1750,12 @@
             "href": "/api/havok/widget/_ListMixin.html"
         },
         {
+            "id": "havok/widget/_ListMixin.__AddOptions",
+            "label": "<span class=\"icon-circle-blank\"></span> __AddOptions",
+            "parent": "havok/widget/_ListMixin",
+            "href": "/api/havok/widget/_ListMixin.__AddOptions.html"
+        },
+        {
             "id": "havok/widget/_NavBase",
             "label": "<span class=\"icon-wrench\"></span> _NavBase",
             "parent": "havok/widget/",

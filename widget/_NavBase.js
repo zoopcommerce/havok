@@ -15,8 +15,13 @@ function (
     return declare(
         [WidgetBase, ListMixin],
         {
+            // summary:
+            //      Base class for navigation list widgets
+
+            // tag: String
             tag: 'ul',
 
+            // baseClass: String
             baseClass: 'nav'
         }
     );

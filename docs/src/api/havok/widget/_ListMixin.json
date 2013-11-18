@@ -2,7 +2,17 @@
     "location": "havok/widget/_ListMixin",
     "type": "constructor",
     "classlike": true,
+    "summary": "<p>Foundational mixin for widgets handling lists</p>\n",
     "properties": [
+        {
+            "name": "__AddOptions",
+            "scope": "normal",
+            "types": [
+                "object"
+            ],
+            "from": "havok/widget/_ListMixin",
+            "private": true
+        },
         {
             "name": "dividerTemplate",
             "scope": "prototype",
@@ -41,16 +51,18 @@
                 {
                     "name": "node",
                     "types": [
-                        "undefined"
+                        "DomNode"
                     ],
-                    "usage": "required"
+                    "usage": "required",
+                    "summary": "<p>The domNode to attach the click listener to</p>\n"
                 },
                 {
                     "name": "item",
                     "types": [
-                        "undefined"
+                        "DomNode"
                     ],
-                    "usage": "required"
+                    "usage": "required",
+                    "summary": "<p>The domNode to set as active when the click listener is fired</p>\n"
                 }
             ],
             "returnTypes": []
@@ -64,7 +76,8 @@
             "from": "havok/widget/_ListMixin",
             "private": true,
             "parameters": [],
-            "returnTypes": []
+            "returnTypes": [],
+            "summary": "<p>Render all the children of <code>containerNode</code> as list items</p>\n"
         },
         {
             "name": "_setActiveAttr",
@@ -78,7 +91,7 @@
                 {
                     "name": "value",
                     "types": [
-                        "undefined"
+                        "DomNode"
                     ],
                     "usage": "required"
                 }
@@ -96,21 +109,26 @@
                 {
                     "name": "item",
                     "types": [
-                        "undefined"
+                        "DomNode",
+                        "String"
                     ],
-                    "usage": "required"
+                    "usage": "required",
+                    "summary": "<p>The domNode that the new list itme will be created from.\nIf a string is given, it must be the id of a domNode.</p>\n"
                 },
                 {
                     "name": "options",
                     "types": [
-                        "undefined"
+                        "Object"
                     ],
-                    "usage": "required"
+                    "usage": "optional",
+                    "summary": "<p>Modify the behaviour of addItem. Primarily used by widgets that\nextend <code>addItem</code>.</p>\n",
+                    "description": "<p>An object with the following properties:</p><ul><li>refNode (DomNode): <p>The rendered list item will be added as a child of the <code>refNode</code>.\nDefaults to the widget&#39;s containerNode</p>\n</li></ul>"
                 }
             ],
             "returnTypes": [
                 "undefined"
-            ]
+            ],
+            "summary": "<p>Add an item to the list</p>\n"
         },
         {
             "name": "buildRendering",
@@ -135,14 +153,14 @@
                 {
                     "name": "e",
                     "types": [
-                        "undefined"
+                        "Event"
                     ],
                     "usage": "required"
                 },
                 {
                     "name": "item",
                     "types": [
-                        "undefined"
+                        "DomNode"
                     ],
                     "usage": "required"
                 }

@@ -30,7 +30,7 @@ function (
             // itemTemplate: String
             itemTemplate: '',
 
-            addItem: function(/*DomNode*/item){
+            addItem: function(/*DomNode|String*/item, /*havok/widget/_ListMixin.__AddOptions?*/options){
                 var node = this.inherited(arguments);
                 domClass.add(node, 'btn');
                 return node;

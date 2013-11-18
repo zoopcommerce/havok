@@ -1,0 +1,17 @@
+{
+    "location": "havok/widget/_ListMixin.__AddOptions",
+    "type": "object",
+    "properties": [
+        {
+            "name": "refNode",
+            "scope": "normal",
+            "types": [
+                "DomNode"
+            ],
+            "from": "havok/widget/_ListMixin",
+            "summary": "<p>The rendered list item will be added as a child of the <code>refNode</code>.\nDefaults to the widget&#39;s containerNode</p>\n"
+        }
+    ],
+    "rootPath": "../../../",
+    "shortName": "_ListMixin.__AddOptions"
+}

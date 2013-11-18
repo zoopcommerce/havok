@@ -19,17 +19,25 @@ function (
     return declare(
         [WidgetBase, ListMixin],
         {
+            // summary:
+            //      Creates a navigation tree
+
+            // baseClass: String
             baseClass: 'nav nav-list tree',
 
+            // tag: String
             tag: 'ol',
 
+            // storeAdapter: String
             storeAdapter: './_TreeStoreAdapterMixin',
 
+            // folderIcon: String
             folderIcon: '<span class="icon-folder"></span> ',
 
+            // itemIcon: String
             itemIcon: '<span class="icon-file-text"></span> ',
 
-            addItem: function(item){
+            addItem: function(/*DomNode|String*/item, /*havok/widget/_ListMixin.__AddOptions?*/options){
 
                 item = this.inherited(arguments);
 
@@ -51,7 +59,7 @@ function (
                 return item;
             },
 
-            onClick: function(e, item){
+            onClick: function(/*Event*/e, /*DomNode*/item){
 
                 if (e === this._eHandled){
                     return;

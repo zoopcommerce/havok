@@ -12,6 +12,10 @@ function (
     return declare(
         [NavBase],
         {
+            // summary:
+            //      Simple list
+
+            // baseClass: String
             baseClass: 'nav nav-list'
         }
     );

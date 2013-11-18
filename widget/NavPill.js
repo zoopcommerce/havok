@@ -12,6 +12,10 @@ function (
     return declare(
         [NavBase],
         {
+            // summary:
+            //      Pill style list
+
+            // baseClass: String
             baseClass: 'nav nav-pills'
         }
     );

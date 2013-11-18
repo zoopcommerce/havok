@@ -28,6 +28,7 @@
         }
     ],
     "returnTypes": [],
+    "summary": "<p>Creates a navigation tree</p>\n",
     "properties": [
         {
             "name": "_attachEvents",
@@ -441,16 +442,18 @@
                 {
                     "name": "node",
                     "types": [
-                        "undefined"
+                        "DomNode"
                     ],
-                    "usage": "required"
+                    "usage": "required",
+                    "summary": "<p>The domNode to attach the click listener to</p>\n"
                 },
                 {
                     "name": "item",
                     "types": [
-                        "undefined"
+                        "DomNode"
                     ],
-                    "usage": "required"
+                    "usage": "required",
+                    "summary": "<p>The domNode to set as active when the click listener is fired</p>\n"
                 }
             ],
             "returnTypes": []
@@ -705,7 +708,8 @@
             "from": "havok/widget/_ListMixin",
             "private": true,
             "parameters": [],
-            "returnTypes": []
+            "returnTypes": [],
+            "summary": "<p>Render all the children of <code>containerNode</code> as list items</p>\n"
         },
         {
             "name": "_set",
@@ -746,7 +750,7 @@
                 {
                     "name": "value",
                     "types": [
-                        "undefined"
+                        "DomNode"
                     ],
                     "usage": "required"
                 }
@@ -833,9 +837,17 @@
                 {
                     "name": "item",
                     "types": [
-                        "undefined"
+                        "DomNode",
+                        "String"
                     ],
                     "usage": "required"
+                },
+                {
+                    "name": "options",
+                    "types": [
+                        "havok/widget/_ListMixin.__AddOptions"
+                    ],
+                    "usage": "optional"
                 }
             ],
             "returnTypes": [
@@ -1568,14 +1580,14 @@
                 {
                     "name": "e",
                     "types": [
-                        "undefined"
+                        "Event"
                     ],
                     "usage": "required"
                 },
                 {
                     "name": "item",
                     "types": [
-                        "undefined"
+                        "DomNode"
                     ],
                     "usage": "required"
                 }
