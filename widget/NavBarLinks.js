@@ -12,6 +12,10 @@ function (
     return declare(
         [NavBase],
         {
+            // summary:
+            //      List of links inside a NavBar
+
+            // dividerTemplate: String
             dividerTemplate: '<li class="divider-vertical"></li>'
         }
     );

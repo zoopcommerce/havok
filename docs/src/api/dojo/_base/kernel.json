@@ -152,15 +152,6 @@
             "from": "dojo/_base/kernel"
         },
         {
-            "name": "fx",
-            "scope": "normal",
-            "types": [
-                "object"
-            ],
-            "from": "dojo/fx/easing",
-            "extensionModule": true
-        },
-        {
             "name": "global",
             "scope": "normal",
             "types": [
@@ -552,50 +543,6 @@
             "returnTypes": []
         },
         {
-            "name": "_Animation",
-            "scope": "normal",
-            "types": [
-                "function"
-            ],
-            "from": "dojo/_base/fx",
-            "private": true,
-            "extensionModule": true,
-            "parameters": [
-                {
-                    "name": "args",
-                    "types": [
-                        "Object"
-                    ],
-                    "usage": "required",
-                    "summary": "<p>The &#39;magic argument&#39;, mixing all the properties into this\nanimation instance.</p>\n"
-                }
-            ],
-            "returnTypes": [],
-            "summary": "<p>A generic animation class that fires callbacks into its handlers\nobject at various states.</p>\n",
-            "description": "<p>A generic animation class that fires callbacks into its handlers\nobject at various states. Nearly all dojo animation functions\nreturn an instance of this method, usually without calling the\n.play() method beforehand. Therefore, you will likely need to\ncall .play() on instances of <code>Animation</code> when one is\nreturned.</p>\n"
-        },
-        {
-            "name": "_defaultEasing",
-            "scope": "normal",
-            "types": [
-                "function"
-            ],
-            "from": "dojo/_base/fx",
-            "private": true,
-            "extensionModule": true,
-            "parameters": [
-                {
-                    "name": "n",
-                    "types": [
-                        "Decimal"
-                    ],
-                    "usage": "optional"
-                }
-            ],
-            "returnTypes": [],
-            "summary": "<p>The default easing function for Animation(s)</p>\n"
-        },
-        {
             "name": "_escapeString",
             "scope": "normal",
             "types": [
@@ -636,27 +583,6 @@
             "examples": [
                 "<p>simple serialization of a trivial object\n\n</p>\ndefine([&quot;dojo/json&quot;], function(JSON){\n    var jsonStr = JSON.stringify({ howdy: &quot;stranger!&quot;, isStrange: true });\n    doh.is(&#39;{&quot;howdy&quot;:&quot;stranger!&quot;,&quot;isStrange&quot;:true}&#39;, jsonStr);\n"
             ]
-        },
-        {
-            "name": "_fade",
-            "scope": "normal",
-            "types": [
-                "function"
-            ],
-            "from": "dojo/_base/fx",
-            "private": true,
-            "extensionModule": true,
-            "parameters": [
-                {
-                    "name": "args",
-                    "types": [
-                        "Object"
-                    ],
-                    "usage": "required"
-                }
-            ],
-            "returnTypes": [],
-            "summary": "<p>Returns an animation that will fade the node defined by\nargs.node from the start to end values passed (args.start\nargs.end) (end is mandatory, start is optional)</p>\n"
         },
         {
             "name": "_filterQueryResult",
@@ -916,36 +842,6 @@
             ]
         },
         {
-            "name": "_Line",
-            "scope": "normal",
-            "types": [
-                "function"
-            ],
-            "from": "dojo/_base/fx",
-            "private": true,
-            "extensionModule": true,
-            "parameters": [
-                {
-                    "name": "start",
-                    "types": [
-                        "int"
-                    ],
-                    "usage": "required",
-                    "summary": "<p>Beginning value for range</p>\n"
-                },
-                {
-                    "name": "end",
-                    "types": [
-                        "int"
-                    ],
-                    "usage": "required",
-                    "summary": "<p>Ending value for range</p>\n"
-                }
-            ],
-            "returnTypes": [],
-            "summary": "<p>Object used to generate values from a start value to an end value</p>\n"
-        },
-        {
             "name": "_Url",
             "scope": "normal",
             "types": [
@@ -1013,125 +909,6 @@
                 "<p>Using context\n\n</p>\nrequire([&quot;dojo/ready&quot;], function(ready){\n    ready(foo, function(){\n        // in here, this == foo\n    });\n});\n",
                 "<p>Using dojo/hitch style args:\n\n</p>\nrequire([&quot;dojo/ready&quot;], function(ready){\n    var foo = { dojoReady: function(){ console.warn(this, &quot;dojo dom and modules ready.&quot;); } };\n    ready(foo, &quot;dojoReady&quot;);\n});\n"
             ]
-        },
-        {
-            "name": "anim",
-            "scope": "normal",
-            "types": [
-                "function"
-            ],
-            "from": "dojo/_base/fx",
-            "extensionModule": true,
-            "parameters": [
-                {
-                    "name": "node",
-                    "types": [
-                        "DOMNode",
-                        "String"
-                    ],
-                    "usage": "required",
-                    "summary": "<p>a DOM node or the id of a node to animate CSS properties on</p>\n"
-                },
-                {
-                    "name": "properties",
-                    "types": [
-                        "Object"
-                    ],
-                    "usage": "required"
-                },
-                {
-                    "name": "duration",
-                    "types": [
-                        "Integer"
-                    ],
-                    "usage": "optional",
-                    "summary": "<p>The number of milliseconds over which the animation\nshould run. Defaults to the global animation default duration\n(350ms).</p>\n"
-                },
-                {
-                    "name": "easing",
-                    "types": [
-                        "Function"
-                    ],
-                    "usage": "optional",
-                    "summary": "<p>An easing function over which to calculate acceleration\nand deceleration of the animation through its duration.\nA default easing algorithm is provided, but you may\nplug in any you wish. A large selection of easing algorithms\nare available in <code>dojo/fx/easing</code>.</p>\n"
-                },
-                {
-                    "name": "onEnd",
-                    "types": [
-                        "Function"
-                    ],
-                    "usage": "optional",
-                    "summary": "<p>A function to be called when the animation finishes\nrunning.</p>\n"
-                },
-                {
-                    "name": "delay",
-                    "types": [
-                        "Integer"
-                    ],
-                    "usage": "optional",
-                    "summary": "<p>The number of milliseconds to delay beginning the\nanimation by. The default is 0.</p>\n"
-                }
-            ],
-            "returnTypes": [],
-            "summary": "<p>A simpler interface to <code>animateProperty()</code>, also returns\nan instance of <code>Animation</code> but begins the animation\nimmediately, unlike nearly every other Dojo animation API.</p>\n",
-            "description": "<p>Simpler (but somewhat less powerful) version\nof <code>animateProperty</code>.  It uses defaults for many basic properties\nand allows for positional parameters to be used in place of the\npacked &quot;property bag&quot; which is used for other Dojo animation\nmethods.\n\n</p>\n<p>The <code>Animation</code> object returned will be already playing, so\ncalling play() on it again is (usually) a no-op.</p>\n",
-            "examples": [
-                "<p>Fade out a node\n\n</p>\nbasefx.anim(&quot;id&quot;, { opacity: 0 });\n",
-                "<p>Fade out a node over a full second\n\n</p>\nbasefx.anim(&quot;id&quot;, { opacity: 0 }, 1000);\n"
-            ]
-        },
-        {
-            "name": "animateProperty",
-            "scope": "normal",
-            "types": [
-                "function"
-            ],
-            "from": "dojo/_base/fx",
-            "extensionModule": true,
-            "parameters": [
-                {
-                    "name": "args",
-                    "types": [
-                        "Object"
-                    ],
-                    "usage": "required",
-                    "description": "<p>An object with the following properties:</p><ul><li>properties (Object, optional): <p>A hash map of style properties to Objects describing the transition,\nsuch as the properties of _Line with an additional &#39;units&#39; property</p>\n</li><li>node (DOMNode|String): <p>The node referenced in the animation</p>\n</li><li>duration (Integer, optional): <p>Duration of the animation in milliseconds.</p>\n</li><li>easing (Function, optional): <p>An easing function.</p>\n</li></ul>"
-                }
-            ],
-            "returnTypes": [
-                "instance"
-            ],
-            "summary": "<p>Returns an animation that will transition the properties of\nnode defined in <code>args</code> depending how they are defined in\n<code>args.properties</code>\n</p>\n",
-            "description": "<p>Foundation of most <code>dojo/_base/fx</code>\nanimations. It takes an object of &quot;properties&quot; corresponding to\nstyle properties, and animates them in parallel over a set\nduration.\n</p>\n",
-            "examples": [
-                "<p>A simple animation that changes the width of the specified node.\n\n</p>\nbasefx.animateProperty({\n    node: &quot;nodeId&quot;,\n    properties: { width: 400 },\n}).play();\n<p>Dojo figures out the start value for the width and converts the\n\n</p>\n<p>integer specified for the width to the more expressive but\nverbose form <code>{ width: { end: &#39;400&#39;, units: &#39;px&#39; } }</code> which you\ncan also specify directly. Defaults to &#39;px&#39; if omitted.\n</p>\n",
-                "<p>Animate width, height, and padding over 2 seconds... the\npedantic way:\n\n</p>\nbasefx.animateProperty({ node: node, duration:2000,\n    properties: {\n        width: { start: &#39;200&#39;, end: &#39;400&#39;, units:&quot;px&quot; },\n        height: { start:&#39;200&#39;, end: &#39;400&#39;, units:&quot;px&quot; },\n        paddingTop: { start:&#39;5&#39;, end:&#39;50&#39;, units:&quot;px&quot; }\n    }\n}).play();\n<p>Note &#39;paddingTop&#39; is used over &#39;padding-top&#39;. Multi-name CSS properties\n\n</p>\n<p>are written using &quot;mixed case&quot;, as the hyphen is illegal as an object key.\n</p>\n",
-                "<p>Plug in a different easing function and register a callback for\nwhen the animation ends. Easing functions accept values between\nzero and one and return a value on that basis. In this case, an\nexponential-in curve.\n\n</p>\nbasefx.animateProperty({\n    node: &quot;nodeId&quot;,\n    // dojo figures out the start value\n    properties: { width: { end: 400 } },\n    easing: function(n){\n        return (n==0) ? 0 : Math.pow(2, 10 * (n - 1));\n    },\n    onEnd: function(node){\n        // called when the animation finishes. The animation\n        // target is passed to this function\n    }\n}).play(500); // delay playing half a second\n",
-                "<p>Like all <code>Animation</code>s, animateProperty returns a handle to the\nAnimation instance, which fires the events common to Dojo FX. Use <code>aspect.after</code>\nto access these events outside of the Animation definition:\n\n</p>\nvar anim = basefx.animateProperty({\n    node:&quot;someId&quot;,\n    properties:{\n        width:400, height:500\n    }\n});\naspect.after(anim, &quot;onEnd&quot;, function(){\n    console.log(&quot;animation ended&quot;);\n}, true);\n// play the animation now:\nanim.play();\n",
-                "<p>Each property can be a function whose return value is substituted along.\nAdditionally, each measurement (eg: start, end) can be a function. The node\nreference is passed directly to callbacks.\n\n</p>\nbasefx.animateProperty({\n    node:&quot;mine&quot;,\n    properties:{\n        height:function(node){\n            // shrink this node by 50%\n            return domGeom.position(node).h / 2\n        },\n        width:{\n            start:function(node){ return 100; },\n            end:function(node){ return 200; }\n        }\n    }\n}).play();\n"
-            ]
-        },
-        {
-            "name": "Animation",
-            "scope": "normal",
-            "types": [
-                "function"
-            ],
-            "from": "dojo/_base/fx",
-            "extensionModule": true,
-            "parameters": [
-                {
-                    "name": "args",
-                    "types": [
-                        "Object"
-                    ],
-                    "usage": "required",
-                    "summary": "<p>The &#39;magic argument&#39;, mixing all the properties into this\nanimation instance.</p>\n"
-                }
-            ],
-            "returnTypes": [],
-            "summary": "<p>A generic animation class that fires callbacks into its handlers\nobject at various states.</p>\n",
-            "description": "<p>A generic animation class that fires callbacks into its handlers\nobject at various states. Nearly all dojo animation functions\nreturn an instance of this method, usually without calling the\n.play() method beforehand. Therefore, you will likely need to\ncall .play() on instances of <code>Animation</code> when one is\nreturned.</p>\n"
         },
         {
             "name": "blendColors",
@@ -1825,48 +1602,6 @@
                 "dojo.experimental(&quot;dojo.data.Result&quot;);\n",
                 "dojo.experimental(&quot;dojo.weather.toKelvin()&quot;, &quot;PENDING approval from NOAA&quot;);\n"
             ]
-        },
-        {
-            "name": "fadeIn",
-            "scope": "normal",
-            "types": [
-                "function"
-            ],
-            "from": "dojo/_base/fx",
-            "extensionModule": true,
-            "parameters": [
-                {
-                    "name": "args",
-                    "types": [
-                        "Object"
-                    ],
-                    "usage": "required",
-                    "description": "<p>An object with the following properties:</p><ul><li>node (DOMNode|String): <p>The node referenced in the animation</p>\n</li><li>duration (Integer, optional): <p>Duration of the animation in milliseconds.</p>\n</li><li>easing (Function, optional): <p>An easing function.</p>\n</li></ul>"
-                }
-            ],
-            "returnTypes": [],
-            "summary": "<p>Returns an animation that will fade node defined in &#39;args&#39; from\nits current opacity to fully opaque.</p>\n"
-        },
-        {
-            "name": "fadeOut",
-            "scope": "normal",
-            "types": [
-                "function"
-            ],
-            "from": "dojo/_base/fx",
-            "extensionModule": true,
-            "parameters": [
-                {
-                    "name": "args",
-                    "types": [
-                        "Object"
-                    ],
-                    "usage": "required",
-                    "description": "<p>An object with the following properties:</p><ul><li>node (DOMNode|String): <p>The node referenced in the animation</p>\n</li><li>duration (Integer, optional): <p>Duration of the animation in milliseconds.</p>\n</li><li>easing (Function, optional): <p>An easing function.</p>\n</li></ul>"
-                }
-            ],
-            "returnTypes": [],
-            "summary": "<p>Returns an animation that will fade node defined in &#39;args&#39;\nfrom its current opacity to fully transparent.</p>\n"
         },
         {
             "name": "fieldToObject",

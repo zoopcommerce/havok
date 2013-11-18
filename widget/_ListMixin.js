@@ -73,7 +73,7 @@ function (
                 if (item.nodeName == 'HR'){
                     return domConstruct.place(this.dividerTemplate, item, 'replace');
                 } else if (['LI', 'DROPDOWN-SUBMENU'].indexOf(item.nodeName) != -1 || this.itemTemplate == ''){
-                    this._attachClickListener(item, item);
+                    this._attachClickListener(item);
                     if (domClass.contains(item, 'active')){
                         this.set('active', item);
                     }
@@ -113,11 +113,14 @@ function (
                 this._set('active', value);
             },
 
-            _attachClickListener: function(/*DomNode*/node, /*DomNode*/item){
+            _attachClickListener: function(/*DomNode*/node, /*DomNode?*/item){
                 // node:
                 //     The domNode to attach the click listener to
                 // item:
                 //     The domNode to set as active when the click listener is fired
+                //     If not given, defaults to `node`.
+
+                if (!item) item = node;
                 on(node, a11yclick.click, lang.hitch(this, function(e){
                     this.onClick(e, item);
                 }));

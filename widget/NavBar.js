@@ -1,30 +1,24 @@
 define([
     'dojo/_base/declare',
     'dojo/_base/lang',
-    'dojo/_base/fx',
-    'dojo/fx/easing',
     'dojo/on',
     'dojo/dom-attr',
     'dojo/dom-construct',
     'dojo/dom-class',
-    'dojo/dom-style',
-    'dojo/dom-geometry',
     'dijit/a11yclick',
+    '../cssfx',
     './_WidgetBase',
-    '../less!../vendor/bootstrap/less/navbar.less'
+    '../less!./less/navbar.less'
 ],
 function (
     declare,
     lang,
-    baseFx,
-    easing,
     on,
     domAttr,
     domConstruct,
     domClass,
-    domStyle,
-    domGeom,
     a11yclick,
+    cssfx,
     WidgetBase
 ){
     // module:
@@ -33,12 +27,25 @@ function (
     return declare(
         [WidgetBase],
         {
-            //toggleNode: undefined,
+            // summary:
+            //      Navigation bar
 
-            //toggleTarget: undefined,
+            /*=====
+            // toggleNode: DomNode
+            //      The dom node used to toggle a collapsed nav bar.
+            toggleNode: undefined,
+            =====*/
 
+            /*=====
+            // toggleTarget: DomNode
+            //      The dom node that to show/hide when using a collapsable nav bar.
+            toggleTarget: undefined,
+            =====*/
+
+            // baseClass: String
             baseClass: 'navbar',
 
+            // templateString: String
             templateString: '<div><div class="navbar-inner" data-dojo-attach-point="containerNode"></div></div>',
 
             startup: function(){
@@ -71,37 +78,26 @@ function (
                 }
             },
 
-            toggle: function(e){
-                e.preventDefault();
+            toggle: function(/*Event?*/e){
 
-                var height,
-                    opening;
+                if (e) e.preventDefault();
+
+                var toggleTarget = this.toggleTarget;
 
                 if (domClass.contains(this.toggleTarget, 'in')){
-                    height = 0;
                     domClass.remove(this.toggleTarget, 'in');
+                    toggleTarget.style['height'] = this.toggleTargetInner.scrollHeight + 'px';
+                    setTimeout(function(){ //this brief delay is required to allow the style to switch from auto to an explicit number. Without the delay, the css transition may not fire.
+                        toggleTarget.style['height'] = '0';
+                    }, 20);
                 } else {
-                    opening = true;
-                    height = domGeom.position(this.toggleTargetInner).h + 10;
+                    on.once(toggleTarget, cssfx.transitionEndEvent(), lang.hitch(this, function(){
+                        toggleTarget.style['height'] = 'auto';
+                    }));
+                    toggleTarget.style['height'] = this.toggleTargetInner.scrollHeight + 'px';
                     domClass.add(this.toggleTarget, 'in');
                 }
-
-                baseFx.animateProperty({
-                    node: this.toggleTarget,
-                    properties: {
-                        height: height
-                    },
-                    easing: easing.quartInOut,
-                    onEnd: lang.hitch(this, function(){
-                        if (opening){
-                            setTimeout(lang.hitch(this, function(){
-                                domStyle.set(this.toggleTarget, 'height', 'auto');
-                            }), 50);
-                        }
-                    })
-                }).play();
             }
         }
     );
-
 });

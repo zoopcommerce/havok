@@ -428,8 +428,8 @@
                     "types": [
                         "DomNode"
                     ],
-                    "usage": "required",
-                    "summary": "<p>The domNode to set as active when the click listener is fired</p>\n"
+                    "usage": "optional",
+                    "summary": "<p>The domNode to set as active when the click listener is fired\nIf not given, defaults to <code>node</code>.</p>\n"
                 }
             ],
             "returnTypes": []

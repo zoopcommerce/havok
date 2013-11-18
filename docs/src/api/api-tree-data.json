@@ -185,12 +185,6 @@
             "href": "/api/dojo/_base/event.html"
         },
         {
-            "id": "dojo/_base/fx",
-            "label": "<span class=\"icon-circle-blank\"></span> fx",
-            "parent": "dojo/_base/",
-            "href": "/api/dojo/_base/fx.html"
-        },
-        {
             "id": "dojo/_base/json",
             "label": "<span class=\"icon-circle-blank\"></span> json",
             "parent": "dojo/_base/",
@@ -285,12 +279,6 @@
             "label": "<span class=\"icon-circle-blank\"></span> dojox",
             "parent": "dojo/_base/kernel",
             "href": "/api/dojo/_base/kernel.dojox.html"
-        },
-        {
-            "id": "dojo/_base/kernel.fx",
-            "label": "<span class=\"icon-circle-blank\"></span> fx",
-            "parent": "dojo/_base/kernel",
-            "href": "/api/dojo/_base/kernel.fx.html"
         },
         {
             "id": "dojo/_base/kernel.global",
@@ -651,18 +639,6 @@
             "label": "<span class=\"icon-cog\"></span> Evented",
             "parent": "dojo/",
             "href": "/api/dojo/Evented.html"
-        },
-        {
-            "id": "dojo/fx/",
-            "label": "fx",
-            "parent": "dojo/",
-            "type": "group"
-        },
-        {
-            "id": "dojo/fx/easing",
-            "label": "<span class=\"icon-circle-blank\"></span> easing",
-            "parent": "dojo/fx/",
-            "href": "/api/dojo/fx/easing.html"
         },
         {
             "id": "dojo/has",

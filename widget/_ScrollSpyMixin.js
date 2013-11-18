@@ -47,6 +47,7 @@ function(
             _renderNodes: function(){
 
                 var node,
+                    item,
                     i,
                     text,
                     target = this.spyTarget;
