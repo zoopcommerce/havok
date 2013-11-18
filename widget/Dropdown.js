@@ -1,7 +1,6 @@
 define([
     'dojo/_base/declare',
     'dojo/_base/lang',
-    'dojo/query',
     'dojo/on',
     'dojo/keys',
     'dijit/focus',
@@ -11,7 +10,6 @@ define([
 function (
     declare,
     lang,
-    query,
     on,
     keys,
     focus,
@@ -48,7 +46,7 @@ function (
                 var moveFocus = lang.hitch(this, function(up){
                     var node = document.activeElement,
                         parent,
-                        nodeList,
+                        nodeChild,
                         direction = up ? 'previousElementSibling' : 'nextElementSibling';
 
                     while (parent !== this.containerNode){
@@ -57,9 +55,9 @@ function (
                     }
                     while (node[direction]){
                         node = node[direction];
-                        nodeList = query('A', node);
-                        if (nodeList.length > 0){
-                            focus.focus(nodeList[0]);
+                        nodeChild = node.querySelector('a');
+                        if (nodeChild){
+                            focus.focus(nodeChild);
                             return;
                         }
                     }
