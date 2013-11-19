@@ -28,7 +28,18 @@
         }
     ],
     "returnTypes": [],
+    "summary": "<p>A widget fixed in the viewport</p>\n",
     "properties": [
+        {
+            "name": "_affixScrollSignal",
+            "scope": "prototype",
+            "types": [
+                "Object"
+            ],
+            "from": "havok/widget/_AffixMixin",
+            "private": true,
+            "summary": "<p>Handler for scroll events</p>\n"
+        },
         {
             "name": "_attrPairNames",
             "scope": "prototype",
@@ -104,9 +115,19 @@
             "name": "affix",
             "scope": "prototype",
             "types": [
-                "boolean"
+                "Boolean"
             ],
-            "from": "havok/widget/_AffixMixin"
+            "from": "havok/widget/_AffixMixin",
+            "summary": "<p>Toggles affix behaviour</p>\n"
+        },
+        {
+            "name": "affixTarget",
+            "scope": "prototype",
+            "types": [
+                "DomNode"
+            ],
+            "from": "havok/widget/_AffixMixin",
+            "summary": "<p>The dom node to affix to</p>\n"
         },
         {
             "name": "attributeMap",
@@ -270,17 +291,19 @@
             "name": "viewportOffsetBottom",
             "scope": "prototype",
             "types": [
-                "number"
+                "int"
             ],
-            "from": "havok/widget/_AffixMixin"
+            "from": "havok/widget/_AffixMixin",
+            "summary": "<p>Distance in pixels from the bottom of the viewport that affixing should be applied.</p>\n"
         },
         {
             "name": "viewportOffsetTop",
             "scope": "prototype",
             "types": [
-                "number"
+                "int"
             ],
-            "from": "havok/widget/_AffixMixin"
+            "from": "havok/widget/_AffixMixin",
+            "summary": "<p>Distance in pixels from the top of the viewport that affixing should be applied.</p>\n"
         }
     ],
     "methods": [
@@ -393,19 +416,6 @@
             "summary": "<p>Helper function to get value for specified property stored by this._set(),\ni.e. for properties with custom setters.  Used mainly by custom getters.\n\n</p>\n<p>For example, CheckBox._getValueAttr() calls this._get(&quot;value&quot;).</p>\n"
         },
         {
-            "name": "_getAffixTargetAttr",
-            "scope": "prototype",
-            "types": [
-                "function"
-            ],
-            "from": "havok/widget/_AffixMixin",
-            "private": true,
-            "parameters": [],
-            "returnTypes": [
-                "undefined"
-            ]
-        },
-        {
             "name": "_getAttrNames",
             "scope": "prototype",
             "types": [
@@ -482,7 +492,7 @@
                 {
                     "name": "value",
                     "types": [
-                        "undefined"
+                        "Boolean"
                     ],
                     "usage": "required"
                 }
@@ -501,7 +511,7 @@
                 {
                     "name": "value",
                     "types": [
-                        "undefined"
+                        "DomNode"
                     ],
                     "usage": "required"
                 }

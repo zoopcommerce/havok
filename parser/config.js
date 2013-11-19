@@ -27,6 +27,7 @@ function(){
         //      Parser configuration object
         parser: {
             tags: {
+                'affix'              : '../widget/Affix',
                 'accordion'          : '../widget/Accordion',
                 'alert'              : '../widget/Alert',
                 'button-group'       : '../widget/ButtonGroup',

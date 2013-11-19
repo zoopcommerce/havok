@@ -14,6 +14,8 @@ function(
     return declare(
         [WidgetBase, AffixMixin],
         {
+            // summary:
+            //		A widget fixed in the viewport
         }
     );
 });

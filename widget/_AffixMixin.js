@@ -15,20 +15,37 @@ function(
     domClass
 ) {
     // module:
-    //		havok/widget/Affix
+    //		havok/widget/_AffixMixin
 
     return declare(
         [],
         {
+            // summary:
+            //		Mixin to to fix a widget in the viewport
+
+            // affix: Boolean
+            //      Toggles affix behaviour
             affix: true,
 
-            //affixTarget: undefined,
+            /*=====
+            // affixTarget: DomNode
+            //      The dom node to affix to
+            affixTarget: undefined,
+            =====*/
 
+            // viewportOffsetTop: int
+            //      Distance in pixels from the top of the viewport that affixing should be applied.
             viewportOffsetTop: 0,
 
+            // viewportOffsetBottom: int
+            //      Distance in pixels from the bottom of the viewport that affixing should be applied.
             viewportOffsetBottom: 0,
 
-            //_affixScrollSignal: undefined,
+            /*=====
+            // _affixScrollSignal: Object
+            //      Handler for scroll events
+            _affixScrollSignal: undefined,
+            =====*/
 
             startup: function(){
                 this.inherited(arguments);
@@ -38,9 +55,9 @@ function(
                 this.updateAffix();
             },
 
-            _setAffixAttr: function(value){
+            _setAffixAttr: function(/*Boolean*/value){
                 if (value){
-                    this._affixScrollSignal = on(window, 'scroll', lang.hitch(this, 'updateAffix'));
+                    this._affixScrollSignal = on(this.ownerDocument, 'scroll', lang.hitch(this, this.updateAffix));
                 } else if (this._affixScrollSignal){
                     this._affixScrollSignal.remove();
                     delete(this._affixScrollSignal);
@@ -48,15 +65,11 @@ function(
                 this._set('affix', value);
             },
 
-            _setAffixTargetAttr: function(value){
+            _setAffixTargetAttr: function(/*DomNode*/value){
                 if (typeof value == 'string'){
                     value = dom.byId(value);
                 }
                 this._set('affixTarget', value);
-            },
-
-            _getAffixTargetAttr: function(){
-                return this.affixTarget;
             },
 
             updateAffix: function(){
