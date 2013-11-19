@@ -28,7 +28,12 @@
                 merge: [
                     'havok/config',
                     'havok/docs/module/config'
-                ]
+                ],
+                {% if theme == 'zoop' %}
+                less: {
+                    "havok/docs/module/less/variables.less": {defs: true}
+                }
+                {% endif %}
             }
             </script>
             <script src="/dojo/dojo.js"></script>
@@ -39,7 +44,7 @@
 
         <body id="docBody">
 
-        {% include 'top-nav.twig' %}
+        {% include '_top-nav.twig' %}
 
         <div data-dojo-type="havok/docs/module/Feedback"
              bug-link="http://github.com/zoopcommerce/havok/issues"

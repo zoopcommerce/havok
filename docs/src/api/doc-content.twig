@@ -23,9 +23,9 @@
         {% if type == 'constructor' %}
             <h2>Usage</h2>
             {% if shortName|slice(0,1) == '_' %}
-                {% include 'api/mixin-usage.twig' %}
+                {% include 'api/_mixin-usage.twig' %}
             {% else %}
-                {% include 'api/constructor-usage.twig' %}
+                {% include 'api/_constructor-usage.twig' %}
             {% endif %}
         {% endif %}
 

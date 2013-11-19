@@ -45,8 +45,7 @@ function(){
             "havok/vendor/prettify/prettify.css": {rank: 1},
             "havok/vendor/bootstrap/less/labels-badges.less": {rank: 1},
             "havok/vendor/bootstrap/less/wells.less": {rank: 1},
-            "havok/docs/module/less/docs.less": {rank: 4},
-            "havok/docs/module/less/variables.less": {defs: true}
+            "havok/docs/module/less/docs.less": {rank: 4}
         }
     }
 });

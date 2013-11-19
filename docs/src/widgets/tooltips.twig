@@ -68,6 +68,36 @@
 <tooltip target="findOutMore" title="Here's some more info"></tooltip>{% endset %}{{tooltipExample5|e}}
 </pre>
 
+<h2>Programatic Example</h2>
+<p>It is straight forward to create a tooltip targeting a node in script.</p>
+<div class="bs-docs-example tooltip-demo">
+    <div class="bs-docs-tooltip-examples">
+        <button id="findOutEvenMore" class="btn">Find out even more <i class="icon-question-sign"></i></button>
+        <script>
+          require(
+              ['havok/widget/Tooltip', 'dojo/domReady!'],
+              function(Tooltip){
+                  var tooltip = new Tooltip({target: 'findOutEvenMore', title: 'Here is even more info'});
+                  tooltip.startup();
+              }
+          )
+        </script>
+    </div>
+</div>
+<pre class="prettyprint linenums">
+{% set tooltipExample6 %}
+<button id="findOutEvenMore" class="btn">Find out even more <i class="icon-question-sign"></i></button>
+<script>
+  require(
+      ['havok/widget/Tooltip', 'dojo/domReady!'],
+      function(Tooltip){
+          var tooltip = new Tooltip({target: 'findOutEvenMore', title: 'Here is even more info'});
+          tooltip.startup();
+      }
+  )
+</script>{% endset %}{{tooltipExample6|e}}
+</pre>
+
 <h2>See also</h2>
 
 <p>Api documentation:</p>

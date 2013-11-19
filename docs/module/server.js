@@ -11,6 +11,7 @@
 
 var http = require('http'),
     fs = require('fs'),
+    url = require('url'),
     Twig = require(__dirname + '/../../vendor/twig/twig'),
     file,
     packages = [
@@ -27,10 +28,15 @@ var http = require('http'),
     };
 
 http.createServer(function(request, response) {
-    var filePieces = request.url.split('.'),
+    var urlObj = url.parse(request.url, true),
+        filePieces = urlObj.pathname.split('.'),
         fileType = filePieces.pop(),
-        pathPieces = request.url.split('/'),
-        contentType = 'text/html';
+        pathPieces = urlObj.pathname.split('/'),
+        contentType = 'text/html',
+        params = urlObj.query ? urlObj.query : {};
+
+    if (!params.theme) params.theme = 'zoop';
+    params.settings = {views: __dirname + '/../src/'};
 
     if (packages.indexOf(pathPieces[1]) != -1){
         fs.readFile(__dirname + '/../../../' + request.url, function (err, content) {
@@ -42,7 +48,10 @@ http.createServer(function(request, response) {
     } else if (fileType == 'html') {
         if (pathPieces[1] == 'api') {
 
-            var template;
+            var template,
+                json,
+                i;
+
             if (filePieces[filePieces.length - 1].indexOf('-content') != -1){
                 //return content only
                 filePieces[filePieces.length - 1] = filePieces[filePieces.length - 1].replace('-content', '');
@@ -52,8 +61,10 @@ http.createServer(function(request, response) {
                 template = 'doc.twig';
             }
 
-            var params = require(__dirname + '/../src/' + filePieces.join('.') + '.json');
-            params.settings = {views: __dirname + '/../src/'};
+            var jsonParams = require(__dirname + '/../src/' + filePieces.join('.') + '.json');
+            for (i in jsonParams){
+                params[i] = jsonParams[i];
+            }
             Twig.renderFile(__dirname + '/../src/api/' + template, params, function (err, content) {
                 if (err) {
                     throw err;
@@ -61,7 +72,7 @@ http.createServer(function(request, response) {
                 respond(request, response, content, contentType);
             })
         } else {
-            Twig.renderFile(__dirname + '/../src/' + filePieces.join('.') + '.twig', {settings: {views: __dirname + '/../src/'}}, function (err, content) {
+            Twig.renderFile(__dirname + '/../src/' + filePieces.join('.') + '.twig', params, function (err, content) {
                 if (err) {
                     throw err;
                 }

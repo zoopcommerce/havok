@@ -33,8 +33,7 @@ function (
     Tooltip,
     WidgetBase,
     WidgetsInTemplateMixin,
-    template,
-    less
+    template
 ){
     // module:
     //    	havok/widget/TextToolbar
