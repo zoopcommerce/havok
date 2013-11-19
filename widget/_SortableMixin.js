@@ -1,20 +1,22 @@
 define([
     'dojo/_base/declare',
-    'dojo/on',
     'dojo/_base/lang',
+    'dojo/_base/array',
+    'dojo/dom',
+    'dojo/on',
     './Dragable',
     'dojo/dom-construct',
-    'dojo/dom-style',
     'dijit/registry',
     '../get!./dragData'
 ],
 function (
     declare,
-    on,
     lang,
+    array,
+    dom,
+    on,
     Dragable,
     domConstruct,
-    domStyle,
     registry,
     dragData
 ){
@@ -24,39 +26,64 @@ function (
     return declare(
         [],
         {
+            // summary:
+            //      Mixin to a list type widget to make the list sortable via drag and drop
 
-            dropTargets: ['this'],
+            /*=====
+            // dropTargets: DomNode[]|String
+            //      An array of dom nodes, or a space delimited string of dom node ids that
+            //      can be targets for dropping list items.
+            //      The special string `this` refers to the widget itself.
+            //      Defaults to `[this.domNode]`.
+            dropTargets: undefined,
+            =====*/
 
-            _refresh: function(data){
-
+            startup: function(){
                 this.inherited(arguments);
+                if (!this.dropTargets) this.dropTargets = [this.domNode];
+                this.set('dropTargets', this.dropTargets);
 
-                for (var i = 0; i < data.length; i++){
-                    this._makeDragable(data[i]);
-                }
+                //handle dragging and dropping into an empty list
+                on(this.domNode, 'dragover', lang.hitch(this, function(e){
+                    if (this.domNode.children.length != 0) return;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    domConstruct.place(registry.byId(dragData['application/widget']).domNode, this.domNode);
+                }));
+                on(this.domNode, 'drop', function(e){
+                    e.preventDefault();
+                });
             },
 
-            _makeDragable: function(item){
-                var dragable = new Dragable({}, this.nodes[item[this.store.idProperty]]);
+            addItem: function(/*DomNode|String*/item, /*havok/widget/_ListMixin.__AddOptions?*/options){
+                item = this.inherited(arguments);
+                this._makeDragable(item);
+                return item;
+            },
+
+            _setDropTargetsAttr: function(/*DomNode[]|String*/value){
+                if (!this._started) {
+                    this.dropTargets = value;
+                    return;
+                }
+
+                if (typeof value == 'string'){
+                    value = array.map(value.split(' '), lang.hitch(this, function(item){
+                        return dom.byId(item);
+                    }));
+                }
+                this._set('dropTargets', value);
+            },
+
+            _makeDragable: function(/*DomNode*/item){
+                var dragable = new Dragable({}, item);
 
                 on(dragable.domNode, 'dragover', function(e){
 
-                    var activeDragNode = registry.byId(dragData['application/widget']).domNode,
-                        activeDragParentId = registry.getEnclosingWidget(activeDragNode.parentElement).id,
-                        target = registry.getEnclosingWidget(dragable.domNode.parentElement),
-                        i,
-                        hasTarget;
+                    var activeDragNode = registry.byId(dragData['application/widget']).domNode;
 
-                    for (i = 0; i < target.dropTargets.length; i++){
-                        if ((target.dropTargets[i] == 'this' && activeDragParentId == target.id) ||
-                             target.dropTargets[i] == activeDragParentId
-                         ) {
-                            hasTarget = true;
-                            break;
-                        }
-                    }
-                    if ( ! hasTarget){
-                        return
+                    if (registry.getEnclosingWidget(dragable.domNode.parentElement).dropTargets.indexOf(registry.getEnclosingWidget(activeDragNode.parentElement).domNode) == -1){
+                        return;
                     }
 
                     e.preventDefault();
@@ -87,8 +114,6 @@ function (
                 on(dragable.domNode, 'drop', function(e){
                     e.preventDefault();
                 });
-
-                dragable.startup();
             }
         }
     );

@@ -1,6 +1,7 @@
 {
     "location": "havok/config.less",
     "type": "object",
+    "summary": "<p>A mapping of less modules to load and parse.\nIf set to <code>false</code>, client side less parsing is disabled.</p>\n",
     "properties": [
         {
             "name": "havok/less/havok-defs.less",

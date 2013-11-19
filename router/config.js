@@ -9,9 +9,6 @@ function(){
         // description:
         //      This module can be used by [havok/config/manager](../config/manager.html) to provide default router configuration.
 
-        bootstrap: [
-            'havok/router/started!'
-        ],
         di: {
             'havok/router/router': {
                 gets: {

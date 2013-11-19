@@ -27,6 +27,7 @@
         }
     ],
     "returnTypes": [],
+    "summary": "<p>Makes a dom node draggable</p>\n",
     "properties": [
         {
             "name": "_attrPairNames",
@@ -168,6 +169,15 @@
             "summary": "<p>This is our visible representation of the widget! Other DOM\nNodes may by assigned to other properties, usually through the\ntemplate system&#39;s data-dojo-attach-point syntax, but the domNode\nproperty is the canonical &quot;top level&quot; node in widget UI.</p>\n"
         },
         {
+            "name": "dragging",
+            "scope": "prototype",
+            "types": [
+                "Boolean"
+            ],
+            "from": "havok/widget/Dragable",
+            "summary": "<p>Is this widget being dragged?</p>\n"
+        },
+        {
             "name": "focused",
             "scope": "prototype",
             "types": [
@@ -180,6 +190,15 @@
             ],
             "extensionModule": true,
             "summary": "<p>This widget or a widget it contains has focus, or is &quot;active&quot; because\nit was recently clicked.</p>\n"
+        },
+        {
+            "name": "grip",
+            "scope": "prototype",
+            "types": [
+                "DomNode"
+            ],
+            "from": "havok/widget/Dragable",
+            "summary": "<p>The dom node used as the gripper for dragging</p>\n"
         },
         {
             "name": "id",
@@ -346,6 +365,44 @@
             "description": "<p>Directly change the value of an attribute on an object, bypassing any \naccessor setter.  Also handles the calling of watch and emitting events. \nIt is designed to be used by descendent class when there are two values \nof attributes that are linked, but calling .set() is not appropriate.</p>\n"
         },
         {
+            "name": "_dragend",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/Dragable",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "e",
+                    "types": [
+                        "Event"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
+        },
+        {
+            "name": "_dragstart",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/Dragable",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "e",
+                    "types": [
+                        "Event"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
+        },
+        {
             "name": "_get",
             "scope": "prototype",
             "types": [
@@ -404,6 +461,25 @@
             "parameters": [],
             "returnTypes": [],
             "summary": "<p>Collect metadata about this widget (only once per class, not once per instance):\n\n</p>\n- list of attributes with custom setters, storing in this.constructor._setterAttrs\n- generate this.constructor._onMap, mapping names like &quot;mousedown&quot; to functions like onMouseDown\n"
+        },
+        {
+            "name": "_mousedown",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/Dragable",
+            "private": true,
+            "parameters": [
+                {
+                    "name": "e",
+                    "types": [
+                        "Event"
+                    ],
+                    "usage": "required"
+                }
+            ],
+            "returnTypes": []
         },
         {
             "name": "_set",
@@ -729,42 +805,6 @@
             "summary": "<p>Deprecated, will be removed in 2.0, use handle.remove() instead.\n\n</p>\n<p>Disconnects handle created by <code>connect</code>.</p>\n"
         },
         {
-            "name": "dragend",
-            "scope": "prototype",
-            "types": [
-                "function"
-            ],
-            "from": "havok/widget/Dragable",
-            "parameters": [
-                {
-                    "name": "e",
-                    "types": [
-                        "undefined"
-                    ],
-                    "usage": "required"
-                }
-            ],
-            "returnTypes": []
-        },
-        {
-            "name": "dragstart",
-            "scope": "prototype",
-            "types": [
-                "function"
-            ],
-            "from": "havok/widget/Dragable",
-            "parameters": [
-                {
-                    "name": "e",
-                    "types": [
-                        "undefined"
-                    ],
-                    "usage": "required"
-                }
-            ],
-            "returnTypes": []
-        },
-        {
             "name": "emit",
             "scope": "prototype",
             "types": [
@@ -879,24 +919,6 @@
                 "undefined"
             ],
             "summary": "<p>Return this widget&#39;s explicit or implicit orientation (true for LTR, false for RTL)</p>\n"
-        },
-        {
-            "name": "mousedown",
-            "scope": "prototype",
-            "types": [
-                "function"
-            ],
-            "from": "havok/widget/Dragable",
-            "parameters": [
-                {
-                    "name": "e",
-                    "types": [
-                        "undefined"
-                    ],
-                    "usage": "required"
-                }
-            ],
-            "returnTypes": []
         },
         {
             "name": "on",

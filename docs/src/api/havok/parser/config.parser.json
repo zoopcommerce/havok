@@ -1,6 +1,8 @@
 {
     "location": "havok/parser/config.parser",
     "type": "object",
+    "summary": "<p>Parser configuration object</p>\n",
+    "description": "<p>An object with the following properties:</p><ul><li>mixins (Object): <p>A mapping of friendly mixin names to modules.\nEg: <code>{&#39;sortable&#39; : &#39;havok/widget/_SortableMixin&#39;}</code>\nThis mapping may be expanded or overridden.</p>\n</li></ul>",
     "properties": [
         {
             "name": "mixins",

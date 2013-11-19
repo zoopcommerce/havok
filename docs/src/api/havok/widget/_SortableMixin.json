@@ -2,14 +2,17 @@
     "location": "havok/widget/_SortableMixin",
     "type": "constructor",
     "classlike": true,
+    "summary": "<p>Mixin to a list type widget to make the list sortable via drag and drop</p>\n",
     "properties": [
         {
             "name": "dropTargets",
             "scope": "prototype",
             "types": [
-                "Array"
+                "DomNode[]",
+                "String"
             ],
-            "from": "havok/widget/_SortableMixin"
+            "from": "havok/widget/_SortableMixin",
+            "summary": "<p>An array of dom nodes, or a space delimited string of dom node ids that\ncan be targets for dropping list items.\nThe special string <code>this</code> refers to the widget itself.\nDefaults to <code>[this.domNode]</code>.</p>\n"
         }
     ],
     "methods": [
@@ -25,7 +28,7 @@
                 {
                     "name": "item",
                     "types": [
-                        "undefined"
+                        "DomNode"
                     ],
                     "usage": "required"
                 }
@@ -33,7 +36,7 @@
             "returnTypes": []
         },
         {
-            "name": "_refresh",
+            "name": "_setDropTargetsAttr",
             "scope": "prototype",
             "types": [
                 "function"
@@ -42,13 +45,52 @@
             "private": true,
             "parameters": [
                 {
-                    "name": "data",
+                    "name": "value",
                     "types": [
-                        "undefined"
+                        "DomNode[]",
+                        "String"
                     ],
                     "usage": "required"
                 }
             ],
+            "returnTypes": []
+        },
+        {
+            "name": "addItem",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_SortableMixin",
+            "parameters": [
+                {
+                    "name": "item",
+                    "types": [
+                        "DomNode",
+                        "String"
+                    ],
+                    "usage": "required"
+                },
+                {
+                    "name": "options",
+                    "types": [
+                        "havok/widget/_ListMixin.__AddOptions"
+                    ],
+                    "usage": "optional"
+                }
+            ],
+            "returnTypes": [
+                "undefined"
+            ]
+        },
+        {
+            "name": "startup",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_SortableMixin",
+            "parameters": [],
             "returnTypes": []
         }
     ],

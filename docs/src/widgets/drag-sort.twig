@@ -1,0 +1,153 @@
+<h1>Dragable and Sortable</h1>
+
+<h2>Dragable</h2>
+<p>Use the <code>dragable</code> tag to create a <a href="/api/havok/dnd/Dragable">havok/dnd/Dragable</a> to make an element dragable.</p>
+
+<div class="bs-docs-example">
+    <dragable class="label label-info">Drag me!</dragable>
+</div>
+
+<pre class="prettyprint linenums">
+{% set dragExample1 %}
+<dragable class="label label-info">Drag me!</dragable>{% endset %}{{dragExample1|e}}
+</pre>
+
+<h3>Drag with Grip</h3>
+<p>Add a <code>data-havok-dragable-grip</code> to indicate a drag grip.</p>
+<div class="bs-docs-example">
+    <dragable class="label label-info">Drag me! <i class="icon-move icon-white" data-havok-dragable-grip></i></dragable>
+</div>
+
+<pre class="prettyprint linenums">
+{% set dragExample2 %}
+<dragable class="label label-info">Drag me! <i class="icon-move icon-white" data-havok-dragable-grip></i></dragable>{% endset %}{{dragExample2|e}}
+</pre>
+
+<hr class="bs-docs-separator">
+
+<h2>Sortable</h2>
+
+<p>Use the <code>sortable</code> mixin on list type widgets to make them sortable via dragn and drop. This will mixin the <a href="/api/href/widget/_SortableMixin">havok/widget/_SortableMixin</a> module.</p>
+
+<div class="bs-docs-example">
+    <nav-tab class="nav-stacked" mixins="sortable">
+        <a href="">ACT</a>
+        <a href="">NSW</a>
+        <a href="">Vic</a>
+        <a href="">Qld</a>
+        <a href="">SA</a>
+        <a href="">NT</a>
+        <a href="">WA</a>
+        <a href="">Tas</a>
+    </nav-tab>
+</div>
+
+<pre class="prettyprint linenums">
+{% set sortExample1 %}
+<nav-tab class="nav-stacked" mixins="sortable">
+    <a href="">ACT</a>
+    <a href="">NSW</a>
+    <a href="">Vic</a>
+    <a href="">Qld</a>
+    <a href="">SA</a>
+    <a href="">NT</a>
+    <a href="">WA</a>
+    <a href="">Tas</a>
+</nav-tab>{% endset %}{{sortExample1|e}}
+</pre>
+
+<h3>Sort between lists</h3>
+
+<p>Use the <code>drop-targets</code> attribute to allow sorting between lists.</p>
+<div class="bs-docs-example">
+
+    <div class="row-fluid">
+        <nav-tab class="span6 nav-stacked"
+            id="leftSortable"
+            mixins="sortable"
+            drop-targets="leftSortable rightSortable"
+            >
+            <li><a>Harry</a></li>
+            <li><a>Max</a></li>
+            <li><a>Phillip</a></li>
+            <li><a>James</a></li>
+        </nav-tab>
+        <nav-tab class="span6 nav-stacked"
+            id="rightSortable"
+            mixins="sortable"
+            drop-targets="leftSortable rightSortable"
+            >
+            <li><a>Michael</a></li>
+            <li><a>Tim</a></li>
+            <li><a>Shaun</a></li>
+            <li><a>Robert</a></li>
+        </nav-tab>
+    </div>
+</div>
+
+<pre class="prettyprint linenums">
+{% set sortExample2 %}
+<nav-tab class="span6 nav-stacked"
+    id="leftSortable"
+    mixins="sortable"
+    drop-targets="leftSortable rightSortable"
+    >
+    <li><a>Harry</a></li>
+    <li><a>Max</a></li>
+    <li><a>Phillip</a></li>
+    <li><a>James</a></li>
+</nav-tab>
+<nav-tab class="span6 nav-stacked"
+    id="rightSortable"
+    mixins="sortable"
+    drop-targets="leftSortable rightSortable"
+    >
+    <li><a>Michael</a></li>
+    <li><a>Tim</a></li>
+    <li><a>Shaun</a></li>
+    <li><a>Robert</a></li>
+</nav-tab>{% endset %}{{sortExample2|e}}
+</pre>
+
+<h3>Horizontal example</h3>
+
+<div class="bs-docs-example">
+  <nav-pill mixins="sortable">
+      <a>Tiny</a>
+      <a>Small</a>
+      <a>Medium</a>
+      <a>Big</a>
+      <a>Biggest</a>
+  </nav-pill>
+</div>
+
+<h3>Tabs example</h3>
+
+<p>Tabs in a <code>havok/widget/TabContainer</code> are sortable by default.</p>
+
+<div class="bs-docs-example">
+  <tab-container style="margin-bottom: 18px;">
+    <section class="active">
+        <header>Section 1</header>
+        <p>I'm in Section 1.</p>
+    </section>
+    <section>
+        <header>Section 2</header>
+        <p>Howdy, I'm in Section 2.</p>
+    </section>
+    <section>
+        <header>Section 3</header>
+        <p>What up girl, this is Section 3.</p>
+    </section>
+  </tab-container>
+</div>
+
+<hr class="bs-docs-separator">
+
+<h2>See also</h2>
+
+<p>Api documentation:</p>
+<ul>
+    <li><a href="/api/havok/widget/Dragable.html">havok/widget/Dragable</a></li>
+    <li><a href="/api/havok/widget/_SortableMixin.html">havok/widget/_SortableMixin</a></li>
+</ul>

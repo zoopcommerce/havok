@@ -1066,12 +1066,6 @@
             "href": "/api/havok/di/Di.html"
         },
         {
-            "id": "havok/di/main",
-            "label": "main",
-            "parent": "havok/di/",
-            "href": "/api/havok/di/main.html"
-        },
-        {
             "id": "havok/di/Proxy",
             "label": "<span class=\"icon-wrench\"></span> Proxy",
             "parent": "havok/di/",

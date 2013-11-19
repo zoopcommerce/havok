@@ -1,7 +1,6 @@
 define([
     'dojo/_base/declare',
     'dojo/_base/lang',
-    'dojo/query',
     'dojo/dom-attr',
     'dojo/dom-class',
     'dojo/on',
@@ -13,7 +12,6 @@ define([
 function (
     declare,
     lang,
-    query,
     domAttr,
     domClass,
     on,
@@ -27,41 +25,50 @@ function (
     return declare(
         [WidgetBase],
         {
-            //grip: undefined,
+            // summary:
+            //		Makes a dom node draggable
 
-            //dragging: false,
+            /*=====
+            // grip: DomNode
+            //      The dom node used as the gripper for dragging
+            grip: undefined,
+            =====*/
+
+            /*=====
+            // dragging: Boolean
+            //      Is this widget being dragged?
+            dragging: undefined,
+            =====*/
 
             startup: function(){
 
                 this.inherited(arguments);
 
-                query('[data-dojo-attach-point]', this.domNode).forEach(lang.hitch(this, function(attachNode){
-                    if (registry.getEnclosingWidget(attachNode) === this){
-                        this[domAttr.get(attachNode, 'data-dojo-attach-point')] = attachNode;
-                    }
-                }));
-                if (!this.grip){
+                var grip = this.domNode.querySelector('[data-havok-dragable-grip]');
+                if (grip && registry.getEnclosingWidget(grip) === this){
+                    this.grip = grip;
+                } else {
                     this.grip = this.domNode;
                 }
 
                 domClass.add(this.grip, 'grip');
                 this.events = [
-                    on(this.domNode, 'dragstart', lang.hitch(this, 'dragstart')),
-                    on(this.domNode, 'dragend', lang.hitch(this, 'dragend'))
+                    on(this.domNode, 'dragstart', lang.hitch(this, this._dragstart)),
+                    on(this.domNode, 'dragend', lang.hitch(this, this._dragend))
                 ];
 
                 if (this.grip !== this.domNode){
-                    this.events.push(on(this.grip, 'mousedown', lang.hitch(this, 'mousedown')))
+                    this.events.push(on(this.grip, 'mousedown', lang.hitch(this, this._mousedown)))
                 } else {
                     domAttr.set(this.domNode, 'draggable', true);
                 }
             },
 
-            mousedown: function(e){
+            _mousedown: function(/*Event*/e){
                 domAttr.set(this.domNode, 'draggable', true);
             },
 
-            dragstart: function(e){
+            _dragstart: function(/*Event*/e){
                 domClass.add(this.domNode, 'dragging');
 
                 e.dataTransfer.effectAllowed = 'move';
@@ -73,7 +80,7 @@ function (
                 this.set('dragging', true);
             },
 
-            dragend: function(e){
+            _dragend: function(/*Event*/e){
                 domClass.remove(this.domNode, 'dragging');
                 if (this.grip !== this.domNode){
                     domAttr.remove(this.domNode, 'draggable', false);

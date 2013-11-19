@@ -1,14 +1,18 @@
 {
     "location": "havok/parser/config",
     "type": "object",
+    "summary": "<p>Default parser config</p>\n",
+    "description": "<p>This module can be used by <a href=\"../config/manager.html\">havok/config/manager</a> to provide default parser configuration.</p>\n",
     "properties": [
         {
             "name": "parser",
             "scope": "normal",
             "types": [
-                "object"
+                "Object"
             ],
-            "from": "havok/parser/config"
+            "from": "havok/parser/config",
+            "summary": "<p>Parser configuration object</p>\n",
+            "description": "<p>An object with the following properties:</p><ul><li>mixins (Object): <p>A mapping of friendly mixin names to modules.\nEg: <code>{&#39;sortable&#39; : &#39;havok/widget/_SortableMixin&#39;}</code>\nThis mapping may be expanded or overridden.</p>\n</li></ul>"
         }
     ],
     "rootPath": "../../../",
