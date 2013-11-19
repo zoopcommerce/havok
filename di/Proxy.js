@@ -9,18 +9,25 @@ function (
     // module:
     //		havok/di/Proxy
 
-    return declare
-    (
+    return declare(
         [],
         {
             // summary:
-            //		A proxy to get or use an object.
+            //		A proxy to an object managed by a Di container.
 
+            /*=====
+            // _identity: String
+            //      The identity used to get the object from the Di container.
             _identity: undefined,
+            =====*/
 
+            /*=====
+            // _di: havok/di/Di
+            //      The Di container.
             _di: undefined,
+            =====*/
 
-            constructor: function(identity, di){
+            constructor: function(/*String*/identity, /*havok/di/Di*/di){
                 this._identity = identity;
                 this._di = di;
             },

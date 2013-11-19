@@ -1,23 +1,26 @@
 define([
-        'dojo/when',
-        './di/sharedDi!'
-    ],
-    function(
-        when,
-        sharedDi
-    ){
+    'dojo/when',
+    './di/sharedDi!'
+],
+function(
+    when,
+    sharedDi
+){
+    // module:
+    //		havok/get
 
-        // An AMD plugin that returns an instance of the requested object from the
-        // shared di
+    return {
+		// summary:
+		//		An AMD plugin that returns an instance of the requested object from the shared di container.
+        // description:
+        //      For example `havok/get!myObject`
 
-        return {
-            load: function(id, require, callback){
-                when(sharedDi.get(id), function(object){
-                    callback(object);
-                });
-            }
-        };
-    }
-);
+        load: function(/*String?*/id, /*Function?*/require, /*Callback*/callback){
+            when(sharedDi.get(id), function(object){
+                callback(object);
+            });
+        }
+    };
+});
 
 

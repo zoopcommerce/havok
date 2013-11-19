@@ -1,22 +1,24 @@
 define([
-        './Di',
-        '../config/ready!'
-    ],
-    function(
-        Di
-    ){
-        //
-        // An AMD plugin that returns an instance of the Di configured
-        // by dojo config
+    './Di',
+    '../config/ready!'
+],
+function(
+    Di
+){
+    // module:
+    //		havok/parser/complete
 
-        var sharedDi = undefined;
-        return {
-            load: function(id, require, callback){
-                if ( ! sharedDi){
-                    sharedDi = new Di();
-                }
-                callback(sharedDi);
+    var sharedDi = undefined;
+
+    return {
+		// summary:
+		//		An AMD plugin that returns a Di container configured by dojo config.
+
+        load: function(/*String?*/id, /*Function?*/require, /*Callback*/callback){
+            if ( ! sharedDi){
+                sharedDi = new Di();
             }
-        };
-    }
-);
+            callback(sharedDi);
+        }
+    };
+});

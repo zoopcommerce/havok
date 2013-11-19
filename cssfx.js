@@ -4,11 +4,17 @@ define([
 function(
     sniff
 ) {
-    // Utility methods for working with css3 transitions
-    //
+    // module:
+    //		havok/cssfx
 
     return {
+		// summary:
+		//		Utility methods for working with css3 transitions
+
         transitionEndEvent: function(){
+            // summary:
+            //      returns the cross browser correct name for the css3 transition end event
+
             return sniff('webkit') ? 'webkitTransitionEnd' : 'transitionend';
         }
     };

@@ -47,7 +47,6 @@ function(
             _renderNodes: function(){
 
                 var node,
-                    item,
                     i,
                     text,
                     target = this.spyTarget;
@@ -79,7 +78,7 @@ function(
                     // The target is scrollable.
                     listenTo = value;
                 } else {
-                    listenTo = window;
+                    listenTo = this.ownerDocument;
                 }
                 if (this._scrollHandler){
                     this._scrollHandler.remove();

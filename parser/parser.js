@@ -113,6 +113,9 @@ function (
                                 break;
                             }
                         } else {
+                            if (name == 'rendered'){
+                                params._rendered = true;
+                            }
                             params[name] = value;
                         }
                     }
