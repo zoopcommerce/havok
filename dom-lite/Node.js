@@ -18,7 +18,6 @@ function Node(doc, nodeType, name, attribs, parentNode){
     this.childNodes = [];
     this.parentNode = parentNode;
     this.style = {};
-    this.dir = 'ltr';
 
     for (var i in attribs){
         this.attributes.push({name: i, value: attribs[i], specified: true})
@@ -48,6 +47,13 @@ function Node(doc, nodeType, name, attribs, parentNode){
     Object.defineProperty(this, 'firstChild', {
         get: function(){
             if (self.childNodes.length > 0) return self.childNodes[0];
+        }
+    });
+
+    Object.defineProperty(this, 'firstElementChild', {
+        get: function(){
+            var children = self.children;
+            if (children.length > 0) return children[0];
         }
     });
 
@@ -102,6 +108,13 @@ function Node(doc, nodeType, name, attribs, parentNode){
     Object.defineProperty(this, 'lastChild', {
         get: function(){
             if (self.childNodes.length > 0) return self.childNodes[self.childNodes.length - 1];
+        }
+    });
+
+    Object.defineProperty(this, 'lastElementChild', {
+        get: function(){
+            var children = self.children;
+            if (children.length > 0) return children[children.length - 1];
         }
     });
 

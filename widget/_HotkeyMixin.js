@@ -53,6 +53,11 @@ function (
             _keypressHandler: undefined,
             =====*/
 
+            startup: function(){
+                this.inherited(arguments);
+                this._resetKeypressHandler();
+            },
+
             destroy: function(){
                 this._removeKeypressHandler();
                 this.inherited(arguments);
@@ -109,6 +114,7 @@ function (
             },
 
             _resetKeypressHandler: function(){
+                if (!this._started) return;
                 this._removeKeypressHandler();
                 if (this.keys && this.keyTarget){
                     this._addKeypressHandler();

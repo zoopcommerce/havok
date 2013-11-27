@@ -64,7 +64,7 @@ Dom.prototype.ontext = function(data){
 
 	var lastTag;
 
-    data = data.trim();
+    data = data.replace(/^\n|\n$/, '');
 
 	if(!this._tagStack.length && this.dom.childNodes.length && (lastTag = this.dom.childNodes[this.dom.childNodes.length-1]).nodeType === nodeType.Text){
     	lastTag.nodeValue += data;

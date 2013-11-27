@@ -1,5 +1,7 @@
 <h1>Dropdown menus</h1>
 
+<p>Clean and simple dropdown style menus for lists, or anything else.</p>
+
 <h2>DropdownContainer</h2>
 
 <p class="lead">A dropdown for displaying anything.</p>
@@ -8,7 +10,7 @@
 
 <div class="bs-docs-example">
     <div class="dropdown clearfix">
-        <dropdown-container style="display: block; position: static; margin-bottom: 5px; *width: 180px;">
+        <dropdown-container class="docs-dropdown-example">
             <h5>Stuff here</h5>
             <p>This is stuff inside a dropdown</p>
         </dropdown-container>
@@ -33,7 +35,7 @@
 <h3>Declarative Example</h3>
 <div class="bs-docs-example">
     <div class="dropdown clearfix">
-        <dropdown style="display: block; position: static; margin-bottom: 5px; *width: 180px;">
+        <dropdown class="docs-dropdown-example">
             <a href="">Action</a>
             <a href="">Another action</a>
             <a href="">Something else here</a>
@@ -88,7 +90,7 @@ require(['dojo/dom', 'havok/widget/Dropdown', 'dojo/domReady!'], function(dom, D
 <p>If the <code>href</code> attribute is an empty string, the active property will be changed. If the <code>href</code> attribute is not empty, the link will be followed. Eg:</p>
 <div class="bs-docs-example">
     <div class="dropdown clearfix">
-        <dropdown style="display: block; position: static; margin-bottom: 5px; *width: 180px;">
+        <dropdown class="docs-dropdown-example">
             <a href="">item 1</a>
             <a href="">item 2</a>
             <a href="">item 3</a>
@@ -111,7 +113,7 @@ require(['dojo/dom', 'havok/widget/Dropdown', 'dojo/domReady!'], function(dom, D
 <p>To listen to click events, use the <code>.on('item-click', callback)</code> method. Eg:
 <div class="bs-docs-example">
     <div class="dropdown clearfix">
-        <dropdown id="dropdownClick1" style="display: block; position: static; margin-bottom: 5px; *width: 180px;">
+        <dropdown id="dropdownClick1" class="docs-dropdown-example">
             <a href="">item 0</a>
             <a href="">item 1</a>
             <a href="">item 2</a>
@@ -145,7 +147,7 @@ require(['dojo/dom', 'havok/widget/Dropdown', 'dojo/domReady!'], function(dom, D
 <p>Add <code>.disabled</code> to an item in the dropdown to disable the link. Disabled links are not clickable.</p>
 <div class="bs-docs-example">
     <div class="dropdown clearfix">
-        <dropdown style="display: block; position: static; margin-bottom: 5px; *width: 180px;">
+        <dropdown class="docs-dropdown-example">
             <a href="">Regular link</a>
             <a class="disabled" href="">Disabled link</a>
             <a href="">Another link</a>
@@ -163,7 +165,7 @@ require(['dojo/dom', 'havok/widget/Dropdown', 'dojo/domReady!'], function(dom, D
 
 <h3>Sub menus on dropdowns</h3>
 <p>To add an extra level of dropdown menus, wrap with the <code>dropdown-submenu</code> tag.</p>
-
+-->
 <div class="bs-docs-example bs-docs-example-submenus">
     <div class="pull-left">
         <p class="muted">Default</p>
@@ -230,8 +232,8 @@ require(['dojo/dom', 'havok/widget/Dropdown', 'dojo/domReady!'], function(dom, D
             </dropdown>
         </div>
     </div>
-
 </div>
+
 <pre class="prettyprint linenums">
 {% set dropdownExample7 %}
 <dropdown>

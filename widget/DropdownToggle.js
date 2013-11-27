@@ -119,7 +119,7 @@ function (
 
                 if (!this.dropdown){
                     var children = this.getChildren();
-                    this.dropdown = children[children.length -1];
+                    this.dropdown = children[children.length - 1];
                 }
                 this.dropdown.startup();
 

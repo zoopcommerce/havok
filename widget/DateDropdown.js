@@ -22,6 +22,8 @@ function (
             // summary:
             //      A dropdown that shows a date picker
 
+            searchContainerNode: true,
+
             //baseClass: String
             baseClass: 'dropdown-menu datepicker',
 
