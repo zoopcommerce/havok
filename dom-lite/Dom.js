@@ -1,16 +1,7 @@
 var Node = require('./Node'),
     Document = require('./Document'),
-    nodeType = {
-        Document: 9,
-        Text: 3, //Text
-        Directive: 7, //<? ... ?>
-        Comment: 8, //<!-- ... -->
-        Script: 1, //<script> tags
-        Style: 1, //<style> tags
-        Tag: 1, //Any tag
-        CDATA: 4 //<![CDATA[ ... ]]>
-    };
-
+    nodeType = require('./nodeType'),
+    escape = require('./escape');
 
 function Dom(callback){
 	this._callback = callback;
@@ -64,7 +55,7 @@ Dom.prototype.ontext = function(data){
 
 	var lastTag;
 
-    data = data.replace(/^\n|\n$/, '');
+    data = escape.unescape(data.replace(/^\n|\n$/, ''));
 
 	if(!this._tagStack.length && this.dom.childNodes.length && (lastTag = this.dom.childNodes[this.dom.childNodes.length-1]).nodeType === nodeType.Text){
     	lastTag.nodeValue += data;

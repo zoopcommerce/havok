@@ -1,5 +1,7 @@
 // Defines a lightweight dom node
-var parser = require('./parser');
+var parser = require('./parser'),
+    nodeType = require('./nodeType'),
+    escape = require('./escape');
 
 var selfClosingTags = [
     'IMG',
@@ -8,11 +10,11 @@ var selfClosingTags = [
     'PATH'
 ];
 
-function Node(doc, nodeType, name, attribs, parentNode){
+function Node(doc, newNodeType, name, attribs, parentNode){
 
     this.ownerDocument = doc;
-    this.nodeType = nodeType;
-    if (nodeType == 1) this.tagName = name.toUpperCase();
+    this.nodeType = newNodeType;
+    if (newNodeType == nodeType.Tag) this.tagName = name.toUpperCase();
     this._eventListeners = [];
     this.attributes = [];
     this.childNodes = [];
@@ -31,7 +33,7 @@ function Node(doc, nodeType, name, attribs, parentNode){
 
     Object.defineProperty(this, 'children', {
         get: function(){
-            return self.childNodes.filter(function(node){return (node.nodeType == 1)})
+            return self.childNodes.filter(function(node){return (node.nodeType == nodeType.Tag)})
         }
     });
 
@@ -68,7 +70,7 @@ function Node(doc, nodeType, name, attribs, parentNode){
 
     Object.defineProperty(this, 'innerHTML', {
         get: function(){
-            if (self.nodeType == 1 || self.nodeType == 9){
+            if (self.nodeType == nodeType.Tag || self.nodeType == nodeType.Document){
                 var pieces = [];
                 pieces.push('<');
                 pieces.push(self.tagName);
@@ -91,6 +93,8 @@ function Node(doc, nodeType, name, attribs, parentNode){
                     pieces.push('/>');
                 }
                 return pieces.join('');
+            } else if (self.nodeType == nodeType.Text){
+                return escape.escape(self.nodeValue);
             } else {
                 return self.nodeValue;
             }

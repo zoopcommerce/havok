@@ -31,7 +31,8 @@ dojoConfig = {
     less: false
 };
 
-var parser = require('./parser');
+var parser = require('./parser'),
+    nodeType = require('./nodeType');
 
 exports.render = function(rawHtml, callback){
     parser.parse(rawHtml, function(dom){
@@ -77,7 +78,7 @@ exports.render = function(rawHtml, callback){
                         result.push(renderedHead);
                         result.push(renderedBody);
                         result.push('</html>');
-                    } else if (node.nodeType == 1){
+                    } else if (node.nodeType == nodeType.Tag){
                         result.push(node.innerHTML);
                     }
                 })
