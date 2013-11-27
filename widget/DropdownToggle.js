@@ -10,7 +10,6 @@ define([
     'dojo/dom-class',
     'dojo/dom-construct',
     'dojo/dom-geometry',
-    'dojo/dom-attr',
     'dijit/a11yclick',
     './_WidgetBase',
     './_HideableMixin'
@@ -27,7 +26,6 @@ function (
     domClass,
     domConstruct,
     domGeom,
-    domAttr,
     a11yclick,
     WidgetBase,
     HideableMixin
@@ -92,7 +90,7 @@ function (
                 if (!this.tag){
                     this.tag = 'div';
                 }
-                if (this.srcNodeRef && ['UL', 'NAV-TAB', 'NAV-PILL', 'NAV-BAR-LINKS'].indexOf(this.srcNodeRef.parentElement.nodeName) != -1){
+                if (this.srcNodeRef && ['UL', 'NAV-TAB', 'NAV-PILL', 'NAV-BAR-LINKS'].indexOf(this.srcNodeRef.parentNode.tagName) != -1){
                     this.tag = 'li';
                 }
                 this.inherited(arguments);
@@ -106,7 +104,7 @@ function (
 
                     for (i = 0; i < this.containerNode.children.length; i++){
                         node = this.containerNode.children[i];
-                        if (domAttr.has(node, 'dropdown-toggle-target')){
+                        if (node.hasAttribute('dropdown-toggle-target')){
                             this.button = node;
                             break;
                         }
@@ -117,7 +115,7 @@ function (
                 }
 
                 domClass.add(this.button, 'dropdown-toggle');
-                domAttr.set(this.button, 'role', 'button');
+                this.button.setAttribute('role', 'button');
 
                 if (!this.dropdown){
                     var children = this.getChildren();

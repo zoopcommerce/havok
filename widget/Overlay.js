@@ -72,8 +72,8 @@ return declare([WidgetBase, HideableMixin],{
     _position: function(){
         //summary:
         //     Position the overlay to float over the target dom node
-        
-        var target = this.domNode.parentElement,
+
+        var target = this.domNode.parentNode,
             targetPos,
             containerPos = domGeom.position(this.containerNode);
 

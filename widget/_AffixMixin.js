@@ -50,14 +50,14 @@ function(
             startup: function(){
                 this.inherited(arguments);
                 if (!this.affixTarget){
-                    this.affixTarget = this.domNode.parentElement;
+                    this.affixTarget = this.domNode.parentNode;
                 }
                 this.updateAffix();
             },
 
             _setAffixAttr: function(/*Boolean*/value){
                 if (value){
-                    this._affixScrollSignal = on(this.ownerDocument, 'scroll', lang.hitch(this, this.updateAffix));
+                    this._affixScrollSignal = on(document, 'scroll', lang.hitch(this, this.updateAffix));
                 } else if (this._affixScrollSignal){
                     this._affixScrollSignal.remove();
                     delete(this._affixScrollSignal);

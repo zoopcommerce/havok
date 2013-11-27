@@ -3,7 +3,6 @@ define([
     'dojo/_base/lang',
     'dojo/Deferred',
     'dojo/when',
-    'dojo/dom-attr',
     'dojo/dom-class',
     'dojo/dom-construct'
 ],
@@ -12,7 +11,6 @@ function (
     lang,
     Deferred,
     when,
-    domAttr,
     domClass,
     domConstruct
 ){
@@ -49,7 +47,7 @@ function (
 
                 if (item.children.length > 1 && innerParent.children.length == 0){
                     when(this.get('store'), lang.hitch(this, function(store){
-                        when(store.query(lang.mixin(this.get('query'), {parent: domAttr.get(item, 'data-havok-store-id')}), this.get('queryOptions')), lang.hitch(this, function(data){
+                        when(store.query(lang.mixin(this.get('query'), {parent: item.getAttribute('data-havok-store-id')}), this.get('queryOptions')), lang.hitch(this, function(data){
                             for (var i = 0; i < data.length; i++){
                                 this.addItem(data[i], {fromStore: true, refNode: innerParent, storeId: data[i][this.store.idProperty]});
                             }
@@ -87,7 +85,7 @@ function (
                             },
                             recurseDown = lang.hitch(this, function(item, node){
                                 for (var i = 0; i < node.children.length; i++){
-                                    if (domAttr.get(node.children[i], 'data-havok-store-id') == item.id){
+                                    if (node.children[i].getAttribute('data-havok-store-id') == item.id){
                                         node = node.children[i];
                                         break;
                                     }

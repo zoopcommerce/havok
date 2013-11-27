@@ -1,7 +1,6 @@
 define([
     'dojo/_base/declare',
     'dojo/_base/lang',
-    'dojo/dom-attr',
     'dojo/dom-class',
     'dojo/on',
     'dijit/registry',
@@ -12,7 +11,6 @@ define([
 function (
     declare,
     lang,
-    domAttr,
     domClass,
     on,
     registry,
@@ -60,12 +58,12 @@ function (
                 if (this.grip !== this.domNode){
                     this.events.push(on(this.grip, 'mousedown', lang.hitch(this, this._mousedown)))
                 } else {
-                    domAttr.set(this.domNode, 'draggable', true);
+                    this.domNode.setAttribute('draggable', true);
                 }
             },
 
             _mousedown: function(/*Event*/e){
-                domAttr.set(this.domNode, 'draggable', true);
+                this.domNode.setAttribute('draggable', true);
             },
 
             _dragstart: function(/*Event*/e){
@@ -83,7 +81,7 @@ function (
             _dragend: function(/*Event*/e){
                 domClass.remove(this.domNode, 'dragging');
                 if (this.grip !== this.domNode){
-                    domAttr.remove(this.domNode, 'draggable', false);
+                    this.domNode.removeAttribute('draggable', false);
                 }
                 delete(dragData['application/widget']);
                 delete(dragData['text/html']);

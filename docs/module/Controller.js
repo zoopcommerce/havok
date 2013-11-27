@@ -3,7 +3,6 @@ define([
     'dojo/_base/lang',
     'dojo/_base/array',
     'dojo/request/xhr',
-    'dojo/query',
     'dojo/Deferred',
     'dojo/dom-construct',
     '../../parser/parser',
@@ -16,7 +15,6 @@ function(
     lang,
     array,
     xhr,
-    query,
     Deferred,
     domConstruct,
     parser,
@@ -48,13 +46,13 @@ function(
 
                 this.load(href.replace('.html', '-content.html')).then(lang.hitch(this, function(html){
                     this.node.innerHTML = html;
-                    prettyPrint();
+                    window.scrollTo(0,0);
                     this._setActiveNav(href);
 
                     //parse the new content
                     parser.parse(this.node).then(lang.hitch(this, function(){
                         //run any embedded scripts - shouldn't have any in a production site, but the docs examples do use them
-                        query('SCRIPT', this.node).forEach(function(node){
+                        array.forEach(this.node.getElementsByTagName('SCRIPT'), function(node){
                             eval.call(window, node.innerHTML);
                         });
 

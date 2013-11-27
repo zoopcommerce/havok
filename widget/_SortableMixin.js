@@ -82,7 +82,7 @@ function (
 
                     var activeDragNode = registry.byId(dragData['application/widget']).domNode;
 
-                    if (registry.getEnclosingWidget(dragable.domNode.parentElement).dropTargets.indexOf(registry.getEnclosingWidget(activeDragNode.parentElement).domNode) == -1){
+                    if (registry.getEnclosingWidget(dragable.domNode.parentNode).dropTargets.indexOf(registry.getEnclosingWidget(activeDragNode.parentNode).domNode) == -1){
                         return;
                     }
 

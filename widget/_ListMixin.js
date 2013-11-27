@@ -2,7 +2,6 @@ define([
     'dojo/_base/declare',
     'dojo/_base/lang',
     'dojo/on',
-    'dojo/dom-attr',
     'dojo/dom-class',
     'dojo/dom-construct',
     'dijit/a11yclick'
@@ -11,7 +10,6 @@ function (
     declare,
     lang,
     on,
-    domAttr,
     domClass,
     domConstruct,
     a11yclick
@@ -45,8 +43,9 @@ function (
             dividerTemplate: '<li class="divider"></li>',
 
             buildRendering: function(){
+                var rendered = this._rendered;
                 this.inherited(arguments);
-                this._renderNodes();
+                if (!rendered) this._renderNodes();
             },
 
             addItem: function(/*DomNode|String*/item, /*__AddOptions?*/options){
@@ -66,19 +65,20 @@ function (
                     refNode = this.containerNode;
                 }
 
-                if (typeof item == 'string' || item.parentElement != refNode){
+                if (typeof item == 'string' || item.parentNode != refNode){
                     item = domConstruct.place(item, refNode);
                 }
 
-                if (item.nodeName == 'HR'){
+                if (item.tagName == 'HR'){
                     return domConstruct.place(this.dividerTemplate, item, 'replace');
-                } else if (['LI', 'DROPDOWN-SUBMENU'].indexOf(item.nodeName) != -1 || this.itemTemplate == ''){
+                } else if (['LI', 'DROPDOWN-SUBMENU'].indexOf(item.tagName) != -1 || this.itemTemplate == ''){
                     this._attachClickListener(item);
                     if (domClass.contains(item, 'active')){
                         this.set('active', item);
                     }
                     return item;
                 } else {
+
                     var outerItem = domConstruct.place(this.itemTemplate, item, 'after');
                     domConstruct.place(item, outerItem);
                     this._attachClickListener(item, outerItem);
@@ -131,7 +131,7 @@ function (
                     e.preventDefault();
                     return;
                 }
-                if (e.target.nodeName == 'A' && domAttr.has(e.target, 'href') && domAttr.get(e.target, 'href') != ''){
+                if (e.target.tagName == 'A' && e.target.getAttribute('href')){
                     return;
                 }
                 e.preventDefault();

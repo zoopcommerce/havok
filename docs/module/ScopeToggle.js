@@ -11,7 +11,7 @@ function (
     CheckboxGroup
 ){
     // module:
-    //    	havok/docs/module/Formspy
+    //    	havok/docs/module/ScopeToggle
 
     return declare(
         [CheckboxGroup],

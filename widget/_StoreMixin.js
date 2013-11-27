@@ -5,7 +5,6 @@ define([
     'dojo/Deferred',
     'dojo/when',
     'dojo/string',
-    'dojo/dom-attr',
     'dojo/dom-construct',
     '../proxy!../store/manager'
 ],
@@ -16,7 +15,6 @@ function (
     Deferred,
     when,
     string,
-    domAttr,
     domConstruct,
     storeManager
 ){
@@ -142,7 +140,7 @@ function (
                 }
 
                 item = this.inherited(arguments);
-                domAttr.set(item, 'data-havok-store-id', options.storeId);
+                item.setAttribute('data-havok-store-id', options.storeId);
                 return item;
             },
 

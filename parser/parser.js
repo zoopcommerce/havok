@@ -4,11 +4,9 @@ define ([
     'dojo/_base/declare',
     'dojo/_base/array',
     'dojo/has',
-    'dojo/dom-attr',
     'dojo/Deferred',
     'dojo/DeferredList',
     '../string',
-    'dojo/domReady!',
     '../config/ready!',
     'dojo/sniff'
 ],
@@ -18,7 +16,6 @@ function (
     declare,
     array,
     has,
-    domAttr,
     Deferred,
     DeferredList,
     string
@@ -27,8 +24,7 @@ function (
     //		havok/parser
     //
     // summary:
-    //      Parses HTML looking for custom tags
-    //
+    //      Parses HTML looking for widgets
 
     /*=====
     var __Options = {
@@ -43,9 +39,12 @@ function (
 
     var mixinsAttr = 'mixins',
         typeAttr = 'data-dojo-type',
+        prefixes = ['data-havok-', 'data-'],
         ignoreParams = [
-            string.camelCase(typeAttr),
-            string.camelCase(mixinsAttr)
+            typeAttr,
+            mixinsAttr,
+            'data-dojo-attach-point',
+            'data-dojo-props'
         ],
 
         _createInstance = function(refNode, contextRequire){
@@ -55,8 +54,8 @@ function (
                 requires,
                 attributes;
 
-            if (domAttr.has(refNode, typeAttr)){
-                type = domAttr.get(refNode, typeAttr);
+            if (refNode.hasAttribute(typeAttr)){
+                type = refNode.getAttribute(typeAttr);
             } else {
                 type = dojoConfig.parser.tags[refNode.tagName.toLowerCase()];
             }
@@ -72,8 +71,8 @@ function (
                 });
             }
 
-            if (domAttr.has(refNode, mixinsAttr)){
-                array.forEach(domAttr.get(refNode, mixinsAttr).split(' '), function(mixin){
+            if (refNode.hasAttribute(mixinsAttr)){
+                array.forEach(refNode.getAttribute(mixinsAttr).split(' '), function(mixin){
                     if (dojoConfig.parser.mixins[mixin]) {
                         requires.push(dojoConfig.parser.mixins[mixin]);
                     } else {
@@ -95,34 +94,46 @@ function (
 
                 i = 0;
                 while(item = attributes[i++]){
-                    var name = string.camelCase(item.name),
+                    var name = item.name,
                         value = item.value;
-                    if (ignoreParams.indexOf(name) == -1){
-                        // Set params[name] to value, doing type conversion
-                        if(name in Module.prototype){
-                            switch(typeof Module.prototype[name]){
-                            case 'string':
-                                params[name] = value;
-                                break;
-                            case 'number':
-                                params[name] = value.length ? Number(value) : NaN;
-                                break;
-                            case 'boolean':
-                                // for checked/disabled value might be "" or "checked".	 interpret as true.
-                                params[name] = value.toLowerCase() != "false";
-                                break;
-                            }
-                        } else {
-                            if (name == 'rendered'){
-                                params._rendered = true;
-                            }
-                            params[name] = value;
+
+                    if (ignoreParams.indexOf(name) != -1){
+                        continue;
+                    }
+
+                    array.forEach(prefixes, function(prefix){
+                        if (name.indexOf(prefix) == 0){
+                            name = name.slice(prefix.length);
                         }
+                    });
+
+                    name = string.camelCase(name);
+
+                    // Set params[name] to value, doing type conversion
+                    if(name in Module.prototype){
+                        switch(typeof Module.prototype[name]){
+                        case 'string':
+                            params[name] = value;
+                            break;
+                        case 'number':
+                            params[name] = value.length ? Number(value) : NaN;
+                            break;
+                        case 'boolean':
+                            // for checked/disabled value might be "" or "checked".	 interpret as true.
+                            params[name] = value.toLowerCase() != "false";
+                            break;
+                        }
+                    } else {
+                        if (name == 'rendered'){
+                            params._rendered = true;
+                        }
+                        params[name] = value;
                     }
                 }
 
                 instance = new Module(params, refNode);
-                domAttr.set(instance.domNode, typeAttr, type);
+                instance.domNode.setAttribute('rendered', 'true');
+                instance.domNode.setAttribute(typeAttr, type);
                 result.resolve(instance);
             });
 
@@ -142,7 +153,7 @@ function (
                 i;
 
             if (!options) options = {};
-            if (!options.startup) options.startup = true;
+            if (options.startup == undefined) options.startup = true;
             if (!options.contextRequire) options.contextRequire = require;
 
             root = root ? root : document.body;

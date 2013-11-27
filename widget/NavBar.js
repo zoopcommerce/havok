@@ -2,7 +2,6 @@ define([
     'dojo/_base/declare',
     'dojo/_base/lang',
     'dojo/on',
-    'dojo/dom-attr',
     'dojo/dom-construct',
     'dojo/dom-class',
     'dijit/a11yclick',
@@ -14,7 +13,6 @@ function (
     declare,
     lang,
     on,
-    domAttr,
     domConstruct,
     domClass,
     a11yclick,
@@ -51,18 +49,8 @@ function (
             startup: function(){
                 this.inherited(arguments);
 
-                var i,
-                    node;
-
-                for (i = 0; i < this.containerNode.children.length; i++){
-                    node = this.containerNode.children[i];
-                    if (domAttr.has(node, 'data-havok-nav-bar-toggle')){
-                        this.toggleNode = node;
-                    }
-                    if (domAttr.has(node, 'data-havok-nav-bar-toggle-target')){
-                        this.toggleTarget = node;
-                    }
-                }
+                this.toggleNode = this.containerNode.querySelector('[data-havok-nav-bar-toggle]');
+                this.toggleTarget = this.containerNode.querySelector('[data-havok-nav-bar-toggle-target]');
 
                 if (this.toggleNode){
                     domClass.add(this.toggleNode, 'btn btn-navbar');

@@ -14,6 +14,8 @@ function (lang) {
         //      Recursively mix the properties of two objects
 
         var mixinDeep = function(dest, source) {
+            if (typeof dest !== 'object' || typeof source !== 'object') return dest;
+            
             for (var name in source) {
                 if( ! (name in dest)){
                     dest[name] = source[name];

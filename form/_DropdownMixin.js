@@ -3,7 +3,7 @@ define([
     'dojo/_base/lang',
     'dojo/_base/array',
     'dojo/when',
-    'dojo/dom-prop',
+    'dojo/dom-attr',
     'dojo/dom-style',
     '../less!./less/dropdownmixin.less'
 ],
@@ -12,7 +12,7 @@ function (
     lang,
     array,
     when,
-    domProp,
+    domAttr,
     domStyle
 ){
     return declare(
@@ -98,9 +98,9 @@ function (
                 this.placeholder = value;
 
                 if(this.placeholder) {
-                    domProp.set(this.textbox, 'placeholder', this.placeholder);
+                    domAttr.set(this.textbox, 'placeholder', this.placeholder);
                 } else if (this.label){
-                    domProp.set(this.textbox, 'placeholder', this.get('label'));
+                    domAttr.set(this.textbox, 'placeholder', this.get('label'));
                 }
             }
         }

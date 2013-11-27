@@ -47,7 +47,7 @@ function (
                 var nodes = this.containerNode.querySelectorAll('section'),
                     i;
                 for (i = 0; i < nodes.length; i++){
-                    if (nodes[i].parentElement == this.containerNode){
+                    if (nodes[i].parentNode == this.containerNode){
                         this._renderItem(nodes[i]);
                     }
                 }
@@ -90,7 +90,7 @@ function (
                 //      Show/hide an accordion item.
                 // node:
                 //      Must be the `section` node that you want to show/hide
-                
+
                 var close = function(nodeToClose){
                         var body = nodeToClose.lastElementChild;
                         body.style['height'] = body.scrollHeight + 'px';

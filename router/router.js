@@ -4,8 +4,7 @@ define([
     'dojo/when',
     'dojo/string',
     'dojo/i18n!../nls/router',
-    './exception/RouteNotFound',
-    'dojo/domReady!'
+    './exception/RouteNotFound'
 ],
 function (
     lang,

@@ -3,7 +3,6 @@ define([
     'dojo/_base/lang',
     'dojo/dom-construct',
     'dojo/dom-class',
-    'dojo/dom-attr',
     './NavTab',
     './_SortableMixin',
     './_WidgetBase'
@@ -13,7 +12,6 @@ function (
     lang,
     domConstruct,
     domClass,
-    domAttr,
     NavTab,
     SortableMixin,
     WidgetBase
@@ -48,7 +46,7 @@ function (
                 var nodes = this.containerNode.querySelectorAll('section'),
                     i;
                 for (i = 0; i < nodes.length; i++){
-                    if (nodes[i].parentElement == this.containerNode){
+                    if (nodes[i].parentNode == this.containerNode){
                         this._renderItem(nodes[i], 'tab' + i);
                     }
                 }
@@ -81,7 +79,7 @@ function (
                 this.nav.addItem(heading);
 
                 domClass.add(srcNode, 'tab-pane');
-                domAttr.set(srcNode, 'data-tab-id', id);
+                srcNode.setAttribute('data-tab-id', id);
             },
 
             startup: function(){
@@ -89,8 +87,8 @@ function (
                 this.inherited(arguments);
 
                 this.nav.watch('active', lang.hitch(this, function(property, oldValue, newValue){
-                    domClass.remove(this.containerNode.querySelector('[data-tab-id=' + domAttr.get(oldValue, 'data-tab-target') + ']'), 'active');
-                    domClass.add(this.containerNode.querySelector('[data-tab-id=' + domAttr.get(newValue, 'data-tab-target') + ']'), 'active');
+                    domClass.remove(this.containerNode.querySelector('[data-tab-id=' + oldValue.getAttribute('data-tab-target') + ']'), 'active');
+                    domClass.add(this.containerNode.querySelector('[data-tab-id=' + newValue.getAttribute('data-tab-target') + ']'), 'active');
                 }));
                 this.nav.startup();
             },

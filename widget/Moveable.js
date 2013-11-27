@@ -30,7 +30,7 @@ function (
                 this.inherited(arguments);
 
                 if (!this.constraintNode){
-                    this.constraintNode = this.domNode.parentElement;
+                    this.constraintNode = this.domNode.parentNode;
                 }
 
                 this.events = [

@@ -12,7 +12,8 @@
 var http = require('http'),
     fs = require('fs'),
     url = require('url'),
-    Twig = require(__dirname + '/../../vendor/twig/twig'),
+    Twig = require('./../../vendor/twig/twig'),
+    renderer = require('../../dom-lite/renderer'),
     file,
     packages = [
         'dojo',
@@ -26,7 +27,7 @@ var http = require('http'),
             params = urlObj.query ? urlObj.query : {};
 
         if (!params.theme) params.theme = 'zoop';
-        params.settings = {views: __dirname + '/../src/'};
+        params.settings = {views: './../src/'};
 
         return params;
     },
@@ -41,11 +42,11 @@ var http = require('http'),
         response.writeHeader(200, {"Content-Type": contentType});
         response.write(content);
         response.end();
-        console.log('Response sent for ' + request.url);
+//        console.log('Response sent for ' + request.url);
     },
 
     returnPackageFile = function(request, response){
-        fs.readFile(__dirname + '/../../../' + request.url, function (err, content) {
+        fs.readFile('./../../../' + request.url, function (err, content) {
             if (err) {
                 throw err;
             }
@@ -66,11 +67,11 @@ var http = require('http'),
         }
 
         var params = getParams(request),
-            jsonParams = require(__dirname + '/../src/' + getFilePath(request, 'json').replace('-content', ''));
+            jsonParams = require('./../src/' + getFilePath(request, 'json').replace('-content', ''));
         for (i in jsonParams){
             params[i] = jsonParams[i];
         }
-        Twig.renderFile(__dirname + '/../src/api/' + template, params, function (err, content) {
+        Twig.renderFile('./../src/api/' + template, params, function (err, content) {
             if (err) {
                 throw err;
             }
@@ -79,11 +80,17 @@ var http = require('http'),
     },
 
     returnRenderedPage = function(request, response){
-        Twig.renderFile(__dirname + '/../src/' + getFilePath(request, 'twig'), getParams(request), function (err, content) {
+        Twig.renderFile('./../src/' + getFilePath(request, 'twig'), getParams(request), function (err, content) {
             if (err) {
                 throw err;
             }
-            respond(request, response, content, 'text/html');
+
+//            respond(request, response, content, 'text/html');
+//            return;
+
+            renderer.render(content, function(renderedContent){
+                respond(request, response, renderedContent, 'text/html');
+            })
         })
     },
 
@@ -100,7 +107,7 @@ var http = require('http'),
                 contentType = 'text/css';
                 break;
         }
-        fs.readFile(__dirname + '/../src/' + request.url, function (err, content) {
+        fs.readFile('./../src/' + request.url, function (err, content) {
             if (err) {
                 throw err;
             }

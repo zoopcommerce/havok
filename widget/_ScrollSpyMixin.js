@@ -1,7 +1,6 @@
 define([
     'dojo/_base/declare',
     'dojo/_base/lang',
-    'dojo/dom-attr',
     'dojo/dom-geometry',
     'dojo/dom-construct',
     'dojo/dom',
@@ -11,7 +10,6 @@ define([
 function(
     declare,
     lang,
-    domAttr,
     domGeom,
     domConstruct,
     dom,
@@ -52,23 +50,20 @@ function(
                     target = this.spyTarget;
 
                 if (typeof target == 'string'){
-                    target = dom.byId(target);
+                    target = this.spyTarget = dom.byId(target);
                 }
 
                 for (i = 0; i < target.children.length; i++) {
                     node = target.children[i];
                     if (node.id){
-                        if (domAttr.has(node, 'title')){
-                            text = domAttr.get(node, 'title');
-                        } else {
-                            text = node.id;
-                        }
+                        if (!(text = node.getAttribute('title'))) text = node.id;
                         this._attachClickListener(domConstruct.place(string.substitute(this.itemTemplate, {id: node.id, text: text}), this.containerNode, 'last'));
                     }
                 }
             },
 
             _setSpyTargetAttr: function(value){
+
                 if (typeof value == 'string'){
                     value = dom.byId(value);
                 }
@@ -78,7 +73,7 @@ function(
                     // The target is scrollable.
                     listenTo = value;
                 } else {
-                    listenTo = this.ownerDocument;
+                    listenTo = document;
                 }
                 if (this._scrollHandler){
                     this._scrollHandler.remove();
@@ -115,7 +110,7 @@ function(
                 }
 
                 if (this.active){
-                    activeTargetId = domAttr.get(this.active, 'data-havok-spy-target');
+                    activeTargetId = this.active.getAttribute('data-havok-spy-target');
                     for (i=0; i < this.spyTarget.children.length; i++){
                         if (this.spyTarget.children[i].id == activeTargetId){
                             activeSpyNode = this.spyTarget.children[i];
@@ -136,7 +131,7 @@ function(
 
                 j = 0;
                 for (i = 0; i < this.containerNode.children.length; i++){
-                    spyTargetId = domAttr.get(this.containerNode.children[i], 'data-havok-spy-target');
+                    spyTargetId = this.containerNode.children[i].getAttribute('data-havok-spy-target');
                     for (j; j < this.spyTarget.children.length; j++){
                         if (this.spyTarget.children[j].id == spyTargetId){
                             spyNode = this.spyTarget.children[j];

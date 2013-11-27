@@ -50,8 +50,8 @@ function (
                         direction = up ? 'previousElementSibling' : 'nextElementSibling';
 
                     while (parent !== this.containerNode){
-                        node = node.parentElement;
-                        parent = node.parentElement;
+                        node = node.parentNode;
+                        parent = node.parentNode;
                     }
                     while (node[direction]){
                         node = node[direction];

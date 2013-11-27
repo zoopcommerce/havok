@@ -9,7 +9,6 @@ function(
 
     return {
         load: function(id, require, callback){
-
             //this is the callback executed by the plugin
 
             if (!dojoConfig.less) {

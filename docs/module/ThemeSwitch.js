@@ -19,25 +19,23 @@ function (
             // baseClass: String
             baseClass: 'btn-group theme-switch',
 
-            buildRendering: function(){
-                this.inherited(arguments);
-                this.zoop = this.addItem('<button class="btn-inverse"><img src="/favicon.png"/></button>');
-                this.bootstrap = this.addItem('<button class="btn-inverse"><img src="/bootstrap.png"/></button>');
-            },
+            templateString: '<${tag} data-dojo-attach-point="containerNode"><button class="btn-inverse"><img src="/favicon.png"/></button><button class="btn-inverse"><img src="/bootstrap.png"/></button></${tag}>',
 
             startup: function(){
-                var zoopTooltip = new Tooltip({target: this.zoop, placement: 'bottom', title: 'View docs with zoop styles'});
+                var zoop = this.containerNode.firstElementChild,
+                    bootstrap = this.containerNode.lastElementChild;
+
+                var zoopTooltip = new Tooltip({target: zoop, placement: 'bottom', title: 'View docs with zoop styles'});
                 zoopTooltip.startup();
 
-                var bootstrapTooltip = new Tooltip({target: this.bootstrap, placement: 'bottom', title: 'View docs with default bootstrap styles'});
+                var bootstrapTooltip = new Tooltip({target: bootstrap, placement: 'bottom', title: 'View docs with default bootstrap styles'});
                 bootstrapTooltip.startup();
 
                 this.watch('active', lang.hitch(this, function(p, o, n){
-                    var doc = this.ownerDocument;
-                    if (n == this.zoop){
-                        doc.location.href = doc.location.href + '?theme=zoop';
-                    } else if (n == this.bootstrap){
-                        doc.location.href = doc.location.href + '?theme=bootstrap';
+                    if (n == zoop){
+                        document.location.href = document.location.href + '?theme=zoop';
+                    } else if (n == bootstrap){
+                        document.location.href = document.location.href + '?theme=bootstrap';
                     }
                 }))
             }
