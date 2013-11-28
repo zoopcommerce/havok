@@ -22,11 +22,24 @@ var http = require('http'),
         'mystique'
     ],
 
+    getCookies = function (request) {
+        var list = {},
+            rc = request.headers.cookie;
+
+        rc && rc.split(';').forEach(function( cookie ) {
+            var parts = cookie.split('=');
+            list[parts.shift().trim()] = parts.shift();
+        });
+
+        return list;
+    },
+
     getParams = function(request){
         var urlObj = url.parse(request.url, true),
-            params = urlObj.query ? urlObj.query : {};
+            params = urlObj.query ? urlObj.query : {},
+            cookies = getCookies(request);
 
-        if (!params.theme) params.theme = 'zoop';
+        cookies['havok-docs-theme'] ? params.theme = cookies['havok-docs-theme'] : params.theme = 'zoop';
         params.settings = {views: './../src/'};
 
         return params;
@@ -85,6 +98,7 @@ var http = require('http'),
                 throw err;
             }
 
+// Uncomment this to disable server side rendering
 //            respond(request, response, content, 'text/html');
 //            return;
 
