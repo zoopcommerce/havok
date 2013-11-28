@@ -46,11 +46,12 @@ exports.render = function(rawHtml, callback){
         var renderedHead = document.head ? document.head.outerHTML : '';
 
         require('../vendor/prettify/prettify');
+        window['PR_SHOULD_USE_CONTINUATION'] = false;
         window.prettyPrint();
         delete require.cache[require.resolve('../vendor/prettify/prettify')]; //make sure that prettify reloads each request
 
         require('../../dojo/dojo');
-        delete require.cache[require.resolve('../../dojo/dojo')];
+        delete require.cache[require.resolve('../../dojo/dojo')]; //make sure that dojo reloads each request
 
         global.require(['dojo/has', 'havok/parser/parser'], function(has, parser){
 

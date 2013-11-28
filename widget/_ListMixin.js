@@ -65,8 +65,7 @@ function (
 
                 if (!options) options = {};
 
-                var refNode = options.refNode,
-                    result;
+                var refNode = options.refNode;
 
                 if (!refNode){
                     refNode = this.containerNode;
@@ -78,30 +77,23 @@ function (
 
                 if (item.tagName == 'HR'){
                     return domConstruct.place(this.dividerTemplate, item, 'replace');
-                } else if (['LI', 'DROPDOWN-SUBMENU'].indexOf(item.tagName) != -1 || this.itemTemplate == ''){
-                    //this._attachClickListener(item);
-                    if (domClass.contains(item, 'active')){
-                        this.set('active', item);
-                    }
-                    result = item;
-                } else {
+                } else if (!(['LI', 'DROPDOWN-SUBMENU'].indexOf(item.tagName) != -1 || this.itemTemplate == '')) {
                     var outerItem = domConstruct.place(this.itemTemplate, item, 'after');
                     domConstruct.place(item, outerItem);
-                    //this._attachClickListener(item, outerItem);
                     item.setAttribute('data-havok-click-target', true);
                     if (domClass.contains(item, 'active')){
                         domClass.remove(item, 'active');
-                        this.set('active', outerItem);
+                        domClass.add(outerItem, 'active');
                     }
                     if (domClass.contains(item, 'disabled')){
                         domClass.remove(item, 'disabled');
                         domClass.add(outerItem, 'disabled');
                     }
-                    result = outerItem;
+                    item = outerItem;
                 }
 
-                this._attachClickListener(result);
-                return result;
+                this._attachClickListener(item);
+                return item;
             },
 
             _renderNodes: function(){
@@ -117,8 +109,15 @@ function (
                 // summary:
                 //      Attatch click listeners to all the children of `containerNode`
 
-                for (var i = 0; i < this.containerNode.children.length; i++){
+                var i,
+                    node;
+
+                for (i = 0; i < this.containerNode.children.length; i++){
+                    node = this.containerNode.children[i];
                     this._attachClickListener(this.containerNode.children[i]);
+                    if (domClass.contains(node, 'active')){
+                        this.set('active', node);
+                    }
                 }
             },
 

@@ -176,8 +176,8 @@
 <p>The Dropdown dom nodes is moved to the end of the document, removing any clipping problems, or display issues with dropdowns in modals.</p>
 <div class="bs-docs-example">
     <div style="width: 100px; overflow: hidden">
-        <dropdown-toggle style="width:300px">
-            <button class="btn">Dropdown <b class="caret"></b></button>
+        <dropdown-toggle>
+            <button class="btn" style="width:110px">Dropdown <b class="caret"></b></button>
             <dropdown>
                 <a href="">Action</a>
                 <a href="">Another action</a>
@@ -199,10 +199,10 @@
         require(['dojo/dom', 'dojo/dom-construct', 'havok/widget/Dropdown', 'havok/widget/DropdownToggle', 'havok/bootstrap!'],
         function(dom, domConstruct, Dropdown, DropdownToggle){
 
-            //create the button and add it to the dom
+            /*create the button and add it to the dom*/
             var button = domConstruct.place('<button class="btn">Click me</button>', dom.byId('dropdownPosition1'));
 
-            //create the dropdown widget
+            /*create the dropdown widget*/
             var dropdown = new Dropdown;
             dropdown.addItem('<a href="">Action</a>');
             dropdown.addItem('<a href="">Another Action</a>');
@@ -211,7 +211,7 @@
             dropdown.addItem('<a href="">Separated Link</a>');
             dom.byId('dropdownPosition1').appendChild(dropdown.domNode);
 
-            //create and start the dropdown toggle
+            /*create and start the dropdown toggle*/
             var dropdownToggle = new DropdownToggle({dropdown: dropdown, button: button});
             dom.byId('dropdownPosition1').appendChild(dropdownToggle.domNode);
             dropdownToggle.startup();
@@ -225,10 +225,10 @@
     require(['dojo/dom', 'dojo/dom-construct', 'havok/widget/Dropdown', 'havok/widget/DropdownToggle', 'havok/bootstrap!'],
     function(dom, domConstruct, Dropdown, DropdownToggle){
 
-        //create the button and add it to the dom
+        /*create the button and add it to the dom*/
         var button = domConstruct.place('<button class="btn">Click me</button>', dom.byId('dropdownPosition1'));
 
-        //create the dropdown widget
+        /*create the dropdown widget*/
         var dropdown = new Dropdown;
         dropdown.addItem('<a href="">Action</a>');
         dropdown.addItem('<a href="">Another Action</a>');
@@ -237,7 +237,7 @@
         dropdown.addItem('<a href="">Separated Link</a>');
         dom.byId('dropdownPosition1').appendChild(dropdown.domNode);
 
-        //create and start the dropdown toggle
+        /*create and start the dropdown toggle*/
         var dropdownToggle = new DropdownToggle({dropdown: dropdown, button: button});
         dom.byId('dropdownPosition1').appendChild(dropdownToggle.domNode);
         dropdownToggle.startup();
