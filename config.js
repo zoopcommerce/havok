@@ -10,9 +10,9 @@ function(){
         //      This module can be used by [havok/config/manager](../config/manager.html) to provide default havok configuration.
         //      This will merge all the separate havok config files and create all the default havok settings.
 
-        // bootstrap: String[]
-        //      An array of modules for `havok/bootstrap` to load.
-        bootstrap: [
+        // deps: String[]
+        //      An array of modules for `havok/deps` to load.
+        deps: [
             'havok/router/started!',
             'havok/less!',
             'havok/parser/complete!'

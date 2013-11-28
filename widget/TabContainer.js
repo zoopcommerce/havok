@@ -87,8 +87,8 @@ function (
                 this.inherited(arguments);
 
                 this.nav.watch('active', lang.hitch(this, function(property, oldValue, newValue){
-                    domClass.remove(this.containerNode.querySelector('[data-tab-id=' + oldValue.getAttribute('data-tab-target') + ']'), 'active');
-                    domClass.add(this.containerNode.querySelector('[data-tab-id=' + newValue.getAttribute('data-tab-target') + ']'), 'active');
+                    if (oldValue) domClass.remove(this.containerNode.querySelector('[data-tab-id=' + oldValue.getAttribute('data-tab-target') + ']'), 'active');
+                    if (newValue) domClass.add(this.containerNode.querySelector('[data-tab-id=' + newValue.getAttribute('data-tab-target') + ']'), 'active');
                 }));
                 this.nav.startup();
             },

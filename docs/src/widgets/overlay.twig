@@ -31,7 +31,7 @@
 </p>
 <button id="overlayToggle2" data-dojo-type="havok/widget/ToggleButton">Toggle overlay</button>
 <script>
-    require(['dijit/registry', 'havok/bootstrap!'], function(registry){
+    require(['dijit/registry'], function(registry){
         registry.byId('overlayToggle2').watch('active', function(){
             registry.byId('overlay2').toggle();
         });
@@ -52,7 +52,7 @@
     <button id="overlay3hide" class="btn">Hide overlay</button>
     <button id="overlay3show" class="btn">Show overlay</button>
     <script>
-        require(['dojo/dom-construct', 'dojo/dom', 'dojo/on', 'havok/widget/Overlay', 'havok/bootstrap!'], function(domConstruct, dom, on, Overlay){
+        require(['dojo/dom-construct', 'dojo/dom', 'dojo/on', 'havok/widget/Overlay'], function(domConstruct, dom, on, Overlay){
             var overlay = new Overlay;
             domConstruct.place(dom.byId('overlay3hide'), overlay.containerNode);
             domConstruct.place(overlay.domNode, document.body);

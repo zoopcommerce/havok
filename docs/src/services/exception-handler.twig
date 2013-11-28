@@ -14,12 +14,7 @@ require(['havok/exception/started!'], function(){
     //do something
 })</pre>
 
-    <p>By default `havok/exception/started!` is registered with the <a href="#bootstrap">bootstrap</a> service, which means the exception handler can also be started with:</p>
-    <pre class="prettyprint linenums">
-require(['havok/bootstrap!'],
-function (){
-    //do something
-});</pre>
+    <p>By default `havok/exception/started!` is registered with the <a href="#bootstrap">bootstrap</a> service, so can be started by adding <code>deps: ['havok/bootstrap!']<code> to your dojo config.</p>
 
     <h2>How it works</h2>
 

@@ -88,12 +88,7 @@ function (){
     //do something
 });</pre>
 
-    <p>By default `havok/router/started!` is registered with the <a href="#bootstrap">bootstrap</a> service, which means the router can also be started with:</p>
-    <pre class="prettyprint linenums">
-require(['havok/bootstrap!'],
-function (){
-    //do something
-});</pre>
+    <p>By default `havok/router/started!` is registered with the <a href="#bootstrap">bootstrap</a> service, which means the router can also be started by adding <code>deps: ['havok/bootstrap!']<code> to your dojo config.</p>
 
     <p>Note: if you are using the router, it is recommended you start it up when the page first loads.</p>
 

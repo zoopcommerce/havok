@@ -1,12 +1,17 @@
 define([
+    'require',
     'dojo/_base/config',
-    './config/ready!'
+    'dojo/Deferred',
+    './array'
 ],
 function(
-    dojoConfig
+    contextRequire,
+    dojoConfig,
+    Deferred,
+    array
 ){
     // module:
-    //		havok/bootstrap
+    //		havok/deps
 
     var complete;
 
@@ -14,17 +19,19 @@ function(
 		// summary:
 		//		An AMD plugin that bootstraps havok.
         // description:
-        //      This AMP plugin will load any moduled listed in dojo config under the `bootstrap` key.
+        //      This AMP plugin will load any modules listed in the merged dojo config under the `deps` key.
 
         load: function(/*String?*/id, /*Function?*/require, /*Callback*/callback){
-            if (complete){
-                callback();
-            } else {
-                require(dojoConfig.bootstrap, function(){
-                    complete = true;
-                    callback();
+            if (!complete) {
+                complete = new Deferred;
+                var rootDeps = dojoConfig.deps.slice(0);
+                contextRequire(['./config/ready!'], function(){
+                    require(array.subtract(dojoConfig.deps, rootDeps), function(){
+                        complete.resolve();
+                    })
                 })
             }
+            complete.then(callback);
         }
     };
 });

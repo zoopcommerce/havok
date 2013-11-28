@@ -26,6 +26,9 @@
                 selectorEngine: "lite",
                 locale: 'en-au',
                 async: true,
+                deps: [
+                    'havok/bootstrap!'
+                ],
                 merge: [
                     'havok/config',
                     'havok/docs/module/config'
@@ -40,8 +43,6 @@
             </script>
             <script src="/dojo/dojo.js"></script>
         {% endif %}
-
-            <script type="text/javascript">require(['havok/bootstrap!'], function(){})</script>
         </head>
 
         <body id="docBody">

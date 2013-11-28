@@ -1,5 +1,6 @@
 // Defines a lightweight dom node
-var parser = require('./parser'),
+var Style = require('./Style'),
+    parser = require('./parser'),
     nodeType = require('./nodeType'),
     escape = require('./escape');
 
@@ -12,14 +13,15 @@ var selfClosingTags = [
 
 function Node(doc, newNodeType, name, attribs, parentNode){
 
+    if (!name) name = 'DIV';
+
     this.ownerDocument = doc;
-    this.nodeType = newNodeType;
-    if (newNodeType == nodeType.Tag) this.tagName = name.toUpperCase();
+    this.nodeType = newNodeType ? newNodeType : nodeType.Tag;
+    this.tagName = newNodeType == nodeType.Tag ? name.toUpperCase() : name;
     this._eventListeners = [];
     this.attributes = [];
     this.childNodes = [];
     this.parentNode = parentNode;
-    this.style = {};
 
     for (var i in attribs){
         this.attributes.push({name: i, value: attribs[i], specified: true})
@@ -147,6 +149,12 @@ function Node(doc, newNodeType, name, attribs, parentNode){
         },
         set: function(rawHtml){
             console.log('set outterhtml not done yet');
+        }
+    });
+
+    Object.defineProperty(this, 'style', {
+        get: function(){
+            return new Style(self, Style.inline);
         }
     });
 }
