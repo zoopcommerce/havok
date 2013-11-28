@@ -39,7 +39,7 @@ Dom.prototype.onopentag = function(name, attribs){
 
     var lastTag = this._tagStack[this._tagStack.length - 1],
         parent = lastTag ? lastTag : this.dom,
-        element = new Node(this.dom, 1, name, attribs, parent);
+        element = new Node(this.dom, nodeType.Tag, name, attribs, parent);
 
 	this._tagStack.push(element);
 

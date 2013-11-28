@@ -48,6 +48,11 @@ function (
                 if (!rendered) this._renderNodes();
             },
 
+            startup: function(){
+                this.inherited(arguments);
+                this._startupNodes();
+            },
+
             addItem: function(/*DomNode|String*/item, /*__AddOptions?*/options){
                 // summary:
                 //     Add an item to the list
@@ -60,7 +65,9 @@ function (
 
                 if (!options) options = {};
 
-                var refNode = options.refNode;
+                var refNode = options.refNode,
+                    result;
+
                 if (!refNode){
                     refNode = this.containerNode;
                 }
@@ -72,16 +79,16 @@ function (
                 if (item.tagName == 'HR'){
                     return domConstruct.place(this.dividerTemplate, item, 'replace');
                 } else if (['LI', 'DROPDOWN-SUBMENU'].indexOf(item.tagName) != -1 || this.itemTemplate == ''){
-                    this._attachClickListener(item);
+                    //this._attachClickListener(item);
                     if (domClass.contains(item, 'active')){
                         this.set('active', item);
                     }
-                    return item;
+                    result = item;
                 } else {
-
                     var outerItem = domConstruct.place(this.itemTemplate, item, 'after');
                     domConstruct.place(item, outerItem);
-                    this._attachClickListener(item, outerItem);
+                    //this._attachClickListener(item, outerItem);
+                    item.setAttribute('data-havok-click-target', true);
                     if (domClass.contains(item, 'active')){
                         domClass.remove(item, 'active');
                         this.set('active', outerItem);
@@ -90,8 +97,11 @@ function (
                         domClass.remove(item, 'disabled');
                         domClass.add(outerItem, 'disabled');
                     }
-                    return outerItem;
+                    result = outerItem;
                 }
+
+                this._attachClickListener(result);
+                return result;
             },
 
             _renderNodes: function(){
@@ -100,6 +110,15 @@ function (
 
                 for (var i = 0; i < this.containerNode.children.length; i++){
                     this.addItem(this.containerNode.children[i]);
+                }
+            },
+
+            _startupNodes: function(){
+                // summary:
+                //      Attatch click listeners to all the children of `containerNode`
+
+                for (var i = 0; i < this.containerNode.children.length; i++){
+                    this._attachClickListener(this.containerNode.children[i]);
                 }
             },
 
@@ -113,21 +132,22 @@ function (
                 this._set('active', value);
             },
 
-            _attachClickListener: function(/*DomNode*/node, /*DomNode?*/item){
+            _attachClickListener: function(/*DomNode*/node){
                 // node:
-                //     The domNode to attach the click listener to
-                // item:
-                //     The domNode to set as active when the click listener is fired
-                //     If not given, defaults to `node`.
+                //     The domNode to return when the listener is fired
 
-                if (!item) item = node;
-                on(node, a11yclick.click, lang.hitch(this, function(e){
-                    this.onClick(e, item);
+                if (!this._started) return;
+
+                var target;
+                if (!(target = node.querySelector('[data-havok-click-target]'))) target = node;
+
+                on(target, a11yclick.click, lang.hitch(this, function(e){
+                    this.onClick(e, node);
                 }));
             },
 
-            onClick: function(/*Event*/e, /*DomNode*/item){
-                if (domClass.contains(e.target, 'disabled') || domClass.contains(item, 'disabled')){
+            onClick: function(/*Event*/e, /*DomNode*/node){
+                if (domClass.contains(e.target, 'disabled') || domClass.contains(node, 'disabled')){
                     e.preventDefault();
                     return;
                 }
@@ -135,8 +155,8 @@ function (
                     return;
                 }
                 e.preventDefault();
-                this.set('active', item);
-                this.emit('item-click', item);
+                this.set('active', node);
+                this.emit('item-click', node);
             }
         }
     );

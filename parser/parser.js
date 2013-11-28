@@ -132,7 +132,7 @@ function (
                 }
 
                 instance = new Module(params, refNode);
-                instance.domNode.setAttribute('rendered', 'true');
+                instance.domNode.setAttribute('data-havok-rendered', 'true');
                 instance.domNode.setAttribute(typeAttr, type);
                 result.resolve(instance);
             });

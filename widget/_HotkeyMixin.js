@@ -72,39 +72,59 @@ function (
                 //      In a string items must be separated by `;` and attributes by space. eg:
                 //      `ctrl m; shift v`.
 
-                if (typeof value == 'string'){
-                    var i,
-                        j,
-                        combos = value.split(';'),
-                        combo,
-                        keys;
+                var toString = function(value){
+                        var pieces = [],
+                            combo,
+                            i;
 
-                    value = [];
-                    for (i = 0; i < combos.length; i++){
-                        keys = combos[i].split(' ');
-                        combo = {};
-                        for(j = 0; j < keys.length; j++){
-                            switch (keys[j]){
-                                case 'ctrl':
-                                    combo.ctrl = true;
-                                    break;
-                                case 'alt':
-                                    combo.alt = true;
-                                    break;
-                                case 'shift':
-                                    combo.shift = true;
-                                    break;
-                                default:
-                                    combo['char'] = keys[j];
-                            }
+                        for (i = 0; i < value.length; i++){
+                            combo = [];
+                            if (value[i].ctrl) combo.push('ctrl');
+                            if (value[i].alt) combo.push('alt');
+                            if (value[i].shift) combo.push('shift');
+                            if (value[i]['char']) combo.push(value[i]['char']);
+                            pieces.push(combo.join(' '));
                         }
-                        value.push(combo);
-                    }
-                }
+                        return pieces.join(';');
+                    },
+                    fromString = function(value){
+                        var i,
+                            j,
+                            combos = value.split(';'),
+                            combo,
+                            keys;
+
+                        value = [];
+                        for (i = 0; i < combos.length; i++){
+                            keys = combos[i].split(' ');
+                            combo = {};
+                            for(j = 0; j < keys.length; j++){
+                                switch (keys[j]){
+                                    case 'ctrl':
+                                        combo.ctrl = true;
+                                        break;
+                                    case 'alt':
+                                        combo.alt = true;
+                                        break;
+                                    case 'shift':
+                                        combo.shift = true;
+                                        break;
+                                    default:
+                                        combo['char'] = keys[j];
+                                }
+                            }
+                            value.push(combo);
+                        }
+                        return value;
+                    };
+
+                if (typeof value == 'string') value = fromString(value);
+
                 if (!lang.isArray(value)){
                     value = [value];
                 }
                 this._set('keys', value);
+                this.domNode.setAttribute('data-havok-keys', toString(value));
                 this._resetKeypressHandler();
             },
 

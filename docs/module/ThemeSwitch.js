@@ -33,10 +33,11 @@ function (
 
                 this.watch('active', lang.hitch(this, function(p, o, n){
                     if (n == zoop){
-                        document.location.href = document.location.href + '?theme=zoop';
+                        document.cookie = 'havok-docs-theme=zoop';
                     } else if (n == bootstrap){
-                        document.location.href = document.location.href + '?theme=bootstrap';
+                        document.cookie = 'havok-docs-theme=bootstrap';                        
                     }
+                    document.location.reload();
                 }))
             }
         }

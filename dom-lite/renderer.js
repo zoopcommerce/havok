@@ -43,7 +43,7 @@ exports.render = function(rawHtml, callback){
         navigator = {};
         window = document.defaultView;
 
-        var renderedHead = document.head ? document.head.innerHTML : '';
+        var renderedHead = document.head ? document.head.outerHTML : '';
 
         require('../vendor/prettify/prettify');
         window.prettyPrint();
@@ -59,7 +59,7 @@ exports.render = function(rawHtml, callback){
 
 
             parser.parse(document.body || document, {startup: false}).then(function(){
-                var renderedBody = document.body ? document.body.innerHTML : '',
+                var renderedBody = document.body ? document.body.outerHTML : '',
                     node,
                     result = [];
 
@@ -79,7 +79,7 @@ exports.render = function(rawHtml, callback){
                         result.push(renderedBody);
                         result.push('</html>');
                     } else if (node.nodeType == nodeType.Tag){
-                        result.push(node.innerHTML);
+                        result.push(node.outerHTML);
                     }
                 })
 

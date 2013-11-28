@@ -72,27 +72,14 @@ function Node(doc, newNodeType, name, attribs, parentNode){
         get: function(){
             if (self.nodeType == nodeType.Tag || self.nodeType == nodeType.Document){
                 var pieces = [];
-                pieces.push('<');
-                pieces.push(self.tagName);
-                pieces.push(' ');
-                self.attributes.forEach(function(attr){
-                    pieces.push(attr.name);
-                    pieces.push('="');
-                    pieces.push(attr.value);
-                    pieces.push('" ');
-                });
                 if (selfClosingTags.indexOf(self.tagName) == -1){
-                    pieces.push('>');
                     self.childNodes.forEach(function(node){
-                        pieces.push(node.innerHTML);
+                        pieces.push(node.outerHTML);
                     });
-                    pieces.push('</');
-                    pieces.push(self.tagName);
-                    pieces.push('>');
-                } else {
-                    pieces.push('/>');
                 }
                 return pieces.join('');
+            } else if (self.nodeType == nodeType.Text && self.parentNode.tagName == 'SCRIPT'){
+                return self.nodeValue;
             } else if (self.nodeType == nodeType.Text){
                 return escape.escape(self.nodeValue);
             } else {
@@ -128,6 +115,38 @@ function Node(doc, newNodeType, name, attribs, parentNode){
             var i = self.parentNode.childNodes.indexOf(self);
             if (self.parentNode.childNodes.length < i + 2) return;
             return self.parentNode.childNodes[i + 1];
+        }
+    });
+
+    Object.defineProperty(this, 'outerHTML', {
+        get: function(){
+            if (self.nodeType == nodeType.Tag || self.nodeType == nodeType.Document){
+                var pieces = [];
+                pieces.push('<');
+                pieces.push(self.tagName);
+                pieces.push(' ');
+                self.attributes.forEach(function(attr){
+                    pieces.push(attr.name);
+                    pieces.push('="');
+                    pieces.push(attr.value);
+                    pieces.push('" ');
+                });
+                if (selfClosingTags.indexOf(self.tagName) == -1){
+                    pieces.push('>');
+                    pieces.push(self.innerHTML);
+                    pieces.push('</');
+                    pieces.push(self.tagName);
+                    pieces.push('>');
+                } else {
+                    pieces.push('/>');
+                }
+                return pieces.join('');
+            } else {
+                return self.innerHTML;
+            }
+        },
+        set: function(rawHtml){
+            console.log('set outterhtml not done yet');
         }
     });
 }
