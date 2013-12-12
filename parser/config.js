@@ -31,6 +31,7 @@ function(){
                 'f-toggle-button'      : '../form/ToggleButton',
                 'f-checkbox-group'     : '../form/CheckboxGroup',
                 'f-radio-group'        : '../form/RadioGroup',
+                'f-textbox'            : '../form/Textbox',
 
                 'w-affix'              : '../widget/Affix',
                 'w-accordion'          : '../widget/Accordion',

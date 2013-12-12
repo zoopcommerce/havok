@@ -3,8 +3,6 @@ define([
     'dojo/keys',
     'dojo/on',
     'dojo/_base/lang',
-    'dojo/dom-attr',
-    'dojo/query',
     '../is',
     './_FormWidgetMixin',
     './_FilterMixin',
@@ -15,8 +13,6 @@ function (
     keys,
     on,
     lang,
-    domAttr,
-    query,
     is,
     FormWidgetMixin,
     FilterMixin
@@ -28,7 +24,6 @@ function (
             // Some of it is simplified. Some of it is massaged to work with
             // the validation system. Some is changed so that value and state
             // are always updated.
-            //
 
             // Apply trim filter by default
             filter: 'Trim',
@@ -44,16 +39,9 @@ function (
 
             buildRendering: function(){
 
-                var nodeList;
-
-                if (this.srcNodeRef && !this.placeholder){
-                    if (this.srcNodeRef.children.length > 0){
-                        nodeList = query('INPUT[placeholder], TEXTAREA[placeholder]', this.srcNodeRef);
-                        if (nodeList.length > 0){
-                            this.placeholder = domAttr.get(nodeList[0], 'placeholder');
-                        }
-                    } else if (domAttr.has(this.srcNodeRef, 'placeholder')){
-                        this.placeholder = domAttr.get(this.srcNodeRef, 'placeholder');
+                if (this.srcNodeRef) {
+                    if (!this.placeholder && this.srcNodeRef.hasAttribute('placeholder')){
+                        this.placeholder = this.srcNodeRef.getAttribute('placeholder');
                     }
                 }
                 this.inherited(arguments);
@@ -63,11 +51,11 @@ function (
                 this._set('placeholder', value);
 
                 if(this.placeholder) {
-                    domAttr.set(this.textbox, 'placeholder', this.placeholder);
+                    this.textbox.setAttribute('placeholder', this.placeholder);
                 } else if (this.label){
-                    domAttr.set(this.textbox, 'placeholder', this.get('label'));
+                    this.textbox.setAttribute('placeholder', this.get('label'));
                 } else {
-                    domAttr.remove(this.textbox, 'placeholder');
+                    this.textbox.removeAttribute('placeholder');
                 }
             },
 
