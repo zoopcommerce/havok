@@ -33,17 +33,6 @@ define([
             }));
 		},
 
-		_processTemplateNode: function(/*DOMNode|Widget*/ baseNode, getAttrFunc, attachFunc){
-			// Override _AttachMixin._processNode to skip DOMNodes with data-dojo-type set.   They are handled separately
-			// in the _beforeFillContent() code above.
-
-			if(getAttrFunc(baseNode, "dojoType") || getAttrFunc(baseNode, "data-dojo-type")){
-				return true;
-			}
-
-			return this.inherited(arguments);
-		},
-
 		startup: function(){
 			array.forEach(this._startupWidgets, function(w){
 				if(w && !w._started && w.startup){

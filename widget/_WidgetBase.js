@@ -31,6 +31,21 @@ function (
                 }
 
                 this.inherited(arguments);
+
+                if (!this.domNode.getAttribute('data-dojo-type') && this.contextRequire) this.domNode.setAttribute('data-dojo-type', this.contextRequire.module.mid);
+                this.domNode.setAttribute('data-dojo-props', '_rendered: true');
+            },
+
+            _processTemplateNode: function(/*DOMNode|Widget*/ baseNode){
+                // This has been added to havok WidgetBase to accomodate server side templating
+                // Override _AttachMixin._processNode to skip DOMNodes with data-dojo-type set.   They are handled separately
+                // in the _beforeFillContent() code above.
+
+                if (baseNode != this.domNode && baseNode.hasAttribute('data-dojo-type')){
+                    return true;
+                }
+
+                return this.inherited(arguments);
             }
         }
     );

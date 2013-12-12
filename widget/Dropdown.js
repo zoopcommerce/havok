@@ -1,4 +1,5 @@
 define([
+    'require',
     'dojo/_base/declare',
     'dojo/_base/lang',
     'dojo/on',
@@ -8,6 +9,7 @@ define([
     './_ListMixin'
 ],
 function (
+    contextRequire,
     declare,
     lang,
     on,
@@ -24,6 +26,8 @@ function (
         {
             // summary:
             //      A dropdown to display a list of links.
+
+            contextRequire: contextRequire,
 
             startup: function(){
                 this.inherited(arguments);

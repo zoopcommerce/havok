@@ -1,17 +1,21 @@
 define([
+    'require',
     'dojo/_base/declare',
     'dojo/_base/lang',
     'dojo/dom-construct',
     'dojo/dom-class',
+    'dijit/registry',
     './NavTab',
     './_SortableMixin',
     './_WidgetBase'
 ],
 function (
+    contextRequire,
     declare,
     lang,
     domConstruct,
     domClass,
+    registry,
     NavTab,
     SortableMixin,
     WidgetBase
@@ -29,6 +33,8 @@ function (
             //		If there is a `header` tag inside a section, the contents of that `header` tag
             //		are used for the item's tab.
 
+            contextRequire: contextRequire,
+
             // placement: String
             //      Sets which side of the tab container the tabs should be shown.
             //      Possible values are `top | bottom | left | right`.
@@ -39,15 +45,26 @@ function (
             templateString: '<div class="tabbable"><div class="tab-content" data-dojo-attach-point="containerNode"></div></div>',
 
             buildRendering: function(){
+                var rendered = this._rendered,
+                    i;
+
                 this.inherited(arguments);
 
-                this.nav = new (declare([NavTab, SortableMixin], null));
-
-                var nodes = this.containerNode.querySelectorAll('section'),
-                    i;
-                for (i = 0; i < nodes.length; i++){
-                    if (nodes[i].parentNode == this.containerNode){
-                        this._renderItem(nodes[i], 'tab' + i);
+                if (!rendered){
+                    this.nav = new (declare([NavTab, SortableMixin], null));
+                    this.nav.domNode.setAttribute('data-havok-navtab');
+                    var nodes = this.containerNode.querySelectorAll('SECTION');
+                    for (i = 0; i < nodes.length; i++){
+                        if (nodes[i].parentNode == this.containerNode){
+                            this._renderItem(nodes[i], 'tab' + i);
+                        }
+                    }
+                } else {
+                    for(i = 0; i < this.domNode.children.length; i++){
+                        if (this.domNode.children[i].hasAttribute('data-havok-navtab')){
+                            this.nav = registry.getEnclosingWidget(this.domNode.children[i]);
+                            break;
+                        }
                     }
                 }
             },
@@ -69,7 +86,7 @@ function (
 
                 //extract header
                 heading = domConstruct.create('li', {'data-tab-target': id, 'class': classes.join(' '), innerHTML: '<a href=""></a>'});
-                srcHeader = srcNode.querySelector('header');
+                srcHeader = srcNode.querySelector('HEADER');
                 if (srcHeader) {
                     while (srcHeader.childNodes.length > 0){
                         domConstruct.place(srcHeader.childNodes[0], heading.firstElementChild);
@@ -77,7 +94,6 @@ function (
                     domConstruct.destroy(srcHeader);
                 }
                 this.nav.addItem(heading);
-
                 domClass.add(srcNode, 'tab-pane');
                 srcNode.setAttribute('data-tab-id', id);
             },
@@ -94,6 +110,7 @@ function (
             },
 
             _setPlacementAttr: function(/*String*/value){
+
                 domClass.remove(this.domNode, 'tabs-left tabs-right tabs-below');
                 switch (value){
                     case 'left':

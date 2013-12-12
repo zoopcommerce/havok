@@ -1,4 +1,5 @@
 define([
+    'require',
     'dojo/_base/declare',
     'dojo/_base/lang',
     'dojo/on',
@@ -10,6 +11,7 @@ define([
     '../less!./less/accordion.less'
 ],
 function (
+    contextRequire,
     declare,
     lang,
     on,
@@ -41,14 +43,21 @@ function (
             active: undefined,
             =====*/
 
+            contextRequire: contextRequire,
+
             buildRendering: function(){
+
+                var rendered = this._rendered;
+
                 this.inherited(arguments);
 
-                var nodes = this.containerNode.querySelectorAll('section'),
-                    i;
-                for (i = 0; i < nodes.length; i++){
-                    if (nodes[i].parentNode == this.containerNode){
-                        this._renderItem(nodes[i]);
+                if (!rendered) {
+                    var nodes = this.containerNode.querySelectorAll('SECTION'),
+                        i;
+                    for (i = 0; i < nodes.length; i++){
+                        if (nodes[i].parentNode == this.containerNode){
+                            this._renderItem(nodes[i]);
+                        }
                     }
                 }
             },

@@ -1,8 +1,10 @@
 define([
+    'require',
     'dojo/_base/declare',
     './_NavBase'
 ],
 function (
+    contextRequire,
     declare,
     NavBase
 ){
@@ -15,6 +17,8 @@ function (
             // summary:
             //      List of links inside a NavBar
 
+            contextRequire: contextRequire,
+            
             // dividerTemplate: String
             dividerTemplate: '<li class="divider-vertical"></li>'
         }

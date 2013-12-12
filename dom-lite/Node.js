@@ -1,8 +1,14 @@
 // Defines a lightweight dom node
+
+var util = require('util');
+var EventTarget = require('./EventTarget');
+var nodeType = require('./nodeType');
+
 var Style = require('./Style'),
     parser = require('./parser'),
     nodeType = require('./nodeType'),
-    escape = require('./escape');
+    escape = require('./escape'),
+    query = require('./query');
 
 var selfClosingTags = [
     'IMG',
@@ -11,33 +17,13 @@ var selfClosingTags = [
     'PATH'
 ];
 
-function Node(doc, newNodeType, name, attribs, parentNode){
+function Node(){
 
-    if (!name) name = 'DIV';
-
-    this.ownerDocument = doc;
-    this.nodeType = newNodeType ? newNodeType : nodeType.Tag;
-    this.tagName = newNodeType == nodeType.Tag ? name.toUpperCase() : name;
-    this._eventListeners = [];
+    Node.super_.call(this);
     this.attributes = [];
     this.childNodes = [];
-    this.parentNode = parentNode;
-
-    for (var i in attribs){
-        this.attributes.push({name: i, value: attribs[i], specified: true})
-    }
-
-    if (parentNode){
-        parentNode.childNodes.push(this);
-    }
 
     var self = this;
-
-    Object.defineProperty(this, 'children', {
-        get: function(){
-            return self.childNodes.filter(function(node){return (node.nodeType == nodeType.Tag)})
-        }
-    });
 
     Object.defineProperty(this, 'className', {
         get: function(){
@@ -54,13 +40,6 @@ function Node(doc, newNodeType, name, attribs, parentNode){
         }
     });
 
-    Object.defineProperty(this, 'firstElementChild', {
-        get: function(){
-            var children = self.children;
-            if (children.length > 0) return children[0];
-        }
-    });
-
     Object.defineProperty(this, 'id', {
         get: function(){
             return self.getAttribute('id');
@@ -72,7 +51,10 @@ function Node(doc, newNodeType, name, attribs, parentNode){
 
     Object.defineProperty(this, 'innerHTML', {
         get: function(){
-            if (self.nodeType == nodeType.Tag || self.nodeType == nodeType.Document){
+            if (self.nodeType == nodeType.ELEMENT_NODE ||
+                self.nodeType == nodeType.DOCUMENT_NODE ||
+                self.nodeType == nodeType.DOCUMENT_FRAGMENT_NODE
+            ){
                 var pieces = [];
                 if (selfClosingTags.indexOf(self.tagName) == -1){
                     self.childNodes.forEach(function(node){
@@ -80,9 +62,9 @@ function Node(doc, newNodeType, name, attribs, parentNode){
                     });
                 }
                 return pieces.join('');
-            } else if (self.nodeType == nodeType.Text && self.parentNode.tagName == 'SCRIPT'){
+            } else if (self.nodeType == nodeType.TEXT_NODE && self.parentNode.tagName == 'SCRIPT'){
                 return self.nodeValue;
-            } else if (self.nodeType == nodeType.Text){
+            } else if (self.nodeType == nodeType.TEXT_NODE){
                 return escape.escape(self.nodeValue);
             } else {
                 return self.nodeValue;
@@ -90,10 +72,8 @@ function Node(doc, newNodeType, name, attribs, parentNode){
         },
         set: function(rawHtml){
             parser.parse(rawHtml, function(dom){
-                self.childNodes = dom.childNodes;
-                self.childNodes.forEach(function(node){
-                    node.parentNode = self;
-                })
+                self.childNodes.forEach(function(node){self.removeChild(node)});
+                dom.childNodes.forEach(function(node){self.appendChild(node)});
             });
         }
     });
@@ -101,13 +81,6 @@ function Node(doc, newNodeType, name, attribs, parentNode){
     Object.defineProperty(this, 'lastChild', {
         get: function(){
             if (self.childNodes.length > 0) return self.childNodes[self.childNodes.length - 1];
-        }
-    });
-
-    Object.defineProperty(this, 'lastElementChild', {
-        get: function(){
-            var children = self.children;
-            if (children.length > 0) return children[children.length - 1];
         }
     });
 
@@ -122,7 +95,10 @@ function Node(doc, newNodeType, name, attribs, parentNode){
 
     Object.defineProperty(this, 'outerHTML', {
         get: function(){
-            if (self.nodeType == nodeType.Tag || self.nodeType == nodeType.Document){
+            if (self.nodeType == nodeType.ELEMENT_NODE ||
+                self.nodeType == nodeType.DOCUMENT_NODE ||
+                self.nodeType == nodeType.DOCUMENT_FRAGMENT_NODE
+            ){
                 var pieces = [];
                 pieces.push('<');
                 pieces.push(self.tagName);
@@ -152,6 +128,18 @@ function Node(doc, newNodeType, name, attribs, parentNode){
         }
     });
 
+    Object.defineProperty(this, 'ownerDocument', {
+        get: function(){
+
+            var search = function(node){
+                if (!node) return;
+                if (node.nodeType == nodeType.DOCUMENT_NODE || node.nodeType == nodeType.DOCUMENT_FRAGMENT_NODE) return node;
+                return search(node.parentNode);
+            }
+            return search(this);
+        }
+    });
+
     Object.defineProperty(this, 'style', {
         get: function(){
             return new Style(self, Style.inline);
@@ -159,9 +147,7 @@ function Node(doc, newNodeType, name, attribs, parentNode){
     });
 }
 
-Node.prototype.addEventListener = function(type, callback){
-    this._eventListeners.push({type: type, callback: callback});
-}
+util.inherits(Node, EventTarget);
 
 Node.prototype.appendChild = function(node){
     this.insertBefore(node);
@@ -169,17 +155,14 @@ Node.prototype.appendChild = function(node){
 
 Node.prototype.cloneNode = function(deep){
 
-    var newNode = new Node(this.doc, this.nodeType, this.tagName);
+    var newNode = new this.constructor;
 
-    this.attributes.forEach(function(attr){newNode.attributes.push({
-        name: attr.name,
-        value: attr.value,
-        specified: true
-    })});
-    this._eventListeners.forEach(function(listener){newNode._eventListeners.push({
-        type: listener.type,
-        callback: listener.callback
-    })});
+    this.attributes.forEach(function(attr){newNode.setAttribute(attr.name, attr.value)});
+
+    for (var i in this._eventListeners){
+        this._eventListeners[i].forEach(function(listener){newNode.addEventListener(i, listener)})
+    }
+
     newNode.nodeValue = this.nodeValue;
 
     if (deep){
@@ -205,19 +188,6 @@ Node.prototype.getAttributeNode = function(attrName){
     }
 }
 
-Node.prototype.getElementsByTagName = function(tagName){
-
-    tagName = tagName.toUpperCase();
-
-    var result = [],
-        search = function(node){
-            if (node.tagName == tagName) result.push(node);
-            node.children.forEach(search);
-        }
-    search(this);
-    return result;
-};
-
 Node.prototype.hasAttribute = function(attrName){
     return !!(this.getAttributeNode(attrName));
 }
@@ -240,14 +210,25 @@ Node.prototype.insertBefore = function(node, ref){
     return (this.childNodes.length > 0);
 }
 
-Node.prototype.querySelectorAll = function(query){
-    var result = [],
-        attributeMatches = /\[(.*?)\]/.exec(query),
-        attributeName = attributeMatches ? attributeMatches[1] : null,
+Node.prototype.querySelector = function(queryString){
+    var result,
+        testFunc = query.getTestFunc(queryString),
         search = function(node){
-            node.attributes.forEach(function(attr){
-                if (attributeName == attr.name) result.push(node)
-            })
+            if (testFunc(node)) {
+                result = node;
+            } else {
+                node.children.forEach(search);
+            }
+        };
+    search(this);
+    return result;
+}
+
+Node.prototype.querySelectorAll = function(queryString){
+    var result = [],
+        testFunc = query.getTestFunc(queryString),
+        search = function(node){
+            if (testFunc(node)) result.push(node);
             node.children.forEach(search);
         };
     search(this);

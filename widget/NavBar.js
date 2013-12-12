@@ -1,4 +1,5 @@
 define([
+    'require',
     'dojo/_base/declare',
     'dojo/_base/lang',
     'dojo/on',
@@ -10,6 +11,7 @@ define([
     '../less!./less/navbar.less'
 ],
 function (
+    contextRequire,
     declare,
     lang,
     on,
@@ -27,6 +29,8 @@ function (
         {
             // summary:
             //      Navigation bar
+
+            contextRequire: contextRequire,
 
             /*=====
             // toggleNode: DomNode

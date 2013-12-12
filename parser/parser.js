@@ -37,15 +37,14 @@ function (
     };
     =====*/
 
-    var mixinsAttr = 'mixins',
+    var mixinsAttrs = ['mixins', 'data-dojo-mixins'],
         typeAttr = 'data-dojo-type',
         prefixes = ['data-havok-', 'data-'],
         ignoreParams = [
             typeAttr,
-            mixinsAttr,
             'data-dojo-attach-point',
             'data-dojo-props'
-        ],
+        ].concat(mixinsAttrs),
 
         _createInstance = function(refNode, contextRequire){
 
@@ -71,15 +70,17 @@ function (
                 });
             }
 
-            if (refNode.hasAttribute(mixinsAttr)){
-                array.forEach(refNode.getAttribute(mixinsAttr).split(' '), function(mixin){
-                    if (dojoConfig.parser.mixins[mixin]) {
-                        requires.push(dojoConfig.parser.mixins[mixin]);
-                    } else {
-                        requires.push(mixin);
-                    }
-                })
-            }
+            array.forEach(mixinsAttrs, function(attr){
+                if (refNode.hasAttribute(attr)){
+                    array.forEach(refNode.getAttribute(attr).split(' '), function(mixin){
+                        if (dojoConfig.parser.mixins[mixin]) {
+                            requires.push(dojoConfig.parser.mixins[mixin]);
+                        } else {
+                            requires.push(mixin);
+                        }
+                    })
+                }
+            })
 
             contextRequire(requires, function(){
                 var Module = arguments[0],
@@ -132,8 +133,7 @@ function (
                 }
 
                 instance = new Module(params, refNode);
-                instance.domNode.setAttribute('data-havok-rendered', 'true');
-                instance.domNode.setAttribute(typeAttr, type);
+
                 result.resolve(instance);
             });
 

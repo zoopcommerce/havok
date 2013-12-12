@@ -1,8 +1,8 @@
-exports.Document = 9;
-exports.Text = 3; //Text
-exports.Directive = 7; //<? ... ?>
-exports.Comment = 8; //<!-- ... -->
-exports.Script = 1; //<script> tags
-exports.Style = 1; //<style> tags
-exports.Tag = 1; //Any tag
-exports.CDATA = 4; //<![CDATA[ ... ]]>
+exports.ELEMENT_NODE = 1;
+exports.ATTRIBUTE_NODE = 2;
+exports.TEXT_NODE = 3;
+exports.PROCESSING_INSTRUCTION_NODE = 7;
+exports.COMMENT_NODE = 8;
+exports.DOCUMENT_NODE = 9;
+exports.DOCUMENT_TYPE_NODE = 10;
+exports.DOCUMENT_FRAGMENT_NODE = 11;

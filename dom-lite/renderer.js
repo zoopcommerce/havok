@@ -58,7 +58,6 @@ exports.render = function(rawHtml, callback){
             has.add("dom-addeventlistener", !!document.addEventListener);
             has.add("dom-attributes-explicit", true);
 
-
             parser.parse(document.body || document, {startup: false}).then(function(){
                 var renderedBody = document.body ? document.body.outerHTML : '',
                     node,

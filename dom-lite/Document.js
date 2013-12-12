@@ -1,10 +1,14 @@
 // Defines a lightweight dom root node
-var Node = require('./Node');
+var DocumentFragment = require('./DocumentFragment');
+var Element = require('./Element');
+var Text = require('./Text');
 var Window = require('./Window');
 var util = require('util');
+var nodeType = require('./nodeType');
 
 function Document(){
-    Node.call(this, 9);
+    Document.super_.call(this);
+    this.nodeType = nodeType.DOCUMENT_NODE;
 
     var self = this;
 
@@ -16,21 +20,24 @@ function Document(){
     });
 }
 
-util.inherits(Document, Node);
+util.inherits(Document, DocumentFragment);
 
 Document.prototype.createDocumentFragment = function(){
-    return new Node(this, 1, 'div');
+    var fragment = new DocumentFragment;
+    return fragment;
 }
 
 Document.prototype.createElement = function(tagName){
-    return new Node(this, 1, tagName);
+    var element = new Element;
+    element.tagName = tagName.toUpperCase();
+    return element;
 }
 
 Document.prototype.createTextNode = function(text){
 
-    var node = new Node(this, 3);
-    node.nodeValue = text;
-    return node;
+    var textNode = new Text;
+    textNode.nodeValue = text;
+    return textNode;
 }
 
 Document.prototype.getElementById = function(id){

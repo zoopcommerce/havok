@@ -1,4 +1,5 @@
 define([
+    'require',
     'dojo/_base/declare',
     'dojo/_base/lang',
     'dojo/dom-class',
@@ -9,6 +10,7 @@ define([
     '../less!./less/dragable.less'
 ],
 function (
+    contextRequire,
     declare,
     lang,
     domClass,
@@ -37,6 +39,16 @@ function (
             //      Is this widget being dragged?
             dragging: undefined,
             =====*/
+
+            contextRequire: contextRequire,
+
+            buildRendering: function(){
+
+                this.inherited(arguments);
+
+                if (!this.domNode.getAttribute('data-dojo-type') && this.contextRequire) this.domNode.setAttribute('data-dojo-type', this.contextRequire.module.mid);
+                this.domNode.setAttribute('data-havok-rendered', 'true');
+            },
 
             startup: function(){
 

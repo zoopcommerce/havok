@@ -84,9 +84,7 @@ function(
 
             updateScrollSpy: function(){
 
-                if (!this._started){
-                    return;
-                }
+                if (!this._started) return;
 
                 var useDocScroll = false,
                     scrollTop,

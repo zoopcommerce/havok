@@ -1,4 +1,5 @@
 define([
+    'require',
     'dojo/_base/declare',
     'dojo/dom-class',
     'dojo/date/locale',
@@ -7,6 +8,7 @@ define([
     '../less!./less/datepicker.less'
 ],
 function (
+    contextRequire,
     declare,
     domClass,
     dateLocale,
@@ -22,6 +24,8 @@ function (
             // summary:
             //      A dropdown that shows a date picker
 
+            contextRequire: contextRequire,
+            
             searchContainerNode: true,
 
             //baseClass: String
