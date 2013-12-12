@@ -16,43 +16,6 @@
             "returnTypes": []
         },
         {
-            "name": "_processTemplateNode",
-            "scope": "prototype",
-            "types": [
-                "function"
-            ],
-            "from": "havok/widget/_WidgetsInTemplateMixin",
-            "private": true,
-            "parameters": [
-                {
-                    "name": "baseNode",
-                    "types": [
-                        "DOMNode",
-                        "Widget"
-                    ],
-                    "usage": "required"
-                },
-                {
-                    "name": "getAttrFunc",
-                    "types": [
-                        "undefined"
-                    ],
-                    "usage": "required"
-                },
-                {
-                    "name": "attachFunc",
-                    "types": [
-                        "undefined"
-                    ],
-                    "usage": "required"
-                }
-            ],
-            "returnTypes": [
-                "boolean",
-                "undefined"
-            ]
-        },
-        {
             "name": "startup",
             "scope": "prototype",
             "types": [

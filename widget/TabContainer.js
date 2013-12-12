@@ -52,7 +52,7 @@ function (
 
                 if (!rendered){
                     this.nav = new (declare([NavTab, SortableMixin], null));
-                    this.nav.domNode.setAttribute('data-havok-navtab');
+                    this.nav.domNode.setAttribute('data-havok-navtab', '');
                     var nodes = this.containerNode.querySelectorAll('SECTION');
                     for (i = 0; i < nodes.length; i++){
                         if (nodes[i].parentNode == this.containerNode){

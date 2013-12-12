@@ -202,13 +202,9 @@
             "name": "dir",
             "scope": "prototype",
             "types": [
-                "String"
+                "string"
             ],
-            "from": "dijit/_WidgetBase",
-            "tags": [
-                "const"
-            ],
-            "summary": "<p>Bi-directional support, as defined by the <a href=\"http://www.w3.org/TR/html401/struct/dirlang.html#adef-dir\">HTML DIR</a>\nattribute. Either left-to-right &quot;ltr&quot; or right-to-left &quot;rtl&quot;.  If undefined, widgets renders in page&#39;s\ndefault direction.</p>\n"
+            "from": "havok/widget/_WidgetBase"
         },
         {
             "name": "dividerTemplate",
@@ -280,7 +276,7 @@
             "types": [
                 "boolean"
             ],
-            "from": "dijit/_TemplatedMixin"
+            "from": "havok/widget/_WidgetBase"
         },
         {
             "name": "srcNodeRef",
@@ -421,15 +417,7 @@
                         "DomNode"
                     ],
                     "usage": "required",
-                    "summary": "<p>The domNode to attach the click listener to</p>\n"
-                },
-                {
-                    "name": "item",
-                    "types": [
-                        "DomNode"
-                    ],
-                    "usage": "optional",
-                    "summary": "<p>The domNode to set as active when the click listener is fired\nIf not given, defaults to <code>node</code>.</p>\n"
+                    "summary": "<p>The domNode to return when the listener is fired</p>\n"
                 }
             ],
             "returnTypes": []
@@ -642,7 +630,7 @@
             "types": [
                 "function"
             ],
-            "from": "dijit/_AttachMixin",
+            "from": "havok/widget/_WidgetBase",
             "private": true,
             "parameters": [
                 {
@@ -652,28 +640,12 @@
                         "Widget"
                     ],
                     "usage": "required"
-                },
-                {
-                    "name": "getAttrFunc",
-                    "types": [
-                        "Function"
-                    ],
-                    "usage": "required",
-                    "summary": "<p>Function to get the specified property for a given DomNode/Widget.</p>\n"
-                },
-                {
-                    "name": "attachFunc",
-                    "types": [
-                        "Function"
-                    ],
-                    "usage": "optional",
-                    "summary": "<p>Attaches an event handler from the specified node/widget to specified function.</p>\n"
                 }
             ],
             "returnTypes": [
-                "boolean"
-            ],
-            "summary": "<p>Process data-dojo-attach-point and data-dojo-attach-event for given node or widget.\nReturns true if caller should process baseNode&#39;s children too.</p>\n"
+                "boolean",
+                "undefined"
+            ]
         },
         {
             "name": "_renderNodes",
@@ -776,6 +748,18 @@
             "returnTypes": [],
             "summary": "<p>Sets the style attribute of the widget according to value,\nwhich is either a hash like {height: &quot;5px&quot;, width: &quot;3px&quot;}\nor a plain string</p>\n",
             "description": "<p>Determines which node to set the style on based on style setting\nin attributeMap.</p>\n"
+        },
+        {
+            "name": "_startupNodes",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_ListMixin",
+            "private": true,
+            "parameters": [],
+            "returnTypes": [],
+            "summary": "<p>Attatch click listeners to all the children of <code>containerNode</code></p>\n"
         },
         {
             "name": "_stringRepl",
@@ -1565,7 +1549,7 @@
                     "usage": "required"
                 },
                 {
-                    "name": "item",
+                    "name": "node",
                     "types": [
                         "DomNode"
                     ],

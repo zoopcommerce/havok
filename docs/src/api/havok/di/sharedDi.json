@@ -1,6 +1,7 @@
 {
     "location": "havok/di/sharedDi",
     "type": "object",
+    "summary": "<p>An AMD plugin that returns a Di container configured by dojo config.</p>\n",
     "methods": [
         {
             "name": "load",
@@ -13,21 +14,21 @@
                 {
                     "name": "id",
                     "types": [
-                        "undefined"
+                        "String"
                     ],
-                    "usage": "required"
+                    "usage": "optional"
                 },
                 {
                     "name": "require",
                     "types": [
-                        "undefined"
+                        "Function"
                     ],
-                    "usage": "required"
+                    "usage": "optional"
                 },
                 {
                     "name": "callback",
                     "types": [
-                        "undefined"
+                        "Callback"
                     ],
                     "usage": "required"
                 }

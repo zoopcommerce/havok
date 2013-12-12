@@ -6,7 +6,7 @@
         {
             "name": "config",
             "types": [
-                "object"
+                "Object"
             ],
             "usage": "required"
         }
@@ -14,6 +14,28 @@
     "returnTypes": [],
     "summary": "<p>An object used for dependency injection.\n</p>\n",
     "description": "<p>The config property may be populated with a config object that\ndefines what to inject.\n</p>\n",
+    "properties": [
+        {
+            "name": "_cache",
+            "scope": "prototype",
+            "types": [
+                "Array"
+            ],
+            "from": "havok/di/Di",
+            "private": true,
+            "summary": "<p>An array of all objects created through the Di. If an object is requested\nmore than once, it is retrieved from this array</p>\n"
+        },
+        {
+            "name": "_config",
+            "scope": "prototype",
+            "types": [
+                "Object"
+            ],
+            "from": "havok/di/Di",
+            "private": true,
+            "summary": "<p>The configuration object. Defines what to inject into objects</p>\n"
+        }
+    ],
     "methods": [
         {
             "name": "_create",
@@ -53,7 +75,7 @@
                 {
                     "name": "identifier",
                     "types": [
-                        "undefined"
+                        "String"
                     ],
                     "usage": "required"
                 }
@@ -103,7 +125,7 @@
                 {
                     "name": "identifier",
                     "types": [
-                        "string"
+                        "String"
                     ],
                     "usage": "required"
                 }
@@ -129,20 +151,20 @@
                 {
                     "name": "object",
                     "types": [
-                        "object"
+                        "Object"
                     ],
                     "usage": "required"
                 },
                 {
                     "name": "config",
                     "types": [
-                        "object"
+                        "Object"
                     ],
                     "usage": "required"
                 }
             ],
             "returnTypes": [
-                "object",
+                "Object",
                 "instance"
             ],
             "summary": "<p>Used to inject an object with the objects defined in the\nsupplied config\n</p>\n"
@@ -162,13 +184,13 @@
                 {
                     "name": "identifier",
                     "types": [
-                        "string"
+                        "String"
                     ],
                     "usage": "required"
                 }
             ],
             "returnTypes": [
-                "string"
+                "String"
             ],
             "summary": "<p>Used to get a proxy to the object with the supplied identifier.\nIf a cache already exists, that will be returned instead of the\nproxy.</p>\n"
         },
@@ -184,7 +206,7 @@
                 {
                     "name": "method",
                     "types": [
-                        "string"
+                        "String"
                     ],
                     "usage": "required"
                 }
@@ -215,7 +237,7 @@
                 {
                     "name": "config",
                     "types": [
-                        "object"
+                        "Object"
                     ],
                     "usage": "required"
                 }
@@ -233,7 +255,7 @@
                 {
                     "name": "identifier",
                     "types": [
-                        "string"
+                        "String"
                     ],
                     "usage": "required"
                 }
@@ -267,7 +289,7 @@
                 {
                     "name": "identifier",
                     "types": [
-                        "string"
+                        "String"
                     ],
                     "usage": "required"
                 }
@@ -289,14 +311,14 @@
                 {
                     "name": "object",
                     "types": [
-                        "object"
+                        "Object"
                     ],
                     "usage": "required"
                 },
                 {
                     "name": "identifier",
                     "types": [
-                        "string"
+                        "String"
                     ],
                     "usage": "required"
                 }
@@ -317,7 +339,7 @@
                 {
                     "name": "merge",
                     "types": [
-                        "object"
+                        "Object"
                     ],
                     "usage": "required"
                 }
@@ -336,7 +358,7 @@
                 {
                     "name": "identifier",
                     "types": [
-                        "string"
+                        "String"
                     ],
                     "usage": "required"
                 }
@@ -357,7 +379,7 @@
                 {
                     "name": "config",
                     "types": [
-                        "object"
+                        "Object"
                     ],
                     "usage": "required"
                 }
@@ -375,14 +397,14 @@
                 {
                     "name": "identifier",
                     "types": [
-                        "string"
+                        "String"
                     ],
                     "usage": "required"
                 },
                 {
                     "name": "config",
                     "types": [
-                        "object"
+                        "Object"
                     ],
                     "usage": "required"
                 }

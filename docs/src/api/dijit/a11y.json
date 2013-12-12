@@ -38,9 +38,10 @@
                 {
                     "name": "elem",
                     "types": [
-                        "Element"
+                        "Object"
                     ],
-                    "usage": "required"
+                    "usage": "required",
+                    "description": "<p>An object with the following properties:</p><ul><li>cloneNode</li><li>getElementsByTagName</li></ul>"
                 }
             ],
             "returnTypes": [
@@ -116,9 +117,10 @@
                 {
                     "name": "elem",
                     "types": [
-                        "Element"
+                        "Object"
                     ],
-                    "usage": "required"
+                    "usage": "required",
+                    "description": "<p>An object with the following properties:</p><ul><li>cloneNode</li><li>getElementsByTagName</li></ul>"
                 }
             ],
             "returnTypes": [
@@ -138,9 +140,10 @@
                 {
                     "name": "elem",
                     "types": [
-                        "Element"
+                        "Object"
                     ],
-                    "usage": "required"
+                    "usage": "required",
+                    "description": "<p>An object with the following properties:</p><ul><li>cloneNode</li><li>getElementsByTagName</li></ul>"
                 }
             ],
             "returnTypes": [

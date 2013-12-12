@@ -6,38 +6,40 @@
         {
             "name": "identity",
             "types": [
-                "undefined"
+                "String"
             ],
             "usage": "required"
         },
         {
             "name": "di",
             "types": [
-                "undefined"
+                "havok/di/Di"
             ],
             "usage": "required"
         }
     ],
     "returnTypes": [],
-    "summary": "<p>A proxy to get or use an object.</p>\n",
+    "summary": "<p>A proxy to an object managed by a Di container.</p>\n",
     "properties": [
         {
             "name": "_di",
             "scope": "prototype",
             "types": [
-                "undefined"
+                "havok/di/Di"
             ],
             "from": "havok/di/Proxy",
-            "private": true
+            "private": true,
+            "summary": "<p>The Di container.</p>\n"
         },
         {
             "name": "_identity",
             "scope": "prototype",
             "types": [
-                "undefined"
+                "String"
             ],
             "from": "havok/di/Proxy",
-            "private": true
+            "private": true,
+            "summary": "<p>The identity used to get the object from the Di container.</p>\n"
         }
     ],
     "methods": [
@@ -52,14 +54,14 @@
                 {
                     "name": "identity",
                     "types": [
-                        "undefined"
+                        "String"
                     ],
                     "usage": "required"
                 },
                 {
                     "name": "di",
                     "types": [
-                        "undefined"
+                        "havok/di/Di"
                     ],
                     "usage": "required"
                 }

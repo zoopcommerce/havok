@@ -118,6 +118,16 @@
             "from": "havok/widget/_HotkeyMixin",
             "parameters": [],
             "returnTypes": []
+        },
+        {
+            "name": "startup",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_HotkeyMixin",
+            "parameters": [],
+            "returnTypes": []
         }
     ],
     "rootPath": "../../../",

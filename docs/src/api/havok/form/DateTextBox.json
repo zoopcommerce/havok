@@ -276,13 +276,9 @@
             "name": "dir",
             "scope": "prototype",
             "types": [
-                "String"
+                "string"
             ],
-            "from": "dijit/_WidgetBase",
-            "tags": [
-                "const"
-            ],
-            "summary": "<p>Bi-directional support, as defined by the <a href=\"http://www.w3.org/TR/html401/struct/dirlang.html#adef-dir\">HTML DIR</a>\nattribute. Either left-to-right &quot;ltr&quot; or right-to-left &quot;rtl&quot;.  If undefined, widgets renders in page&#39;s\ndefault direction.</p>\n"
+            "from": "havok/widget/_WidgetBase"
         },
         {
             "name": "domNode",
@@ -421,7 +417,7 @@
             "types": [
                 "boolean"
             ],
-            "from": "dijit/_TemplatedMixin"
+            "from": "havok/widget/_WidgetBase"
         },
         {
             "name": "srcNodeRef",
@@ -916,7 +912,7 @@
             "types": [
                 "function"
             ],
-            "from": "dijit/_AttachMixin",
+            "from": "havok/widget/_WidgetBase",
             "private": true,
             "parameters": [
                 {
@@ -926,28 +922,12 @@
                         "Widget"
                     ],
                     "usage": "required"
-                },
-                {
-                    "name": "getAttrFunc",
-                    "types": [
-                        "Function"
-                    ],
-                    "usage": "required",
-                    "summary": "<p>Function to get the specified property for a given DomNode/Widget.</p>\n"
-                },
-                {
-                    "name": "attachFunc",
-                    "types": [
-                        "Function"
-                    ],
-                    "usage": "optional",
-                    "summary": "<p>Attaches an event handler from the specified node/widget to specified function.</p>\n"
                 }
             ],
             "returnTypes": [
-                "boolean"
-            ],
-            "summary": "<p>Process data-dojo-attach-point and data-dojo-attach-event for given node or widget.\nReturns true if caller should process baseNode&#39;s children too.</p>\n"
+                "boolean",
+                "undefined"
+            ]
         },
         {
             "name": "_processValidationResult",

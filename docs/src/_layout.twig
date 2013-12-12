@@ -49,11 +49,11 @@
 
         {% include '_top-nav.twig' %}
 
-        <div data-dojo-type="havok/docs/module/Feedback"
+        <d-feedback
              bug-link="http://github.com/zoopcommerce/havok/issues"
              issues-link="http://github.com/zoopcommerce/havok/issues"
              fork-link="http://github.com/zoopcommerce/havok/fork"
-        ></div>
+        ></d-feedback>
 
         <main>
             {% block pageContent %}
@@ -61,7 +61,9 @@
             {% endblock %}
         </main>
 
-        <overlay class='main-overlay' target="docBody"><div><span class="icon-spinner icon-spin"></span></div><p>Loading more havok...</p></overlay>
+        <w-overlay class='main-overlay' target="docBody">
+            <div><span class="icon-spinner icon-spin"></span></div><p>Loading more havok...</p>
+        </w-overlay>
 
         <footer class="footer">
             <div class="container">

@@ -3,7 +3,9 @@ function(){
     return {
         parser: {
             tags: {
-                'formspy'            : 'havok/docs/module/Formspy'
+                'd-formspy'      : 'havok/docs/module/Formspy',
+                'd-feedback'     : 'havok/docs/module/Feedback',
+                'd-theme-switch' : 'havok/docs/module/ThemeSwitch'
             }
         },
         di: {

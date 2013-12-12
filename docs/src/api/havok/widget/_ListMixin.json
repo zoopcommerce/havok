@@ -54,15 +54,7 @@
                         "DomNode"
                     ],
                     "usage": "required",
-                    "summary": "<p>The domNode to attach the click listener to</p>\n"
-                },
-                {
-                    "name": "item",
-                    "types": [
-                        "DomNode"
-                    ],
-                    "usage": "optional",
-                    "summary": "<p>The domNode to set as active when the click listener is fired\nIf not given, defaults to <code>node</code>.</p>\n"
+                    "summary": "<p>The domNode to return when the listener is fired</p>\n"
                 }
             ],
             "returnTypes": []
@@ -97,6 +89,18 @@
                 }
             ],
             "returnTypes": []
+        },
+        {
+            "name": "_startupNodes",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_ListMixin",
+            "private": true,
+            "parameters": [],
+            "returnTypes": [],
+            "summary": "<p>Attatch click listeners to all the children of <code>containerNode</code></p>\n"
         },
         {
             "name": "addItem",
@@ -139,6 +143,16 @@
             "from": "havok/widget/_ListMixin",
             "parameters": [],
             "returnTypes": []
+        },
+        {
+            "name": "startup",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/_ListMixin",
+            "parameters": [],
+            "returnTypes": []
         }
     ],
     "events": [
@@ -158,7 +172,7 @@
                     "usage": "required"
                 },
                 {
-                    "name": "item",
+                    "name": "node",
                     "types": [
                         "DomNode"
                     ],

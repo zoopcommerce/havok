@@ -1,6 +1,8 @@
 {
     "location": "havok/proxy",
     "type": "object",
+    "summary": "<p>An AMD plugin that returns a havok/di/Proxy to the requested object from the shared di container.</p>\n",
+    "description": "<p>For example <code>havok/proxy!myObject</code></p>\n",
     "methods": [
         {
             "name": "load",
@@ -13,21 +15,21 @@
                 {
                     "name": "id",
                     "types": [
-                        "undefined"
+                        "String"
                     ],
-                    "usage": "required"
+                    "usage": "optional"
                 },
                 {
                     "name": "require",
                     "types": [
-                        "undefined"
+                        "Function"
                     ],
-                    "usage": "required"
+                    "usage": "optional"
                 },
                 {
                     "name": "callback",
                     "types": [
-                        "undefined"
+                        "Callback"
                     ],
                     "usage": "required"
                 }

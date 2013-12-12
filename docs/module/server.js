@@ -99,8 +99,8 @@ var http = require('http'),
             }
 
 // Uncomment this to disable server side rendering
-//            respond(request, response, content, 'text/html');
-//            return;
+            respond(request, response, content, 'text/html');
+            return;
 
             renderer.render(content, function(renderedContent){
                 respond(request, response, renderedContent, 'text/html');

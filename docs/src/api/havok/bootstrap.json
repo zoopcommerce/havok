@@ -1,6 +1,8 @@
 {
     "location": "havok/bootstrap",
     "type": "object",
+    "summary": "<p>An AMD plugin that bootstraps havok.</p>\n",
+    "description": "<p>This AMP plugin will load any modules listed in the merged dojo config under the <code>deps</code> key.</p>\n",
     "methods": [
         {
             "name": "load",
@@ -13,21 +15,21 @@
                 {
                     "name": "id",
                     "types": [
-                        "undefined"
+                        "String"
                     ],
-                    "usage": "required"
+                    "usage": "optional"
                 },
                 {
                     "name": "require",
                     "types": [
-                        "undefined"
+                        "Function"
                     ],
-                    "usage": "required"
+                    "usage": "optional"
                 },
                 {
                     "name": "callback",
                     "types": [
-                        "undefined"
+                        "Callback"
                     ],
                     "usage": "required"
                 }

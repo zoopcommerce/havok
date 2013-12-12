@@ -20,7 +20,7 @@ function (
             baseClass: 'btn',
 
             //templateString: String
-            templateString: '<button>${!text}</button>',
+            templateString: '<button data-dojo-attach-point="button">${!text}</button>',
 
             /*=====
             // text: String
@@ -37,8 +37,6 @@ function (
                     }
                 }
                 this.inherited(arguments);
-
-                this.button = this.domNode;
             }
         }
     );

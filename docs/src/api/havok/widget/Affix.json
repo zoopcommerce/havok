@@ -653,6 +653,16 @@
             "summary": "<p>Create the widget.</p>\n"
         },
         {
+            "name": "contextRequire",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/Affix",
+            "parameters": [],
+            "returnTypes": []
+        },
+        {
             "name": "create",
             "scope": "prototype",
             "types": [

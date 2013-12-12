@@ -1,6 +1,5 @@
 define([
     'dojo/_base/declare',
-    'dojo/dom-attr',
     'dojo/dom-class',
     '../widget/_WidgetBase',
     './_FormWidgetMixin',
@@ -9,7 +8,6 @@ define([
 ],
 function(
     declare,
-    domAttr,
     domClass,
     WidgetBase,
     FormWidgetMixin,
@@ -22,16 +20,20 @@ function(
     (
         [WidgetBase, FormWidgetMixin],
         {
+            // summary:
+            //      Creates a nicely style checkbox input.
+
+            // templateString: String
             templateString: template,
 
             buildRendering: function(){
-                if (domAttr.has(this.srcNodeRef, 'checked')) {
+                if (this.srcNodeRef.hasAttribute('checked')) {
                     this.value = true;
                 } else {
                     this.value = false;
                 }
 
-                if (domAttr.has(this.srcNodeRef, 'disabled')) {
+                if (this.srcNodeRef.hasAttribute('disabled')) {
                     this.disabled = true;
                 } else {
                     this.disabled = false;
@@ -51,19 +53,17 @@ function(
             },
 
             onClick: function(){
-                if (!this.get('disabled')) {
-                    this.toggle();
-                }
+                if (!this.get('disabled')) this.toggle();
             },
 
             _setValueAttr: function(value) {
                 if (this._started) {
                     if (value) {
-                        this.input.checked = false;
-                        domClass.remove(this.checkbox, 'checked');
-                    } else {
                         this.input.checked = true;
                         domClass.add(this.checkbox, 'checked');
+                    } else {
+                        this.input.checked = false;
+                        domClass.remove(this.checkbox, 'checked');
                     }
                 }
                 this._set('value', value);

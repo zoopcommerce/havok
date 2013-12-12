@@ -1,16 +1,16 @@
 <h1>Hotkey Buttons</h1>
 
 <h2>Keyboard handling buttons</h2>
-<p>Use <code>hotkey-button</code> to create a <a href="/api/havok/widget/HotkeyButton.html">havok/widget/HotkeyButton</a>. A <code>hotkey-button</code> is a button that can also respond to keypress events. The button widget can be used in place of any <code>button</code> tag.</p>
+<p>Use <code>w-hotkey-button</code> to create a <a href="/api/havok/widget/HotkeyButton.html">havok/widget/HotkeyButton</a>. A <code>w-hotkey-button</code> is a button that can also respond to keypress events. The button widget can be used in place of any <code>button</code> tag.</p>
 
 <p><span class="label label-info">Note:</span> be careful, the keypress listeners on buttons may override normal browser controls. The <code>keyTarget</code> property controls the node that keypress events are listened to. By default it is set to 'window'. To turn off keyboard event listening, set <code>keyTarget</code> to false.</p>
 
 <div class="bs-docs-example">
     <div id="keyButtons">
-        <hotkey-button keys="m">1. press 'm'</hotkey-button>
-        <hotkey-button keys="ctrl m; alt a">2. press 'ctrl m' or 'alt a'</hotkey-button>
-        <hotkey-button keys="ctrl shift m">3. press 'ctrl shift m'</hotkey-button>
-        <hotkey-button keys="ctrl shift alt m">4. press 'ctrl shift alt m'</hotkey-button>
+        <w-hotkey-button keys="m">1. press 'm'</w-hotkey-button>
+        <w-hotkey-button keys="ctrl m; alt a">2. press 'ctrl m' or 'alt a'</w-hotkey-button>
+        <w-hotkey-button keys="ctrl shift m">3. press 'ctrl shift m'</w-hotkey-button>
+        <w-hotkey-button keys="ctrl shift alt m">4. press 'ctrl shift alt m'</w-hotkey-button>
     </div>
     <div class="well well-small">
         <p>you clicked:</p>
@@ -31,50 +31,50 @@
 </div>
 <pre class="prettyprint linenums">
 {% set buttonExample1 %}
-<hotkey-button keys="m">1. press 'm'</hotkey-button>
-<hotkey-button keys="ctrl m; alt a">2. press 'ctrl m' or 'alt a'</hotkey-button>
-<hotkey-button keys="ctrl shift m">3. press 'ctrl shift m'</hotkey-button>
-<hotkey-button keys="ctrl shift alt m">4. press 'ctrl shift alt m'</hotkey-button>{% endset %}{{buttonExample1|e}}
+<w-hotkey-button keys="m">1. press 'm'</w-hotkey-button>
+<w-hotkey-button keys="ctrl m; alt a">2. press 'ctrl m' or 'alt a'</w-hotkey-button>
+<w-hotkey-button keys="ctrl shift m">3. press 'ctrl shift m'</w-hotkey-button>
+<w-hotkey-button keys="ctrl shift alt m">4. press 'ctrl shift alt m'</w-hotkey-button>{% endset %}{{buttonExample1|e}}
 </pre>
 
 <hr class="bs-docs-separator">
 
 <h2>Button Groups</h2>
-<p>Wrap a series of buttons with <code>button-group</code> to create a <a href="/api/havok/widget/ButtonGroup.html">havok/widget/ButtonGroup</a> widget.</p>
+<p>Wrap a series of buttons with <code>w-button-group</code> to create a <a href="/api/havok/widget/ButtonGroup.html">havok/widget/ButtonGroup</a> widget.</p>
 <div class="bs-docs-example">
-    <button-group>
+    <w-button-group>
         <button>Left</button>
         <button>Middle</button>
         <button>Right</button>
-    </button-group>
+    </w-button-group>
 </div>
 <pre class="prettyprint linenums">
 {% set buttonExample2 %}
-<button-group>
+<w-button-group>
     <button>Left</button>
     <button>Middle</button>
     <button>Right</button>
-</button-group>{% endset %}{{buttonExample2|e}}
+</w-button-group>{% endset %}{{buttonExample2|e}}
 </pre>
 
 <h3>Vertical button groups</h3>
 <p>Make a set of buttons appear vertically stacked rather than horizontally.</p>
 <div class="bs-docs-example">
-    <button-group class="btn-group-vertical">
+    <w-button-group class="btn-group-vertical">
         <button><i class="icon-align-left"></i></button>
         <button><i class="icon-align-center"></i></button>
         <button><i class="icon-align-right"></i></button>
         <button><i class="icon-align-justify"></i></button>
-    </button-group>
+    </w-button-group>
 </div>
 <pre class="prettyprint linenums">
 {% set buttonExample3 %}
-<button-group class="btn-group-vertical">
+<w-button-group class="btn-group-vertical">
     <button><i class="icon-align-left"></i></button>
     <button><i class="icon-align-center"></i></button>
     <button><i class="icon-align-right"></i></button>
     <button><i class="icon-align-justify"></i></button>
-</button-group>{% endset %}{{buttonExample3|e}}
+</w-button-group>{% endset %}{{buttonExample3|e}}
 </pre>
 
 <h3>Using button groups</h3>
@@ -86,287 +86,287 @@
 <hr class="bs-docs-separator">
 
 <h2>Single toggle</h2>
-<p>Use the <code>toggle-button</code> tag to create a <a href="/api/havok/widget/ToggleButton.html">havok/widget/ToggleButton</a> widget.</p>
+<p>Use the <code>w-toggle-button</code> tag to create a <a href="/api/havok/widget/ToggleButton.html">havok/widget/ToggleButton</a> widget.</p>
 <p>A toggle button will stay pressed when it is clicked.</p>
 
 <div class="bs-docs-example" style="padding-bottom: 24px;">
-    <toggle-button class="btn-primary">Single Toggle</toggle-button>
+    <w-toggle-button class="btn-primary">Single Toggle</w-toggle-button>
 </div>
 <pre class="prettyprint linenums">
 {% set buttonExample4 %}
-<toggle-button class="btn-primary">Single Toggle</toggle-button>{% endset %}{{buttonExample4|e}}
+<w-toggle-button class="btn-primary">Single Toggle</w-toggle-button>{% endset %}{{buttonExample4|e}}
 </pre>
 
 <hr class="bs-docs-separator">
 
 <h2>Checkbox Group</h2>
-<p>Use the <code>checkbox-group</code> tag to create <a href="/api/havok/widget/CheckboxGroup.html">havok/widget/CheckboxGroup</a> widget.</p>
+<p>Use the <code>w-checkbox-group</code> tag to create <a href="/api/havok/widget/CheckboxGroup.html">havok/widget/CheckboxGroup</a> widget.</p>
 <p>Checkbox style toggling for a button group.</p>
 
 <div class="bs-docs-example" style="padding-bottom: 24px;">
-    <checkbox-group>
+    <w-checkbox-group>
         <button class="btn-primary">Left</button>
         <button class="btn-primary active">Middle</button>
         <button class="btn-primary">Right</button>
-    </checkbox-group>
+    </w-checkbox-group>
 </div>
 <pre class="prettyprint linenums">
 {% set buttonExample5 %}
-<checkbox-group>
+<w-checkbox-group>
     <button class="btn-primary">Left</button>
     <button class="btn-primary active">Middle</button>
     <button class="btn-primary">Right</button>
-</checkbox-group>
+</w-checkbox-group>
 {% endset %}{{buttonExample5|e}}
 </pre>
 
 <hr class="bs-docs-separator">
 
 <h2>Radio Group</h2>
-<p>Use the <code>radio-group</code> tag to create <a href="/api/havok/widget/RadioGroup.html">havok/widget/RadioGroup</a> widget.</p>
+<p>Use the <code>w-radio-group</code> tag to create <a href="/api/havok/widget/RadioGroup.html">havok/widget/RadioGroup</a> widget.</p>
 <p>Radio style toggling for a button group.</p>
 <div class="bs-docs-example" style="padding-bottom: 24px;">
-    <radio-group>
+    <w-radio-group>
         <button class="btn-primary">Left</button>
         <button class="btn-primary">Middle</button>
         <button class="btn-primary">Right</button>
-    </radio-group>
+    </w-radio-group>
 </div>
 <pre class="prettyprint linenums">
 {% set buttonExample6 %}
-<radio-group>
+<w-radio-group>
     <button class="btn-primary">Left</button>
     <button class="btn-primary">Middle</button>
     <button class="btn-primary">Right</button>
-</radio-group>{% endset %}{{buttonExample6|e}}
+</w-radio-group>{% endset %}{{buttonExample6|e}}
 </pre>
 
 <hr class="bs-docs-separator">
 
 <h2>Button Dropdowns</h2>
 
-<p><code>dropdown-toggle</code> with a <code>btn</code> class can be used to create button dropdown menus.</p>
+<p><code>w-dropdown-toggle</code> with a <code>btn</code> class can be used to create button dropdown menus.</p>
 <div class="bs-docs-example">
-    <dropdown-toggle class="btn">
+    <w-dropdown-toggle class="btn">
         Action <span class="caret"></span>
-        <dropdown class="hidden">
+        <w-dropdown class="hidden">
             <a>Action</a>
             <a>Another action</a>
             <a>Something else here</a>
             <hr />
             <a>Separated link</a>
-        </dropdown>
-    </dropdown-toggle>
-    <dropdown-toggle class="btn btn-primary">
+        </w-dropdown>
+    </w-dropdown-toggle>
+    <w-dropdown-toggle class="btn btn-primary">
         Action <span class="caret"></span>
-        <dropdown class="hidden">
+        <w-dropdown class="hidden">
             <a>Action</a>
             <a>Another action</a>
             <a>Something else here</a>
             <hr />
             <a>Separated link</a>
-        </dropdown>
-    </dropdown-toggle>
-    <dropdown-toggle class="btn btn-danger">
+        </w-dropdown>
+    </w-dropdown-toggle>
+    <w-dropdown-toggle class="btn btn-danger">
         Danger <span class="caret"></span>
-        <dropdown class="hidden">
+        <w-dropdown class="hidden">
             <a>Action</a>
             <a>Another action</a>
             <a>Something else here</a>
             <hr />
             <a>Separated link</a>
-        </dropdown>
-    </dropdown-toggle>
-    <dropdown-toggle class="btn btn-warning">
+        </w-dropdown>
+    </w-dropdown-toggle>
+    <w-dropdown-toggle class="btn btn-warning">
         Warning <span class="caret"></span>
-        <dropdown class="hidden">
+        <w-dropdown class="hidden">
             <a>Action</a>
             <a>Another action</a>
             <a>Something else here</a>
             <hr />
             <a>Separated link</a>
-        </dropdown>
-    </dropdown-toggle>
-    <dropdown-toggle class="btn btn-success">
+        </w-dropdown>
+    </w-dropdown-toggle>
+    <w-dropdown-toggle class="btn btn-success">
         Success <span class="caret"></span>
-        <dropdown class="hidden">
+        <w-dropdown class="hidden">
             <a>Action</a>
             <a>Another action</a>
             <a>Something else here</a>
             <hr />
             <a>Separated link</a>
-        </dropdown>
-    </dropdown-toggle>
-    <dropdown-toggle class="btn btn-info">
+        </w-dropdown>
+    </w-dropdown-toggle>
+    <w-dropdown-toggle class="btn btn-info">
         Info <span class="caret"></span>
-        <dropdown class="hidden">
+        <w-dropdown class="hidden">
             <a>Action</a>
             <a>Another action</a>
             <a>Something else here</a>
             <hr />
             <a>Separated link</a>
-        </dropdown>
-    </dropdown-toggle>
-    <dropdown-toggle class="btn btn-inverse">
+        </w-dropdown>
+    </w-dropdown-toggle>
+    <w-dropdown-toggle class="btn btn-inverse">
         Inverse <span class="caret"></span>
-        <dropdown class="hidden">
+        <w-dropdown class="hidden">
             <a>Action</a>
             <a>Another action</a>
             <a>Something else here</a>
             <hr />
             <a>Separated link</a>
-        </dropdown>
-    </dropdown-toggle>
+        </w-dropdown>
+    </w-dropdown-toggle>
 </div>
 <pre class="prettyprint linenums">
 {% set buttonExample7 %}
-<dropdown-toggle class="btn">
+<w-dropdown-toggle class="btn">
     Action <span class="caret"></span>
-    <dropdown class="hidden">
+    <w-dropdown class="hidden">
         <a>Action</a>
         <a>Another action</a>
         <a>Something else here</a>
         <hr />
         <a>Separated link</a>
-    </dropdown>
-</dropdown-toggle>{% endset %}{{buttonExample7|e}}
+    </w-dropdown>
+</w-dropdown-toggle>{% endset %}{{buttonExample7|e}}
 </pre>
 
 <h3>Other sizes</h3>
 <p>Button dropdowns work at any size:  <code>.btn-large</code>, <code>.btn-small</code>, or <code>.btn-mini</code>.</p>
 <div class="bs-docs-example">
-    <dropdown-toggle class="btn btn-large">
+    <w-dropdown-toggle class="btn btn-large">
         Large button <span class="caret"></span>
-        <dropdown class="hidden">
+        <w-dropdown class="hidden">
             <a>Action</a>
             <a>Another action</a>
             <a>Something else here</a>
             <hr />
             <a>Separated link</a>
-        </dropdown>
-    </dropdown-toggle>
-    <dropdown-toggle class="btn btn-small">
+        </w-dropdown>
+    </w-dropdown-toggle>
+    <w-dropdown-toggle class="btn btn-small">
         Small button <span class="caret"></span>
-        <dropdown class="hidden">
+        <w-dropdown class="hidden">
             <a>Action</a>
             <a>Another action</a>
             <a>Something else here</a>
             <hr />
             <a>Separated link</a>
-        </dropdown>
-    </dropdown-toggle>
-    <dropdown-toggle class="btn btn-mini">
+        </w-dropdown>
+    </w-dropdown-toggle>
+    <w-dropdown-toggle class="btn btn-mini">
         Mini button <span class="caret"></span>
-        <dropdown class="hidden">
+        <w-dropdown class="hidden">
             <a>Action</a>
             <a>Another action</a>
             <a>Something else here</a>
             <hr />
             <a>Separated link</a>
-        </dropdown>
-    </dropdown-toggle>
+        </w-dropdown>
+    </w-dropdown-toggle>
 </div>
 
 <h3>Split button dropdowns</h3>
 <p>Building on the button group styles and markup, we can easily create a split button. Split buttons feature a standard action on the left and a dropdown toggle on the right with contextual links.</p>
 <div class="bs-docs-example">
-    <dropdown-toggle class="btn-group">
+    <w-dropdown-toggle class="btn-group">
         <button class="btn">Action</button>
-        <button dropdown-toggle-target class="btn"><span class="caret"></span></button>
-        <dropdown class="hidden">
+        <button w-dropdown-toggle-target class="btn"><span class="caret"></span></button>
+        <w-dropdown class="hidden">
             <a>Action</a>
             <a>Another action</a>
             <a>Something else here</a>
             <hr />
             <a>Separated link</a>
-        </dropdown>
-    </dropdown-toggle>
+        </w-dropdown>
+    </w-dropdown-toggle>
 
-    <dropdown-toggle class="btn-group">
+    <w-dropdown-toggle class="btn-group">
         <button class="btn btn-primary">Action</button>
-        <button dropdown-toggle-target class="btn btn-primary"><span class="caret"></span></button>
-        <dropdown class="hidden">
+        <button w-dropdown-toggle-target class="btn btn-primary"><span class="caret"></span></button>
+        <w-dropdown class="hidden">
             <a>Action</a>
             <a>Another action</a>
             <a>Something else here</a>
             <hr />
             <a>Separated link</a>
-        </dropdown>
-    </dropdown-toggle>
+        </w-dropdown>
+    </w-dropdown-toggle>
 
-    <dropdown-toggle class="btn-group">
+    <w-dropdown-toggle class="btn-group">
         <button class="btn btn-danger">Danger</button>
-        <button dropdown-toggle-target class="btn btn-danger"><span class="caret"></span></button>
-        <dropdown class="hidden">
+        <button w-dropdown-toggle-target class="btn btn-danger"><span class="caret"></span></button>
+        <w-dropdown class="hidden">
             <a>Action</a>
             <a>Another action</a>
             <a>Something else here</a>
             <hr />
             <a>Separated link</a>
-        </dropdown>
-    </dropdown-toggle>
+        </w-dropdown>
+    </w-dropdown-toggle>
 
-    <dropdown-toggle class="btn-group">
+    <w-dropdown-toggle class="btn-group">
         <button class="btn btn-warning">Warning</button>
-        <button dropdown-toggle-target class="btn btn-warning"><span class="caret"></span></button>
-        <dropdown class="hidden">
+        <button w-dropdown-toggle-target class="btn btn-warning"><span class="caret"></span></button>
+        <w-dropdown class="hidden">
             <a>Action</a>
             <a>Another action</a>
             <a>Something else here</a>
             <hr />
             <a>Separated link</a>
-        </dropdown>
-    </dropdown-toggle>
+        </w-dropdown>
+    </w-dropdown-toggle>
 
-    <dropdown-toggle class="btn-group">
+    <w-dropdown-toggle class="btn-group">
         <button class="btn btn-success">Success</button>
-        <button dropdown-toggle-target class="btn btn-success"><span class="caret"></span></button>
-        <dropdown class="hidden">
+        <button w-dropdown-toggle-target class="btn btn-success"><span class="caret"></span></button>
+        <w-dropdown class="hidden">
             <a>Action</a>
             <a>Another action</a>
             <a>Something else here</a>
             <hr />
             <a>Separated link</a>
-        </dropdown>
-    </dropdown-toggle>
+        </w-dropdown>
+    </w-dropdown-toggle>
 
-    <dropdown-toggle class="btn-group">
+    <w-dropdown-toggle class="btn-group">
         <button class="btn btn-info">Info</button>
-        <button dropdown-toggle-target class="btn btn-info"><span class="caret"></span></button>
-        <dropdown class="hidden">
+        <button w-dropdown-toggle-target class="btn btn-info"><span class="caret"></span></button>
+        <w-dropdown class="hidden">
             <a>Action</a>
             <a>Another action</a>
             <a>Something else here</a>
             <hr />
             <a>Separated link</a>
-        </dropdown>
-    </dropdown-toggle>
+        </w-dropdown>
+    </w-dropdown-toggle>
 
-    <dropdown-toggle class="btn-group">
+    <w-dropdown-toggle class="btn-group">
         <button class="btn btn-inverse">Inverse</button>
-        <button dropdown-toggle-target class="btn btn-inverse"><span class="caret"></span></button>
-        <dropdown class="hidden">
+        <button w-dropdown-toggle-target class="btn btn-inverse"><span class="caret"></span></button>
+        <w-dropdown class="hidden">
             <a>Action</a>
             <a>Another action</a>
             <a>Something else here</a>
             <hr />
             <a>Separated link</a>
-        </dropdown>
-    </dropdown-toggle>
+        </w-dropdown>
+    </w-dropdown-toggle>
 </div>
 <pre class="prettyprint linenums">
 {% set buttonExample8 %}
-<dropdown-toggle class="btn-group">
+<w-dropdown-toggle class="btn-group">
     <button class="btn">Action</button>
-    <button dropdown-toggle-target class="btn"><span class="caret"></span></button>
-    <dropdown class="hidden">
+    <button w-dropdown-toggle-target class="btn"><span class="caret"></span></button>
+    <w-dropdown class="hidden">
         <a>Action</a>
         <a>Another action</a>
         <a>Something else here</a>
         <hr />
         <a>Separated link</a>
-    </dropdown>
-</dropdown-toggle>{% endset %}{{buttonExample8|e}}
+    </w-dropdown>
+</w-dropdown-toggle>{% endset %}{{buttonExample8|e}}
 </pre>
 
 <h3>Other Sizes</h3>
@@ -374,41 +374,41 @@
 <div class="bs-docs-example">
     <div class="btn-toolbar">
 
-        <dropdown-toggle class="btn-group">
+        <w-dropdown-toggle class="btn-group">
             <button class="btn btn-large">Large action</button>
-            <button dropdown-toggle-target class="btn btn-large"><span class="caret"></span></button>
-            <dropdown class="hidden">
+            <button w-dropdown-toggle-target class="btn btn-large"><span class="caret"></span></button>
+            <w-dropdown class="hidden">
                 <a>Action</a>
                 <a>Another action</a>
                 <a>Something else here</a>
                 <hr />
                 <a>Separated link</a>
-            </dropdown>
-        </dropdown-toggle>
+            </w-dropdown>
+        </w-dropdown-toggle>
 
-        <dropdown-toggle class="btn-group">
+        <w-dropdown-toggle class="btn-group">
             <button class="btn btn-small">Small action</button>
-            <button dropdown-toggle-target class="btn btn-small"><span class="caret"></span></button>
-            <dropdown class="hidden">
+            <button w-dropdown-toggle-target class="btn btn-small"><span class="caret"></span></button>
+            <w-dropdown class="hidden">
                 <a>Action</a>
                 <a>Another action</a>
                 <a>Something else here</a>
                 <hr />
                 <a>Separated link</a>
-            </dropdown>
-        </dropdown-toggle>
+            </w-dropdown>
+        </w-dropdown-toggle>
 
-        <dropdown-toggle class="btn-group">
+        <w-dropdown-toggle class="btn-group">
             <button class="btn btn-mini">Mini action</button>
-            <button dropdown-toggle-target class="btn btn-mini"><span class="caret"></span></button>
-            <dropdown class="hidden">
+            <button w-dropdown-toggle-target class="btn btn-mini"><span class="caret"></span></button>
+            <w-dropdown class="hidden">
                 <a>Action</a>
                 <a>Another action</a>
                 <a>Something else here</a>
                 <hr />
                 <a>Separated link</a>
-            </dropdown>
-        </dropdown-toggle>
+            </w-dropdown>
+        </w-dropdown-toggle>
     </div>
 </div>
 
@@ -416,32 +416,32 @@
 
 <div class="bs-docs-example">
     <div class="btn-toolbar" style="margin: 0;">
-        <dropdown-toggle class="btn-group dropup" toggle-placement="top-left" dropdown-placement="bottom-left">
+        <w-dropdown-toggle class="btn-group dropup" toggle-placement="top-left" dropdown-placement="bottom-left">
             <button class="btn">Dropup</button>
-            <button dropdown-toggle-target class="btn"><span class="dropup caret"></span></button>
-            <dropdown class="hidden">
+            <button w-dropdown-toggle-target class="btn"><span class="dropup caret"></span></button>
+            <w-dropdown class="hidden">
                 <a>Action</a>
                 <a>Another action</a>
                 <a>Something else here</a>
                 <hr />
                 <a>Separated link</a>
-            </dropdown>
-        </dropdown-toggle>
+            </w-dropdown>
+        </w-dropdown-toggle>
     </div>
 </div>
 <pre class="prettyprint linenums">
 {% set buttonExample9 %}
-<dropdown-toggle class="btn-group dropup" toggle-placement="top-left" dropdown-placement="bottom-left">
+<w-dropdown-toggle class="btn-group dropup" toggle-placement="top-left" dropdown-placement="bottom-left">
     <button class="btn">Dropup</button>
-    <button dropdown-toggle-target class="btn"><span class="dropup caret"></span></button>
-    <dropdown class="hidden">
+    <button w-dropdown-toggle-target class="btn"><span class="dropup caret"></span></button>
+    <w-dropdown class="hidden">
         <a>Action</a>
         <a>Another action</a>
         <a>Something else here</a>
         <hr />
         <a>Separated link</a>
-    </dropdown>
-</dropdown-toggle>{% endset %}{{buttonExample9|e}}
+    </w-dropdown>
+</w-dropdown-toggle>{% endset %}{{buttonExample9|e}}
 </pre>
 
 <h2>See also</h2>

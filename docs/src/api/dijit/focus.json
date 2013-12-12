@@ -320,10 +320,11 @@
                 {
                     "name": "targetWindow",
                     "types": [
-                        "Window"
+                        "Object"
                     ],
                     "usage": "optional",
-                    "summary": "<p>If specified this is the window associated with the iframe,\ni.e. iframe.contentWindow.</p>\n"
+                    "summary": "<p>If specified this is the window associated with the iframe,\ni.e. iframe.contentWindow.</p>\n",
+                    "description": "<p>An object with the following properties:</p><ul><li>getComputedStyle</li></ul>"
                 },
                 {
                     "name": "effectiveNode",

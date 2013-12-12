@@ -1,13 +1,11 @@
 define([
     'dojo/_base/declare',
-    'dojo/dom-attr',
     'dojo/dom-class',
     '../widget/CheckboxGroup',
     './_FormWidgetMixin'
 ],
 function(
     declare,
-    domAttr,
     domClass,
     CheckboxGroup,
     FormWidgetMixin
@@ -19,6 +17,9 @@ function(
     (
         [CheckboxGroup, FormWidgetMixin],
         {
+            // summary:
+            //      Creates a group of checkboxes styles as buttons.
+
             tag: 'span',
 
             startup: function(){
@@ -31,10 +32,12 @@ function(
                         i;
                     for (i = 0; i < this.containerNode.children.length; i++){
                         node = this.containerNode.children[i];
-                        if (domAttr.has(node, 'data-havok-store-id')){
-                            id = domAttr.get(node, 'data-havok-store-id');
+                        if (node.hasAttribute('data-havok-store-id')){
+                            id = node.getAttribute('data-havok-store-id');
+                        } else if (node.value) {
+                            id = node.value;
                         } else if (node.id) {
-                            id = node.id;
+                            id = node.id
                         } else {
                             id = i;
                         }
@@ -42,6 +45,7 @@ function(
                     }
                     this._set('value', value);
                 });
+                this.set('value', this.value);
             },
 
             _setValueAttr: function(value){
@@ -50,11 +54,19 @@ function(
                 }
 
                 var active = [],
-                    i;
+                    i,
+                    node,
+                    parent = this.containerNode;
 
                 for (i in value){
                     if (value[i]){
-                        active.push(i);
+                        if ((node = parent.querySelector('[data-havok-store-id=' + i + ']')) ||
+                            (node = parent.querySelector('[value=' + i + ']')) ||
+                            (node = parent.querySelector('[id=' + i + ']')) ||
+                            (node = parent.children[i])
+                        ) {
+                            active.push(node);
+                        }
                     }
                 }
                 this.set('active', active);

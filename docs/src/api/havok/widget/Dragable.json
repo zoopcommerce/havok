@@ -558,13 +558,9 @@
             "types": [
                 "function"
             ],
-            "from": "dijit/_WidgetBase",
-            "tags": [
-                "protected"
-            ],
+            "from": "havok/widget/Dragable",
             "parameters": [],
-            "returnTypes": [],
-            "summary": "<p>Construct the UI for this widget, setting this.domNode.\nMost widgets will mixin <code>dijit._TemplatedMixin</code>, which implements this method.</p>\n"
+            "returnTypes": []
         },
         {
             "name": "connect",
@@ -641,6 +637,16 @@
             ],
             "returnTypes": [],
             "summary": "<p>Create the widget.</p>\n"
+        },
+        {
+            "name": "contextRequire",
+            "scope": "prototype",
+            "types": [
+                "function"
+            ],
+            "from": "havok/widget/Dragable",
+            "parameters": [],
+            "returnTypes": []
         },
         {
             "name": "create",

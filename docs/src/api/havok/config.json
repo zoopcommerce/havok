@@ -5,13 +5,13 @@
     "description": "<p>This module can be used by <a href=\"../config/manager.html\">havok/config/manager</a> to provide default havok configuration.\nThis will merge all the separate havok config files and create all the default havok settings.</p>\n",
     "properties": [
         {
-            "name": "bootstrap",
+            "name": "deps",
             "scope": "normal",
             "types": [
                 "String[]"
             ],
             "from": "havok/config",
-            "summary": "<p>An array of modules for <code>havok/bootstrap</code> to load.</p>\n"
+            "summary": "<p>An array of modules for <code>havok/deps</code> to load.</p>\n"
         },
         {
             "name": "less",
