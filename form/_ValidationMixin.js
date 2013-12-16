@@ -3,10 +3,7 @@ define([
     'dojo/_base/lang',
     'dojo/_base/array',
     'dojo/when',
-    'dojo/query',
     'dojo/Deferred',
-    'dojo/dom-attr',
-    '../is',
     '../get!../validator/factory',
     'mystique/Result',
     './_ValidationStyleMixin',
@@ -20,59 +17,67 @@ function (
     lang,
     array,
     when,
-    query,
     Deferred,
-    domAttr,
-    is,
     ValidatorFactory,
     Result,
     ValidationStyleMixin,
     ValidationMessagesMixin
 ){
+    // module:
+    //		havok/form/_ValidationMixin
 
     return declare(
         [ValidationStyleMixin, ValidationMessagesMixin],
         {
+            // summary:
+            //      Mixin that add validation to form inputs
+
             // state: [readonly] String
             //		Shows current state (ie, validation result) of input ('' | Incomplete | Error | Validating)
             //		An empty string indicates successful validation.
             //      State will start as `Validating` until validation has executed the first time.
             state: 'Validating',
 
-            // validator: an instance of mystique/Base.
-            //validator: undefined,
+            /*=====
+            // validator: String|String[]|Object|mystique/Base
+            validator: undefined,
+            =====*/
 
-            //Set to true to stop all validation. Set to falsey to allow validation
-            //suppressValidation: undefined,
+            // suppressValidation: Boolean
+            //      Set to true to stop all validation. Set to falsey to allow validation
+            suppressValidation: false,
 
-            //How long to delay validation after user input in milliseconds. Prevents validation on
-            //every single keystroke.
+            // delay: int
+            //     How long to delay validation after user input in milliseconds. Prevents validation on
+            //     every single keystroke
             delay: 350,
 
-            //_delayTimer: undefined,
+            /*=====
+            // _delayTimer: Timer
+            _delayTimer: undefined,
+            =====*/
 
+            // _setValueTimestamp: int
             _setValueTimestamp: 0,
 
             buildRendering: function(){
 
-                var nodeList,
-                    required;
+                var required;
 
-                if (this.srcNodeRef){
-                    if (this.srcNodeRef.children.length > 0){
-                        nodeList = query('INPUT[required]', this.srcNodeRef);
-                        if (nodeList.length > 0){
-                            required = 'Required';
-                        } else {
-                            required = 'NotRequired';
-                        }
-                    } else if (domAttr.has(this.srcNodeRef, 'required')){
-                        required = 'Required';
-                    } else {
-                        required = 'NotRequired';
-                    }
+                if (this.srcNodeRef &&
+                    (this.srcNodeRef.hasAttribute('required') ||
+                    this.srcNodeRef.querySelector('INPUT[required]'))
+                ){
+                    required = 'Required';
+                } else {
+                    required = 'NotRequired'
                 }
+
                 this.inherited(arguments);
+
+                if (typeof this.validator == 'string' && (this.validator.substring(0,1) == '[' || this.validator.substring(0,1) == '{')) {
+                    this.validator = JSON.parse(this.validator);
+                }
 
                 if (lang.isArray(this.validator)){
                     this.validator.unshift(required);
@@ -105,14 +110,14 @@ function (
                 this._startValidateTimer();
             },
 
-            _setSuppressValidationAttr: function(value){
+            _setSuppressValidationAttr: function(/*Boolean*/value){
                 if (this.state == 'Validating'){
                     this.set('state', '');
                 }
                 this._set('suppressValidation', value);
             },
 
-            _setValidatorAttr: function(value){
+            _setValidatorAttr: function(/*String|String[]|Object|mystique/Base*/value){
                 // summary:
                 //     Will set the validator. May be one of three
                 //     types:
@@ -192,7 +197,7 @@ function (
                     case (result === false):
                         state = 'Error';
                         break;
-                    case is.isDeferred(result):
+                    case result.then:
                         result.then(lang.hitch(this, function(resultObject){
                             this._processValidationResult(resultObject, timestamp);
                         }));

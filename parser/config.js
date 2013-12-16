@@ -32,6 +32,7 @@ function(){
                 'f-checkbox-group'     : '../form/CheckboxGroup',
                 'f-radio-group'        : '../form/RadioGroup',
                 'f-textbox'            : '../form/Textbox',
+                'f-validation-textbox' : '../form/ValidationTextbox',
 
                 'w-affix'              : '../widget/Affix',
                 'w-accordion'          : '../widget/Accordion',

@@ -20,11 +20,9 @@ function (
             //      postActivity will be set to true after the first blur event or
             //      after the state first changes to an invalid value
 
-            /*=====
             // postActivity: Boolean
             //      Has the ui elment had user interaction?
-            postActivity: undefined,
-            =====*/
+            postActivity: false,
 
             /*=====
             // _onFocusValue: Mixed

@@ -19,7 +19,8 @@ var http = require('http'),
         'dojo',
         'dijit',
         'havok',
-        'mystique'
+        'mystique',
+        'mystique-common'
     ],
 
     getCookies = function (request) {

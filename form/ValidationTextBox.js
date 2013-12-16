@@ -10,9 +10,14 @@ function (
     ValidationMixin,
     ValidationMessagesMixin
 ){
+    // module:
+    //    	havok/form/ValidationTextbox
+
     return declare(
         [TextBox, ValidationMixin, ValidationMessagesMixin],
         {
+            // summary:
+            //      A textbox with validation.
         }
     );
 });

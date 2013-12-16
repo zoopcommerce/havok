@@ -113,9 +113,6 @@ function (
                     // Set params[name] to value, doing type conversion
                     if(name in Module.prototype){
                         switch(typeof Module.prototype[name]){
-                        case 'string':
-                            params[name] = value;
-                            break;
                         case 'number':
                             params[name] = value.length ? Number(value) : NaN;
                             break;
@@ -123,6 +120,8 @@ function (
                             // for checked/disabled value might be "" or "checked".	 interpret as true.
                             params[name] = value.toLowerCase() != "false";
                             break;
+                        default:
+                            params[name] = value;
                         }
                     } else {
                         if (name == 'rendered'){

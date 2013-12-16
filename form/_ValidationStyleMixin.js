@@ -8,15 +8,39 @@ function (
     array,
     domClass
 ){
+    // module:
+    //		havok/form/_ValidationStyleMixin
+
+    /*=====
+    var __ValidationStyleInner: {
+        // valid: String[]
+        //     A list of style classes to apply when valid
+        valid: undefined,
+
+        // invalid: String[]
+        //     A list of style classes to apply when invalid
+        invalid: undefined
+    };
+    =====*/
+
+    /*=====
+    var __ValidationStyle: {
+        // preActivity: __ValidationStyleInner,
+        // postActivity: __ValidationStyleInner,
+    };
+    =====*/
 
     return declare(
         [],
         {
+            // summary:
+            //      Mixin controls visual feedback based on validation state
 
-            // Indicates the classes to apply in different validation states
+            // validationStyle: __ValidationStyle
+            //      Indicates the classes to apply in different validation states
             validationStyle: {
                 preActivity: {
-                    //valid: [], //A list of classes to apply when valid
+                    //valid: [], //apply when valid
                     //invalid: [] //apply when invalid
                 },
                 postActivity: {
@@ -25,13 +49,24 @@ function (
                 }
             },
 
-            //_appliedStyle: undefined,
+            /*=====
+            // _appliedStyle: String[]
+            _appliedStyle: undefined,
+            =====*/
+
+            /*=====
+            // styleNode: DomNode
+            styleNode: undefined,
+            =====*/
 
             updateValidationStyle: function(){
                 this.set('validationStyle', this.validationStyle);
             },
 
             _setValidationStyleAttr: function(value){
+
+                if (typeof value == 'string') value = JSON.parse(value);
+
                 if (this._started){
 
                     //Determine which node the style classes should be applied to

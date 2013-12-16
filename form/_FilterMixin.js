@@ -33,6 +33,15 @@ function (
             _filterDeferred: undefined,
             =====*/
 
+            buildRendering: function(){
+
+                this.inherited(arguments);
+
+                if (typeof this.filter == 'string' && (this.filter.substring(0,1) == '[' || this.filter.substring(0,1) == '{')) {
+                    this.filter = JSON.parse(this.filter);
+                }
+            },
+
             _setFilterAttr: function(/*String|String[]|Object|FilterBase*/value){
                 // summary:
                 //     Will set the filter.
@@ -46,10 +55,6 @@ function (
                 if ( ! value){
                     this._set('filter', value);
                     return;
-                }
-
-                if (typeof value == 'string' && value.substring(0,1) == '[') {
-                    value = JSON.parse(value);
                 }
 
                 if (!this._filterDeferred){

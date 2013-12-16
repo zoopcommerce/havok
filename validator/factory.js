@@ -24,7 +24,7 @@ function(
             'Float',
             'GreaterThan',
             'GreaterThanEqual',
-            'HexColor',           
+            'HexColor',
             'Identifier',
             'Int',
             'Length',
