@@ -1,0 +1,16 @@
+<h1>Number Textbox</h1>
+
+<p><code>f-number-textbox</code> creates a <a href="/api/havok/form/NumberTextBox.html">havok/form/NumberTextBox</a>, which extends <a  href="/api/havok/form/Textbox.html">havok/form/Textbox</a> to add localized number formatting.</p>
+
+<h2>Example</h2>
+<div class="bs-docs-example">
+    <d-formspy class="form-horizontal">
+        <f-number-textbox label="Number" value=10000000></f-number-textbox>
+    </d-formspy>
+</div>
+
+<pre class="prettyprint linenums">
+{% set numberTextboxExample1 %}
+<f-number-textbox label="Number" value=10000000></f-number-textbox>{% endset %}{{numberTextboxExample1|e}}
+</pre>
+</pre>

@@ -11,7 +11,7 @@ function (
     AppendageMixin
 ){
     // module:
-    //    	havok/form/Textbox
+    //    	havok/form/TextBox
 
     return declare(
         [WidgetBase, TextBoxMixin, AppendageMixin],

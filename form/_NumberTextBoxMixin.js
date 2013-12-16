@@ -6,10 +6,20 @@ function (
     declare,
     number
 ){
+    // module:
+    //    	havok/form/_NumberTextBoxMixin
+
     return declare(
         [],
         {
+            // summary:
+            //      Mixin to provide localised number formatting.
+
+            // _formatter: Function
             _formatter: number.format,
+
+            // _parser: Function
+            _parser: number.parse,
 
             blurFormat: function(/*Number*/ value, /*number.__FormatOptions*/ constraints){
                 // summary:
@@ -34,8 +44,6 @@ function (
                 }
                 return parsedValue;
             },
-
-            _parser: number.parse,
 
             parse: function(/*String*/ value, /*number.__FormatOptions*/ constraints){
                 // summary:
