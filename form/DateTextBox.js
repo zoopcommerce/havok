@@ -4,7 +4,7 @@ define([
     'dojo/date/locale',
     '../is',
     './ValidationTextBox',
-    'dijit/_WidgetsInTemplateMixin',
+    '../widget/_WidgetsInTemplateMixin',
     'dojo/text!./template/DateTextBox.html',
     '../widget/DateDropdown',
     '../widget/DropdownToggle',
@@ -19,21 +19,39 @@ function (
     WidgetsInTemplateMixin,
     template
 ){
+    // module:
+    //		havok/form/DateTextBox
+
     return declare(
         [ValidationTextBox, WidgetsInTemplateMixin],
         {
+            // summary:
+            //      A textbox for date input.
 
+            // templateString: String
             templateString: template,
 
-            formatLength: 'medium', // short | medium | long and more. See dojo/cldr/nls
+            // formatLength: String
+            //     Code to define date format length.
+            //     Commonly used values are `short`, `medium` and `long`.
+            //     See `dojo/cldr/nls` for more options.
+            //     Defaults to `medium`.
+            formatLength: 'medium',
 
+            // placeholder: String
             placeholder: 'dd/mm/yyyy',
 
+            // validator: String|String[]|Object|mystique/Base
             validator: 'Date',
 
             startup: function(){
                 this.inherited(arguments);
-                this.dropdownToggle.watch('hidden', lang.hitch(this, '_dropdownToggleWatcher'));
+                this.dropdownToggle.watch('hidden', lang.hitch(this, this._dropdownToggleWatcher));
+            },
+
+            _setValueAttr: function(value){
+                if (typeof value == 'string') value = new Date(value);
+                this.inherited(arguments, [value]);
             },
 
             _dropdownToggleWatcher: function(property, oldValue, newValue){
@@ -42,14 +60,10 @@ function (
 
                 if (newValue){
                     this.set('value', this.dropdown.get('date'));
-                    if (handle){
-                        handle.unwatch();
-                    }
+                    if (handle) handle.unwatch();
                 } else {
                     var value = this.get('value');
-                    if (value){
-                        this.dropdown.set('date', value);
-                    }
+                    if (value) this.dropdown.set('date', value);
                     handle = this.dropdown.watch('date', lang.hitch(this, function(){
                         this.dropdownToggle.hide()
                     }))

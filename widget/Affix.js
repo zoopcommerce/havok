@@ -1,11 +1,9 @@
 define([
-    'require',
     'dojo/_base/declare',
     'dijit/_WidgetBase',
     './_AffixMixin'
 ],
 function(
-    contextRequire,
     declare,
     WidgetBase,
     AffixMixin
@@ -18,8 +16,6 @@ function(
         {
             // summary:
             //		A widget fixed in the viewport
-
-            contextRequire: contextRequire
         }
     );
 });

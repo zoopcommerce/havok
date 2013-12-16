@@ -16,7 +16,7 @@ function(
         [RadioGroup, FormWidgetMixin],
         {
             // summary:
-            //      Creates a radio group styles as buttons.
+            //      Creates a radio group styled as buttons.
 
             tag: 'span',
 

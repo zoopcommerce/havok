@@ -29,11 +29,14 @@ function(){
             tags: {
                 'f-checkbox'           : '../form/Checkbox',
                 'f-currency-textbox'   : '../form/CurrencyTextBox',
-                'f-toggle-button'      : '../form/ToggleButton',
+                'f-date-textbox'       : '../form/DateTextBox',
+                'f-email-textbox'      : '../form/EmailTextBox',
                 'f-checkbox-group'     : '../form/CheckboxGroup',
-                'f-radio-group'        : '../form/RadioGroup',
                 'f-number-textbox'     : '../form/NumberTextBox',
+                'f-password-textbox'   : '../form/PasswordTextBox',
+                'f-radio-group'        : '../form/RadioGroup',
                 'f-textbox'            : '../form/TextBox',
+                'f-toggle-button'      : '../form/ToggleButton',
                 'f-validation-textbox' : '../form/ValidationTextBox',
 
                 'w-affix'              : '../widget/Affix',

@@ -42,7 +42,6 @@ function (
         prefixes = ['data-havok-', 'data-'],
         ignoreParams = [
             typeAttr,
-            'data-dojo-attach-point',
             'data-dojo-props'
         ].concat(mixinsAttrs),
 
@@ -124,14 +123,21 @@ function (
                             params[name] = value;
                         }
                     } else {
-                        if (name == 'rendered'){
-                            params._rendered = true;
-                        }
                         params[name] = value;
                     }
                 }
 
                 instance = new Module(params, refNode);
+
+                if(!has("host-browser") && instance.domNode){
+                    //make sure the type attribute is set if using server side
+                    //templating so that the widget can be parsed in the browser
+                    instance.domNode.setAttribute('data-dojo-type', requires[0]);
+                    if (requires.length > 0){
+                        instance.domNode.setAttribute('data-dojo-mixins', requires.slice(1));
+                    }
+                    this.domNode.setAttribute('data-havok-_rendered', true);
+                }
 
                 result.resolve(instance);
             });

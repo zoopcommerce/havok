@@ -16,20 +16,37 @@ function (
     ValidationTextBox,
     NumberTextBoxMixin
 ){
+    // module:
+    //		havok/form/CurrencyTextBox
+
+    var currencyValidatorMid = 'havok/validator/Currency',
+        currencyFilterMid = 'havok/filter/Currency';
+
     return declare(
         [ValidationTextBox, NumberTextBoxMixin],
         {
-            currency: 'USD', //US Dollars default currency
+            // summary:
+            //      A textbox with localised currency formatting.
 
+            // currency: String
+            //      The currency code
+            //      Used to set the currency symbol on the textbox
+            //      Defaults to `USD`
+            currency: 'USD',
+
+            // placeholder: Object
             placeholder: {format: 0},
 
+            // _formatter: Function
             _formatter: currency.format,
 
+            // _parser: Function
             _parser: currency.parse,
 
-            validator: 'havok/validator/Currency',
+            // validator: String|String[]|Object|mystique/Base
+            validator: currencyValidatorMid,
 
-            _setCurrencyAttr: function(value){
+            _setCurrencyAttr: function(/*String*/value){
                 this.set('prepend', currency._mixInDefaults({currency: value}).symbol);
             },
 
@@ -70,18 +87,18 @@ function (
 
             _setValidatorAttr: function(value){
 
-                if (!lang.isArray(value) && !value.isValid && value !== 'havok/validator/Currency'){
+                if (!lang.isArray(value) && !value.isValid && value !== currencyValidatorMid){
                     value = [value];
-                    value.push('havok/validator/Currency');
+                    value.push(currencyValidatorMid);
                 }
                 this.inherited(arguments, [value]);
             },
 
             _setFilterAttr: function(value){
 
-                if (!lang.isArray(value) && !value.filter && value !== 'havok/filter/Currency'){
+                if (!lang.isArray(value) && !value.filter && value !== currencyFilterMid){
                     value = [value];
-                    value.push('havok/filter/Currency');
+                    value.push(currencyFilterMid);
                 }
                 this.inherited(arguments, [value]);
             }

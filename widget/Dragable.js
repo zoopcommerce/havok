@@ -1,5 +1,4 @@
 define([
-    'require',
     'dojo/_base/declare',
     'dojo/_base/lang',
     'dojo/dom-class',
@@ -10,7 +9,6 @@ define([
     '../less!./less/dragable.less'
 ],
 function (
-    contextRequire,
     declare,
     lang,
     domClass,
@@ -39,8 +37,6 @@ function (
             //      Is this widget being dragged?
             dragging: undefined,
             =====*/
-
-            contextRequire: contextRequire,
 
             buildRendering: function(){
 

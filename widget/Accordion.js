@@ -1,5 +1,4 @@
 define([
-    'require',
     'dojo/_base/declare',
     'dojo/_base/lang',
     'dojo/on',
@@ -11,7 +10,6 @@ define([
     '../less!./less/accordion.less'
 ],
 function (
-    contextRequire,
     declare,
     lang,
     on,
@@ -42,8 +40,6 @@ function (
             //      Holds a reference to the currently active accordion item.
             active: undefined,
             =====*/
-
-            contextRequire: contextRequire,
 
             buildRendering: function(){
 

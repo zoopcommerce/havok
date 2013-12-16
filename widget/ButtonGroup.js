@@ -1,5 +1,4 @@
 define([
-    'require',
     'dojo/_base/declare',
     'dojo/dom-class',
     './_WidgetBase',
@@ -8,7 +7,6 @@ define([
     '../less!../vendor/bootstrap/less/button-groups.less'
 ],
 function (
-    contextRequire,
     declare,
     domClass,
     WidgetBase,
@@ -22,8 +20,6 @@ function (
         {
             // summary:
             //      Creates a group of buttons that can be interacted with as a single widget.
-
-            contextRequire: contextRequire,
 
             // tag: String
             tag: 'div',

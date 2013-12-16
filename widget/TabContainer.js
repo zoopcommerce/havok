@@ -1,5 +1,4 @@
 define([
-    'require',
     'dojo/_base/declare',
     'dojo/_base/lang',
     'dojo/dom-construct',
@@ -10,7 +9,6 @@ define([
     './_WidgetBase'
 ],
 function (
-    contextRequire,
     declare,
     lang,
     domConstruct,
@@ -32,8 +30,6 @@ function (
             //		Each `section` tag in the containerNode is an item in the tab container.
             //		If there is a `header` tag inside a section, the contents of that `header` tag
             //		are used for the item's tab.
-
-            contextRequire: contextRequire,
 
             // placement: String
             //      Sets which side of the tab container the tabs should be shown.

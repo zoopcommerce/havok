@@ -22,12 +22,12 @@ function (
             //      Adds appendages to a textbox.
 
             /*=====
-            // prepend: DomNode[]
+            // prepend: String|String[]|DomNode|DomNode[]
             prepend: undefined,
             =====*/
 
             /*=====
-            // append: DomNode[]
+            // append: String|String[]|DomNode|DomNode[]
             append: undefined,
             =====*/
 
