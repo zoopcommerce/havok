@@ -28,6 +28,7 @@ function(){
         parser: {
             tags: {
                 'f-checkbox'           : '../form/Checkbox',
+                'f-currency-textbox'   : '../form/CurrencyTextBox',
                 'f-toggle-button'      : '../form/ToggleButton',
                 'f-checkbox-group'     : '../form/CheckboxGroup',
                 'f-radio-group'        : '../form/RadioGroup',
