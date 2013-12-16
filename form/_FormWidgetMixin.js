@@ -14,13 +14,28 @@ function (
     RequiredStarMixin,
     ActivityMixin
 ){
+    // module:
+    //    	havok/form/_FormWidgetMixin
+
     return declare(
         [LabelMixin, HelpMessagesMixin, RequiredStarMixin, ActivityMixin],
         {
-            //inline: false,
+            // summary:
+            //      A mixin that groups all the standard behaviours for havok form inputs.
 
+            /*=====
+            // inline: Boolean
+            //      Should the inline form template be used?
+            //      Defaults to false.
+            inline: false,
+            =====*/
+
+            // inlineTemplate: String
+            //      The template to use when creating an inline form input
             inlineTemplate: '<span data-dojo-attach-point="inputContainer">${input}</span>',
 
+            // blockTemplate: String
+            //      The template to use when creating a block form input
             blockTemplate: '<div class="control-group"><div class="controls" data-dojo-attach-point="inputContainer">${input}<span data-dojo-attach-point="messagesNode"></span></div></div>',
 
             buildRendering: function(){

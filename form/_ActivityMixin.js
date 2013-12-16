@@ -8,16 +8,28 @@ function (
     lang,
     FocusMixin
 ){
+    // module:
+    //    	havok/form/_ActivityMixin
 
     return declare(
         [FocusMixin],
         {
-            // Indicates if the ui element has had user interaction
-            // postActivity will be set to true after the first blur event or
-            // after the state first changes to an invalid value
-            //postActivity: undefined,
+            // summary:
+            //      Indicates if the ui element has had user interaction.
+            // description:
+            //      postActivity will be set to true after the first blur event or
+            //      after the state first changes to an invalid value
 
-            //_onFocusValue: undefined,
+            /*=====
+            // postActivity: Boolean
+            //      Has the ui elment had user interaction?
+            postActivity: undefined,
+            =====*/
+
+            /*=====
+            // _onFocusValue: Mixed
+            _onFocusValue: undefined,
+            =====*/
 
             startup: function(){
                 this.inherited(arguments);

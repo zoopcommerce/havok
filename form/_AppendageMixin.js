@@ -1,75 +1,80 @@
 define([
     'dojo/_base/declare',
     'dojo/_base/lang',
-    'dojo/dom-attr',
     'dojo/dom-construct',
-    'dojo/dom-class'
+    'dojo/dom-class',
+    'dijit/registry'
 ],
 function (
     declare,
     lang,
-    domAttr,
     domConstruct,
-    domClass
+    domClass,
+    registry
 ){
+    // module:
+    //    	havok/form/_AppendageMixin
+
     return declare(
         [],
         {
+            // summary:
+            //      Adds appendages to a textbox.
 
-            // prepend: undefined array
-            //      An array of prepend nodes.
+            /*=====
+            // prepend: DomNode[]
+            prepend: undefined,
+            =====*/
 
-            // append: undefined array
-            //      Same as prepend
+            /*=====
+            // append: DomNode[]
+            append: undefined,
+            =====*/
+
+            /*=====
+            // appendagesWrapper: DomNode
+            appendagesWrapper: undefined,
+            =====*/
 
             buildRendering: function(){
-                if (this.srcNodeRef && this.srcNodeRef.nodeName != 'SELECT'){
+                if (this.srcNodeRef){
 
                     var i,
                         node,
-                        doPrepend = true,
+                        widget,
                         prepend = [],
                         append = [];
+
                     for (i = 0; i < this.srcNodeRef.children.length; i++){
                         node = this.srcNodeRef.children[i];
-                        if (node.nodeName == 'INPUT' ||
-                            node.nodeName == 'SELECT'
-                        ){
-                            doPrepend = false;
-                            continue;
-                        } else if (
-                            node.nodeName == 'LABEL' ||
-                            domAttr.get(node, 'data-dojo-attach-point') == 'helpMessages'
-                        ){
-                            continue;
-                        }
-                        if (doPrepend){
-                            prepend.unshift(node);
-                        } else {
+                        if (node.getAttribute('widgetId')){
+                            widget = registry.getEnclosingWidget(node);
+                            if (widget.append == '') append.unshift(node);
+                            if (widget.prepend == '') prepend.unshift(node);
+                        } else if (node.hasAttribute('append')){
                             append.unshift(node);
+                        } else if (node.hasAttribute('prepend')){
+                            prepend.unshift(node);
                         }
                     }
-                    if (prepend.length > 0){
-                        this.prepend = prepend;
-                    }
-                    if (append.length > 0){
-                        this.append = append;
-                    }
+
+                    if (prepend.length > 0) this.prepend = prepend;
+                    if (append.length > 0) this.append = append;
                 }
                 this.inherited(arguments);
             },
 
-            addPrependage: function(value){
+            addPrependage: function(/*String|String[]|DomNode|DomNode[]*/value){
                 if ( ! lang.isArray(value)){
                     value = [value];
                 }
-                if (this.append){
+                if (this.prepend){
                     value = this.prepend.concat(value);
                 }
                 this.set('prepend', value);
             },
 
-            addAppendage: function(value){
+            addAppendage: function(/*String|String[]|DomNode|DomNode[]*/value){
                 if ( ! lang.isArray(value)){
                     value = [value];
                 }
@@ -79,64 +84,56 @@ function (
                 this.set('append', value);
             },
 
-            _setPrependAttr: function(value){
+            _setPrependAttr: function(/*String|String[]|DomNode|DomNode[]*/value){
 
                 var index;
 
-                if ( ! lang.isArray(value)){
-                    value = [value];
-                }
-
-                for (index in value){
-                    value[index] = this._createNode(value[index], true);
-                }
+                if (typeof value == 'string' && value.substring(0,1) == '[') value = JSON.parse(value)
+                if ( ! lang.isArray(value)) value = [value];
+                for (index in value) value[index] = this._createNode(value[index], true);
 
                 this._removeAppendages(value, true);
-                for (index in value){
-                    this._addAppendage(value[index]);
-                }
+                for (index in value) this._addAppendage(value[index]);
                 this._set('prepend', value);
             },
 
-            _setAppendAttr: function(value){
+            _setAppendAttr: function(/*String|String[]|DomNode|DomNode[]*/value){
 
                 var index;
 
-                if ( ! lang.isArray(value)){
-                    value = [value];
-                }
-
-                for (index in value){
-                    value[index] = this._createNode(value[index], false);
-                }
+                if (typeof value == 'string' && value.substring(0,1) == '[') value = JSON.parse(value)
+                if ( ! lang.isArray(value)) value = [value];
+                for (index in value) value[index] = this._createNode(value[index], false);
 
                 this._removeAppendages(value, false);
-                for (index in value){
-                    this._addAppendage(value[index]);
-                }
+                for (index in value) this._addAppendage(value[index]);
                 this._set('append', value);
             },
 
             _createAppendagesWrapper: function(){
-                this.appendagesWrapper = domConstruct.create('div', null, this.textbox, 'after');
-                domConstruct.place(this.textbox, this.appendagesWrapper, 'first');
+                this.appendagesWrapper = domConstruct.create('div', null, this.input, 'after');
+                domConstruct.place(this.input, this.appendagesWrapper, 'first');
             },
 
             _createNode: function(value, prepend){
 
-                if (typeof(value) == 'string'){
-                    value = domConstruct.create('span', {innerHTML: value});
+                var node;
+
+                if (typeof(value) == 'string') {
+                    node = domConstruct.create('span', {'class': 'add-on', innerHTML: value});
+                } else {
+                    node = value;
                 }
 
-                if (value.nodeName == 'SPAN'){
+                if (value.tagName == 'SPAN'){
                     domClass.add(value, 'add-on');
-                } else if (value.nodeName == 'BUTTON'){
+                } else if (value.tagName == 'BUTTON'){
                     domClass.add(value, 'btn');
                 }
 
-                value.prepend = prepend;
+                node.prepend = prepend;
 
-                return value;
+                return node;
             },
 
             _removeAppendages: function(value, prepend){
@@ -153,9 +150,7 @@ function (
                     list = this.append;
                 }
 
-                if (!list){
-                    return
-                }
+                if (!list) return
 
                 for(i = 0; i < list.length; i++){
                     match = false;
@@ -165,17 +160,13 @@ function (
                             match = true;
                         }
                     }
-                    if (!match){
-                        domConstruct.destroy(item);
-                    }
+                    if (!match) domConstruct.destroy(item);
                 }
             },
 
             _addAppendage: function(node){
 
-                if (! this.appendagesWrapper){
-                    this._createAppendagesWrapper();
-                }
+                if (! this.appendagesWrapper) this._createAppendagesWrapper();
 
                 if (node.prepend){
                     domClass.add(this.appendagesWrapper,'input-prepend');
@@ -185,7 +176,7 @@ function (
 
                 domConstruct.place(
                     node,
-                    this.textbox,
+                    this.input,
                     node.prepend ? 'before' : 'after'
                 );
             }

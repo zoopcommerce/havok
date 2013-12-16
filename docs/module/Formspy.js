@@ -31,13 +31,17 @@ function (
                     this.state.textContent = newValue;
                 }));
 
-                this.value.innerHTML = json.stringify(target.get('value'), null, '   ');
-                target.watch('value', lang.hitch(this, function(property, oldValue, newValue){
+                var showValue = lang.hitch(this, function(value){
                     if (typeof newValue == 'string'){
-                        this.value.textContent = newValue;
+                        this.value.textContent = value;
                     } else {
-                        this.value.innerHTML = json.stringify(newValue, null, '   ');
+                        this.value.innerHTML = json.stringify(value, null, '   ');
                     }
+                })
+
+                showValue(target.get('value'));
+                target.watch('value', lang.hitch(this, function(property, oldValue, newValue){
+                    showValue(newValue);
                 }));
             }
         }

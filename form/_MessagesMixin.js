@@ -12,27 +12,43 @@ function (
     domClass,
     domConstruct
 ){
-    return declare(
+    // module:
+    //    	havok/form/_MessagesMixin
+
+    /*=====
+    var __MessageObject = {
+        // id: int
+        // message: String
+        // defaultMethod: String|Object
+    };
+    =====*/
+
+    var MessagesMixin = declare(
         [],
         {
-            // Adds as messages to form inputs
-            //
+            // summary:
+            //      Manages the rendering of all messages for a form input
 
-            // messagePosition: string
+            // messagePosition: String
             //      Possible values are:
             //      auto: if the message is one line, display inline. If it is multiline, display block
             //      inline: always display message inline. If the message is more than one line, only the first will be shown.
             //      block: always display message as block, even when there is only one line.
+            //      Defaults to `auto`
             messagePosition: 'auto',
 
-            // messageObjects: array
+            // messageObjects: __MessageObject[]
             messageObjects: [],
 
-            //messagesNode: undefined,
+            /*=====
+            // messagesNode: DomNode
+            messagesNode: undefined,
+            =====*/
 
+            // maxMessageId: int
             maxMessageId: 0,
 
-            updateMessages: function(messagesToAdd, messageObjectsToRemove){
+            updateMessages: function(/*__MessageObject[]*/messagesToAdd, /*__MessageObject[]*/messageObjectsToRemove){
 
                 this.messageObjects = array.subtract(this.messageObjects, messageObjectsToRemove);
 
@@ -99,4 +115,10 @@ function (
             }
         }
     );
+
+    /*=====
+    MessagesMixin.__MessageObject = __MessageObject;
+    =====*/
+
+    return MessagesMixin;
 });

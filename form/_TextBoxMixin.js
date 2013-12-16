@@ -3,7 +3,6 @@ define([
     'dojo/keys',
     'dojo/on',
     'dojo/_base/lang',
-    '../is',
     './_FormWidgetMixin',
     './_FilterMixin',
     '../filter/Trim'
@@ -13,28 +12,30 @@ function (
     keys,
     on,
     lang,
-    is,
     FormWidgetMixin,
     FilterMixin
 ){
+    // module:
+    //    	havok/form/_TextBoxMixin
+
     return declare(
         [FormWidgetMixin, FilterMixin],
         {
-            // Some of this code is copied across from dijit/form/_TextBoxMixin
-            // Some of it is simplified. Some of it is massaged to work with
-            // the validation system. Some is changed so that value and state
-            // are always updated.
+            // summary:
+            //      Base mixin for textbox type form inputs.
 
-            // Apply trim filter by default
+            // filter: String|String[]
+            //      Filters to be applied to the input value
+            //      Trim filter applied by default
             filter: 'Trim',
 
-            // inputClasses: array
-            //      An array of css classes to be applied directly to the native input tag
-            inputClasses: [],
+            /*=====
+            // placeholder: String
+            placeholder: undefined,
+            =====*/
 
-            // placeholder: string
-            //placeholder: undefined,
-
+            // state: String
+            //      Indicates the validation state of the input. An empty string means the input is valid.
             state: '',
 
             buildRendering: function(){
@@ -47,19 +48,19 @@ function (
                 this.inherited(arguments);
             },
 
-            _setPlaceholderAttr: function(value) {
+            _setPlaceholderAttr: function(/*String*/value) {
                 this._set('placeholder', value);
 
                 if(this.placeholder) {
-                    this.textbox.setAttribute('placeholder', this.placeholder);
+                    this.input.setAttribute('placeholder', this.placeholder);
                 } else if (this.label){
-                    this.textbox.setAttribute('placeholder', this.get('label'));
+                    this.input.setAttribute('placeholder', this.get('label'));
                 } else {
-                    this.textbox.removeAttribute('placeholder');
+                    this.input.removeAttribute('placeholder');
                 }
             },
 
-            _setLabelAttr: function(value) {
+            _setLabelAttr: function() {
                 this.inherited(arguments);
                 this.set('placeholder', this.placeholder);
             },
@@ -95,39 +96,44 @@ function (
                 return value;	// String
             },
 
-            onFocus: function(e){
-                this.textbox.value = this.focusFormat(this.textbox.value, this.constraints);
+            onFocus: function(){
+                this.input.value = this.focusFormat(this.input.value, this.constraints);
                 this.inherited(arguments);
             },
 
-            onBlur: function(e){
-                this.textbox.value = this.blurFormat(this.textbox.value, this.constraints);
+            onBlur: function(){
+                this.input.value = this.blurFormat(this.input.value, this.constraints);
                 this.inherited(arguments);
             },
 
             _skipFocusFormat: false,
 
-            _setValueAttr: function(value){
+            _setValueAttr: function(/*String*/value){
 
-                var filteredValue = this.applyFilter(value);
-                if (is.isDeferred(filteredValue)){
+                var filteredValue = this.applyFilter(value),
+                    setValue = lang.hitch(this, function(){
+                        if (this.focused){
+                            if (!this._skipFocusFormat){
+                                this.input.value = this.focusFormat(value, this.constraints);
+                            }
+                        } else {
+                            this.input.value = this.blurFormat(value, this.constraints);
+                        }
+
+                        this._set('value', this.parse(filteredValue, this.constraints));
+                    })
+
+                if (filteredValue.then){
                     filteredValue.then(lang.hitch(this, function(filterdValueComplete){
-                        this._setValueAttr(filterdValueComplete);
+                        filteredValue = filterdValueComplete;
+                        setValue();
                     }));
                     return;
                 }
-                if (this.focused){
-                    if (!this._skipFocusFormat){
-                        this.textbox.value = this.focusFormat(value, this.constraints);
-                    }
-                } else {
-                    this.textbox.value = this.blurFormat(value, this.constraints);
-                }
-
-                this._set('value', this.parse(filteredValue, this.constraints));
+                setValue();
             },
 
-            _setClassAttr: { node: "textbox", type: "class" },
+            _setClassAttr: {node: "input", type: "class"},
 
             onInput: function(){},
 
@@ -137,14 +143,14 @@ function (
                 // summary:
                 //		Called AFTER the input event has happened
                 this._skipFocusFormat = true;
-                this.set('value', this.textbox.value);
+                this.set('value', this.input.value);
                 this._skipFocusFormat = false;
             },
 
             postCreate: function(){
                 // setting the value here is needed since value="" in the template causes "undefined"
                 // and setting in the DOM (instead of the JS object) helps with form reset actions
-                this.textbox.setAttribute("value", this.textbox.value); // DOM and JS values should be the same
+                this.input.setAttribute("value", this.input.value); // DOM and JS values should be the same
 
                 this.inherited(arguments);
 
@@ -248,7 +254,7 @@ function (
                     if(faux._wasConsumed){ return; } // if preventDefault was called
                     this.defer(function(){ this._onInput(faux); }); // widget notification after key has posted
                 };
-                this.own(on(this.textbox, "keydown, keypress, keyup, paste, cut, input, compositionend", lang.hitch(this, handleEvent)));
+                this.own(on(this.input, "keydown, keypress, keyup, paste, cut, input, compositionend", lang.hitch(this, handleEvent)));
             }
         }
     );

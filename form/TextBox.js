@@ -10,10 +10,17 @@ function (
     TextBoxMixin,
     AppendageMixin
 ){
+    // module:
+    //    	havok/form/Textbox
+
     return declare(
         [WidgetBase, TextBoxMixin, AppendageMixin],
         {
-            templateString: '<input type="text" id="${id}" data-dojo-attach-point="textbox"/>'
+            // summary:
+            //      A styled textbox for form input.
+
+            // templateString: String
+            templateString: '<input type="text" id="${id}" data-dojo-attach-point="input"/>'
         }
     );
 });

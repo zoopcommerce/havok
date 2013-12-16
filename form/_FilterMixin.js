@@ -14,33 +14,42 @@ function (
     FilterFactory,
     FilterBase
 ){
+    // module:
+    //    	havok/form/_FilterMixin
 
     return declare(
         [],
         {
-            // filter: an instance of havok/filter/Base.
+            // summary:
+            //      Applies filters to form input values
 
-            //_filterDeferred: undefined,
+            /*=====
+            // filter: String|String[]|Object|FilterBase
+            filter: undefined,
+            =====*/
 
-            _setFilterAttr: function(value){
+            /*=====
+            // _filterDeferred: Deferred
+            _filterDeferred: undefined,
+            =====*/
+
+            _setFilterAttr: function(/*String|String[]|Object|FilterBase*/value){
                 // summary:
-                //     Will set the filter. The value must be an instance of Base parameter may be one of three
-                //     types:
-                //
-                //     Instance of Base - the filter property is set equal to this instance.
-                //
-                //     Array - if an array, it is assumed to be an array of filters, or filter definitions.
-                //     The array will be passed to filterFactory.create(). The validator property
-                //     will be set to the returned instance of FilterGroup
-                //
-                //     Object - an an object, it is assumbed to be a filter definition.
-                //     The definition will be passed to filterFactory.create(). The filter property
-                //     will be set to the returned instance of BaseValdiator
-                //
+                //     Will set the filter.
+
+                // value:
+                //     1. Name of a filter.
+                //     2. Array of filter names. Will be passed to filterFactory.create()
+                //     3. A filter definition. Will be passed to filterFactory.create()
+                //     4. Instance of havok/filter/Base - the filter property is set equal to this instance.
 
                 if ( ! value){
                     this._set('filter', value);
                     return;
+                }
+
+                if (typeof value == 'string' && value.substring(0,1) == '[') {
+                    value = JSON.parse(value);
                 }
 
                 if (!this._filterDeferred){
@@ -55,7 +64,7 @@ function (
                 }));
             },
 
-            applyFilter: function(value){
+            applyFilter: function(/*Mixed*/value){
 
                 if (!this.filter){
                     //no filter set, no filtering to be done

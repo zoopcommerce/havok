@@ -1,34 +1,34 @@
 define([
     'dojo/_base/declare',
-    'dojo/_base/lang',
-    'dojo/query',
-    'dojo/dom-attr'
+    'dojo/_base/lang'
 ],
 function (
     declare,
-    lang,
-    query,
-    domAttr
+    lang
 ){
+    // module:
+    //    	havok/form/_RequiredStarMixin
+
     return declare(
         [],
         {
+            // summary:
+            //      A mixin that facilities marking form inputs as required.
+            // description:
+            //      Adds the supplied template as an appendage to the label if validator is the same as the requiredValidatorDef
 
-            //Adds the supplied string as an appendage to the label if validator is the same as the requiredValidatorDef
+            /*=====
+            // requiredStar: Boolean
+            //      When should the star be shown?
+            requiredStar: undefined,
+            =====*/
 
-            //When should the star be shown? Possible values:
-            //    false: never show
-            //    true: always show
-            //    auto: only show if a required attr is set
-            //requiredStar: 'auto',
-
+            // requiredStarTemplate: String
             requiredStarTemplate: '<span class="text-warning"> *</span>',
 
-            _setLabelAttr: function(value) {
+            _setLabelAttr: function(/*String*/value) {
 
-                if (value){
-                    value = value.replace(this.requiredStarTemplate, '');
-                }
+                if (value) value = value.replace(this.requiredStarTemplate, '');
 
                 if (this.requiredStar){
                     if (value){
@@ -38,9 +38,7 @@ function (
                     }
                 }
 
-                if (value){
-                    this.inherited(arguments, [value]);
-                }
+                if (value) this.inherited(arguments, [value]);
             },
 
             _getLabelAttr: function(){
@@ -53,22 +51,17 @@ function (
 
             buildRendering: function(){
 
-                var nodeList,
-                    required;
+                var required;
 
-                if (this.srcNodeRef){
-                    if (this.srcNodeRef.children.length > 0){
-                        nodeList = query('INPUT[required]', this.srcNodeRef);
-                        if (nodeList.length > 0){
-                            required = true;
-                        }
-                    } else if (domAttr.has(this.srcNodeRef, 'required')){
-                        required = true;
-                    }
+                if (this.srcNodeRef &&
+                    (this.srcNodeRef.hasAttribute('required') ||
+                    this.srcNodeRef.querySelector('INPUT[required]'))
+                ){
+                    required = true;
                 }
                 this.inherited(arguments);
 
-                if (required){
+                if (required && typeof this.required == 'undefined'){
                     this.set('requiredStar', true);
                 }
             },

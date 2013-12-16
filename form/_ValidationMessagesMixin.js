@@ -13,29 +13,46 @@ function(
     // module:
     //		havok/form/_ValidationMessagesMixin
 
+    /*=====
+    var __SuppressValidationMessages = {
+        // preActivity: Boolean
+        // postActivity: Boolean
+    };
+    =====*/
+
     return declare
     (
         [MessagesMixin],
         {
-
-            // Adds a validation messages to form inputs
+            // summary:
+            //      Adds a validation messages to form inputs
 
             // Should validation messages be suppressed or not?
-            suppressValidationMessages: {
-                preActivity: true //,
-                //postActivity: false
+            suppressValidationMessages: undefined,
+
+            /*=====
+            // suppressValidationMessages: __SuppressValidationMessages
+            //      Should validation messages be suppressed or not?
+            //      Can be set differently for preActivity and postActivity
+            suppressValidationMessages: undefined,
+            =====*/
+
+            /*=====
+            // _activeSuppressValidationMessages: Boolean
+            //      Indicates if message suppression is active or not.
+            _activeSuppressValidationMessages: undefined,
+            =====*/
+
+            /*=====
+            // _validationMessageObjects: MessagesMixin.__MessageObject[]
+            _validationMessageObjects: undefined,
+            =====*/
+
+            constructor: function(){
+                this.suppressValidationMessages = {
+                    preActivity: true
+                }
             },
-
-            // Indicates if message suppression is active or not.
-            //_activeSuppressValidationMessages: boolean,
-
-            // This is an array of message objects that are displayed
-            //_validationMessageObjects: undefined,
-
-            // This is an array of message object that have been set from the
-            // ValidationMixin. They may or may not be displayed, depending on the value of
-            // suppressValidationMessages and postActivity
-            //_validationMessageObjects: [],
 
             startup: function(){
                 this.inherited(arguments);
@@ -61,7 +78,7 @@ function(
                 this._set('validationMessages', messages);
             },
 
-            formatValidationMessage: function(message){
+            formatValidationMessage: function(/*String*/message){
                 if ((this.postActivity && this.suppressValidationMessages.postActivity) ||
                     (!this.postActivity && this.suppressValidationMessages.preActivity)
                 ){
@@ -70,7 +87,7 @@ function(
                 return message;
             },
 
-            _setSuppressValidationMessagesAttr: function(value){
+            _setSuppressValidationMessagesAttr: function(/*Boolean|__SuppressValidationMessages*/value){
                 if (typeof value != 'object'){
                     value = {
                         preActivity: !!value,
