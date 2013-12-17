@@ -35,8 +35,10 @@ function(){
                 'f-number-textbox'     : '../form/NumberTextBox',
                 'f-password-textbox'   : '../form/PasswordTextBox',
                 'f-radio-group'        : '../form/RadioGroup',
+                'f-textarea'           : '../form/Textarea',
                 'f-textbox'            : '../form/TextBox',
                 'f-toggle-button'      : '../form/ToggleButton',
+                'f-validation-textarea': '../form/ValidationTextarea',
                 'f-validation-textbox' : '../form/ValidationTextBox',
 
                 'w-affix'              : '../widget/Affix',
@@ -66,6 +68,8 @@ function(){
                 'w-tooltip'            : '../widget/Tooltip'
             },
             mixins: {
+                'expand'    : 'dijit/form/_ExpandingTextAreaMixin',
+
                 'affix'     : '../widget/_AffixMixin',
                 'hotkey'    : '../widget/_HotkeyMixin',
                 'scrollspy' : '../widget/_ScrollSpyMixin',

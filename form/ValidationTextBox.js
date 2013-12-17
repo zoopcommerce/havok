@@ -11,7 +11,7 @@ function (
     ValidationMessagesMixin
 ){
     // module:
-    //    	havok/form/ValidationTextbox
+    //    	havok/form/ValidationTextBox
 
     return declare(
         [TextBox, ValidationMixin, ValidationMessagesMixin],

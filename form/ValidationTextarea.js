@@ -1,16 +1,23 @@
 define([
     'dojo/_base/declare',
     './Textarea',
-    './_ValidationMixin'
+    './_ValidationMixin',
+    './_ValidationMessagesMixin'
 ],
 function (
     declare,
     Textarea,
-    ValidationMixin
+    ValidationMixin,
+    ValidationMessagesMixin
 ){
+    // module:
+    //    	havok/form/ValidationTextarea
+
     return declare(
-        [Textarea, ValidationMixin],
+        [Textarea, ValidationMixin, ValidationMessagesMixin],
         {
+            // summary:
+            //      A textarea with validation.
         }
     );
 });
