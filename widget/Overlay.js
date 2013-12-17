@@ -3,7 +3,6 @@ define([
     'dojo/dom-class',
     'dojo/dom-construct',
     'dojo/dom-geometry',
-	'dojo/dom-style',
     'dojo/window',
 	'./_WidgetBase',
     './_HideableMixin',
@@ -16,7 +15,6 @@ function(
     domClass,
     domConstruct,
     domGeom,
-    domStyle,
     win,
     WidgetBase,
     HideableMixin,
@@ -88,15 +86,15 @@ return declare([WidgetBase, HideableMixin],{
             targetPos = domGeom.position(target, true);
 
             //overlay position
-            domStyle.set(this.backdrop, 'top', targetPos.y + 'px');
-            domStyle.set(this.backdrop, 'left', targetPos.x + 'px');
-            domStyle.set(this.backdrop, 'height', targetPos.h + 'px');
-            domStyle.set(this.backdrop, 'width', targetPos.w + 'px');
+            this.backdrop.style.top = targetPos.y + 'px';
+            this.backdrop.style.left = targetPos.x + 'px';
+            this.backdrop.style.height = targetPos.h + 'px';
+            this.backdrop.style.width = targetPos.w + 'px';
         }
 
         //content position
-        domStyle.set(this.containerNode, 'top', ((targetPos.y + (targetPos.h - containerPos.h) / 2)) + 'px');
-        domStyle.set(this.containerNode, 'left', ((targetPos.x + (targetPos.w - containerPos.w) / 2)) + 'px');
+        this.containerNode.style.top = ((targetPos.y + (targetPos.h - containerPos.h) / 2)) + 'px';
+        this.containerNode.style.left = ((targetPos.x + (targetPos.w - containerPos.w) / 2)) + 'px';
     }
 });
 });

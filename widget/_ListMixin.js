@@ -1,14 +1,18 @@
 define([
+    'require',
     'dojo/_base/declare',
     'dojo/_base/lang',
+    'dojo/Deferred',
     'dojo/on',
     'dojo/dom-class',
     'dojo/dom-construct',
     'dijit/a11yclick'
 ],
 function (
+    require,
     declare,
     lang,
+    Deferred,
     on,
     domClass,
     domConstruct,
@@ -42,23 +46,38 @@ function (
             // dividerTemplate: String
             dividerTemplate: '<li class="divider"></li>',
 
+            constructor: function(params){
+                if (params.store){
+                    //a store is set, so use the storeAdapterMixin
+                    var adapter = './_StoreAdapterMixin';
+                    if (this.storeAdapter) adapter = this.storeAdapter;
+                    if (params.storeAdapter) adapter = params.storeAdapter;
+                    this._mixinAdapter(adapter);
+                }
+            },
+
+            _mixinAdapter: function(adapter){
+                this._storeAdapterMixedIn = new Deferred;
+                require([adapter], lang.hitch(this, function(Adapter){
+                    declare.safeMixin(this, new Adapter);
+                    this._storeAdapterMixedIn.resolve();
+                }))
+            },
+
             buildRendering: function(){
                 var rendered = this._rendered;
                 this.inherited(arguments);
-                if (!rendered) this._renderNodes();
-            },
-
-            startup: function(){
-                this.inherited(arguments);
-                this._startupNodes();
+                if (!rendered) {
+                    this._renderNodes();
+                }
             },
 
             addItem: function(/*DomNode|String*/item, /*__AddOptions?*/options){
                 // summary:
                 //     Add an item to the list
                 // item:
-                //     The domNode that the new list itme will be created from.
-                //     If a string is given, it must be the id of a domNode.
+                //     The domNode that the new list item will be created from.
+                //     If a string is given, it must be a html fragment.
                 // options:
                 //     Modify the behaviour of addItem. Primarily used by widgets that
                 //     extend `addItem`.
@@ -84,6 +103,7 @@ function (
                     if (domClass.contains(item, 'active')){
                         domClass.remove(item, 'active');
                         domClass.add(outerItem, 'active');
+                        this.set('active', outerItem);
                     }
                     if (domClass.contains(item, 'disabled')){
                         domClass.remove(item, 'disabled');
@@ -100,24 +120,13 @@ function (
                 // summary:
                 //      Render all the children of `containerNode` as list items
 
+                if (this._storeAdapterMixedIn && !this._storeAdapterMixedIn.isFulfilled()) {
+                    this._storeAdapterMixedIn.then(lang.hitch(this, function(){this._renderNodes()}));
+                    return;
+                }
+
                 for (var i = 0; i < this.containerNode.children.length; i++){
                     this.addItem(this.containerNode.children[i]);
-                }
-            },
-
-            _startupNodes: function(){
-                // summary:
-                //      Attatch click listeners to all the children of `containerNode`
-
-                var i,
-                    node;
-
-                for (i = 0; i < this.containerNode.children.length; i++){
-                    node = this.containerNode.children[i];
-                    this._attachClickListener(this.containerNode.children[i]);
-                    if (domClass.contains(node, 'active')){
-                        this.set('active', node);
-                    }
                 }
             },
 
@@ -134,8 +143,6 @@ function (
             _attachClickListener: function(/*DomNode*/node){
                 // node:
                 //     The domNode to return when the listener is fired
-
-                if (!this._started) return;
 
                 var target;
                 if (!(target = node.querySelector('[data-havok-click-target]'))) target = node;
@@ -155,7 +162,7 @@ function (
                 }
                 e.preventDefault();
                 this.set('active', node);
-                this.emit('item-click', node);
+                this.emit('item-click', {item: node});
             }
         }
     );

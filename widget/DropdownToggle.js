@@ -6,7 +6,6 @@ define([
     'dojo/window',
     'dojo/keys',
     'dijit/focus',
-    'dojo/dom-style',
     'dojo/dom-class',
     'dojo/dom-construct',
     'dojo/dom-geometry',
@@ -22,7 +21,6 @@ function (
     win,
     keys,
     focus,
-    domStyle,
     domClass,
     domConstruct,
     domGeom,
@@ -121,7 +119,6 @@ function (
                     var children = this.getChildren();
                     this.dropdown = children[children.length - 1];
                 }
-                this.dropdown.startup();
 
                 this.inherited(arguments);
 
@@ -305,8 +302,8 @@ function (
 
                 this._activeTogglePlacement = togglePlacement;
                 this._activeDropdownPlacement = dropdownPlacement;
-                domStyle.set(this.dropdown.domNode, 'top', target.y + 'px');
-                domStyle.set(this.dropdown.domNode, 'left', target.x + 'px');
+                this.dropdown.domNode.style.top = target.y + 'px';
+                this.dropdown.domNode.style.left = target.x + 'px';
             }
         }
     );

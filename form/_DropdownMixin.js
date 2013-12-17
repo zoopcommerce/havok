@@ -2,39 +2,60 @@ define([
     'dojo/_base/declare',
     'dojo/_base/lang',
     'dojo/_base/array',
-    'dojo/when',
-    'dojo/dom-attr',
-    'dojo/dom-style',
+    'dojo/string',
     '../less!./less/dropdownmixin.less'
 ],
 function (
     declare,
     lang,
     array,
-    when,
-    domAttr,
-    domStyle
+    string
 ){
+    // module:
+    //    	havok/form/_DropdownMixin
+
     return declare(
         [],
         {
+            // summary:
+            //      Mixin for form inputs that use a dropdown
 
-            //placeholder: undefined string
+            /*=====
+            // placeholder: String
+            placeholder: undefined,
+            =====*/
+
+            /*=====
+            // dropdown: DomNode
+            dropdown: undefined,
+            =====*/
+
+            /*=====
+            // dropdownToggle: DomNode
+            dropdownToggle: undefined,
+            =====*/
+
+            optionTemplate: '<li data-havok-store-id="${value}"><a href="">${text}</a></li>',
 
             buildRendering: function(){
 
-                var data;
+                var options;
 
-                if (this.srcNodeRef && this.srcNodeRef.options) {
-                    //store doesn't exist, so create it from the options inside srcNode
-                    data = array.map(this.srcNodeRef.options, lang.hitch(this, function(option){
-                        return {id: option.value, text: option.text, type: 'link'};
+                if (this.srcNodeRef) {
+                    options = array.map(this.srcNodeRef.getElementsByTagName('OPTION'), lang.hitch(this, function(option){
+                        return string.substitute(this.optionTemplate, option);
                     }));
                 }
                 this.inherited(arguments);
 
-                if (data){
-                    this.dropdown.set('store', {data: data});
+                if (this.store) {
+                    // using a store, so add the required mixins to dropdown
+                    this.dropdown.storeHost = this;
+                    this.dropdown.storeItemTemplate = this.optionTemplate;
+                    this.dropdown._mixinAdapter('./_StoreAdapterMixin');
+                    this.dropdown._renderNodes();
+                } else if (options) {
+                    array.forEach(options, lang.hitch(this.dropdown, this.dropdown.addItem));
                 }
             },
 
@@ -42,66 +63,22 @@ function (
                 this.inherited(arguments);
                 this.set('placeholder', this.placeholder);
                 this.dropdown.on('item-click', lang.hitch(this, function(e){
-                    this.set('value', e.id);
-                    this.textbox.value = e.text;
+                    this.set('value', e.item.getAttribute('data-havok-store-id'));
+                    this.input.value = e.item.firstElementChild.innerHTML;
                     this.dropdownToggle.hide();
                 }));
-                domStyle.set(this.dropdown.containerNode, 'width', this.dropdownToggle.domNode.offsetWidth + 'px');
+                this.dropdown.domNode.style.width = this.dropdownToggle.domNode.offsetWidth + 'px';
             },
 
             _setValueAttr: function(value){
-                if (value){
-                    when(this.get('store'), lang.hitch(this, function(store){
-                        when(store.get(value), lang.hitch(this, function(item){
-                            if (item){
-                                this.textbox.value = item.text;
-                            }
-                        }))
-                    }))
-                }
+                this.input.value = this.dropdown.containerNode.querySelector('[data-havok-store-id=' + value + ']').firstElementChild.innerHTML;
                 this._set('value', value);
             },
 
-            _setStoreAttr: function(value){
-                return this.dropdown.set('store', value);
-            },
-
-            _getStoreAttr: function(){
-                return this.dropdown.get('store');
-            },
-
-            _setQueryAttr: function(value){
-                return this.dropdown.set('query', value);
-            },
-
-            _getQueryAttr: function(){
-                return this.dropdown.get('query');
-            },
-
-            _setQueryOptionsAttr: function(value){
-                return this.dropdown.set('queryOptions', value);
-            },
-
-            _getQueryOptionsAttr: function(){
-                return this.dropdown.get('queryOptions');
-            },
-
-            _setQueryThrottleAttr: function(value){
-                return this.dropdown.set('queryThrottle', value);
-            },
-
-            _getQueryThrottleAttr: function(){
-                return this.dropdown.get('queryThrottle');
-            },
-
             _setPlaceholderAttr: function(value) {
-                this.placeholder = value;
-
-                if(this.placeholder) {
-                    domAttr.set(this.textbox, 'placeholder', this.placeholder);
-                } else if (this.label){
-                    domAttr.set(this.textbox, 'placeholder', this.get('label'));
-                }
+                if (!value) value = this.get('label');
+                this.input.setAttribute('placeholder', value);
+                this._set('placeholder', value)
             }
         }
     )

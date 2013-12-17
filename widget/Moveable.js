@@ -2,7 +2,6 @@ define([
     'dojo/_base/declare',
     'dojo/_base/lang',
     'dojo/keys',
-    'dojo/dom-style',
     'dojo/dom-geometry',
     'dojo/on',
     'dijit/_WidgetBase'
@@ -11,7 +10,6 @@ function (
     declare,
     lang,
     keys,
-    domStyle,
     domGeom,
     on,
     WidgetBase
@@ -118,8 +116,8 @@ function (
                     y = this._constraint.h;
                 }
 
-                domStyle.set(this.domNode, 'top', y + 'px');
-                domStyle.set(this.domNode, 'left', x + 'px');
+                this.domNode.style.top = y + 'px';
+                this.domNode.style.left = x + 'px';
                 this.emit('moved');
             },
 

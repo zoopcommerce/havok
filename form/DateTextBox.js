@@ -44,6 +44,16 @@ function (
             // validator: String|String[]|Object|mystique/Base
             validator: 'Date',
 
+            /*=====
+            // dropdown: DomNode
+            dropdown: undefined,
+            =====*/
+
+            /*=====
+            // dropdownToggle: DomNode
+            dropdownToggle: undefined,
+            =====*/
+
             startup: function(){
                 this.inherited(arguments);
                 this.dropdownToggle.watch('hidden', lang.hitch(this, this._dropdownToggleWatcher));

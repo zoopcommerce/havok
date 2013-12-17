@@ -28,7 +28,7 @@ function(
                 // summary:
                 //		Creates a memory data store from a `datalist` dom node.
                 // returns: dojo/store/api/store
-                
+
                 if (!params){
                     params = {};
                 }
@@ -69,10 +69,13 @@ function(
 
                                 j = 0;
                                 while(attribute = attributes[j++]){
-                                    if (attribute.name.indexOf('data-') == 0){
+                                    if (attribute.name == 'value'){
+                                        item.id = attribute.value;
+                                    } else if (attribute.name.indexOf('data-') == 0){
                                         item[string.camelCase(attribute.name.slice(5))] = attribute.value;
+                                    } else {
+                                        item[string.camelCase(attribute.name)] = attribute.value;
                                     }
-                                    item[string.camelCase(attribute.name)] = attribute.value;
                                 }
 
                                 if (node.nodeName == 'OPTGROUP'){
@@ -80,7 +83,7 @@ function(
                                     params.data.push(item);
                                     process(node.children, item.id);
                                 } else {
-                                    item.label = node.innerHTML;
+                                    item.text = node.innerHTML;
                                     params.data.push(item);
                                 }
                             }

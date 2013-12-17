@@ -1,20 +1,18 @@
 define([
     'dojo/_base/declare',
     './TextBox',
-    './_ValidationMixin',
-    './_ValidationMessagesMixin'
+    './_ValidationMixin'
 ],
 function (
     declare,
     TextBox,
-    ValidationMixin,
-    ValidationMessagesMixin
+    ValidationMixin
 ){
     // module:
     //    	havok/form/ValidationTextBox
 
     return declare(
-        [TextBox, ValidationMixin, ValidationMessagesMixin],
+        [TextBox, ValidationMixin],
         {
             // summary:
             //      A textbox with validation.

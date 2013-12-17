@@ -1,7 +1,7 @@
 define([
     'dojo/_base/declare',
     '../widget/_WidgetBase',
-    'dijit/_WidgetsInTemplateMixin',
+    '../widget/_WidgetsInTemplateMixin',
     './_FormWidgetMixin',
     './_DropdownMixin',
     'dojo/text!./template/Select.html',
@@ -16,12 +16,19 @@ function (
     DropdownMixin,
     template
 ){
+    // module:
+    //    	havok/form/Select
+
     return declare(
         [WidgetBase, WidgetsInTemplateMixin, FormWidgetMixin, DropdownMixin],
         {
+            // summary:
+            //      A nicely styled select input
+
+            // templateString: String
             templateString: template,
 
-            _setClassAttr: { node: "textbox", type: "class" }
+            _setClassAttr: { node: "input", type: "class" }
         }
     )
 });

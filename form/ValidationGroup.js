@@ -21,6 +21,7 @@ function (
     return declare(
         [WidgetBase, FormWidgetMixin, ValidationMixin],
         {
+
             validationStyle: {
                 preActivity: {
                     //valid: [], //A list of classes to apply when valid
@@ -32,6 +33,7 @@ function (
                 }
             },
 
+            // templateString: String
             templateString: template,
 
             startup: function(){
@@ -60,9 +62,7 @@ function (
             _getValueAttr: function(){
                 var value = {};
                 array.forEach(registry.findWidgets(this.form.domNode), lang.hitch(this, function(field){
-                    if (this.fields.indexOf(field.name) != -1){
-                        value[field.name] = field.get('value');
-                    }
+                    value[field.name] = field.get('value');
                 }));
                 return value;
             }

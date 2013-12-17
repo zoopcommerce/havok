@@ -1,24 +1,21 @@
 <span data-dojo-attach-point="containerNode">
-    <select class="input-mini"
-        data-dojo-type="havok/form/Select"
+    <f-select class="input-mini"
         name="month"
-        data-dojo-props="placeholder: 'Month', inline: true"
+        placeholder="Month"
+        inline=true
         data-dojo-attach-point="month"
     >
-    </select>
-    <select class="input-mini"
-        data-dojo-type="havok/form/Select"
+    </f-select>
+    <f-select class="input-mini"
         name="year"
-        data-dojo-props="placeholder: 'Year', inline: true"
+        placeholder="Year"
+        inline=true
         data-dojo-attach-point="year"
     >
-    </select>
-   <span
+    </f-select>
+   <f-validation-group
        class="hide"
-       data-dojo-type="havok/form/ValidationGroup"
        data-dojo-attach-point="validationGroup"
-       data-dojo-props="
-       fields: ['month', 'year'],
-       validator: 'CreditCardExpiry'"
-   ></span>
+       validator="CreditCardExpiry"
+   ></f-validation-group>
 </span>

@@ -22,6 +22,8 @@ function (
             // description:
             //      Mostly handles mouse events for dropdowns.
 
+            storeAdapter: './_DropdownStoreAdapterMixin',
+
             // baseClass: String
             baseClass: 'dropdown-menu',
 

@@ -29,8 +29,6 @@ function (
             postCreate: function(){
 
                 var i = new Date().getUTCFullYear(),
-                    thisyear = i,
-                    thismonth = new Date().getMonth() + 1,
                     limit = i + 10,
                     years = [],
                     months = [];

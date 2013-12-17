@@ -4,7 +4,6 @@ define([
     'dojo/_base/array',
     'dojo/on',
     '../string',
-    'dojo/dom-style',
     './DropdownToggle'
 ],
 function (
@@ -13,7 +12,6 @@ function (
     array,
     on,
     string,
-    domStyle,
     DropdownToggle
 ){
     // module:
@@ -54,14 +52,7 @@ function (
 
             position: function() {
                 this.inherited(arguments);
-
-                domStyle.set(
-                    this.dropdown.domNode,
-                    'border' +
-                    array.map(this._activeDropdownPlacement.split('-'), function(item){return string.ucFirst(item)}).join('') +
-                    'Radius',
-                    '0px'
-                );
+                this.dropdown.domNode.style['border' + array.map(this._activeDropdownPlacement.split('-'), function(item){return string.ucFirst(item)}).join('') + 'Radius'] = '0px';
             }
         }
     );

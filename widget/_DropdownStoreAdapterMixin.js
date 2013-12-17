@@ -3,29 +3,26 @@ define([
     './Dropdown',
     './DropdownToggle',
     './DropdownSubmenu',
-    './_StoreMixin'
+    './_StoreAdapterMixin'
 ],
 function (
     declare,
     Dropdown,
     DropdownToggle,
     DropdownSubmenu,
-    StoreMixin
+    StoreAdapterMixin
 ){
     return declare(
-        [],
+        [StoreAdapterMixin],
         {
-            _renderGroup: function(item, data){
-                var dropdown = new (declare([Dropdown, StoreMixin], {}))({store: this.store, query: {parent: data[this.store.idProperty]}}),
-                    submenu;
+            _renderGroup: function(domNode, data){
+                var dropdown = new Dropdown({store: this.store, query: {parent: data[this.store.idProperty]}}),
+                    submenu = this.isInstanceOf(Dropdown) ?
+                        new DropdownSubmenu({dropdown: dropdown, button: domNode, tag: 'li'}) :
+                        new DropdownToggle({dropdown: dropdown, button: domNode, tag: 'li'});
 
-                if (this.isInstanceOf(Dropdown)){
-                    submenu = new DropdownSubmenu({dropdown: dropdown, button: item, tag: 'li'});
-                } else {
-                    submenu = new DropdownToggle({dropdown: dropdown, button: item, tag: 'li'});
-                }
                 this.containerNode.appendChild(submenu.domNode);
-                submenu.containerNode.appendChild(item);
+                submenu.containerNode.appendChild(domNode);
                 submenu.startup();
                 return submenu.domNode;
             }

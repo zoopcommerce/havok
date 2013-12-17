@@ -37,20 +37,22 @@ function (
     };
     =====*/
 
-    var mixinsAttrs = ['mixins', 'data-dojo-mixins'],
+    var mixinsAttr = 'data-dojo-mixins',
         typeAttr = 'data-dojo-type',
         prefixes = ['data-havok-', 'data-'],
         ignoreParams = [
             typeAttr,
+            mixinsAttr,
             'data-dojo-props'
-        ].concat(mixinsAttrs),
+        ],
 
         _createInstance = function(refNode, contextRequire){
 
             var result = new Deferred,
                 type,
                 requires,
-                attributes;
+                attributes,
+                i;
 
             if (refNode.hasAttribute(typeAttr)){
                 type = refNode.getAttribute(typeAttr);
@@ -69,21 +71,24 @@ function (
                 });
             }
 
-            array.forEach(mixinsAttrs, function(attr){
-                if (refNode.hasAttribute(attr)){
-                    array.forEach(refNode.getAttribute(attr).split(' '), function(mixin){
-                        if (dojoConfig.parser.mixins[mixin]) {
-                            requires.push(dojoConfig.parser.mixins[mixin]);
-                        } else {
-                            requires.push(mixin);
-                        }
-                    })
+            for (i in dojoConfig.parser.mixins){
+                if (refNode.hasAttribute(i)){
+                    requires.push(dojoConfig.parser.mixins[i]);
                 }
-            })
+            }
+
+            if (refNode.hasAttribute(mixinsAttr)){
+                array.forEach(refNode.getAttribute(mixinsAttr).split(' '), function(mixin){
+                    if (dojoConfig.parser.mixins[mixin]) {
+                        requires.push(dojoConfig.parser.mixins[mixin]);
+                    } else {
+                        requires.push(mixin);
+                    }
+                })
+            }
 
             contextRequire(requires, function(){
                 var Module = arguments[0],
-                    i,
                     params = {},
                     item,
                     instance;

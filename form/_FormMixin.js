@@ -10,11 +10,20 @@ function (
     registry,
     FormMixin
 ){
+    // module:
+    //    	havok/form/_FormMixin
+
     return declare(
         [FormMixin],
         {
+            // summary:
+            //      Mixin for form like widgets
 
-            //postActivity: undefined,
+            /*=====
+            // postActivity: Boolean
+            //      Has the form had user interaction?
+            postActivity: undefined,
+            =====*/
 
             startup: function(){
                 this.inherited(arguments);
@@ -26,13 +35,15 @@ function (
             },
 
             _getInvalidWidgetsAttr: function(){
-                // Returns an array of child widgets which have a state != '' (ie have invalid state)
+                // summary:
+                //      Returns an array of child widgets which have a state != '' (ie have invalid state)
+
                 return array.filter(this._descendants, function(widget){
                     return (widget.get('state') != '');
                 });
             },
 
-            _setPostActivityAttr: function(value){
+            _setPostActivityAttr: function(/*Boolean*/value){
                 array.forEach(this._decendants, function(widget){
                     widget.set('postActivity', value);
                 })
@@ -40,7 +51,9 @@ function (
             },
 
             _setInputsAttr: function(/*array*/value){
-                //Takes an array of input constructors and appends them to the form
+                // summary:
+                //      Takes an array of input constructors and appends them to the form
+
                 var input;
                 for (var index in value){
                     input = new value[index];
@@ -51,6 +64,7 @@ function (
             _getState: function(){
                 // summary:
                 //		Compute what this.state should be based on state of children
+
                 var states = array.map(registry.findWidgets(this.containerNode), function(widget){
                     return widget.get('state') || '';
                 });

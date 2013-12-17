@@ -3,7 +3,6 @@ define([
     'dojo/_base/lang',
     'dojo/on',
     'dojo/dom',
-    'dojo/dom-style',
     'dojo/dom-construct',
     'dojo/dom-class',
     'dojo/dom-geometry',
@@ -17,7 +16,6 @@ function(
     lang,
     on,
     dom,
-    domStyle,
     domConstruct,
     domClass,
     domGeom,
@@ -119,7 +117,7 @@ function(
                         top = targetPos.y + targetPos.h;
                         break;
                 }
-                domStyle.set(this.tooltip, 'top', top + 'px');
+                this.tooltip.style.top = top + 'px';
 
                 switch (this.placement){
                     case 'left':
@@ -133,7 +131,7 @@ function(
                         left = targetPos.x + targetPos.w / 2 - tooltipPos.w / 2;
                         break;
                 }
-                domStyle.set(this.tooltip, 'left', left + 'px');
+                this.tooltip.style.left = left + 'px';
             }
         }
     );
