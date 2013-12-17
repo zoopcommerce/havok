@@ -46,23 +46,28 @@ function (
 
                 array.forEach(registry.findWidgets(this.form.domNode), lang.hitch(this, function(field){
                     if (this.fields.indexOf(field.name) != -1){
-                        field.watch('postActivity', lang.hitch(this, function(property, oldValue, newValue){
+                        field.watch('postActivity', lang.hitch(this, function(){
                             postActivity[postActivity.indexOf(field.name)] = false;
                             if (array.filter(postActivity, function(value){return value}).length == 0){
                                 this.set('postActivity', true);
                             }
                         }));
-                        field.watch('value', lang.hitch(this, function(property, oldValue, newValue){
+                        field.watch('value', lang.hitch(this, function(){
                             this._triggerValidate();
                         }));
                     }
                 }));
             },
 
+            _setFieldsAttr: function(value){
+                if (typeof value == 'string') value = value.split(' ');
+                this._set('fields', value);
+            },
+
             _getValueAttr: function(){
                 var value = {};
                 array.forEach(registry.findWidgets(this.form.domNode), lang.hitch(this, function(field){
-                    value[field.name] = field.get('value');
+                    if (this.fields.indexOf(field.name) != -1) value[field.name] = field.get('value');
                 }));
                 return value;
             }
