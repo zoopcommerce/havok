@@ -27,7 +27,7 @@ function (
 
             _setActiveAttr: function(value){
                 if (typeof value == 'string'){
-                    var nodes = this.containerNode.querySelectorAll('[data-havok-store-id=' + value + ']');
+                    var nodes = this.containerNode.querySelectorAll('[data-havok-store-id=id-' + value + ']');
                     if (nodes.length > 0){
                         value = nodes[0];
                     }
@@ -69,7 +69,7 @@ function (
                 }
 
                 item = this.inherited(arguments);
-                item.setAttribute('data-havok-store-id', options.storeId);
+                item.setAttribute('data-havok-store-id', 'id-' + options.storeId);
                 return item;
             }
         }

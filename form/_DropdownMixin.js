@@ -35,7 +35,7 @@ function (
             dropdownToggle: undefined,
             =====*/
 
-            optionTemplate: '<li data-havok-store-id="${value}"><a href="">${text}</a></li>',
+            optionTemplate: '<li data-havok-store-id="id-${value}"><a href="">${text}</a></li>',
 
             buildRendering: function(){
 
@@ -63,15 +63,18 @@ function (
                 this.inherited(arguments);
                 this.set('placeholder', this.placeholder);
                 this.dropdown.on('item-click', lang.hitch(this, function(e){
-                    this.set('value', e.item.getAttribute('data-havok-store-id'));
-                    this.input.value = e.item.firstElementChild.innerHTML;
+                    this.set('value', e.item.getAttribute('data-havok-store-id').replace('id-', ''));
                     this.dropdownToggle.hide();
                 }));
                 this.dropdown.domNode.style.width = this.dropdownToggle.domNode.offsetWidth + 'px';
             },
 
+            addItem: function(/*DomNode|String*/item, /*__AddOptions?*/options){
+                return this.dropdown.addItem(item, options);
+            },
+
             _setValueAttr: function(value){
-                this.input.value = this.dropdown.containerNode.querySelector('[data-havok-store-id=' + value + ']').firstElementChild.innerHTML;
+                this.input.value = this.dropdown.containerNode.querySelector('[data-havok-store-id=id-' + value + ']').firstElementChild.innerHTML;
                 this._set('value', value);
             },
 

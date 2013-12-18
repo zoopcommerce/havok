@@ -28,6 +28,7 @@ function(){
         parser: {
             tags: {
                 'f-checkbox'           : '../form/Checkbox',
+                'f-credit-card-expiry' : '../form/CreditCardExpiry',
                 'f-currency-textbox'   : '../form/CurrencyTextBox',
                 'f-date-textbox'       : '../form/DateTextBox',
                 'f-email-textbox'      : '../form/EmailTextBox',

@@ -51,7 +51,7 @@ function(
 
                             for(i = 0; i < nodes.length; i++){
                                 node = nodes[i];
-                                item = {id: 'i' + id};
+                                item = {id: id};
                                 if (parent != null){
                                     item.parent = parent;
                                 }

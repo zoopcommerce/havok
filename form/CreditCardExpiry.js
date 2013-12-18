@@ -1,8 +1,9 @@
 define([
     'dojo/_base/declare',
     'dojo/_base/lang',
+    'dojo/string',
     './Form',
-    'dijit/_WidgetsInTemplateMixin',
+    '../widget/_WidgetsInTemplateMixin',
     './_FormWidgetMixin',
     './_ValidationMessagesMixin',
     './_ValidationStyleMixin',
@@ -14,11 +15,12 @@ define([
 function (
     declare,
     lang,
+    string,
     Form,
     WidgetsInTemplateMixin,
     FormWidgetMixin,
-    ValidationStyleMixin,
     ValidationMessagesMixin,
+    ValidationStyleMixin,
     template
 ){
     return declare(
@@ -26,26 +28,22 @@ function (
         {
             templateString: template,
 
-            postCreate: function(){
+            buildRendering: function(){
+
+                this.inherited(arguments);
 
                 var i = new Date().getUTCFullYear(),
-                    limit = i + 10,
-                    years = [],
-                    months = [];
+                    limit = i + 10;
 
                 //Create years - 10 years from now
                 for (i; i < limit; i++){
-                    years.push({text: ('' + i).substr(2,2), id: i});
+                    this.year.addItem(string.substitute(this.year.optionTemplate, {value: i, text: ('' + i).substr(2,2)}));
                 }
-                this.year.set('store', {data: years});
 
                 //Create months
                 for (i = 1; i < 13; i++){
-                    months.push({text: i, id: i < 10 ? '0' + i : '' + i});
+                    this.month.addItem(string.substitute(this.month.optionTemplate, {value: i < 10 ? '0' + i : '' + i, text: i}));
                 }
-                this.month.set('store', {data: months});
-
-                this.inherited(arguments);
             },
 
             startup: function(){
