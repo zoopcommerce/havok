@@ -134,21 +134,21 @@ function (
                         this.saveSelection();
                         this.updateToolbar();
                     })),
-                    this.font.on('item-click', lang.hitch(this, function(item){
+                    this.font.on('item-click', lang.hitch(this, function(e){
                         this.font.hide();
-                        this.execCommand('fontName', item.id);
+                        this.execCommand('fontName', e.item.id);
                     })),
-                    this.moreFont.on('item-click', lang.hitch(this, function(item){
+                    this.moreFont.on('item-click', lang.hitch(this, function(e){
                         this.more.hide();
-                        this.execCommand('fontName', item.id);
+                        this.execCommand('fontName', e.item.id);
                     })),
-                    this.fontSize.on('item-click', lang.hitch(this, function(item){
+                    this.fontSize.on('item-click', lang.hitch(this, function(e){
                         this.fontSize.hide();
-                        this.execCommand('fontSize', item.size);
+                        this.execCommand('fontSize', e.item.size);
                     })),
-                    this.moreFontSize.on('item-click', lang.hitch(this, function(item){
+                    this.moreFontSize.on('item-click', lang.hitch(this, function(e){
                         this.more.hide();
-                        this.execCommand('fontSize', item.size);
+                        this.execCommand('fontSize', e.item.size);
                     })),
                     on(this.createLink, 'click', lang.hitch(this, function(){
                         this.createLinkDropdown.hide();
@@ -158,7 +158,7 @@ function (
                         this.more.hide();
                         this.execCommand('createLink', this.moreCreateLinkTextBox.get('value'));
                     })),
-                    this.more.on('item-click', lang.hitch(this, function(item){
+                    this.more.on('item-click', lang.hitch(this, function(){
                         this.more.hide();
                     })),
                     on(this.source, 'click', lang.hitch(this, function(){

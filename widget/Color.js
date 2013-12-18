@@ -7,12 +7,12 @@ function(
     Color
 ){
     // module:
-    //		havok/form/Color
+    //		havok/widget/Color
 
 	lang.extend(Color,
         {
             // summary:
-            //		A helper module used in ColorPicker
+            //		A helper module used in ColorDropdown
             //      Most code taken from dojox/color/_base
 
             toHsv: function(){

@@ -14,7 +14,7 @@ require(['havok/exception/started!'], function(){
     //do something
 })</pre>
 
-    <p>By default `havok/exception/started!` is registered with the <a href="#bootstrap">bootstrap</a> service, so can be started by adding <code>deps: ['havok/bootstrap!']<code> to your dojo config.</p>
+    <p>By default `havok/exception/started!` is registered with the <a href="#bootstrap">bootstrap</a> service, so can be started by adding <code>deps: ['havok/ready!']<code> to your dojo config.</p>
 
     <h2>How it works</h2>
 
@@ -45,7 +45,7 @@ ERROR    : 3</pre>
     <p>The severity of an error can be cusomised by throwing an instance of <code>havok/exception/Application</code>.</p>
     <div class="bs-docs-example">
         <script>
-            require(['dojo/on', 'dojo/dom', 'havok/exception/severity', 'havok/exception/Application', 'havok/bootstrap!'],
+            require(['dojo/on', 'dojo/dom', 'havok/exception/severity', 'havok/exception/Application', 'havok/ready!'],
                  function(on, dom, severity, Application){
                       on(dom.byId('exception2'), 'click', function(){
                           throw new Application('Example Exception', {severity: severity.WARNING});
@@ -58,7 +58,7 @@ ERROR    : 3</pre>
     <pre class="prettyprint linenums">
 {% set exceptionExample1 %}
 <script>
-    require(['dojo/on', 'dojo/dom', 'havok/exception/severity', 'havok/exception/Application', 'havok/bootstrap!'],
+    require(['dojo/on', 'dojo/dom', 'havok/exception/severity', 'havok/exception/Application', 'havok/ready!'],
          function(on, dom, severity, Application){
               on(dom.byId('exception2'), 'click', function(){
                   throw new Application('Example Exception', {severity: severity.WARNING});

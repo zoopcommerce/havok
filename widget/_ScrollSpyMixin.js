@@ -42,7 +42,7 @@ function(
                 this.inherited(arguments);
             },
 
-            _renderNodes: function(){
+            refresh: function(){
 
                 var node,
                     i,

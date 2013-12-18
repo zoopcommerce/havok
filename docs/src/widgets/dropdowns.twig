@@ -10,18 +10,18 @@
 
 <div class="bs-docs-example">
     <div class="dropdown clearfix">
-        <dropdown-container class="docs-dropdown-example">
+        <w-dropdown-container class="docs-dropdown-example">
             <h5>Stuff here</h5>
             <p>This is stuff inside a dropdown</p>
-        </dropdown-container>
+        </w-dropdown-container>
     </div>
 </div>
 <pre class="prettyprint linenums">
 {% set dropdownExample1 %}
-<dropdown-container>
+<w-dropdown-container>
     <h5>Stuff here</h5>
     <p>This is stuff inside a dropdown</p>
-</dropdown-container>{% endset %}{{dropdownExample1|e}}
+</w-dropdown-container>{% endset %}{{dropdownExample1|e}}
 </pre>
 
 <hr class="bs-docs-separator">
@@ -35,24 +35,24 @@
 <h3>Declarative Example</h3>
 <div class="bs-docs-example">
     <div class="dropdown clearfix">
-        <dropdown class="docs-dropdown-example">
+        <w-dropdown class="docs-dropdown-example">
             <a href="">Action</a>
             <a href="">Another action</a>
             <a href="">Something else here</a>
             <hr />
             <a href="">Separated link</a>
-        </dropdown>
+        </w-dropdown>
     </div>
 </div>
 <pre class="prettyprint linenums">
 {% set dropdownExample2 %}
-<dropdown>
+<w-dropdown>
     <a href="">Action</a>
     <a href="">Another action</a>
     <a href="">Something else here</a>
     <hr />
     <a href="">Separated link</a>
-</dropdown>{% endset %}{{dropdownExample2|e}}
+</w-dropdown>{% endset %}{{dropdownExample2|e}}
 </pre>
 
 <h3>Programatic Example</h3>
@@ -90,38 +90,38 @@ require(['dojo/dom', 'havok/widget/Dropdown', 'dojo/domReady!'], function(dom, D
 <p>If the <code>href</code> attribute is an empty string, the active property will be changed. If the <code>href</code> attribute is not empty, the link will be followed. Eg:</p>
 <div class="bs-docs-example">
     <div class="dropdown clearfix">
-        <dropdown class="docs-dropdown-example">
+        <w-dropdown class="docs-dropdown-example">
             <a href="">item 1</a>
             <a href="">item 2</a>
             <a href="">item 3</a>
             <a href="#dropdowns">#dropdowns anchor</a>
             <a href="http://github.com">github.com</a>
-        </dropdown>
+        </w-dropdown>
     </div>
 </div>
 <pre class="prettyprint linenums">
 {% set dropdownExample4 %}
-<dropdown>
+<w-dropdown>
     <a href="">item 1</a>
     <a href="">item 2</a>
     <a href="">item 3</a>
     <a href="#dropdowns">#dropdowns anchor</a>
     <a href="http://github.com">github.com</a>
-</dropdown>{% endset %}{{dropdownExample4|e}}
+</w-dropdown>{% endset %}{{dropdownExample4|e}}
 </pre>
 
 <p>To listen to click events, use the <code>.on('item-click', callback)</code> method. Eg:
 <div class="bs-docs-example">
     <div class="dropdown clearfix">
-        <dropdown id="dropdownClick1" class="docs-dropdown-example">
+        <w-dropdown id="dropdownClick1" class="docs-dropdown-example">
             <a href="">item 0</a>
             <a href="">item 1</a>
             <a href="">item 2</a>
-        </dropdown>
+        </w-dropdown>
         <script type="text/javascript">
-            require(['dijit/registry', 'havok/parser/complete!'], function(registry){
-                registry.byId('dropdownClick1').on('item-click', function(item){
-                    alert('Just clicked item: ' + item.innerHTML)
+            require(['dijit/registry', 'havok/ready!'], function(registry){
+                registry.byId('dropdownClick1').on('item-click', function(e){
+                    alert('Just clicked item: ' + e.item.innerHTML)
                 })
             })
         </script>
@@ -129,15 +129,15 @@ require(['dojo/dom', 'havok/widget/Dropdown', 'dojo/domReady!'], function(dom, D
 </div>
 <pre class="prettyprint linenums">
 {% set dropdownExample5 %}
-<dropdown id="dropdownClick1">
+<w-dropdown id="dropdownClick1">
     <a href="">item 0</a>
     <a href="">item 1</a>
     <a href="">item 2</a>
-</dropdown>
+</w-dropdown>
 <script type="text/javascript">
-    require(['dijit/registry', 'havok/parser/complete!'], function(registry){
-        registry.byId('dropdownClick1').on('item-click', function(item){
-            alert('Just clicked item: ' + item.innerHTML)
+    require(['dijit/registry', 'havok/ready!'], function(registry){
+        registry.byId('dropdownClick1').on('item-click', function(e){
+            alert('Just clicked item: ' + e.item.innerHTML)
         })
     })
 </script>{% endset %}{{dropdownExample5|e}}
@@ -147,20 +147,20 @@ require(['dojo/dom', 'havok/widget/Dropdown', 'dojo/domReady!'], function(dom, D
 <p>Add <code>.disabled</code> to an item in the dropdown to disable the link. Disabled links are not clickable.</p>
 <div class="bs-docs-example">
     <div class="dropdown clearfix">
-        <dropdown class="docs-dropdown-example">
+        <w-dropdown class="docs-dropdown-example">
             <a href="">Regular link</a>
             <a class="disabled" href="">Disabled link</a>
             <a href="">Another link</a>
-        </dropdown>
+        </w-dropdown>
     </div>
 </div>
 <pre class="prettyprint linenums">
 {% set dropdownExample6 %}
-<dropdown>
+<w-dropdown>
     <a href="">Regular link</a>
     <a class="disabled" href="">Disabled link</a>
     <a href="">Another link</a>
-</dropdown>{% endset %}{{dropdownExample6|e}}
+</w-dropdown>{% endset %}{{dropdownExample6|e}}
 </pre>
 
 <h3>Sub menus on dropdowns</h3>
@@ -170,88 +170,88 @@ require(['dojo/dom', 'havok/widget/Dropdown', 'dojo/domReady!'], function(dom, D
     <div class="pull-left">
         <p class="muted">Default</p>
         <div class="dropdown clearfix">
-            <dropdown>
+            <w-dropdown>
                 <a href="">Action</a>
                 <a href="">Another action</a>
                 <a href="">Something else here</a>
                 <hr />
-                <dropdown-submenu>
+                <w-dropdown-submenu>
                     <a href="">More options</a>
-                    <dropdown>
+                    <w-dropdown>
                         <a href="">Second level link</a>
                         <a href="">Second level link</a>
                         <a href="">Second level link</a>
                         <a href="">Second level link</a>
                         <a href="">Second level link</a>
-                    </dropdown>
-                </dropdown-submenu>
-            </dropdown>
+                    </w-dropdown>
+                </w-dropdown-submenu>
+            </w-dropdown>
         </div>
     </div>
 
     <div class="pull-left">
         <p class="muted">Dropup</p>
         <div class="dropdown clearfix">
-            <dropdown>
+            <w-dropdown>
                 <a href="">Action</a>
                 <a href="">Another action</a>
                 <a href="">Something else here</a>
                 <hr />
-                <dropdown-submenu toggle-placement="bottom-right" dropdown-placement="bottom-left">
+                <w-dropdown-submenu toggle-placement="bottom-right" dropdown-placement="bottom-left">
                     <a href="">More options</a>
-                    <dropdown>
+                    <w-dropdown>
                         <a href="">Second level link</a>
                         <a href="">Second level link</a>
                         <a href="">Second level link</a>
                         <a href="">Second level link</a>
                         <a href="">Second level link</a>
-                    </dropdown>
-                </dropdown-submenu>
-            </dropdown>
+                    </w-dropdown>
+                </w-dropdown-submenu>
+            </w-dropdown>
         </div>
     </div>
 
     <div class="pull-left">
         <p class="muted">Left submenu</p>
         <div class="dropdown">
-            <dropdown>
+            <w-dropdown>
                 <a href="">Action</a>
                 <a href="">Another action</a>
                 <a href="">Something else here</a>
                 <hr />
-                <dropdown-submenu toggle-placement="top-left" dropdown-placement="top-right">
+                <w-dropdown-submenu toggle-placement="top-left" dropdown-placement="top-right">
                     <a href="">More options</a>
-                    <dropdown>
+                    <w-dropdown>
                         <a href="">Second level link</a>
                         <a href="">Second level link</a>
                         <a href="">Second level link</a>
                         <a href="">Second level link</a>
                         <a href="">Second level link</a>
-                    </dropdown>
-                </dropdown-submenu>
-            </dropdown>
+                    </w-dropdown>
+                </w-dropdown-submenu>
+            </w-dropdown>
         </div>
     </div>
 </div>
 
 <pre class="prettyprint linenums">
 {% set dropdownExample7 %}
-<dropdown>
+<w-dropdown>
     <a href="">Action</a>
     <a href="">Another action</a>
     <a href="">Something else here</a>
     <hr />
-    <dropdown-submenu>
+    <w-dropdown-submenu>
         <a href="">More options</a>
-        <dropdown>
+        <w-dropdown>
             <a href="">Second level link</a>
             <a href="">Second level link</a>
             <a href="">Second level link</a>
             <a href="">Second level link</a>
             <a href="">Second level link</a>
-        </dropdown>
-    </dropdown-submenu>
-</dropdown>{% endset %}{{dropdownExample7|e}}
+        </w-dropdown>
+    </w-dropdown-submenu>
+</w-dropdown>{% endset %}{{dropdownExample7|e}}
 </pre>
 
 <hr class="bs-docs-separator">
@@ -260,21 +260,44 @@ require(['dojo/dom', 'havok/widget/Dropdown', 'dojo/domReady!'], function(dom, D
 
 <div class="bs-docs-example bs-docs-example-submenus">
     <script type="text/javascript">
-        require(['dijit/registry', 'dojo/dom', 'havok/bootstrap!'], function(registry, dom){
+        require(['dijit/registry', 'dojo/dom', 'havok/ready!'], function(registry, dom){
             registry.byId('dateDropdown1').watch('date', function(property, oldValue, newValue){
                 dom.byId('dateValue1').innerHTML = newValue;
             })
         })
     </script>
     <div class="dropdown clearfix">
-        <date-dropdown id="dateDropdown1"></date-dropdown>
+        <w-date-dropdown id="dateDropdown1"></w-date-dropdown>
     </div>
     <div class="well"><p>Date: <span id="dateValue1"></span></p></div>
 </div>
 
 <pre class="prettyprint linenums">
 {% set dropdownExample8 %}
-<date-dropdown id="dateDropdown1"></date-dropdown>{% endset %}{{dropdownExample8|e}}
+<w-date-dropdown></w-date-dropdown>{% endset %}{{dropdownExample8|e}}
+</pre>
+
+<hr class="bs-docs-separator">
+
+<h2>Color Dropdown</h2>
+
+<div class="bs-docs-example bs-docs-example-submenus">
+    <script type="text/javascript">
+        require(['dijit/registry', 'dojo/dom', 'havok/ready!'], function(registry, dom){
+            registry.byId('colorDropdown1').watch('color', function(property, oldValue, newValue){
+                dom.byId('colorValue1').innerHTML = newValue;
+            })
+        })
+    </script>
+    <div class="dropdown clearfix">
+        <w-color-dropdown id="colorDropdown1"></w-color-dropdown>
+    </div>
+    <div class="well"><p>Color: <span id="colorValue1"></span></p></div>
+</div>
+
+<pre class="prettyprint linenums">
+{% set dropdownExample9 %}
+<w-color-dropdown></w-color-dropdown>{% endset %}{{dropdownExample9|e}}
 </pre>
 
 <h2>See also</h2>

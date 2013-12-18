@@ -23,9 +23,16 @@ function (
     ValidationStyleMixin,
     template
 ){
+    // module:
+    //    	havok/form/_DropdownMixin
+
     return declare(
         [Form, WidgetsInTemplateMixin, FormWidgetMixin, ValidationStyleMixin, ValidationMessagesMixin],
         {
+            // summary:
+            //      Compisite form input for credit card expiry date
+
+            // templateString: String
             templateString: template,
 
             buildRendering: function(){
@@ -47,8 +54,6 @@ function (
             },
 
             startup: function(){
-
-                this.validationStyle = this.validationGroup.validationStyle;
 
                 this.inherited(arguments);
 

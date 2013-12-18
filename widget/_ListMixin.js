@@ -46,17 +46,20 @@ function (
             // dividerTemplate: String
             dividerTemplate: '<li class="divider"></li>',
 
+            //_clickHandlers: [],
+
             constructor: function(params){
-                if (params.store){
+                if (params && params.store){
                     //a store is set, so use the storeAdapterMixin
                     var adapter = './_StoreAdapterMixin';
                     if (this.storeAdapter) adapter = this.storeAdapter;
                     if (params.storeAdapter) adapter = params.storeAdapter;
-                    this._mixinAdapter(adapter);
+                    this.mixinAdapter(adapter);
                 }
+                this._clickHandlers = [];
             },
 
-            _mixinAdapter: function(adapter){
+            mixinAdapter: function(adapter){
                 this._storeAdapterMixedIn = new Deferred;
                 require([adapter], lang.hitch(this, function(Adapter){
                     declare.safeMixin(this, new Adapter);
@@ -68,7 +71,7 @@ function (
                 var rendered = this._rendered;
                 this.inherited(arguments);
                 if (!rendered) {
-                    this._renderNodes();
+                    this.refresh();
                 }
             },
 
@@ -116,12 +119,17 @@ function (
                 return item;
             },
 
-            _renderNodes: function(){
+            removeItem: function(/*DomNode|String*/item){
+                this._removeClickListener(item);
+                domConstruct.destroy(item);
+            },
+
+            refresh: function(){
                 // summary:
                 //      Render all the children of `containerNode` as list items
 
                 if (this._storeAdapterMixedIn && !this._storeAdapterMixedIn.isFulfilled()) {
-                    this._storeAdapterMixedIn.then(lang.hitch(this, function(){this._renderNodes()}));
+                    this._storeAdapterMixedIn.then(lang.hitch(this, function(){this.refresh()}));
                     return;
                 }
 
@@ -147,9 +155,21 @@ function (
                 var target;
                 if (!(target = node.querySelector('[data-havok-click-target]'))) target = node;
 
-                on(target, a11yclick.click, lang.hitch(this, function(e){
-                    this.onClick(e, node);
-                }));
+                this._clickHandlers = {
+                    node: node,
+                    handler: on(target, a11yclick.click, lang.hitch(this, function(e){
+                        this.onClick(e, node);
+                    }))
+                };
+            },
+
+            _removeClickListener: function(/*DomNode*/node){
+                for(var i = 0; i > this._clickHandlers.length; i++){
+                    if (this._clickHandlers[i].node == node) {
+                        this._clickHandlers[i].handler.remove();
+                        return;
+                    }
+                }
             },
 
             onClick: function(/*Event*/e, /*DomNode*/node){

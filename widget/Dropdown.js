@@ -25,6 +25,8 @@ function (
             // summary:
             //      A dropdown to display a list of links.
 
+            storeAdapter: './_DropdownStoreAdapterMixin',
+            
             startup: function(){
                 this.inherited(arguments);
                 this._addKeypressHandler();

@@ -35,7 +35,7 @@ function (
             dropdownToggle: undefined,
             =====*/
 
-            optionTemplate: '<li data-havok-store-id="id-${value}"><a href="">${text}</a></li>',
+            optionTemplate: '<li data-havok-store-id="id-${value}" data-havok-store-text="text-${text}"><a href="">${text}</a></li>',
 
             buildRendering: function(){
 
@@ -51,9 +51,8 @@ function (
                 if (this.store) {
                     // using a store, so add the required mixins to dropdown
                     this.dropdown.storeHost = this;
-                    this.dropdown.storeItemTemplate = this.optionTemplate;
-                    this.dropdown._mixinAdapter('./_StoreAdapterMixin');
-                    this.dropdown._renderNodes();
+                    if (!this.dropdown.storeItemTemplate) this.dropdown.mixinAdapter('./_StoreAdapterMixin');
+                    this.dropdown.refresh();
                 } else if (options) {
                     array.forEach(options, lang.hitch(this.dropdown, this.dropdown.addItem));
                 }
@@ -74,7 +73,10 @@ function (
             },
 
             _setValueAttr: function(value){
-                this.input.value = this.dropdown.containerNode.querySelector('[data-havok-store-id=id-' + value + ']').firstElementChild.innerHTML;
+                var node;
+                if (node = this.dropdown.containerNode.querySelector('[data-havok-store-id=id-' + value + ']')){
+                    this.input.value = node.getAttribute('data-havok-store-text').substring(5);
+                }
                 this._set('value', value);
             },
 

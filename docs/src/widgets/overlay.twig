@@ -10,7 +10,7 @@
 </p>
 <toggle-button id="overlayToggle1">Toggle overlay</toggle-button>
 <script>
-    require(['dijit/registry', 'havok/bootstrap!'], function(registry){
+    require(['dijit/registry', 'havok/ready!'], function(registry){
         registry.byId('overlayToggle1').watch('active', function(){
             registry.byId('overlay1').toggle();
         });

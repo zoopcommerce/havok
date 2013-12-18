@@ -8,9 +8,15 @@ function (
     declare,
     ValidationTextBox
 ){
+    // module:
+    //		havok/form/HexColor
+
     return declare(
         [ValidationTextBox],
         {
+            // summary:
+            //      A textbox for RGB color code input.
+
             prepend: '#',
 
             filter: 'HexColor',

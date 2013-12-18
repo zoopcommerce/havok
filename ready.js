@@ -11,7 +11,7 @@ function(
     array
 ){
     // module:
-    //		havok/deps
+    //		havok/ready
 
     var complete;
 
