@@ -22,11 +22,6 @@ function (
 
             storeItemTemplate: '<a class="${class}" href="${href}">${text}</a>',
 
-            buildRendering: function(){
-                if (!this.storeHost) this.storeHost = this;
-                this.inherited(arguments);
-            },
-
             _setActiveAttr: function(value){
                 if (typeof value == 'string'){
                     var nodes = this.containerNode.querySelectorAll('[data-havok-store-id=id-' + value + ']');
@@ -37,9 +32,14 @@ function (
                 this.inherited(arguments, [value]);
             },
 
+            _getStoreHostAttr: function(){
+                if (!this.storeHost) this.storeHost = this;
+                return this.storeHost;
+            },
+
             refresh: function(){
                 var done = new Deferred;
-                when(this.storeHost.get('data'), lang.hitch(this, function(data){
+                when(this.get('storeHost').get('data'), lang.hitch(this, function(data){
                     while (this.containerNode.children.length > 0){
                         this.removeItem(this.containerNode.children[0]);
                     }

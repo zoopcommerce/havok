@@ -99,7 +99,7 @@ function (
 
                 if (item.tagName == 'HR'){
                     return domConstruct.place(this.dividerTemplate, item, 'replace');
-                } else if (!(['LI', 'DROPDOWN-SUBMENU'].indexOf(item.tagName) != -1 || this.itemTemplate == '')) {
+                } else if (!(['LI', 'W-DROPDOWN-SUBMENU'].indexOf(item.tagName) != -1 || this.itemTemplate == '')) {
                     var outerItem = domConstruct.place(this.itemTemplate, item, 'after');
                     domConstruct.place(item, outerItem);
                     item.setAttribute('data-havok-click-target', true);

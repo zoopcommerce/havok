@@ -16,7 +16,7 @@ function (
     //    	havok/widget/_HotkeyMixin
 
     /*=====
-    var __Key = {
+    var __Hotkey = {
         // ctrl: Boolean
         //      Should the `ctrl` key modifier be used?
         // shift: Boolean
@@ -38,9 +38,9 @@ function (
             //      Provides support for classes that want to use hotkeys
 
             /*=====
-            // keys: __Key[]
+            // hotkey: __Hotkey[]
             //      An array of objects that define the hotkeys to be used
-            keys: undefined,
+            hotkey: undefined,
             =====*/
 
             // keyTarget: DomNode
@@ -63,12 +63,12 @@ function (
                 this.inherited(arguments);
             },
 
-            _setKeysAttr: function(/*__Key[]|String*/value){
+            _setHotkeyAttr: function(/*__Hotkey[]|String*/value){
                 // summary:
                 //      sets the hotkeys that will emit a click event
                 // value:
-                //      If value is an array, it must be an array of __Key object.
-                //      If the value is a string, it will be parsed into an array of __Key objects.
+                //      If value is an array, it must be an array of __Hotkey objects.
+                //      If the value is a string, it will be parsed into an array of __Hotkey objects.
                 //      In a string items must be separated by `;` and attributes by space. eg:
                 //      `ctrl m; shift v`.
 

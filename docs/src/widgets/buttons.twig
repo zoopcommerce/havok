@@ -1,16 +1,28 @@
 <h1>Hotkey Buttons</h1>
 
-<h2>Keyboard handling buttons</h2>
-<p>Use <code>w-hotkey-button</code> to create a <a href="/api/havok/widget/HotkeyButton.html">havok/widget/HotkeyButton</a>. A <code>w-hotkey-button</code> is a button that can also respond to keypress events. The button widget can be used in place of any <code>button</code> tag.</p>
+<h2>Widgetised button</h2>
 
-<p><span class="label label-info">Note:</span> be careful, the keypress listeners on buttons may override normal browser controls. The <code>keyTarget</code> property controls the node that keypress events are listened to. By default it is set to 'window'. To turn off keyboard event listening, set <code>keyTarget</code> to false.</p>
+<p>Use <code>w-button</code> to create a <a href="/api/havok/widget/Button.html">havok/widget/Button</a>. A <code>w-button</code> can be used in place of any normal <code>button</code> tag.</p>
+
+<div class="bs-docs-example">
+    <w-button>I'm a button</w-button>
+</div>
+<pre class="prettyprint linenums">
+{% set buttonExample1 %}
+<w-button>I'm a button</w-button>{% endset %}{{buttonExample1|e}}
+</pre>
+
+<h2>Keyboard handling buttons</h2>
+<p>Use the <code>hotkey</code> attribute to add keyboard handling.</p>
+
+<p><span class="label label-info">Note:</span> be careful, the keypress listeners on buttons may override normal browser controls. The <code>keyTarget</code> property controls the node that keypress events are listened to. By default it is set to 'window'. To turn off keyboard event listening, set <code>key-target</code> to false.</p>
 
 <div class="bs-docs-example">
     <div id="keyButtons">
-        <w-hotkey-button keys="m">1. press 'm'</w-hotkey-button>
-        <w-hotkey-button keys="ctrl m; alt a">2. press 'ctrl m' or 'alt a'</w-hotkey-button>
-        <w-hotkey-button keys="ctrl shift m">3. press 'ctrl shift m'</w-hotkey-button>
-        <w-hotkey-button keys="ctrl shift alt m">4. press 'ctrl shift alt m'</w-hotkey-button>
+        <w-button hotkey="m">1. press 'm'</w-button>
+        <w-button hotkey="ctrl m; alt a">2. press 'ctrl m' or 'alt a'</w-button>
+        <w-button hotkey="ctrl shift m">3. press 'ctrl shift m'</w-button>
+        <w-button hotkey="ctrl shift alt m">4. press 'ctrl shift alt m'</w-button>
     </div>
     <div class="well well-small">
         <p>you clicked:</p>
@@ -31,10 +43,10 @@
 </div>
 <pre class="prettyprint linenums">
 {% set buttonExample1 %}
-<w-hotkey-button keys="m">1. press 'm'</w-hotkey-button>
-<w-hotkey-button keys="ctrl m; alt a">2. press 'ctrl m' or 'alt a'</w-hotkey-button>
-<w-hotkey-button keys="ctrl shift m">3. press 'ctrl shift m'</w-hotkey-button>
-<w-hotkey-button keys="ctrl shift alt m">4. press 'ctrl shift alt m'</w-hotkey-button>{% endset %}{{buttonExample1|e}}
+<w-button hotkey="m">1. press 'm'</w-button>
+<w-button hotkey="ctrl m; alt a">2. press 'ctrl m' or 'alt a'</w-button>
+<w-button hotkey="ctrl shift m">3. press 'ctrl shift m'</w-button>
+<w-button hotkey="ctrl shift alt m">4. press 'ctrl shift alt m'</w-button>{% endset %}{{buttonExample1|e}}
 </pre>
 
 <hr class="bs-docs-separator">
@@ -453,3 +465,5 @@
     <li><a href="/api/havok/widget/CheckboxGroup.html">havok/widget/CheckboxGroup</a></li>
     <li><a href="/api/havok/widget/RadioGroup.html">havok/widget/RadioGroup</a></li>
 </ul>
+
+-->

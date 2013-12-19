@@ -8,13 +8,13 @@ function (
     WidgetBase
 ){
     // module:
-    //    	havok/widget/_ButtonBase
+    //    	havok/widget/Button
 
     return declare(
         [WidgetBase],
         {
             // summary:
-            //      Base class for button widgets
+            //      A widgetised button
 
             //baseClass: String
             baseClass: 'btn',

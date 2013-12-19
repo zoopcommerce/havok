@@ -2,7 +2,7 @@ define([
     'dojo/_base/declare',
     'dojo/_base/lang',
     './_WidgetBase',
-    'dijit/_WidgetsInTemplateMixin',
+    './_WidgetsInTemplateMixin',
     'dojo/text!./template/TextEditor.html',
     './TextToolbar'
 ],

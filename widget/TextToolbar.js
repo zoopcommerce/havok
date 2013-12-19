@@ -10,7 +10,7 @@ define([
     'dijit/focus',
     './Tooltip',
     './_WidgetBase',
-    'dijit/_WidgetsInTemplateMixin',
+    './_WidgetsInTemplateMixin',
     'dojo/text!./template/TextToolbar.html',
     '../less!./less/text-toolbar.less',
     './ButtonGroup',
@@ -126,100 +126,107 @@ function (
 
                 document.execCommand('styleWithCSS', 0, true);
 
-                this.events = [
-                    on(window, 'resize', lang.hitch(this, function(){
-                        this._resize();
-                    })),
-                    on(this.target, 'mouseup, keyup', lang.hitch(this, function(){
-                        this.saveSelection();
-                        this.updateToolbar();
-                    })),
-                    this.font.on('item-click', lang.hitch(this, function(e){
-                        this.font.hide();
-                        this.execCommand('fontName', e.item.id);
-                    })),
-                    this.moreFont.on('item-click', lang.hitch(this, function(e){
-                        this.more.hide();
-                        this.execCommand('fontName', e.item.id);
-                    })),
-                    this.fontSize.on('item-click', lang.hitch(this, function(e){
-                        this.fontSize.hide();
-                        this.execCommand('fontSize', e.item.size);
-                    })),
-                    this.moreFontSize.on('item-click', lang.hitch(this, function(e){
-                        this.more.hide();
-                        this.execCommand('fontSize', e.item.size);
-                    })),
-                    on(this.createLink, 'click', lang.hitch(this, function(){
-                        this.createLinkDropdown.hide();
-                        this.execCommand('createLink', this.createLinkTextBox.get('value'));
-                    })),
-                    on(this.moreCreateLink, 'click', lang.hitch(this, function(){
-                        this.more.hide();
-                        this.execCommand('createLink', this.moreCreateLinkTextBox.get('value'));
-                    })),
-                    this.more.on('item-click', lang.hitch(this, function(){
-                        this.more.hide();
-                    })),
-                    on(this.source, 'click', lang.hitch(this, function(){
-                        if (this.source.get('active')) {
-                            this.set('view', 'source');
-                        } else {
-                            this.set('view', 'wysiwig');
-                        }
-                    })),
-                    on(this.moreSource, 'click', lang.hitch(this, function(){
-                        this.more.hide();
-                        if (this.view == 'source') {
-                            this.set('view', 'wysiwig');
-                        } else {
-                            this.set('view', 'source');
-                        }
-                    }))
-                ];
-
-                array.forEach(this._buttonCommands, lang.hitch(this, function(command){
-                    this[command].set('keyTarget', this.target);
-                    this[command].command = command;
-                    this.events.push(
-                        this[command].on('click', lang.hitch(this, function(){
-                            this.execCommand(command);
-                        }))
-                    );
-                    this.events.push(
-                        on(this['more' + string.ucFirst(command)], 'click', lang.hitch(this, function(){
+                this._parseComplete.then(lang.hitch(this, function(){
+                    this.events = [
+                        on(window, 'resize', lang.hitch(this, function(){
+                            this._resize();
+                        })),
+                        on(this.target, 'mouseup, keyup', lang.hitch(this, function(){
+                            this.saveSelection();
+                            this.updateToolbar();
+                        })),
+                        this.font.on('item-click', lang.hitch(this, function(e){
+                            this.font.hide();
+                            this.execCommand('fontName', e.item.getAttribute('data-havok-store-id').slice(3));
+                        })),
+                        this.moreFont.on('item-click', lang.hitch(this, function(e){
                             this.more.hide();
-                            this.execCommand(command);
-                        }))
-                    );
-                }));
-
-                array.forEach(this._toggleCommands, lang.hitch(this, function(command){
-                    this[command].set('keyTarget', this.target);
-                    this[command].command = command;
-                    this.events.push(
-                        this[command].on('click', lang.hitch(this, function(){
-                            this.execCommand(command, this[command].get('active'));
-                        }))
-                    );
-                    this.events.push(
-                        on(this['more' + string.ucFirst(command)], 'click', lang.hitch(this, function(){
+                            this.execCommand('fontName', e.item.getAttribute('data-havok-store-id').slice(3));
+                        })),
+                        this.fontSize.on('item-click', lang.hitch(this, function(e){
+                            this.fontSize.hide();
+                            //TODO: this line is a little nuts. Should simplify
+                            this.fontSize.dropdown.store.get(e.item.getAttribute('data-havok-store-id').slice(3)).then(lang.hitch(this, function(data){
+                                this.execCommand('fontSize', data.size);
+                            }))
+                        })),
+                        this.moreFontSize.on('item-click', lang.hitch(this, function(e){
                             this.more.hide();
-                            this[command].toggle();
-                            this.execCommand(command, this[command].get('active'));
+                            this.fontSize.dropdown.store.get(e.item.getAttribute('data-havok-store-id').slice(3)).then(lang.hitch(this, function(data){
+                                this.execCommand('fontSize', data.size);
+                            }))                            
+                        })),
+                        on(this.createLink, 'click', lang.hitch(this, function(){
+                            this.createLinkDropdown.hide();
+                            this.execCommand('createLink', this.createLinkTextBox.get('value'));
+                        })),
+                        on(this.moreCreateLink, 'click', lang.hitch(this, function(){
+                            this.more.hide();
+                            this.execCommand('createLink', this.moreCreateLinkTextBox.get('value'));
+                        })),
+                        this.more.on('item-click', lang.hitch(this, function(){
+                            this.more.hide();
+                        })),
+                        on(this.source, 'click', lang.hitch(this, function(){
+                            if (this.source.get('active')) {
+                                this.set('view', 'source');
+                            } else {
+                                this.set('view', 'wysiwig');
+                            }
+                        })),
+                        on(this.moreSource, 'click', lang.hitch(this, function(){
+                            this.more.hide();
+                            if (this.view == 'source') {
+                                this.set('view', 'wysiwig');
+                            } else {
+                                this.set('view', 'source');
+                            }
                         }))
+                    ];
+
+                    array.forEach(this._buttonCommands, lang.hitch(this, function(command){
+                        this[command].set('keyTarget', this.target);
+                        this[command].command = command;
+                        this.events.push(
+                            this[command].on('click', lang.hitch(this, function(){
+                                this.execCommand(command);
+                            }))
+                        );
+                        this.events.push(
+                            on(this['more' + string.ucFirst(command)], 'click', lang.hitch(this, function(){
+                                this.more.hide();
+                                this.execCommand(command);
+                            }))
+                        );
+                    }));
+
+                    array.forEach(this._toggleCommands, lang.hitch(this, function(command){
+                        this[command].set('keyTarget', this.target);
+                        this[command].command = command;
+                        this.events.push(
+                            this[command].on('click', lang.hitch(this, function(){
+                                this.execCommand(command, this[command].get('active'));
+                            }))
+                        );
+                        this.events.push(
+                            on(this['more' + string.ucFirst(command)], 'click', lang.hitch(this, function(){
+                                this.more.hide();
+                                this[command].toggle();
+                                this.execCommand(command, this[command].get('active'));
+                            }))
+                        );
+                    }));
+
+                    //add source view node
+                    this.sourceView = domConstruct.create(
+                        'textarea',
+                        {'class': 'hidden'},
+                        this.target,
+                        'after'
                     );
+
+                    this._resize();
                 }));
-
-                //add source view node
-                this.sourceView = domConstruct.create(
-                    'textarea',
-                    {'class': 'hidden'},
-                    this.target,
-                    'after'
-                );
-
-                this._resize();
             },
 
             destroy: function(){

@@ -1,45 +1,38 @@
+<h1>Text Editor</h1>
 
-        <section id="text-editor" title="Text Editor">
-          <div class="page-header">
-            <h1>Text Editor</h1>
-          </div>
+<p>Use tag <code>w-text-editor</code> to create a <a href="/api/havok/widget/TextEditor">havok/widget/TextEditor</a>.</p>
 
-            <h2>Example</h2>
-
-          <div class="bs-docs-example">
-              <div data-dojo-type="havok/widget/TextEditor">
-                  Here is some text to edit.
-              </div>
-          </div>
+<div class="bs-docs-example">
+    <w-text-editor>Here is some text to edit.</w-text-editor>
+</div>
 
 <pre class="prettyprint linenums">
-&lt;div data-dojo-type=&quot;havok/widget/TextEditor&quot;&gt;
-    Here is some text to edit.
-&lt;/div&gt;
+{% set textEditorExample1 %}
+<w-text-editor>Here is some text to edit.</w-text-editor>{% endset %}{{textEditorExample1|e}}
 </pre>
 
-          <p>The tools visible will show and hide as the width of the text editor changes.</p>
+<p>The tools visible will show and hide as the width of the text editor changes.</p>
 
-          <div class="bs-docs-example" style="width: 300px">
-              <div data-dojo-type="havok/widget/TextEditor">
-                  Here is some text to edit.
-              </div>
-          </div>
+<div class="bs-docs-example" style="width: 300px">
+    <w-text-editor>Here is some text to edit.</w-text-editor>
+</div>
 
-            <h2>Separated toolbar</h2>
+<h2>Separated toolbar</h2>
 
-            <p id="editExample" contenteditable="true">You can use a separated text editing toolbar, and pass it a target node id to edit. The toolbar below can be used to edit this paragraph.</p>
+<p id="editExample" contenteditable="true">You can use a separated text editing toolbar, and pass it a target node id to edit. The toolbar below can be used to edit this paragraph.</p>
 
-          <div class="bs-docs-example">
-              <div data-dojo-type="havok/widget/TextToolbar" data-dojo-props="target: 'editExample'"></div>
-          </div>
+<div class="bs-docs-example">
+    <w-text-toolbar target="editExample">Here is some text to edit.</w-text-toolbar>
+</div>
 <pre class="prettyprint linenums">
-&lt;div data-dojo-type=&quot;havok/widget/TextToolbar&quot; data-dojo-props=&quot;target: 'editExample'&quot;&gt;&lt;/div&gt;
+{% set textEditorExample2 %}
+<w-text-toolbar target="editExample">Here is some text to edit.</w-text-toolbar>{% endset %}{{textEditorExample2|e}}
 </pre>
 
-            <h2>Custom font and size lists</h2>
 
-            <p>You can change the font and size lists by overriding the appropriate store in di config. Eg:</p>
+<h2>Custom font and size lists</h2>
+
+<p>You can change the font and size lists by overriding the appropriate store in di config. Eg:</p>
 <pre class="prettyprint linenums">
 di: {
     'havok/store/stores': {
@@ -55,26 +48,3 @@ di: {
     }
 }
 </pre>
-
-  <h2>Properties</h2>
-
-            <table class="table table-bordered table-striped">
-              <thead>
-               <tr>
-                 <th style="width: 100px;">Name</th>
-                 <th style="width: 50px;">type</th>
-                 <th style="width: 50px;">default</th>
-                 <th>description</th>
-               </tr>
-              </thead>
-              <tbody>
-               <tr>
-                 <td>text</td>
-                 <td>string</td>
-                 <td>undefined</td>
-                 <td>The text inside the editor.</td>
-               </tr>
-              </tbody>
-            </table>
-
-</section>

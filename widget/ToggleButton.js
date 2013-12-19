@@ -3,20 +3,20 @@ define([
     'dojo/_base/lang',
     'dojo/dom-class',
     'dijit/a11yclick',
-    './_ButtonBase'
+    './Button'
 ],
 function (
     declare,
     lang,
     domClass,
     a11yclick,
-    ButtonBase
+    Button
 ){
     // module:
     //    	havok/widget/ToggleButton
 
     return declare(
-        [ButtonBase],
+        [Button],
         {
 
             startup: function(){
