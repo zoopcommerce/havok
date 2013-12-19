@@ -3,7 +3,8 @@ define([
     'dojo/_base/lang',
     'dojo/dom-construct',
     'dojo/dom-class',
-    'dijit/registry'
+    'dijit/registry',
+    '../less!./less/appendage.less'
 ],
 function (
     declare,

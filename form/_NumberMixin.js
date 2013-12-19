@@ -7,7 +7,7 @@ function (
     number
 ){
     // module:
-    //    	havok/form/_NumberTextBoxMixin
+    //    	havok/form/_NumberMixin
 
     return declare(
         [],

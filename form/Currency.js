@@ -3,7 +3,7 @@ define([
     'dojo/_base/lang',
     'dojo/currency',
     '../is',
-    './NumberTextBox',
+    './Number',
     './_ValidationMixin',
     '../validator/Currency',
     '../filter/Currency'
@@ -13,17 +13,17 @@ function (
     lang,
     currency,
     is,
-    NumberTextBox,
+    Number,
     ValidationMixin
 ){
     // module:
-    //		havok/form/CurrencyTextBox
+    //		havok/form/Currency
 
     var currencyValidatorMid = 'havok/validator/Currency',
         currencyFilterMid = 'havok/filter/Currency';
 
     return declare(
-        [NumberTextBox, ValidationMixin],
+        [Number, ValidationMixin],
         {
             // summary:
             //      A textbox with localised currency formatting.

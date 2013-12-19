@@ -22,7 +22,7 @@ function (
     template
 ){
     // module:
-    //		havok/form/DateTextBox
+    //		havok/form/Date
 
     return declare(
         [TextBox, ValidationMixin, WidgetsInTemplateMixin],

@@ -3,7 +3,7 @@ define([
     './TextBox',
     './_ValidationMixin',
     'mystique/Required',
-    'mystique/Email'
+    'mystique/Password'
 ],
 function (
     declare,
@@ -11,19 +11,19 @@ function (
     ValidationMixin
 ){
     // module:
-    //		havok/form/EmailTextBox
+    //		havok/form/Password
 
     return declare(
         [TextBox, ValidationMixin],
         {
             // summary:
-            //      A textbox for email input.
+            //      A textbox for imputting a password.
 
-            // prepend: String|String[]|DomNode|DomNode[]
-            prepend: '<i class="icon-envelope"></i>',
+            // templateString: String
+            templateString: '<input type="password" id="${id}" data-dojo-attach-point="input, focusNode"/>',
 
             // validator: String|String[]|Object|mystique/Base
-            validator: ['Required', 'Email']
+            validator: ['Required', 'Password']
         }
     );
 });

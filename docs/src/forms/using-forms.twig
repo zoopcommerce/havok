@@ -1,0 +1,75 @@
+<h1>Using Forms</h1>
+
+<h2>Form widgets</h2>
+
+<p>Havok provides a wide range of enhanced form elements for the input and validation of data. They can be used stand alone. However, use inside a form provides powerful data binding functions.</p>
+
+<h2>Data binding</h2>
+
+<p>Any havok form widges with a <code>name</code> attribute and wrapped in a <code>f-form</code> will automatically data bind. Eg: </p>
+
+<div class="bs-docs-example">
+    <d-formspy class="form-horizontal">
+        <f-form>
+            <f-textbox name="name" label="Name" validator="Alpha" value="asdf"></f-textbox>
+            <f-email name="email" label="Email" help-messages="please enter you email" value="example@example.com"></f-email>
+            <f-date name="date" label="Date" help-messages="please select a date"></f-date>
+        </f-form>
+    </d-formspy>
+</div>
+<pre class="prettyprint linenums">
+{% set formExample1 %}
+<f-form>
+    <f-textbox name="name" label="Name" validator="Alpha" value="asdf"></f-textbox>
+    <f-email name="email" label="Email" help-messages="please enter you email" value="example@example.com"></f-email>
+    <f-date name="date" label="Date" help-messages="please select a date"></f-date>
+</f-form>{% endset %}{{formExample1|e}}
+</pre>
+
+<p>The value of all the contained widgets can be set and retrieved through the form's value property. Use:</p>
+
+<ul>
+    <li><code>myform.set('value', valueObj)</code> to set a form's value.</li>
+    <li><code>myform.get('value')</code> to get a form's value.</li>
+    <li><code>myform.watch('value', function)</code> to watch a form's value.</li>
+</ul>
+
+<h2>Form state</h2>
+
+<p>The state reflects the state of the contained widgets. If the state is an empty string, the state is good. If the state is something else, the form is not valid. Use:</p>
+
+<ul>
+    <li><code>myform.set('state', valueObj)</code> to set a form's state.</li>
+    <li><code>myform.get('state')</code> to get a form's state.</li>
+    <li><code>myform.watch('state', function)</code> to watch a form's state.</li>
+</ul>
+<!--
+<h3>Modals</h3>
+
+<p>Modals behave like forms by default. Eg:</p>
+
+<div class="bs-docs-example">
+    <script>
+        require(['dojo/dom', 'dojo/on', 'dijit/registry', 'dojo/domReady!'], function(dom, on, registry){
+            on(dom.byId('formModalButton1'), 'click', function(){
+                registry.byId('formModal1').show();
+            })
+        })
+        </script>
+        <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
+            <button class="btn" id="formModalButton1">Show modal</button>
+            <div id="formModal1" data-dojo-type="havok/widget/Modal" title="Form Modal">
+                <input data-dojo-type="havok/form/TextBox"
+                       name="writesomething"
+                       data-dojo-props="label: 'Write something'"
+                       value = "value1"
+                       />
+                <input data-dojo-type="havok/form/TextBox"
+                       name="somethingelse"
+                       data-dojo-props="label: 'Something else'"
+                       value = "value2"
+                       />
+            </div>
+        </div>
+    </div>
+-->

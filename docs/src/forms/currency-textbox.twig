@@ -1,36 +1,36 @@
 <h1>Currency Textbox</h1>
 
-<p><code>f-currency-textbox</code> will create a <a href="/api/havok/form/CurrencyTextBox.html">havok/form/CurrencyTextBox</code> which extends <a href="/api/havok/form/NumberTextBox.html">havok/form/NumberTextbox</a> and <a href="/api/havok/form/_ValidationMixin">havok/form/_ValidationMixin</a> to add localized currency formatting.</p>
+<p><code>f-currency</code> will create a <a href="/api/havok/form/Currency.html">havok/form/Currency</code> which extends <a href="/api/havok/form/Number.html">havok/form/Number</a> and <a href="/api/havok/form/_ValidationMixin">havok/form/_ValidationMixin</a> to add localized currency formatting.</p>
 
 <h2>Example</h2>
 <div class="bs-docs-example">
     <d-formspy class="form-horizontal">
-        <f-currency-textbox label="Cost"></f-currency-textbox>
+        <f-currency label="Cost"></f-currency>
     </d-formspy>
 </div>
 
 <pre class="prettyprint linenums">
-{% set currencyTextboxExample1 %}
-<f-currency-textbox label="Cost"></f-currency-textbox>{% endset %}{{currencyTextboxExample1|e}}
+{% set currencyExample1 %}
+<f-currency label="Cost"></f-currency>{% endset %}{{currencyExample1|e}}
 </pre>
 
 <h3>Currency Box with preset float value</h3>
 <div class="bs-docs-example">
     <d-formspy class="form-horizontal">
-        <f-currency-textbox label="Cost" value=2.2></f-currency-textbox>
+        <f-currency label="Cost" value=2.2></f-currency>
     </d-formspy>
 </div>
 
 <h3>Currency Box with preset string value</h3>
 <div class="bs-docs-example">
     <d-formspy class="form-horizontal">
-        <f-currency-textbox label="Cost" value="2.2"></f-currency-textbox>
+        <f-currency label="Cost" value="2.2"></f-currency>
     </d-formspy>
 </div>
 
 <h3>Currency Box with negative value</h3>
 <div class="bs-docs-example">
     <d-formspy class="form-horizontal">
-        <f-currency-textbox label="Cost" value="-100"></f-currency-textbox>
+        <f-currency label="Cost" value="-100"></f-currency>
     </d-formspy>
 </div>

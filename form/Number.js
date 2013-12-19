@@ -1,18 +1,18 @@
 define([
     'dojo/_base/declare',
     './TextBox',
-    './_NumberTextBoxMixin'
+    './_NumberMixin'
 ],
 function (
     declare,
     TextBox,
-    NumberTextBoxMixin
+    NumberMixin
 ){
     // module:
-    //    	havok/form/NumberTextBox
+    //    	havok/form/Number
 
     return declare(
-        [TextBox, NumberTextBoxMixin],
+        [TextBox, NumberMixin],
         {
             // summary:
             //      A textbox with localised number formatting.
