@@ -1,18 +1,20 @@
 define([
     'dojo/_base/declare',
-    './ValidationTextBox',
+    './TextBox',
+    './_ValidationMixin',
     'mystique/Required',
     'mystique/Email'
 ],
 function (
     declare,
-    ValidationTextBox
+    TextBox,
+    ValidationMixin
 ){
     // module:
     //		havok/form/EmailTextBox
 
     return declare(
-        [ValidationTextBox],
+        [TextBox, ValidationMixin],
         {
             // summary:
             //      A textbox for email input.

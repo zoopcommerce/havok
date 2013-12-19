@@ -1,7 +1,7 @@
 define([
     'dojo/_base/declare',
     'dojo/_base/lang',
-    './ValidationTextBox',
+    './TextBox',
     '../widget/_WidgetsInTemplateMixin',
     './_DropdownMixin',
     '../widget/_StoreMixin',
@@ -12,14 +12,14 @@ define([
 function (
     declare,
     lang,
-    ValidationTextBox,
+    TextBox,
     WidgetsInTemplateMixin,
     DropdownMixin,
     StoreMixin,
     template
 ){
     return declare(
-        [ValidationTextBox, WidgetsInTemplateMixin, DropdownMixin, StoreMixin],
+        [TextBox, WidgetsInTemplateMixin, DropdownMixin, StoreMixin],
         {
             templateString: template,
 

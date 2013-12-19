@@ -78,30 +78,30 @@
 <h2>Validation text area</h2>
 <div class="bs-docs-example">
     <d-formspy class="form-horizontal">
-        <f-validation-textarea label="About" validator='{"base": "Length", "params": {"min": 10, "max": 50}}'>Too long. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</f-validation-textarea>
+        <f-textarea label="About" validator='{"base": "Length", "params": {"min": 10, "max": 50}}'>Too long. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</f-textarea>
     </d-formspy>
 </div>
 
 <pre class="prettyprint linenums">
 {% set textareaExample6 %}
-<f-validation-textarea label="About" validator='{"base": "Length", "params": {"min": 10, "max": 50}}'>
+<f-textarea label="About" validator='{"base": "Length", "params": {"min": 10, "max": 50}}'>
     Too long. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.
-</f-validation-textarea>{% endset %}{{textareaExample6|e}}
+</f-textarea>{% endset %}{{textareaExample6|e}}
 </pre>
 
 
 <h2>Expanding text area</h2>
 
-<p>Mixin <code>expand</code> to make a text area expand to match the length of it's content.</p>
+<p>Attribute <code>expand</code> to make a text area expand to match the length of it's content.</p>
 <div class="bs-docs-example">
     <d-formspy class="form-horizontal">
-        <f-textarea label="About" mixins="expand" help-messages="this will expand to fit">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</f-textarea>
+        <f-textarea label="About" expand help-messages="this will expand to fit">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</f-textarea>
     </d-formspy>
 </div>
 
 <pre class="prettyprint linenums">
 {% set textareaExample6 %}
-<f-textarea label="About" mixins="expand" help-messages="this will expand to fit">
+<f-textarea label="About" expand help-messages="this will expand to fit">
     Lorem ipsum dolor ...
 </f-textarea>{% endset %}{{textareaExample6|e}}
 </pre>

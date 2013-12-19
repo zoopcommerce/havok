@@ -42,11 +42,10 @@ function(){
                 'f-select'             : '../form/Select',
                 'f-textarea'           : '../form/Textarea',
                 'f-textbox'            : '../form/TextBox',
+                'f-text-editor'        : '../form/TextEditor',
                 'f-toggle-button'      : '../form/ToggleButton',
                 'f-typeahead'          : '../form/Typeahead',
                 'f-validation-group'   : '../form/ValidationGroup',
-                'f-validation-textarea': '../form/ValidationTextarea',
-                'f-validation-textbox' : '../form/ValidationTextBox',
 
                 'w-accordion'          : '../widget/Accordion',
                 'w-affix'              : '../widget/Affix',
@@ -83,9 +82,11 @@ function(){
 
                 'affix'     : '../widget/_AffixMixin',
                 'hotkey'    : '../widget/_HotkeyMixin',
+                'required'  : '../form/_ValidationMixin',
                 'scrollspy' : '../widget/_ScrollSpyMixin',
                 'sortable'  : '../widget/_SortableMixin',
-                'store'     : '../widget/_StoreMixin'
+                'store'     : '../widget/_StoreMixin',
+                'validator' : '../form/_ValidationMixin'
             }
         }
     }

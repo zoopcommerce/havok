@@ -1,18 +1,20 @@
 define([
     'dojo/_base/declare',
-    './ValidationTextBox',
+    './TextBox',
+    './_ValidationMixin',
     '../filter/HexColor',
     'mystique/HexColor'
 ],
 function (
     declare,
-    ValidationTextBox
+    TextBox,
+    ValidationMixin
 ){
     // module:
     //		havok/form/HexColor
 
     return declare(
-        [ValidationTextBox],
+        [TextBox, ValidationMixin],
         {
             // summary:
             //      A textbox for RGB color code input.

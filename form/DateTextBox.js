@@ -3,7 +3,8 @@ define([
     'dojo/_base/lang',
     'dojo/date/locale',
     '../is',
-    './ValidationTextBox',
+    './TextBox',
+    './_ValidationMixin',
     '../widget/_WidgetsInTemplateMixin',
     'dojo/text!./template/DateTextBox.html',
     '../widget/DateDropdown',
@@ -15,7 +16,8 @@ function (
     lang,
     dateLocale,
     is,
-    ValidationTextBox,
+    TextBox,
+    ValidationMixin,
     WidgetsInTemplateMixin,
     template
 ){
@@ -23,7 +25,7 @@ function (
     //		havok/form/DateTextBox
 
     return declare(
-        [ValidationTextBox, WidgetsInTemplateMixin],
+        [TextBox, ValidationMixin, WidgetsInTemplateMixin],
         {
             // summary:
             //      A textbox for date input.

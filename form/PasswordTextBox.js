@@ -1,18 +1,20 @@
 define([
     'dojo/_base/declare',
-    './ValidationTextBox',
+    './TextBox',
+    './_ValidationMixin',
     'mystique/Required',
     'mystique/Password'
 ],
 function (
     declare,
-    ValidationTextBox
+    TextBox,
+    ValidationMixin
 ){
     // module:
     //		havok/form/PasswordTextBox
 
     return declare(
-        [ValidationTextBox],
+        [TextBox, ValidationMixin],
         {
             // summary:
             //      A textbox for imputting a password.

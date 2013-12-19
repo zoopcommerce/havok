@@ -1,17 +1,17 @@
 <h1>Validation Textbox</h1>
 
-<p><code>f-validation-textbox</code> uses <a href="/api/havok/form/ValidationTextbox.html">havok/form/ValidationTextbox</s> to extend <a href="/api/havok/form/Textbox.html">havok/form/Textbox</a> to add validation ability.</p>
+<p>Use the <code>validator</code> attribute to add validation.</p>
 
 <h2>Example</h2>
 <div class="bs-docs-example">
     <d-formspy class="form-horizontal">
-        <f-validation-textbox validator="Alpha" value="asdf123"></f-validation-textbox>
+        <f-textbox validator="Alpha" value="asdf123"></f-textbox>
     </d-formspy>
 </div>
 
 <pre class="prettyprint linenums">
 {% set validationTextboxExample1 %}
-<f-validation-textbox validator="Alpha" value="asdf123"></f-validation-textbox>{% endset %}{{validationTextboxExample1|e}}
+<f-textbox validator="Alpha" value="asdf123"></f-textbox>{% endset %}{{validationTextboxExample1|e}}
 </pre>
 
 <h2>Specifying the Validator</h2>
@@ -21,26 +21,26 @@
 <h4>Create a validator with constructor options:</h4>
 <div class="bs-docs-example">
     <d-formspy class="form-horizontal">
-        <f-validation-textbox validator='{"base": "Length", "params": {"min": 5, "max": 10}}' value="123"></f-validation-textbox>
+        <f-textbox validator='{"base": "Length", "params": {"min": 5, "max": 10}}' value="123"></f-textbox>
     </d-formspy>
 </div>
 
 <pre class="prettyprint linenums">
 {% set validationTextboxExample2 %}
-<f-validation-textbox validator='{"base": "Length", "params": {"min": 5, "max": 10}}' value="123"></f-validation-textbox>{% endset %}{{validationTextboxExample2|e}}
+<f-textbox validator='{"base": "Length", "params": {"min": 5, "max": 10}}' value="123"></f-textbox>{% endset %}{{validationTextboxExample2|e}}
 </pre>
 
 
 <h2>Validator chains</h2>
 <div class="bs-docs-example">
     <d-formspy class="form-horizontal">
-        <f-validation-textbox validator='["Alpha", {"base": "Length", "params": {"min": 5, "max": 10}}]' value="123"></f-validation-textbox>
+        <f-textbox validator='["Alpha", {"base": "Length", "params": {"min": 5, "max": 10}}]' value="123"></f-textbox>
     </d-formspy>
 </div>
 
 <pre class="prettyprint linenums">
 {% set validationTextboxExample3 %}
-<f-validation-textbox validator='["Alpha", {"base": "Length", "params": {"min": 5, "max": 10}}]' value="123"></f-validation-textbox>{% endset %}{{validationTextboxExample3|e}}
+<f-textbox validator='["Alpha", {"base": "Length", "params": {"min": 5, "max": 10}}]' value="123"></f-textbox>{% endset %}{{validationTextboxExample3|e}}
 </pre>
 
 <h2>Required and NotRequired Validators</h2>
@@ -49,12 +49,12 @@
 
 <div class="bs-docs-example">
     <d-formspy class="form-horizontal">
-        <f-validation-textbox required></f-validation-textbox>
+        <f-textbox required></f-textbox>
     </d-formspy>
 </div>
 <pre class="prettyprint linenums">
 {% set validationTextboxExample4 %}
-<f-validation-textbox required></f-validation-textbox>{% endset %}{{validationTextboxExample4|e}}
+<f-textbox required></f-textbox>{% endset %}{{validationTextboxExample4|e}}
 </pre>
 
 <h2>validationStyle</h2>
@@ -62,7 +62,7 @@
 
 <div class="bs-docs-example">
     <d-formspy class="form-horizontal">
-        <f-validation-textbox
+        <f-textbox
             validator="Alpha"
             validation-style='{
                 "preActivity": {
@@ -75,13 +75,13 @@
                 }
             }'
             value = "asdf123"
-        ></f-validation-textbox>
+        ></f-textbox>
     </d-formspy>
 </div>
 
 <pre class="prettyprint linenums">
 {% set validationTextboxExample5 %}
-<f-validation-textbox
+<f-textbox
     validator="Alpha"
     validation-style='{
         "preActivity": {
@@ -94,7 +94,7 @@
         }
     }'
     value = "asdf123"
-></f-validation-textbox>{% endset %}{{validationTextboxExample5|e}}
+></f-textbox>{% endset %}{{validationTextboxExample5|e}}
 </pre>
 
 <h2>post-activity</h2>
@@ -102,13 +102,13 @@
 
 <div class="bs-docs-example">
     <d-formspy class="form-horizontal">
-        <f-validation-textbox validator="Alpha" post-activity value="asdf123"></f-validation-textbox>
+        <f-textbox validator="Alpha" post-activity value="asdf123"></f-textbox>
     </d-formspy>
 </div>
 
 <pre class="prettyprint linenums">
 {% set validationTextboxExample6 %}
-<f-validation-textbox validator="Alpha" post-activity value="asdf123"></f-validation-textbox>{% endset %}{{validationTextboxExample6|e}}
+<f-textbox validator="Alpha" post-activity value="asdf123"></f-textbox>{% endset %}{{validationTextboxExample6|e}}
 </pre>
 
 <h2>delay</h2>
@@ -116,13 +116,13 @@
 
 <div class="bs-docs-example">
     <d-formspy class="form-horizontal">
-        <f-validation-textbox validator="Alpha" delay=2000 value="asdf123"></f-validation-textbox>
+        <f-textbox validator="Alpha" delay=2000 value="asdf123"></f-textbox>
     </d-formspy>
 </div>
 
 <pre class="prettyprint linenums">
 {% set validationTextboxExample7 %}
-<f-validation-textbox validator="Alpha" delay=2000 value="asdf123"></f-validation-textbox>{% endset %}{{validationTextboxExample7|e}}
+<f-textbox validator="Alpha" delay=2000 value="asdf123"></f-textbox>{% endset %}{{validationTextboxExample7|e}}
 </pre>
 
 <h2>suppress-validation</h2>
@@ -130,13 +130,13 @@
 
 <div class="bs-docs-example">
     <d-formspy class="form-horizontal">
-        <f-validation-textbox validator="Alpha" suppress-validation value="asdf123"></f-validation-textbox>
+        <f-textbox validator="Alpha" suppress-validation value="asdf123"></f-textbox>
     </d-formspy>
 </div>
 
 <pre class="prettyprint linenums">
 {% set validationTextboxExample8 %}
-<f-validation-textbox validator="Alpha" suppress-validation value="asdf123"></f-validation-textbox>{% endset %}{{validationTextboxExample8|e}}
+<f-textbox validator="Alpha" suppress-validation value="asdf123"></f-textbox>{% endset %}{{validationTextboxExample8|e}}
 </pre>
 
 <h2>suppress-validation-messages</h2>
@@ -144,19 +144,19 @@
 
 <div class="bs-docs-example">
     <d-formspy class="form-horizontal">
-        <f-validation-textbox
+        <f-textbox
             validator="Alpha"
             suppress-validation-messages='{"preActivity": false, "postActivity": true}'
             value="asdf123"
-        ></f-validation-textbox>
+        ></f-textbox>
     </d-formspy>
 </div>
 
 <pre class="prettyprint linenums">
 {% set validationTextboxExample9 %}
-<f-validation-textbox
+<f-textbox
     validator="Alpha"
     suppress-validation-messages='{"preActivity": false, "postActivity": true}'
     value="asdf123"
-></f-validation-textbox>{% endset %}{{validationTextboxExample9|e}}
+></f-textbox>{% endset %}{{validationTextboxExample9|e}}
 </pre>

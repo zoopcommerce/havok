@@ -5,7 +5,6 @@ define([
     '../widget/TextEditor',
     './_FormWidgetMixin',
     './_FilterMixin',
-    './_ValidationMixin',
     '../less!./less/texteditor.less',
     '../filter/CleanHTML'
 ],
@@ -14,12 +13,11 @@ function (
     lang,
     when,
     TextEditor,
-    ValidationMixin,
     FormWidgetMixin,
     FilterMixin
 ){
     return declare(
-        [TextEditor, FormWidgetMixin, FilterMixin, ValidationMixin],
+        [TextEditor, FormWidgetMixin, FilterMixin],
         {
 
             // Apply CleanHTML filter by default
