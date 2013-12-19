@@ -26,7 +26,7 @@ function (
     return declare([DropdownBase, WidgetsInTemplateMixin],
         {
 
-            value: '#CCCCCC',
+            //value: undefined,
 
             templateString: template,
 

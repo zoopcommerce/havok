@@ -28,12 +28,14 @@ function(){
         parser: {
             tags: {
                 'f-checkbox'           : '../form/Checkbox',
+                'f-checkbox-group'     : '../form/CheckboxGroup',
+                'f-color-picker'       : '../form/ColorPicker',
                 'f-credit-card-expiry' : '../form/CreditCardExpiry',
                 'f-currency-textbox'   : '../form/CurrencyTextBox',
                 'f-date-textbox'       : '../form/DateTextBox',
                 'f-email-textbox'      : '../form/EmailTextBox',
                 'f-form'               : '../form/Form',
-                'f-checkbox-group'     : '../form/CheckboxGroup',
+                'f-hex-color'          : '../form/HexColor',
                 'f-number-textbox'     : '../form/NumberTextBox',
                 'f-password-textbox'   : '../form/PasswordTextBox',
                 'f-radio-group'        : '../form/RadioGroup',
