@@ -26,13 +26,14 @@ function (
 
             buildRendering: function(){
 
-                var helpMessagesNode,
-                    i,
-                    helpMessages = [];
+                var i,
+                    helpMessages = [],
+                    node;
 
-                if (this.srcNodeRef && (helpMessagesNode = this.srcNodeRef.querySelector('[data-dojo-attach-point=helpMessages]'))){
-                    for (i = 0; i < helpMessagesNode.children.lenght; i++) {
-                        helpMessages.push(helpMessagesNode.children[i].innerHTML);
+                for (i = 0; i < this.srcNodeRef.children.length; i++){
+                    node = this.srcNodeRef.children[i];
+                    if (node.hasAttribute('help-message')){
+                        helpMessages.push(node.innerHTML)
                     }
                 }
 
@@ -43,6 +44,7 @@ function (
 
             _setHelpMessagesAttr: function(/*String|String[]*/messages) {
 
+                if (typeof messages == 'string' && messages.substring(0,1) == '[') messages = JSON.parse(messages);
                 if (typeof messages == 'string') messages = [messages];
 
                 this._helpMessageObjects = this.updateMessages(

@@ -29,35 +29,6 @@
 <f-textbox placeholder="Enter your name"></f-textbox>{% endset %}{{textboxExample2|e}}
 </pre>
 
-<h2>Labels</h2>
-<h4>Using attributes</h4>
-<p>Simple and clean</p>
-<div class="bs-docs-example" class="form-horizontal">
-    <div class="form-horizontal">
-        <f-textbox label="name" placeholder="Enter your name"></f-textbox>
-    </div>
-</div>
-<pre class="prettyprint linenums">
-{% set textboxExample3 %}
-<f-textbox label="name" placeholder="Enter your name"></f-textbox>{% endset %}{{textboxExample3|e}}
-</pre>
-
-<h4>Set using tags</h4>
-<p>Allows greater control over style.</p>
-<div class="bs-docs-example" class="form-horizontal">
-    <div class="form-horizontal">
-        <f-textbox placeholder="Enter your name">
-            <label><em>name</em></label>
-        </f-textbox>
-    </div>
-</div>
-<pre class="prettyprint linenums">
-{% set textboxExample4 %}
-<f-textbox placeholder="Enter your name">
-    <label><em>name</em></label>
-</f-textbox>{% endset %}{{textboxExample4|e}}
-</pre>
-
 <h2>Filters</h2>
 
 <p>Filters can be applied value displayed in the textbox. For more information about filters, see the filters section of the Data Quality documentation.</p>
@@ -96,13 +67,13 @@
 <p>Simple and clean</p>
 <div class="bs-docs-example">
     <div class="form-horizontal">
-        <f-textbox lable="name" prepend="pre" append='["app1", "app2"]'></f-textbox>
+        <f-textbox label="name" prepend="pre" append='["app1", "app2"]'></f-textbox>
     </div>
 </div>
 
 <pre class="prettyprint linenums">
 {% set textboxExample7 %}
-<f-textbox lable="name" prepend="pre" append='["app1", "app2"]'></f-textbox>{% endset %}{{textboxExample7|e}}
+<f-textbox label="name" prepend="pre" append='["app1", "app2"]'></f-textbox>{% endset %}{{textboxExample7|e}}
 </pre>
 
 <h4>Set using tags</h4>

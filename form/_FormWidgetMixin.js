@@ -39,7 +39,7 @@ function (
             blockTemplate: '<div class="control-group"><div class="controls" data-dojo-attach-point="inputContainer">${input}<span data-dojo-attach-point="messagesNode"></span></div></div>',
 
             buildRendering: function(){
-                if (this.inline){
+                if (this.inline || this.inline===''){
                     this.templateString = this.inlineTemplate.replace('${input}', this.templateString);
                 } else {
                     this.templateString = this.blockTemplate.replace('${input}', this.templateString);

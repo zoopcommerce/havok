@@ -49,6 +49,11 @@ function (
                 return value;
             },
 
+            _setRequiredStarAttr: function(value){
+                if (value === '') value = true;
+                this._set('requiredStar', value);
+            },
+
             buildRendering: function(){
 
                 var required;

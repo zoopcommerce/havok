@@ -3,15 +3,13 @@ define([
     'dojo/_base/lang',
     'dojo/dom-construct',
     'dojo/dom-class',
-    'dijit/registry',
     '../less!./less/appendage.less'
 ],
 function (
     declare,
     lang,
     domConstruct,
-    domClass,
-    registry
+    domClass
 ){
     // module:
     //    	havok/form/_AppendageMixin
@@ -42,17 +40,12 @@ function (
 
                     var i,
                         node,
-                        widget,
                         prepend = [],
                         append = [];
 
                     for (i = 0; i < this.srcNodeRef.children.length; i++){
                         node = this.srcNodeRef.children[i];
-                        if (node.getAttribute('widgetId')){
-                            widget = registry.getEnclosingWidget(node);
-                            if (widget.append == '') append.unshift(node);
-                            if (widget.prepend == '') prepend.unshift(node);
-                        } else if (node.hasAttribute('append')){
+                        if (node.hasAttribute('append')){
                             append.unshift(node);
                         } else if (node.hasAttribute('prepend')){
                             prepend.unshift(node);

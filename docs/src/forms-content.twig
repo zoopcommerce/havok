@@ -4,11 +4,8 @@
 {% set byline='Dozens of reusable input widgets to prompt and validate all sorts of data.' %}
 
 {% block mainContent %}
-<!--//        
-//        include 'forms/using-form-widgets.php';
--->
     <section id="using-forms" title="Using Forms"><div class="well">{% include 'forms/using-forms.twig' %}</div></section>
-
+    <section id="using-form-widgets" title="Using Form Widgets"><div class="well">{% include 'forms/using-form-widgets.twig' %}</div></section>
     <section id="textbox" title="Textbox"><div class="well">{% include 'forms/textbox.twig' %}</div></section>
     <section id="validation-textbox" title="Validation Textbox"><div class="well">{% include 'forms/validation-textbox.twig' %}</div></section>
     <section id="number" title="Number Textbox"><div class="well">{% include 'forms/number-textbox.twig' %}</div></section>
@@ -24,6 +21,5 @@
     <section id="color" title="Color"><div class="well">{% include 'forms/color.twig' %}</div></section>
     <section id="validation-group" title="Validation Group"><div class="well">{% include 'forms/validation-group.twig' %}</div></section>
     <section id="credit-card-expiry" title="Credit Card Expiry"><div class="well">{% include 'forms/credit-card-expiry.twig' %}</div></section>
-
 {% endblock %}
 
