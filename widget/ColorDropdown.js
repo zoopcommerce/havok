@@ -1,7 +1,6 @@
 define([
     'dojo/_base/declare',
     'dojo/_base/lang',
-    'dojo/dom-style',
     'dojo/dom-geometry',
     'dijit/focus',
     './Color',
@@ -15,7 +14,6 @@ define([
 function (
     declare,
     lang,
-    domStyle,
     domGeom,
     focus,
     Color,
@@ -23,16 +21,28 @@ function (
     WidgetsInTemplateMixin,
     template
 ){
+    // module:
+    //    	havok/widget/ColorDropdown
+
     return declare([DropdownBase, WidgetsInTemplateMixin],
         {
+            // summary:
+            //      A dropdown for selecting an RGB color value.
 
-            //value: undefined,
+            /*=====
+            // value: String
+            //     The currently selected color as a string
+            value: undefined,
+            =====*/
 
+            // templateString: template
             templateString: template,
 
-            hidden: true,
-
-            //color: undefined,
+            /*=====
+            // color: Object
+            //     The currently selected color as an object
+            color: undefined,
+            =====*/
 
             startup: function(){
 
@@ -117,28 +127,10 @@ function (
                     this.hex.set('value', value);
                 }
 
-                domStyle.set(
-                    this.box,
-                    'backgroundColor',
-                    Color.fromHsv(hsv.h, 100, 100).toHex()
-                );
-
-                domStyle.set(
-                    this.hueHandle.domNode,
-                    'top',
-                    (this.hue.offsetHeight * (1 - hsv.h / 359)) + 'px'
-                );
-
-                domStyle.set(
-                    this.boxHandle.domNode,
-                    'left',
-                    (this.box.offsetWidth * (hsv.s / 100)) + 'px'
-                );
-                domStyle.set(
-                    this.boxHandle.domNode,
-                    'top',
-                    (this.box.offsetHeight * (1 - hsv.v / 100)) + 'px'
-                );
+                this.box.style.backgroundColor = Color.fromHsv(hsv.h, 100, 100).toHex();
+                this.hueHandle.domNode.style.top = (this.hue.offsetHeight * (1 - hsv.h / 359)) + 'px';
+                this.boxHandle.domNode.style.left = (this.box.offsetWidth * (hsv.s / 100)) + 'px';
+                this.boxHandle.domNode.style.top = (this.box.offsetHeight * (1 - hsv.v / 100)) + 'px';
             }
         }
     );

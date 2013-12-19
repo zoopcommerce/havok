@@ -1,7 +1,6 @@
 define([
     'dojo/_base/declare',
     'dojo/_base/lang',
-    'dijit/focus',
     '../widget/_WidgetBase',
     '../widget/_WidgetsInTemplateMixin',
     './_FormWidgetMixin',
@@ -12,17 +11,20 @@ define([
 function (
     declare,
     lang,
-    focus,
     WidgetBase,
     WidgetsInTemplateMixin,
     FormWidgetMixin,
     template
 ){
+    // module:
+    //    	havok/widget/ColorPicker
+
     return declare([WidgetBase, WidgetsInTemplateMixin, FormWidgetMixin],
         {
+            // summary:
+            //      A form input that selects an RGB color value
 
-            //value: undefined,
-
+            // templateString: template
             templateString: template,
 
             startup: function(){

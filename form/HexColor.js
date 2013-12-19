@@ -23,6 +23,8 @@ function (
 
             validator: 'HexColor',
 
+            delay: 50,
+
             blurFormat: function(value){
                 //remove leading hash
                 if (value[0] == '#'){
