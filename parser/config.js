@@ -61,6 +61,7 @@ function(){
                 'w-checkbox-group'     : '../widget/CheckboxGroup',
                 'w-hotkey-button'      : '../widget/HotkeyButton',
                 'w-modal'              : '../widget/Modal',
+                'w-movable'            : '../widget/Movable',
                 'w-nav-bar'            : '../widget/NavBar',
                 'w-nav-bar-links'      : '../widget/NavBarLinks',
                 'w-nav-list'           : '../widget/NavList',

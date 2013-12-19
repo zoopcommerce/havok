@@ -38,26 +38,18 @@ function (
             dragging: undefined,
             =====*/
 
-            buildRendering: function(){
-
-                this.inherited(arguments);
-
-                if (!this.domNode.getAttribute('data-dojo-type') && this.contextRequire) this.domNode.setAttribute('data-dojo-type', this.contextRequire.module.mid);
-                this.domNode.setAttribute('data-havok-rendered', 'true');
-            },
-
             startup: function(){
 
                 this.inherited(arguments);
 
-                var grip = this.domNode.querySelector('[data-havok-dragable-grip]');
+                var grip = this.domNode.querySelector('[data-havok-grip]');
                 if (grip && registry.getEnclosingWidget(grip) === this){
                     this.grip = grip;
                 } else {
                     this.grip = this.domNode;
                 }
-
                 domClass.add(this.grip, 'grip');
+
                 this.events = [
                     on(this.domNode, 'dragstart', lang.hitch(this, this._dragstart)),
                     on(this.domNode, 'dragend', lang.hitch(this, this._dragend))

@@ -3,7 +3,7 @@
 <p class="lead">Add drag and drop to dom nodes and list widgets.</p>
 
 <h2>Dragable</h2>
-<p>Use the <code>dragable</code> tag to create a <a href="/api/havok/dnd/Dragable">havok/dnd/Dragable</a> to make an element dragable.</p>
+<p>Use the <code>w-dragable</code> tag to create a <a href="/api/havok/widget/Dragable">havok/widget/Dragable</a> to make an element dragable.</p>
 
 <div class="bs-docs-example">
     <w-dragable class="label label-info">Drag me!</w-dragable>
@@ -14,15 +14,65 @@
 <w-dragable class="label label-info">Drag me!</w-dragable>{% endset %}{{dragExample1|e}}
 </pre>
 
-<h3>Drag with Grip</h3>
-<p>Add a <code>data-havok-dragable-grip</code> to indicate a drag grip.</p>
+<h4>Drag with Grip</h4>
+<p>Add a <code>data-havok-grip</code> to indicate a drag grip.</p>
 <div class="bs-docs-example">
-    <w-dragable class="label label-info">Drag me! <i class="icon-move icon-white" data-havok-dragable-grip></i></w-dragable>
+    <w-dragable class="label label-info">Drag me! <i class="icon-move icon-white" data-havok-grip></i></w-dragable>
 </div>
 
 <pre class="prettyprint linenums">
 {% set dragExample2 %}
-<w-dragable class="label label-info">Drag me! <i class="icon-move icon-white" data-havok-dragable-grip></i></w-dragable>{% endset %}{{dragExample2|e}}
+<w-dragable class="label label-info">Drag me! <i class="icon-move icon-white" data-havok-grip></i></w-dragable>{% endset %}{{dragExample2|e}}
+</pre>
+
+<hr class="bs-docs-separator">
+
+<h2>Movable</h2>
+
+<p>Use the <code>w-movable</code> tag to create a <a href="/api/havok/widget/Movable">havok/widget/Movable</a> to make an element move and stay when drag is complete.</p>
+
+<div class="bs-docs-example">
+    <div class=well style="width: 200px; height: 200px">
+        <w-movable class="label label-info">Move me!</w-movable>
+    </div>
+</div>
+
+<pre class="prettyprint linenums">
+{% set dragExample3 %}
+<div class=well style="width: 200px; height: 200px">
+    <w-movable class="label label-info">Move me!</w-movable>
+</div>{% endset %}{{dragExample3|e}}
+</pre>
+
+<h4>Move with Grip</h4>
+<p>Add a <code>data-havok-grip</code> to indicate a move grip.</p>
+<div class="bs-docs-example">
+    <div class=well style="width: 200px; height: 200px">
+        <w-movable class="label label-info">Drag me! <i class="icon-move icon-white" data-havok-grip></i></w-movable>
+    </div>
+</div>
+
+<pre class="prettyprint linenums">
+{% set dragExample4 %}
+<div class=well style="width: 200px; height: 200px">
+    <w-movable class="label label-info">Drag me! <i class="icon-move icon-white" data-havok-grip></i></w-movable>
+</div> {% endset %}{{dragExample4|e}}
+</pre>
+
+<h4>Moving with arrow keys</h4>
+<p>If a moveable has focus, it can be moved with the arrow keys.</p>
+
+<div class="bs-docs-example">
+    <div class=well style="width: 200px; height: 200px;">
+        <w-movable class="label label-info" tabindex=0>Move me!</w-movable>
+    </div>
+</div>
+
+<pre class="prettyprint linenums">
+{% set dragExample5 %}
+<div class=well style="width: 200px; height: 200px;">
+    <w-movable class="label label-info" tabindex=0>Move me!</w-movable>
+</div>{% endset %}{{dragExample5|e}}
 </pre>
 
 <hr class="bs-docs-separator">
@@ -150,5 +200,6 @@
 <p>Api documentation:</p>
 <ul>
     <li><a href="/api/havok/widget/Dragable.html">havok/widget/Dragable</a></li>
+    <li><a href="/api/havok/widget/Movable.html">havok/widget/Movable</a></li>
     <li><a href="/api/havok/widget/_SortableMixin.html">havok/widget/_SortableMixin</a></li>
 </ul>

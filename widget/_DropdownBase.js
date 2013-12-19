@@ -31,8 +31,8 @@ function (
             startup: function(){
                 this.inherited(arguments);
 
-                on(this.containerNode, 'mouseenter', lang.hitch(this, 'onMouseenter'));
-                on(this.containerNode, 'mouseleave', lang.hitch(this, 'onMouseleave'));
+                on(this.domNode, 'mouseenter', lang.hitch(this, 'onMouseenter'));
+                on(this.domNode, 'mouseleave', lang.hitch(this, 'onMouseleave'));
 
                 var i,
                     children = this.getChildren();

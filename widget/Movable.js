@@ -2,16 +2,21 @@ define([
     'dojo/_base/declare',
     'dojo/_base/lang',
     'dojo/keys',
+    'dojo/dom-class',
     'dojo/dom-geometry',
     'dojo/on',
-    'dijit/_WidgetBase'
+    'dijit/registry',
+    './_WidgetBase',
+    '../less!./less/movable.less'
 ],
 function (
     declare,
     lang,
     keys,
+    domClass,
     domGeom,
     on,
+    registry,
     WidgetBase
 ){
     // module:
@@ -20,32 +25,63 @@ function (
     return declare(
         [WidgetBase],
         {
+            // summary:
+            //		Makes a dom node movable
 
-            //moving: false,
+            /*=====
+            // grip: DomNode
+            //      The dom node used as the gripper for moving
+            grip: undefined,
+            =====*/
+
+            /*=====
+            // moving: Boolean
+            //      Is this widget being moved?
+            moving: undefined,
+            =====*/
+
+            /*=====
+            // constraintNode: DomNode
+            //      The dom node used constrain movement
+            constraintNode: undefined,
+            =====*/
+
+            buildRendering: function(){
+                this.inherited(arguments);
+                domClass.add(this.domNode, 'movable');
+            },
 
             startup: function(){
 
                 this.inherited(arguments);
+
+                var grip = this.domNode.querySelector('[data-havok-grip]');
+                if (grip && registry.getEnclosingWidget(grip) === this){
+                    this.grip = grip;
+                } else {
+                    this.grip = this.domNode;
+                }
+                domClass.add(this.grip, 'grip');
 
                 if (!this.constraintNode){
                     this.constraintNode = this.domNode.parentNode;
                 }
 
                 this.events = [
-                    on(this.domNode, 'keypress', lang.hitch(this, 'keypress')),
-                    on(this.domNode, 'mousedown', lang.hitch(this, 'mousedown'))
+                    on(this.grip, 'keypress', lang.hitch(this, 'keypress')),
+                    on(this.grip, 'mousedown', lang.hitch(this, 'mousedown'))
                 ];
             },
 
             setLastPosition: function(){
-                var constraintPos = domGeom.position(this.constraintNode),
-                    nodePos = domGeom.position(this.domNode);
-
-                this._last = {x: nodePos.x - constraintPos.x, y: nodePos.y - constraintPos.y};
+                this._last = {
+                    x: this.domNode.style.left ? this.domNode.style.left.replace('px', '')*1 : 0,
+                    y: this.domNode.style.top ? this.domNode.style.top.replace('px', '')*1 : 0
+                };
 
                 this._constraint = domGeom.getContentBox(this.constraintNode);
-                this._constraint.w = this._constraint.w - nodePos.w;
-                this._constraint.h = this._constraint.h - nodePos.h;
+                this._constraint.w = this._constraint.w - this.domNode.offsetWidth;
+                this._constraint.h = this._constraint.h - this.domNode.offsetHeight;
             },
 
             mousedown: function(e){

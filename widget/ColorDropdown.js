@@ -8,7 +8,9 @@ define([
     '../widget/_DropdownBase',
     './_WidgetsInTemplateMixin',
     'dojo/text!./template/ColorDropdown.html',
-    '../less!./less/colordropdown.less'
+    '../less!./less/colordropdown.less',
+    '../form/HexColor',
+    './Movable'
 ],
 function (
     declare,
