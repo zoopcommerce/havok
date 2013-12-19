@@ -18,6 +18,8 @@ function (
     return declare(
         [Button],
         {
+            // summary:
+            //      Button that can be toggled on or off
 
             startup: function(){
                 this.on(a11yclick.click, lang.hitch(this, 'toggle'));

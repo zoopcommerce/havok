@@ -19,13 +19,23 @@ function (
     return declare(
         [WidgetBase, WidgetsInTemplateMixin],
         {
+            // summary:
+            //      Widget to display tooltips.
+
+            // templateString: String
             templateString: template,
 
-            //_observer: undefined,
+            /*=====
+            // _observer: MutationObserver
+            //      Watches for changes to the text being edited
+            _observer: undefined,
+            =====*/
 
             buildRendering: function(){
                 this.inherited(arguments);
-                this.toolbar.set('target', this.containerNode);
+                this._parseComplete.then(lang.hitch(this, function(){
+                    this.toolbar.set('target', this.containerNode);
+                }));
             },
 
             startup: function(){

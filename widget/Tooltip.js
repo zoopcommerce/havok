@@ -32,6 +32,7 @@ function(
             // summary:
             //      Widget to display tooltips.
 
+            // templateString: String
             templateString: template,
 
             // showOn: String

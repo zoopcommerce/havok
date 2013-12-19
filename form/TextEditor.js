@@ -16,11 +16,15 @@ function (
     FormWidgetMixin,
     FilterMixin
 ){
+    // module:
+    //    	havok/form/TextEditor
+
     return declare(
         [TextEditor, FormWidgetMixin, FilterMixin],
         {
 
-            // Apply CleanHTML filter by default
+            // filter: String|String[]
+            //     Apply CleanHTML filter by default
             filter: 'CleanHTML',
 
             buildRendering: function(){

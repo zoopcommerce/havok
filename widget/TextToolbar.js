@@ -41,15 +41,32 @@ function (
     return declare(
         [WidgetBase, WidgetsInTemplateMixin],
         {
+            // summary:
+            //      Widget to display a text editor toolbar
 
+            // templateString: String
             templateString: template,
 
-            //tooltips: undefined,
+            /*=====
+            // _tooltips: Tooltip[]
+            //      Array of tooltip widgets
+            _tooltips: undefined,
+            =====*/
 
-            //events: undefined,
+            /*=====
+            // _events: Object[]
+            //      Array of event handlers
+            _events: undefined,
+            =====*/
 
-            //target: undefined,
+            /*=====
+            // target: DomNode
+            //      The dom node with text that is edited by this toolbar
+            target: undefined,
+            =====*/
 
+            // _toggleCommands: String[]
+            //      Toolbar commands that use a toggle button
             _toggleCommands: [
                 'bold',
                 'italic',
@@ -63,6 +80,8 @@ function (
                 'justifyfull'
             ],
 
+            // _buttonCommands: String[]
+            //      Toolbar commands that use a button
             _buttonCommands: [
                 'outdent',
                 'indent',
@@ -71,6 +90,8 @@ function (
                 'redo'
             ],
 
+            // _groups: String[]
+            //      Groups that toolbar commands are grouped into
             _groups: [
                 'font',
                 'fontSize',
@@ -83,6 +104,9 @@ function (
                 'viewGroup'
             ],
 
+            // view: String
+            //      Currently active view. Possible values are `wysiwig|source`.
+            //      Defaults to `wysiwig`.
             view: 'wysiwig', // wysiwig | source
 
             buildRendering: function(){
@@ -92,7 +116,7 @@ function (
                     this.target = dom.byId(this.target);
                 }
 
-                this.tooltips = array.map([
+                this._tooltips = array.map([
                     {target: this.font, title: 'Font'},
                     {target: this.fontSize, title: 'Font Size'},
                     {target: this.bold, title: 'Bold (ctrl + b)'},
@@ -122,12 +146,12 @@ function (
 
                 this.inherited(arguments);
 
-                array.forEach(this.tooltips, function(tooltip){tooltip.startup()});
+                array.forEach(this._tooltips, function(tooltip){tooltip.startup()});
 
                 document.execCommand('styleWithCSS', 0, true);
 
                 this._parseComplete.then(lang.hitch(this, function(){
-                    this.events = [
+                    this._events = [
                         on(window, 'resize', lang.hitch(this, function(){
                             this._resize();
                         })),
@@ -154,7 +178,7 @@ function (
                             this.more.hide();
                             this.fontSize.dropdown.store.get(e.item.getAttribute('data-havok-store-id').slice(3)).then(lang.hitch(this, function(data){
                                 this.execCommand('fontSize', data.size);
-                            }))                            
+                            }))
                         })),
                         on(this.createLink, 'click', lang.hitch(this, function(){
                             this.createLinkDropdown.hide();
@@ -187,12 +211,12 @@ function (
                     array.forEach(this._buttonCommands, lang.hitch(this, function(command){
                         this[command].set('keyTarget', this.target);
                         this[command].command = command;
-                        this.events.push(
+                        this._events.push(
                             this[command].on('click', lang.hitch(this, function(){
                                 this.execCommand(command);
                             }))
                         );
-                        this.events.push(
+                        this._events.push(
                             on(this['more' + string.ucFirst(command)], 'click', lang.hitch(this, function(){
                                 this.more.hide();
                                 this.execCommand(command);
@@ -203,12 +227,12 @@ function (
                     array.forEach(this._toggleCommands, lang.hitch(this, function(command){
                         this[command].set('keyTarget', this.target);
                         this[command].command = command;
-                        this.events.push(
+                        this._events.push(
                             this[command].on('click', lang.hitch(this, function(){
                                 this.execCommand(command, this[command].get('active'));
                             }))
                         );
-                        this.events.push(
+                        this._events.push(
                             on(this['more' + string.ucFirst(command)], 'click', lang.hitch(this, function(){
                                 this.more.hide();
                                 this[command].toggle();
@@ -230,10 +254,10 @@ function (
             },
 
             destroy: function(){
-                array.forEach(this.tooltips, function(tooltip){
+                array.forEach(this._tooltips, function(tooltip){
                     tooltip.destroy();
                 })
-                array.forEach(this.events, function(event){
+                array.forEach(this._events, function(event){
                     event.remove();
                 })
                 this.inherited(arguments);
