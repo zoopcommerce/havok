@@ -43,7 +43,7 @@
     <li><code>myform.get('state')</code> to get a form's state.</li>
     <li><code>myform.watch('state', function)</code> to watch a form's state.</li>
 </ul>
-<!--
+
 <h3>Modals</h3>
 
 <p>Modals behave like forms by default. Eg:</p>
@@ -55,21 +55,13 @@
                 registry.byId('formModal1').show();
             })
         })
-        </script>
-        <div data-dojo-type="havok/docs/module/Formspy" class="form-horizontal">
-            <button class="btn" id="formModalButton1">Show modal</button>
-            <div id="formModal1" data-dojo-type="havok/widget/Modal" title="Form Modal">
-                <input data-dojo-type="havok/form/TextBox"
-                       name="writesomething"
-                       data-dojo-props="label: 'Write something'"
-                       value = "value1"
-                       />
-                <input data-dojo-type="havok/form/TextBox"
-                       name="somethingelse"
-                       data-dojo-props="label: 'Something else'"
-                       value = "value2"
-                       />
-            </div>
-        </div>
-    </div>
--->
+    </script>
+    <d-formspy class="form-horizontal">
+        <button class="btn" id="formModalButton1">Show modal</button>
+        <w-modal id="formModal1">
+            <header>Form Modal</header>
+            <f-textbox name="writesomething" label="Write something" value="value1"></f-textbox>
+            <f-textbox name="somethingelse" label="Something else" value="value2"></f-textbox>
+        </w-modal>
+    </d-formspy>
+</div>
