@@ -109,48 +109,44 @@ function (
             //      Defaults to `wysiwig`.
             view: 'wysiwig', // wysiwig | source
 
-            buildRendering: function(){
+            startup: function(){
+
                 this.inherited(arguments);
 
                 if (typeof this.target == 'string'){
                     this.target = dom.byId(this.target);
                 }
 
-                this._tooltips = array.map([
-                    {target: this.font, title: 'Font'},
-                    {target: this.fontSize, title: 'Font Size'},
-                    {target: this.bold, title: 'Bold (ctrl + b)'},
-                    {target: this.italic, title: 'Italic (ctrl + i)'},
-                    {target: this.strikeThrough, title: 'Strikethrough'},
-                    {target: this.underline, title: 'Underline (ctrl + u)'},
-                    {target: this.insertUnorderedList, title: 'Bullet List'},
-                    {target: this.insertOrderedList, title: 'Number List'},
-                    {target: this.outdent, title: 'Reduce Indent (shift + tab)'},
-                    {target: this.indent, title: 'Indent (tab)'},
-                    {target: this.justifyleft, title: 'Align Left (ctrl + l)'},
-                    {target: this.justifycenter, title: 'Center (ctrl + e)'},
-                    {target: this.justifyright, title: 'Align Right (ctrl + r)'},
-                    {target: this.justifyfull, title: 'Justify (ctrl + j)'},
-                    {target: this.createLinkDropdown, title: 'Hyperlink'},
-                    {target: this.unlink, title: 'Remove Hyperlink'},
-                    {target: this.undo, title: 'Undo (ctrl + z)'},
-                    {target: this.redo, title: 'Redo (ctrl + y)'},
-                    {target: this.source, title: 'View source'},
-                    {target: this.more, title: 'More'}
-                ], function(item){
-                    return new Tooltip({target: item.target.domNode, title: item.title});
-                })
-            },
-
-            startup: function(){
-
-                this.inherited(arguments);
-
-                array.forEach(this._tooltips, function(tooltip){tooltip.startup()});
-
                 document.execCommand('styleWithCSS', 0, true);
 
                 this._parseComplete.then(lang.hitch(this, function(){
+
+                    this._tooltips = array.map([
+                        {target: this.font, title: 'Font'},
+                        {target: this.fontSize, title: 'Font Size'},
+                        {target: this.bold, title: 'Bold (ctrl + b)'},
+                        {target: this.italic, title: 'Italic (ctrl + i)'},
+                        {target: this.strikeThrough, title: 'Strikethrough'},
+                        {target: this.underline, title: 'Underline (ctrl + u)'},
+                        {target: this.insertUnorderedList, title: 'Bullet List'},
+                        {target: this.insertOrderedList, title: 'Number List'},
+                        {target: this.outdent, title: 'Reduce Indent (shift + tab)'},
+                        {target: this.indent, title: 'Indent (tab)'},
+                        {target: this.justifyleft, title: 'Align Left (ctrl + l)'},
+                        {target: this.justifycenter, title: 'Center (ctrl + e)'},
+                        {target: this.justifyright, title: 'Align Right (ctrl + r)'},
+                        {target: this.justifyfull, title: 'Justify (ctrl + j)'},
+                        {target: this.createLinkDropdown, title: 'Hyperlink'},
+                        {target: this.unlink, title: 'Remove Hyperlink'},
+                        {target: this.undo, title: 'Undo (ctrl + z)'},
+                        {target: this.redo, title: 'Redo (ctrl + y)'},
+                        {target: this.source, title: 'View source'},
+                        {target: this.more, title: 'More'}
+                    ], function(item){
+                        return new Tooltip({target: item.target.domNode, title: item.title});
+                    })
+                    array.forEach(this._tooltips, function(tooltip){tooltip.startup()});
+
                     this._events = [
                         on(window, 'resize', lang.hitch(this, function(){
                             this._resize();

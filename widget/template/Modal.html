@@ -5,12 +5,13 @@
             <div class="modal">
                 <div class="modal-header">
                     ${!closeButtonTemplate}
-                    <h3 data-dojo-attach-point="header">${!headerTemplate}</h3>
+                    <h3 data-dojo-attach-point="header"></h3>
                 </div>
                 <div data-dojo-attach-point="containerNode" class="modal-body">
                 </div>
                 <div data-dojo-attach-point="footer" class="modal-footer">
-                    ${!footerTemplate}
+                    <w-button type="reset" hotkey="ESCAPE">Close</w-button>
+                    <w-button type="submit" class="btn-primary" hotkey="ENTER">Ok</w-button>
                 </div>
             </div>
         </div>

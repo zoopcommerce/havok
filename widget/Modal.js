@@ -1,5 +1,8 @@
 define([
     'dojo/_base/declare',
+    'dojo/_base/lang',
+    'dojo/_base/array',
+    'dojo/on',
     'dojo/Deferred',
     'dojo/dom-class',
     'dojo/dom-construct',
@@ -9,13 +12,16 @@ define([
     '../form/_FormMixin',
     './_HideableMixin',
     'dojo/text!./template/Modal.html',
-    'dojo/text!./template/ModalFooter.html',
     'dojo/text!./template/CloseButton.html',
     '../less!./less/modals.less',
-    './HotkeyButton'
+    './Button',
+    './_HotkeyMixin'
 ],
 function (
     declare,
+    lang,
+    array,
+    on,
     Deferred,
     domClass,
     domConstruct,
@@ -25,7 +31,6 @@ function (
     FormMixin,
     HideableMixin,
     template,
-    footerTemplate,
     closeButtonTemplate
 ){
     // module:
@@ -43,10 +48,6 @@ function (
             // templateString: string
             templateString: template,
 
-            footerTemplate: footerTemplate,
-
-            headerTemplate: '',
-
             closeButtonTemplate: closeButtonTemplate,
 
             // button: string
@@ -55,20 +56,42 @@ function (
 
             buildRendering: function(){
 
+                var header, footer;
+
                 if (this.srcNodeRef){
-                    var node = this.srcNodeRef.querySelector('header');
-                    if (node){
-                        this.headerTemplate = node.innerHTML;
-                        domConstruct.destroy(node);
-                    }
-                    node = this.srcNodeRef.querySelector('footer');
-                    if (node){
-                        this.footerTemplate = node.innerHTML;
-                        domConstruct.destroy(node);
-                    }
+                    header = this.srcNodeRef.querySelector('header');
+                    footer = this.srcNodeRef.querySelector('footer');
                 }
 
                 this.inherited(arguments);
+
+                if (header) while(header.childNodes.length>0) this.header.appendChild(header.childNodes[0]);
+
+                if (footer){
+                    array.forEach(registry.findWidgets(this.footer), function(widget){widget.destroy()});
+                    this.footer.innerHTML = '';
+                    while(footer.childNodes.length>0) this.footer.appendChild(footer.childNodes[0]);
+                }
+            },
+
+            startup: function(){
+
+                this.inherited(arguments);
+
+                var i,
+                    buttons;
+
+                buttons = this.footer.querySelectorAll('[type=submit]');
+                for(i=0; i<buttons.length; i++) on(buttons[i], 'click', lang.hitch(this, this.onOkClick))
+
+                buttons = this.footer.querySelectorAll('[type=reset]')
+                for(i=0; i<buttons.length; i++) on(buttons[i], 'click', lang.hitch(this, this.onOkClick))
+
+                buttons = registry.findWidgets(this.footer);
+                for(i=0; i<buttons.length; i++){
+                    if (buttons[i].type == 'submit') on(buttons[i], 'click', lang.hitch(this, this.onOkClick));
+                    if (buttons[i].type == 'reset') on(buttons[i], 'click', lang.hitch(this, this.onCancelClick));
+                }
             },
 
             onOkClick: function(e){
@@ -95,17 +118,6 @@ function (
                     e.stopPropagation();
                     this.set('button', 'backdrop');
                     this.hide();
-                }
-            },
-
-            _setTitleAttr: { node: "titleNode", type: "innerHTML" },
-
-            _setContentAttr: function(content){
-                if (content.domNode){
-                    domConstruct.empty(this.containerNode);
-                    this.containerNode.appendChild(content.domNode);
-                } else {
-                    this.containerNode.innerHTML = content;
                 }
             },
 

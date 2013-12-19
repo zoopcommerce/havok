@@ -5,12 +5,12 @@
 <p>Use the <code>w-tooltip</code> tag to create a <a href="/api/havok/widget/Tooltip.html">havok/widget/Tooltip</a>. Use the <code>title</code> attribute to define the content of the tooltip.</p>
 
 <div class="bs-docs-example tooltip-demo">
-    <p class="muted" style="margin-bottom: 0;">Tight pants next level keffiyeh <w-tooltip title="Default tooltip"><a href="">you probably</a></w-tooltip> haven't heard of them. Photo booth beard raw denim letterpress vegan messenger bag stumptown. Farm-to-table seitan, mcsweeney's fixie sustainable quinoa 8-bit american apparel <w-tooltip title="Another tooltip"><a href="">have a</a></w-tooltip> terry richardson vinyl chambray. Beard stumptown, cardigans banh mi lomo thundercats. Tofu biodiesel williamsburg marfa, four loko mcsweeney's cleanse vegan chambray. A really ironic artisan <w-tooltip title="A much longer tooltip belongs right here to demonstrate the max-width we apply."><a href="">whatever keytar</a></w-tooltip>, scenester farm-to-table banksy Austin <w-tooltip title="The last tip!"><a href="">twitter handle</a></w-tooltip> freegan cred raw denim single-origin coffee viral.</p>
+    <p class="muted" style="margin-bottom: 0;">Tight pants next level keffiyeh <w-tooltip title="Default tooltip">you probably</w-tooltip> haven't heard of them. Photo booth beard raw denim letterpress vegan messenger bag stumptown. Farm-to-table seitan, mcsweeney's fixie sustainable quinoa 8-bit american apparel <w-tooltip title="Another tooltip">have a</w-tooltip> terry richardson vinyl chambray. Beard stumptown, cardigans banh mi lomo thundercats. Tofu biodiesel williamsburg marfa, four loko mcsweeney's cleanse vegan chambray. A really ironic artisan <w-tooltip title="A much longer tooltip belongs right here to demonstrate the max-width we apply.">whatever keytar</w-tooltip>, scenester farm-to-table banksy Austin <w-tooltip title="The last tip!">twitter handle</w-tooltip> freegan cred raw denim single-origin coffee viral.</p>
 </div>
 
 <pre class="prettyprint linenums">
 {% set tooltipExample1 %}
-<w-tooltip title="Default tooltip"><a href="">you probably</a></w-tooltip>{% endset %}{{tooltipExample1|e}}
+<w-tooltip title="Default tooltip">you probably</w-tooltip>{% endset %}{{tooltipExample1|e}}
 </pre>
 
 <h2>Four directions</h2>
@@ -34,12 +34,12 @@
 <h2>Custom trigger event</h2>
 <div class="bs-docs-example tooltip-demo">
     <ul class="bs-docs-tooltip-examples">
-        <li><w-tooltip show-on="click" title="I was clicked"><a href="">Click to show tooltip</a></w-tooltip></li>
+        <li><w-tooltip show-on="click" title="I was clicked">Click to show tooltip</w-tooltip></li>
     </ul>
 </div>
 <pre class="prettyprint linenums">
 {% set tooltipExample3 %}
-<w-tooltip show-on="click" title="I was clicked"><a href="">Click to show tooltip</a></w-tooltip>{% endset %}{{tooltipExample3|e}}
+<w-tooltip show-on="click" title="I was clicked">Click to show tooltip</w-tooltip>{% endset %}{{tooltipExample3|e}}
 </pre>
 
 <h2>Inverse tooltip</h2>
