@@ -1,35 +1,29 @@
 define([
     'dojo/_base/declare',
     'dojo/_base/lang',
-    'dojo/Deferred',
-    'dojo/when',
     'dojo/on',
     'dojo/dom-construct',
     'dojo/dom-class',
     '../cssfx',
     './_WidgetBase',
-    './_StoreMixin',
     'dojo/text!./template/Carousel.html',
-    '../less!../vendor/bootstrap/less/carousel.less'
+    '../less!./less/carousel.less'
 ],
 function(
     declare,
     lang,
-    Deferred,
-    when,
     on,
     domConstruct,
     domClass,
     cssfx,
     WidgetBase,
-    StoreMixin,
     template
 ) {
     // module:
     //		havok/widget/Carousel
 
     return declare(
-        [WidgetBase, StoreMixin],
+        [WidgetBase],
         {
             templateString: template,
 
@@ -42,105 +36,52 @@ function(
             //items: undefined,
 
             buildRendering: function(){
-                if (!this.store){
-                    var i,
-                        node,
-                        item,
-                        storeData = [];
-
-                    for (i = 0; i < this.srcNodeRef.children.length; i++){
-                        node = this.srcNodeRef.children[i];
-
-                        item = {
-                            id: i,
-                            item: node
-                        };
-                        if (domClass.contains(node, 'active')) {
-                            this.active = i;
-                        }
-                        storeData.push(item);
-                    }
-
-                    if (storeData.length > 0){
-                        this.set('store', {data: storeData});
-                    }
-                }
-                this.items = [];
                 this.inherited(arguments);
+                this.refresh();
             },
 
             startup: function(){
                 this.inherited(arguments);
-                this.refresh();
+                this.set('active', this.active);
                 this.cycle();
             },
 
             refresh: function(){
-                if (!this._started){
-                    return;
-                }
-
-                var result = new Deferred;
-                when(this.get('data'), lang.hitch(this, function(data){
-                    this._refresh(data);
-                    result.resolve();
-                }));
-
-                return result;
-            },
-
-            _refresh: function(data){
-
-                if (!data){
-                    return;
-                }
 
                 var i,
-                    j,
-                    id,
-                    found;
+                    active,
+                    captionNode,
+                    itemNode,
+                    newItemNode,
+                    indicatorNode;
 
-                for (i = 0; i < data.length; i++){
-                    id = data[i][this.store.idProperty];
-                    found = false;
-                    for (j = 0; j < this.items.length; j++){
-                        if (this.items[j].id == id){
-                            domConstruct.place(this.items[j].itemNode, this.itemsNode);
-                            domConstruct.place(this.indicators[j].inicatorNode, this.indicatorsNode);
-                            found = true;
-                        }
+                this.items = [];
+
+                this.indicatorsNode.innerHTML = ''
+                for (i = 0; i < this.containerNode.children.length; i++){
+                    itemNode = this.containerNode.children[i];
+                    if (domClass.contains(itemNode, 'active')) {
+                        active = i;
                     }
-
-                    if (!found) {
-                        var indicatorNode = domConstruct.place('<li></li>', this.indicatorsNode),
-                            itemNode = domConstruct.place('<div class="item"></div>', this.itemsNode);
-
-                        this._indicatorClick(indicatorNode);
-                        domConstruct.place(data[i].item, itemNode);
-
-                        this.items.push({
-                            id: id,
-                            itemNode: itemNode,
-                            indicatorNode: indicatorNode
-                        });
-
+                    if (captionNode = itemNode.querySelector('figcaption')) domClass.add(captionNode, 'carousel-caption')
+                    if (itemNode.tagName == 'IMG') {
+                        newItemNode = domConstruct.place('<div></div>', itemNode, 'after');
+                        newItemNode.appendChild(itemNode);
+                        itemNode = newItemNode;
                     }
+                    domClass.add(itemNode, 'item');
+                    indicatorNode = domConstruct.place('<li></li>', this.indicatorsNode);
+                    this._indicatorClick(indicatorNode);
+                    this.items.push({
+                        id: i,
+                        itemNode: itemNode,
+                        indicatorNode: indicatorNode
+                    });
                 }
 
-                //remove old nodes
-                var removed = true;
-                while (removed){
-                    removed = false;
-                    if (this.itemsNode.children.length > 0 &&
-                        ((data.length > 0 && this.itemsNode.firstElementChild !== this.items[0].itemNode) || data.length == 0)
-                    ){
-                        this.itemsNode.removeChild(this.itemsNode.firstElementChild);
-                        this.indicatorsNode.removeChild(this.indicatorsNode.firstElementChild);
-                        removed = true;
-                    }
-                }
-
-                this.set('active', this.active);
+                if (!active) active = 0;
+                this.active = active;
+                this.set('active', active);
             },
 
             _indicatorClick: function(node){
