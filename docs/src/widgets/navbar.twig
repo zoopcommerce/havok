@@ -2,30 +2,30 @@
 
 <h2>Basic navbar</h2>
 
-<p>Use <code>nav-bar</code> tag to create a <a href="/api/havok/widget/NavBar.html">havok/widget/NavBar</a>.</p>
+<p>Use <code>w-nav-bar</code> tag to create a <a href="/api/havok/widget/NavBar.html">havok/widget/NavBar</a>.</p>
 
 <p>Put a nav bar anywhere within a <code>.container</code>, which sets the width of your site and content.</p>
 
 <div class="bs-docs-example">
-    <nav-bar>
+    <w-nav-bar>
         <a class="brand">Title</a>
-        <nav-bar-links>
+        <w-nav-bar-links>
             <a class="active">Home</a>
             <a>Link</a>
             <a>Link</a>
-        </nav-bar-links>
-    </nav-bar>
+        </w-nav-bar-links>
+    </w-nav-bar>
 </div>
 <pre class="prettyprint linenums">
 {% set navBarExample1 %}
-<nav-bar>
+<w-nav-bar>
     <a class="brand">Title</a>
-    <nav-bar-links>
+    <w-nav-bar-links>
         <a class="active">Home</a>
         <a>Link</a>
         <a>Link</a>
-    </nav-bar-links>{% endset %}{{navBarExample1|e}}
-</nav-bar>
+    </w-nav-bar-links>{% endset %}{{navBarExample1|e}}
+</w-nav-bar>
 </pre>
 
 <h2>Navbar components</h2>
@@ -33,100 +33,100 @@
 <h3>Brand</h3>
 <p>A simple link to show your brand or project name only requires an anchor tag.</p>
 <div class="bs-docs-example">
-    <nav-bar>
+    <w-nav-bar>
         <a class="brand" href="#">Title</a>
-    </nav-bar>
+    </w-nav-bar>
 </div>
 <pre class="prettyprint linenums">
 {% set navBarExample2 %}
-<nav-bar>
+<w-nav-bar>
     <a class="brand" href="#">Title</a>{% endset %}{{navBarExample2|e}}
-</nav-bar>
+</w-nav-bar>
 </pre>
 
 <h3>Nav links</h3>
 <p>Nav items are simple to add via the <code>nav-bar-links</code> tag, which creates a <a href="/api/havok/widget/NavBarLinks.html">havok/widget/NavBarLinks</a> widget.</p>
 <div class="bs-docs-example">
-    <nav-bar>
-        <nav-bar-links>
+    <w-nav-bar>
+        <w-nav-bar-links>
             <a class="active">Home</a>
             <a>Link</a>
             <a>Link</a>
-        </nav-bar-links>
-    </nav-bar>
+        </w-nav-bar-links>
+    </w-nav-bar>
 </div>
 <pre class="prettyprint linenums">
 {% set navBarExample3 %}
-<nav-bar>
-    <nav-bar-links>
+<w-nav-bar>
+    <w-nav-bar-links>
         <a class="active">Home</a>
         <a>Link</a>
         <a>Link</a>
-    </nav-bar-links>
-</nav-bar>{% endset %}{{navBarExample3|e}}
+    </w-nav-bar-links>
+</w-nav-bar>{% endset %}{{navBarExample3|e}}
 </pre>
 
 <p>You can easily add dividers to your nav links with an empty list item and a simple class. Just use the <code>hr</code> tag.</p>
 <div class="bs-docs-example">
-    <nav-bar>
-        <nav-bar-links>
+    <w-nav-bar>
+        <w-nav-bar-links>
             <a class="active">Home</a>
             <hr />
             <a>Link</a>
             <hr />
             <a>Link</a>
-        </nav-bar-links>
-    </nav-bar>
+        </w-nav-bar-links>
+    </w-nav-bar>
 </div>
 <pre class="prettyprint linenums">
 {% set navBarExample4 %}
-<nav-bar>
-    <nav-bar-links>
+<w-nav-bar>
+    <w-nav-bar-links>
         <a class="active">Home</a>
         <hr />
         <a>Link</a>
         <hr />
         <a>Link</a>
-    </nav-bar-links>
-</nav-bar>{% endset %}{{navBarExample4|e}}
+    </w-nav-bar-links>
+</w-nav-bar>{% endset %}{{navBarExample4|e}}
 </pre>
 
 <h3>Forms</h3>
 <p>To properly style and position a form within the navbar, add the appropriate classes as shown below. For a default form, include <code>.navbar-form</code> and either <code>.pull-left</code> or <code>.pull-right</code> to properly align it.</p>
 <div class="bs-docs-example">
-    <nav-bar>
+    <w-nav-bar>
         <form class="navbar-form pull-left">
             <input type="text">
             <button type="submit" class="btn">Submit</button>
         </form>
-    </nav-bar>
+    </w-nav-bar>
 </div>
 <pre class="prettyprint linenums">
 {% set navBarExample5 %}
-<nav-bar>
+<w-nav-bar>
     <form class="navbar-form pull-left">
         <input type="text">
         <button type="submit" class="btn">Submit</button>
     </form>
-</nav-bar>{% endset %}{{navBarExample5|e}}
+</w-nav-bar>{% endset %}{{navBarExample5|e}}
 </pre>
 
 <h3>Search form</h3>
 <p>For a more customized search form, add <code>.navbar-search</code> to the <code>form</code> and <code>.search-query</code> to the input for specialized styles in the navbar.</p>
 <div class="bs-docs-example">
-    <nav-bar>
+    <w-nav-bar>
         <form class="navbar-search pull-left">
             <input type="text" class="search-query" placeholder="Search">
         </form>
-    </nav-bar>
+    </w-nav-bar>
 </div>
 <pre class="prettyprint linenums">
 {% set navBarExample6 %}
-<nav-bar>
+<w-nav-bar>
     <form class="navbar-search pull-left">
         <input type="text" class="search-query" placeholder="Search">
     </form>
-</nav-bar>{% endset %}{{navBarExample6|e}}
+</w-nav-bar>{% endset %}{{navBarExample6|e}}
 </pre>
 
 <h3>Component alignment</h3>
@@ -135,33 +135,33 @@
 <h3>Using dropdowns</h3>
 <p>Use <code>dropdown-toggle</code> and <code>dropdown</code> inside a links list.</p>
 <div class="bs-docs-example">
-    <nav-bar>
-        <nav-bar-links>
+    <w-nav-bar>
+        <w-nav-bar-links>
             <a class="active">Home</a>
-            <dropdown-toggle>
+            <w-dropdown-toggle>
                 <a>Dropdown <span class="caret"></span></a>
-                <dropdown>
+                <w-dropdown>
                     <a>Item 1</a>
                     <a>Item 2</a>
-                </dropdown>
-            </dropdown-toggle>
-        </nav-bar-links>
-    </nav-bar>
+                </w-dropdown>
+            </w-dropdown-toggle>
+        </w-nav-bar-links>
+    </w-nav-bar>
 </div>
 <pre class="prettyprint linenums">
 {% set navBarExample7 %}
-<nav-bar>
-    <nav-bar-links>
+<w-nav-bar>
+    <w-nav-bar-links>
         <a class="active">Home</a>
-        <dropdown-toggle>
+        <w-dropdown-toggle>
             <a>Dropdown <span class="caret"></span></a>
-            <dropdown>
+            <w-dropdown>
                 <a>Item 1</a>
                 <a>Item 2</a>
-            </dropdown>
-        </dropdown-toggle>
-    </nav-bar-links>
-</nav-bar>{% endset %}{{navBarExample7|e}}
+            </w-dropdown>
+        </w-dropdown-toggle>
+    </w-nav-bar-links>
+</w-nav-bar>{% endset %}{{navBarExample7|e}}
 </pre>
 
 <h3>Text</h3>
@@ -175,7 +175,7 @@
 <h3>Fixed to top</h3>
 <p>Add <code>.navbar-fixed-top</code> and remember to account for the hidden area underneath it by adding at least 40px <code>padding</code> to the <code>&lt;body&gt;</code>. Be sure to add this after the core Bootstrap CSS and before the optional responsive CSS.</p>
 <div class="bs-docs-example bs-navbar-top-example">
-    <nav-bar class="navbar-fixed-top" style="position: absolute;">
+    <w-nav-bar class="navbar-fixed-top" style="position: absolute;">
         <div class="container" style="width: auto; padding: 0 20px;">
             <a class="brand" href="">Title</a>
             <ul class="nav">
@@ -184,11 +184,11 @@
                 <li><a href="">Link</a></li>
             </ul>
         </div>
-    </nav-bar>
+    </w-nav-bar>
 </div>
 <pre class="prettyprint linenums">
 {% set navBarExample8 %}
-<nav-bar class="navbar-fixed-top" style="position: absolute;">
+<w-nav-bar class="navbar-fixed-top" style="position: absolute;">
     <div class="container" style="width: auto; padding: 0 20px;">
         <a class="brand" href="">Title</a>
         <ul class="nav">
@@ -197,13 +197,13 @@
             <li><a href="">Link</a></li>
         </ul>
     </div>
-</nav-bar>{% endset %}{{navBarExample8|e}}
+</w-nav-bar>{% endset %}{{navBarExample8|e}}
 </pre>
 
 <h3>Fixed to bottom</h3>
 <p>Add <code>.navbar-fixed-bottom</code> instead.</p>
 <div class="bs-docs-example bs-navbar-bottom-example">
-    <nav-bar class="navbar-fixed-bottom" style="position: absolute;">
+    <w-nav-bar class="navbar-fixed-bottom" style="position: absolute;">
         <div class="container" style="width: auto; padding: 0 20px;">
             <a class="brand" href="#">Title</a>
             <ul class="nav">
@@ -212,11 +212,11 @@
                 <li><a href="#">Link</a></li>
             </ul>
         </div>
-    </nav-bar>
+    </w-nav-bar>
 </div>
 <pre class="prettyprint linenums">
 {% set navBarExample9 %}
-<nav-bar class="navbar-fixed-bottom" style="position: absolute;">
+<w-nav-bar class="navbar-fixed-bottom" style="position: absolute;">
     <div class="container" style="width: auto; padding: 0 20px;">
         <a class="brand" href="#">Title</a>
         <ul class="nav">
@@ -225,13 +225,13 @@
             <li><a href="#">Link</a></li>
         </ul>
     </div>
-</nav-bar>{% endset %}{{navBarExample9|e}}
+</w-nav-bar>{% endset %}{{navBarExample9|e}}
 </pre>
 
 <h3>Static top navbar</h3>
 <p>Create a full-width navbar that scrolls away with the page by adding <code>.navbar-static-top</code>. Unlike the <code>.navbar-fixed-top</code> class, you do not need to change any padding on the <code>body</code>.</p>
 <div class="bs-docs-example bs-navbar-top-example">
-    <nav-bar class="navbar-static-top" style="margin: -1px -1px 0;">
+    <w-nav-bar class="navbar-static-top" style="margin: -1px -1px 0;">
         <div class="container" style="width: auto; padding: 0 20px;">
             <a class="brand" href="#">Title</a>
             <ul class="nav">
@@ -240,11 +240,11 @@
                 <li><a href="#">Link</a></li>
             </ul>
         </div>
-    </nav-bar>
+    </w-nav-bar>
 </div>
 <pre class="prettyprint linenums">
 {% set navBarExample10 %}
-<nav-bar class="navbar-static-top" style="margin: -1px -1px 0;">
+<w-nav-bar class="navbar-static-top" style="margin: -1px -1px 0;">
     <div class="container" style="width: auto; padding: 0 20px;">
         <a class="brand" href="#">Title</a>
         <ul class="nav">
@@ -253,7 +253,7 @@
             <li><a href="#">Link</a></li>
         </ul>
     </div>
-</nav-bar>{% endset %}{{navBarExample10|e}}
+</w-nav-bar>{% endset %}{{navBarExample10|e}}
 </pre>
 
 <hr class="bs-docs-separator">
@@ -262,7 +262,7 @@
 <p>To implement a collapsing responsive navbar, wrap your navbar content in a containing div, and use <code>data-havok-nav-bar-toggle</code> with <code>data-havok-nav-bar-toggle-target</code></p>
 
 <div class="bs-docs-example">
-    <nav-bar>
+    <w-nav-bar>
         <a data-havok-nav-bar-toggle>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -270,13 +270,13 @@
         </a>
         <a class="brand" href="">Title</a>
         <div data-havok-nav-bar-toggle-target>
-            <nav-bar-links>
+            <w-nav-bar-links>
                 <a class="active" href="">Home</a>
                 <a href="">Link 1</a>
                 <a href="">Link 2</a>
-                <dropdown-toggle>
+                <w-dropdown-toggle>
                     <a href="">Dropdown <span class="caret"></span></a>
-                    <dropdown>
+                    <w-dropdown>
                         <a href="">Action</a>
                         <a href="">Another action</a>
                         <a href="">Something else here</a>
@@ -284,32 +284,32 @@
                         <li class="nav-header">Nav Header</li>
                         <a href="">Separated link</a>
                         <a href="">One more separated link</a>
-                    </dropdown>
-                </dropdown-toggle>
-            </nav-bar-links>
+                    </w-dropdown>
+                </w-dropdown-toggle>
+            </w-nav-bar-links>
             <form class="navbar-search pull-left" action="">
                 <input type="text" class="search-query span8" placeholder="Search">
             </form>
-            <nav-bar-links class="pull-right">
+            <w-nav-bar-links class="pull-right">
                 <a href="">Link</a>
                 <hr />
-                <dropdown-toggle>
+                <w-dropdown-toggle>
                     <a href="">Dropdown <span class="caret"></span></a>
-                    <dropdown>
+                    <w-dropdown>
                         <a href="">Action</a>
                         <a href="">Another action</a>
                         <a href="">Something else here</a>
                         <hr />
                         <a href="">Separated link</a>
-                    </dropdown>
-                </dropdown-toggle>
-            </nav-bar-links>
+                    </w-dropdown>
+                </w-dropdown-toggle>
+            </w-nav-bar-links>
         </div>
-    </nav-bar>
+    </w-nav-bar>
 </div>
 <pre class="prettyprint linenums">
 {% set navBarExample11 %}
-<nav-bar>
+<w-nav-bar>
     <a data-havok-nav-bar-toggle>
         <!-- this is displayed when the navbar is collapsed -->
         <span class="icon-bar"></span>
@@ -319,13 +319,13 @@
     <a class="brand" href="">Title</a>
     <div data-havok-nav-bar-toggle-target>
         <!-- this is displayed when the navbar is not collapsed -->
-        <nav-bar-links>
+        <w-nav-bar-links>
             <a class="active" href="">Home</a>
             <a href="">Link 1</a>
             <a href="">Link 2</a>
-            <dropdown-toggle>
+            <w-dropdown-toggle>
                 <a href="">Dropdown <span class="caret"></span></a>
-                <dropdown>
+                <w-dropdown>
                     <a href="">Action</a>
                     <a href="">Another action</a>
                     <a href="">Something else here</a>
@@ -333,28 +333,28 @@
                     <li class="nav-header">Nav Header</li>
                     <a href="">Separated link</a>
                     <a href="">One more separated link</a>
-                </dropdown>
-            </dropdown-toggle>
-        </nav-bar-links>
+                </w-dropdown>
+            </w-dropdown-toggle>
+        </w-nav-bar-links>
         <form class="navbar-search pull-left" action="">
             <input type="text" class="search-query span8" placeholder="Search">
         </form>
-        <nav-bar-links class="pull-right">
+        <w-nav-bar-links class="pull-right">
             <a href="">Link</a>
             <hr />
-            <dropdown-toggle>
+            <w-dropdown-toggle>
                 <a href="">Dropdown <span class="caret"></span></a>
-                <dropdown>
+                <w-dropdown>
                     <a href="">Action</a>
                     <a href="">Another action</a>
                     <a href="">Something else here</a>
                     <hr />
                     <a href="">Separated link</a>
-                </dropdown>
-            </dropdown-toggle>
-        </nav-bar-links>
+                </w-dropdown>
+            </w-dropdown-toggle>
+        </w-nav-bar-links>
     </div>
-</nav-bar>{% endset %}{{navBarExample11|e}}
+</w-nav-bar>{% endset %}{{navBarExample11|e}}
 </pre>
 
 <hr class="bs-docs-separator">
@@ -364,7 +364,7 @@
 <p>Modify the look of the navbar by adding <code>.navbar-inverse</code>.</p>
 
 <div class="bs-docs-example">
-    <nav-bar class="navbar-inverse">
+    <w-nav-bar class="navbar-inverse">
         <a data-havok-nav-bar-toggle>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -372,13 +372,13 @@
         </a>
         <a class="brand" href="">Title</a>
         <div data-havok-nav-bar-toggle-target>
-            <nav-bar-links>
+            <w-nav-bar-links>
                 <a class="active" href="">Home</a>
                 <a href="">Link 1</a>
                 <a href="">Link 2</a>
-                <dropdown-toggle>
+                <w-dropdown-toggle>
                     <a href="">Dropdown <span class="caret"></span></a>
-                    <dropdown>
+                    <w-dropdown>
                         <a href="">Action</a>
                         <a href="">Another action</a>
                         <a href="">Something else here</a>
@@ -386,35 +386,35 @@
                         <li class="nav-header">Nav Header</li>
                         <a href="">Separated link</a>
                         <a href="">One more separated link</a>
-                    </dropdown>
-                </dropdown-toggle>
-            </nav-bar-links>
+                    </w-dropdown>
+                </w-dropdown-toggle>
+            </w-nav-bar-links>
             <form class="navbar-search pull-left" action="">
                 <input type="text" class="search-query span8" placeholder="Search">
             </form>
-            <nav-bar-links class="pull-right">
+            <w-nav-bar-links class="pull-right">
                 <a href="">Link</a>
                 <hr />
-                <dropdown-toggle>
+                <w-dropdown-toggle>
                     <a href="">Dropdown <span class="caret"></span></a>
-                    <dropdown>
+                    <w-dropdown>
                         <a href="">Action</a>
                         <a href="">Another action</a>
                         <a href="">Something else here</a>
                         <hr />
                         <a href="">Separated link</a>
-                    </dropdown>
-                </dropdown-toggle>
-            </nav-bar-links>
+                    </w-dropdown>
+                </w-dropdown-toggle>
+            </w-nav-bar-links>
         </div>
-    </nav-bar>
+    </w-nav-bar>
 </div>
 
 <pre class="prettyprint linenums">
 {% set navBarExample12 %}
-<nav-bar class="navbar-inverse">
+<w-nav-bar class="navbar-inverse">
     ...
-</nav-bar>{% endset %}{{navBarExample12|e}}
+</w-nav-bar>{% endset %}{{navBarExample12|e}}
 </pre>
 
 <h2>See also</h2>

@@ -41,6 +41,11 @@ function (
             baseClass: 'dropdown',
 
             /*=====
+            // button: DomNode
+            button: undefined,
+            =====*/
+
+            /*=====
             // dropdown: havok/widget/_DropdownBase
             //      The dropdown widget that this toggle is linked to
             dropdown: undefined,
@@ -102,7 +107,7 @@ function (
 
                     for (i = 0; i < this.containerNode.children.length; i++){
                         node = this.containerNode.children[i];
-                        if (node.hasAttribute('dropdown-toggle-target')){
+                        if (node.hasAttribute('dropdown-toggle')){
                             this.button = node;
                             break;
                         }

@@ -1,14 +1,14 @@
 <h1>Overlay</h1>
 
-<p>Use the <code>overlay</code> tag to create a <a href="/api/havok/widget/Overlay.html">havok/widget/Overlay</a>. A widget designed to act as a Standby/Busy/Disable/Blocking widget to indicate a particular DOM node is processing and cannot be clicked on at this time.</p>
+<p>Use the <code>w-overlay</code> tag to create a <a href="/api/havok/widget/Overlay.html">havok/widget/Overlay</a>. A widget designed to act as a Standby/Busy/Disable/Blocking widget to indicate a particular DOM node is processing and cannot be clicked on at this time.</p>
 <p>An Overlay will always overlay it's parent dom node.</p>
 
 <h2>Example</h2>
 <div class="bs-docs-example">
     <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-    <overlay id="overlay1">This is overlayed</overlay>
+    <w-overlay id="overlay1">This is overlayed</w-overlay>
 </p>
-<toggle-button id="overlayToggle1">Toggle overlay</toggle-button>
+<w-toggle-button id="overlayToggle1">Toggle overlay</w-toggle-button>
 <script>
     require(['dijit/registry', 'havok/ready!'], function(registry){
         registry.byId('overlayToggle1').watch('active', function(){
@@ -19,19 +19,18 @@
 </div>
 
 <pre class="prettyprint linenums">{% set overlayExample1 %}
-<p>Anim pariatur cliche ...
-    <overlay id="overlay1">This is overlayed</overlay>
-</p>{% endset %}{{overlayExample1|e}}
+<p>Anim pariatur cliche ...</p>
+<w-overlay id="overlay1">This is overlayed</w-overlay>{% endset %}{{overlayExample1|e}}
 </pre>
 
 <h2>With a wait cursor</h2>
 <div class="bs-docs-example">
     <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-    <overlay id="overlay2" class="wait">This is overlayed</overlay>
+    <w-overlay id="overlay2" class="wait">This is overlayed</w-overlay>
 </p>
-<button id="overlayToggle2" data-dojo-type="havok/widget/ToggleButton">Toggle overlay</button>
+<w-toggle-button id="overlayToggle2">Toggle overlay</w-toggle-button>
 <script>
-    require(['dijit/registry'], function(registry){
+    require(['dijit/registry', 'havok/ready!'], function(registry){
         registry.byId('overlayToggle2').watch('active', function(){
             registry.byId('overlay2').toggle();
         });
@@ -40,9 +39,8 @@
 </div>
 
 <pre class="prettyprint linenums">{% set overlayExample2 %}
-<p>Anim pariatur cliche ...
-    <overlay id="overlay2" class="wait">This is overlayed</overlay>
-</p>{% endset %}{{overlayExample2|e}}
+<p>Anim pariatur cliche ...</p>
+<w-overlay id="overlay2" class="wait">This is overlayed</w-overlay>{% endset %}{{overlayExample2|e}}
 </pre>
 
 <h2>Overlay whole viewport</h2>
@@ -64,13 +62,13 @@
                 overlay.hide();
             });
         })
-        </script>
-    </div>
+    </script>
+</div>
 
-    <pre class="prettyprint linenums">{% set overlayExample3 %}
+<pre class="prettyprint linenums">{% set overlayExample3 %}
 <body>
     ...
-    <overlay id="overlay3">This is overlayed</overlay>
+    <w-overlay id="overlay3">This is overlayed</w-overlay>
 </body>{% endset %}{{overlayExample3|e}}
 </pre>
 
