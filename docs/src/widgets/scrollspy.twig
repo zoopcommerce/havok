@@ -3,27 +3,21 @@
 <h2>Example in navbar</h2>
 <p>The ScrollSpy plugin is for automatically updating nav targets based on scroll position. Scroll the area below the navbar and watch the active class change. The dropdown sub items will be highlighted as well.</p>
 
-<p>Simply use <code>mixins="scrollspy"</code> with a nav widget, and set the <code>spy-target</code> attribute.</p>
+<p>Simply use the <code>scrollspy</code> attribute with a nav widget.</p>
 
 <div class="bs-docs-example">
-    <nav-bar class="navbar-static">
+    <w-nav-bar class="navbar-static">
         <div class="container" style="width: auto;">
             <a class="brand" href="#">Project Name</a>
-            <nav-bar-links mixins="scrollspy" spy-target="scrollspyExample1">
+            <w-nav-bar-links scroll-spy="scrollspyExample1">
                 <a spy-target="superdweebie">@superdweebie</a>
                 <a spy-target="crimsonronin">@crimsonronin</a>
-                <dropdown-toggle>
-                    <a>Dropdown</a>
-                    <dropdown>
-                        <a spy-target="one">one</a>
-                        <a spy-target="two">two</a>
-                        <hr />
-                        <a spy-target="three">three</a>
-                    </dropdown>
-                </dropdown-toggle>
-            </nav-bar-links>
+                <a spy-target="one">one</a>
+                <a spy-target="two">two</a>
+                <a spy-target="three">three</a>
+            </w-nav-bar-links>
         </div>
-    </nav-bar>
+    </w-nav-bar>
     <div id="scrollspyExample1" class="scrollspy-example">
         <h4 id="superdweebie">@superdweebie</h4>
         <p>Ad leggings keytar, brunch id art party dolor labore. Pitchfork yr enim lo-fi before they sold out qui. Tumblr farm-to-table bicycle rights whatever. Anim keffiyeh carles cardigan. Velit seitan mcsweeney's photo booth 3 wolf moon irure. Cosby sweater lomo jean shorts, williamsburg hoodie minim qui you probably haven't heard of them et cardigan trust fund culpa biodiesel wes anderson aesthetic. Nihil tattooed accusamus, cred irony biodiesel keffiyeh artisan ullamco consequat.</p>
@@ -35,24 +29,48 @@
         <p>In incididunt echo park, officia deserunt mcsweeney's proident master cleanse thundercats sapiente veniam. Excepteur VHS elit, proident shoreditch +1 biodiesel laborum craft beer. Single-origin coffee wayfarers irure four loko, cupidatat terry richardson master cleanse. Assumenda you probably haven't heard of them art party fanny pack, tattooed nulla cardigan tempor ad. Proident wolf nesciunt sartorial keffiyeh eu banh mi sustainable. Elit wolf voluptate, lo-fi ea portland before they sold out four loko. Locavore enim nostrud mlkshk brooklyn nesciunt.</p>
         <h4 id="three">three</h4>
         <p>Ad leggings keytar, brunch id art party dolor labore. Pitchfork yr enim lo-fi before they sold out qui. Tumblr farm-to-table bicycle rights whatever. Anim keffiyeh carles cardigan. Velit seitan mcsweeney's photo booth 3 wolf moon irure. Cosby sweater lomo jean shorts, williamsburg hoodie minim qui you probably haven't heard of them et cardigan trust fund culpa biodiesel wes anderson aesthetic. Nihil tattooed accusamus, cred irony biodiesel keffiyeh artisan ullamco consequat.</p>
-        <p>Keytar twee blog, culpa messenger bag marfa whatever delectus food truck. Sapiente synth id assumenda. Locavore sed helvetica cliche irony, thundercats you probably haven't heard of them consequat hoodie gluten-free lo-fi fap aliquip. Labore elit placeat before they sold out, terry richardson proident brunch nesciunt quis cosby sweater pariatur keffiyeh ut helvetica artisan. Cardigan craft beer seitan readymade velit. VHS chambray laboris tempor veniam. Anim mollit minim commodo ullamco thundercats.
-        </p>
+        <p>Keytar twee blog, culpa messenger bag marfa whatever delectus food truck. Sapiente synth id assumenda. Locavore sed helvetica cliche irony, thundercats you probably haven't heard of them consequat hoodie gluten-free lo-fi fap aliquip. Labore elit placeat before they sold out, terry richardson proident brunch nesciunt quis cosby sweater pariatur keffiyeh ut helvetica artisan. Cardigan craft beer seitan readymade velit. VHS chambray laboris tempor veniam. Anim mollit minim commodo ullamco thundercats.</p>
+        <p>Keytar twee blog, culpa messenger bag marfa whatever delectus food truck. Sapiente synth id assumenda. Locavore sed helvetica cliche irony, thundercats you probably haven't heard of them consequat hoodie gluten-free lo-fi fap aliquip. Labore elit placeat before they sold out, terry richardson proident brunch nesciunt quis cosby sweater pariatur keffiyeh ut helvetica artisan. Cardigan craft beer seitan readymade velit. VHS chambray laboris tempor veniam. Anim mollit minim commodo ullamco thundercats.</p>
     </div>
 </div>
 
 <pre class="prettyprint linenums">
-
+{% set scrollSpyExample1 %}
+<w-nav-bar class="navbar-static">
+    <div class="container" style="width: auto;">
+        <a class="brand" href="#">Project Name</a>
+        <w-nav-bar-links scroll-spy="scrollspyExample1">
+            <a spy-target="superdweebie">@superdweebie</a>
+            <a spy-target="crimsonronin">@crimsonronin</a>
+            <a spy-target="one">one</a>
+            <a spy-target="two">two</a>
+            <a spy-target="three">three</a>
+        </w-nav-bar-links>
+    </div>
+</w-nav-bar>
+<div id="scrollspyExample1" class="scrollspy-example">
+    <h4 id="superdweebie">@superdweebie</h4>
+    <p>Ad leggings ...</p>
+    <h4 id="crimsonronin">@crimsonronin</h4>
+    <p>Veniam marfa mustache ...</p>
+    <h4 id="one">one</h4>
+    <p>Occaecat commodo aliqua ...</p>
+    <h4 id="two">two</h4>
+    <p>In incididunt echo park ...</p>
+    <h4 id="three">three</h4>
+    <p>Ad leggings keytar, ...</p>
+</div>{% endset %}{{scrollSpyExample1|e}}
 </pre>
 
 <h2>Auto populate nav</h2>
 
-<p>ScrollSpy can autopopulate the nav using the <code>id</code> and <code>title</code> attributes of the child elemnts of <code>spy-target</code>.</p>
+<p>ScrollSpy can autopopulate the nav using the <code>id</code> and <code>title</code> attributes of the child elements of the domNode being spied on.</p>
 
 <div class="bs-docs-example">
     <div class="row-fluid">
         <div class="span3">
-            <nav-pill mixins="scrollspy" spy-target="scrollspyExample2" class="nav-stacked">
-            </nav-pill>
+            <w-nav-pill scroll-spy="scrollspyExample2" class="nav-stacked">
+            </w-nav-pill>
         </div>
         <div id="scrollspyExample2" class="span9 scrollspy-example">
             <h4 id="mrbrown" title="Mr Brown">Mr Brown</h4>
@@ -65,14 +83,29 @@
             <p>In incididunt echo park, officia deserunt mcsweeney's proident master cleanse thundercats sapiente veniam. Excepteur VHS elit, proident shoreditch +1 biodiesel laborum craft beer. Single-origin coffee wayfarers irure four loko, cupidatat terry richardson master cleanse. Assumenda you probably haven't heard of them art party fanny pack, tattooed nulla cardigan tempor ad. Proident wolf nesciunt sartorial keffiyeh eu banh mi sustainable. Elit wolf voluptate, lo-fi ea portland before they sold out four loko. Locavore enim nostrud mlkshk brooklyn nesciunt.</p>
             <h4 id="paddington">Paddington</h4>
             <p>Ad leggings keytar, brunch id art party dolor labore. Pitchfork yr enim lo-fi before they sold out qui. Tumblr farm-to-table bicycle rights whatever. Anim keffiyeh carles cardigan. Velit seitan mcsweeney's photo booth 3 wolf moon irure. Cosby sweater lomo jean shorts, williamsburg hoodie minim qui you probably haven't heard of them et cardigan trust fund culpa biodiesel wes anderson aesthetic. Nihil tattooed accusamus, cred irony biodiesel keffiyeh artisan ullamco consequat.</p>
-            <p>Keytar twee blog, culpa messenger bag marfa whatever delectus food truck. Sapiente synth id assumenda. Locavore sed helvetica cliche irony, thundercats you probably haven't heard of them consequat hoodie gluten-free lo-fi fap aliquip. Labore elit placeat before they sold out, terry richardson proident brunch nesciunt quis cosby sweater pariatur keffiyeh ut helvetica artisan. Cardigan craft beer seitan readymade velit. VHS chambray laboris tempor veniam. Anim mollit minim commodo ullamco thundercats.
-            </p>
+            <p>Keytar twee blog, culpa messenger bag marfa whatever delectus food truck. Sapiente synth id assumenda. Locavore sed helvetica cliche irony, thundercats you probably haven't heard of them consequat hoodie gluten-free lo-fi fap aliquip. Labore elit placeat before they sold out, terry richardson proident brunch nesciunt quis cosby sweater pariatur keffiyeh ut helvetica artisan. Cardigan craft beer seitan readymade velit. VHS chambray laboris tempor veniam. Anim mollit minim commodo ullamco thundercats.</p>
         </div>
     </div>
 </div>
 
 <pre class="prettyprint linenums">
-
+{% set scrollSpyExample2 %}
+<div class="span3">
+    <w-nav-pill scroll-spy="scrollspyExample2" class="nav-stacked">
+    </w-nav-pill>
+</div>
+<div id="scrollspyExample2" class="span9 scrollspy-example">
+    <h4 id="mrbrown" title="Mr Brown">Mr Brown</h4>
+    <p>Ad leggings keytar, ...</p>
+    <h4 id="mrsbrown" title="Mrs Brown">Mrs Brown</h4>
+    <p>Veniam marfa mustache ...</p>
+    <h4 id="judy">Judy</h4>
+    <p>Occaecat commodo aliqua ...</p>
+    <h4 id="johnathan">Johnathan</h4>
+    <p>In incididunt echo park, ...</p>
+    <h4 id="paddington">Paddington</h4>
+    <p>Ad leggings keytar, ...</p>
+</div>{% endset %}{{scrollSpyExample2|e}}
 </pre>
 
 

@@ -96,6 +96,9 @@ function (
                     //the item object is from a store, and needs to be transformed into a html fragment
                     options.storeId = item[this.storeHost.store.idProperty];
                     options.storeText = item.text;
+
+                    var disabled = item.disabled;
+
                     switch (item.type){
                         case 'nav-header':
                             item = this._renderNavHeader(item)
@@ -110,7 +113,7 @@ function (
                             item = this._renderLink(item)
                     }
 
-                    if (item.disabled) domClass.add(item, 'disabled');
+                    if (disabled) domClass.add(item, 'disabled');
                 }
 
                 item = this.inherited(arguments);

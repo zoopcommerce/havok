@@ -47,7 +47,8 @@ function(
                                 attributes,
                                 attribute,
                                 node,
-                                item;
+                                item,
+                                value;
 
                             for(i = 0; i < nodes.length; i++){
                                 node = nodes[i];
@@ -69,12 +70,14 @@ function(
 
                                 j = 0;
                                 while(attribute = attributes[j++]){
+                                    value = (attribute.value == '') ? true : attribute.value;
+
                                     if (attribute.name == 'value'){
-                                        item.id = attribute.value;
+                                        item.id = value;
                                     } else if (attribute.name.indexOf('data-') == 0){
-                                        item[string.camelCase(attribute.name.slice(5))] = attribute.value;
+                                        item[string.camelCase(attribute.name.slice(5))] = value;
                                     } else {
-                                        item[string.camelCase(attribute.name)] = attribute.value;
+                                        item[string.camelCase(attribute.name)] = value;
                                     }
                                 }
 

@@ -22,7 +22,7 @@ function(
     return declare(
         [],
         {
-            //spyTarget: undefined,
+            //scrollSpy: undefined,
 
             itemTemplate: '<li data-havok-spy-target="${id}"><a href="#${id}">${text}</a></li>',
 
@@ -42,27 +42,51 @@ function(
                 this.inherited(arguments);
             },
 
-            refresh: function(){
+            addItem: function(/*DomNode|String*/item, /*__AddOptions?*/options){
 
-                var node,
+                item = this.inherited(arguments);
+
+                var attr = ['data-havok-spy-target', 'data-spy-target', 'spy-target'],
                     i,
-                    text,
-                    target = this.spyTarget;
+                    node,
+                    target;
 
-                if (typeof target == 'string'){
-                    target = this.spyTarget = dom.byId(target);
-                }
-
-                for (i = 0; i < target.children.length; i++) {
-                    node = target.children[i];
-                    if (node.id){
-                        if (!(text = node.getAttribute('title'))) text = node.id;
-                        this._attachClickListener(domConstruct.place(string.substitute(this.itemTemplate, {id: node.id, text: text}), this.containerNode, 'last'));
+                for (i=0; i < attr.length; i++){
+                    if (node = item.querySelector('[' + attr[i] + ']')){
+                        target = node.getAttribute(attr[i]);
+                        node.removeAttribute(attr[i]);
+                        item.setAttribute(attr[0], target);
+                        break;
                     }
                 }
+
+                return item;
             },
 
-            _setSpyTargetAttr: function(value){
+            refresh: function(){
+
+                if (this.containerNode.children.length == 0){
+
+                    var i,
+                        node,
+                        text,
+                        target = this.scrollSpy;
+
+                    if (typeof target == 'string') target = this.scrollSpy = dom.byId(target);
+
+                    for (i = 0; i < target.children.length; i++) {
+                        node = target.children[i];
+                        if (node.id){
+                            if (!(text = node.getAttribute('title'))) text = node.id;
+                            domConstruct.place(string.substitute(this.itemTemplate, {id: node.id, text: text}), this.containerNode, 'last');
+                        }
+                    }
+                }
+
+                this.inherited(arguments);
+            },
+
+            _setScrollSpyAttr: function(value){
 
                 if (typeof value == 'string'){
                     value = dom.byId(value);
@@ -79,7 +103,7 @@ function(
                     this._scrollHandler.remove();
                 }
                 this._scrollHandler = on(listenTo, 'scroll', lang.hitch(this, this.updateScrollSpy));
-                this._set('spyTarget', value);
+                this._set('scrollSpy', value);
             },
 
             updateScrollSpy: function(){
@@ -89,18 +113,15 @@ function(
                 var useDocScroll = false,
                     scrollTop,
                     newActive,
-                    activeTargetId,
                     activeSpyNode,
                     activeY,
                     y,
                     i,
-                    j,
-                    spyTargetId,
                     spyNode;
 
-                if (this.spyTarget.scrollHeight > this.spyTarget.clientHeight){
+                if (this.scrollSpy.scrollHeight > this.scrollSpy.clientHeight){
                     // The target is scrollable.
-                    scrollTop = this.spyTarget.scrollTop;
+                    scrollTop = this.scrollSpy.scrollTop;
                 } else {
                     // Use document scroll
                     scrollTop = domGeom.docScroll().y;
@@ -108,13 +129,8 @@ function(
                 }
 
                 if (this.active){
-                    activeTargetId = this.active.getAttribute('data-havok-spy-target');
-                    for (i=0; i < this.spyTarget.children.length; i++){
-                        if (this.spyTarget.children[i].id == activeTargetId){
-                            activeSpyNode = this.spyTarget.children[i];
-                            break;
-                        }
-                    }
+                    activeSpyNode = this.scrollSpy.querySelector('[id=' + this.active.getAttribute('data-havok-spy-target') + ']');
+
                     if (useDocScroll){
                         activeY = domGeom.position(activeSpyNode, true).y;
                     } else {
@@ -127,24 +143,16 @@ function(
                     activeY = 0;
                 }
 
-                j = 0;
                 for (i = 0; i < this.containerNode.children.length; i++){
-                    spyTargetId = this.containerNode.children[i].getAttribute('data-havok-spy-target');
-                    for (j; j < this.spyTarget.children.length; j++){
-                        if (this.spyTarget.children[j].id == spyTargetId){
-                            spyNode = this.spyTarget.children[j];
-                            break;
-                        }
-                    }
-                    if (!spyNode){
-                        continue;
-                    }
+
+                    if (!(spyNode = this.scrollSpy.querySelector('[id=' + this.containerNode.children[i].getAttribute('data-havok-spy-target') + ']'))) continue;
+
                     if (useDocScroll){
                         y = domGeom.position(spyNode, true).y;
                     } else {
                         y = spyNode.offsetTop;
                     }
-                    if (y <= scrollTop && y > activeY){
+                    if (y <= scrollTop && y >= activeY){
                         newActive = this.containerNode.children[i];
                         activeY = y;
                     }

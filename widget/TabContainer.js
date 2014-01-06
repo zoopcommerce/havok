@@ -90,6 +90,7 @@ function (
                     domConstruct.destroy(srcHeader);
                 }
                 this.nav.addItem(heading);
+                if (domClass.contains(heading, 'active')) this.nav.set('active', heading);
                 domClass.add(srcNode, 'tab-pane');
                 srcNode.setAttribute('data-tab-id', id);
             },

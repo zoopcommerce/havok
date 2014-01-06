@@ -4,7 +4,8 @@ define([
     'dojo/Deferred',
     'dojo/when',
     'dojo/dom-class',
-    'dojo/dom-construct'
+    'dojo/dom-construct',
+    './_StoreAdapterMixin'
 ],
 function (
     declare,
@@ -12,10 +13,11 @@ function (
     Deferred,
     when,
     domClass,
-    domConstruct
+    domConstruct,
+    StoreAdapterMixin
 ){
     return declare(
-        [],
+        [StoreAdapterMixin],
         {
             queryOptions: {
                 //this sort function ensures that folders always appear at the top of a list
@@ -26,17 +28,15 @@ function (
                 }
             },
 
-            _renderGroup: function(item, data){
-
-                var outerItem = domConstruct.place('<li><ol></ol></li>', item, 'after');
-                domConstruct.place(item, outerItem, 'first');
+            _renderGroup: function(item){
+                var outerItem = this._renderLink(item);
+                domConstruct.place('<ol></ol>', outerItem, 'last');
 
                 return outerItem;
             },
 
-            onClick: function(e, item){
-
-                this._fillFolder(item);
+            onClick: function(/*Event*/e, /*DomNode*/node){
+                this._fillFolder(node);
                 this.inherited(arguments);
             },
 
@@ -47,7 +47,7 @@ function (
 
                 if (item.children.length > 1 && innerParent.children.length == 0){
                     when(this.get('store'), lang.hitch(this, function(store){
-                        when(store.query(lang.mixin(this.get('query'), {parent: item.getAttribute('data-havok-store-id')}), this.get('queryOptions')), lang.hitch(this, function(data){
+                        when(store.query(lang.mixin(this.get('query'), {parent: item.getAttribute('data-havok-store-id').substring(3)}), this.get('queryOptions')), lang.hitch(this, function(data){
                             for (var i = 0; i < data.length; i++){
                                 this.addItem(data[i], {fromStore: true, refNode: innerParent, storeId: data[i][this.store.idProperty]});
                             }

@@ -26,7 +26,7 @@ function (
             //      A dropdown to display a list of links.
 
             storeAdapter: './_DropdownStoreAdapterMixin',
-            
+
             startup: function(){
                 this.inherited(arguments);
                 this._addKeypressHandler();
@@ -35,6 +35,10 @@ function (
             destroy: function(){
                 this._removeKeypressHandler();
                 this.inherited(arguments);
+            },
+
+            addWDropdownSubmenu: function(/*DomNode*/item){
+                return item;
             },
 
             _removeKeypressHandler: function(){

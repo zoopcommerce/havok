@@ -16,6 +16,10 @@ function(
         {
             // summary:
             //		A widget fixed in the viewport
+
+            _setTargetAttr: function(/*String|DomNode|Boolean*/value){
+                this.set('affix', value);
+            }
         }
     );
 });

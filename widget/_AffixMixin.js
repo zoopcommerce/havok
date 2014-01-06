@@ -23,14 +23,11 @@ function(
             // summary:
             //		Mixin to to fix a widget in the viewport
 
-            // affix: Boolean
-            //      Toggles affix behaviour
-            affix: true,
-
             /*=====
-            // affixTarget: DomNode
+            // affix: String|DomNode|Boolean
             //      The dom node to affix to
-            affixTarget: undefined,
+            //      If set to false, affixing is turned off
+            affix: undefined,
             =====*/
 
             // viewportOffsetTop: int
@@ -49,32 +46,28 @@ function(
 
             startup: function(){
                 this.inherited(arguments);
-                if (!this.affixTarget){
-                    this.affixTarget = this.domNode.parentNode;
-                }
+                if (this.affix == undefined) this.set('affix', this.domNode.parentNode);
                 this.updateAffix();
             },
 
-            _setAffixAttr: function(/*Boolean*/value){
-                if (value){
-                    this._affixScrollSignal = on(document, 'scroll', lang.hitch(this, this.updateAffix));
-                } else if (this._affixScrollSignal){
+            _setAffixAttr: function(/*String|DomNode|Boolean*/value){
+
+                if (value === false && this._affixScrollSignal){
                     this._affixScrollSignal.remove();
                     delete(this._affixScrollSignal);
                 }
+
+                if (typeof value == 'string') value = dom.byId(value);
+                this._affixScrollSignal = on(document, 'scroll', lang.hitch(this, this.updateAffix));
+
                 this._set('affix', value);
             },
 
-            _setAffixTargetAttr: function(/*DomNode*/value){
-                if (typeof value == 'string'){
-                    value = dom.byId(value);
-                }
-                this._set('affixTarget', value);
-            },
-
             updateAffix: function(){
+                if (!this._started || !this.affix) return;
+
                 var scrollTop = domGeom.docScroll().y,
-                    targetNodePos = domGeom.position(this.get('affixTarget'), true),
+                    targetNodePos = domGeom.position(this.get('affix'), true),
                     domNodePos = domGeom.position(this.domNode, true),
                     offsetTop,
                     offsetBottom,

@@ -6,7 +6,8 @@ define([
     'dojo/on',
     'dojo/dom-class',
     'dojo/dom-construct',
-    'dijit/a11yclick'
+    'dijit/a11yclick',
+    '../string'
 ],
 function (
     require,
@@ -16,7 +17,8 @@ function (
     on,
     domClass,
     domConstruct,
-    a11yclick
+    a11yclick,
+    string
 ){
     // module:
     //    	havok/widget/_ListMixin
@@ -39,9 +41,6 @@ function (
 
             // tag: String
             tag: 'ul',
-
-            // itemTemplate: String
-            itemTemplate: '<li></li>',
 
             // dividerTemplate: String
             dividerTemplate: '<li class="divider"></li>',
@@ -75,6 +74,14 @@ function (
                 }
             },
 
+            addHr: function(/*DomNode|String*/item){
+                return domConstruct.place(this.dividerTemplate, item, 'replace');
+            },
+
+            addLi: function(/*DomNode|String*/item){
+                return item;
+            },
+
             addItem: function(/*DomNode|String*/item, /*__AddOptions?*/options){
                 // summary:
                 //     Add an item to the list
@@ -87,7 +94,8 @@ function (
 
                 if (!options) options = {};
 
-                var refNode = options.refNode;
+                var refNode = options.refNode,
+                    func;
 
                 if (!refNode){
                     refNode = this.containerNode;
@@ -97,16 +105,16 @@ function (
                     item = domConstruct.place(item, refNode);
                 }
 
-                if (item.tagName == 'HR'){
-                    return domConstruct.place(this.dividerTemplate, item, 'replace');
-                } else if (!(['LI', 'W-DROPDOWN-SUBMENU'].indexOf(item.tagName) != -1 || this.itemTemplate == '')) {
-                    var outerItem = domConstruct.place(this.itemTemplate, item, 'after');
+                func = 'add' + string.ucFirst(string.camelCase(item.tagName));
+                if (this[func]){
+                    item = this['add' + string.ucFirst(string.camelCase(item.tagName))](item, options);
+                } else {
+                    var outerItem = domConstruct.place('<li></li>', item, 'after');
                     domConstruct.place(item, outerItem);
                     item.setAttribute('data-havok-click-target', true);
                     if (domClass.contains(item, 'active')){
                         domClass.remove(item, 'active');
                         domClass.add(outerItem, 'active');
-                        this.set('active', outerItem);
                     }
                     if (domClass.contains(item, 'disabled')){
                         domClass.remove(item, 'disabled');
@@ -115,6 +123,7 @@ function (
                     item = outerItem;
                 }
 
+                if (domClass.contains(item, 'active')) this.set('active', item);
                 this._attachClickListener(item);
                 return item;
             },

@@ -27,13 +27,21 @@ function (
             // baseClass: String
             baseClass: 'btn-group',
 
-            // itemTemplate: String
-            itemTemplate: '',
+            addButton: function(/*DomNode*/item){
+                domClass.add(item, 'btn');
+                return item;
+            },
 
-            addItem: function(/*DomNode|String*/item, /*havok/widget/_ListMixin.__AddOptions?*/options){
-                var node = this.inherited(arguments);
-                domClass.add(node, 'btn');
-                return node;
+            addWButton: function(/*DomNode*/item){
+                return this.addButton(item);
+            },
+
+            addWToggleButton: function(/*DomNode*/item){
+                return this.addButton(item);
+            },
+
+            addWDropdownToggle: function(/*DomNode*/item){
+                return this.addButton(item);
             }
         }
     );

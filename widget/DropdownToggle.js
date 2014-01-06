@@ -93,7 +93,7 @@ function (
                 if (!this.tag){
                     this.tag = 'div';
                 }
-                if (this.srcNodeRef && ['UL', 'NAV-TAB', 'NAV-PILL', 'NAV-BAR-LINKS'].indexOf(this.srcNodeRef.parentNode.tagName) != -1){
+                if (this.srcNodeRef && ['UL', 'W-NAV-TAB', 'W-NAV-PILL', 'W-NAV-BAR-LINKS'].indexOf(this.srcNodeRef.parentNode.tagName) != -1){
                     this.tag = 'li';
                 }
                 this.inherited(arguments);

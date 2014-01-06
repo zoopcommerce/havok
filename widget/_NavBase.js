@@ -18,6 +18,8 @@ function (
             // summary:
             //      Base class for navigation list widgets
 
+            storeAdapter: './_DropdownStoreAdapterMixin',
+
             // tag: String
             tag: 'ul',
 

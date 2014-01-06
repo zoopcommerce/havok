@@ -67,8 +67,8 @@
             var tabContainer = registry.byId('tabContainer1'),
                 buttonGroup = registry.byId('buttonGroup1');
 
-            buttonGroup.on('item-click', function(item){
-                tabContainer.set('placement', item.innerHTML);
+            buttonGroup.on('item-click', function(e){
+                tabContainer.set('placement', e.item.innerHTML);
             });
         })
     </script>

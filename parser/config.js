@@ -78,15 +78,15 @@ function(){
                 'w-tooltip'            : '../widget/Tooltip'
             },
             mixins: {
-                'expand'    : 'dijit/form/_ExpandingTextAreaMixin',
-
-                'affix'     : '../widget/_AffixMixin',
-                'hotkey'    : '../widget/_HotkeyMixin',
-                'required'  : '../form/_ValidationMixin',
-                'scrollspy' : '../widget/_ScrollSpyMixin',
-                'sortable'  : '../widget/_SortableMixin',
-                'store'     : '../widget/_StoreMixin',
-                'validator' : '../form/_ValidationMixin'
+                'expand'     : 'dijit/form/_ExpandingTextAreaMixin',
+                
+                'affix'      : '../widget/_AffixMixin',
+                'hotkey'     : '../widget/_HotkeyMixin',
+                'required'   : '../form/_ValidationMixin',
+                'scroll-spy' : '../widget/_ScrollSpyMixin',
+                'sortable'   : '../widget/_SortableMixin',
+                'store'      : '../widget/_StoreMixin',
+                'validator'  : '../form/_ValidationMixin'
             }
         }
     }

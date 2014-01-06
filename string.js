@@ -19,7 +19,7 @@ function (string) {
     string.camelCase = function(value) {
         // summary:
         //     Takes a dash separated string and makes it camel case
-        return value.replace(/-([a-z])/gi, function(s, group1) {
+        return value.toLowerCase().replace(/-([a-z])/gi, function(s, group1) {
             return group1.toUpperCase();
         })
     }

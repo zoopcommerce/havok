@@ -2,64 +2,64 @@
 
 <p class="lead">Show/hide visual alters to your users.</p>
 
-<p>Use the <code>alert</code> tag to create a <a href="/api/havok/widget/Alert.html">havok/widget/Alert</a>.</p>
+<p>Use the <code>w-alert</code> tag to create a <a href="/api/havok/widget/Alert.html">havok/widget/Alert</a>.</p>
 
 <h2>Default alert</h2>
-<p>Wrap any text in <code>alert</code> for a basic warning alert message.</p>
+<p>Wrap any text in <code>w-alert</code> for a basic warning alert message.</p>
 <div class="bs-docs-example">
-    <alert hidden=false>
+    <w-alert hidden=false>
         <strong>Warning!</strong> Best check your self, you're not looking too good.
-    </alert>
+    </w-alert>
 </div>
 <pre class="prettyprint linenums">
 {% set alertExample1 %}
-<alert hidden=false>
+<w-alert hidden=false>
     <strong>Warning!</strong> Best check your self, you're not looking too good.
-</alert>{% endset %}{{alertExample1|e}}
+</w-alert>{% endset %}{{alertExample1|e}}
 </pre>
 
 <h2>Block alerts</h2>
 
 <p>Add class <code>alert-block</code> for longer messages.</p>
 <div class="bs-docs-example">
-    <alert hidden=false class="alert-block">
+    <w-alert hidden=false class="alert-block">
         <h4>Warning!</h4>
         <p>Best check your self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
-    </alert>
+    </w-alert>
 </div>
 <pre class="prettyprint linenums">
 {% set alertExample2 %}
-<alert hidden=false class="alert-block">
+<w-alert hidden=false class="alert-block">
     <h4>Warning!</h4>
     <p>Best check your self, ...</p>
-</alert>{% endset %}{{alertExample2|e}}
+</w-alert>{% endset %}{{alertExample2|e}}
 </pre>
 
 <h2>Pretty colors</h2>
 
 <p>Add sematic classes for different styling:</p>
 <div class="bs-docs-example">
-    <alert class="alert-info" hidden=false>
+    <w-alert class="alert-info" hidden=false>
         <strong>Info!</strong> alert.
-    </alert>
-    <alert class="alert-error" hidden=false>
+    </w-alert>
+    <w-alert class="alert-error" hidden=false>
         <strong>Error!</strong> alert.
-    </alert>
-    <alert class="alert-success" hidden=false>
+    </w-alert>
+    <w-alert class="alert-success" hidden=false>
         <strong>Success!</strong> alert.
-    </alert>
+    </w-alert>
 </div>
 <pre class="prettyprint linenums">
 {% set alertExample3 %}
-<alert class="alert-info" hidden=false>
+<w-alert class="alert-info" hidden=false>
     <strong>Info!</strong> alert.
-</alert>
-<alert class="alert-error" hidden=false>
+</w-alert>
+<w-alert class="alert-error" hidden=false>
     <strong>Error!</strong> alert.
-</alert>
-<alert class="alert-success" hidden=false>
+</w-alert>
+<w-alert class="alert-success" hidden=false>
     <strong>Success!</strong> alert.
-</alert>{% endset %}{{alertExample3|e}}
+</w-alert>{% endset %}{{alertExample3|e}}
 </pre>
 
 <h2>See also</h2>
