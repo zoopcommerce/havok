@@ -277,20 +277,6 @@ function (
                     calcTarget();
                 }
 
-                if (target.y < scrollTop){
-                    if (togglePlacement.indexOf('top') !== -1){
-                        togglePlacement = togglePlacement.replace('top', 'bottom');
-                    } else {
-                        togglePlacement = togglePlacement.replace('bottom', 'top');
-                    }
-                    if (dropdownPlacement.indexOf('bottom') !== -1){
-                        dropdownPlacement = dropdownPlacement.replace('bottom', 'top');
-                    } else {
-                        dropdownPlacement = dropdownPlacement.replace('top', 'bottom');
-                    }
-                    calcTarget();
-                }
-
                 if (target.y + dropdownPos.h > scrollBottom){
                     if (togglePlacement.indexOf('bottom') !== -1){
                         togglePlacement = togglePlacement.replace('bottom', 'top');
@@ -301,6 +287,20 @@ function (
                         dropdownPlacement = dropdownPlacement.replace('top', 'bottom');
                     } else {
                         dropdownPlacement = dropdownPlacement.replace('bottom', 'top');
+                    }
+                    calcTarget();
+                }
+
+                if (target.y < scrollTop){
+                    if (togglePlacement.indexOf('top') !== -1){
+                        togglePlacement = togglePlacement.replace('top', 'bottom');
+                    } else {
+                        togglePlacement = togglePlacement.replace('bottom', 'top');
+                    }
+                    if (dropdownPlacement.indexOf('bottom') !== -1){
+                        dropdownPlacement = dropdownPlacement.replace('bottom', 'top');
+                    } else {
+                        dropdownPlacement = dropdownPlacement.replace('top', 'bottom');
                     }
                     calcTarget();
                 }

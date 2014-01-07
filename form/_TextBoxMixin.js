@@ -123,7 +123,7 @@ function (
                         this._set('value', this.parse(filteredValue, this.constraints));
                     })
 
-                if (filteredValue.then){
+                if (filteredValue && filteredValue.then){
                     filteredValue.then(lang.hitch(this, function(filterdValueComplete){
                         filteredValue = filterdValueComplete;
                         setValue();

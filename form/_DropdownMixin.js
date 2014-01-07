@@ -65,7 +65,10 @@ function (
                     this.set('value', e.item.getAttribute('data-havok-store-id').replace('id-', ''));
                     this.dropdownToggle.hide();
                 }));
-                this.dropdown.domNode.style.width = this.dropdownToggle.domNode.offsetWidth + 'px';
+
+                this.dropdownToggle.watch('hidden', lang.hitch(this, function(p, o, n){
+                    if (!n) this.dropdown.domNode.style.width = this.dropdownToggle.domNode.offsetWidth + 'px';
+                }))
             },
 
             addItem: function(/*DomNode|String*/item, /*__AddOptions?*/options){
@@ -76,6 +79,8 @@ function (
                 var node;
                 if (node = this.dropdown.containerNode.querySelector('[data-havok-store-id=id-' + value + ']')){
                     this.input.value = node.getAttribute('data-havok-store-text').substring(5);
+                } else {
+                    this.input.value = '';
                 }
                 this._set('value', value);
             },

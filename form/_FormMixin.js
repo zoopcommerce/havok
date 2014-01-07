@@ -34,6 +34,11 @@ function (
                 this.set('state', state);
             },
 
+            reset: function(){
+                this.inherited(arguments);
+                this.set('postActivity', false);
+            },
+
             _getInvalidWidgetsAttr: function(){
                 // summary:
                 //      Returns an array of child widgets which have a state != '' (ie have invalid state)
@@ -44,7 +49,7 @@ function (
             },
 
             _setPostActivityAttr: function(/*Boolean*/value){
-                array.forEach(this._decendants, function(widget){
+                array.forEach(this._descendants, function(widget){
                     widget.set('postActivity', value);
                 })
                 this._set('postActivity', value);

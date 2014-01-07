@@ -6,7 +6,8 @@ define([
     './_DropdownMixin',
     'dojo/text!./template/Select.html',
     '../widget/DropdownToggle',
-    '../widget/Dropdown'
+    '../widget/Dropdown',
+    '../less!../vendor/bootstrap/less/buttons.less'
 ],
 function (
     declare,

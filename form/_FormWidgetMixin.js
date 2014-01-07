@@ -38,6 +38,8 @@ function (
             //      The template to use when creating a block form input
             blockTemplate: '<div class="control-group"><div class="controls" data-dojo-attach-point="inputContainer">${input}<span data-dojo-attach-point="messagesNode"></span></div></div>',
 
+            value: undefined,
+
             buildRendering: function(){
                 if (this.inline || this.inline===''){
                     this.templateString = this.inlineTemplate.replace('${input}', this.templateString);
@@ -48,6 +50,10 @@ function (
 
                 domClass.remove(this.domNode, this.baseClass);
                 domClass.add(this.inputContainer.firstElementChild, this.baseClass);
+            },
+
+            reset: function(){
+                this.set('value', undefined);
             }
         }
     );

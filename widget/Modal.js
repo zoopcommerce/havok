@@ -65,12 +65,16 @@ function (
 
                 this.inherited(arguments);
 
-                if (header) while(header.childNodes.length>0) this.header.appendChild(header.childNodes[0]);
+                if (header) {
+                    while(header.childNodes.length>0) this.header.appendChild(header.childNodes[0]);
+                    header.parentNode.removeChild(header);
+                }
 
                 if (footer){
                     array.forEach(registry.findWidgets(this.footer), function(widget){widget.destroy()});
                     this.footer.innerHTML = '';
                     while(footer.childNodes.length>0) this.footer.appendChild(footer.childNodes[0]);
+                    footer.parentNode.removeChild(footer);
                 }
             },
 
@@ -85,12 +89,12 @@ function (
                 for(i=0; i<buttons.length; i++) on(buttons[i], 'click', lang.hitch(this, this.onOkClick))
 
                 buttons = this.footer.querySelectorAll('[type=reset]')
-                for(i=0; i<buttons.length; i++) on(buttons[i], 'click', lang.hitch(this, this.onOkClick))
+                for(i=0; i<buttons.length; i++) on(buttons[i], 'click', lang.hitch(this, this.onCloseClick))
 
                 buttons = registry.findWidgets(this.footer);
                 for(i=0; i<buttons.length; i++){
                     if (buttons[i].type == 'submit') on(buttons[i], 'click', lang.hitch(this, this.onOkClick));
-                    if (buttons[i].type == 'reset') on(buttons[i], 'click', lang.hitch(this, this.onCancelClick));
+                    if (buttons[i].type == 'reset') on(buttons[i], 'click', lang.hitch(this, this.onCloseClick));
                 }
             },
 
@@ -106,6 +110,7 @@ function (
             onCloseClick: function(e){
                 e.preventDefault();
                 e.stopPropagation();
+                this.reset();
                 this.set('button', e.target);
                 this.hide();
             },
