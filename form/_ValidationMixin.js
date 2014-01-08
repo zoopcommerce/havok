@@ -105,9 +105,13 @@ function (
                     return;
                 }
 
-                this._setValueTimestamp = new Date().getTime();
-                this.set('state', 'Validating');
-                this._startValidateTimer();
+                if (this.focused) {
+                    this._setValueTimestamp = new Date().getTime();
+                    this.set('state', 'Validating');
+                    this._startValidateTimer();
+                } else {
+                    this.validateNow();
+                }
             },
 
             _setSuppressValidationAttr: function(/*Boolean*/value){
@@ -147,7 +151,7 @@ function (
 
             onBlur: function(){
                 this.inherited(arguments);
-                this.validateNow(); //Force immediate validation on blur, no need to wait for the delay timer.
+                if (this._delayTimer) this.validateNow(); //Force immediate validation on blur, no need to wait for the delay timer.
             },
 
             _startValidateTimer: function(){
@@ -166,7 +170,6 @@ function (
             },
 
             _validate: function(){
-
                 if (this.suppressValidation){
                     return;
                 }

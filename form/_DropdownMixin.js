@@ -89,6 +89,22 @@ function (
                 if (!value) value = this.get('label');
                 this.input.setAttribute('placeholder', value);
                 this._set('placeholder', value)
+            },
+
+            onBlur: function(){
+                this._dropdownBlur = true;
+                this.inherited(arguments);
+                this._dropdownBlur = false;
+            },
+
+            _setPostActivityAttr: function(value) {
+                if (this._dropdownBlur) {
+                    setTimeout(lang.hitch(this, function(){
+                        this._set('postActivity', value)
+                    }), 200);
+                } else {
+                    this._set('postActivity', value)
+                }
             }
         }
     )

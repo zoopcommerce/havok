@@ -2,7 +2,6 @@ define([
     'dojo/_base/declare',
     'dojo/_base/lang',
     'dojo/date/locale',
-    '../is',
     './TextBox',
     './_ValidationMixin',
     '../widget/_WidgetsInTemplateMixin',
@@ -15,7 +14,6 @@ function (
     declare,
     lang,
     dateLocale,
-    is,
     TextBox,
     ValidationMixin,
     WidgetsInTemplateMixin,
@@ -83,19 +81,19 @@ function (
             },
 
             blurFormat: function(value) {
-                return is.isDate(value) ?
+                return value instanceof Date ?
                     dateLocale.format(value, {selector: 'date', formatLength: this.formatLength}) :
-                    value;
+                    typeof value == 'undefined' ? '' : value;
             },
 
             focusFormat: function(value) {
-                return is.isDate(value) ?
+                return value instanceof Date ?
                     dateLocale.format(value, {selector: 'date', formatLength: this.formatLength}) :
-                    value;
+                    typeof value == 'undefined' ? '' : value;
             },
 
             parse: function(value){
-                return is.isDate(value) ?
+                return value instanceof Date || typeof value == 'undefined' ?
                     value :
                     dateLocale.parse(value, lang.mixin({selector: 'date', formatLength: this.formatLength}));
             },

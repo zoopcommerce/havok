@@ -25,13 +25,6 @@ function (Deferred) {
             return ((parseFloat(value) || parseInt(value) === 0) && !isNaN(value));
         },
 
-        isDate: function(value) {
-            // summary:
-            //      Checks if a value is a date object. Will not attempt to cast a string
-            //      into a date. If you need to cast strings to dates, look at dojo/date
-            return value instanceof Date;
-        },
-
         isDeferred: function(/*object*/object){
             //summary:
             //     Helper method to determine if an object is an instance of Deferred
