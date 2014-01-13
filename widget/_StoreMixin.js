@@ -63,7 +63,7 @@ function (
                 if (typeof value == 'string'){
                     value = JSON.parse(value);
                     for (var i in value){
-                        value[i] = new RegExp(value[i]);
+                        if (typeof value[i] == 'object' && value[i]['$regex']) value[i] = new RegExp(value[i]['$regex'])
                     }
                 }
                 this._set('query', value);

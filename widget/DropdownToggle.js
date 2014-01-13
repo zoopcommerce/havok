@@ -125,6 +125,8 @@ function (
                     this.dropdown = children[children.length - 1];
                 }
 
+                if (!this.dropdown._started) this.dropdown.startup();
+
                 this.inherited(arguments);
 
                 on(this.button, 'mouseleave', lang.hitch(this, 'onMouseleave'));
@@ -166,8 +168,8 @@ function (
                     domConstruct.place(this.dropdown.domNode, this.dropdownContainer, 'last');
                 }
                 domClass.remove(this.dropdownContainer, 'hidden');
-                domClass.remove(this.dropdown.domNode, 'hidden');
                 domClass.add(this.dropdownContainer, 'open');
+                this.dropdown.show();
                 this._addKeypressHandlers();
                 this.position();
             },
@@ -178,7 +180,7 @@ function (
                     domClass.add(this.dropdownContainer, 'hidden');
                 }
                 if (this.dropdown.childHasMouse){
-                    this.dropdown.childHasMouse.hide();
+                    this.dropdown.hide();
                 }
                 this._removeKeypressHandlers();
             },

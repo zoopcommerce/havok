@@ -2,20 +2,24 @@ define([
     'dojo/_base/declare',
     'dojo/_base/lang',
     'dojo/on',
+    'dojo/dom-class',
     './_WidgetBase',
+    './_HideableMixin',
     '../less!./less/dropdowns.less'
 ],
 function (
     declare,
     lang,
     on,
-    WidgetBase
+    domClass,
+    WidgetBase,
+    HideableMixin
 ){
     // module:
     //    	havok/widget/_DropdownBase
 
     return declare(
-        [WidgetBase],
+        [WidgetBase, HideableMixin],
         {
             // summary:
             //      A base class for dropdown widgets to inherit from.
@@ -70,6 +74,14 @@ function (
                         }), 50);
                     }
                 }));
+            },
+
+            _show: function(){
+                domClass.remove(this.domNode, 'hidden');
+            },
+
+            _hide: function(){
+                domClass.add(this.domNode, 'hidden');
             }
         }
     );

@@ -60,6 +60,9 @@ function (
                 this.hex.on('blur', function(){
                     hexWatch.unwatch();
                 });
+                this.watch('hidden', lang.hitch(this, function(p, o, n){
+                    if (!n) this._refreshHandles();
+                }))
             },
 
             onHueHandleMoved: function(){
@@ -105,6 +108,7 @@ function (
             },
 
             _setValueAttr: function(value){
+
                 //value should be either a string with a hex color, or a hsv object
                 var hsv;
                 if (typeof value == 'string'){
@@ -117,17 +121,15 @@ function (
                 this.color = hsv;
                 this._set('value', value);
 
-
-                if (!this._started){
-                    return;
-                }
-
                 //update hex textbox
-                if (this.hex && this.hex.get('value') != value){
-                    this.hex.set('value', value);
-                }
+                if (this.hex && this.hex.get('value') != value) this.hex.set('value', value)
 
                 this.box.style.backgroundColor = Color.fromHsv(hsv.h, 100, 100).toHex();
+                this._refreshHandles();
+            },
+
+            _refreshHandles: function(){
+                var hsv = this.color;
                 this.hueHandle.domNode.style.top = (this.hue.offsetHeight * (1 - hsv.h / 359)) + 'px';
                 this.boxHandle.domNode.style.left = (this.box.offsetWidth * (hsv.s / 100)) + 'px';
                 this.boxHandle.domNode.style.top = (this.box.offsetHeight * (1 - hsv.v / 100)) + 'px';

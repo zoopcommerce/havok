@@ -35,9 +35,13 @@ function (
             dropdownToggle: undefined,
             =====*/
 
+            toggleTag: 'div',
+
             optionTemplate: '<li data-havok-store-id="id-${value}" data-havok-store-text="text-${text}"><a href="">${text}</a></li>',
 
             buildRendering: function(){
+
+                if (this.inline) this.toggleTag = 'span';
 
                 var options;
 
