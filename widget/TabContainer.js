@@ -52,7 +52,7 @@ function (
                     var nodes = this.containerNode.querySelectorAll('SECTION');
                     for (i = 0; i < nodes.length; i++){
                         if (nodes[i].parentNode == this.containerNode){
-                            this._renderItem(nodes[i], 'tab' + i);
+                            this._renderItem(nodes[i], nodes[i].hasAttribute('data-tab-id') ? nodes[i].getAttribute('data-tab-id') : 'tab' + i);
                         }
                     }
                 } else {

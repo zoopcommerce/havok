@@ -28,9 +28,7 @@ function (
 
             // A value in milliseconds
             // The store will not be queried at a rate faster than the set queryThrottle interval.
-            // Query results are cached and used to update the typeahead options while
-            // queries on the store are throttled
-            queryThrottle: 0,
+            queryThrottle: 50,
 
             //_dataCurrentDeferred: undefined,
 
@@ -39,6 +37,8 @@ function (
             _readyToQuery: true,
 
             //_pendingQuery: undefined,
+
+            c: 0,
 
             _getStoreAttr: function(){
                 var store = this.store;
@@ -74,7 +74,6 @@ function (
             },
 
             _getDataAttr: function(){
-
                 if (this._readyToQuery){
                     if (this._dataPendingDeferred){
                         this._dataCurrentDeferred = this._dataPendingDeferred;
@@ -85,9 +84,14 @@ function (
 
                     this._readyToQuery = false;
                     setTimeout(lang.hitch(this, function(){
-                        this._readyToQuery = true;
-                        if (this._dataPendingDeferred){
-                            this.get('data');
+                        if (this._dataCurrentDeferred.isResolved()){
+                            this._readyToQuery = true;
+                            if (this._dataPendingDeferred) this.get('data')
+                        } else {
+                            this._dataCurrentDeferred.then(lang.hitch(this, function(){
+                                this._readyToQuery = true;
+                                if (this._dataPendingDeferred) this.get('data')
+                            }))
                         }
                     }), this.queryThrottle);
                     when(this.get('store'), lang.hitch(this, function(store){
@@ -97,9 +101,7 @@ function (
                     }))
                     return this._dataCurrentDeferred;
                 } else {
-                    if (!this._dataPendingDeferred){
-                        this._dataPendingDeferred = new Deferred;
-                    }
+                    if (!this._dataPendingDeferred) this._dataPendingDeferred = new Deferred;
                     return this._dataPendingDeferred;
                 }
             }
