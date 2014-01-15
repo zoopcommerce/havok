@@ -6,7 +6,8 @@ define([
     'dijit/registry',
     './NavTab',
     './_SortableMixin',
-    './_WidgetBase'
+    './_WidgetBase',
+    '../less!./less/tabContainer.less'
 ],
 function (
     declare,
