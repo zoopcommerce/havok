@@ -41,9 +41,22 @@ function(
 
 		query: function(query, directives){
             directives = directives || {};
-            var queryString = JSON.stringify(query);
+            var queryString = {},
+                i;
 
-            if (!this.queryCache[queryString] || this.queryCache[queryString].expires < (new Date)){
+            for (i in query){
+                if (typeof query[i] == 'function'){
+                    queryString = undefined;
+                    break;
+                } else if (query[i] instanceof RegExp){
+                    queryString[i] = {'$regex': query[i].toString()}
+                } else {
+                    queryString[i] = query[i];
+                }
+            }
+            if (queryString) queryString = JSON.stringify(queryString);
+
+            if (!queryString || !this.queryCache[queryString] || this.queryCache[queryString].expires < (new Date)){
                 var expires = new Date;
                 this.queryCache[queryString] = {
                     expires: expires.setMilliseconds(expires.getMilliseconds() + directives.ttl ? directives.ttl : this.options.ttl),

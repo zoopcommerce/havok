@@ -88,6 +88,14 @@ function(
                 }));
             },
 
+            _setTitleAttr: function(value){
+                this.titleNode.innerHTML = value;
+            },
+
+            _getTitleAttr: function(){
+                return this.titleNode.innerHTML;
+            },
+
             _show: function(){
                 domConstruct.place(this.tooltip, document.body, 'last');
                 domClass.remove(this.tooltip, 'hidden');
