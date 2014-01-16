@@ -26,10 +26,9 @@ function (
                 //		Formats the value as a Number, according to constraints.
                 // tags:
                 //		protected
+                if (value == undefined) return ''
                 var formattedValue = this._formatter(value, constraints);
-                if (formattedValue == null){
-                    return value;
-                }
+                if (formattedValue == null) return value
                 return formattedValue;
             },
 
@@ -39,9 +38,7 @@ function (
                 // tags:
                 //		protected
                 var parsedValue = this._parser(value, constraints);
-                if (isNaN(parsedValue)){
-                    return value;
-                }
+                if (isNaN(parsedValue)) return value
                 return parsedValue;
             },
 

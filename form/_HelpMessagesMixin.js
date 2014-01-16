@@ -30,10 +30,12 @@ function (
                     helpMessages = [],
                     node;
 
-                for (i = 0; i < this.srcNodeRef.children.length; i++){
-                    node = this.srcNodeRef.children[i];
-                    if (node.hasAttribute('help-message')){
-                        helpMessages.push(node.innerHTML)
+                if (this.srcNodeRef){
+                    for (i = 0; i < this.srcNodeRef.children.length; i++){
+                        node = this.srcNodeRef.children[i];
+                        if (node.hasAttribute('help-message')){
+                            helpMessages.push(node.innerHTML)
+                        }
                     }
                 }
 

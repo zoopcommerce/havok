@@ -66,8 +66,8 @@ function (
                 this.inherited(arguments);
                 this.set('placeholder', this.placeholder);
                 this.dropdown.on('item-click', lang.hitch(this, function(e){
-                    this.set('value', e.item.getAttribute('data-havok-store-id').replace('id-', ''));
                     this.dropdownToggle.hide();
+                    this.set('value', e.item.getAttribute('data-havok-store-id').replace('id-', ''));
                 }));
 
                 this.dropdownToggle.watch('hidden', lang.hitch(this, function(p, o, n){
@@ -77,6 +77,10 @@ function (
 
             addItem: function(/*DomNode|String*/item, /*__AddOptions?*/options){
                 return this.dropdown.addItem(item, options);
+            },
+
+            refresh: function(){
+                return this.dropdown.refresh();
             },
 
             _setValueAttr: function(value){

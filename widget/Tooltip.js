@@ -78,14 +78,18 @@ function(
                 if (!this.target) this.target = this.domNode;
                 if (typeof this.target == 'string') this.target = dom.byId(this.target);
 
-                on(this.target, this.showOn, lang.hitch(this, function(e){
-                    e.preventDefault();
-                    this.set('hidden', false)
-                }));
-                on(this.target, this.hideOn, lang.hitch(this, function(e){
-                    e.preventDefault();
-                    this.set('hidden', true)
-                }));
+                if (this.showOn) {
+                    on(this.target, this.showOn, lang.hitch(this, function(e){
+                        e.preventDefault();
+                        this.set('hidden', false)
+                    }))
+                }
+                if (this.hideOn) {
+                    on(this.target, this.hideOn, lang.hitch(this, function(e){
+                        e.preventDefault();
+                        this.set('hidden', true)
+                    }))
+                }
             },
 
             _setTitleAttr: function(value){
