@@ -71,7 +71,10 @@ function (
                 }));
 
                 this.dropdownToggle.watch('hidden', lang.hitch(this, function(p, o, n){
-                    if (!n) this.dropdown.domNode.style.width = this.dropdownToggle.domNode.offsetWidth + 'px';
+                    if (!n) {
+                        this.dropdown.set('active', null);
+                        this.dropdown.domNode.style.width = this.dropdownToggle.domNode.offsetWidth + 'px';
+                    }
                 }))
             },
 

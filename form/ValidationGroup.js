@@ -44,7 +44,7 @@ function (
 
                 var postActivity = lang.clone(this.fields);
 
-                array.forEach(registry.findWidgets(this.form.domNode), lang.hitch(this, function(field){
+                array.forEach(registry.findWidgets(this.form.containerNode), lang.hitch(this, function(field){
                     if (this.fields.indexOf(field.name) != -1){
                         field.watch('postActivity', lang.hitch(this, function(){
                             postActivity[postActivity.indexOf(field.name)] = false;
@@ -66,7 +66,7 @@ function (
 
             _getValueAttr: function(){
                 var value = {};
-                array.forEach(registry.findWidgets(this.form.domNode), lang.hitch(this, function(field){
+                array.forEach(registry.findWidgets(this.form.containerNode), lang.hitch(this, function(field){
                     if (this.fields.indexOf(field.name) != -1) value[field.name] = field.get('value');
                 }));
                 return value;

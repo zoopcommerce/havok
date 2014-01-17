@@ -26,7 +26,7 @@ function (
                 //		Formats the value as a Number, according to constraints.
                 // tags:
                 //		protected
-                if (value == undefined) return ''
+                if (value == undefined || value === '') return ''
                 var formattedValue = this._formatter(value, constraints);
                 if (formattedValue == null) return value
                 return formattedValue;
@@ -37,6 +37,7 @@ function (
                 //		Formats the value as a Number, according to constraints.
                 // tags:
                 //		protected
+                if (value == undefined || value === '') return ''
                 var parsedValue = this._parser(value, constraints);
                 if (isNaN(parsedValue)) return value
                 return parsedValue;
@@ -47,6 +48,7 @@ function (
                 //		Replaceable function to convert a formatted string to a number value
                 // tags:
                 //		protected extension
+                if (value == undefined || value === '') return undefined;
                 return this._parser(value, constraints);
             }
         }
