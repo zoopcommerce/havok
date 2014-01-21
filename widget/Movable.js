@@ -85,6 +85,9 @@ function (
             },
 
             mousedown: function(e){
+                
+                e.preventDefault();
+
                 this.set('moving', true);
                 this.emit('movestart');
 

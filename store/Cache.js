@@ -2,13 +2,17 @@ define([
     'dojo/_base/declare',
     'dojo/_base/lang',
     'dojo/when',
-    'dojo/Deferred'
+    'dojo/Deferred',
+    'dojo/store/Memory',
+    'dojo/store/util/QueryResults'
 ],
 function(
     declare,
     lang,
     when,
-    Deferred
+    Deferred,
+    Memory,
+    QueryResults
 ){
     return declare([], {
 
@@ -29,7 +33,7 @@ function(
             //		These are additional options for how caching is handled.
 
             this.masterStore = masterStore;
-            this.cachingStore = cachingStore;
+            this.cachingStore = cachingStore || new Memory;
             this.options = options || {};
             this.options.ttl = this.options.ttl || 1000 * 60 * 5; //default ttl five minutes
             this.queryCache = {};
@@ -57,27 +61,23 @@ function(
             if (queryString) queryString = JSON.stringify(queryString);
 
             if (!queryString || !this.queryCache[queryString] || this.queryCache[queryString].expires < (new Date)){
-                var expires = new Date;
+                var expires = new Date,
+                    done = new Deferred;
                 this.queryCache[queryString] = {
                     expires: expires.setMilliseconds(expires.getMilliseconds() + directives.ttl ? directives.ttl : this.options.ttl),
-                    done: new Deferred
+                    result: new QueryResults(done)
                 };
-                var results = this.masterStore.query(query, directives);
-                results.forEach(lang.hitch(this, function(object){
+                var masterResult = this.masterStore.query(query, directives);
+                masterResult.forEach(lang.hitch(this, function(object){
                     if(!this.options.isLoaded || this.options.isLoaded(object)){
                         this.cachingStore.put(object);
                     }
                 }));
-                when(results, lang.hitch(this, function(resolvedResults){
-                    this.queryCache[queryString].done.resolve(resolvedResults);
-                    this.queryCache.done = true;
+                when(masterResult, lang.hitch(this, function(data){
+                    done.resolve(data);
                 }));
-                return results;
-            } else if (this.queryCache[queryString].done === true){
-                return this.cachingStore.query(query, directives);
-            } else {
-                return this.queryCache[queryString].done;
             }
+            return this.queryCache[queryString].result;
 		},
 
 		get: function(id, directives){
@@ -110,12 +110,14 @@ function(
 				return result; // the result from the put should be dictated by the masterStore and be unaffected by the cachingStore
 			}));
 		},
+
 		remove: function(id, directives){
             this.clearQueryCache();
 			return when(this.masterStore.remove(id, directives), lang.hitch(this, function(){
 				return this.cachingStore.remove(id, directives);
 			}));
 		},
+
 		evict: function(id){
             this.clearQueryCache();
 			return this.cachingStore.remove(id);

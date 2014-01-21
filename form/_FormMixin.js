@@ -55,17 +55,6 @@ function (
                 this._set('postActivity', value);
             },
 
-            _setInputsAttr: function(/*array*/value){
-                // summary:
-                //      Takes an array of input constructors and appends them to the form
-
-                var input;
-                for (var index in value){
-                    input = new value[index];
-                    this.containerNode.appendChild(input.domNode);
-                }
-            },
-
             _getState: function(){
                 // summary:
                 //		Compute what this.state should be based on state of children

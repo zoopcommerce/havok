@@ -39,15 +39,17 @@ function (
 
             refresh: function(){
                 var done = new Deferred;
-                when(this.get('storeHost').get('data'), lang.hitch(this, function(data){
+                when(this.get('storeHost').get('queryResult'), lang.hitch(this, function(queryResult){
                     while (this.containerNode.children.length > 0){
                         this.removeItem(this.containerNode.children[0]);
                     }
-                    if (data) {
-                        for (var i = 0; i < data.length; i++){
-                            this.addItem(data[i], {fromStore: true});
-                        }
-                    }
+if (!queryResult.forEach){
+    var a = 1;
+}
+console.log(queryResult);
+                    queryResult.forEach(lang.hitch(this, function(item){
+                        this.addItem(item, {fromStore: true});
+                    }));
                     if (this.active) this.set('active', this.active);
                     done.resolve();
                 }));

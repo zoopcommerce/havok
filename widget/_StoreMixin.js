@@ -73,36 +73,40 @@ function (
                 return lang.mixin({parent: undefined}, this.query);
             },
 
-            _getDataAttr: function(){
+            _getQueryResultAttr: function(){
                 if (this._readyToQuery){
-                    if (this._dataPendingDeferred){
-                        this._dataCurrentDeferred = this._dataPendingDeferred;
-                        delete(this._dataPendingDeferred);
+                    if (this._queryResultPendingDeferred){
+                        this._queryResultCurrentDeferred = this._queryResultPendingDeferred;
+                        delete(this._queryResultPendingDeferred);
                     } else {
-                        this._dataCurrentDeferred = new Deferred;
+                        this._queryResultCurrentDeferred = new Deferred;
                     }
 
                     this._readyToQuery = false;
+                    this._dataCurrentDeferred = new Deferred;
+
                     setTimeout(lang.hitch(this, function(){
                         if (this._dataCurrentDeferred.isResolved()){
                             this._readyToQuery = true;
-                            if (this._dataPendingDeferred) this.get('data')
+                            if (this._queryResultPendingDeferred) this.get('queryResult')
                         } else {
                             this._dataCurrentDeferred.then(lang.hitch(this, function(){
                                 this._readyToQuery = true;
-                                if (this._dataPendingDeferred) this.get('data')
+                                if (this._queryResultPendingDeferred) this.get('queryResult')
                             }))
                         }
                     }), this.queryThrottle);
                     when(this.get('store'), lang.hitch(this, function(store){
-                        when(store.query(this.get('query'), this.get('queryOptions')), lang.hitch(this, function(data){
-                            this._dataCurrentDeferred.resolve(data);
+                        var queryResult = store.query(this.get('query'), this.get('queryOptions'));
+                        when(queryResult, lang.hitch(this, function(){
+                            this._dataCurrentDeferred.resolve();
                         }));
+                        this._queryResultCurrentDeferred.resolve(queryResult);
                     }))
-                    return this._dataCurrentDeferred;
+                    return this._queryResultCurrentDeferred;
                 } else {
-                    if (!this._dataPendingDeferred) this._dataPendingDeferred = new Deferred;
-                    return this._dataPendingDeferred;
+                    if (!this._queryResultPendingDeferred) this._queryResultPendingDeferred = new Deferred;
+                    return this._queryResultPendingDeferred;
                 }
             }
         }
