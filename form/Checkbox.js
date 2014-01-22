@@ -26,17 +26,16 @@ function(
             // templateString: String
             templateString: template,
 
-            buildRendering: function(){
-                if (this.srcNodeRef.hasAttribute('checked')) {
-                    this.value = true;
-                } else {
-                    this.value = false;
-                }
+            value: false,
 
-                if (this.srcNodeRef.hasAttribute('disabled')) {
-                    this.disabled = true;
-                } else {
-                    this.disabled = false;
+            buildRendering: function(){
+
+                if (this.srcNodeRef){
+                    if (this.srcNodeRef.hasAttribute('checked')) this.value = true
+                    else this.value = false
+
+                    if (this.srcNodeRef.hasAttribute('disabled')) this.disabled = true
+                    else this.disabled = false
                 }
 
                 this.inherited(arguments);
@@ -78,6 +77,10 @@ function(
                     }
                 }
                 this._set('disabled', value);
+            },
+
+            reset: function(){
+                this.set('value', false);
             }
         }
     );

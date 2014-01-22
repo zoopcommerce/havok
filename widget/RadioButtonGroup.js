@@ -7,7 +7,7 @@ function (
     ButtonGroup
 ){
     // module:
-    //    	havok/widget/RadioGroup
+    //    	havok/widget/RadioButtonGroup
 
     return declare(
         [ButtonGroup],

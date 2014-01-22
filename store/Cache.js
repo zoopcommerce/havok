@@ -91,6 +91,10 @@ function(
 			}))
 		},
 
+        getIdentity: function(object){
+            return object[this.masterStore.idProperty];
+        },
+
 		add: function(object, directives){
             this.clearQueryCache();
 			return when(this.masterStore.add(object, directives), lang.hitch(this, function(result){

@@ -1,21 +1,21 @@
 define([
     'dojo/_base/declare',
     'dojo/dom-class',
-    '../widget/CheckboxGroup',
+    '../widget/CheckboxButtonGroup',
     './_FormWidgetMixin'
 ],
 function(
     declare,
     domClass,
-    CheckboxGroup,
+    CheckboxButtonGroup,
     FormWidgetMixin
 ){
     // module:
-    //		havok/form/CheckboxGroup
+    //		havok/form/CheckboxButtonGroup
 
     return declare
     (
-        [CheckboxGroup, FormWidgetMixin],
+        [CheckboxButtonGroup, FormWidgetMixin],
         {
             // summary:
             //      Creates a group of checkboxes styles as buttons.

@@ -78,11 +78,11 @@
 
 <h2>Grouped Button Style Checkboxes</h2>
 
-<p>Use <code>f-checkbox-group</code> to create a <a href="/api/havok/form/CheckboxGroup.html">havok/form/CheckboxGroup</a> for a group of button style checkboxes.</p>
+<p>Use <code>f-checkbox-button-group</code> to create a <a href="/api/havok/form/CheckboxButtonGroup.html">havok/form/CheckboxButtonGroup</a> for a group of button style checkboxes.</p>
 
 <div class="bs-docs-example">
     <d-formspy>
-        <f-checkbox-group
+        <f-checkbox-button-group
                label='A checkbox group'
                help-messages='this is a checkbox group'
                value='{"l": true, "m": false, "r": true}'
@@ -90,13 +90,13 @@
             <button value="l">left</button>
             <button value="m">middle</button>
             <button value="r">right</button>
-        </f-checkbox-group>
+        </f-checkbox-button-group>
     </d-formspy>
 </div>
 
     <pre class="prettyprint linenums">
 {% set checkExample3 %}
-<f-checkbox-group
+<f-checkbox-button-group
        label='A checkbox group'
        help-messages='this is a checkbox group'
        value='{"l": true, "m": false, "r": true}'
@@ -104,16 +104,16 @@
     <button value="l">left</button>
     <button value="m">middle</button>
     <button value="r">right</button>
-</f-checkbox-group>{% endset %}{{checkExample3|e}}
+</f-checkbox-button-group>{% endset %}{{checkExample3|e}}
 </pre>
 
 <h2>Button Style Radio Group</h2>
 
-<p>Use <code>f-radio-group</code> to create a <a href="/api/havok/form/RadioGroup.html">havok/form/RadioGroup</a> for a group of button style radios.</p>
+<p>Use <code>f-radio-button-group</code> to create a <a href="/api/havok/form/RadioButtonGroup.html">havok/form/RadioButtonGroup</a> for a group of button style radios.</p>
 
 <div class="bs-docs-example">
     <d-formspy>
-        <f-radio-group
+        <f-radio-button-group
             label="A radio group"
             help-messages="this is a radio group"
             value="m"
@@ -121,13 +121,13 @@
             <button value="l">left</button>
             <button value="m">middle</button>
             <button value="r">right</button>
-        </f-radio-group>
+        </f-radio-button-group>
     </d-formspy>
 </div>
 
         <pre class="prettyprint linenums">
 {% set checkExample4 %}
-<f-radio-group
+<f-radio-button-group
     label="A radio group"
     help-messages="this is a radio group"
     value="m"
@@ -135,6 +135,6 @@
     <button value="l">left</button>
     <button value="m">middle</button>
     <button value="r">right</button>
-</f-radio-group> {% endset %}{{checkExample4|e}}
+</f-radio-button-group> {% endset %}{{checkExample4|e}}
 </pre>
 

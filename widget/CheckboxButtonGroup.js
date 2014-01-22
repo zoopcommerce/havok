@@ -11,7 +11,7 @@ function (
     ButtonGroup
 ){
     // module:
-    //    	havok/widget/CheckboxGroup
+    //    	havok/widget/CheckboxButtonGroup
 
     return declare(
         [ButtonGroup],
@@ -21,7 +21,7 @@ function (
 
             // storeAdapter: String
             //      Module Id for use with the _StoreMixin
-            storeAdapter: './_CheckboxGroupStoreAdapterMixin',
+            storeAdapter: './_CheckboxButtonGroupStoreAdapterMixin',
 
             _setActiveAttr: function(/*DomNode|DomNode[]?*/value){
 

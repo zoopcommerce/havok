@@ -3,20 +3,20 @@ define([
     'dojo/_base/lang',
     'dojo/cookie',
     '../../widget/Tooltip',
-    '../../widget/RadioGroup'
+    '../../widget/RadioButtonGroup'
 ],
 function (
     declare,
     lang,
     cookie,
     Tooltip,
-    RadioGroup
+    RadioButtonGroup
 ){
     // module:
     //    	havok/docs/module/Feedback
 
     return declare(
-        [RadioGroup],
+        [RadioButtonGroup],
         {
             // baseClass: String
             baseClass: 'btn-group theme-switch',

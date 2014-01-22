@@ -1,19 +1,19 @@
 define([
     'dojo/_base/declare',
-    '../widget/RadioGroup',
+    '../widget/RadioButtonGroup',
     './_FormWidgetMixin'
 ],
 function(
     declare,
-    RadioGroup,
+    RadioButtonGroup,
     FormWidgetMixin
 ){
     // module:
-    //		havok/form/RadioGroup
+    //		havok/form/RadioButtonGroup
 
     return declare
     (
-        [RadioGroup, FormWidgetMixin],
+        [RadioButtonGroup, FormWidgetMixin],
         {
             // summary:
             //      Creates a radio group styled as buttons.
