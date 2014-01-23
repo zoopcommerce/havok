@@ -1,7 +1,5 @@
-define ([
-    'dojo/Deferred'
-],
-function (Deferred) {
+define ([],
+function () {
     // module:
     //		havok/is
     //
@@ -23,16 +21,6 @@ function (Deferred) {
             //      Checks if a value is a float or can be cast into an integer
 
             return ((parseFloat(value) || parseInt(value) === 0) && !isNaN(value));
-        },
-
-        isDeferred: function(/*object*/object){
-            //summary:
-            //     Helper method to determine if an object is an instance of Deferred
-            //
-            // returns:
-            //     boolean
-
-            return (object instanceof Deferred || (object && object.isInstanceOf && object.isInstanceOf(Deferred)));
         },
 
         isStatic: function(/*object*/value){

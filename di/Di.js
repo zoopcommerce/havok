@@ -5,8 +5,7 @@ define([
     'dojo/DeferredList',
     'dojo/when',
     '../lang',
-    './Proxy',
-    '../is'
+    './Proxy'
 ],
 function (
     declare,
@@ -15,8 +14,7 @@ function (
     DeferredList,
     when,
     lang,
-    Proxy,
-    is
+    Proxy
 ) {
     // module:
     //		havok/di/Di
@@ -275,7 +273,7 @@ function (
 
                 //check to see if the object alredy exists in cache
                 var object = this._getCached(identifier);
-                if (object && ! is.isDeferred(object)){
+                if (object && ! object.then){
                     return object;
                 }
 

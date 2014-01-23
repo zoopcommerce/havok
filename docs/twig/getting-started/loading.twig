@@ -1,0 +1,39 @@
+<h1>Loading</h1>
+
+<p class="lead">Load Havok in your pages.</p>
+
+<h2>Quick and Dirty</h2>
+<p>If you are using the Havok dist you need to link <code>havok.css</code>, and load <code>havok.js</code>:</p>
+<pre class="prettyprint linenums">
+{% set loadingExample1 %}
+<link rel="stylesheet" href="path/to/havok.css">
+<script src="path/to/havok.js"></script>{% endset %}{{loadingExample1|e}}
+</pre>
+
+<h2>Development configuration</h2>
+<p>In development mode all js modules are loaded async. In addition, less files are also loaded async and compliled client side. This makes development mode very flexible, responsive to code changes, and simple to debug. However, it does mean page loads are slow, so don't use this for production code.</p>
+
+<p>To load in development mode you'll first need to specify a simple dojoConfig, and then load <code>dojo/dojo</code>:</p>
+<pre class="prettyprint linenums">
+{% set loadingExample2 %}
+<script type="text/javascript">
+	dojoConfig = {
+		isDebug: true,
+		async: true,
+		deps: ['havok/ready!'],
+        merge: ['havok/config']
+	}
+</script>
+<script src="path/to/dojo/dojo.js"></script>{% endset %}{{loadingExample2|e}}
+</pre>
+
+<p>Including <code>deps: ['havok/ready!']</code> will bootstrap havok. For more information about bootstrapping read about <a href="./services.html">havok/ready!</a></p>
+<p>Including <code>merge: ['havok/config']</code> will use the default havok configuration. For more information read about the <a href="./services.html">config merger</a></p>
+
+<h2>Production configuration</h2>
+<p>It is strongly recommended that you use the havok build tools to create a bootable layer that is used in production. Load your built layer css and js, and you're ready to go:</p>
+<pre class="prettyprint linenums">
+{% set loadingExample2 %}
+<link rel="stylesheet" href="path/to/layer.css">
+<script src="path/to/bootable/layer.js"></script>{% endset %}{{loadingExample2|e}}
+</pre>

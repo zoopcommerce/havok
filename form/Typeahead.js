@@ -1,6 +1,7 @@
 define([
     'dojo/_base/declare',
     'dojo/_base/lang',
+    'dojo/when',
     './TextBox',
     '../widget/_WidgetsInTemplateMixin',
     './_DropdownMixin',
@@ -12,6 +13,7 @@ define([
 function (
     declare,
     lang,
+    when,
     TextBox,
     WidgetsInTemplateMixin,
     DropdownMixin,
@@ -34,13 +36,14 @@ function (
 
             startup: function(){
                 this.inherited(arguments);
-                this.watch('value', lang.hitch(this, function(property, oldValue, newValue){
-                    if (newValue.length < this.minLength){
-                        this.dropdownToggle.hide();
-                        return;
-                    }
+            },
 
-                    var re = new RegExp(newValue, 'ig');
+            _setValueAttr: function(value){
+
+                if (value.length < this.minLength){
+                    this.dropdownToggle.hide();
+                } else {
+                    var re = new RegExp(value, 'ig');
                     this.dropdown.re = re;
                     this.set('query', {text: re});
 
@@ -51,7 +54,20 @@ function (
                             this.dropdownToggle.hide();
                         }
                     }))
-                }));
+                }
+
+                when(this.get('store'), lang.hitch(this, function(store){
+                    when(store.get(value), lang.hitch(this, function(item){
+                        if (item) {
+                            this.input.value = item.text;
+                            this.dropdownToggle.hide();
+                        } else {
+                            this.input.value = value;
+                        }
+                    }))
+                }))
+
+                this._set('value', value);
             },
 
             _getQueryOptionsAttr: function(){

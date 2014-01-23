@@ -50,6 +50,12 @@ function (
 
             closeButtonTemplate: closeButtonTemplate,
 
+            headerTemplate: '',
+
+            bodyTemplate: '',
+
+            footerTemplate: '<w-button type="reset" hotkey="ESCAPE">Close</w-button><w-button type="submit" class="btn-primary" hotkey="ENTER">Ok</w-button>',
+
             // button: string
             //     The button node that was clicked to close the modal.
             button: undefined,

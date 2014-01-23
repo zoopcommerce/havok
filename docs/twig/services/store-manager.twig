@@ -1,0 +1,99 @@
+<h1>Store Manager</h1>
+
+<p class="lead">Container for managing data stores</p>
+
+<p>The store manager is a central repository for your app's data stores. Stores can be added to the manager in many different ways, and then used throughout your application.</p>
+
+<h2>Getting the manager</h2>
+
+<p>You should always retreive the store manager via the shared <a href="/di.html">di</a> container. Eg:</p>
+
+<pre class="prettyprint linenums">
+require(['havok/get!havok/store/manager'], function(storeManager){
+    //do something
+}</pre>
+
+<h2>Adding Stores</h2>
+
+<p>There are many different ways to add a store to the manager, depending on your needs.</p>
+
+<h3>Directly</h3>
+
+<p>A store can be added by directly adding it to the <code>manager.stores</code> object. Eg:</p>
+
+<pre class="prettyprint linenums">
+require(['dojo/store/Memory', 'havok/get!havok/store/manager'], function(Memory, storeManager){
+    storeManager.stores.myStore = new Memory({data: [
+        {id: 0, name: 'pigglet'}
+        ...
+    ]);
+}</pre>
+
+<h3>Via Config</h3>
+
+<p>Di configuration can be used to add stores. Eg:</p>
+
+<pre class="prettyprint linenums">
+di: {
+    'havok/store/stores': {
+        gets: {
+            store1: 'my/store/one',
+            store2: 'my/store/two'
+        },
+        proxies: {
+            store3: {
+                base: 'my/store/three',
+                proxyMethods: [
+                    'get',
+                    'query'
+                ]
+            }
+        }
+    }
+}</pre>
+
+<p>Adding stores via di is particularly handy for two reasons.</p>
+
+<p>Firstly, it is very easy to override a store, and inject an alternative data set.</p>
+
+<p>Secondly, by using proxies, the store will be lazy loaded. That is, it will only be fetched on it's first use.</p>
+
+<h3>Declarative Stores</h3>
+
+<p>Stores can be added using markup. If you place a <code>datalist</code> anywhere in your document with it's <code>id</code> attribute set, then <a href="/api/havok/store/Datalist">havok/store/Datalist</a> will be used to turn that <code>datalist</code> into a store. Eg:</p>
+<pre class="prettyprint linenums">
+{% set ex1 %}
+<datalist id="myStore4">
+    <option data-id="home">home</option>
+    <option data-id="navs">#navs anchor</option>
+    <option data-id="disabled">disabled pill</option>
+</datalist>{% endset %}{{ex1|e}}</pre>
+
+    <h2>Retrieve a store</h2>
+
+    <p>To get a store, use <code>getStore</code>.</p>
+
+    <pre class="prettyprint linenums">
+require(['havok/store/manager'], function(storeManager){
+    var store1 = storeManager.getStore('store1');
+}</pre>
+
+    <h2>Retrieve a record</h2>
+
+    <p>To get a single record from a store, use <code>get</code> and pass a reference with the store name and record id. Eg:</p>
+
+    <pre class="prettyprint linenums">
+require(['havok/store/manager'], function(storeManager){
+    var record = storeManager.get('store1/id1');
+}</pre>
+
+    <h2>See also</h2>
+
+    <p><a href="/widgets.html#stores">Examples</a> of widgets using the store manager.</p>
+
+    <p>Api documentation:</p>
+    <ul>
+        <li><a href="/api/havok/store/manager.html">havok/store/manager</a></li>
+        <li><a href="/api/havok/store/Datalist.html">havok/store/Datalist</a></li>
+        <li><a href="/api/havok/store/JsonRest.html">havok/store/JsonRest</a></li>
+    </ul>

@@ -29,7 +29,16 @@ function (
             // templateString: String
             templateString: template,
 
-            _setClassAttr: { node: "input", type: "class" }
+            _setClassAttr: { node: "input", type: "class" },
+
+            _setValueAttr: function(value){
+                var node = this.dropdown.containerNode.querySelector('[data-havok-store-id=id-' + value + ']');
+
+                if (node) this.input.value = node.getAttribute('data-havok-store-text').substring(5)
+                else this.input.value = ''
+
+                this._set('value', value);
+            }
         }
     )
 });

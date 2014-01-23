@@ -86,16 +86,6 @@ function (
                 return this.dropdown.refresh();
             },
 
-            _setValueAttr: function(value){
-                var node;
-                if (node = this.dropdown.containerNode.querySelector('[data-havok-store-id=id-' + value + ']')){
-                    this.input.value = node.getAttribute('data-havok-store-text').substring(5);
-                } else {
-                    this.input.value = '';
-                }
-                this._set('value', value);
-            },
-
             _setPlaceholderAttr: function(value) {
                 if (!value) value = this.get('label');
                 this.input.setAttribute('placeholder', value);

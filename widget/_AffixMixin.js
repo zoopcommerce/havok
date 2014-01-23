@@ -52,14 +52,14 @@ function(
 
             _setAffixAttr: function(/*String|DomNode|Boolean*/value){
 
-                if (value === false && this._affixScrollSignal){
+                if (this._affixScrollSignal){
                     this._affixScrollSignal.remove();
                     delete(this._affixScrollSignal);
                 }
 
                 if (typeof value == 'string') value = dom.byId(value);
-                this._affixScrollSignal = on(document, 'scroll', lang.hitch(this, this.updateAffix));
 
+                this._affixScrollSignal = on(document, 'scroll', lang.hitch(this, this.updateAffix));
                 this._set('affix', value);
             },
 

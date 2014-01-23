@@ -1,18 +1,10 @@
 define([
     'dojo/_base/declare',
-    'dojo/dom-construct',
-    'dojo/string',
-    '../../widget/Modal',
-    'dojo/text!./template/ExceptionModalFooter.html',
-    'dojo/text!./template/ExceptionModalBody.html'
+    '../../widget/Modal'
 ],
 function (
     declare,
-    domConstruct,
-    string,
-    Modal,
-    footerTemplate,
-    bodyTemplate
+    Modal
 ){
 
     return declare(
@@ -22,16 +14,25 @@ function (
 
             //modal: undefined,
 
+            bodyTemplate: '<h4>${name}</h4><p>${message}</p>',
+
+            footerTemplate: '<w-button class="btn-warning" type="submit" hotkey="ENTER">Ok</w-button>',
+
             render: function(exceptionModel){
                 if (!this.modal){
-                    this.modal = new Modal({footerTemplate: footerTemplate});
-                    domConstruct.place(this.modal.domNode, document.body);
+                    this.modal = new Modal({footerTemplate: this.footerTemplate});
                     this.modal.startup();
                 }
 
-                this.modal.set('title', exceptionModel.severity);
+                this.modal.header.innerHTML = exceptionModel.severity;
+                this.modal.containerNode.innerHTML = [
+                    '<h4>',
+                    exceptionModel.name,
+                    '</h4><p>',
+                    exceptionModel.message,
+                    '</p>'
+                ].join('');
 
-                domConstruct.place(string.substitute(bodyTemplate, exceptionModel), this.modal.containerNode, 'only');
                 this.modal.show();
             }
         }
