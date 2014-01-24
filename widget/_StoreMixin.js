@@ -18,8 +18,9 @@ function (
         {
             //store: undefined,
 
-            // query: object
+            //query: Object
             //		A query to use when fetching items from our store
+            query: {},
 
             // queryOptions: object
             //		Query options to use when fetching from the store
@@ -60,11 +61,8 @@ function (
             },
 
             _setQueryAttr: function(value){
-                if (typeof value == 'string'){
-                    value = JSON.parse(value);
-                    for (var i in value){
-                        if (typeof value[i] == 'object' && value[i]['$regex']) value[i] = new RegExp(value[i]['$regex'])
-                    }
+                for (var i in value){
+                    if (typeof value[i] == 'object' && value[i]['$regex']) value[i] = new RegExp(value[i]['$regex'])
                 }
                 this._set('query', value);
             },

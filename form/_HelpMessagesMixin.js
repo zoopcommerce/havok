@@ -24,6 +24,8 @@ function (
             _helpMessageObjects: undefined,
             =====*/
 
+            helpMessages: [],
+
             buildRendering: function(){
 
                 var i,
@@ -46,7 +48,6 @@ function (
 
             _setHelpMessagesAttr: function(/*String|String[]*/messages) {
 
-                if (typeof messages == 'string' && messages.substring(0,1) == '[') messages = JSON.parse(messages);
                 if (typeof messages == 'string') messages = [messages];
 
                 this._helpMessageObjects = this.updateMessages(

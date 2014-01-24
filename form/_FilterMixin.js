@@ -23,24 +23,13 @@ function (
             // summary:
             //      Applies filters to form input values
 
-            /*=====
             // filter: String|String[]|Object|FilterBase
-            filter: undefined,
-            =====*/
+            filter: [],
 
             /*=====
             // _filterDeferred: Deferred
             _filterDeferred: undefined,
             =====*/
-
-            buildRendering: function(){
-
-                this.inherited(arguments);
-
-                if (typeof this.filter == 'string' && (this.filter.substring(0,1) == '[' || this.filter.substring(0,1) == '{')) {
-                    this.filter = JSON.parse(this.filter);
-                }
-            },
 
             _setFilterAttr: function(/*String|String[]|Object|FilterBase*/value){
                 // summary:

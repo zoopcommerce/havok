@@ -49,9 +49,9 @@
 
 <p>Set a filter chain:</p>
 <div class="bs-docs-example">
-    <f-formspy class="form-horizontal">
+    <d-formspy class="form-horizontal">
         <f-textbox lable="name" filter='["Trim", "Uppercase"]' value="    John Smith    "></f-textbox>
-    </f-formspy>>
+    </d-formspy>
 </div>
 
 <pre class="prettyprint linenums">
@@ -205,8 +205,8 @@
             var buttonGroup = registry.byId('buttonGroup1');
             var textbox = registry.byId('appendageExample');
 
-            buttonGroup.on('item-click', function(item){
-                eval('textbox' + item.innerHTML); // Quick and dirty use of eval here.
+            buttonGroup.on('item-click', function(e){
+                eval('textbox' + e.item.innerHTML); // Quick and dirty use of eval here.
             });
         })
         </script>

@@ -24,10 +24,10 @@ function (
             // summary:
             //      Base mixin for textbox type form inputs.
 
-            // filter: String|String[]
+            // filter: String|String[]|Object|FilterBase
             //      Filters to be applied to the input value
             //      Trim filter applied by default
-            filter: 'Trim',
+            filter: ['Trim'],
 
             /*=====
             // placeholder: String

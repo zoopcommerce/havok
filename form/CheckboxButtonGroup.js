@@ -22,6 +22,8 @@ function(
 
             tag: 'span',
 
+            value: {},
+
             startup: function(){
                 this.inherited(arguments);
 
@@ -49,10 +51,6 @@ function(
             },
 
             _setValueAttr: function(value){
-                if (typeof value == 'string'){
-                    value = JSON.parse(value);
-                }
-
                 var active = [],
                     i,
                     node,

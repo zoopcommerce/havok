@@ -2,14 +2,12 @@ define([
     'dojo/_base/declare',
     'dojo/_base/lang',
     'dojo/Deferred',
-    '../is',
     './Base'
 ],
 function(
     declare,
     lang,
     Deferred,
-    is,
     Base
 ){
     return declare(
@@ -40,7 +38,7 @@ function(
                 var filter = this.filters[index],
                     filteredValue = this._getFilteredValue(filter, value);
 
-                if (is.isDeferred(filteredValue)){
+                if (filteredValue.then){
 
                     var resultDeferred = new Deferred;
 

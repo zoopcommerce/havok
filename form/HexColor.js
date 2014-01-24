@@ -23,7 +23,7 @@ function (
 
             filter: 'HexColor',
 
-            validator: 'HexColor',
+            validator: ['HexColor'],
 
             delay: 50,
 

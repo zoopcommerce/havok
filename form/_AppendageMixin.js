@@ -3,13 +3,15 @@ define([
     'dojo/_base/lang',
     'dojo/dom-construct',
     'dojo/dom-class',
+    'dijit/registry',
     '../less!./less/appendage.less'
 ],
 function (
     declare,
     lang,
     domConstruct,
-    domClass
+    domClass,
+    registry
 ){
     // module:
     //    	havok/form/_AppendageMixin
@@ -20,15 +22,11 @@ function (
             // summary:
             //      Adds appendages to a textbox.
 
-            /*=====
             // prepend: String|String[]|DomNode|DomNode[]
-            prepend: undefined,
-            =====*/
+            prepend: [],
 
-            /*=====
             // append: String|String[]|DomNode|DomNode[]
-            append: undefined,
-            =====*/
+            append: [],
 
             /*=====
             // appendagesWrapper: DomNode
@@ -40,15 +38,19 @@ function (
 
                     var i,
                         node,
+                        widget,
                         prepend = [],
                         append = [];
 
                     for (i = 0; i < this.srcNodeRef.children.length; i++){
                         node = this.srcNodeRef.children[i];
-                        if (node.hasAttribute('append')){
-                            append.unshift(node);
-                        } else if (node.hasAttribute('prepend')){
-                            prepend.unshift(node);
+                        widget = registry.getEnclosingWidget(node);
+                        if (widget && widget !== this){
+                            if (widget.append === '') append.unshift(node)
+                            else if (widget.prepend === '') prepend.unshift(node)
+                        } else {
+                            if (node.hasAttribute('append')) append.unshift(node)
+                            else if (node.hasAttribute('prepend')) prepend.unshift(node)
                         }
                     }
 
@@ -82,7 +84,6 @@ function (
 
                 var index;
 
-                if (typeof value == 'string' && value.substring(0,1) == '[') value = JSON.parse(value)
                 if ( ! lang.isArray(value)) value = [value];
                 for (index in value) value[index] = this._createNode(value[index], true);
 
@@ -95,7 +96,6 @@ function (
 
                 var index;
 
-                if (typeof value == 'string' && value.substring(0,1) == '[') value = JSON.parse(value)
                 if ( ! lang.isArray(value)) value = [value];
                 for (index in value) value[index] = this._createNode(value[index], false);
 

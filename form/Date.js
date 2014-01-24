@@ -42,7 +42,7 @@ function (
             placeholder: 'dd/mm/yyyy',
 
             // validator: String|String[]|Object|mystique/Base
-            validator: 'Date',
+            validator: ['Date'],
 
             /*=====
             // dropdown: DomNode

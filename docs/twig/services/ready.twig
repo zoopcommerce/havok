@@ -2,3 +2,64 @@
 
 <p class="lead">Super simple bootstrapping for havok.</p>
 
+<p>When configuring vanilla dojo (without any havok code at all) the <code>deps</code> key of <code>dojoConfig</code> may contain an array of module name that will be loaded immediately.</p>
+
+<p>If <code>havok/ready!</code> is part of the <code>deps</code> key, then the havok config merger will be used to merge all config files, and any extra modules added to the <code>deps</code> key will also be loaded.</p>
+
+<p>For example, if you have your own custom config file named <code>mylib/config</code>:</p>
+
+<pre class="prettyprint linenums">
+define([],
+function(){
+    // module:
+    //		mylib/config
+
+    return {
+        deps: [
+            'mylib/MyModule',
+            'mylib/plugin!'
+        ]
+    }
+});
+</pre>
+
+<p>Then if you configure <code>dojoConfig</code> like this:</p>
+
+<pre class="prettyprint linenums">
+{% set readyExample1 %}
+<script type="text/javascript">
+	dojoConfig = {
+		isDebug: true,
+		async: true,
+		deps: ['havok/ready!'],
+        merge: ['mylib/config']
+	}
+</script>
+<script src="path/to/dojo/dojo.js"></script>{% endset %}{{readyExample1|e}}
+</pre>
+
+<p>When dojo loads, then <code>mylib/MyModule</code> will also be loaded, and <code>mylib/plugin!</code> will be executed.</p>
+
+<h2>Default Config (recommended)</h2>
+
+<p>If you configure <code>dojoConfig</code> with the default <code>havok/config</code> like this:</p>
+<pre class="prettyprint linenums">
+{% set readyExample2 %}
+<script type="text/javascript">
+	dojoConfig = {
+		isDebug: true,
+		async: true,
+		deps: ['havok/ready!'],
+        merge: ['havok/config']
+	}
+</script>
+<script src="path/to/dojo/dojo.js"></script>{% endset %}{{readyExample2|e}}
+</pre>
+
+<p>Then the following services will be loaded and started for you:</p>
+
+<ul>
+    <li>Havok router will be loaded and started</li>
+    <li>Less loading will be enabled</li>
+    <li>Havok parser will be loaded and the document body parsed</li>
+</ul>

@@ -124,6 +124,14 @@ function (
                             // for checked/disabled value might be "" or "checked".	 interpret as true.
                             params[name] = value.toLowerCase() != "false";
                             break;
+                        case 'object':
+                            try {
+                                var obj = JSON.parse(value);
+                                params[name] = obj;
+                            } catch(e) {
+                                params[name] = value;
+                            }
+                            break;
                         default:
                             params[name] = value;
                         }

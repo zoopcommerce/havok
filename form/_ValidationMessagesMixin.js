@@ -27,12 +27,13 @@ function(
             // summary:
             //      Adds a validation messages to form inputs
 
-            /*=====
             // suppressValidationMessages: __SuppressValidationMessages
             //      Should validation messages be suppressed or not?
             //      Can be set differently for preActivity and postActivity
-            suppressValidationMessages: undefined,
-            =====*/
+            suppressValidationMessages: {
+                preActivity: true,
+                postActivity: false
+            },
 
             /*=====
             // _activeSuppressValidationMessages: Boolean
@@ -85,7 +86,6 @@ function(
             },
 
             _setSuppressValidationMessagesAttr: function(/*Boolean|__SuppressValidationMessages*/value){
-                if (typeof value == 'string' && value.substring(0,1) == '{') value = JSON.parse(value);
                 if (typeof value != 'object'){
                     value = {
                         preActivity: !!value,

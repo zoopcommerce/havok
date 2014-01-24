@@ -44,7 +44,7 @@ function (
             _parser: currency.parse,
 
             // validator: String|String[]|Object|mystique/Base
-            validator: currencyValidatorMid,
+            validator: [currencyValidatorMid],
 
             _setCurrencyAttr: function(/*String*/value){
                 this.set('prepend', currency._mixInDefaults({currency: value}).symbol);

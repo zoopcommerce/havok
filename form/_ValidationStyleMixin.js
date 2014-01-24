@@ -65,8 +65,6 @@ function (
 
             _setValidationStyleAttr: function(value){
 
-                if (typeof value == 'string') value = JSON.parse(value);
-
                 if (this._started){
 
                     //Determine which node the style classes should be applied to

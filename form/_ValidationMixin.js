@@ -38,10 +38,8 @@ function (
             //      State will start as `Validating` until validation has executed the first time.
             state: 'Validating',
 
-            /*=====
             // validator: String|String[]|Object|mystique/Base
-            validator: undefined,
-            =====*/
+            validator: [],
 
             // suppressValidation: Boolean
             //      Set to true to stop all validation. Set to falsey to allow validation
@@ -74,10 +72,6 @@ function (
                 }
 
                 this.inherited(arguments);
-
-                if (typeof this.validator == 'string' && (this.validator.substring(0,1) == '[' || this.validator.substring(0,1) == '{')) {
-                    this.validator = JSON.parse(this.validator);
-                }
 
                 if (lang.isArray(this.validator)){
                     this.validator.unshift(required);

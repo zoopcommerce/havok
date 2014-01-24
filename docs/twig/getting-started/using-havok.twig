@@ -1,0 +1,42 @@
+<h1>Using Havok</h1>
+
+<p class="lead">Once havok is loaded, start using it!</p>
+
+<h2>Declarative</h2>
+
+<p>The simplest way to use havok is by adding tags that will be rendered as widgets by the havok parser. Eg:</p>
+
+<div class="bs-docs-example">
+    <w-checkbox-button-group>
+        <button class="btn-primary">Left</button>
+        <button class="btn-primary active">Middle</button>
+        <button class="btn-primary">Right</button>
+    </w-checkbox-button-group>
+</div>
+<pre class="prettyprint linenums">
+{% set usingHavokExample1 %}
+<w-checkbox-button-group>
+    <button class="btn-primary">Left</button>
+    <button class="btn-primary active">Middle</button>
+    <button class="btn-primary">Right</button>
+</w-checkbox-button-group>
+{% endset %}{{usingHavokExample1|e}}
+</pre>
+
+<h2>Programatic</h2>
+<p>Havok uses AMD (Async Module Definition) throughout. To load and use a module, use <code>require</code>. Eg:</p>
+<pre class="prettyprint linenums">
+{% set useingExample1 %}
+<script type="text/javascript">
+    require([
+        'havok/widget/Modal', //load the Modal module
+        'dojo/domReady!'      //wait until the dom is ready before executing the function
+    ], function(Modal){
+        var modal = new Modal;                            //create a new modal widget
+        modal.header.innerHTML = 'Hello';                 //give the modal a title
+        modal.containerNode.innerHTML = 'My first modal'; //give the modal some content
+        modal.startup();                                  //startup the widget
+        modal.show();                                     //show the modal
+    })
+</script>{% endset %}{{useingExample1|e}}
+</pre>

@@ -27,6 +27,10 @@ function (
             // baseClass: String
             baseClass: 'btn-group',
 
+            _setActiveAttr: function(/*DomNode*/value){
+                this._set('active', value);
+            },
+
             addButton: function(/*DomNode*/item){
                 domClass.add(item, 'btn');
                 return item;
