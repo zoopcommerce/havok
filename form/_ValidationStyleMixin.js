@@ -12,7 +12,7 @@ function (
     //		havok/form/_ValidationStyleMixin
 
     /*=====
-    var __ValidationStyleInner: {
+    var __ValidationStyleInner = {
         // valid: String[]
         //     A list of style classes to apply when valid
         valid: undefined,
@@ -24,7 +24,7 @@ function (
     =====*/
 
     /*=====
-    var __ValidationStyle: {
+    var __ValidationStyle = {
         // preActivity: __ValidationStyleInner,
         // postActivity: __ValidationStyleInner,
     };

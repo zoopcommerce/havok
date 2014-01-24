@@ -16,31 +16,47 @@ function (
     return declare(
         [],
         {
-            //store: undefined,
+            /*=====
+            // store: String|Object
+            store: undefined,
+            =====*/
 
-            //query: Object
-            //		A query to use when fetching items from our store
+            // query: Object
+            //      A query to use when fetching items from our store
             query: {},
 
-            // queryOptions: object
-            //		Query options to use when fetching from the store
+            // queryOptions: Object
+            //      Query options to use when fetching from the store
+            queryOptions: {},
 
-            //_gettingStore: undefined,
-
-            // A value in milliseconds
-            // The store will not be queried at a rate faster than the set queryThrottle interval.
+            // queryThrottle: Int
+            //      A value in milliseconds
+            //      The store will not be queried at a rate faster than the set queryThrottle interval.
             queryThrottle: 50,
 
-            //_dataCurrentDeferred: undefined,
+            /*=====
+            // _gettingStore: Deferred
+            _gettingStore: undefined,
+            =====*/
 
-            //_dataPendingDeferred: undefined,
+            /*=====
+            // _dataCurrentDeferred: Deferred
+            _dataCurrentDeferred: undefined,
+            =====*/
 
+            /*=====
+            // _dataPendingDeferred: Deferred
+            _dataPendingDeferred: undefined,
+            =====*/
+
+            // _readyToQuery: Boolean
             _readyToQuery: true,
 
-            //_pendingQuery: undefined,
-
-            c: 0,
-
+            /*=====
+            // _pendingQuery: Boolean
+            _pendingQuery: undefined,
+            =====*/
+        
             _getStoreAttr: function(){
                 var store = this.store;
                 if (store && typeof store == 'string'){

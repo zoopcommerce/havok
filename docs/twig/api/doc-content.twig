@@ -36,7 +36,7 @@
         {% if properties %}
             <h2>Properties</h2>
             <p class="muted">All properties are filtered from view.</p>
-            <accordion style="position: relative; top: -30px; background-color: #FBFBFB;">
+            <w-accordion style="position: relative; top: -30px; background-color: #FBFBFB;">
                 {% for prop in properties %}
                     <section class="{% if prop.private %}private hide{% endif %} {% if prop.from != location %}inherited hide{% endif %}">
                         <header>{% if prop.private %}<span class='icon-key'></span> {% endif %}{% if prop.from != location %}<span class="icon-code-fork"></span> {% endif %}{{prop.name}}</header>
@@ -48,13 +48,13 @@
                         {% if prop.description is defined %}{{prop.description}}{% endif %}
                     </section>
                 {% endfor %}
-            </accordion>
+            </w-accordion>
         {% endif %}
 
         {% if methods %}
             <h2>Methods</h2>
             <p class="muted">All methods are filtered from view.</p>
-            <accordion style="position: relative; top: -30px; background-color: #FBFBFB;">
+            <w-accordion style="position: relative; top: -30px; background-color: #FBFBFB;">
                 {% for method in methods %}
                     <section class="{% if method.private %}private hide{% endif %} {% if method.from != location %}inherited hide{% endif %}">
                         <header>{% if method.private %}<span class='icon-key'></span> {% endif %}{% if method.from != location %}<span class="icon-code-fork"></span> {% endif %}{{method.name}}</header>
@@ -96,13 +96,13 @@
                         {% endif %}
                     </section>
                 {% endfor %}
-            </accordion>
+            </w-accordion>
         {% endif %}
 
         {% if events %}
             <h2>Events</h2>
             <p class="muted">All events are filtered from view.</p>
-            <accordion style="position: relative; top: -30px; background-color: #FBFBFB;">
+            <w-accordion style="position: relative; top: -30px; background-color: #FBFBFB;">
                 {% for event in events %}
                     <section class="{% if event.private %}private hide{% endif %} {% if event.from != location %}inherited hide{% endif %}">
                         <header>{% if event.private %}<span class='icon-key'></span> {% endif %}{% if event.from != location %}<span class="icon-code-fork"></span> {% endif %}{{event.name}}</header>
@@ -144,7 +144,7 @@
                         {% endif %}
                     </section>
                 {% endfor %}
-            </accordion>
+            </w-accordion>
         {% endif %}
     </div>
 </section>

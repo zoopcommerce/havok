@@ -1,8 +1,8 @@
 var fs = require('fs'),
-    details = require(__dirname + '/../build/details.json'),
+    details = require('./details.json'),
     i,
-    basePath = __dirname + '/../src/api/',
-    write = function(item){
+    basePath = __dirname + '/../twig/api/',
+    write = function(item, callback){
 
         var pieces = item.location.split('/'),
             rootPath = pieces.map(function(){return ''}).join('../') + '../',
@@ -23,15 +23,19 @@ var fs = require('fs'),
             fs.writeFile(path + '/' + file, string, function(err) {
                 if(err) {
                     console.log(err);
+                    callback(err);
                 } else {
                     console.log(file + ' written');
                 }
             });
         })
-    }
+    },
+    writeDetails = function(callback){
+        for (i in details){
+            write(details[i], callback);
+        }
+        callback();
+    };
 
-
-for (i in details){
-    write(details[i]);
-}
-
+if(require.main === module) writeDetails(function(){})
+else exports.writeDetails = writeDetails
