@@ -1,7 +1,0 @@
-{
-    "location": "dojo/_base/sniff",
-    "type": "object",
-    "summary": "<p>Deprecated.   New code should use dojo/sniff.\nThis module populates the dojo browser version sniffing properties like dojo.isIE.</p>\n",
-    "rootPath": "../../../",
-    "shortName": "sniff"
-}

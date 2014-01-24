@@ -1,7 +1,0 @@
-{
-    "location": "dojo/_base/json",
-    "type": "object",
-    "summary": "<p>This module defines the dojo JSON API.</p>\n",
-    "rootPath": "../../../",
-    "shortName": "json"
-}

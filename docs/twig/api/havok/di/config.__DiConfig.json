@@ -1,8 +1,0 @@
-{
-    "location": "havok/di/config.__DiConfig",
-    "type": "object",
-    "summary": "<p>Dependency injection config object</p>\n",
-    "description": "<p>A mapping of instance ids to instance configurations.\nEg: <code>{myInstance: {base: {}, params: {a: 1}}}</code>\nFor detailed information about di configuration, see /di.html</p>\n",
-    "rootPath": "../../../",
-    "shortName": "config.__DiConfig"
-}

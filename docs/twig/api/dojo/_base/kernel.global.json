@@ -1,8 +1,0 @@
-{
-    "location": "dojo/_base/kernel.global",
-    "type": "object",
-    "summary": "<p>Alias for the current window. &#39;global&#39; can be modified\nfor temporary context shifting. See also withGlobal().</p>\n",
-    "description": "<p>Use this rather than referring to &#39;window&#39; to ensure your code runs\ncorrectly in managed contexts.</p>\n",
-    "rootPath": "../../../",
-    "shortName": "kernel.global"
-}

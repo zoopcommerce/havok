@@ -1,8 +1,0 @@
-{
-    "location": "havok/widget/dragData",
-    "type": "object",
-    "summary": "<p>Hack to overcome dataTransfer.getData() in chrome</p>\n",
-    "description": "<p>dataTransfer.getData() always returns a null in chrome in a dragover event\ntherefore, this is effectively a global variable that is the drag data store.\nUse <code>dragData</code> along with the <code>di</code> container like this: <code>require([&#39;get!./dragData&#39;], function(dragData){})</code></p>\n",
-    "rootPath": "../../../",
-    "shortName": "dragData"
-}
