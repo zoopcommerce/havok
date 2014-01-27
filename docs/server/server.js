@@ -14,6 +14,9 @@ var http = require('http'),
     url = require('url'),
     Twig = require('./../../vendor/twig/twig'),
     renderer = require('../../dom-lite/renderer'),
+    apiParse = require('./apiParse'),
+    apiDetailsWriter = require('./apiDetailsWriter'),
+    apiStoreWriter = require('./apiStoreWriter'),
     file,
     packages = [
         'dojo',
@@ -52,6 +55,24 @@ var http = require('http'),
         return filePieces + '.' + fileType;
     },
 
+    generateApiDocs = function(callback){
+        //check that api data files have been generated
+        fs.exists('./../twig/api/api-tree-data.json', function(exists){
+            if (exists){
+                callback();
+            } else {
+                //generate api data files
+                apiParse.parse(function(err){
+                    apiStoreWriter.writeStore(function(err){
+                        apiDetailsWriter.writeDetails(function(err){
+                            callback();
+                        })
+                    })
+                })
+            }
+        })
+    },
+
     respond = function(request, response, content, contentType){
         response.writeHeader(200, {"Content-Type": contentType});
         response.write(content);
@@ -69,44 +90,56 @@ var http = require('http'),
     },
 
     returnRenderedApiPage = function(request, response){
-        var template,
-            i;
 
-        if (request.url.indexOf('-content') != -1){
-            //return content only
-            template = 'doc-content.twig';
-        } else {
-            //return full page
-            template = 'doc.twig';
-        }
+        generateApiDocs(function(){
+            var template,
+                i;
 
-        var params = getParams(request),
-            jsonParams = require('./../twig/' + getFilePath(request, 'json').replace('-content', ''));
-        for (i in jsonParams){
-            params[i] = jsonParams[i];
-        }
-        Twig.renderFile('./../twig/api/' + template, params, function (err, content) {
-            if (err) {
-                throw err;
+            if (request.url.indexOf('-content') != -1){
+                //return content only
+                template = 'doc-content.twig';
+            } else {
+                //return full page
+                template = 'doc.twig';
             }
-            respond(request, response, content, 'text/html');
+
+            var params = getParams(request),
+                jsonParams = require('./../twig/' + getFilePath(request, 'json').replace('-content', ''));
+            for (i in jsonParams){
+                params[i] = jsonParams[i];
+            }
+            Twig.renderFile('./../twig/api/' + template, params, function (err, content) {
+                if (err) {
+                    throw err;
+                }
+                respond(request, response, content, 'text/html');
+            })
         })
     },
 
     returnRenderedPage = function(request, response){
-        Twig.renderFile('./../twig/' + getFilePath(request, 'twig'), getParams(request), function (err, content) {
-            if (err) {
-                throw err;
-            }
+
+        var template = getFilePath(request, 'twig'),
+            render = function(){
+                Twig.renderFile('./../twig/' + template, getParams(request), function (err, content) {
+                    if (err) {
+                        throw err;
+                    }
 
 // Uncomment this to disable server side rendering
-            respond(request, response, content, 'text/html');
-            return;
+                    respond(request, response, content, 'text/html'); return;
 
-            renderer.render(content, function(renderedContent){
-                respond(request, response, renderedContent, 'text/html');
-            })
-        })
+                    renderer.render(content, function(renderedContent){
+                        respond(request, response, renderedContent, 'text/html');
+                    })
+                })
+            }
+
+        if (template == '/api.twig' || template == '/api-content.twig'){
+            generateApiDocs(render);
+        } else {
+            render();
+        }
     },
 
     returnResource = function(request, response){
