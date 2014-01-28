@@ -149,7 +149,7 @@ function (
                     if (requires.length > 0){
                         instance.domNode.setAttribute('data-dojo-mixins', requires.slice(1));
                     }
-                    this.domNode.setAttribute('data-havok-_rendered', true);
+                    instance.domNode.setAttribute('data-dojo-props', '_rendered: true');
                 }
 
                 result.resolve(instance);

@@ -3,9 +3,9 @@ var util = require('util');
 var Node = require('./Node');
 var nodeType = require('./nodeType');
 
-function Element(){
+function Element(ownerDocument){
 
-    Element.super_.call(this);
+    Element.super_.call(this, ownerDocument);
     this.nodeType = nodeType.ELEMENT_NODE;
 
     var self = this;

@@ -1,7 +1,9 @@
 // Defines a lightweight dom root node
 var DocumentFragment = require('./DocumentFragment');
 var Element = require('./Element');
+var Option = require('./Option');
 var Text = require('./Text');
+var Textarea = require('./Textarea');
 var Window = require('./Window');
 var util = require('util');
 var nodeType = require('./nodeType');
@@ -28,14 +30,19 @@ Document.prototype.createDocumentFragment = function(){
 }
 
 Document.prototype.createElement = function(tagName){
-    var element = new Element;
-    element.tagName = tagName.toUpperCase();
+    tagName = tagName.toUpperCase();
+
+    var element;
+    if (tagName == 'OPTION') element = new Option(this)
+    else if (tagName == 'TEXTAREA') element = new Textarea(this)
+    else element = new Element(this)
+
+    element.tagName = tagName;
     return element;
 }
 
 Document.prototype.createTextNode = function(text){
-
-    var textNode = new Text;
+    var textNode = new Text(this);
     textNode.nodeValue = text;
     return textNode;
 }

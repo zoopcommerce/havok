@@ -1,6 +1,6 @@
 dojoConfig = {
     async: true,
-    baseUrl: __dirname + "/../../",
+    baseUrl: __dirname + "/../../../",
     packages: [
         {
             name: "dojo",
@@ -26,13 +26,13 @@ dojoConfig = {
     locale: 'en-au',
     merge: [
         'havok/config',
-        'havok/docs/module/config'
+        'havok/docs/client/config'
     ],
     less: false
 };
 
-var parser = require('./parser'),
-    nodeType = require('./nodeType');
+var parser = require('../../dom-lite/parser'),
+    nodeType = require('../../dom-lite/nodeType');
 
 exports.render = function(rawHtml, callback){
     parser.parse(rawHtml, function(dom){
@@ -45,13 +45,13 @@ exports.render = function(rawHtml, callback){
 
         var renderedHead = document.head ? document.head.outerHTML : '';
 
-        require('../vendor/prettify/prettify');
+        require('../../vendor/prettify/prettify');
         window['PR_SHOULD_USE_CONTINUATION'] = false; //ensures that pretty printing is sync rather than async
         window.prettyPrint();
-        delete require.cache[require.resolve('../vendor/prettify/prettify')]; //make sure that prettify reloads each request
+        delete require.cache[require.resolve('../../vendor/prettify/prettify')]; //make sure that prettify reloads each request
 
-        require('../../dojo/dojo');
-        delete require.cache[require.resolve('../../dojo/dojo')]; //make sure that dojo reloads each request
+        require('../../../dojo/dojo');
+        delete require.cache[require.resolve('../../../dojo/dojo')]; //make sure that dojo reloads each request
 
         global.require(['dojo/has', 'havok/parser/parser'], function(has, parser){
 

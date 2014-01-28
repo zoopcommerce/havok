@@ -6,7 +6,6 @@ var nodeType = require('./nodeType');
 
 var Style = require('./Style'),
     parser = require('./parser'),
-    nodeType = require('./nodeType'),
     escape = require('./escape'),
     query = require('./query');
 
@@ -17,11 +16,12 @@ var selfClosingTags = [
     'PATH'
 ];
 
-function Node(){
+function Node(ownerDocument){
 
     Node.super_.call(this);
     this.attributes = [];
     this.childNodes = [];
+    this.ownerDocument = ownerDocument;
 
     var self = this;
 
@@ -128,18 +128,6 @@ function Node(){
         }
     });
 
-    Object.defineProperty(this, 'ownerDocument', {
-        get: function(){
-
-            var search = function(node){
-                if (!node) return;
-                if (node.nodeType == nodeType.DOCUMENT_NODE || node.nodeType == nodeType.DOCUMENT_FRAGMENT_NODE) return node;
-                return search(node.parentNode);
-            }
-            return search(this);
-        }
-    });
-
     Object.defineProperty(this, 'style', {
         get: function(){
             return new Style(self, Style.inline);
@@ -155,7 +143,7 @@ Node.prototype.appendChild = function(node){
 
 Node.prototype.cloneNode = function(deep){
 
-    var newNode = new this.constructor;
+    var newNode = new this.constructor(this.ownerDocument);
 
     this.attributes.forEach(function(attr){newNode.setAttribute(attr.name, attr.value)});
 
@@ -236,6 +224,14 @@ Node.prototype.querySelectorAll = function(queryString){
     return result;
 }
 
+Node.prototype.removeAttribute = function(attrName){
+    for (var i = 0; i < this.attributes.length; i++){
+        if (this.attributes[i].name == attrName){
+            this.attributes.splice(i, 1);
+            break;
+        }
+    }
+}
 
 Node.prototype.removeChild = function(node){
     var i = this.childNodes.indexOf(node);

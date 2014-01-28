@@ -6,6 +6,9 @@
 //to start the server use:
 //>node server.js
 //
+//to start without dom-lite server side rendering use:
+//>node server.js no-dom-lite
+//
 //then point your browser to:
 //http://localhost
 
@@ -13,7 +16,7 @@ var http = require('http'),
     fs = require('fs'),
     url = require('url'),
     Twig = require('./../../vendor/twig/twig'),
-    renderer = require('../../dom-lite/renderer'),
+    renderer = require('./renderer'),
     apiParse = require('./apiParse'),
     apiDetailsWriter = require('./apiDetailsWriter'),
     apiStoreWriter = require('./apiStoreWriter'),
@@ -77,7 +80,7 @@ var http = require('http'),
         response.writeHeader(200, {"Content-Type": contentType});
         response.write(content);
         response.end();
-        console.log(request.method + ' ' + request.url + ' ' + response.statusCode);
+//        console.log(request.method + ' ' + request.url + ' ' + response.statusCode);
     },
 
     returnPackageFile = function(request, response){
@@ -126,12 +129,13 @@ var http = require('http'),
                         throw err;
                     }
 
-// Uncomment this to disable server side rendering
-                    respond(request, response, content, 'text/html'); return;
-
-                    renderer.render(content, function(renderedContent){
-                        respond(request, response, renderedContent, 'text/html');
-                    })
+                    if (process.argv[2] == 'no-dom-lite'){
+                        respond(request, response, content, 'text/html'); return;
+                    } else {
+                        renderer.render(content, function(renderedContent){
+                            respond(request, response, renderedContent, 'text/html');
+                        })
+                    }
                 })
             }
 

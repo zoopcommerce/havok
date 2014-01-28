@@ -56,7 +56,7 @@ function (
             // _pendingQuery: Boolean
             _pendingQuery: undefined,
             =====*/
-        
+
             _getStoreAttr: function(){
                 var store = this.store;
                 if (store && typeof store == 'string'){
@@ -111,11 +111,16 @@ function (
                         }
                     }), this.queryThrottle);
                     when(this.get('store'), lang.hitch(this, function(store){
-                        var queryResult = store.query(this.get('query'), this.get('queryOptions'));
-                        when(queryResult, lang.hitch(this, function(){
+                        if (store) {
+                            var queryResult = store.query(this.get('query'), this.get('queryOptions'));
+                            when(queryResult, lang.hitch(this, function(){
+                                this._dataCurrentDeferred.resolve();
+                            }));
+                            this._queryResultCurrentDeferred.resolve(queryResult);
+                        } else {
                             this._dataCurrentDeferred.resolve();
-                        }));
-                        this._queryResultCurrentDeferred.resolve(queryResult);
+                            this._queryResultCurrentDeferred.resolve();
+                        }
                     }))
                     return this._queryResultCurrentDeferred;
                 } else {

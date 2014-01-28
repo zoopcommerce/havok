@@ -33,20 +33,14 @@ exports.getTestFunc = function(queryString){
 
     return function(node){
         var i,
-            j,
-            token,
-            match;
+            token;
 
         for (i = 0; i < tokens.length; i++){
             token = tokens[i];
             if (token.type == 'tag'){
                 if (node.tagName != token.name) return false;
             } else if (token.type == 'attribute'){
-                for (j = 0; j < node.attributes.length; j++) {
-                    match = false
-                    if (node.attributes[j].name == token.name) match = true;
-                }
-                if (!match) return false;
+                if (!node.hasAttribute(token.name)) return false;
             }
         }
 
