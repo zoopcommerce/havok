@@ -146,7 +146,7 @@ function (
                     //make sure the type attribute is set if using server side
                     //templating so that the widget can be parsed in the browser
                     instance.domNode.setAttribute('data-dojo-type', requires[0]);
-                    if (requires.length > 0){
+                    if (requires.length > 1){
                         instance.domNode.setAttribute('data-dojo-mixins', requires.slice(1));
                     }
                     instance.domNode.setAttribute('data-dojo-props', '_rendered: true');
