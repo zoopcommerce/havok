@@ -2,12 +2,16 @@ define([
     'dojo/_base/declare',
     'dojo/_base/lang',
     'dojo/_base/xhr',
+    'dojo/DeferredList',
+    'dojo/Evented',
     'dojo/store/JsonRest'
 ],
 function(
     declare,
     lang,
     xhr,
+    DeferredList,
+    Evented,
     JsonRest
 ){
 
@@ -51,11 +55,61 @@ function(
                 // options:
                 //		HTTP headers.
                 options = options || {};
-                return xhr("DELETE", {
-                    url: this.target + id,
-                    handleAs: "json",
-                    headers: lang.mixin({}, this.headers, options.headers)
-                });
+
+                if (this.transactionActive){
+                    this.operations[id] = {action: 'remove', options: options};
+                    this._transactionObj.emit('remove', {id: id, options: options});
+                } else {
+                    return xhr("DELETE", {
+                        url: this.target + id,
+                        handleAs: "json",
+                        headers: lang.mixin({}, this.headers, options.headers)
+                    });
+                }
+            },
+
+            put: function(object, options){
+                if (this.transactionActive){
+                    this.operations[object[this.idProperty]] = {action: 'put', object: object, options: options};
+                    this._transactionObj.emit('put', {object: object, options: options});
+                } else {
+                    return this.inherited(arguments);
+                }
+            },
+
+            transaction: function(){
+                //Note: need to make transactions smarter to use batch requests, patch, and list operations
+
+                this.operations = {};
+                this.transactionActive = true;
+
+                this._transactionObj = new (declare([Evented], {
+                    commit: lang.hitch(this, function(){
+                        var i,
+                            operation,
+                            defList = [];
+
+                        delete(this.transactionActive);
+
+                        for(i in this.operations){
+                            operation = this.operations[i];
+                            if (operation.action == 'put'){
+                                defList.push(this.put(operation.object, operation.options));
+                            } else if (operation.action == 'remove'){
+                                defList.push(this.remove(i, operation.options));
+                            }
+                        }
+
+                        delete(this.operations);
+                        return new DeferredList(defList);
+                    }),
+                    abort: lang.hitch(this, function(){
+                        delete(this.operations);
+                        delete(this.transactionActive);
+                    })
+                }))
+
+                return this._transactionObj;
             }
         }
     );

@@ -46,36 +46,52 @@ function(
 		query: function(query, directives){
             directives = directives || {};
             var queryString = {},
+                idOnly = true,
+                idQuery,
                 i;
 
             for (i in query){
                 if (typeof query[i] == 'function'){
+                    idOnly = false;
                     queryString = undefined;
                     break;
                 } else if (query[i] instanceof RegExp){
+                    idOnly = false;
                     queryString[i] = {'$regex': query[i].toString()}
+                } else if (i == this.masterStore.idProperty){
+                    idQuery = true;
+                    queryString[i] = query[i];
                 } else {
+                    idOnly = false;
                     queryString[i] = query[i];
                 }
             }
             if (queryString) queryString = JSON.stringify(queryString);
 
             if (!queryString || !this.queryCache[queryString] || this.queryCache[queryString].expires < (new Date)){
+
                 var expires = new Date,
                     done = new Deferred;
                 this.queryCache[queryString] = {
                     expires: expires.setMilliseconds(expires.getMilliseconds() + directives.ttl ? directives.ttl : this.options.ttl),
                     result: new QueryResults(done)
                 };
-                var masterResult = this.masterStore.query(query, directives);
-                masterResult.forEach(lang.hitch(this, function(object){
-                    if(!this.options.isLoaded || this.options.isLoaded(object)){
-                        this.cachingStore.put(object);
-                    }
-                }));
-                when(masterResult, lang.hitch(this, function(data){
-                    done.resolve(data);
-                }));
+
+                if (idOnly && idQuery){
+                    when(this.get(query[this.masterStore.idProperty]), lang.hitch(this, function(data){
+                        done.resolve([data]);
+                    }))
+                } else {
+                    var masterResult = this.masterStore.query(query, directives);
+                    masterResult.forEach(lang.hitch(this, function(object){
+                        if(!this.options.isLoaded || this.options.isLoaded(object)){
+                            this.cachingStore.put(object);
+                        }
+                    }));
+                    when(masterResult, lang.hitch(this, function(data){
+                        done.resolve(data);
+                    }));
+                }
             }
             return this.queryCache[queryString].result;
 		},
