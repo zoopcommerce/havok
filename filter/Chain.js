@@ -38,7 +38,7 @@ function(
                 var filter = this.filters[index],
                     filteredValue = this._getFilteredValue(filter, value);
 
-                if (filteredValue.then){
+                if (filteredValue && filteredValue.then){
 
                     var resultDeferred = new Deferred;
 
