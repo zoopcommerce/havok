@@ -81,13 +81,13 @@ function(
                 if (this.showOn) {
                     on(this.target, this.showOn, lang.hitch(this, function(e){
                         e.preventDefault();
-                        this.set('hidden', false)
+                        this.show();
                     }))
                 }
                 if (this.hideOn) {
                     on(this.target, this.hideOn, lang.hitch(this, function(e){
                         e.preventDefault();
-                        this.set('hidden', true)
+                        this.hide();
                     }))
                 }
             },
@@ -105,6 +105,15 @@ function(
                 domClass.remove(this.tooltip, 'hidden');
                 domClass.add(this.tooltip, 'in ' + this.placement);
                 this._position();
+
+                //make sure tooltip gets hidden if target is disabled
+                this._observer = new MutationObserver(lang.hitch(this, function(){
+                    if (this.target.hasAttribute('disabled')){
+                        this.hide();
+                        this._observer.disconnect();
+                    }
+                }))
+                this._observer.observe(this.target, {attributes: true});
             },
 
             _hide: function(){
