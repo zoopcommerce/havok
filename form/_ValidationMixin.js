@@ -236,6 +236,11 @@ function (
                 }
 
                 return '';
+            },
+
+            destroy: function(){
+                clearTimeout(this._delayTimer);
+                this.inherited(arguments);
             }
         }
     );
