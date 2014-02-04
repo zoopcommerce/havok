@@ -1,6 +1,6 @@
 define([
-    './testDi'//,
-//    './testSharedDi',
-//    './testGet',
-//    './testProxy'
+    './testDi',
+    './testSharedDi',
+    './testGet',
+    './testProxy'
 ], function () {});

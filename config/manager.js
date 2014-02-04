@@ -24,7 +24,7 @@ function (
         //		Merges multiple config modules
         // mergeConfigs:
         //      A list of module ids to load and merge.
-        //      If null, the merge key of dojoConfig will be used.
+        //      If null, the merge key of target will be used.
         // target:
         //      An object to merged the config objects into.
         //      If null, dojoConfig itself will be used.
@@ -32,18 +32,13 @@ function (
         //      Will resolve when the merge is complete
 
         // Resolves when target has been merged
-        var targetMerged = new Deferred;
+        var done = new Deferred;
 
         // Resolves when merge is complete
         var mergeDone = new Deferred;
 
-        if ( ! mergeConfigs){
-            mergeConfigs = dojoConfig.merge;
-        }
-
-        if ( ! target){
-            target = dojoConfig;
-        }
+        target = target || dojoConfig;
+        mergeConfigs = mergeConfigs || target.merge;
 
         // Load required config modules
         if (mergeConfigs) {
@@ -62,10 +57,10 @@ function (
 
         mergeDone.then(function(mergedConfig){
             target = lang.mixinDeep(target, mergedConfig);
-            targetMerged.resolve(target);
+            done.resolve(target);
         });
 
-        return targetMerged;
+        return done;
     };
 
     function loadConfigModule(moduleName) {

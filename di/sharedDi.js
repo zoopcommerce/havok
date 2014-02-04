@@ -19,6 +19,10 @@ function(
                 sharedDi = new Di();
             }
             callback(sharedDi);
+        },
+
+        clear: function(){
+            sharedDi = undefined;
         }
     };
 });

@@ -188,22 +188,119 @@ define([
                     assert.equal('Zoo changed', cachedZoo.name);
                 }));
             }));
-         },
+        },
 
-         cacheFalseTest: function (){
-             var di = new Di(config.di);
+        cacheFalseTest: function (){
+            var di = new Di(config.di);
 
-             var deferred = this.async(5000);
+            var deferred = this.async(5000);
 
-             when(di.get('zooCacheFalse'), deferred.rejectOnError(function(zoo){
+            when(di.get('zooCacheFalse'), deferred.rejectOnError(function(zoo){
 
-                 assert.equal('Zoo cache false', zoo.name);
-                 zoo.name = 'Zoo changed';
+                assert.equal('Zoo cache false', zoo.name);
+                zoo.name = 'Zoo changed';
 
-                 when(di.get('zooCacheFalse'), deferred.callback(function(cachedZoo){
-                     assert.equal('Zoo cache false', cachedZoo.name);
-                 }));
-             }));
-         }
+                when(di.get('zooCacheFalse'), deferred.callback(function(cachedZoo){
+                    assert.equal('Zoo cache false', cachedZoo.name);
+                }));
+            }));
+        },
+
+        getsTest: function (){
+            var di = new Di(config.di);
+
+            var deferred = this.async(5000);
+
+            when(di.get('zooWithGets'), deferred.callback(function(zoo){
+                assert.equal('Zoo with gets', zoo.name);
+                assert.equal('lucy', zoo.lion1.name);
+                assert.equal('liz', zoo.lion2.name);
+                assert.equal('toby', zoo.tiger.name);
+            }));
+        },
+
+        getsArrayTest: function (){
+            var di = new Di(config.di);
+
+            var deferred = this.async(5000);
+
+            when(di.get('zooWithGetsArray'), deferred.callback(function(zoo){
+                assert.equal('Zoo with gets array', zoo.name);
+                assert.equal('lucy', zoo.cage[0].name);
+                assert.equal('liz', zoo.cage[1].name);
+            }));
+        },
+
+        nestedGetsConfigTest: function (){
+            var di = new Di(config.di);
+
+            var deferred = this.async(5000);
+
+            when(di.get('zooWithNestedGetsConfig'), deferred.callback(function(zoo){
+                assert.equal('Zoo with nested gets config', zoo.name);
+                assert.equal('tim', zoo.tiger.name);
+                assert.equal('liz', zoo.cage[0].name);
+                assert.equal('emma', zoo.cage[1].name);
+            }));
+        },
+
+        proxyMethodTest: function (){
+            var di = new Di(config.di);
+
+            var deferred = this.async(5000);
+
+            when(di.proxy('zooWithProxyMethods'), deferred.rejectOnError(function(zooProxy){
+                assert.isTrue(zooProxy.isInstanceOf(Proxy));
+                assert.equal('Zoo with proxy', zooProxy.name);
+                zooProxy.listAnimals().then(deferred.callback(function(names){
+                    assert.deepEqual(['lucy', 'liz', 'toby'], names);
+                }));
+            }));
+        },
+
+        proxiesTest: function (){
+            var di = new Di(config.di);
+
+            var deferred = this.async(5000);
+
+            when(di.get('zooWithProxies'), deferred.rejectOnError(function(zoo){
+
+                assert.isTrue(lang.isArray(zoo.cage));
+
+                assert.isTrue(zoo.cage[0].isInstanceOf(Proxy));
+                assert.equal('liz', zoo.cage[0].name);
+
+                assert.isTrue(zoo.cage[1].isInstanceOf(Proxy));
+                assert.equal('emma', zoo.cage[1].name);
+
+                assert.isTrue(zoo.tiger.isInstanceOf(Proxy));
+                assert.equal('Josh', zoo.tiger.name);
+                zoo.tiger.makeSound().then(deferred.callback(function(sound){
+                    assert.equal('roar', sound);
+                }));
+            }));
+        },
+
+        spreadArrayTest: function (){
+            var di = new Di(config.di);
+
+            var deferred = this.async(5000);
+
+            when(di.get('zooWithSpreadArray'), deferred.rejectOnError(function(zoo){
+
+                assert.isTrue(lang.isArray(zoo.animals));
+
+                assert.equal('cobra', zoo.animals[0]);
+                assert.equal('crocodile', zoo.animals[1]);
+                assert.equal('lucy', zoo.animals[2].name);
+                assert.equal('liz', zoo.animals[3].name);
+
+                assert.isTrue(zoo.animals[4].isInstanceOf(Proxy));
+                assert.equal('Josh', zoo.animals[4].name);
+                zoo.animals[4].makeSound().then(deferred.callback(function(sound){
+                    assert.equal('roar', sound);
+                }));
+            }));
+        }
     });
 });

@@ -284,12 +284,12 @@ function (
                 var proxy = new Proxy(identifier, this),
                     method;
 
-                if (config.params){
+                if (config && config.params){
                     //mixin any params
                     lang.mixin(proxy, config.params);
                 }
 
-                if (config.proxyMethods){
+                if (config && config.proxyMethods){
                     //hook up proxy methods
                     for (var index in config.proxyMethods){
                         method = config.proxyMethods[index];
