@@ -21,8 +21,6 @@ function(){
         // merge: String[]
         //      An array of modules for `havok/config/manager` to load and merge.
         merge: [
-            'havok/validator/config',
-            'havok/filter/config',
             'havok/exception/config',
             'havok/parser/config',
             'havok/router/config',

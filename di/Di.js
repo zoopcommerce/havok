@@ -65,7 +65,6 @@ function (
                     base,
                     defaultDirectives = {
                         declare: false,
-                        define: false,
                         cache: true,
                         clone: false
                     };
@@ -150,9 +149,6 @@ function (
                         resolveObject = lang.hitch(this, function(object){
                             if (config.directives.cache){
                                 this._cache[index].object = object;
-                            }
-                            if (config.directives.define){
-                                define(identifier, [], function(){return object});
                             }
                             deferredObject.resolve(object);
                         });

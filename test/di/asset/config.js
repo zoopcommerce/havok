@@ -8,7 +8,6 @@ define(
                 //The default directives are:
                 //directives: {
                 //    declare: false,
-                //    define: false,
                 //    cache: true
                 //}
 
@@ -114,65 +113,6 @@ define(
                     },
                     params: {
                         name: 'Zoo cache false'
-                    }
-                },
-
-                //define: false
-                //This is the default setting. Tells the di not to create a new
-                //base from this config.
-                'zooDefineFalse': {
-                    base: 'havok/test/di/asset/Zoo',
-                    directives: {
-                        define: false
-                    },
-                    params: {
-                        name: 'Zoo define false'
-                    }
-                },
-
-                //define: true
-                //Tells the di to use dojo/_base/define to create a new base.
-                //After this object has been got, the following code will work:
-                //
-                //require('zooDefineTrue', function(zooDefineTrue){
-                //    console.debug(ZooDefineBaseTrue.name) //prints 'Zoo defineBase true'
-                //})
-                //
-                'zooDefineTrue': {
-                    base: 'havok/test/di/asset/Zoo',
-                    directives: {
-                        define: true
-                    },
-                    params: {
-                        name: 'Zoo define true'
-                    }
-                },
-
-                //define: true
-                //Demonstrates defineBase for a module which does not have a declare
-                //
-                'foodsDefineTrue': {
-                    base: 'havok/test/di/asset/foods',
-                    directives: {
-                        define: true
-                    },
-                    params: {
-                        penguin: 'fish',
-                        meerkat: 'grubs'
-                    }
-                },
-
-                //Declare: true and Define: true
-                //This combination effectively creates a new module that can
-                //be loaded normally with the AMD loader: ie require(['ZooDeclareAndDefine'], function(){})
-                'ZooDeclareAndDefine': {
-                    base: 'havok/test/di/asset/Zoo',
-                    directives: {
-                        declare: true,
-                        define: true
-                    },
-                    params: {
-                        name: 'Zoo declared and defined'
                     }
                 },
 

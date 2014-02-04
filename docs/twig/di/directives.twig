@@ -1,13 +1,12 @@
 <h1>directives</h1>
 <p class="lead">Fine grained control over fetching objects</p>
 
-<p>There are four possible directives. Each is a boolean flag.</p>
+<p>There are several possible directives. Each is a boolean flag.</p>
 
 <p>The default directives are:</p>
 <pre class="prettyprint linenums">
 directives: {
     declare: false,
-    define: false,
     cache: true,
     clone: false
 };
@@ -59,34 +58,6 @@ directives: {
 </pre>
 
 <p>This would result in a TextBox with a = 1.</p>
-
-<h2>define</h2>
-
-<p>If define is set to true, a new AMD module is defined with the identifier. eg, if this config is set:</p>
-
-<pre class="prettyprint linenums">
-'object1': {
-    base: 'My/Module',
-    directives: {
-        define: true
-    },
-    params: {
-        a: 1
-    }
-}
-</pre>
-
-<p>The the following code could be run:</p>
-
-<pre class="prettyprint linenums">
-require([get!object1], function(object1){})
-</pre>
-
-<p>Later in code, if object1 is required again, becasue and AMD module has been defined, the get! is no longer needed. eg:</p>
-
-<pre class="prettyprint linenums">
-require([object1], function(object1){})
-</pre>
 
 <h2>clone</h2>
 
