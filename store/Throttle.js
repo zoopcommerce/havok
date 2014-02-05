@@ -11,12 +11,15 @@ function (
     when
 ){
 
-    return function(store, throttle){
+    return function(store, throttle, ttl){
 
+        //    A value in milliseconds
+        //    The store will not be accessed at a rate faster than the set throttle interval.
         throttle = throttle || 100;
 
-        //      A value in milliseconds
-        //      The store will not be accessed at a rate faster than the set throttle interval.
+        //    The time in milliseconds that request to the store will wait in the queue before
+        //    being dropped
+        ttl = ttl || 500;
 
         var queue = [],
             timeout,
@@ -46,7 +49,18 @@ function (
                     }
                     timeout = setTimeout(function(){
                         timeout = undefined;
-                        if (queue.length > 0) process();
+
+                        var time = (new Date).getTime(),
+                            request;
+                        while(queue.length > 0){
+                            if (time > queue[0].expires) {
+                                request = queue.shift();
+                                request.done.reject('expired');
+                            } else {
+                                process();
+                                break;
+                            }
+                        }
                     }, throttle)
                 }
             };
@@ -60,6 +74,7 @@ function (
                         type: 'query',
                         query: query,
                         directives: directives,
+                        expires: (new Date).getTime() + ttl,
                         done: done
                     }
 
@@ -73,6 +88,7 @@ function (
                     request = {
                         type: 'get',
                         id: id,
+                        expires: (new Date).getTime() + ttl,
                         done: done
                     }
 
@@ -87,6 +103,7 @@ function (
                         type: 'put',
                         object: object,
                         directives: directives,
+                        expires: (new Date).getTime() + ttl,
                         done: done
                     }
 
@@ -101,6 +118,7 @@ function (
                         type: 'add',
                         object: object,
                         directives: directives,
+                        expires: (new Date).getTime() + ttl,
                         done: done
                     }
 
@@ -114,6 +132,7 @@ function (
                     request = {
                         type: 'remove',
                         id: id,
+                        expires: (new Date).getTime() + ttl,
                         done: done
                     }
 

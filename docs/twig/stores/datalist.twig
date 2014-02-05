@@ -1,16 +1,46 @@
-<h1>Store Manager</h1>
+<h1>Datalist</h1>
 
-<p class="lead">Container for managing data stores</p>
+<p>There are many different ways to add a store to the manager, depending on your needs.</p>
+
+<p>Stores can be added using markup. If you place a <code>datalist</code> anywhere in your document with it's <code>id</code> attribute set, then <a href="/api/havok/store/Datalist">havok/store/Datalist</a> will be used to turn that <code>datalist</code> into a store. Eg:</p>
+
+<pre class="prettyprint linenums">
+{% set ex1 %}
+<datalist id="myDatalistStore">
+    <option data-id="home">home</option>
+    <option data-id="navs">#navs anchor</option>
+    <option data-id="disabled">disabled pill</option>
+</datalist>
+<script>
+require(['havok/store/manager!myDatalistStore'], function(myDatalistStore){
+    //do something with myDatalistStore
+}
+</script>
+{% endset %}{{ex1|e}}</pre>
+
+
+
 
 <p>The store manager is a central repository for your app's data stores. Stores can be added to the manager in many different ways, and then used throughout your application.</p>
 
-<h2>Getting the manager</h2>
+<h2>Getting a store</h2>
 
-<p>You should always retreive the store manager via the shared <a href="/di.html">di</a> container. Eg:</p>
+<p>To get a store, pass the store name to the <code>get</code> function. Eg:</p>
 
 <pre class="prettyprint linenums">
-require(['havok/get!havok/store/manager'], function(storeManager){
-    //do something
+require(['havok/store/manager'], function(storeManager){
+    storeManager.get('mystore').then(function(mystore){
+        //do something with mystore
+    })
+}</pre>
+
+<h2>AMD Plugin</h2>
+
+<p><code>havok/store/manager</code> is also an AMD plugin, allowing you to retrieve a store with the following shorthand:</p>
+
+<pre class="prettyprint linenums">
+require(['havok/store/manager!mystore'], function(mystore){
+    //do something with mystore
 }</pre>
 
 <h2>Adding Stores</h2>
@@ -60,32 +90,7 @@ di: {
 
 <h3>Declarative Stores</h3>
 
-<p>Stores can be added using markup. If you place a <code>datalist</code> anywhere in your document with it's <code>id</code> attribute set, then <a href="/api/havok/store/Datalist">havok/store/Datalist</a> will be used to turn that <code>datalist</code> into a store. Eg:</p>
-<pre class="prettyprint linenums">
-{% set ex1 %}
-<datalist id="myStore4">
-    <option data-id="home">home</option>
-    <option data-id="navs">#navs anchor</option>
-    <option data-id="disabled">disabled pill</option>
-</datalist>{% endset %}{{ex1|e}}</pre>
 
-    <h2>Retrieve a store</h2>
-
-    <p>To get a store, use <code>getStore</code>.</p>
-
-    <pre class="prettyprint linenums">
-require(['havok/store/manager'], function(storeManager){
-    var store1 = storeManager.getStore('store1');
-}</pre>
-
-    <h2>Retrieve a record</h2>
-
-    <p>To get a single record from a store, use <code>get</code> and pass a reference with the store name and record id. Eg:</p>
-
-    <pre class="prettyprint linenums">
-require(['havok/store/manager'], function(storeManager){
-    var record = storeManager.get('store1/id1');
-}</pre>
 
     <h2>See also</h2>
 

@@ -23,7 +23,7 @@ define([
                     {ref: 'FL', name: 'Florida'},
                     {ref: 'CA', name: 'California'}
                 ]
-            }), throttle);
+            }), throttle, 1000);
 
             var request1 = store.get('TN'),
                 request2 = store.get('VA'),
@@ -56,7 +56,7 @@ define([
                     {ref: 'FL', name: 'Florida'},
                     {ref: 'CA', name: 'California'}
                 ]
-            }), throttle);
+            }), throttle, 1000);
 
             var request1 = store.query({name: 'Tennessee'}),
                 request2 = store.query({name: 'Virginia'}),
@@ -90,7 +90,7 @@ define([
                         {ref: 'CA', name: 'California'}
                     ]
                 }),
-                store = new Throttle(innerStore, throttle);
+                store = new Throttle(innerStore, throttle, 1000);
 
             var request1 = store.add({ref: 'T', name: 'Test'}),
                 request2 = store.remove('T'),
@@ -126,7 +126,7 @@ define([
                         {ref: 'CA', name: 'California'}
                     ]
                 }),
-                store = new Throttle(innerStore, throttle);
+                store = new Throttle(innerStore, throttle, 1000);
 
             var request1 = store.put({ref: 'TN', name: 'Test1'}),
                 request2 = store.put({ref: 'VA', name: 'Test2'}),
@@ -145,6 +145,37 @@ define([
             (new DeferredList([request1, request2])).then(deferred.callback(function(){
                 assert.operator(throttle, '<', (time2.getTime() - time1.getTime()) * 1.05);
             }));
+        },
+
+        testThrottleTtl: function(){
+
+            var deferred = this.async(5000);
+
+            var store = new Throttle(new Memory({
+                idProperty: 'ref',
+                data: [
+                    {ref: 'TN', name: 'Tennessee'},
+                    {ref: 'VA', name: 'Virginia'},
+                    {ref: 'WA', name: 'Washington'},
+                    {ref: 'FL', name: 'Florida'},
+                    {ref: 'CA', name: 'California'}
+                ]
+            }), 100, 150);
+
+            var request1 = store.get('TN'),
+                request2 = store.get('VA'),
+                request3 = store.get('WA'),
+                request4;
+
+            setTimeout(deferred.rejectOnError(function(){
+                request4 = store.get('FL');
+                (new DeferredList([request1, request2, request3, request4])).then(deferred.callback(function(result){
+                    assert.isTrue(result[0][0]); //first request processed
+                    assert.isTrue(result[1][0]); //second request processed
+                    assert.isFalse(result[2][0]); //third request dropped
+                    assert.isTrue(result[3][0]); //fourth request processed
+                }));
+            }), 300)
         }
     });
 });

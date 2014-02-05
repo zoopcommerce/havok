@@ -1,4 +1,4 @@
 define([
-    './testGet',
+    './testManager',
     './testThrottle'
 ], function () {});

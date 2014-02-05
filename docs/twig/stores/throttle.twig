@@ -1,0 +1,36 @@
+<h1>Throttle</h1>
+
+<p class="lead">Make sure servers are not hit too frequently</p>
+
+<p>The store manager is a central repository for your app's data stores. Stores can be added to the manager in many different ways, and then used throughout your application.</p>
+
+<h2>Adding a Store</h2>
+
+<p>Stores may be added to the store manager directly. Eg:</p>
+
+<pre class="prettyprint linenums">
+require(['havok/store/manager', 'dojo/store/Memory'], function(storeManager, Memory){
+    storeManager.add('mystore', new Memory);
+}</pre>
+
+<p>Stores may also be added through markup and the shared di config. See below for details.</p>
+
+<h2>Getting a store</h2>
+
+<p>To get a store, pass the store name to the <code>get</code> function. Eg:</p>
+
+<pre class="prettyprint linenums">
+require(['havok/store/manager'], function(storeManager){
+    storeManager.get('mystore').then(function(mystore){
+        //do something with mystore
+    })
+}</pre>
+
+<h2>AMD Plugin</h2>
+
+<p><code>havok/store/manager</code> is also an AMD plugin, allowing you to retrieve a store with the following shorthand:</p>
+
+<pre class="prettyprint linenums">
+require(['havok/store/manager!mystore'], function(mystore){
+    //do something with mystore
+}</pre>
