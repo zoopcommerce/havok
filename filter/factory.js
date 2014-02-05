@@ -1,10 +1,12 @@
 define([
     'dojo/_base/lang',
-    '../di/Di'
+    '../di/Di',
+    '../di/sharedDi!'
 ],
 function(
     lang,
-    Di
+    Di,
+    sharedDi
 ){
     var prefix = 'havok/filter/',
         base = function(abbreviation){
@@ -52,6 +54,7 @@ function(
         _diGetter: function(){
             if (!this.di){
                 this.di = new Di(this.diConfig);
+                this.di.fallback = sharedDi;
             }
             return this.di;
         }

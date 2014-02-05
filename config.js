@@ -24,7 +24,6 @@ function(){
             'havok/exception/config',
             'havok/parser/config',
             'havok/router/config',
-            'havok/store/config',
             'havok/widget/config'
         ],
 

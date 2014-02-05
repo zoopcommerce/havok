@@ -14,15 +14,13 @@ function(
 		// summary:
 		//		An AMD plugin that returns a Di container configured by dojo config.
 
+        dynamic: true,
+        
         load: function(/*String?*/id, /*Function?*/require, /*Callback*/callback){
             if ( ! sharedDi){
                 sharedDi = new Di();
             }
             callback(sharedDi);
-        },
-
-        clear: function(){
-            sharedDi = undefined;
         }
     };
 });

@@ -1,10 +1,10 @@
 define([
     'intern!object',
     'intern/chai!assert',
-    'havok/di/sharedDi',
+    'havok/lang',
     'dojo/_base/config',
     'havok/test/di/asset/config'
-], function (registerSuite, assert, sharedDi, dojoConfig, testConfig) {
+], function (registerSuite, assert, lang, dojoConfig, testConfig) {
     registerSuite({
         name: 'havok/proxy',
 
@@ -12,13 +12,14 @@ define([
 
             var deferred = this.async(5000);
 
-            sharedDi.clear();
-            dojoConfig.di = testConfig.di;
+            lang.mixinDeep(dojoConfig, testConfig);
 
             require(['havok/proxy!zooWithProxyMethods'], deferred.rejectOnError(function(zoo){
                 zoo.listAnimals().then(deferred.callback(function(animals){
                     assert.deepEqual(['lucy', 'liz', 'toby'], animals);
-                    delete(dojoConfig.di);
+
+                    //cleanup
+                    for(var i in dojoConfig.di) delete(dojoConfig.di[i])
                 }));
             }))
         }

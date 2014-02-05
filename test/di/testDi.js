@@ -301,6 +301,19 @@ define([
                     assert.equal('roar', sound);
                 }));
             }));
+        },
+
+        fallbackTest: function (){
+            var di = new Di(config.di),
+                fallbackDi = new Di({'fallbackItem': {base: {}, params: {test: 1}}});
+
+            di.fallback = fallbackDi;
+
+            var deferred = this.async(5000);
+
+            when(di.get('fallbackItem'), deferred.callback(function(fallbackItem){
+                assert.equal(1, fallbackItem.test);
+            }));
         }
     });
 });

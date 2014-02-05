@@ -1,0 +1,4 @@
+define([
+    './testGet',
+    './testThrottle'
+], function () {});

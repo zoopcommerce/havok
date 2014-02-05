@@ -13,6 +13,8 @@ function(
 		// summary:
 		//		An AMD plugin that will wait until merged config is complete
 
+        dynamic: true,
+        
         load: function(/*String?*/id, /*Function?*/require, /*Callback*/callback){
             when(manager.merge(), function(config){
                 callback(config);

@@ -6,6 +6,6 @@ define([
     './config/all',
     './filter/all',
     './validator/all',
-    './di/all'//,
-//    './store/all'
+    './di/all',
+    './store/all'
 ], function () {});

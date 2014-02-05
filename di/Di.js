@@ -43,12 +43,19 @@ function (
             _config: undefined,
             =====*/
 
+            /*=====
+            // fallback: havok/di/Di
+            //      Array of di instances. If no config is found for an indentifier, the fallback di instance will be used.
+            fallback: undefined,
+            =====*/
+
             constructor: function(/*Object*/config){
 
                 this._cache = [];
 
                 // Default to dojo config object if no config object is supplied
-                if ( ! config) {
+                if (!config){
+                    if (!dojoConfig.di) dojoConfig.di = {};
                     config = dojoConfig.di;
                 }
 
@@ -109,30 +116,24 @@ function (
 
                 //Get the base object to inject
                 var baseObjectDeferred = new Deferred;
-                switch (true){
-                    case typeof(base) == 'object':
-                        //If base is an object, then inject that object
-                        baseObjectDeferred.resolve(base);
-                        break;
-                    case base == identifier:
-                        //If base is the same as the identifier, then load the
-                        //underling AMD module
-                        require([base], function(baseObject){
-                            baseObjectDeferred.resolve(baseObject);
-                        });
-                        break;
-                    case Boolean(this.getIdentifierConfig(base)):
-                        //If base is defined in the di config, then
-                        //get that object
-                        when(this._get(base), function(baseObject){
-                            baseObjectDeferred.resolve(baseObject);
-                        });
-                        break;
-                    default:
-                        //Default is to load the AMD module
-                        require([base], function(baseObject){
-                            baseObjectDeferred.resolve(baseObject);
-                        });
+                if (typeof(base) == 'object'){
+                    //If base is an object, then inject that object
+                    baseObjectDeferred.resolve(base);
+                } else if (base != identifier && this.getIdentifierConfig(base)){
+                    //If base is defined in the di config, then
+                    //get that object
+                    when(this._get(base), function(baseObject){
+                        baseObjectDeferred.resolve(baseObject);
+                    });
+                } else if (this.fallback && this.fallback.getIdentifierConfig(base)){
+                    when(this.fallback.get(base), function(baseObject){
+                        baseObjectDeferred.resolve(baseObject);
+                    })
+                } else {
+                    //Default is to load the AMD module
+                    require([base], function(baseObject){
+                        baseObjectDeferred.resolve(baseObject);
+                    });
                 }
 
                 //Create object

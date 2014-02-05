@@ -13,18 +13,15 @@ function (
 
     return function(store, throttle){
 
-        // throttle: Int
+        throttle = throttle || 100;
+
         //      A value in milliseconds
         //      The store will not be accessed at a rate faster than the set throttle interval.
+
         var queue = [],
             timeout,
             process = function(){
                 if (!timeout){
-                    timeout = setTimeout(function(){
-                        delete(timeout);
-                        process();
-                    }, throttle)
-
                     var request = queue.shift();
                     if (request.type == 'query'){
                         when(store.query(request.query, request.directives), function(data){
@@ -47,10 +44,14 @@ function (
                             request.done.resolve();
                         })
                     }
+                    timeout = setTimeout(function(){
+                        timeout = undefined;
+                        if (queue.length > 0) process();
+                    }, throttle)
                 }
             };
 
-        lang.delegate(store, {
+        return lang.delegate(store, {
 
             query: function(query, directives){
                 var done = new Deferred,

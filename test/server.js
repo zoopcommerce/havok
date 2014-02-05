@@ -41,6 +41,7 @@ var http = require('http'),
         fs.readFile('./../' + url.parse(request.url).pathname, function (err, content) {
             if (err) {
                 respond404(request, response);
+                return;
             }
             respond(request, response, content, contentType);
         })

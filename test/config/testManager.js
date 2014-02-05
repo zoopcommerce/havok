@@ -15,7 +15,7 @@ define([
                 'havok/test/config/asset/Config2'
             ];
 
-            require(['havok/config/ready!refresh'], deferred.callback(function(){
+            require(['havok/config/ready!'], deferred.callback(function(){
                 var expectedConfig = {
                     test1: {
                         base: 'Test1',

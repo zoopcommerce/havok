@@ -21,6 +21,7 @@ function(
             innerStore = Cache(masterStore, cachingStore, options);
 
         return lang.delegate(innerStore, {
+
             queryCache: {},
 
             clearQueryCacheMode: options.clearQueryCache || 'auto', //auto|manual

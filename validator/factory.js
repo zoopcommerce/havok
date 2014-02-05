@@ -1,10 +1,12 @@
 define([
     'dojo/_base/lang',
-    '../di/Di'
+    '../di/Di',
+    '../di/sharedDi!'
 ],
 function(
     lang,
-    Di
+    Di,
+    sharedDi
 ){
 
     var prefix = 'mystique/',
@@ -53,7 +55,7 @@ function(
             }
         },
 
-       create: function(config){
+        create: function(config){
 
             if (lang.isArray(config)){
                 config = {
@@ -70,6 +72,7 @@ function(
         _diGetter: function(){
             if (!this.di){
                 this.di = new Di(this.diConfig);
+                this.di.fallback = sharedDi;
             }
             return this.di;
         }
