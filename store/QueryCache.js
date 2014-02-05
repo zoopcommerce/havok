@@ -24,7 +24,7 @@ function(
 
             queryCache: {},
 
-            clearQueryCacheMode: options.clearQueryCache || 'auto', //auto|manual
+            clearQueryCacheMode: options.clearQueryCacheMode || 'auto', //auto|manual
 
             ttl: options.ttl || 1000 * 60 * 5, //default ttl five minutes
 

@@ -1,10 +1,68 @@
-<h1>Typeahead</h1>
+<h1>Forms with Stores</h1>
 
-<p><code>f-typeahead</code> creates a <a href="/api/havok/form/Typeahead.html">havok/form/Typeahead</a> which provides a filtering select style input.</p>
+<p>Some of the havok form widgets also use the <code>havok/widget/_StoreMixin</code> to manage lists of items.</p>
 
-<p>Note: a typeahead must define a store to query against.</p>
+<h2>Select</h2>
 
-<h2>Example</h2>
+<div class="bs-docs-example">
+    <datalist id="selectStore1">
+        <option value="NSW">New South Wales</option>
+        <option value="Qld">Queensland</option>
+        <option value="Vic">Victoria</option>
+        <option value="SA">South Australia</option>
+        <option value="NT">Northern Territory</option>
+        <option value="WA">Western Australia</option>
+        <option value="ACT">Australian Capital Territory</option>
+        <option value="Tas">Tasmania</option>
+    </datalist>
+    <d-formspy class="form-horizontal">
+        <f-select label="State" placeholder="select as state" store="selectStore1"></f-select>
+    </d-formspy>
+</div>
+
+<pre class="prettyprint linenums">
+{% set selectExample3 %}
+<datalist id="selectStore1">
+    <option value="NSW">New South Wales</option>
+    <option value="Qld">Queensland</option>
+    ...
+    <option value="Tas">Tasmania</option>
+</datalist>
+<f-select label="State" placeholder="select as state" store="selectStore1"></f-select>{% endset %}{{selectExample3|e}}
+</pre>
+
+<h3>Filtered list</h3>
+<p>Displays only items with a capital 'T'.</p>
+
+<div class="bs-docs-example">
+    <datalist id="selectStore2">
+        <option value="NSW">New South Wales</option>
+        <option value="Qld">Queensland</option>
+        <option value="Vic">Victoria</option>
+        <option value="SA">South Australia</option>
+        <option value="NT">Northern Territory</option>
+        <option value="WA">Western Australia</option>
+        <option value="ACT">Australian Capital Territory</option>
+        <option value="Tas">Tasmania</option>
+    </datalist>
+    <d-formspy class="form-horizontal">
+        <f-select label="State" placeholder="select as state" store="selectStore2" query='{"text": {"$regex": "^.*T.*$"}}'></f-select>
+    </d-formspy>
+</div>
+
+<pre class="prettyprint linenums">
+{% set selectExample4 %}
+<datalist id="selectStore2">
+    <option value="NSW">New South Wales</option>
+    <option value="Qld">Queensland</option>
+    ...
+    <option value="Tas">Tasmania</option>
+</datalist
+<f-select label="State" placeholder="select as state" store="selectStore2" query='{"text": {"$regex": "^.*T.*$"}}'></f-select>{% endset %}{{selectExample4|e}}
+</pre>
+
+<h2>Typeahead</h2>
+
 <div class="bs-docs-example">
     <datalist id="typeaheadStore1">
         <option value="AL">Alabama</option>
@@ -74,34 +132,4 @@
     <option value="WY">Wyoming</option>
 </datalist>
 <f-typeahead store="typeaheadStore1" label="State" help-messages="please type a state"></f-typeahead>{% endset %}{{typeaheadExample1|e}}
-</pre>
-
-<h2>With a validator</h2>
-<div class="bs-docs-example">
-    <f-formspy class="form-horizontal">
-        <f-typeahead required label="State" store="typeaheadStore1"></f-typeahead>
-    </f-formspy>
-</div>
-<pre class="prettyprint linenums">
-{% set typeaheadExample2 %}
-<f-typeahead required label="State" store="typeaheadStore1"></f-typeahead>{% endset %}{{typeaheadExample2|e}}
-</pre>
-
-<h2>With appendages</h2>
-<div class="bs-docs-example">
-    <f-formspy class="form-horizontal">
-        <f-typeahead store="typeaheadStore1">
-            <label>State</label>
-            <button prepend>pre1</button>
-            <button append>app1</button>
-        </f-typeahead>
-    </f-formspy>
-</div>
-<pre class="prettyprint linenums">
-{% set typeaheadExample3 %}
-<f-typeahead store="typeaheadStore1">
-    <label>State</label>
-    <button prepend>pre1</button>
-    <button append>app1</button>
-</f-typeahead>{% endset %}{{typeaheadExample3|e}}
 </pre>

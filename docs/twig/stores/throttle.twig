@@ -1,36 +1,37 @@
 <h1>Throttle</h1>
 
-<p class="lead">Make sure servers are not hit too frequently</p>
+<p><code>havok/store/Throttle</code> is a store wrapper that will throttle activity on a store. It is useful when using a store such as <code>dojo/store/JsonRest</code> to control the volume of server requests.</p>
 
-<p>The store manager is a central repository for your app's data stores. Stores can be added to the manager in many different ways, and then used throughout your application.</p>
+<p>Internally throttle has a queue of requests. Each time a <code>query</code>, <code>get</code>, <code>put</code>, <code>add</code>, or <code>remove</code> is made against the store, the request is added to the queue. Items in the queue are processed at a set interval. Items in the queue are given a ttl (time to live). If an item has gone stale before it is processed, then the request is dropped.</p>
+<p>Throttle takes three arguments:</p>
 
-<h2>Adding a Store</h2>
-
-<p>Stores may be added to the store manager directly. Eg:</p>
+<ul>
+    <li><b>store</b> the store to be wrapped</li>
+    <li><b>throttle</b> the minimum time in milliseconds between activity on the store. Defaults to 100.</li>
+    <li><b>ttl</b> the time to live of each request.</li>
+</ul>
 
 <pre class="prettyprint linenums">
-require(['havok/store/manager', 'dojo/store/Memory'], function(storeManager, Memory){
-    storeManager.add('mystore', new Memory);
+require(['havok/store/Throttle', 'dojo/store/JsonRest'], function(storeManager, JsonRest){
+    var store = new Throttle(
+        new JsonRest({target: 'http://myserver.com'}), //store to throttle
+        300, //JsonRest store will not recieve requests faster than one every 300 milliseconds
+        1000 //if any request is unprocessed for 1000 milliseconds, then it will be dropped
+    );
 }</pre>
 
-<p>Stores may also be added through markup and the shared di config. See below for details.</p>
-
-<h2>Getting a store</h2>
-
-<p>To get a store, pass the store name to the <code>get</code> function. Eg:</p>
+<p>If you need to detect success or failture of a request, use the returned promise:</p>
 
 <pre class="prettyprint linenums">
-require(['havok/store/manager'], function(storeManager){
-    storeManager.get('mystore').then(function(mystore){
-        //do something with mystore
-    })
-}</pre>
+require(['havok/store/Throttle', 'dojo/store/JsonRest'], function(storeManager, JsonRest){
+    var store = new Throttle(new JsonRest({target: 'http://myserver.com'}), 300, 1000);
 
-<h2>AMD Plugin</h2>
-
-<p><code>havok/store/manager</code> is also an AMD plugin, allowing you to retrieve a store with the following shorthand:</p>
-
-<pre class="prettyprint linenums">
-require(['havok/store/manager!mystore'], function(mystore){
-    //do something with mystore
+    store.query({name: 'Bob}).then(
+        function(data){
+            //request succeeded. Do something with data
+        },
+        function(err){
+            //ttl expired. Request dropped. Do something with err
+        }
+    );
 }</pre>
