@@ -22,6 +22,10 @@ function(
 
         return lang.delegate(innerStore, {
 
+            masterStore: masterStore,
+
+            cachingStore: cachingStore,
+
             queryCache: {},
 
             clearQueryCacheMode: options.clearQueryCacheMode || 'auto', //auto|manual
