@@ -41,6 +41,7 @@ function(
                 var queryString = {},
                     idOnly = true,
                     idQuery,
+                    done,
                     i;
 
                 for (i in query){
@@ -62,11 +63,12 @@ function(
                 if (queryString) queryString = JSON.stringify(queryString);
 
                 if (!queryString || !queryCache[queryString] || queryCache[queryString].expires < (new Date)){
+                    //new query, not in cache
+                    var expires = new Date;
 
-                    var expires = new Date,
-                        done = new Deferred;
+                    done = new Deferred;
                     queryCache[queryString] = {
-                        expires: expires.setMilliseconds(expires.getMilliseconds() + directives.ttl ? directives.ttl : options.ttl),
+                        expires: expires.setMilliseconds(expires.getMilliseconds() + directives.ttl ? directives.ttl : this.ttl),
                         result: new QueryResults(done)
                     };
 
@@ -80,8 +82,15 @@ function(
                             done.resolve(data);
                         }));
                     }
+                    return queryCache[queryString].result;
                 }
-                return queryCache[queryString].result;
+
+                //return query from cache
+                done = new Deferred;
+                queryCache[queryString].result.then(function(data){
+                    done.resolve(data.slice(0)); //use a clone of the array, otherwise if the store is wrapped in Observable it won't work
+                })
+                return new QueryResults(done);
             },
 
             add: function(object, directives){
