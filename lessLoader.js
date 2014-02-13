@@ -232,6 +232,7 @@ function(
 
             if (config[mid]){
                 //already processed
+                callback();
                 return;
             }
 

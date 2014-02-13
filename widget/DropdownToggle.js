@@ -69,6 +69,11 @@ function (
             dropdownPlacement: 'top-left',
 
             /*=====
+            // placementNode: DomNode
+            placementNode: undefined,
+            =====*/
+
+            /*=====
             // _activeTogglePlacement: String
             _activeTogglePlacement: undefined,
             =====*/
@@ -159,7 +164,7 @@ function (
                     if (!this.dropdown.get('hasMouse')){
                         this.hide();
                     }
-                }), 50);
+                }), 100);
             },
 
             _show: function(){
@@ -215,7 +220,7 @@ function (
             position: function() {
                 var togglePlacement = this.togglePlacement,
                     dropdownPlacement = this.dropdownPlacement,
-                    placementNodePos = domGeom.position(this.domNode, true),
+                    placementNodePos = domGeom.position(this.placementNode || this.domNode, true),
                     dropdownPos = domGeom.position(this.dropdown.domNode, true),
                     box = win.getBox(),
                     scroll = domGeom.docScroll().y,
