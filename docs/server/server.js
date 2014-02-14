@@ -15,7 +15,7 @@
 var http = require('http'),
     fs = require('fs'),
     url = require('url'),
-    Twig = require('./../../vendor/twig/twig'),
+    Twig = require('twig'),
     renderer = require('./renderer'),
     apiParse = require('./apiParse'),
     apiDetailsWriter = require('./apiDetailsWriter'),
