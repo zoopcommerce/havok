@@ -1,7 +1,7 @@
 var spawn = require('child_process').spawn;
 
 parse = function(callback){
-    var apiParse = spawn('node', ['../../../js-doc-parse/parse.js', 'config=api-config.js']);
+    var apiParse = spawn('node', ['../../node_modules/js-doc-parse/parse.js', 'config=api-config.js']);
 
     apiParse.stdout.on('data', function (data) {
         console.log('stdout: ' + data);

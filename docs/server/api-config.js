@@ -47,7 +47,7 @@ define({
 	},
 
 	// The base path for all the packages being processed.
-	basePath: '../../..',
+	basePath: '../../../',
 
 	// The packages to be processed by the parser. The key is the name of the package, and the value is the
 	// location of the package relative to basePath.
@@ -64,6 +64,7 @@ define({
 		/havok\/nls/,
 		/havok\/test/,
 		/havok\/vendor/,
+		/havok\/node_modules/,
         /havok\/lessLoader/
 	]
 });
