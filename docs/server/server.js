@@ -22,6 +22,7 @@ var http = require('http'),
     apiStoreWriter = require('./apiStoreWriter'),
     file,
     packages = {
+        'bootstrap'       : './../../node_modules/',
         'dojo'            : './../../node_modules/',
         'dijit'           : './../../node_modules/',
         'havok'           : './../../../',

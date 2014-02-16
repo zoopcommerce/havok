@@ -44,13 +44,15 @@ function(
             filePieces.pop();
             filePath = basePath + filePieces.join('/');
 
-            less = less.replace(/@import .*;/g, function(match){
+            //fix relative imports
+            less = less.replace(/@import ['"]\..*;/g, function(match){
                 var pieces = match.indexOf('"') == -1 ? match.split("'") : match.split('"');
 
                 pieces[1] = filePath + '/' + pieces[1];
                 return pieces.join("'");
             });
 
+            //fix relative data uri
             return less.replace(/data-uri(.*);/g, function(match){
                 var pieces = match.indexOf('"') == -1 ? match.split("'") : match.split('"');
 

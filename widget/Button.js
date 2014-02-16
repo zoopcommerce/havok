@@ -1,7 +1,7 @@
 define([
     'dojo/_base/declare',
     './_WidgetBase',
-    '../less!../vendor/bootstrap/less/buttons.less'
+    '../less!bootstrap/less/buttons.less'
 ],
 function (
     declare,

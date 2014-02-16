@@ -3,8 +3,8 @@ define([
     'dojo/dom-class',
     './_WidgetBase',
     './_ListMixin',
-    '../less!../vendor/bootstrap/less/buttons.less',
-    '../less!../vendor/bootstrap/less/button-groups.less'
+    '../less!bootstrap/less/buttons.less',
+    '../less!bootstrap/less/button-groups.less'
 ],
 function (
     declare,

@@ -7,7 +7,7 @@ define([
     'dojo/text!./template/Select.html',
     '../widget/DropdownToggle',
     '../widget/Dropdown',
-    '../less!../vendor/bootstrap/less/buttons.less'
+    '../less!bootstrap/less/buttons.less'
 ],
 function (
     declare,
