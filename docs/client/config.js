@@ -44,7 +44,7 @@ function(){
             }
         },
         less: {
-            "havok/vendor/prettify/prettify.css": {rank: 1},
+            "havok/docs/client/vendor/prettify/prettify.css": {rank: 1},
             "bootstrap/less/labels-badges.less": {rank: 1},
             "bootstrap/less/wells.less": {rank: 1},
             "havok/docs/client/less/docs.less": {rank: 4}
