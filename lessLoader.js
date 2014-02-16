@@ -70,7 +70,7 @@ function(
                 requires = ['less/dist/less-1.5.0'];
 
             if (has('ie') == 8) {
-                requires.push('havok/vendor/es5-shim/es5-shim');
+                throw 'Client side less compliation not supported on ie8';
             }
 
             require(requires, function(lessc){
