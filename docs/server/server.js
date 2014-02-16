@@ -21,13 +21,13 @@ var http = require('http'),
     apiDetailsWriter = require('./apiDetailsWriter'),
     apiStoreWriter = require('./apiStoreWriter'),
     file,
-    packages = [
-        'dojo',
-        'dijit',
-        'havok',
-        'mystique',
-        'mystique-common'
-    ],
+    packages = {
+        'dojo'            : './../../node_modules/',
+        'dijit'           : './../../node_modules/',
+        'havok'           : './../../../',
+        'mystique'        : './../../node_modules/',
+        'mystique-common' : './../../node_modules/mystique/node_modules/'
+    },
 
     getCookies = function (request) {
         var list = {},
@@ -80,11 +80,11 @@ var http = require('http'),
         response.writeHeader(200, {"Content-Type": contentType});
         response.write(content);
         response.end();
-//        console.log(request.method + ' ' + request.url + ' ' + response.statusCode);
+        console.log(request.method + ' ' + request.url + ' ' + response.statusCode);
     },
 
-    returnPackageFile = function(request, response){
-        fs.readFile('./../../../' + request.url, function (err, content) {
+    returnPackageFile = function(packageName, request, response){
+        fs.readFile(packages[packageName] + request.url, function (err, content) {
             if (err) {
                 throw err;
             }
@@ -107,7 +107,7 @@ var http = require('http'),
             }
 
             var params = getParams(request),
-                jsonParams = require('./../twig/' + getFilePath(request, 'json').replace('-content', ''));
+                jsonParams = require('./../twig' + getFilePath(request, 'json').replace('-content', ''));
             for (i in jsonParams){
                 params[i] = jsonParams[i];
             }
@@ -124,7 +124,7 @@ var http = require('http'),
 
         var template = getFilePath(request, 'twig'),
             render = function(){
-                Twig.renderFile('./../twig/' + template, getParams(request), function (err, content) {
+                Twig.renderFile('./../twig' + template, getParams(request), function (err, content) {
                     if (err) {
                         throw err;
                     }
@@ -170,10 +170,10 @@ var http = require('http'),
 http.createServer(function(request, response) {
     var pathPieces = url.parse(request.url).pathname.split('/');
 
-    if (packages.indexOf(pathPieces[1]) != -1){
+    if (pathPieces[1] in packages){
         //A file from one of the js packages has been requested.
         //Just return that file.
-        returnPackageFile(request, response);
+        returnPackageFile(pathPieces[1], request, response);
     } else if (request.url.split('.').pop() == 'html') {
         if (pathPieces[1] == 'api') {
             returnRenderedApiPage(request, response);
