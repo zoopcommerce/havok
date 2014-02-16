@@ -67,7 +67,7 @@ function(
                 return parser;
             }
             var deferredGetParser = new Deferred,
-                requires = ['havok/vendor/less/dist/less'];
+                requires = ['less/dist/less-1.5.0'];
 
             if (has('ie') == 8) {
                 requires.push('havok/vendor/es5-shim/es5-shim');

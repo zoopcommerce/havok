@@ -26,6 +26,7 @@ var http = require('http'),
         'dojo'            : './../../node_modules/',
         'dijit'           : './../../node_modules/',
         'havok'           : './../../../',
+        'less'            : './../../node_modules/',
         'mystique'        : './../../node_modules/',
         'mystique-common' : './../../node_modules/mystique/node_modules/'
     },
