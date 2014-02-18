@@ -1,8 +1,8 @@
 define([
     'dojo/_base/declare',
-    '../../widget/NavList',
-    '../../widget/_AffixMixin',
-    '../../widget/_ScrollSpyMixin'
+    'havok/widget/NavList',
+    'havok/widget/_AffixMixin',
+    'havok/widget/_ScrollSpyMixin'
 ],
 function (
     declare,
@@ -11,7 +11,7 @@ function (
     ScrollSpyMixin
 ){
     // module:
-    //    	havok/docs/module/SideNav
+    //    	docs/SideNav
 
     return declare(
         [NavList, AffixMixin, ScrollSpyMixin],

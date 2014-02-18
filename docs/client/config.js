@@ -3,23 +3,23 @@ function(){
     return {
         parser: {
             tags: {
-                'd-formspy'      : 'havok/docs/client/Formspy',
-                'd-feedback'     : 'havok/docs/client/Feedback',
-                'd-theme-switch' : 'havok/docs/client/ThemeSwitch'
+                'd-formspy'      : 'docs/Formspy',
+                'd-feedback'     : 'docs/Feedback',
+                'd-theme-switch' : 'docs/ThemeSwitch'
             }
         },
         di: {
             'havok/store/stores': {
                 proxies: {
                     demostates: {
-                        base: 'havok/docs/client/state',
+                        base: 'docs/state',
                         proxyMethods: [
                             'get',
                             'query'
                         ]
                     },
                     apiTree: {
-                        base: 'havok/docs/client/apiTree',
+                        base: 'docs/apiTree',
                         proxyMethods: [
                             'get',
                             'query'
@@ -33,7 +33,7 @@ function(){
                     routes: [
                         {
                             regex: '^$|api|[a-zA-Z][a-zA-Z0-9/_-]+.html',
-                            controller: 'havok/docs/client/Controller',
+                            controller: 'docs/Controller',
                             defaultMethod: {
                                 enter: 'go',
                                 exit: 'exit'
@@ -44,10 +44,10 @@ function(){
             }
         },
         less: {
-            "havok/docs/client/vendor/prettify/prettify.css": {rank: 1},
+            "docs/vendor/prettify/prettify.css": {rank: 1},
             "bootstrap/less/labels-badges.less": {rank: 1},
             "bootstrap/less/wells.less": {rank: 1},
-            "havok/docs/client/less/docs.less": {rank: 4}
+            "docs/less/docs.less": {rank: 4}
         }
     }
 });

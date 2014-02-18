@@ -1,9 +1,9 @@
 define([
     'dojo/_base/declare',
     'dojo/dom-class',
-    '../../widget/_WidgetBase',
+    'havok/widget/_WidgetBase',
     'dojo/text!./template/Feedback.html',
-    '../../less!./less/feedback.less'
+    'havok/less!./less/feedback.less'
 ],
 function (
     declare,
@@ -12,7 +12,7 @@ function (
     template
 ){
     // module:
-    //    	havok/docs/module/Feedback
+    //    	docs/Feedback
 
     return declare(
         [WidgetBase],

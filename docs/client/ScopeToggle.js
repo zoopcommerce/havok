@@ -2,7 +2,7 @@ define([
     'dojo/_base/declare',
     'dojo/dom',
     'dojo/dom-class',
-    '../../widget/CheckboxButtonGroup'
+    'havok/widget/CheckboxButtonGroup'
 ],
 function (
     declare,

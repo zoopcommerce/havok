@@ -22,14 +22,15 @@ var http = require('http'),
     apiStoreWriter = require('./apiStoreWriter'),
     file,
     packages = {
-        'bootstrap'       : './../../node_modules/',
-        'dojo'            : './../../node_modules/',
-        'dijit'           : './../../node_modules/',
-        'font-awesome'    : './../../node_modules/',
-        'havok'           : './../../../',
-        'less'            : './../../node_modules/',
-        'mystique'        : './../../node_modules/',
-        'mystique-common' : './../../node_modules/mystique/node_modules/'
+        'bootstrap'       : './../../node_modules/bootstrap',
+        'dojo'            : './../../node_modules/dojo',
+        'dijit'           : './../../node_modules/dijit',
+        'font-awesome'    : './../../node_modules/font-awesome',
+        'havok'           : './../../src',
+        'docs'            : './../client',
+        'less'            : './../../node_modules/less',
+        'mystique'        : './../../node_modules/mystique',
+        'mystique-common' : './../../node_modules/mystique-common'
     },
 
     getCookies = function (request) {
@@ -86,8 +87,12 @@ var http = require('http'),
         console.log(request.method + ' ' + request.url + ' ' + response.statusCode);
     },
 
-    returnPackageFile = function(packageName, request, response){
-        fs.readFile(packages[packageName] + request.url, function (err, content) {
+    returnPackageFile = function(request, response){
+        var pathPieces = url.parse(request.url).pathname.split('/');
+        pathPieces.shift();
+        var packageName = pathPieces.shift();
+
+        fs.readFile(packages[packageName] + '/' + pathPieces.join('/'), function (err, content) {
             if (err) {
                 throw err;
             }
@@ -176,7 +181,7 @@ http.createServer(function(request, response) {
     if (pathPieces[1] in packages){
         //A file from one of the js packages has been requested.
         //Just return that file.
-        returnPackageFile(pathPieces[1], request, response);
+        returnPackageFile(request, response);
     } else if (request.url.split('.').pop() == 'html') {
         if (pathPieces[1] == 'api') {
             returnRenderedApiPage(request, response);

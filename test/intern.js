@@ -75,7 +75,7 @@ define(["intern/node_modules/dojo/has"], function(has) {
                 },
                 {
                     name: 'mystique-common',
-                    location: './node_modules/mystique/node_modules/mystique-common'
+                    location: './node_modules/mystique-common'
                 }
             ],
             map: {

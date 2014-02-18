@@ -2,8 +2,8 @@ define([
     'dojo/_base/declare',
     'dojo/_base/lang',
     'dojo/cookie',
-    '../../widget/Tooltip',
-    '../../widget/RadioButtonGroup'
+    'havok/widget/Tooltip',
+    'havok/widget/RadioButtonGroup'
 ],
 function (
     declare,
@@ -13,7 +13,7 @@ function (
     RadioButtonGroup
 ){
     // module:
-    //    	havok/docs/module/Feedback
+    //    	docs/ThemeSwitch
 
     return declare(
         [RadioButtonGroup],

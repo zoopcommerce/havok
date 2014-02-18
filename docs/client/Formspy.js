@@ -2,7 +2,7 @@ define([
     'dojo/_base/declare',
     'dojo/_base/lang',
     'dojo/json',
-    '../../widget/_WidgetBase',
+    'havok/widget/_WidgetBase',
     'dojo/text!./template/Formspy.html'
 ],
 function (
@@ -13,7 +13,7 @@ function (
     template
 ){
     // module:
-    //    	havok/docs/module/Formspy
+    //    	docs/Formspy
 
     return declare(
         [WidgetBase],

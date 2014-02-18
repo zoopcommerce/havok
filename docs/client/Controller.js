@@ -5,10 +5,10 @@ define([
     'dojo/request/xhr',
     'dojo/Deferred',
     'dojo/dom-construct',
-    '../../parser/parser',
+    'havok/parser/parser',
     'dijit/registry',
-    '../../exception/Application',
-    '../../parser/complete!'
+    'havok/exception/Application',
+    'havok/parser/complete!'
 ],
 function(
     declare,
