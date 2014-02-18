@@ -9,7 +9,6 @@ parse = function(callback){
 
     apiParse.stderr.on('data', function (data) {
         console.log('stderr: ' + data);
-        callback(data);
     });
 
     apiParse.on('close', function (code) {

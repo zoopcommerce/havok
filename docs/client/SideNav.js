@@ -16,7 +16,7 @@ function (
     return declare(
         [NavList, AffixMixin, ScrollSpyMixin],
         {
-            itemTemplate: '<li data-havok-spy-target="${id}"><a role="navitem" href="#${id}"><i class="icon-chevron-right pull-right"></i> ${text}</a></li>',
+            itemTemplate: '<li data-havok-spy-target="${id}"><a role="navitem" href="#${id}"><i class="fa fa-chevron-right pull-right"></i> ${text}</a></li>',
 
             viewportOffsetTop: 90,
 

@@ -1,12 +1,11 @@
 var profile = {
-    basePath:"../../../",
-    releaseDir:"havok/temp",
+    releaseDir:"../../temp",
     defaultConfig: {
         merge: [
             'havok/config'
         ]
     },
-    localeList: ['en-gb', 'en-us'],		
+    localeList: ['en-gb', 'en-us'],
     layers:{
         "dojo/dojo": {
             include: [],
@@ -14,9 +13,7 @@ var profile = {
         },
         "havok/havok":{
             includeLocales: ['en-gb', 'en-us'],
-            include: [
-                'havok/main'
-            ],
+            include: [/*make.js will include all havok modules here*/],
             boot: 1
         }
     }

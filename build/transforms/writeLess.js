@@ -53,7 +53,7 @@ define([
             optCssFilename,
             pieces,
             moduleSet = writeAmd.computeLayerContents(resource, resource.layer.include, resource.layer.exclude);
-            
+
         for (i in moduleSet){
             if (!moduleSet[i].less) {
                 continue;
@@ -136,10 +136,10 @@ define([
             }
 
             //parse the less into css
-            //note: the lessc global is defined in the buildconfig.js
+            //note: the lessc global is defined in buildconfig.js
             var parser = new lessc.Parser({
                     relativeUrls: true,
-                    paths: [fileUtils.getFilepath(rawLessFilename)],
+                    paths: [fileUtils.getFilepath(rawLessFilename), fileUtils.getFilepath(rawLessFilename) + '/../'],
                     filename: fileUtils.getFilename(rawLessFilename)
                 }),
                 rawCss,

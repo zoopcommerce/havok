@@ -2,10 +2,10 @@ define([
     'require',
     'dojo/has',
     'dojo/json',
-    'util/build/fs',
+    'build/fs',
     'havok/config/manager',
     'havok/lang',
-    'havok/build/defaultProfile'
+    'havok-build/defaultProfile'
 ],
 function(
     require,
@@ -68,6 +68,31 @@ function(
 
         // mixin defaults
         profile = lang.mixinDeep(defaultProfile, profile);
+
+        //fixup package locations
+        var i,
+            j,
+            name;
+        for (i = 0; i < profile.packages.length; i++){
+            name = profile.packages[i].name;
+            for (j = 0; j < dojoConfig.packages.length; j++){
+                if (dojoConfig.packages[j].name == name){
+                    profile.packages[i].location = dojoConfig.packages[j].location;
+                }
+            }
+        }
+
+        //fixup paths
+        for (i in profile.paths){
+            if (dojoConfig.paths[i]){
+                profile.paths[i] = dojoConfig.paths[i];
+            }
+        }
+
+        //make sure bootstrap and font-awesome less are accessable
+        if (!profile.dirs) profile.dirs = []
+        profile.dirs.push([profile.paths['bootstrap'] + '/less', 'bootstrap/less']);
+        profile.dirs.push([profile.paths['font-awesome'] + '/less', 'font-awesome/less']);
 
         // determine preprocessed filename
         var splitFilename = profile.selfFilename.split('.');
