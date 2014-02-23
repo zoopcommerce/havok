@@ -1,12 +1,12 @@
-require('../nodeconfig');
-require('dojo/dojo.js');
-
 var fs = require('fs');
 var util = require('util');
 var readProfile = require('./readProfile');
 var writeProfile = require('./writeProfile');
 
 mixinDefault = function(profile, callback){
+
+    require('./dojoConfig').setConfig(profile);
+    require('dojo/dojo.js');
 
     fs.readFile(__dirname + '/../defaultProfile.js', function(err, data){
         if (err) {callback(err); return;}

@@ -14,7 +14,7 @@ build = function(profile, callback){
         // becuase the dojo build tool uses `process.exit`
         // Note to others, NEVER USE PROCESS.EXIT. It make reuse harder.
 
-        var buildChild = fork('./ext/buildChild.js', [profile.selfPath]);
+        var buildChild = fork(__dirname + '/buildChild.js', [profile.selfPath]);
 
         buildChild.on('close', function (code) {
             if (code != 0) {callback('dojo build failed'); return;}

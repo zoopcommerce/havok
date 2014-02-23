@@ -1,10 +1,13 @@
-require('../nodeconfig');
 var fs = require('fs');
+var path = require('path');
 var util = require('util');
 var readProfile = require('./readProfile');
 var writeProfile = require('./writeProfile');
 
 fixupLocationsAndPaths = function(profile, callback){
+
+    require('./dojoConfig').setConfig(profile);
+
     //fixup package locations
     var i,
         j,

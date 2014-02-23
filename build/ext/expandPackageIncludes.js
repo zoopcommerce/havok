@@ -1,4 +1,3 @@
-require('../nodeconfig');
 var fs = require('fs');
 var path = require('path');
 var util = require('util');
@@ -36,13 +35,13 @@ expandPackageIncludes = function(profile, callback){
                 if (/\/\*$/.test(layer.include[j])) {
                     start();
                     packageName = layer.include[j].substr(0, layer.include[j].indexOf('/'));
-                    for (k = 0; k < dojoConfig.packages.length; k++){
-                        if (dojoConfig.packages[k].name == packageName){
-                            packagePath = path.normalize(dojoConfig.packages[k].location);
+                    for (k = 0; k < profile.packages.length; k++){
+                        if (profile.packages[k].name == packageName){
+                            packagePath = path.normalize(profile.packages[k].location);
                             break;
                         }
                     }
-                    fs.readFile(/*packagePath  + '/package.json'*/ 'c:\\xds\\cassie\\node_modules\\havok\\src\\package.json', function(err, data){
+                    fs.readFile(packagePath  + '/package.json', function(err, data){
                         if (err) {callback(err); return;}
                         fs.readFile(packagePath + '/' + JSON.parse(data).dojoBuild, function(err, data){
                             if (err) {callback(err); return;}

@@ -1,10 +1,11 @@
-require('../nodeconfig');
-require('dojo/dojo.js');
-
 var readProfile = require('./readProfile');
 var writeProfile = require('./writeProfile');
 
 mergeConfigs = function(profile, callback){
+
+    require('./dojoConfig').setConfig(profile);
+    require('dojo/dojo.js');
+
     // merge configs into the defaultConfig
     global.require(['dojo/_base/lang', 'dojo/Deferred', 'havok/config/manager'], function(lang, Deferred, configManager){
 

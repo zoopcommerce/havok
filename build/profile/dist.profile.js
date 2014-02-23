@@ -11,7 +11,7 @@ var profile = {
         "havok/havok":{
             includeLocales: ['en-gb', 'en-us'],
             include: [
-                'havok/*' /*preprocess.js will include all havok modules here*/
+                'havok/*'
             ],
             boot: 1
         }

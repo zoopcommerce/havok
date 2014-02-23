@@ -11,35 +11,35 @@ var processes = [
 ];
 
 var readProfile = require('./ext/readProfile');
-var writeProfile = require('./ext/writeProfile');
 
-var make = function(profile, callback){
-    console.log('begin havok dist build');
+var make = function(profilePath, callback){
+    console.log('begin build');
 
-    var i = 0;
+    //read porfile first
+    readProfile.readProfile(profilePath, function(err, profile){
+        if (err) throw err;
 
-    var doProcess = function(profileToProcess){
-        processes[i].process(profileToProcess, function(err, processedProfile){
-            if (err) {callback(err); return;}
-            i++;
-            if (i < processes.length){
-                doProcess(processedProfile);
-            } else {
-                callback(null, processedProfile);
-            }
-        })
-    }
-    doProcess(profile);
+        var i = 0;
+
+        var doProcess = function(profileToProcess){
+            processes[i].process(profileToProcess, function(err, processedProfile){
+                if (err) {callback(err); return;}
+                i++;
+                if (i < processes.length){
+                    doProcess(processedProfile);
+                } else {
+                    console.log('build complete');
+                    callback(null, processedProfile);
+                }
+            })
+        }
+        doProcess(profile);
+    })
 }
 
 if(require.main === module) {
-    readProfile.readProfile(process.argv[2], function(err, profile){
+    make(process.argv[2], function(err){
         if (err) throw err;
-        make(profile, function(err, profile){
-            if (err) throw err;
-            profile.selfPath = profile.selfPath.slice(0, -2) + 'processed.js';
-            writeProfile.writeProfile(profile, function(){})
-        });
     })
 } else {
     exports.make = make
