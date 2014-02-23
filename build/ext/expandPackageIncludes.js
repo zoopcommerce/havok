@@ -8,6 +8,17 @@ var writeProfile = require('./writeProfile');
 
 expandPackageIncludes = function(profile, callback){
     //process layers which include whole pacakges with "package/*" syntax
+
+    var count = 0;
+    var start = function(){
+        count++;
+    };
+    var end = function(){
+        count--;
+        if (count == 0){
+            callback(null, profile);
+        }
+    };
     var layer,
         i,
         j,
@@ -17,11 +28,13 @@ expandPackageIncludes = function(profile, callback){
         tagger,
         mids;
 
+    start();
     for (i in profile.layers){
         layer = profile.layers[i];
         if (layer.include){
             for(j = 0; j < layer.include.length; j++){
                 if (/\/\*$/.test(layer.include[j])) {
+                    start();
                     packageName = layer.include[j].substr(0, layer.include[j].indexOf('/'));
                     for (k = 0; k < dojoConfig.packages.length; k++){
                         if (dojoConfig.packages[k].name == packageName){
@@ -29,8 +42,7 @@ expandPackageIncludes = function(profile, callback){
                             break;
                         }
                     }
-                    fs.readFile(packagePath + '/package.json', function(err, data){
-
+                    fs.readFile(/*packagePath  + '/package.json'*/ 'c:\\xds\\cassie\\node_modules\\havok\\src\\package.json', function(err, data){
                         if (err) {callback(err); return;}
                         fs.readFile(packagePath + '/' + JSON.parse(data).dojoBuild, function(err, data){
                             if (err) {callback(err); return;}
@@ -49,7 +61,7 @@ expandPackageIncludes = function(profile, callback){
                                 },
                                 function(){
                                     layer.include.splice.apply(layer.include, [j-1, 1].concat(mids));
-                                    callback(null, profile);
+                                    end();
                                 }
                             );
                         })
@@ -58,6 +70,7 @@ expandPackageIncludes = function(profile, callback){
             }
         }
     }
+    end();
 }
 
 if(require.main === module) {

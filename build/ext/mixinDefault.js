@@ -8,7 +8,7 @@ var writeProfile = require('./writeProfile');
 
 mixinDefault = function(profile, callback){
 
-    fs.readFile('../defaultProfile.js', function(err, data){
+    fs.readFile(__dirname + '/../defaultProfile.js', function(err, data){
         if (err) {callback(err); return;}
 
         var defaultProfile = (new Function([], data + '; return profile;'))();

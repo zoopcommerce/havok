@@ -1,44 +1,35 @@
 var processes = [
-    require('ext/prepareReleaseDir'),
-    require('ext/mixinDefault'),
-    require('ext/fixupLocationsAndPaths'),
-    require('ext/externalLess'),
-    require('ext/expandPackageIncludes'),
-    require('ext/mergeConfigs'),
-    require('ext/build'),
-    require('ext/complieLess'),
-    require('ext/copyDist')
+    require('./ext/prepareReleaseDir'),
+    require('./ext/mixinDefault'),
+    require('./ext/fixupLocationsAndPaths'),
+    require('./ext/externalLess'),
+    require('./ext/expandPackageIncludes'),
+    require('./ext/mergeConfigs'),
+    require('./ext/build'),
+    require('./ext/compileLess'),
+    require('./ext/copyDist')
 ];
 
-
-var copyDist = function(callback){
-    var temp = __dirname + '/../temp';
-    var dist = __dirname + '/../dist';
-
-    fs.copy(temp + '/havok/havok.js', dist + '/havok/havok.js', function(){
-        fs.copy(temp + '/havok/havok.css', dist + '/havok/havok.css', function(){
-            callback();
-        })
-    })
-}
+var readProfile = require('./ext/readProfile');
+var writeProfile = require('./ext/writeProfile');
 
 var make = function(profile, callback){
     console.log('begin havok dist build');
 
     var i = 0;
 
-    var doProcess = function(){
-        processes[i].process(profile, function(err, processedProfile){
+    var doProcess = function(profileToProcess){
+        processes[i].process(profileToProcess, function(err, processedProfile){
             if (err) {callback(err); return;}
             i++;
             if (i < processes.length){
-                doProcess();
+                doProcess(processedProfile);
             } else {
                 callback(null, processedProfile);
             }
         })
     }
-    doProcess();
+    doProcess(profile);
 }
 
 if(require.main === module) {

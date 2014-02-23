@@ -8,10 +8,6 @@ var profile = {
     },
     localeList: ['en-gb', 'en-us'],
     layers:{
-        "dojo/dojo": {
-            include: [],
-            customBase: 1
-        },
         "havok/havok":{
             includeLocales: ['en-gb', 'en-us'],
             include: [

@@ -1,7 +1,6 @@
-var fs = require('fs');
+var fs = require('fs-extra');
 var path = require('path');
 var readProfile = require('./readProfile');
-var writeProfile = require('./writeProfile');
 
 prepareReleaseDir = function(profile, callback){
     //make sure release dir exists and is empty
@@ -15,20 +14,16 @@ prepareReleaseDir = function(profile, callback){
         //create empty temp dir
         fs.mkdir(releaseDir, function(err){
             if (err) throw err;
-            callback();
+            callback(null, profile);
         })
     })
-
-    callback(null, profile);
 }
 
 if(require.main === module) {
     readProfile.readProfile(process.argv[2], function(err, profile){
         if (err) throw err;
-        prepareReleaseDir(profile, function(err, profile){
-            if (err) throw err;
-            profile.selfPath = profile.selfPath.slice(0, -2) + 'processed.js';
-            writeProfile.writeProfile(profile, function(){})
+        prepareReleaseDir(profile, function(err){
+            if (err) throw err
         });
     })
 } else {

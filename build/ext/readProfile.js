@@ -1,4 +1,5 @@
 var fs = require('fs');
+var path = require('path');
 
 readProfile = function(profilePath, callback){
 
@@ -6,7 +7,7 @@ readProfile = function(profilePath, callback){
         if (err) {callback(err); return;}
 
         var profile = (new Function([], data + '; return profile;'))();
-        profile.selfPath = profilePath;
+        profile.selfPath = path.resolve(profilePath);
         callback(null, profile);
     })
 }

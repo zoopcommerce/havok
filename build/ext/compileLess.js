@@ -5,6 +5,17 @@ var readProfile = require('./readProfile');
 
 complieLess = function(profile, callback){
 
+    var count = 0;
+    var start = function(){
+        count++;
+    };
+    var end = function(){
+        count--;
+        if (count == 0){
+            callback(null, profile);
+        }
+    };
+
     //parse and compress layer less
     var i,
         basePath,
@@ -12,11 +23,15 @@ complieLess = function(profile, callback){
         rawCssFilename,
         optCssFilename;
 
+    start();
     for (i in profile.layers){
         basePath = path.dirname(profile.selfPath) + '/' + profile.releaseDir + '/' + i;
         rawLessFilename = basePath + '.less';
+        start();
         fs.stat(rawLessFilename, function(err){
-            if (!err) {
+            if (err) {
+                end();
+            } else {
                 if (profile.layerOptimize){
                     rawCssFilename = basePath + '.uncompressed.css';
                     optCssFilename = basePath + '.css';
@@ -28,7 +43,6 @@ complieLess = function(profile, callback){
                     if (err) {callback(err); return;}
 
                     //parse the less into css
-                    //note: the lessc global is defined in buildconfig.js
                     var parser = new lessc.Parser({
                             relativeUrls: true,
                             paths: [path.dirname(rawLessFilename), path.dirname(rawLessFilename) + '/../'],
@@ -41,14 +55,15 @@ complieLess = function(profile, callback){
                         if (err) {callback(err); return;}
                         rawCss = root.toCSS({compress: false, strictMaths: false, strictUnits: false});
                         fs.writeFile(rawCssFilename, rawCss, function(err){
-                            if (err) throw err
+                            if (err) {callback(err); return;}
                             if (profile.layerOptimize){
                                 optCss = root.toCSS({compress: true, strictMaths: false, strictUnits: false});
                                 fs.writeFile(optCssFilename, optCss, function(err){
-                                    callback(err);
+                                    if (err) {callback(err); return;}
+                                    end();
                                 })
                             } else {
-                                callback();
+                                end();
                             }
                         })
                     })
@@ -56,12 +71,15 @@ complieLess = function(profile, callback){
             }
         })
     }
+    end();
 }
 
 if(require.main === module) {
     readProfile.readProfile(process.argv[2], function(err, profile){
         if (err) throw err;
-        complieLess(profile, function(){});
+        complieLess(profile, function(err){
+            if (err) throw err
+        });
     })
 } else {
     exports.process = complieLess

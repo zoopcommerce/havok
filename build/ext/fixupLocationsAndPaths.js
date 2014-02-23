@@ -9,6 +9,7 @@ fixupLocationsAndPaths = function(profile, callback){
     var i,
         j,
         name;
+
     for (i = 0; i < profile.packages.length; i++){
         name = profile.packages[i].name;
         for (j = 0; j < dojoConfig.packages.length; j++){

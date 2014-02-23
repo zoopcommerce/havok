@@ -1,17 +1,25 @@
-require('../nodeconfig');
-require('dojo/dojo.js');
-
 var readProfile = require('./readProfile');
+var writeProfile = require('./writeProfile');
+var fork = require('child_process').fork;
 
 build = function(profile, callback){
+    //make sure the pofile is written
 
-    // do the actual dojo build
-    process.argv[2] = 'load=build';
-    process.argv[3] = '--profile';
-    process.argv[4] = profile.selfPath;
+    profile.selfPath = profile.selfPath.slice(0, -2) + 'processed.js';
+    writeProfile.writeProfile(profile, function(err){
+        if (err) {callback(err); return;}
 
-    global.require(['build/main'], function(main){
-        callback(null, profile);
+
+        // do the actual dojo build in a fork - has to be done this way
+        // becuase the dojo build tool uses `process.exit`
+        // Note to others, NEVER USE PROCESS.EXIT. It make reuse harder.
+
+        var buildChild = fork('./ext/buildChild.js', [profile.selfPath]);
+
+        buildChild.on('close', function (code) {
+            if (code != 0) {callback('dojo build failed'); return;}
+            callback(null, profile);
+        });
     })
 }
 
