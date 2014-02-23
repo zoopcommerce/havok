@@ -1,7 +1,5 @@
-define([], function(){
-
-    //sensible build profile default settings
-return {
+//sensible build profile default settings
+var profile = {
     action:"release",
     releaseDir:"release",
     layerOptimize:"closure",
@@ -84,4 +82,3 @@ return {
         writeAmd: ["havok-build/transforms/writeAmd", "write"]
     }
 }
-});

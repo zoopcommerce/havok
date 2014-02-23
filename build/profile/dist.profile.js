@@ -1,5 +1,6 @@
 var profile = {
-    releaseDir:"../../temp",
+    releaseDir:"../../release",
+    distDir:"../../dist",
     defaultConfig: {
         merge: [
             'havok/config'
@@ -13,7 +14,9 @@ var profile = {
         },
         "havok/havok":{
             includeLocales: ['en-gb', 'en-us'],
-            include: [/*make.js will include all havok modules here*/],
+            include: [
+                'havok/*' /*preprocess.js will include all havok modules here*/
+            ],
             boot: 1
         }
     }

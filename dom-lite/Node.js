@@ -104,10 +104,13 @@ function Node(ownerDocument){
                 pieces.push(self.tagName);
                 pieces.push(' ');
                 self.attributes.forEach(function(attr){
+                    var quote = attr.singleQuote ? "'" : '"';
                     pieces.push(attr.name);
-                    pieces.push('="');
+                    pieces.push('=');
+                    pieces.push(quote);
                     pieces.push(attr.value);
-                    pieces.push('" ');
+                    pieces.push(quote);
+                    pieces.push(' ');
                 });
                 if (selfClosingTags.indexOf(self.tagName) == -1){
                     pieces.push('>');

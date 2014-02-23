@@ -2,6 +2,8 @@ define([
     'require',
     'dojo/has',
     'dojo/json',
+    'dojo/Deferred',
+    'dojo/DeferredList',
     'build/fs',
     'havok/config/manager',
     'havok/lang',
@@ -11,6 +13,8 @@ function(
     require,
     has,
     json,
+    Deferred,
+    DeferredList,
     fs,
     configManager,
     lang,
@@ -93,6 +97,48 @@ function(
         if (!profile.dirs) profile.dirs = []
         profile.dirs.push([profile.paths['bootstrap'] + '/less', 'bootstrap/less']);
         profile.dirs.push([profile.paths['font-awesome'] + '/less', 'font-awesome/less']);
+
+        //process layers which include whole pacakges with "package/*" syntax
+        var layer,
+            k,
+            packageName,
+            packagePath,
+            tagger,
+            mids;
+        for (i in profile.layers){
+            layer = profile.layers[i];
+            if (layer.include){
+                for(j = 0; j < layer.include.length; j++){
+                    if (/\/\*$/.test(layer.include[j])) {
+                        packageName = layer.include[j].substr(0, layer.include[j].indexOf('/'));
+                        for (k = 0; j < dojoConfig.packages.length; j++){
+                            if (dojoConfig.packages[k].name == packageName){
+                                packagePath = dojoConfig.packages[k].location;
+                            }
+                        }
+                        tagger = (new Function([], fs.readFileSync(packagePath + '/' + JSON.parse(fs.readFileSync(packagePath + '/package.json')).dojoBuild) + '; return profile;'))().resourceTags;
+                        mids = [];
+                        dive(
+                            packagePath,
+                            function(err, file){
+                                if (err) {console.log(err); return;}
+
+                                var mid = packageName + '/' + file.replace(path, '').slice(1, -3).replace(/\\/g, '/');
+                                if (tagger.amd(file, mid) && !tagger.miniExclude(file, mid)){
+                                    mids.push(mid);
+                                    console.log('include ' + mid);
+                                }
+                            },
+                            function(){
+                                mids.shift(1);
+                                mids.shift(j);
+                                layer.include.splice.apply(this, mids);
+                            }
+                        );
+                    }
+                }
+            }
+        }
 
         // determine preprocessed filename
         var splitFilename = profile.selfFilename.split('.');

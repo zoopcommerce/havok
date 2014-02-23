@@ -91,6 +91,7 @@ function (
                 var Module = arguments[0],
                     params = {},
                     item,
+                    props,
                     instance;
 
                 if (arguments.length > 1){
@@ -114,30 +115,11 @@ function (
 
                     name = string.camelCase(name);
 
-                    // Set params[name] to value, doing type conversion
-                    if(name in Module.prototype){
-                        switch(typeof Module.prototype[name]){
-                        case 'number':
-                            params[name] = value.length ? Number(value) : NaN;
-                            break;
-                        case 'boolean':
-                            // for checked/disabled value might be "" or "checked".	 interpret as true.
-                            params[name] = value.toLowerCase() != "false";
-                            break;
-                        case 'object':
-                            try {
-                                var obj = JSON.parse(value);
-                                params[name] = obj;
-                            } catch(e) {
-                                params[name] = value;
-                            }
-                            break;
-                        default:
-                            params[name] = value;
-                        }
-                    } else {
-                        params[name] = value;
-                    }
+                    params[name] = _processParam(name, value, Module);
+                }
+                if (refNode.hasAttribute('data-dojo-props')){
+                    props = JSON.stringify('{' + refNode.getAttribute('data-dojo-props') + '}');
+                    for(i in props) params[i] = _processParam(i, props[i], Module)
                 }
 
                 instance = new Module(params, refNode);
@@ -149,13 +131,40 @@ function (
                     if (requires.length > 1){
                         instance.domNode.setAttribute('data-dojo-mixins', requires.slice(1));
                     }
-                    instance.domNode.setAttribute('data-dojo-props', '_rendered: true');
+                    params._rendered = true;
+                    instance.domNode.setAttribute('data-dojo-props', JSON.stringify(params).slice(1,-1));
                 }
 
                 result.resolve(instance);
             });
 
             return result;
+        },
+
+        _processParam = function(name, value, Module){
+            // Do type conversion
+            if(name in Module.prototype){
+                switch(typeof Module.prototype[name]){
+                case 'number':
+                    return value.length ? Number(value) : NaN;
+                    break;
+                case 'boolean':
+                    // for checked/disabled value might be "" or "checked".	 interpret as true.
+                    return value.toLowerCase() != "false";
+                    break;
+                case 'object':
+                    try {
+                        var obj = JSON.parse(value);
+                        return obj;
+                    } catch(e) {
+                        return value;
+                    }
+                    break;
+                default:
+                    return value;
+                }
+            }
+            return value;
         };
 
     return {

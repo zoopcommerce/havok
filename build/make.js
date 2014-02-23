@@ -1,82 +1,15 @@
-//Build the havok.js and havok.css distributable
-//Run this script from havok/build directory
+var processes = [
+    require('ext/prepareReleaseDir'),
+    require('ext/mixinDefault'),
+    require('ext/fixupLocationsAndPaths'),
+    require('ext/externalLess'),
+    require('ext/expandPackageIncludes'),
+    require('ext/mergeConfigs'),
+    require('ext/build'),
+    require('ext/complieLess'),
+    require('ext/copyDist')
+];
 
-var spawn = require('child_process').spawn,
-    fs = require('fs-extra'),
-    dive = require('dive');
-
-var scanHavok = function(callback){
-
-    var path = fs.realpathSync('./../src');
-    var tagger = (new Function([], fs.readFileSync(path + '/havok.profile.js') + '; return profile;'))().resourceTags;
-    var mids = [];
-
-    dive(
-        path,
-        function(err, file){
-            if (err) {console.log(err); return;}
-
-            var mid = 'havok/' + file.replace(path, '').slice(1, -3).replace(/\\/g, '/');
-            if (tagger.amd(file, mid) && !tagger.miniExclude(file, mid)){
-                mids.push(mid);
-                console.log('inject ' + mid);
-            }
-        },
-        function(){
-            var profile = (new Function([], fs.readFileSync('./profile/dist.profile.js') + '; return profile;'))();
-            profile.layers['havok/havok'].include = mids;
-            fs.writeFileSync('./profile/dist.profile.allmids.js', 'var profile = ' + JSON.stringify(profile, null, '    '));
-            callback();
-        }
-    );
-};
-
-var preprocess = function(callback){
-    var preprocess = spawn('node', ['./buildconfig.js', 'load=havok-build/preprocess', '--profile', './profile/dist.profile.allmids.js']);
-
-    preprocess.stdout.on('data', function (data) {
-        console.log('stdout: ' + data);
-    });
-
-    preprocess.stderr.on('data', function (data) {
-        console.log('stderr: ' + data);
-    });
-
-    preprocess.on('close', function (code) {
-        callback();
-    });
-}
-
-var build = function(callback){
-    var build = spawn('node', ['./buildconfig.js', 'load=build', '--profile', './profile/dist.profile.allmids.preprocessed.js']);
-
-    build.stdout.on('data', function (data) {
-        console.log('stdout: ' + data);
-    });
-
-    build.stderr.on('data', function (data) {
-        console.log('stderr: ' + data);
-    });
-
-    build.on('close', function (code) {
-        callback();
-    });
-}
-
-var prepareTempDir = function(callback){
-    var temp = __dirname + '/../temp';
-
-    //remove any old temp dir is empty
-    fs.remove(temp, function(err){
-        if (err) throw err;
-
-        //create empty temp dir
-        fs.mkdir(temp, function(err){
-            if (err) throw err;
-            callback();
-        })
-    })
-}
 
 var copyDist = function(callback){
     var temp = __dirname + '/../temp';
@@ -89,36 +22,34 @@ var copyDist = function(callback){
     })
 }
 
-var cleanup = function(callback){
-    var temp = __dirname + '/../temp';
-
-    //remove temp dir
-    fs.remove(temp, function(err){
-        if (err) throw err;
-        callback();
-    })
-}
-
-make = function(callback){
+var make = function(profile, callback){
     console.log('begin havok dist build');
 
-    scanHavok(function(){
-        prepareTempDir(function(){
-            //preprocess profile
-            preprocess(function(){
-                //do the actual build
-                build(function(){
-                    copyDist(function(){
-                        cleanup(function(){
-                            console.log('havok dist build complete');
-                            callback();
-                        })
-                    })
-                })
-            })
+    var i = 0;
+
+    var doProcess = function(){
+        processes[i].process(profile, function(err, processedProfile){
+            if (err) {callback(err); return;}
+            i++;
+            if (i < processes.length){
+                doProcess();
+            } else {
+                callback(null, processedProfile);
+            }
         })
-    });
+    }
+    doProcess();
 }
 
-if(require.main === module) make(function(){})
-else exports.make = make
+if(require.main === module) {
+    readProfile.readProfile(process.argv[2], function(err, profile){
+        if (err) throw err;
+        make(profile, function(err, profile){
+            if (err) throw err;
+            profile.selfPath = profile.selfPath.slice(0, -2) + 'processed.js';
+            writeProfile.writeProfile(profile, function(){})
+        });
+    })
+} else {
+    exports.make = make
+}

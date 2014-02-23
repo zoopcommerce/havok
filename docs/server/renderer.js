@@ -1,38 +1,17 @@
-dojoConfig = {
-    async: true,
-    baseUrl: __dirname + "/../../../",
-    packages: [
-        {
-            name: "dojo",
-            location: "dojo"
-        },
-        {
-            name: "dijit",
-            location: "dijit"
-        },
-        {
-            name: "havok",
-            location: "havok"
-        },
-        {
-            name: "mystique",
-            location: "mystique"
-        },
-        {
-            name: "mystique-common",
-            location: "mystique-common"
-        }
-    ],
-    locale: 'en-au',
-    merge: [
-        'havok/config',
-        'havok/docs/client/config'
-    ],
-    less: false
-};
+require('./../../build/nodeconfig.js');
 
-var parser = require('../../dom-lite/parser'),
-    nodeType = require('../../dom-lite/nodeType');
+dojoConfig.locale = 'en-au';
+dojoConfig.merge = [
+    'havok/config',
+    'docs/config'
+]
+dojoConfig.less = false;
+dojoConfig.packages.push({
+    name: 'docs',
+    location: __dirname + '/../client'
+});
+var parser = require('../../dom-lite/parser');
+var nodeType = require('../../dom-lite/nodeType');
 
 exports.render = function(rawHtml, callback){
     parser.parse(rawHtml, function(dom){
@@ -44,14 +23,15 @@ exports.render = function(rawHtml, callback){
         window = document.defaultView;
 
         var renderedHead = document.head ? document.head.outerHTML : '';
+        var prettifyPath = '../client/vendor/prettify/prettify';
 
-        require('../../vendor/prettify/prettify');
+        require(prettifyPath);
         window['PR_SHOULD_USE_CONTINUATION'] = false; //ensures that pretty printing is sync rather than async
         window.prettyPrint();
-        delete require.cache[require.resolve('../../vendor/prettify/prettify')]; //make sure that prettify reloads each request
+        delete require.cache[require.resolve(prettifyPath)]; //make sure that prettify reloads each request
 
-        require('../../../dojo/dojo');
-        delete require.cache[require.resolve('../../../dojo/dojo')]; //make sure that dojo reloads each request
+        require('dojo/dojo');
+        delete require.cache[require.resolve('dojo/dojo')]; //make sure that dojo reloads each request
 
         global.require(['dojo/has', 'havok/parser/parser'], function(has, parser){
 

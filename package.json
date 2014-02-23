@@ -9,7 +9,7 @@
         "dojo"              : "1.9.2",
         "dijit"             : "http://github.com/dojo/dijit/tarball/1.9.2",
         "dojo-util"         : "http://github.com/dojo/util/tarball/fedc64c8adefc19ea10b33bfc3be7400f0fb4579",
-        "mystique"          : "http://github.com/zoopcommerce/mystique-js/tarball/1.2.1",
+        "mystique"          : "http://github.com/zoopcommerce/mystique-js/tarball/1.2.2",
         "mystique-common"   : "http://github.com/zoopcommerce/mystique/tarball/1.2.2",
         "bootstrap"         : "http://github.com/twbs/bootstrap/tarball/v2.3.2",
         "font-awesome"      : "4.0.3",
@@ -26,5 +26,5 @@
     "description": "The mutant offspring of Twitter Bootstrap and Dojo",
     "keywords": ["JavaScript", "Dojo", "Widget", "Bootstrap"],
     "homepage": "http://zoopcommerce.github.io/havok",
-    "main": "havok.js"
+    "main": "dist/havok.js"
 }

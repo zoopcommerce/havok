@@ -120,52 +120,12 @@ define([
         pieces = resource.dest.split('.');
         pieces.pop();
         rawLessFilename = pieces.join('.') + '.less';
-        if (bc.layerOptimize){
-            rawCssFilename = pieces.join('.') + '.uncompressed.css';
-            optCssFilename = pieces.join('.') + '.css';
-        } else {
-            rawCssFilename = pieces.join('.') + '.css';
-        }
 
         fileUtils.ensureDirectoryByFilename(rawLessFilename);
         fs.writeFile(rawLessFilename, bc.newlineFilter(rawLess, resource, "writeAmd"), resource.encoding, function(err){
 
-            if (err){
-                callback(resource, err);
-                return;
-            }
-
-            //parse the less into css
-            //note: the lessc global is defined in buildconfig.js
-            var parser = new lessc.Parser({
-                    relativeUrls: true,
-                    paths: [fileUtils.getFilepath(rawLessFilename), fileUtils.getFilepath(rawLessFilename) + '/../'],
-                    filename: fileUtils.getFilename(rawLessFilename)
-                }),
-                rawCss,
-                optCss;
-
-            parser.parse(rawLess, function(err, root){
-                if (err){
-                    callback(resource, err);
-                    return;
-                }
-                rawCss = root.toCSS({compress: false, strictMaths: false, strictUnits: false});
-                fs.writeFile(rawCssFilename, bc.newlineFilter(rawCss, resource, "writeAmd"), resource.encoding, function(err){
-                    if (err){
-                        callback(resource, err);
-                        return;
-                    }
-                    if (bc.layerOptimize){
-                        optCss = root.toCSS({compress: true, strictMaths: false, strictUnits: false});
-                        fs.writeFile(optCssFilename, bc.newlineFilter(optCss, resource, "writeAmd"), resource.encoding, function(err){
-                            callback(resource, err);
-                        })
-                    } else {
-                        callback(resource, err);
-                    }
-                })
-            })
+            callback(resource, err);
+            return;
         });
     };
 });

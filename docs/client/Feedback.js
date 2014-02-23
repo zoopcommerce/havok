@@ -17,6 +17,12 @@ function (
     return declare(
         [WidgetBase],
         {
+            //bugLink
+
+            //issuesLink
+
+            //forkLink
+            
             templateString: template,
 
             onClick: function(){
