@@ -2,6 +2,9 @@ var profile = {
     releaseDir:"../../release",
     distDir:"../../dist",
     defaultConfig: {
+        deps: [
+            'havok/ready!'
+        ],
         merge: [
             'havok/config'
         ]

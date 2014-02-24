@@ -5,6 +5,45 @@ var dive = require('dive');
 var readProfile = require('./readProfile');
 var writeProfile = require('./writeProfile');
 
+expandSingle = function(layer, index, profile, callback){
+    var i,
+        packagePath,
+        packageName = layer.include[index].substr(0, layer.include[index].indexOf('/')),
+        tagger,
+        mids;
+
+    for (i = 0; i < profile.packages.length; i++){
+        if (profile.packages[i].name == packageName){
+            packagePath = path.normalize(profile.packages[i].location);
+            break;
+        }
+    }
+    fs.readFile(packagePath  + '/package.json', function(err, data){
+        if (err) {callback(err); return;}
+        fs.readFile(packagePath + '/' + JSON.parse(data).dojoBuild, function(err, data){
+            if (err) {callback(err); return;}
+            tagger = (new Function([], data + '; return profile;'))().resourceTags;
+
+            mids = [];
+            dive(
+                packagePath,
+                function(err, file){
+                    if (err) {callback(err); return;}
+                    var mid = packageName + '/' + file.replace(packagePath, '').slice(1, -3).replace(/\\/g, '/');
+                    if (tagger.amd(file, mid) && !tagger.miniExclude(file, mid)){
+                        mids.push(mid);
+                        console.log('include ' + mid);
+                    }
+                },
+                function(){
+                    layer.include.splice.apply(layer.include, [index, 1].concat(mids));
+                    callback();
+                }
+            );
+        })
+    })
+};
+
 expandPackageIncludes = function(profile, callback){
     //process layers which include whole pacakges with "package/*" syntax
 
@@ -20,12 +59,7 @@ expandPackageIncludes = function(profile, callback){
     };
     var layer,
         i,
-        j,
-        k,
-        packageName,
-        packagePath,
-        tagger,
-        mids;
+        j;
 
     start();
     for (i in profile.layers){
@@ -34,36 +68,8 @@ expandPackageIncludes = function(profile, callback){
             for(j = 0; j < layer.include.length; j++){
                 if (/\/\*$/.test(layer.include[j])) {
                     start();
-                    packageName = layer.include[j].substr(0, layer.include[j].indexOf('/'));
-                    for (k = 0; k < profile.packages.length; k++){
-                        if (profile.packages[k].name == packageName){
-                            packagePath = path.normalize(profile.packages[k].location);
-                            break;
-                        }
-                    }
-                    fs.readFile(packagePath  + '/package.json', function(err, data){
-                        if (err) {callback(err); return;}
-                        fs.readFile(packagePath + '/' + JSON.parse(data).dojoBuild, function(err, data){
-                            if (err) {callback(err); return;}
-                            tagger = (new Function([], data + '; return profile;'))().resourceTags;
-
-                            mids = [];
-                            dive(
-                                packagePath,
-                                function(err, file){
-                                    if (err) {callback(err); return;}
-                                    var mid = packageName + '/' + file.replace(packagePath, '').slice(1, -3).replace(/\\/g, '/');
-                                    if (tagger.amd(file, mid) && !tagger.miniExclude(file, mid)){
-                                        mids.push(mid);
-                                        console.log('include ' + mid);
-                                    }
-                                },
-                                function(){
-                                    layer.include.splice.apply(layer.include, [j-1, 1].concat(mids));
-                                    end();
-                                }
-                            );
-                        })
+                    expandSingle(layer, j, profile, function(){
+                        end();
                     })
                 }
             }

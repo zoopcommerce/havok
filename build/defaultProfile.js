@@ -68,15 +68,16 @@ var profile = {
         'dojo-debug-messages': 0
     },
     plugins: {
-        "havok/config/ready":"havok-build/plugin/config/ready",
-        "havok/router/baseUrl":"havok-build/plugin/router/baseUrl",
-        "havok/router/started":"havok-build/plugin/router/started",
-        "havok/di/sharedDi":"havok-build/plugin/di/sharedDi",
-        "havok/proxy":"havok-build/plugin/proxy",
-        "havok/get":"havok-build/plugin/get",
-        "havok/less":"havok-build/plugin/less",
-        "mystique/messages":"havok-build/plugin/messages",
-        "dojo/text":"havok-build/plugin/text"
+        "havok/config/ready"    : "havok-build/plugin/config/ready",
+        "havok/router/baseUrl"  : "havok-build/plugin/router/baseUrl",
+        "havok/router/started"  : "havok-build/plugin/router/started",
+        "havok/di/sharedDi"     : "havok-build/plugin/di/sharedDi",
+        "havok/parser/complete" : "havok-build/plugin/parser/complete",
+        "havok/proxy"           : "havok-build/plugin/proxy",
+        "havok/get"             : "havok-build/plugin/get",
+        "havok/less"            : "havok-build/plugin/less",
+        "mystique/messages"     : "havok-build/plugin/messages",
+        "dojo/text"             : "havok-build/plugin/text"
     },
     transforms: {
         writeAmd: ["havok-build/transforms/writeAmd", "write"]

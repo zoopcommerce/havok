@@ -5,7 +5,7 @@ var readProfile = require('./readProfile');
 prepareReleaseDir = function(profile, callback){
     //make sure release dir exists and is empty
 
-    var releaseDir = path.dirname(profile.selfPath) + profile.releaseDir;
+    var releaseDir = path.dirname(profile.selfPath) + '/' + profile.releaseDir;
 
     //remove any old dir is empty
     fs.remove(releaseDir, function(err){
