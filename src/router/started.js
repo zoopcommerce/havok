@@ -1,5 +1,6 @@
 define([
-    '../get!./router'
+    '../get!./router',
+    'dojo/domReady!'
 ],
 function(
     router

@@ -1,6 +1,7 @@
 define([
     'dojo/Deferred',
-    './parser'
+    './parser',
+    'dojo/domReady!'
 ],
 function(
     Deferred,
