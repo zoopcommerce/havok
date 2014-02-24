@@ -6,7 +6,7 @@ function(
     Di
 ){
     // module:
-    //		havok/parser/complete
+    //		havok/di/sharedDi
 
     var sharedDi = undefined;
 
@@ -15,7 +15,7 @@ function(
 		//		An AMD plugin that returns a Di container configured by dojo config.
 
         dynamic: true,
-        
+
         load: function(/*String?*/id, /*Function?*/require, /*Callback*/callback){
             if ( ! sharedDi){
                 sharedDi = new Di();
