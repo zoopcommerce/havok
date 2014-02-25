@@ -1,4 +1,4 @@
-require('./../../build/nodeconfig.js');
+require('./../../build/ext/dojoConfig.js').setConfig();
 
 dojoConfig.locale = 'en-au';
 dojoConfig.merge = [

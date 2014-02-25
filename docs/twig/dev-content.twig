@@ -1,0 +1,11 @@
+{% extends "_page-content.twig" %}
+
+{% set title='Developing Havok' %}
+{% set byline='Leave your mark on havok' %}
+
+{% block mainContent %}
+    <section id="tests" title="Tests"><div class="well">{% include 'dev/tests.twig' %}</div></section>
+    <section id="docs" title="Docs"><div class="well">{% include 'dev/docs.twig' %}</div></section>
+    <section id="builds" title="Builds"><div class="well">{% include 'dev/builds.twig' %}</div></section>
+    <section id="doc-builds" title="Doc Builds"><div class="well">{% include 'dev/doc-builds.twig' %}</div></section>
+{% endblock %}
