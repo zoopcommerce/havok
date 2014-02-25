@@ -3,7 +3,7 @@ define([
     'intern/chai!assert',
     'havok/lang',
     'dojo/_base/config',
-    'havok/test/di/asset/config'
+    'test/di/asset/config'
 ], function (registerSuite, assert, lang, dojoConfig, testConfig) {
     registerSuite({
         name: 'havok/proxy',

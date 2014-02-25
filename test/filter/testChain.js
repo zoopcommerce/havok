@@ -4,7 +4,7 @@ define([
     'havok/filter/Trim',
     'havok/filter/Uppercase',
     'havok/filter/Chain',
-    'havok/test/filter/asset/DeferredFilter'
+    'test/filter/asset/DeferredFilter'
 ], function (registerSuite, assert, Trim, Uppercase, Chain, DeferredFilter) {
     registerSuite({
         name: 'havok/filter/Chain',

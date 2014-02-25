@@ -5,7 +5,7 @@ define([
     'dojo/when',
     'havok/di/Di',
     'havok/di/Proxy',
-    'havok/test/di/asset/config'
+    'test/di/asset/config'
 ], function (registerSuite, assert, lang, when, Di, Proxy, config) {
     registerSuite({
         name: 'havok/di/Di',
@@ -67,18 +67,18 @@ define([
             var zoo;
 
             // get with no config - just module name
-            when(di.get('havok/test/di/asset/Zoo'), deferred.rejectOnError(function(zoo){
+            when(di.get('test/di/asset/Zoo'), deferred.rejectOnError(function(zoo){
                 assert.equal('the havok zoo', zoo.name);
                 zoo.name = 'other zoo';
 
                 // get- should return cached Zoo cached with modified name
-                when(di.get('havok/test/di/asset/Zoo'), deferred.rejectOnError(function(zoo){
+                when(di.get('test/di/asset/Zoo'), deferred.rejectOnError(function(zoo){
                     assert.equal('other zoo', zoo.name);
 
                     di.clearCache();
 
                     //should return new instance of Zoo - with original name
-                    when(di.get('havok/test/di/asset/Zoo'), deferred.callback(function(zoo){
+                    when(di.get('test/di/asset/Zoo'), deferred.callback(function(zoo){
                         assert.equal('the havok zoo', zoo.name);
                     }));
                 }));
@@ -90,7 +90,7 @@ define([
 
             var deferred = this.async(5000);
 
-            when(di.get('havok/test/di/asset/Penguin'), deferred.callback(function(penguin){
+            when(di.get('test/di/asset/Penguin'), deferred.callback(function(penguin){
                 assert.equal('kate', penguin.name);
             }));
         },

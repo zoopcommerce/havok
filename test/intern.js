@@ -52,18 +52,19 @@ define(["intern/node_modules/dojo/has"], function(has) {
         // The desired AMD loader to use when running unit tests (client.html/client.js). Omit to use the default Dojo
         // loader
         useLoader: {
-            'host-node': 'dojo/dojo',
-            'host-browser': 'node_modules/dojo/dojo.js'
+            'host-node': 'dojo/dojo.js',
+            'host-browser': '../node_modules/dojo/dojo.js'
         },
 
         // Configuration options for the module loader; any AMD configuration options supported by the specified AMD loader
         // can be used here
         loader: {
             // Packages that should be registered with the loader in each testing environment
+            baseUrl: '../',
             packages: [
                 {
                     name: 'havok',
-                    location: './'
+                    location: './src'
                 },
                 {
                     name: 'dojo',
@@ -76,17 +77,21 @@ define(["intern/node_modules/dojo/has"], function(has) {
                 {
                     name: 'mystique-common',
                     location: './node_modules/mystique-common'
+                },
+                {
+                    name: 'test',
+                    location: './test'
                 }
             ],
             map: {
                 '*': {
-                    'dojo/text': 'havok/test/asset/text'
+                    'dojo/text': 'test/asset/text'
                 }
             }
         },
 
         // Non-functional test suite(s) to run in each browser
-        suites: ['havok/test/all'],
+        suites: ['test/all'],
 
         // Functional test suite(s) to run in each browser once non-functional tests are completed
         functionalSuites: [ /* 'myPackage/tests/functional' */ ],

@@ -11,8 +11,8 @@ define([
             var deferred = this.async(5000);
 
             dojoConfig.merge = [
-                'havok/test/config/asset/Config1',
-                'havok/test/config/asset/Config2'
+                'test/config/asset/Config1',
+                'test/config/asset/Config2'
             ];
 
             require(['havok/config/ready!'], deferred.callback(function(){
