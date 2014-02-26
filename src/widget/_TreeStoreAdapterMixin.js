@@ -62,10 +62,6 @@ function (
             },
 
             _setActiveAttr: function(value){
-                if (!this._nodesRendered) {
-                    return;
-                }
-
                 if (typeof value == 'string'){
                     //TODO this code below is seriously messy. Needs refactoring.
                     var findNode = new Deferred;
@@ -85,7 +81,7 @@ function (
                             },
                             recurseDown = lang.hitch(this, function(item, node){
                                 for (var i = 0; i < node.children.length; i++){
-                                    if (node.children[i].getAttribute('data-havok-store-id') == item.id){
+                                    if (node.children[i].getAttribute('data-havok-store-id') == 'id-' + item.id){
                                         node = node.children[i];
                                         break;
                                     }

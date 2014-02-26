@@ -19,7 +19,7 @@ var walk = function(node, parentId){
             item.text = '<span class="fa fa-wrench"></span> ' + item.text;
             break;
         case 'object':
-            item.text = '<span class="fa fa-circle-blank"></span> ' + item.text;
+            item.text = '<span class="fa fa-circle-o"></span> ' + item.text;
             break;
         case 'instance':
             item.text = '<span class="fa fa-circle"></span> ' + item.text;

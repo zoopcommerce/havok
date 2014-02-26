@@ -60,7 +60,7 @@ expandPackageIncludes = function(profile, callback){
     var layer,
         i,
         j;
-
+//NEEDS CHANGE TO HANDLE MULTIPLE
     start();
     for (i in profile.layers){
         layer = profile.layers[i];

@@ -11,7 +11,7 @@ function (
     CheckboxButtonGroup
 ){
     // module:
-    //    	havok/docs/module/ScopeToggle
+    //    	docs/ScopeToggle
 
     return declare(
         [CheckboxButtonGroup],
@@ -38,15 +38,15 @@ function (
                         both = 'remove';
                     }
 
-                    nodes = mainContent.querySelectorAll('div.private.inherited');
+                    nodes = mainContent.querySelectorAll('section.private.inherited');
                     for(i=0; i < nodes.length; i++){
                        domClass[both](nodes[i], 'hide');
                     }
-                    nodes = mainContent.querySelectorAll('div.private:not(.inherited)');
+                    nodes = mainContent.querySelectorAll('section.private:not(.inherited)');
                     for(i=0; i < nodes.length; i++){
                        domClass[privateOnly](nodes[i], 'hide');
                     }
-                    nodes = mainContent.querySelectorAll('div:not(.private).inherited');
+                    nodes = mainContent.querySelectorAll('section:not(.private).inherited');
                     for(i=0; i < nodes.length; i++){
                        domClass[inheritedOnly](nodes[i], 'hide');
                     }

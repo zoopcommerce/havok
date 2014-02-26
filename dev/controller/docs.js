@@ -87,6 +87,8 @@ var process = function(request, response, callback){
             var params = getParams(request);
             var jsonParams = require(twigPath + devUtil.getFilePath(parsedUrl, 'json').replace('-content', ''));
             for (i in jsonParams) params[i] = jsonParams[i]
+            pathPieces[pathPieces.length - 1] = pathPieces[pathPieces.length - 1].split('.').slice(0, -1);
+            params.location = pathPieces.slice(2).join('/');
 
             parsedUrl = url.parse((request.url.indexOf('-content') != -1) ? '/api/doc-content.html' : '/api/doc.html');
             renderPage(parsedUrl, params, function(err, content){
