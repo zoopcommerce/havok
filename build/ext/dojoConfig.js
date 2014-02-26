@@ -5,6 +5,7 @@ var packages = require('havok/dev/packages');
 var setConfig = function(profile){
 
     dojoConfig = {
+        baseUrl: path.normalize(__dirname + '/../..'),
         async: true,
         packages: packages.packageArray(),
         paths: {

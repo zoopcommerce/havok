@@ -14,7 +14,7 @@ expandSingle = function(layer, index, profile, callback){
 
     for (i = 0; i < profile.packages.length; i++){
         if (profile.packages[i].name == packageName){
-            packagePath = path.normalize(profile.packages[i].location);
+            packagePath = path.normalize(profile.basePath + '/' + profile.packages[i].location);
             break;
         }
     }

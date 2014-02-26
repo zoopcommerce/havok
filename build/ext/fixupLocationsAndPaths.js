@@ -29,6 +29,8 @@ fixupLocationsAndPaths = function(profile, callback){
         }
     }
 
+    profile.basePath = dojoConfig.baseUrl;
+
     callback(null, profile);
 }
 
