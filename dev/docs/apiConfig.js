@@ -1,3 +1,5 @@
+var packages = require.nodeRequire('havok/dev/packages').packageObject();
+
 define({
 	// The execution environment(s) for the script being evaluated. (A minimal EcmaScript 5-compliant environment is
 	// always defined by default.) The following environments are provided by default:
@@ -47,24 +49,16 @@ define({
 	},
 
 	// The base path for all the packages being processed.
-	basePath: '../../../',
+	basePath: '../../',
 
 	// The packages to be processed by the parser. The key is the name of the package, and the value is the
 	// location of the package relative to basePath.
-	packages: {
-		havok: 'havok'
-	},
+	packages: packages,
 
 	// An array of regular expressions that match file paths that should be skipped. Note that since these are file
 	// paths, not module IDs, if you are using Windows, you need to use backslashes!
 	excludePaths: [
-		/havok\/build/,
-		/havok\/dist/,
-		/havok\/docs/,
-		/havok\/nls/,
-		/havok\/test/,
-		/havok\/vendor/,
-		/havok\/node_modules/,
-        /havok\/lessLoader/
+        /havok\/(?!src)/,
+        /havok\/src\/lessLoader/
 	]
 });

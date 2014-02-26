@@ -2,14 +2,21 @@
 
 <p>Havok uses the intern test runner.</p>
 
+<h2>node.js</h2>
 <p>To run tests in node, use:</p>
 <pre class="prettyprint linenums">
-
+node path/to/havok/test/runtests.js
 </pre>
 
-<p>To run tests in a browser use:</p>
+<h2>Browser</h2>
+<p>To run tests in a browser, first start the havok dev server:</p>
 <pre class="prettyprint linenums">
+node path/to/havok/dev/server.js runtests
+</pre>
 
+<p>Then point your browser to:</p>
+<pre class="prettyprint linenums">
+http://localhost
 </pre>
 
 <p>Note: when running in a browser, the output will be in the browser console.</p>

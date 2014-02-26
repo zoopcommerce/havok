@@ -74,7 +74,9 @@ function(
             }
 
             require(requires, function(lessc){
-                parser = new lessc.Parser();
+                parser = new lessc.Parser({
+                    filename: '/'
+                });
                 deferredGetParser.resolve(parser);
             })
             return deferredGetParser;

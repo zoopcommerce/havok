@@ -9,7 +9,7 @@ function(){
             }
         },
         di: {
-            'havok/store/stores': {
+            'stores': {
                 proxies: {
                     demostates: {
                         base: 'docs/state',

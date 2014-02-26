@@ -5,6 +5,35 @@ define(["intern/node_modules/dojo/has"], function(has) {
 
     has.add("dojo-has-api", true);
 
+    var packages;
+    if (has('host-node')){
+        packages = require.nodeRequire('havok/dev/packages').packageArray();
+    } else {
+        //host browser
+        packages = [
+            {
+                name: 'havok',
+                location: 'havok'
+            },
+            {
+                name: 'dojo',
+                location: 'dojo'
+            },
+            {
+                name: 'mystique',
+                location: 'mystique'
+            },
+            {
+                name: 'mystique-common',
+                location: 'mystique-common'
+            },
+            {
+                name: 'test',
+                location: 'test'
+            }
+        ];
+    }
+
     return {
         // The port on which the instrumenting proxy will listen
         proxyPort: 9000,
@@ -61,28 +90,7 @@ define(["intern/node_modules/dojo/has"], function(has) {
         loader: {
             // Packages that should be registered with the loader in each testing environment
             baseUrl: '../',
-            packages: [
-                {
-                    name: 'havok',
-                    location: './src'
-                },
-                {
-                    name: 'dojo',
-                    location: './node_modules/dojo'
-                },
-                {
-                    name: 'mystique',
-                    location: './node_modules/mystique'
-                },
-                {
-                    name: 'mystique-common',
-                    location: './node_modules/mystique-common'
-                },
-                {
-                    name: 'test',
-                    location: './test'
-                }
-            ],
+            packages: packages,
             map: {
                 '*': {
                     'dojo/text': 'test/asset/text'

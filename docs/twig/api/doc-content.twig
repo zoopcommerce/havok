@@ -6,14 +6,14 @@
 <section>
     <div class="well">
         <h1>
-            {% if type == 'constructor' %}<span class='icon-wrench'></span> {% endif %}
-            {% if type == 'object' %}<span class='icon-circle-blank'></span> {% endif %}
-            {% if type == 'instance' %}<span class='icon-circle'></span> {% endif %}
-            {% if type == 'function' %}<span class='icon-cog'></span> {% endif %}
+            {% if type == 'constructor' %}<span class='fa fa-wrench'></span> {% endif %}
+            {% if type == 'object' %}<span class='fa fa-circle-blank'></span> {% endif %}
+            {% if type == 'instance' %}<span class='fa fa-circle'></span> {% endif %}
+            {% if type == 'function' %}<span class='fa fa-cog'></span> {% endif %}
             {{location}}
         </h1>
         {% if superclass %}
-            <p><span class="icon-code-fork"></span> Inherits from <a href="{{apiPath}}{{superclass}}.html">{{superclass}}</a>
+            <p><span class="fa fa-code-fork"></span> Inherits from <a href="{{apiPath}}{{superclass}}.html">{{superclass}}</a>
             {% if mixins|length > 1 %}, mixins {% for mixin in mixins %}{% if not loop.first %}<a href="{{apiPath}}{{mixin}}.html">{{mixin}}</a>{% if not loop.last %}, {% endif %}{% endif %}{% endfor %}{% endif %}
             </p>
         {% endif %}
@@ -39,7 +39,7 @@
             <w-accordion style="position: relative; top: -30px; background-color: #FBFBFB;">
                 {% for prop in properties %}
                     <section class="{% if prop.private %}private hide{% endif %} {% if prop.from != location %}inherited hide{% endif %}">
-                        <header>{% if prop.private %}<span class='icon-key'></span> {% endif %}{% if prop.from != location %}<span class="icon-code-fork"></span> {% endif %}{{prop.name}}</header>
+                        <header>{% if prop.private %}<span class='fa fa-key'></span> {% endif %}{% if prop.from != location %}<span class="fa fa-code-fork"></span> {% endif %}{{prop.name}}</header>
                         <h4>{{prop.name}}{% if prop.private %}<span class='muted'> - private</span>{% endif %}</h4>
                         {% if prop.from is defined %}<p>Defined by <a href="{{apiPath}}{{prop.from}}.html">{{prop.from}}</a></p>{% endif %}
                         <p><strong>Types:</strong> {% for type in prop.types %}{{type}}{% if not loop.last %}, {% endif %}{% endfor %}</p>
@@ -57,7 +57,7 @@
             <w-accordion style="position: relative; top: -30px; background-color: #FBFBFB;">
                 {% for method in methods %}
                     <section class="{% if method.private %}private hide{% endif %} {% if method.from != location %}inherited hide{% endif %}">
-                        <header>{% if method.private %}<span class='icon-key'></span> {% endif %}{% if method.from != location %}<span class="icon-code-fork"></span> {% endif %}{{method.name}}</header>
+                        <header>{% if method.private %}<span class='fa fa-key'></span> {% endif %}{% if method.from != location %}<span class="fa fa-code-fork"></span> {% endif %}{{method.name}}</header>
                         <h4>{{method.name}}({% for param in method.parameters %}{{param.name}}{% if not loop.last %}, {% endif %}{% endfor %}){% if method.private %}<span class='muted'> - private</span>{% endif %}</h4>
                         {% if method.from is defined %}<p>Defined by <a href="{{apiPath}}{{method.from}}.html">{{method.from}}</a></p>{% endif %}
                         {% if method.summary is defined %}<p class="lead">{{method.summary}}</p>{% endif %}
@@ -105,7 +105,7 @@
             <w-accordion style="position: relative; top: -30px; background-color: #FBFBFB;">
                 {% for event in events %}
                     <section class="{% if event.private %}private hide{% endif %} {% if event.from != location %}inherited hide{% endif %}">
-                        <header>{% if event.private %}<span class='icon-key'></span> {% endif %}{% if event.from != location %}<span class="icon-code-fork"></span> {% endif %}{{event.name}}</header>
+                        <header>{% if event.private %}<span class='fa fa-key'></span> {% endif %}{% if event.from != location %}<span class="fa fa-code-fork"></span> {% endif %}{{event.name}}</header>
                         <h4>{{event.name}}({% for param in event.parameters %}{{param.name}}{% if not loop.last %}, {% endif %}{% endfor %}){% if event.private %}<span class='muted'> - private</span>{% endif %}</h4>
                         {% if event.from is defined %}<p>Defined by <a href="{{apiPath}}{{event.from}}.html">{{event.from}}</a></p>{% endif %}
                         {% if event.summary is defined %}<p class="lead">{{event.summary}}</p>{% endif %}

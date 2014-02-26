@@ -1,14 +1,14 @@
 var spawn = require('child_process').spawn;
 
 parse = function(callback){
-    var apiParse = spawn('node', ['../../node_modules/js-doc-parse/parse.js', 'config=api-config.js']);
+    var apiParse = spawn('node', [require.resolve('js-doc-parse/parse'), 'config=' + __dirname + '/apiConfig.js']);
 
     apiParse.stdout.on('data', function (data) {
-        console.log('stdout: ' + data);
+        console.log('LOG js-doc-parse: ' + data);
     });
 
     apiParse.stderr.on('data', function (data) {
-        console.log('stderr: ' + data);
+        console.log('ERR js-doc-parse: ' + data);
     });
 
     apiParse.on('close', function (code) {

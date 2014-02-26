@@ -15,6 +15,8 @@ var readProfile = require('./ext/readProfile');
 var make = function(profilePath, callback){
     console.log('begin build');
 
+    if (!profilePath) profilePath = __dirname + '/profile/dist.profile.js'
+
     //read porfile first
     readProfile.readProfile(profilePath, function(err, profile){
         if (err) throw err;
