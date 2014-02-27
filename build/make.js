@@ -11,9 +11,10 @@ var processes = [
 ];
 
 var readProfile = require('./ext/readProfile');
+var message = 'Havok build tool';
 
 var make = function(profilePath, callback){
-    console.log('begin build');
+    console.log('BEGIN ' + message);
 
     if (!profilePath) profilePath = __dirname + '/profile/dist.profile.js'
 
@@ -30,7 +31,7 @@ var make = function(profilePath, callback){
                 if (i < processes.length){
                     doProcess(processedProfile);
                 } else {
-                    console.log('build complete');
+                    console.log('DONE  ' + message);
                     callback(null, processedProfile);
                 }
             })

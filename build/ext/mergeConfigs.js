@@ -1,7 +1,10 @@
 var readProfile = require('./readProfile');
 var writeProfile = require('./writeProfile');
+var message = 'Merge configs into the defaultConfig';
 
 mergeConfigs = function(profile, callback){
+
+    console.log('BEGIN ' + message);
 
     require('./dojoConfig').setConfig(profile);
     require('dojo/dojo.js');
@@ -27,6 +30,7 @@ mergeConfigs = function(profile, callback){
                     profile.less = profile.defaultConfig.less;
                     delete(profile.defaultConfig.less);
                 }
+                console.log('DONE  ' + message);
                 callback(null, profile);
             },
             function(err){

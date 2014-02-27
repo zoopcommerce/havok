@@ -2,8 +2,11 @@ var lessc = require('less');
 var fs = require('fs');
 var path = require('path');
 var readProfile = require('./readProfile');
+var message = 'Compile less for each built layer';
 
 complieLess = function(profile, callback){
+
+    console.log('BEGIN ' + message);
 
     var count = 0;
     var start = function(){
@@ -12,31 +15,34 @@ complieLess = function(profile, callback){
     var end = function(){
         count--;
         if (count == 0){
+            console.log('DONE  ' + message);
             callback(null, profile);
         }
     };
 
     //parse and compress layer less
     var i,
-        basePath,
+        layerPath,
         rawLessFilename,
         rawCssFilename,
         optCssFilename;
 
     start();
     for (i in profile.layers){
-        basePath = path.dirname(profile.selfPath) + '/' + profile.releaseDir + '/' + i;
-        rawLessFilename = basePath + '.less';
+        layerPath = profile.basePath + '/' + profile.releaseDir + '/' + i;
+        rawLessFilename = layerPath + '.less';
         start();
         fs.stat(rawLessFilename, function(err){
             if (err) {
+                console.log('LOG   No less file found for layer ' + i);
                 end();
             } else {
+                console.log('LOG   Compiling less for for layer ' + i);
                 if (profile.layerOptimize){
-                    rawCssFilename = basePath + '.uncompressed.css';
-                    optCssFilename = basePath + '.css';
+                    rawCssFilename = layerPath + '.uncompressed.css';
+                    optCssFilename = layerPath + '.css';
                 } else {
-                    rawCssFilename = basePath + '.css';
+                    rawCssFilename = layerPath + '.css';
                 }
 
                 fs.readFile(rawLessFilename, 'utf8', function(err, data){

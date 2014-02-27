@@ -2,8 +2,11 @@ var fs = require('fs');
 var util = require('util');
 var readProfile = require('./readProfile');
 var writeProfile = require('./writeProfile');
+var message = 'Mixin build profile defaults';
 
 mixinDefault = function(profile, callback){
+
+    console.log('BEGIN ' + message);
 
     require('./dojoConfig').setConfig(profile);
     require('dojo/dojo.js');
@@ -15,6 +18,7 @@ mixinDefault = function(profile, callback){
 
         global.require(['havok/lang'], function(lang){
             profile = lang.mixinDeep(defaultProfile, profile);
+            console.log('DONE  ' + message);
             callback(null, profile);
         });
     })

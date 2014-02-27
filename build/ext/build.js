@@ -1,8 +1,12 @@
 var readProfile = require('./readProfile');
 var writeProfile = require('./writeProfile');
 var fork = require('child_process').fork;
+var message = 'Fork dojo build into child process';
 
 build = function(profile, callback){
+
+    console.log('BEGIN ' + message);
+
     //make sure the pofile is written
 
     profile.selfPath = profile.selfPath.slice(0, -2) + 'processed.js';
@@ -18,6 +22,7 @@ build = function(profile, callback){
 
         buildChild.on('close', function (code) {
             if (code != 0) {callback('dojo build failed'); return;}
+            console.log('DONE  ' + message);
             callback(null, profile);
         });
     })

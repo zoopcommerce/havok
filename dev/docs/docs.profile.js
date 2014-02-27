@@ -18,5 +18,11 @@ var profile = {
             ],
             boot: 1
         }
-    }
+    },
+    packages:[
+        {
+            name: "docs",
+            location: '../../docs/client'
+        }
+    ]
 }

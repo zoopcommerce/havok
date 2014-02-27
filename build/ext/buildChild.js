@@ -1,6 +1,8 @@
 var readProfile = require('./readProfile');
+var message = 'Inside child process. Doing dojo build.';
 
 build = function(profilePath, callback){
+    console.log('BEGIN ' + message);
 
     readProfile.readProfile(profilePath, function(err, profile){
         if (err) throw err;
@@ -13,7 +15,10 @@ build = function(profilePath, callback){
         process.argv[3] = '--profile';
         process.argv[4] = profilePath;
 
-        global.require(['build/main'], function(){})
+        global.require(['build/main'], function(){
+            console.log('DONE  ' + message);
+            callback();
+        })
     })
 }
 

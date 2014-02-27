@@ -3,8 +3,11 @@ var path = require('path');
 var util = require('util');
 var readProfile = require('./readProfile');
 var writeProfile = require('./writeProfile');
+var message = 'Fixup package locations and profile paths';
 
 fixupLocationsAndPaths = function(profile, callback){
+
+    console.log('BEGIN ' + message);
 
     require('./dojoConfig').setConfig(profile);
 
@@ -30,7 +33,10 @@ fixupLocationsAndPaths = function(profile, callback){
     }
 
     profile.basePath = dojoConfig.baseUrl;
+    profile.releaseDir = path.relative(profile.basePath, path.dirname(profile.selfPath) + '/' + profile.releaseDir);
+    if (profile.distDir) profile.distDir = path.relative(profile.basePath, path.dirname(profile.selfPath) + '/' + profile.distDir);
 
+    console.log('DONE  ' + message);
     callback(null, profile);
 }
 

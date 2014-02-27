@@ -2,13 +2,16 @@ var fs = require('fs');
 var util = require('util');
 var readProfile = require('./readProfile');
 var writeProfile = require('./writeProfile');
+var message = 'Make sure bootstrap and font-awesome less are included in profile';
 
 externalLess = function(profile, callback){
+    console.log('BEGIN ' + message);
     //make sure bootstrap and font-awesome less are accessable
     if (!profile.dirs) profile.dirs = []
     profile.dirs.push([profile.paths['bootstrap'] + '/less', 'bootstrap/less']);
     profile.dirs.push([profile.paths['font-awesome'] + '/less', 'font-awesome/less']);
 
+    console.log('DONE  ' + message);
     callback(null, profile);
 }
 
