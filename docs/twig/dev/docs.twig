@@ -41,10 +41,13 @@ http://localhost
 
 <h2>Other docs tools</h2>
 
-<p>The following scripts are used by the docs built tool, but may be run separately if you wish:</p>
+<p>The following scripts are used by the docs build tools, but may be run separately if you wish:</p>
 
 <ul>
     <li><code>node path/to/havok/dev/docs/apiParse.js</code> Parses havok js and creates <code>tree.json</code> and <code>details.json</code>.</li>
     <li><code>node path/to/havok/dev/docs/apiStoreWiter.js</code> Parses <code>tree.json</code> and creates the data store used by the api docs tree navigation widget.</li>
     <li><code>node path/to/havok/dev/docs/apiDetailsWiter.js</code> Parses <code>details.json</code> and creates individual <code>json</code> files for each api documentation page.</li>
+    <li><code>node path/to/havok/dev/docs/apiGenerateDocs.js</code> Runs the apiParser, apiStoreWriter, and apiDetailsWriter in turn.</li>
+    <li><code>node path/to/havok/dev/docs/buildLayer.js</code> Builds the <code>docs.js</code> layer.</li>
+    <li><code>node path/to/havok/dev/docs/generateHTML.js</code> Converts the twig templates into flat HTML files.</li>
 </ul>

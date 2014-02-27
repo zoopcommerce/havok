@@ -3,6 +3,7 @@ var path = require('path');
 var twigPath = require('./twigPath').path;
 var render = require('./renderer').render;
 var url = require('url');
+var dive = require('dive');
 var message = 'Generating docs html from twig templates';
 
 var getParams = function(){
@@ -49,7 +50,7 @@ var generateHTML = function(domLite, callback){
                         render(url.parse('/' + filename), getParams(), domLite, function(err, content){
                             if (err) {callback(err); errState = true; return;}
                             var htmlFile = distDir + '/' + filename.split('.').slice(0, -1).join('.') + '.html';
-                            fs.writeFile(htmlFile, content, function(err){
+                            fs.outputFile(htmlFile, content, function(err){
                                 if (err) {callback(err); errState = true; return;}
                                 console.log('LOG   HTML written to: ' + htmlFile);
                                 end();
@@ -70,7 +71,42 @@ var generateHTML = function(domLite, callback){
         })
         end();
     })
+
+    //generate api HTML
+    var packageNames = ['dijit', 'dojo', 'havok', 'mystique'];
+    packageNames.forEach(function(item){
+        start();
+        var packagePath = twigPath + '/api/' + item;
+        dive(
+            packagePath,
+            function(err, filepath){
+                if (err) {callback(err); errState = true; return;}
+                var basePath = filepath.replace(twigPath, '').replace(/\\/g, '/').split('.').slice(0, -1).join('.');
+                start();
+                render(url.parse(basePath + '.html'), getParams(), domLite, function(err, content){
+                    if (err) {callback(err); errState = true; return;}
+                    var htmlFile = distDir + basePath + '.html';
+                    fs.outputFile(htmlFile, content, function(err){
+                        if (err) {callback(err); errState = true; return;}
+                        console.log('LOG   HTML written to: ' + htmlFile);
+                        end();
+                    });
+                })
+                start();
+                render(url.parse(basePath + '-content.html'), getParams(), domLite, function(err, content){
+                    if (err) {callback(err); errState = true; return;}
+                    var htmlFile = distDir + basePath + '-content.html';
+                    fs.outputFile(htmlFile, content, function(err){
+                        if (err) {callback(err); errState = true; return;}
+                        console.log('LOG   HTML written to: ' + htmlFile);
+                        end();
+                    });
+                })
+            },
+            end
+        );
+    })
 }
 
-if(require.main === module) generateHTML(false, function(){})
+if(require.main === module) generateHTML(false, function(err){if (err) throw err})
 else exports.generateHTML = generateHTML
