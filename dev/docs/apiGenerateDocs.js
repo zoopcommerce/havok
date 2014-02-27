@@ -1,5 +1,5 @@
 var fs = require('fs');
-var twigPath = require('../docs/twigPath').path;
+var twigPath = require('./twigPath').path;
 
 var generateDocs = function(callback){
     //check that api data files have been generated

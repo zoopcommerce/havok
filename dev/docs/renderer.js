@@ -11,6 +11,7 @@ var render = function(parsedUrl, params, domLite, callback){
 
     var render = function(err){
         if (err) {callback(err); return}
+        params.settings = {views: twigPath};
         Twig.renderFile(twigPath + devUtil.getFilePath(parsedUrl, 'twig'), params, function (err, content) {
             if (err) {callback(err); return}
 

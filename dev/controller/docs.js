@@ -11,7 +11,6 @@ var getParams = function(request){
         cookies = devUtil.getCookies(request);
 
     cookies['havok-docs-theme'] ? params.theme = cookies['havok-docs-theme'] : params.theme = 'zoop';
-    params.settings = {views: twigPath};
 
     return params;
 };

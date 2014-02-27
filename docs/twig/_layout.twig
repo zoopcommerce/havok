@@ -16,9 +16,9 @@
             <script src="../../../havok/parser/ie8shim.js"></script>
         <![endif]-->
 
-        {% if false %}
-        <link rel="stylesheet" href="havokdocs.css">
-        <script src="js/havokdocs.js"></script>
+        {% if generateHTML %}
+        <link rel="stylesheet" href="docs/docs.css">
+        <script src="docs/docs.js"></script>
         {% else %}
         <script type="text/javascript">
             dojoConfig = {
@@ -32,9 +32,9 @@
                 merge: [
                     'havok/config',
                     'docs/config'
-                ],
+                ]
                 {% if theme == 'zoop' %}
-                less: {
+                , less: {
                     "havok/less/havok-defs.less" : {defs: true},
                     "docs/less/variables.less": {defs: true}
                 }

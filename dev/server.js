@@ -37,6 +37,9 @@ http.createServer(function(request, response) {
             });
             break;
         case 'dist-docs':
+            require('./controller/dist-docs').process(request, response, function(err){
+                if (err) throw err
+            });
             break;
         case 'docs':
         default:
