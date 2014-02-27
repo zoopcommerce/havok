@@ -1,74 +1,46 @@
-require('./../../build/ext/dojoConfig.js').setConfig();
+var fs = require('fs');
+var url = require('url');
+var devUtil = require('../devUtil');
+var twigPath = require('./twigPath').path;
+var Twig = require('twig');
+var apiGenerateDocs = require('./apiGenerateDocs');
 
-dojoConfig.locale = 'en-au';
-dojoConfig.merge = [
-    'havok/config',
-    'docs/config'
-]
-dojoConfig.less = false;
-dojoConfig.packages.push({
-    name: 'docs',
-    location: __dirname + '/../client'
-});
-var parser = require('../../dom-lite/parser');
-var nodeType = require('../../dom-lite/nodeType');
+var render = function(parsedUrl, params, domLite, callback){
 
-exports.render = function(rawHtml, callback){
-    parser.parse(rawHtml, function(dom){
+    var pathPieces = parsedUrl.pathname.split('/');
 
-        //add globals needed by dojo expecting a dom
-        document = dom;
-        addEventListener = function(){};
-        navigator = {};
-        window = document.defaultView;
+    var render = function(err){
+        if (err) {callback(err); return}
+        Twig.renderFile(twigPath + devUtil.getFilePath(parsedUrl, 'twig'), params, function (err, content) {
+            if (err) {callback(err); return}
 
-        var renderedHead = document.head ? document.head.outerHTML : '';
-        var prettifyPath = '../client/vendor/prettify/prettify';
-
-        require(prettifyPath);
-        window['PR_SHOULD_USE_CONTINUATION'] = false; //ensures that pretty printing is sync rather than async
-        window.prettyPrint();
-        delete require.cache[require.resolve(prettifyPath)]; //make sure that prettify reloads each request
-
-        require('dojo/dojo');
-        delete require.cache[require.resolve('dojo/dojo')]; //make sure that dojo reloads each request
-
-        global.require(['dojo/has', 'havok/parser/parser'], function(has, parser){
-
-            has.add("dom-addeventlistener", !!document.addEventListener);
-            has.add("dom-attributes-explicit", true);
-
-            parser.parse(document.body || document, {startup: false}).then(function(){
-                var renderedBody = document.body ? document.body.outerHTML : '',
-                    node,
-                    result = [];
-
-                document.childNodes.forEach(function(node){
-                    if (node.tagName == '!doctype'){
-                        result.push('<' + node.nodeValue + '>');
-                    } else if (node.tagName == 'HTML'){
-                        result.push('<html ');
-                        node.attributes.forEach(function(attr){
-                            result.push(attr.name);
-                            result.push('="');
-                            result.push(attr.value);
-                            result.push('" ');
-                        });
-                        result.push('>');
-                        result.push(renderedHead);
-                        result.push(renderedBody);
-                        result.push('</html>');
-                    } else if (node.nodeType == nodeType.Tag){
-                        result.push(node.outerHTML);
-                    }
+            if (domLite){
+                require('./domLiteRenderer').render(content, function(err, renderedContent){
+                    callback(err, renderedContent);
                 })
+            } else {
+                callback(null, content);
+            }
+        })
+    }
 
-                //cleanup
-                delete global.require;
-                delete global.define;
+    if (pathPieces[1] == 'api'){
+        apiGenerateDocs.generateDocs(function(err){
+            if (err) {callback(err); return;}
 
-                callback(result.join(''));
-            })
-        });
-    })
-}
+            var i;
+            var jsonParams = require(twigPath + devUtil.getFilePath(parsedUrl, 'json').replace('-content', ''));
+            for (i in jsonParams) params[i] = jsonParams[i]
+            pathPieces[pathPieces.length - 1] = pathPieces[pathPieces.length - 1].split('.').slice(0, -1).join('.').replace('-content', '');
+            params.location = pathPieces.slice(2).join('/');
+            parsedUrl = url.parse((parsedUrl.pathname.indexOf('-content') != -1) ? '/api/doc-content.html' : '/api/doc.html');
+            render();
+        })
+    } else if (parsedUrl.pathname == '/api.twig' || parsedUrl.pathname == '/api-content.twig'){
+        apiGenerateDocs.generateDocs(render);
+    } else {
+        render();
+    }
+};
+
+exports.render = render

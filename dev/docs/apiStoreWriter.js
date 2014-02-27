@@ -27,6 +27,8 @@ var walk = function(node, parentId){
         case 'function':
             item.text = '<span class="fa fa-cog"></span> ' + item.text;
             break;
+        default:
+            item.text = '<span class="fa fa-file"></span> ' + item.text;
     }
 
     data.push(item);
