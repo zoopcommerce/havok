@@ -1,0 +1,12 @@
+language: node_js
+
+node_js:
+- '0.10'
+
+script:
+  - node test/runtests.js
+  - node build/make.js
+  - node docs/make.js
+
+after_success:
+  - sh ./travis/ghPages.sh
