@@ -21,7 +21,7 @@
         "intern"       : "1.3.2",
         "twig"         : "http://github.com/justjohn/twig.js/tarball/0.7.0",
         "js-doc-parse" : "http://github.com/superdweebie/js-doc-parse/tarball/master",
-        "htmlparser2"  : "http://github.com/fb55/htmlparser2/tarball/4c33da4b44ebb0d8d7f0d3ed2dffb250d00a5570"
+        "dom-lite"     : "http://github.com/superdweebie/dom-lite/tarball/master"
     },
     "description": "The mutant offspring of Twitter Bootstrap and Dojo",
     "keywords": ["JavaScript", "Dojo", "Widget", "Bootstrap"],
