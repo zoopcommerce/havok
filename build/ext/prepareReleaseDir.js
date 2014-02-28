@@ -12,11 +12,11 @@ prepareReleaseDir = function(profile, callback){
 
     //remove any old dir is empty
     fs.remove(releaseDir, function(err){
-        if (err) throw err;
+        if (err) {callback(err); return;}
 
         //create empty temp dir
         fs.mkdir(releaseDir, function(err){
-            if (err) throw err;
+            if (err) {callback(err); return;}
             console.log('DONE  ' + message);
             callback(null, profile);
         })

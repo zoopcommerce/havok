@@ -1,24 +1,18 @@
 require('./../dev/docs/renderer');
+var fs = require('fs-extra');
 var message = 'Generating distributable documentation';
 
 var makeDocs = function(callback){
     console.log('BEGIN ' + message);
-    require('./../dev/docs/apiGenerateDocs').buildLayer(function(err){
+
+    require('./../dev/docs/apiGenerateDocs').generateDocs(true, function(err){
         if (err) {callback(err); return;}
-        require('./../dev/docs/buildLayer').generateDocs(function(err){
+        require('./../dev/docs/buildLayer').buildLayer(function(err){
             if (err) {callback(err); return;}
             require('./../dev/docs/generateHTML').generateHTML(false, function(err){
                 if (err) {callback(err); return;}
-                var from = __dirname + '/../dist/havok/havok';
-                var to = './dist/havok/havok';
-                fs.copy(from + '.js', to + '.js', function(err){
-                    if (err) {callback(err); return;}
-                    fs.copy(from + '.css', to + '.css', function(err){
-                        if (err) {callback(err); return;}
-                        console.log('DONE  ' + message);
-                        callback();
-                    })
-                })
+                console.log('DONE  ' + message);
+                callback();
             })
         })
     })

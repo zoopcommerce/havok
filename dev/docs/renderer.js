@@ -26,7 +26,7 @@ var render = function(parsedUrl, params, domLite, callback){
     }
 
     if (pathPieces[1] == 'api'){
-        apiGenerateDocs.generateDocs(function(err){
+        apiGenerateDocs.generateDocs(false, function(err){
             if (err) {callback(err); return;}
 
             var i;
@@ -38,7 +38,7 @@ var render = function(parsedUrl, params, domLite, callback){
             render();
         })
     } else if (parsedUrl.pathname == '/api.twig' || parsedUrl.pathname == '/api-content.twig'){
-        apiGenerateDocs.generateDocs(render);
+        apiGenerateDocs.generateDocs(false, render);
     } else {
         render();
     }

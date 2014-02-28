@@ -1,4 +1,4 @@
-var fs = require('fs');
+var fs = require('fs-extra');
 var details = require('./details.json');
 
 var twigPath = require('../docs/twigPath').path + '/api/';
@@ -10,25 +10,19 @@ var write = function(item, callback){
         file = shortName + '.json',
         path = twigPath + pieces.join('/');
 
-    fs.mkdir(path, null, function(err){
-        if (err && err.code != 'EEXIST') {
+    item.rootPath = rootPath;
+    item.shortName = shortName;
+    var string = JSON.stringify(item, null, 4);
+    string = string.replace(/<pre><code>/g, '');
+    string = string.replace(/<\/code><\/pre>/g, '');
+    fs.outputFile(path + '/' + file, string, function(err) {
+        if(err) {
             console.log(err);
-            return;
+            callback(err);
+        } else {
+            console.log(file + ' written');
         }
-        item.rootPath = rootPath;
-        item.shortName = shortName;
-        var string = JSON.stringify(item, null, 4);
-        string = string.replace(/<pre><code>/g, '');
-        string = string.replace(/<\/code><\/pre>/g, '');
-        fs.writeFile(path + '/' + file, string, function(err) {
-            if(err) {
-                console.log(err);
-                callback(err);
-            } else {
-                console.log(file + ' written');
-            }
-        });
-    })
+    });
 }
 
 var writeDetails = function(callback){
