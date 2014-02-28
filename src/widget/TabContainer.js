@@ -59,7 +59,7 @@ function (
                 } else {
                     for(i = 0; i < this.domNode.children.length; i++){
                         if (this.domNode.children[i].hasAttribute('data-havok-navtab')){
-                            this.nav = registry.getEnclosingWidget(this.domNode.children[i]);
+                            this.nav = new (declare([NavTab, SortableMixin], this.domNode.children[i]))
                             break;
                         }
                     }

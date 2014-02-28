@@ -6,6 +6,7 @@ define ([
     'dojo/has',
     'dojo/Deferred',
     'dojo/DeferredList',
+    'dijit/registry',
     '../string',
     '../config/ready!',
     'dojo/sniff'
@@ -18,6 +19,7 @@ function (
     has,
     Deferred,
     DeferredList,
+    registry,
     string
 ) {
     // module:
@@ -122,7 +124,13 @@ function (
                     for(i in props) params[i] = _processParam(i, props[i], Module)
                 }
 
-                instance = new Module(params, refNode);
+                //check to see if the widget has already be created (perhaps in a widget template)
+                if (refNode.hasAttribute('widgetId')){
+                    instance = registry.byId(refNode.getAttribute('widgetId'));
+                }
+                if (!instance){
+                    instance = new Module(params, refNode);
+                }
 
                 if(!has("host-browser") && instance.domNode){
                     //make sure the type attribute is set if using server side
@@ -133,6 +141,14 @@ function (
                     }
                     params._rendered = true;
                     instance.domNode.setAttribute('data-dojo-props', JSON.stringify(params).slice(1,-1).replace(/"/g, '&quot;'));
+
+                    //change any uniqName ids so there aren't id duplicates in the registry client side
+                    var widgetId = instance.domNode.getAttribute('widgetId');
+                    if (/^uniqName/.test(widgetId)){
+                        widgetId = widgetId.replace('uniqName', 'serverParsed');
+                        instance.domNode.setAttribute('widgetId', widgetId);
+                        instance.domNode.setAttribute('id', widgetId);
+                    }
                 }
 
                 result.resolve(instance);
@@ -150,7 +166,7 @@ function (
                     break;
                 case 'boolean':
                     // for checked/disabled value might be "" or "checked".	 interpret as true.
-                    return value.toLowerCase() != "false";
+                    return value.toLowerCase ? value.toLowerCase() != "false" : !!value;
                     break;
                 case 'object':
                     try {
