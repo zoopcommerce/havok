@@ -118,7 +118,7 @@ function (
                     params[name] = _processParam(name, value, Module);
                 }
                 if (refNode.hasAttribute('data-dojo-props')){
-                    props = JSON.stringify('{' + refNode.getAttribute('data-dojo-props') + '}');
+                    props = JSON.parse('{' + refNode.getAttribute('data-dojo-props') + '}');
                     for(i in props) params[i] = _processParam(i, props[i], Module)
                 }
 
@@ -132,7 +132,7 @@ function (
                         instance.domNode.setAttribute('data-dojo-mixins', requires.slice(1));
                     }
                     params._rendered = true;
-                    instance.domNode.setAttribute('data-dojo-props', JSON.stringify(params).slice(1,-1));
+                    instance.domNode.setAttribute('data-dojo-props', JSON.stringify(params).slice(1,-1).replace(/"/g, '&quot;'));
                 }
 
                 result.resolve(instance);
