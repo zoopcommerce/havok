@@ -1,4 +1,4 @@
-require('./../../build/ext/dojoConfig.js').setConfig();
+require(__dirname + '/../../build/ext/dojoConfig.js').setConfig();
 
 dojoConfig.locale = 'en-au';
 dojoConfig.merge = [
@@ -6,12 +6,8 @@ dojoConfig.merge = [
     'docs/config'
 ]
 dojoConfig.less = false;
-dojoConfig.packages.push({
-    name: 'docs',
-    location: __dirname + '/../client'
-});
-var parser = require('../../dom-lite/parser');
-var nodeType = require('../../dom-lite/nodeType');
+var parser = require('dom-lite/parser');
+var nodeType = require('dom-lite/nodeType');
 
 exports.render = function(rawHtml, callback){
     parser.parse(rawHtml, function(dom){
@@ -23,7 +19,7 @@ exports.render = function(rawHtml, callback){
         window = document.defaultView;
 
         var renderedHead = document.head ? document.head.outerHTML : '';
-        var prettifyPath = '../client/vendor/prettify/prettify';
+        var prettifyPath = __dirname + '/../../docs/client/vendor/prettify/prettify';
 
         require(prettifyPath);
         window['PR_SHOULD_USE_CONTINUATION'] = false; //ensures that pretty printing is sync rather than async
@@ -67,7 +63,7 @@ exports.render = function(rawHtml, callback){
                 delete global.require;
                 delete global.define;
 
-                callback(result.join(''));
+                callback(null, result.join(''));
             })
         });
     })
