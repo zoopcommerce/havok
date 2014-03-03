@@ -32,19 +32,22 @@ function (
             storeAdapter: './_TreeStoreAdapterMixin',
 
             // folderIcon: String
-            folderIcon: '<i class="fa fa-folder"></i> ',
+            folderIcon: '<i class="tree-icon fa fa-folder"></i>',
 
             // itemIcon: String
-            itemIcon: '<i class="fa fa-file-text"></i> ',
+            itemIcon: '<i class="tree-icon fa fa-file-text"></i>',
 
             addItem: function(/*DomNode|String*/item, /*havok/widget/_ListMixin.__AddOptions?*/options){
 
                 item = this.inherited(arguments);
 
+                var newIcon,
+                    oldIcon;
+
                 if (item.children.length > 1){
                     domClass.add(item, 'folder-close');
 
-                    if (this.folderIcon) domConstruct.place(this.folderIcon, item.firstElementChild, 'first');
+                    newIcon = this.folderIcon;
 
                     var innerParent = item.lastElementChild,
                         i;
@@ -52,8 +55,16 @@ function (
                     for ( i = 0; i < innerParent.children.length; i++){
                         this.addItem(innerParent.children[i], {refNode: innerParent});
                     }
-                } else if (this.itemIcon) {
-                    domConstruct.place(this.itemIcon, item.firstElementChild, 'first');
+                } else {
+                    newIcon = this.itemIcon
+                }
+
+                if (newIcon) {
+                    if ((oldIcon = item.firstElementChild.querySelector('.tree-icon'))){
+                        domConstruct.place(newIcon, oldIcon, 'replace')
+                    } else {
+                        domConstruct.place(newIcon, item.firstElementChild, 'first')
+                    }
                 }
 
                 return item;
