@@ -67,11 +67,8 @@ function (
             },
 
             buildRendering: function(){
-                var rendered = this._rendered;
                 this.inherited(arguments);
-                if (!rendered) {
-                    this.refresh();
-                }
+                this.refresh();
             },
 
             addHr: function(/*DomNode|String*/item){
@@ -97,13 +94,9 @@ function (
                 var refNode = options.refNode,
                     func;
 
-                if (!refNode){
-                    refNode = this.containerNode;
-                }
+                if (!refNode) refNode = this.containerNode
 
-                if (typeof item == 'string' || item.parentNode != refNode){
-                    item = domConstruct.place(item, refNode);
-                }
+                if (typeof item == 'string' || item.parentNode != refNode) item = domConstruct.place(item, refNode)
 
                 func = 'add' + string.ucFirst(string.camelCase(item.tagName));
                 if (this[func]){
@@ -123,7 +116,7 @@ function (
                     item = outerItem;
                 }
 
-                if (domClass.contains(item, 'active')) this.set('active', item);
+                if (domClass.contains(item, 'active')) this.set('active', item)
                 this._attachClickListener(item);
                 return item;
             },
@@ -148,12 +141,9 @@ function (
             },
 
             _setActiveAttr: function(/*DomNode*/value){
-                if (this.active && this.active.nodeType){
-                    domClass.remove(this.active, 'active');
-                }
-                if (value && value.nodeType){
-                    domClass.add(value, 'active');
-                }
+                if (this.active && this.active.nodeType) domClass.remove(this.active, 'active')
+                if (value && value.nodeType) domClass.add(value, 'active')
+
                 this._set('active', value);
             },
 
@@ -186,9 +176,8 @@ function (
                     e.preventDefault();
                     return;
                 }
-                if (e.target.tagName == 'A' && e.target.getAttribute('href')){
-                    return;
-                }
+                if (e.target.tagName == 'A' && e.target.getAttribute('href')) return
+
                 e.preventDefault();
                 this.set('active', node);
                 this.emit('item-click', {item: node});

@@ -47,6 +47,9 @@ function (
 
                 this.inherited(arguments);
 
+                //fixup containerNode attachment. _AttachMixin doesn't handle containerNode correctly when there are templates in widget
+                this.containerNode = this.domNode.querySelector('.tab-content');
+
                 if (!rendered){
                     this.nav = new (declare([NavTab, SortableMixin], null));
                     this.nav.domNode.setAttribute('data-havok-navtab', '');
@@ -59,7 +62,7 @@ function (
                 } else {
                     for(i = 0; i < this.domNode.children.length; i++){
                         if (this.domNode.children[i].hasAttribute('data-havok-navtab')){
-                            this.nav = new (declare([NavTab, SortableMixin], this.domNode.children[i]))
+                            this.nav = new (declare([NavTab, SortableMixin], null))({}, this.domNode.children[i]);
                             break;
                         }
                     }
@@ -74,12 +77,8 @@ function (
                     srcHeader,
                     classes = [];
 
-                if (domClass.contains(srcNode, 'active')){
-                    classes.push('active');
-                }
-                if (domClass.contains(srcNode, 'disabled')){
-                    classes.push = 'disabled';
-                }
+                if (domClass.contains(srcNode, 'active')) classes.push('active')
+                if (domClass.contains(srcNode, 'disabled')) classes.push = 'disabled'
 
                 //extract header
                 heading = domConstruct.create('li', {'data-tab-target': id, 'class': classes.join(' '), innerHTML: '<a href=""></a>'});
@@ -91,7 +90,6 @@ function (
                     domConstruct.destroy(srcHeader);
                 }
                 this.nav.addItem(heading);
-                if (domClass.contains(heading, 'active')) this.nav.set('active', heading);
                 domClass.add(srcNode, 'tab-pane');
                 srcNode.setAttribute('data-tab-id', id);
             },

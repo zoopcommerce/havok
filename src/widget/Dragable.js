@@ -4,7 +4,7 @@ define([
     'dojo/dom-class',
     'dojo/on',
     'dijit/registry',
-    './_WidgetBase',
+    'dijit/_WidgetBase',
     '../get!./dragData',
     '../less!./less/dragable.less'
 ],

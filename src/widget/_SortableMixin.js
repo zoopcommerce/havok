@@ -56,9 +56,7 @@ function (
             },
 
             addItem: function(/*DomNode|String*/item, /*havok/widget/_ListMixin.__AddOptions?*/options){
-                item = this.inherited(arguments);
-                this._makeDragable(item);
-                return item;
+                return this.inherited(arguments, [this._makeDragable(item), options]);
             },
 
             _setDropTargetsAttr: function(/*DomNode[]|String*/value){
@@ -114,6 +112,8 @@ function (
                 on(dragable.domNode, 'drop', function(e){
                     e.preventDefault();
                 });
+
+                return dragable.domNode;
             }
         }
     );
