@@ -91,14 +91,13 @@ function (
 
                 if (!options) options = {};
 
-                var refNode = options.refNode,
+                var refNode = options.refNode || this.containerNode,
                     func;
-
-                if (!refNode) refNode = this.containerNode
 
                 if (typeof item == 'string' || item.parentNode != refNode) item = domConstruct.place(item, refNode)
 
                 func = 'add' + string.ucFirst(string.camelCase(item.tagName));
+
                 if (this[func]){
                     item = this['add' + string.ucFirst(string.camelCase(item.tagName))](item, options);
                 } else {

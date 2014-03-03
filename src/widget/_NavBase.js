@@ -24,7 +24,11 @@ function (
             tag: 'ul',
 
             // baseClass: String
-            baseClass: 'nav'
+            baseClass: 'nav',
+            
+            addWDropdownToggle: function(/*DomNode*/item){
+                return item;
+            }
         }
     );
 });
