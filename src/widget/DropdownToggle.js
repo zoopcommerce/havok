@@ -106,6 +106,8 @@ function (
 
             startup: function(){
 
+                if (this._started) return
+
                 if (!this.button){
                     var i,
                         node;

@@ -150,9 +150,7 @@ function (
                 // node:
                 //     The domNode to return when the listener is fired
 
-                var target;
-                if (!(target = node.querySelector('[data-havok-click-target]'))) target = node;
-
+                var target = node.querySelector('[data-havok-click-target]') || node;
                 this._clickHandlers = {
                     node: node,
                     handler: on(target, a11yclick.click, lang.hitch(this, function(e){

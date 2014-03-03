@@ -25,7 +25,7 @@ function (
 
             // baseClass: String
             baseClass: 'nav',
-            
+
             addWDropdownToggle: function(/*DomNode*/item){
                 return item;
             }
