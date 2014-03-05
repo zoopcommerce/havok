@@ -34,13 +34,20 @@ function (
             =====*/
 
             buildRendering: function(){
+
+                var prepend = [],
+                    append = [];
+
+                if (this._rendered){
+                    this.prepend = [];
+                    this.append = [];
+                }
+
                 if (this.srcNodeRef){
 
                     var i,
                         node,
-                        widget,
-                        prepend = [],
-                        append = [];
+                        widget;
 
                     for (i = 0; i < this.srcNodeRef.children.length; i++){
                         node = this.srcNodeRef.children[i];
@@ -49,15 +56,22 @@ function (
                             if (widget.append === '') append.unshift(node)
                             else if (widget.prepend === '') prepend.unshift(node)
                         } else {
-                            if (node.hasAttribute('append')) append.unshift(node)
-                            else if (node.hasAttribute('prepend')) prepend.unshift(node)
+                            if (node.hasAttribute('append') || node.hasAttribute('data-havok-append')) append.unshift(node)
+                            else if (node.hasAttribute('prepend') || node.hasAttribute('data-havok-prepend')) prepend.unshift(node)
                         }
                     }
+                    if (!this._rendered){
+                        if (prepend.length > 0) this.prepend = prepend;
+                        if (append.length > 0) this.append = append;
+                    }
+                }
 
+                this.inherited(arguments);
+
+                if (this._rendered){
                     if (prepend.length > 0) this.prepend = prepend;
                     if (append.length > 0) this.append = append;
                 }
-                this.inherited(arguments);
             },
 
             addPrependage: function(/*String|String[]|DomNode|DomNode[]*/value){
@@ -96,7 +110,8 @@ function (
 
                 var index;
 
-                if ( ! lang.isArray(value)) value = [value];
+                if ( ! lang.isArray(value)) value = [value]
+                else value = value.slice() //make a shallow clone of array
                 for (index in value) value[index] = this._createNode(value[index], false);
 
                 this._removeAppendages(value, false);
@@ -113,19 +128,17 @@ function (
 
                 var node;
 
+                prepend = prepend ? 'prepend' : 'append';
+
                 if (typeof(value) == 'string') {
                     node = domConstruct.create('span', {'class': 'add-on', innerHTML: value});
+                    node.setAttribute('data-havok-' + prepend, true);
                 } else {
                     node = value;
                 }
 
-                if (value.tagName == 'SPAN'){
-                    domClass.add(value, 'add-on');
-                } else if (value.tagName == 'BUTTON'){
-                    domClass.add(value, 'btn');
-                }
-
-                node.prepend = prepend;
+                if (value.tagName == 'SPAN') domClass.add(value, 'add-on')
+                else if (value.tagName == 'BUTTON') domClass.add(value, 'btn')
 
                 return node;
             },
@@ -138,11 +151,8 @@ function (
                     list,
                     match;
 
-                if (prepend){
-                    list = this.prepend;
-                } else {
-                    list = this.append;
-                }
+                if (prepend) list = this.prepend
+                else list = this.append
 
                 if (!list) return
 
@@ -150,11 +160,9 @@ function (
                     match = false;
                     item = list[i];
                     for (j = 0; j < value.length; j++){
-                        if (value[j] == item){
-                            match = true;
-                        }
+                        if (value[j] == item) match = true
                     }
-                    if (!match) domConstruct.destroy(item);
+                    if (!match) domConstruct.destroy(item)
                 }
             },
 
@@ -162,17 +170,9 @@ function (
 
                 if (! this.appendagesWrapper) this._createAppendagesWrapper();
 
-                if (node.prepend){
-                    domClass.add(this.appendagesWrapper,'input-prepend');
-                } else {
-                    domClass.add(this.appendagesWrapper,'input-append');
-                }
-
-                domConstruct.place(
-                    node,
-                    this.input,
-                    node.prepend ? 'before' : 'after'
-                );
+                var prepend = node.hasAttribute('data-havok-prepend');
+                domClass.add(this.appendagesWrapper,'input-' + (prepend ? 'prepend' : 'append'))
+                domConstruct.place(node, this.input, prepend ? 'before' : 'after');
             }
         }
     );
