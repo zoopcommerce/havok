@@ -36,9 +36,7 @@ function (
 
                 this.inherited(arguments);
 
-                if (label){
-                    this.set('label', label)
-                }
+                if (label) this.set('label', label)
             },
 
             _setLabelAttr: function(value) {
@@ -51,7 +49,7 @@ function (
 
                 this.labelNode = domConstruct.create(
                     'label',
-                    {innerHTML: value, 'class': 'control-label', 'for': this.id},
+                    {innerHTML: value, 'class': 'control-label', 'for': this.id, 'data-dojo-attach-point': 'labelNode'},
                     this.domNode,
                     'first'
                 );
