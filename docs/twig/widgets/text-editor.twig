@@ -22,20 +22,20 @@
 <p id="editExample" contenteditable="true">You can use a separated text editing toolbar, and pass it a target node id to edit. The toolbar below can be used to edit this paragraph.</p>
 
 <div class="bs-docs-example">
-    <w-text-toolbar target="editExample">Here is some text to edit.</w-text-toolbar>
+    <w-text-toolbar target="editExample"></w-text-toolbar>
 </div>
 <pre class="prettyprint linenums">
 {% set textEditorExample2 %}
-<w-text-toolbar target="editExample">Here is some text to edit.</w-text-toolbar>{% endset %}{{textEditorExample2|e}}
+<p id="editExample" contenteditable="true">You can use a separated text editing toolbar, and pass it a target node id to edit. The toolbar below can be used to edit this paragraph.</p>
+<w-text-toolbar target="editExample"></w-text-toolbar>{% endset %}{{textEditorExample2|e}}
 </pre>
-
 
 <h2>Custom font and size lists</h2>
 
 <p>You can change the font and size lists by overriding the appropriate store in di config. Eg:</p>
 <pre class="prettyprint linenums">
 di: {
-    'havok/store/stores': {
+    'stores': {
         proxies: {
             font: {
                 base: 'my/alternative/font/store',

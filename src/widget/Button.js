@@ -29,13 +29,9 @@ function (
             =====*/
 
             buildRendering: function(){
-                if (!this.text){
-                    if (this.srcNodeRef){
-                        this.text = this.srcNodeRef.innerHTML;
-                    } else {
-                        this.text = '';
-                    }
-                }
+                this.text = this.text || this.innerHTML || '';
+                if (this.srcNodeRef) this.text = this.srcNodeRef.innerHTML;
+
                 this.inherited(arguments);
             }
         }

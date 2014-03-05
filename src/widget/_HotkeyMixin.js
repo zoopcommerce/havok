@@ -47,20 +47,9 @@ function (
             //      The dom node to attach the key press listener to
             keyTarget: window,
 
-            /*=====
-            // _keypressHandler: Object
-            //      Holds a reference to any active key press handler
-            _keypressHandler: undefined,
-            =====*/
-
             startup: function(){
                 this.inherited(arguments);
-                this._resetKeypressHandler();
-            },
-
-            destroy: function(){
-                this._removeKeypressHandler();
-                this.inherited(arguments);
+                this._resetHotkeyHandler();
             },
 
             _setHotkeyAttr: function(/*__Hotkey[]|String*/value){
@@ -125,29 +114,24 @@ function (
                 }
                 this._set('keys', value);
                 this.domNode.setAttribute('data-havok-keys', toString(value));
-                this._resetKeypressHandler();
+                this._resetHotkeyHandler();
             },
 
             _setKeyTargetAttr: function(/*DomNode*/value){
                 this._set('keyTarget', value);
-                this._resetKeypressHandler();
+                this._resetHotkeyHandler();
             },
 
-            _resetKeypressHandler: function(){
+            _resetHotkeyHandler: function(){
                 if (!this._started) return;
-                this._removeKeypressHandler();
+                this.removeHandlers('hotkey');
+
                 if (this.keys && this.keyTarget){
-                    this._addKeypressHandler();
+                    this._addHotkeyHandler();
                 }
             },
 
-            _removeKeypressHandler: function(){
-                if (this._keypressHandler){
-                    this._keypressHandler.remove();
-                }
-            },
-
-            _addKeypressHandler: function(){
+            _addHotkeyHandler: function(){
                 var getKeyCode = function(chr){
                         if (typeof chr == 'string' && keys[chr]){
                             return keys[chr];
@@ -160,7 +144,7 @@ function (
                     getKeyChar = function(code){
                         return String.fromCharCode(code).toUpperCase();
                     }
-                this._keypressHandler = on(this.keyTarget, 'keydown', lang.hitch(this, function(evt){
+                this.addHandler(on(this.keyTarget, 'keydown', lang.hitch(this, function(evt){
                     array.forEach(this.keys, lang.hitch(this, function(key){
 
                         var keyChar,
@@ -194,7 +178,7 @@ function (
                             this.emit('click', evt);
                         }
                     }));
-                }))
+                })), 'hotkey');
             }
         }
     );

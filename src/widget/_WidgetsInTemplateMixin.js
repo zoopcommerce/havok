@@ -18,11 +18,9 @@ define([
 		_beforeFillContent: function(){
 
             // Before copying over content, instantiate widgets in template
-            var node = this.domNode;
-
             this._parseComplete = new Deferred;
 
-            parser.parse(node, {startup: false}).then(lang.hitch(this, function(widgets){
+            parser.parse(this.domNode, {startup: false}).then(lang.hitch(this, function(widgets){
 
                 // Hook up attach points and events for nodes that were converted to widgets
                 for(var i = 0; i < widgets.length; i++){

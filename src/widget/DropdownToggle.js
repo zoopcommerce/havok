@@ -1,7 +1,6 @@
 define([
     'dojo/_base/declare',
     'dojo/_base/lang',
-    'dojo/_base/array',
     'dojo/on',
     'dojo/window',
     'dojo/keys',
@@ -16,7 +15,6 @@ define([
 function (
     declare,
     lang,
-    array,
     on,
     win,
     keys,
@@ -88,25 +86,15 @@ function (
             hasMouse: undefined,
             =====*/
 
-            /*=====
-            // _keypressHandlers: Object[]
-            _keypressHandlers: undefined,
-            =====*/
-
             buildRendering: function(){
 
                 if (!this.tag){
                     this.tag = 'div';
                 }
-                if (this.srcNodeRef && ['UL', 'W-NAV-TAB', 'W-NAV-PILL', 'W-NAV-BAR-LINKS'].indexOf(this.srcNodeRef.parentNode.tagName) != -1){
+                if (this.srcNodeRef && this.srcNodeRef.parentNode && ['UL', 'W-NAV-TAB', 'W-NAV-PILL', 'W-NAV-BAR-LINKS'].indexOf(this.srcNodeRef.parentNode.tagName) != -1){
                     this.tag = 'li';
                 }
                 this.inherited(arguments);
-            },
-
-            startup: function(){
-
-                if (this._started) return
 
                 if (!this.button){
                     var i,
@@ -120,9 +108,7 @@ function (
                         }
                     }
                 }
-                if (!this.button){
-                    this.button = this.domNode;
-                }
+                if (!this.button) this.button = this.domNode
 
                 domClass.add(this.button, 'dropdown-toggle');
                 this.button.setAttribute('role', 'button');
@@ -131,28 +117,37 @@ function (
                     var children = this.getChildren();
                     this.dropdown = children[children.length - 1];
                 }
-
-                if (!this.dropdown._started) this.dropdown.startup();
-
-                this.inherited(arguments);
-
-                on(this.button, 'mouseleave', lang.hitch(this, 'onMouseleave'));
-                on(this.button, a11yclick.click, lang.hitch(this, 'onClick'));
-
-                this.dropdown.watch('hasMouse', lang.hitch(this, function(property, oldValue, newValue){
-                    this.set('hasMouse', newValue);
-                    if (!newValue){
-                        this.hide();
-                    }
-                }));
-                this.dropdown.on('item-click', lang.hitch(this, function(e){
-                    this.emit('item-click', e);
-                }));
             },
 
-            destroy: function(){
-                this._removeKeypressHandlers();
+            startup: function(){
+
                 this.inherited(arguments);
+
+                if (!this.hasHandlers('toggle')){
+                    this.addHandler(on(this.button, 'mouseleave', lang.hitch(this, 'onMouseleave')), 'toggle');
+                    this.addHandler(on(this.button, a11yclick.click, lang.hitch(this, 'onClick')), 'toggle');
+                    this.set('dropdown', this.dropdown);
+                }
+            },
+
+            _setDropdownAttr: function(value){
+                if (!this._started || !value) {
+                    this.dropdown = value;
+                    return;
+                }
+
+                if (!value._started) value.startup();
+
+                this.removeHandlers('toggle-dropdown');
+
+                this.addHandler(value.watch('hasMouse', lang.hitch(this, function(property, oldValue, newValue){
+                    this.set('hasMouse', newValue);
+                    if (!newValue) this.hide()
+                })), 'toggle-dropdown');
+                this.addHandler(value.on('item-click', lang.hitch(this, function(e){
+                    this.emit('item-click', e);
+                })), 'toggle-dropdown');
+                this._set('dropdown', value);
             },
 
             onClick: function(/*Event*/e){
@@ -163,9 +158,7 @@ function (
             onMouseleave: function(/*Event*/e){
                 //use timeout to allow the mouse to bounce into the dropdown
                 setTimeout(lang.hitch(this, function(){
-                    if (!this.dropdown.get('hasMouse')){
-                        this.hide();
-                    }
+                    if (!this.dropdown.get('hasMouse')) this.hide()
                 }), 100);
             },
 
@@ -177,7 +170,23 @@ function (
                 domClass.remove(this.dropdownContainer, 'hidden');
                 domClass.add(this.dropdownContainer, 'open');
                 this.dropdown.show();
-                this._addKeypressHandlers();
+
+                this.addHandler(on(window, 'keydown', lang.hitch(this, function(evt){
+                    if (evt.keyCode == keys.ESCAPE){
+                        evt.preventDefault();
+                        this.hide();
+                    }
+                })), 'keypress');
+                this.addHandler(on(this.domNode, 'keydown', lang.hitch(this, function(evt){
+                    if (evt.keyCode == keys.DOWN_ARROW){
+                        var nodes = this.dropdown.containerNode.getElementsByTagName('a');
+                        if (nodes.length > 0){
+                            focus.focus(nodes[0]);
+                            evt.preventDefault();
+                            return;
+                        }
+                    }
+                })), 'keypress');
                 this.position();
             },
 
@@ -186,37 +195,8 @@ function (
                     domClass.remove(this.dropdownContainer, 'open');
                     domClass.add(this.dropdownContainer, 'hidden');
                 }
-                if (this.dropdown.childHasMouse){
-                    this.dropdown.hide();
-                }
-                this._removeKeypressHandlers();
-            },
-
-            _removeKeypressHandlers: function(){
-                if (this._keypressHandlers){
-                    array.forEach(this._keypressHandlers, function(handler){handler.remove()});
-                }
-            },
-
-            _addKeypressHandlers: function(){
-                this._keypressHandlers = [
-                    on(window, 'keydown', lang.hitch(this, function(evt){
-                        if (evt.keyCode == keys.ESCAPE){
-                            evt.preventDefault();
-                            this.hide();
-                        }
-                    })),
-                    on(this.domNode, 'keydown', lang.hitch(this, function(evt){
-                        if (evt.keyCode == keys.DOWN_ARROW){
-                            var nodes = this.dropdown.containerNode.getElementsByTagName('a');
-                            if (nodes.length > 0){
-                                focus.focus(nodes[0]);
-                                evt.preventDefault();
-                                return;
-                            }
-                        }
-                    }))
-                ]
+                if (this.dropdown) this.dropdown.hide()
+                this.removeHandlers('keypress');
             },
 
             position: function() {

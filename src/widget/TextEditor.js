@@ -31,13 +31,6 @@ function (
             _observer: undefined,
             =====*/
 
-            buildRendering: function(){
-                this.inherited(arguments);
-                this._parseComplete.then(lang.hitch(this, function(){
-                    this.toolbar.set('target', this.containerNode);
-                }));
-            },
-
             startup: function(){
                 this.inherited(arguments);
                 this._observer = new MutationObserver(lang.hitch(this, function(){

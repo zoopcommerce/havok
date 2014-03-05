@@ -43,7 +43,7 @@ function (
 
             startup: function(){
                 this.inherited(arguments);
-                on(this.button, 'mouseenter', lang.hitch(this, 'onMouseenter'));
+                this.addHandler(on(this.button, 'mouseenter', lang.hitch(this, 'onMouseenter')), 'dropdown');
             },
 
             onMouseenter: function(){

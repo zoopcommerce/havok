@@ -43,8 +43,6 @@ function (
 
             buildRendering: function(){
 
-                this._clickHandlers = [];
-
                 var rendered = this._rendered;
 
                 this.inherited(arguments);
@@ -61,14 +59,14 @@ function (
 
                 //attach to click
                 nodes = this.containerNode.querySelectorAll('.accordion-group');
-                for (i = 0; i < nodes.length; i++) this._attachClickListener(nodes[i])
+                for (i = 0; i < nodes.length; i++) this._attachClickHandler(nodes[i])
             },
 
-            _attachClickListener: function(/*DomNode*/node){
+            _attachClickHandler: function(/*DomNode*/node){
                 // node:
                 //     The domNode to return when the listener is fired
 
-                this._clickHandlers.push(on(node.children[0], a11yclick.click, lang.hitch(this, function(e){
+                this.addHandler(on(node.children[0], a11yclick.click, lang.hitch(this, function(e){
                     e.preventDefault();
                     this.toggle(node);
                 })))
@@ -127,13 +125,6 @@ function (
                     body.style['height'] = body.scrollHeight + 'px';
                     this.active = node;
                 }
-            },
-
-            destroy: function(){
-                while (this._clickHandlers.length > 0){
-                    this._clickHandlers.pop().remove();
-                }
-                this.inherited(arguments);
             }
         }
     );

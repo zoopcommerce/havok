@@ -2,19 +2,21 @@ define([
     'dojo/_base/declare',
     'dojo/dom-construct',
     'dijit/_WidgetBase',
-    'dijit/_TemplatedMixin'
+    'dijit/_TemplatedMixin',
+    './_HandlersMixin'
 ],
 function (
     declare,
     domConstruct,
     WidgetBase,
-    TemplatedMixin
+    TemplatedMixin,
+    HandlersMixin
 ){
     // module:
     //    	havok/widget/_WidgetBase
 
     return declare(
-        [WidgetBase, TemplatedMixin],
+        [WidgetBase, TemplatedMixin, HandlersMixin],
         {
             searchContainerNode: false,
 
@@ -31,7 +33,10 @@ function (
 
             buildRendering: function(){
 
-                if (!this.srcNodeRef && this.innerHTML){
+                if (this.srcNodeRef) {
+                    if (this._rendered) this.tag = this.srcNodeRef.tagName;
+                    if (this.srcNodeRef.hasAttribute('class')) this.baseClass += ' ' + this.srcNodeRef.getAttribute('class');
+                } else if (this.innerHTML){
                     this.srcNodeRef = domConstruct.create('span', {innerHTML: this.innerHTML});
                 }
 

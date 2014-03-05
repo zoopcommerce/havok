@@ -35,8 +35,8 @@ function (
             startup: function(){
                 this.inherited(arguments);
 
-                on(this.domNode, 'mouseenter', lang.hitch(this, 'onMouseenter'));
-                on(this.domNode, 'mouseleave', lang.hitch(this, 'onMouseleave'));
+                this.addHandler(on(this.domNode, 'mouseenter', lang.hitch(this, 'onMouseenter')), 'dropdown');
+                this.addHandler(on(this.domNode, 'mouseleave', lang.hitch(this, 'onMouseleave')), 'dropdown');
 
                 var i,
                     children = this.getChildren();
@@ -60,7 +60,7 @@ function (
             },
 
             _watchChildHasMouse: function(/*havok/widget/_DropdownBase*/childWidget){
-                childWidget.watch('hasMouse', lang.hitch(this, function(property, oldValue, newValue){
+                this.addHandler(childWidget.watch('hasMouse', lang.hitch(this, function(property, oldValue, newValue){
                     if (newValue){
                         this.set('childHasMouse', childWidget);
                     } else {
@@ -73,7 +73,7 @@ function (
                             }
                         }), 50);
                     }
-                }));
+                })), 'dropdown');
             },
 
             _show: function(){

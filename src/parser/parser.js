@@ -231,7 +231,7 @@ function (
 
                 if (options.startup){
                     array.forEach(widgets, function(item){
-                        if (item.startup) item.startup();
+                        if (item.startup && !item._started) item.startup();
                     })
                 }
                 result.resolve(widgets);

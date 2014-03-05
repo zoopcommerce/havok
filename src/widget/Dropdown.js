@@ -27,27 +27,12 @@ function (
 
             storeAdapter: './_DropdownStoreAdapterMixin',
 
-            startup: function(){
-                this.inherited(arguments);
-                this._addKeypressHandler();
-            },
-
-            destroy: function(){
-                this._removeKeypressHandler();
-                this.inherited(arguments);
-            },
-
             addWDropdownSubmenu: function(/*DomNode*/item){
                 return item;
             },
 
-            _removeKeypressHandler: function(){
-                if (this._keypressHandler){
-                    this._keypressHandler.remove();
-                }
-            },
-
-            _addKeypressHandler: function(){
+            startup: function(){
+                this.inherited(arguments);
 
                 var moveFocus = lang.hitch(this, function(up){
                     var node = document.activeElement,
@@ -69,7 +54,8 @@ function (
                     }
                 });
 
-                this._keypressHandler = on(this.domNode, 'keydown', lang.hitch(this, function(evt){
+                //handle keypress events for dropdowns
+                this.addHandler(on(this.domNode, 'keydown', lang.hitch(this, function(evt){
                     if (evt.keyCode == keys.UP_ARROW){
                         moveFocus(true);
                         evt.preventDefault();
@@ -77,7 +63,7 @@ function (
                         moveFocus(false);
                         evt.preventDefault();
                     }
-                }))
+                })), 'dropdown')
             }
         }
     );

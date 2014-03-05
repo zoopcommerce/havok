@@ -38,12 +38,6 @@ function(
             //      Distance in pixels from the bottom of the viewport that affixing should be applied.
             viewportOffsetBottom: 0,
 
-            /*=====
-            // _affixScrollSignal: Object
-            //      Handler for scroll events
-            _affixScrollSignal: undefined,
-            =====*/
-
             startup: function(){
                 this.inherited(arguments);
                 if (this.affix == undefined) this.set('affix', this.domNode.parentNode);
@@ -52,14 +46,10 @@ function(
 
             _setAffixAttr: function(/*String|DomNode|Boolean*/value){
 
-                if (this._affixScrollSignal){
-                    this._affixScrollSignal.remove();
-                    delete(this._affixScrollSignal);
-                }
-
+                if (this.hasHandlers('affix')) this.removeHandlers('affix')
                 if (typeof value == 'string') value = dom.byId(value);
 
-                this._affixScrollSignal = on(document, 'scroll', lang.hitch(this, this.updateAffix));
+                this.addHandler(on(document, 'scroll', lang.hitch(this, this.updateAffix)), 'affix');
                 this._set('affix', value);
             },
 
@@ -98,13 +88,6 @@ function(
 
                 domClass.add(this.domNode, add);
                 domClass.remove(this.domNode, remove);
-            },
-
-            destroy: function(){
-                if (this._affixScrollSignal){
-                    this._affixScrollSignal.remove();
-                }
-                this.inherited(arguments);
             }
         }
     );

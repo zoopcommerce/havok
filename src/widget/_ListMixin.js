@@ -45,7 +45,7 @@ function (
             // dividerTemplate: String
             dividerTemplate: '<li class="divider"></li>',
 
-            //_clickHandlers: [],
+            // _handlerId: Int
 
             constructor: function(params){
                 if (params && params.store){
@@ -55,7 +55,7 @@ function (
                     if (params.storeAdapter) adapter = params.storeAdapter;
                     this.mixinAdapter(adapter);
                 }
-                this._clickHandlers = [];
+                this._handlerId = 0;
             },
 
             mixinAdapter: function(adapter){
@@ -116,12 +116,12 @@ function (
                 }
 
                 if (domClass.contains(item, 'active')) this.set('active', item)
-                this._attachClickListener(item);
+                this._attachClickHandler(item);
                 return item;
             },
 
             removeItem: function(/*DomNode|String*/item){
-                this._removeClickListener(item);
+                this._removeClickHandler(item);
                 domConstruct.destroy(item);
             },
 
@@ -146,26 +146,20 @@ function (
                 this._set('active', value);
             },
 
-            _attachClickListener: function(/*DomNode*/node){
+            _attachClickHandler: function(/*DomNode*/node){
                 // node:
                 //     The domNode to return when the listener is fired
 
                 var target = node.querySelector('[data-havok-click-target]') || node;
-                this._clickHandlers = {
-                    node: node,
-                    handler: on(target, a11yclick.click, lang.hitch(this, function(e){
-                        this.onClick(e, node);
-                    }))
-                };
+                node.setAttribute('data-havok-handler-id', this._handlerId);
+                this.addHandler(on(target, a11yclick.click, lang.hitch(this, function(e){
+                    this.onClick(e, node);
+                })), this._handlerId);
+                ++this._handlerId;
             },
 
-            _removeClickListener: function(/*DomNode*/node){
-                for(var i = 0; i > this._clickHandlers.length; i++){
-                    if (this._clickHandlers[i].node == node) {
-                        this._clickHandlers[i].handler.remove();
-                        return;
-                    }
-                }
+            _removeClickHandler: function(/*DomNode*/node){
+                this.removeHandlers(node.getAttribute('data-havok-handler-id'));
             },
 
             onClick: function(/*Event*/e, /*DomNode*/node){
