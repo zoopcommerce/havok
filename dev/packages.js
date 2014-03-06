@@ -28,7 +28,7 @@ var packageArray = function(){
         },
         {
             name: "havok",
-            location: __dirname + '/../src'
+            location: __dirname + '/../lib'
         },
         {
             name: "havok-build",

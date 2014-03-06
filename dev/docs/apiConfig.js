@@ -58,7 +58,7 @@ define({
 	// An array of regular expressions that match file paths that should be skipped. Note that since these are file
 	// paths, not module IDs, if you are using Windows, you need to use backslashes!
 	excludePaths: [
-        /havok\/(?!src)/,
-        /havok\/src\/lessLoader/
+        /havok\/(?!lib)/,
+        /havok\/lib\/lessLoader/
 	]
 });
