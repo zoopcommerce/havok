@@ -50,13 +50,13 @@
 <p>Set a filter chain:</p>
 <div class="bs-docs-example">
     <d-formspy class="form-horizontal">
-        <f-textbox lable="name" filter='["Trim", "Uppercase"]' value="    John Smith    "></f-textbox>
+        <f-textbox label="name" filter='["Trim", "Uppercase"]' value="    John Smith    "></f-textbox>
     </d-formspy>
 </div>
 
 <pre class="prettyprint linenums">
 {% set textboxExample6 %}
-<f-textbox lable="name" filter='["Trim", "Uppercase"]' value="    John Smith    "></f-textbox>{% endset %}{{textboxExample6|e}}
+<f-textbox label="name" filter='["Trim", "Uppercase"]' value="    John Smith    "></f-textbox>{% endset %}{{textboxExample6|e}}
 </pre>
 
 <p>Filters are created by <a href="api/havok/filter/factory.html">havok/filter/factory</a> which supports abreviated names for the filters bundled with havok. To set your own custom filter, pass the complete module name. Eg <code>filters: 'My/Filter/Module'</code></p>
@@ -192,7 +192,7 @@
 <h4>Programatically change appendages</h4>
 <div class="bs-docs-example">
     <div class="form-horizontal">
-        <f-textbox label="name" prepend="pre" append='["app1", "app2"]' id="appendageExample"></f-textbox>
+        <f-textbox label="name" prepend="prepend" append='["app1", "app2"]' id="appendageExample"></f-textbox>
     </div>
     <w-button-group id="buttonGroup1">
         <button>.set('prepend', ['1', '2'])</button>

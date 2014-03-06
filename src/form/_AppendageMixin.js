@@ -35,70 +35,65 @@ function (
 
             buildRendering: function(){
 
-                var prepend = [],
-                    append = [];
+                var rendered = this._rendered,
+                    prepend = rendered ? [] : this._argToArray(this.prepend),
+                    append = rendered ? [] : this._argToArray(this.append);
 
-                if (this._rendered){
-                    this.prepend = [];
-                    this.append = [];
-                }
+                this.prepend = [];
+                this.append = [];
 
                 if (this.srcNodeRef){
 
                     var i,
-                        node,
-                        widget;
+                        nodes;
 
-                    for (i = 0; i < this.srcNodeRef.children.length; i++){
-                        node = this.srcNodeRef.children[i];
-                        widget = registry.getEnclosingWidget(node);
-                        if (widget && widget !== this){
-                            if (widget.append === '') append.unshift(node)
-                            else if (widget.prepend === '') prepend.unshift(node)
-                        } else {
-                            if (node.hasAttribute('append') || node.hasAttribute('data-havok-append')) append.unshift(node)
-                            else if (node.hasAttribute('prepend') || node.hasAttribute('data-havok-prepend')) prepend.unshift(node)
-                        }
+                    nodes = this.srcNodeRef.querySelectorAll('[append],[data-havok-append],[data-dojo-props*="\\"append\\":true"]');
+                    for (i = 0; i < nodes.length; ++i) {
+                        nodes[i].setAttribute('data-havok-append', true);
+                        nodes[i].removeAttribute('append');
+                        append.unshift(nodes[i])
                     }
-                    if (!this._rendered){
-                        if (prepend.length > 0) this.prepend = prepend;
-                        if (append.length > 0) this.append = append;
+
+                    nodes = this.srcNodeRef.querySelectorAll('[prepend],[data-havok-prepend],[data-dojo-props*="\\"prepend\\":true"]');
+                    for (i = 0; i < nodes.length; ++i) {
+                        nodes[i].setAttribute('data-havok-prepend', true);
+                        nodes[i].removeAttribute('prepend');
+                        prepend.unshift(nodes[i])
                     }
                 }
 
                 this.inherited(arguments);
 
-                if (this._rendered){
-                    if (prepend.length > 0) this.prepend = prepend;
-                    if (append.length > 0) this.append = append;
+                if (!rendered){
+                    this.set('prepend', prepend);
+                    this.set('append', append);
+                } else {
+                    this.prepend = prepend;
+                    this.append = append;
                 }
             },
 
-            addPrependage: function(/*String|String[]|DomNode|DomNode[]*/value){
-                if ( ! lang.isArray(value)){
-                    value = [value];
-                }
-                if (this.prepend){
-                    value = this.prepend.concat(value);
-                }
-                this.set('prepend', value);
+            addPrependage: function(/*String|DomNode*/value){
+                this.prepend.push(value);
+                this.set('prepend', this.prepend);
             },
 
-            addAppendage: function(/*String|String[]|DomNode|DomNode[]*/value){
-                if ( ! lang.isArray(value)){
-                    value = [value];
-                }
-                if (this.append){
-                    value = this.append.concat(value);
-                }
-                this.set('append', value);
+            addAppendage: function(/*String|DomNode*/value){
+                this.append.push(value);
+                this.set('append', this.append);
+            },
+
+            _argToArray: function(value){
+                if (lang.isArray(value)) return value.slice() //make a shallow clone of array
+                else if (value) return [value]
+                else return []
             },
 
             _setPrependAttr: function(/*String|String[]|DomNode|DomNode[]*/value){
 
                 var index;
 
-                if ( ! lang.isArray(value)) value = [value];
+                value = this._argToArray(value);
                 for (index in value) value[index] = this._createNode(value[index], true);
 
                 this._removeAppendages(value, true);
@@ -110,8 +105,7 @@ function (
 
                 var index;
 
-                if ( ! lang.isArray(value)) value = [value]
-                else value = value.slice() //make a shallow clone of array
+                value = this._argToArray(value);
                 for (index in value) value[index] = this._createNode(value[index], false);
 
                 this._removeAppendages(value, false);

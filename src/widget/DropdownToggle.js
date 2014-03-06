@@ -112,15 +112,15 @@ function (
 
                 domClass.add(this.button, 'dropdown-toggle');
                 this.button.setAttribute('role', 'button');
+            },
+
+            startup: function(){
 
                 if (!this.dropdown){
                     var children = this.getChildren();
                     this.dropdown = children[children.length - 1];
                 }
-            },
-
-            startup: function(){
-
+                
                 this.inherited(arguments);
 
                 if (!this.hasHandlers('toggle')){
@@ -163,6 +163,9 @@ function (
             },
 
             _show: function(){
+
+                if (!this.dropdown) return;
+
                 if (!this.dropdownContainer){
                     this.dropdownContainer = domConstruct.create('div', {'class': 'dropdown hidden', style: 'position: static'}, document.body, 'last');
                     domConstruct.place(this.dropdown.domNode, this.dropdownContainer, 'last');
