@@ -5,9 +5,9 @@
                 <div class="color-picker-constraint">
                     <w-movable
                         data-dojo-attach-point="boxHandle"
-                        data-dojo-attach-event="moved: onBoxHandleMoved, click: onBoxHandleClick"
+                        data-dojo-attach-event="moved: onBoxHandleMoved"
                         class="color-picker-box-handle"
-                        tabindex=1
+                        tabindex=0
                     ></w-movable>
                     <div class="color-picker-outer-box">
                         <div
@@ -22,9 +22,9 @@
                 <div class="color-picker-hue-constraint">
                     <w-movable
                         data-dojo-attach-point="hueHandle"
-                        data-dojo-attach-event="moved: onHueHandleMoved, click: onHueHandleClick"
+                        data-dojo-attach-event="moved: onHueHandleMoved"
                         class="color-picker-hue-handle"
-                        tabindex=2
+                        tabindex=0
                     ></w-movable>
                     <div class="color-picker-hue-outer-box">
                         <div
@@ -39,7 +39,6 @@
         <div class="row-fluid">
             <f-hex-color
                 data-dojo-attach-point="hex"
-                tabindex=3
                 class="span10"
                 suppress-validation-messages='{"preActivity": true, "postActivity": true}'
             ></f-hex-color>

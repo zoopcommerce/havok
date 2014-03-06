@@ -128,7 +128,7 @@
                     var modal = new Modal({
                             headerTemplate: 'Programatic Modal',
                             bodyTemplate: 'This is a programatic Modal',
-                            footerTemplate: '<w-button type="submit" hotkey="ENTER">Nice</button>'
+                            footerTemplate: '<w-button type="submit" hotkey="ENTER">Nice</w-button>'
                         });
                     modal.startup();
                     modal.show().then(function(){
@@ -154,11 +154,11 @@ require(['dojo/on', 'dojo/dom', 'havok/widget/Modal', 'dojo/domReady!'],
             var modal = new Modal({
                     headerTemplate: 'Programatic Modal',
                     bodyTemplate: 'This is a programatic Modal',
-                    footerTemplate: '<w-button type="submit" hotkey="ENTER">Nice</button>'
+                    footerTemplate: '<w-button type="submit" hotkey="ENTER">Nice</w-button>'
                 });
             modal.startup();
             modal.show().then(function(){
-                ...
+                //Do something here after modal has closed
             })
         })
     }
