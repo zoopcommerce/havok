@@ -133,8 +133,6 @@ function (
                 setValue();
             },
 
-            _setClassAttr: {node: "input", type: "class"},
-
             onInput: function(){},
 
             __skipInputEvent: false,

@@ -47,9 +47,8 @@ function (
                     this.templateString = this.blockTemplate.replace('${input}', this.templateString);
                 }
                 this.inherited(arguments);
-
                 domClass.remove(this.domNode, this.baseClass);
-                domClass.add(this.inputContainer.firstElementChild, this.baseClass);
+                domClass.add(this.input, this.baseClass);
             },
 
             reset: function(){

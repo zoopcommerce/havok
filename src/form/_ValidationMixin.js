@@ -50,6 +50,9 @@ function (
             //     every single keystroke
             delay: 350,
 
+            // required: Boolean
+            required: false,
+
             /*=====
             // _delayTimer: Timer
             _delayTimer: undefined,
@@ -60,16 +63,14 @@ function (
 
             buildRendering: function(){
 
-                var required;
-
                 if (this.srcNodeRef &&
                     (this.srcNodeRef.hasAttribute('required') ||
                     this.srcNodeRef.querySelector('INPUT[required]'))
                 ){
-                    required = 'Required';
-                } else {
-                    required = 'NotRequired'
+                    this.required = true;
                 }
+
+                var required = this.required ? 'Required' : 'NotRequired';
 
                 this.inherited(arguments);
 

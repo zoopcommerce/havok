@@ -35,7 +35,7 @@ function (
 
                 if (this.srcNodeRef) {
                     if (this._rendered) this.tag = this.srcNodeRef.tagName;
-                    if (this.srcNodeRef.hasAttribute('class')) this.baseClass += ' ' + this.srcNodeRef.getAttribute('class');
+                    if (!this._rendered && this.srcNodeRef.hasAttribute('class')) this.baseClass += ' ' + this.srcNodeRef.getAttribute('class');
                 } else if (this.innerHTML){
                     this.srcNodeRef = domConstruct.create('span', {innerHTML: this.innerHTML});
                 }

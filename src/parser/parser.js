@@ -124,6 +124,8 @@ function (
                     for(i in props) params[i] = _processParam(i, props[i], Module)
                 }
 
+                delete(params['class']);
+                
                 //check to see if the widget has already be created (perhaps in a widget template)
                 if (refNode.hasAttribute('widgetId')){
                     instance = registry.byId(refNode.getAttribute('widgetId'));
