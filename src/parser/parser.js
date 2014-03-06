@@ -125,7 +125,7 @@ function (
                 }
 
                 delete(params['class']);
-                
+
                 //check to see if the widget has already be created (perhaps in a widget template)
                 if (refNode.hasAttribute('widgetId')){
                     instance = registry.byId(refNode.getAttribute('widgetId'));
@@ -164,7 +164,7 @@ function (
             if(name in Module.prototype){
                 switch(typeof Module.prototype[name]){
                 case 'number':
-                    return value.length ? Number(value) : NaN;
+                    return typeof value == 'number' ? value : typeof value == 'string' ? Number(value) : NaN;
                     break;
                 case 'boolean':
                     // for checked/disabled value might be "" or "checked".	 interpret as true.
