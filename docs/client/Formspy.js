@@ -32,7 +32,7 @@ function (
                 }));
 
                 var showValue = lang.hitch(this, function(value){
-                    if (typeof newValue == 'string'){
+                    if (typeof value == 'string'){
                         this.value.textContent = value;
                     } else {
                         this.value.innerHTML = json.stringify(value, null, '   ');
