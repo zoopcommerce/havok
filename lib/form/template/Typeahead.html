@@ -1,5 +1,5 @@
-<w-dropdown-toggle class="input-typeahead" data-dojo-attach-point="dropdownToggle" tag="${toggleTag}">
+<${tag} class="input-typeahead">
+    <input id="${id}" type="text" data-dojo-attach-point="input, focusNode, placementNode, widthNode"/>
+    <span class="hidden" data-dojo-attach-point="button"></span>
     <ul data-dojo-type="../form/TypeaheadDropdown" data-dojo-attach-point="dropdown"></ul>
-    <input id="${id}" type="text" data-dojo-attach-point="input, focusNode"/>
-    <span class="hidden" dropdown-toggle></span>
-</w-dropdown-toggle>
+</${tag}>
