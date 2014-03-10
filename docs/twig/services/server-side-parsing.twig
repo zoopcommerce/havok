@@ -1,6 +1,9 @@
 <h1>Server Side Parsing (dom-lite)</h1>
 
-<p class="lead">Parse widgets server side for faster page loads</p>
+<p class="lead">Parse and render widgets server side for faster page loads</p>
 
-<p></p>
+<p>Widgets are a wonderful way to create modular, reusable code, however they may suffer the problem of a 'jumpy' page load. That is, as the page is loaded, widgets replace their unrendered node with fully rendered content. This can cause dramatic changes in page layout during the first moments of viewing a page.</p>
 
+<p>One remedy for this problem is to parse and render the widgets server side, and send the fully rendered widgets to the browser. This is a particularly effective solution of sites with static content.</p>
+
+<p><a href="http://github.com/superdweebie/dom-lite">dom-lite</a> is an experimental html dom that runs under node.js. It is small and fast, and will run cross platform. <code>dom-lite</code> is used to pre-render these documentation pages.</p>

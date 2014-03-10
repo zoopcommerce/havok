@@ -1,6 +1,6 @@
 var fs = require('fs-extra');
 var path = require('path');
-var twigPath = require('./twigPath').path;
+var docsPaths = require('./docsPaths');
 var render = require('./renderer').render;
 var url = require('url');
 var dive = require('dive');
@@ -29,9 +29,9 @@ var generateHTML = function(domLite, callback){
         }
     };
 
-    var distDir = path.normalize(twigPath + '/../dist');
+    var distDir = docsPaths.dist;
 
-    fs.readdir(twigPath, function(err, list){
+    fs.readdir(docsPaths.twig, function(err, list){
         if (err) {callback(err); return;}
         start();
         list.forEach(function(filename){
@@ -41,7 +41,7 @@ var generateHTML = function(domLite, callback){
                 return
             }
 
-            fs.stat(twigPath + '/' + filename, function(err, stat){
+            fs.stat(docsPaths.twig + '/' + filename, function(err, stat){
                 if (err) {callback(err); errState = true; return;}
                 if (!stat.isDirectory()){
 
@@ -58,7 +58,7 @@ var generateHTML = function(domLite, callback){
                         })
                     } else {
                         //just copy anything else
-                        var from = twigPath + '/' + filename;
+                        var from = docsPaths.twig + '/' + filename;
                         var to = distDir + '/' + filename;
                         fs.copy(from, to, function(err){
                             if (err) {callback(err); errState = true; return;}
@@ -76,12 +76,12 @@ var generateHTML = function(domLite, callback){
     var packageNames = ['dijit', 'dojo', 'havok', 'mystique'];
     packageNames.forEach(function(item){
         start();
-        var packagePath = twigPath + '/api/' + item;
+        var packagePath = docsPaths.twig + '/api/' + item;
         dive(
             packagePath,
             function(err, filepath){
                 if (err) {callback(err); errState = true; return;}
-                var basePath = filepath.replace(twigPath, '').replace(/\\/g, '/').split('.').slice(0, -1).join('.');
+                var basePath = filepath.replace(docsPaths.twig, '').replace(/\\/g, '/').split('.').slice(0, -1).join('.');
                 start();
                 render(url.parse(basePath + '.html'), getParams(), domLite, function(err, content){
                     if (err) {callback(err); errState = true; return;}

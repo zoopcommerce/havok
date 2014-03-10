@@ -1,6 +1,6 @@
 var fs = require('fs');
 var tree = require('./tree.json');
-var twigPath = require('../docs/twigPath').path;
+var docsPaths = require('./docsPaths');
 
 var data = [];
 var walk = function(node, parentId){
@@ -44,12 +44,12 @@ var writeStore = function(callback){
             walk(tree.children[i]);
         }
 
-        fs.writeFile(twigPath + '/api/api-tree-data.json', JSON.stringify({data: data}, null, 4) , function(err) {
+        fs.writeFile(docsPaths.client + '/api-tree-data.json', JSON.stringify({data: data}, null, 4) , function(err) {
             if(err) {
                 console.log(err);
                 callback(err);
             } else {
-                console.log('api-tree-data.json written');
+                console.log(docsPaths.client + '/api-tree-data.json written');
                 callback();
             }
         });

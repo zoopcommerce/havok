@@ -1,14 +1,13 @@
 var fs = require('fs-extra');
 var details = require('./details.json');
-
-var twigPath = require('../docs/twigPath').path + '/api/';
+var apiPath = require('./docsPaths').twig + '/api/';
 
 var write = function(item, callback){
     var pieces = item.location.split('/'),
         rootPath = pieces.map(function(){return ''}).join('../') + '../',
         shortName = pieces.pop(),
         file = shortName + '.json',
-        path = twigPath + pieces.join('/');
+        path = apiPath + pieces.join('/');
 
     item.rootPath = rootPath;
     item.shortName = shortName;

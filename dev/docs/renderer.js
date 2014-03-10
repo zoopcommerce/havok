@@ -1,7 +1,7 @@
 var fs = require('fs');
 var url = require('url');
 var devUtil = require('../devUtil');
-var twigPath = require('./twigPath').path;
+var twigPath = require('./docsPaths').twig;
 var Twig = require('twig');
 var apiGenerateDocs = require('./apiGenerateDocs');
 

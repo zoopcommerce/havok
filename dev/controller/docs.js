@@ -3,7 +3,7 @@ var url = require('url');
 var devUtil = require('../devUtil');
 var argv = require('../argv');
 var render = require('../docs/renderer').render;
-var twigPath = require('../docs/twigPath').path;
+var twigPath = require('../docs/docsPaths').twig;
 
 var getParams = function(request){
     var parsedUrl = url.parse(request.url, true),
