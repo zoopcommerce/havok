@@ -29,14 +29,14 @@
 {% set useingExample1 %}
 <script type="text/javascript">
     require([
-        'havok/widget/Modal', //load the Modal module
-        'dojo/domReady!'      //wait until the dom is ready before executing the function
+        'havok/widget/Modal', /*load the Modal module*/
+        'dojo/domReady!'      /*wait until the dom is ready before executing the function*/
     ], function(Modal){
-        var modal = new Modal;                            //create a new modal widget
-        modal.header.innerHTML = 'Hello';                 //give the modal a title
-        modal.containerNode.innerHTML = 'My first modal'; //give the modal some content
-        modal.startup();                                  //startup the widget
-        modal.show();                                     //show the modal
+        var modal = new Modal;                            /*create a new modal widget*/
+        modal.header.innerHTML = 'Hello';                 /*give the modal a title*/
+        modal.containerNode.innerHTML = 'My first modal'; /*give the modal some content*/
+        modal.startup();                                  /*startup the widget*/
+        modal.show();                                     /*show the modal*/
     })
 </script>{% endset %}{{useingExample1|e}}
 </pre>

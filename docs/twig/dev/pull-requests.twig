@@ -1,0 +1,27 @@
+<h1>Pull Requests</h1>
+
+<p>To add your fixes or improvements to Havok you'll need to open a pull request in github.</p>
+
+<p>To open a pull request, first fork havok on github.</p>
+
+<p>Then do the following to save your local changes up to your github fork:</p>
+<pre class="prettyprint linenums">
+#create a new branch to hold your changes
+git checkout -b my-patch
+
+#add your fork as a new remote
+git remote add fork http://github.com/username/havok
+
+#stage all your changes for commit
+git add .
+
+#commit changes
+git commit -m "Description of changes made"
+
+#push your changes to github
+git push fork my-patch
+</pre>
+
+<p>Finally, go to your github fork, and click 'open pull request'</p>
+
+<p>Thanks for your contribution!</p>
