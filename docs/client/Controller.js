@@ -27,7 +27,7 @@ function(
 
             constructor: function(){
                 this.node = document.body.querySelector('main');
-                this.overlay = registry.byNode(document.body.querySelector('.main-overlay'));
+                this.overlay = registry.getEnclosingWidget(document.body.querySelector('.main-overlay'));
                 this.cache = {};
             },
 
@@ -63,11 +63,11 @@ function(
             },
 
             exit: function(){
+                this.overlay.show();
                 array.forEach(registry.findWidgets(this.node), function(widget){
                     widget.destroyRecursive()
                 });
                 domConstruct.empty(this.node);
-                this.overlay.show();
             },
 
             load: function(src){

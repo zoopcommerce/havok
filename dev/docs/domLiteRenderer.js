@@ -54,7 +54,7 @@ exports.render = function(rawHtml, callback){
                         result.push(renderedHead);
                         result.push(renderedBody);
                         result.push('</html>');
-                    } else if (node.nodeType == nodeType.Tag){
+                    } else if (node.outerHTML){
                         result.push(node.outerHTML);
                     }
                 })

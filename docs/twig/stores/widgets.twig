@@ -23,37 +23,37 @@
 </pre>
 
 <h2>Nav dropdowns</h2>
-<p>Using a store, add dropdown menus with nested <code>optgroup</code> tags.</p>
+<p>Using a store, add dropdown menus with nested <code>d-group</code> tags.</p>
 <div class="bs-docs-example">
     <datalist id="navStore2">
-        <option data-id="home">home</option>
-        <optgroup text="help <b class='caret'></b>">
+        <option id="home">home</option>
+        <d-group text="help <b class='caret'></b>">
             <option>action</option>
             <option>another action</option>
             <option>something else</option>
-            <option type="divider">
-            <optgroup text="deeper submenu">
+            <option type="divider"></option>
+            <d-group text="deeper submenu">
                 <option>deep menu 1</option>
                 <option>deep menu 2</option>
-            </optgroup>
-        </optgroup>
+            </d-group>
+        </d-group>
     </datalist>
     <w-nav-pill store="navStore2" active="home"></w-nav-pill>
 </div>
 <pre class="prettyprint linenums">
 {% set storeExample2 %}
 <datalist id="navStore2">
-    <option data-id="home">home</option>
-    <optgroup text="help <b class='caret'></b>">
+    <option id="home">home</option>
+    <d-group text="help <b class='caret'></b>">
         <option>action</option>
         <option>another action</option>
         <option>something else</option>
-        <option type="divider">
-        <optgroup text="deeper submenu">
+        <option type="divider"></option>
+        <d-group text="deeper submenu">
             <option>deep menu 1</option>
             <option>deep menu 2</option>
-        </optgroup>
-    </optgroup>
+        </d-group>
+    </d-group>
 </datalist>
 <w-nav-pill store="navStore2" active="home"></w-nav-pill>{% endset %}{{storeExample2|e}}
 </pre>
@@ -70,7 +70,7 @@
             <option type="nav-header">Another list header</option>
             <option>Profile</option>
             <option>Settings</option>
-            <option type="divider">
+            <option type="divider"></option>
             <option>Help</option>
         </datalist>
         <w-nav-list store="navListStore1"></w-nav-list>
@@ -86,7 +86,7 @@
     <option type="nav-header">Another list header</option>
     <option>Profile</option>
     <option>Settings</option>
-    <option type="divider">
+    <option type="divider"></option>
     <option>Help</option>
 </datalist>
 <w-nav-list store="navListStore1"></w-nav-list>{% endset %}{{storeExample3|e}}
@@ -97,10 +97,10 @@
 <div class="bs-docs-example">
     <datalist id="navBarStore1">
         <option>Home</option>
-        <optgroup text="Dropdown <span class='caret'></span>">
+        <d-group text="Dropdown <span class='caret'></span>">
             <option>Item 1</option>
             <option>Item 2</option>
-        </optgroup>
+        </d-group>
     </datalist>
     <w-nav-bar>
         <w-nav-bar-links store="navBarStore1"></w-nav-bar-links>
@@ -110,10 +110,10 @@
 {% set storeExample4 %}
 <datalist id="navBarStore1">
     <option>Home</option>
-    <optgroup text="Dropdown <span class='caret'></span>">
+    <d-group text="Dropdown <span class='caret'></span>">
         <option>Item 1</option>
         <option>Item 2</option>
-    </optgroup>
+    </d-group>
 </datalist>
 <w-nav-bar>
     <w-nav-bar-links store="navBarStore1"></w-nav-bar-links>
@@ -126,18 +126,18 @@
 <div class="bs-docs-example">
     <div>
         <datalist id="treeStore1">
-            <optgroup text="One">
-                <optgroup text="One One">
+            <d-group text="One">
+                <d-group text="One One">
                     <option>One One One</option>
                     <option>One One Two</option>
-                </optgroup>
+                </d-group>
                 <option>One Two</option>
                 <option>One Three</option>
-            </optgroup>
-            <optgroup text="Two">
+            </d-group>
+            <d-group text="Two">
                 <option>Two One</option>
                 <option>Two Two</option>
-            </optgroup>
+            </d-group>
             <option>Three</option>
             <option>Four</option>
             <option>Five</option>
@@ -148,18 +148,18 @@
 <pre class="prettyprint linenums">
 {% set storeExample5 %}
 <datalist id="treeStore1">
-    <optgroup text="One">
-        <optgroup text="One One">
+    <d-group text="One">
+        <d-group text="One One">
             <option>One One One</option>
             <option>One One Two</option>
-        </optgroup>
+        </d-group>
         <option>One Two</option>
         <option>One Three</option>
-    </optgroup>
-    <optgroup text="Two">
+    </d-group>
+    <d-group text="Two">
         <option>Two One</option>
         <option>Two Two</option>
-    </optgroup>
+    </d-group>
     <option>Three</option>
     <option>Four</option>
     <option>Five</option>
