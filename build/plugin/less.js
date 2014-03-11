@@ -19,8 +19,7 @@ define(["dojo/json", "dojo/_base/array", "build/fs"], function(json, array, fs){
 
             var lessPlugin = bc.amdResources["havok/less"],
                 moduleInfo = bc.getSrcModuleInfo(mid, referenceModule, true),
-                lessResource = bc.resources[moduleInfo.url],
-                i;
+                lessResource = bc.resources[moduleInfo.url];
 
             if (!lessPlugin){
                 throw new Error("havok/less! plugin missing");

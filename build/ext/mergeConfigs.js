@@ -18,6 +18,11 @@ mergeConfigs = function(profile, callback){
             configManager.merge(profile.defaultConfig.merge, mergedConfig).then(function(mergedConfig){
                 profile.defaultConfig = lang.mixinDeep(profile.defaultConfig, mergedConfig);
 
+                //make sure merged config files are excluded from layers - they just waste space there
+                for (var i in profile.layers){
+                    if (!profile.layers[i].exclude) profile.layers[i].exclude = [];
+                    profile.layers[i].exclude = profile.layers[i].exclude.concat(profile.defaultConfig.merge);
+                }
                 delete(profile.defaultConfig.merge);
                 mergeDone.resolve();
             });
@@ -26,9 +31,14 @@ mergeConfigs = function(profile, callback){
         mergeDone.then(
             function(){
                 if (profile.defaultConfig && profile.defaultConfig.less){
-                    //move less config so dynamic loading doesn't happend with a deployed layer
+                    //move less config so dynamic loading doesn't happen with a deployed layer
                     profile.less = profile.defaultConfig.less;
-                    delete(profile.defaultConfig.less);
+                    profile.defaultConfig.less = false;
+
+                    for (var i in profile.layers){
+                        if (!profile.layers[i].exclude) profile.layers[i].exclude = [];
+                        profile.layers[i].exclude.push('havok/lessLoader');
+                    }
                 }
                 console.log('DONE  ' + message);
                 callback(null, profile);

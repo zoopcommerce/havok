@@ -5,6 +5,8 @@ var profile = {
     layerOptimize:"closure",
     selectorEngine:"lite",
     mini:1,
+    copyrightFile: "copyright.txt",
+    buildNotice: "builtNotice.txt",
     buildReportDir: ".",
     buildReportFilename: "build-report.txt",
     insertAbsMids: 0,

@@ -67,7 +67,7 @@ ERROR    : 3</pre>
          }
      )
 </script>
-<button class="btn" id="exception2">Throw warning</button>{% endset %}{{exceptionExample1|e}}
+<button class="btn" id="exception2">Throw warning</button>{% endset %}{{exceptionExample2|e}}
 </pre>
 
 <h2>Custom Exceptions</h2>
@@ -78,7 +78,7 @@ ERROR    : 3</pre>
 define([
     'dojo/_base/lang',
     'dojo/errors/create',
-    '../../exception/Base'
+    'havok/exception/Base'
 ],
 function(
     lang,
@@ -97,11 +97,11 @@ function(
 
 <h2>Renderers</h2>
 
-<p>The handler is configured through the di container with an array of renderers. Eg:</p>
+<p>The simplest way to configure renderers is through the di container with an array of renderers. Eg:</p>
 
 <pre class="prettyprint linenums">
 di: {
-    'havok/exception/Handler': {
+    'havok/exception/handler': {
         gets: {
             renderers: [
                 'havok/exception/renderer/Console',

@@ -44,7 +44,7 @@ function(){
             }
         },
         less: {
-            "docs/vendor/prettify/prettify.css": {rank: 1},
+            "docs/vendor/prettify/prettify.css": {rank: 1, importOption: ['less']},
             "bootstrap/less/labels-badges.less": {rank: 1},
             "bootstrap/less/wells.less": {rank: 1},
             "docs/less/docs.less": {rank: 4}

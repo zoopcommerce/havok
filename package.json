@@ -6,9 +6,9 @@
         "url" : "http://github.com/zoopcommerce/havok"
     },
     "dependencies": {
-        "dojo"              : "1.9.2",
-        "dijit"             : "http://github.com/dojo/dijit/tarball/1.9.2",
-        "dojo-util"         : "http://github.com/dojo/util/tarball/fedc64c8adefc19ea10b33bfc3be7400f0fb4579",
+        "dojo"              : "1.9.3",
+        "dijit"             : "http://github.com/dojo/dijit/tarball/1.9.3",
+        "dojo-util"         : "http://github.com/dojo/util/tarball/1.9.3",
         "mystique"          : "http://github.com/zoopcommerce/mystique-js/tarball/1.2.2",
         "mystique-common"   : "http://github.com/zoopcommerce/mystique/tarball/1.2.2",
         "bootstrap"         : "http://github.com/twbs/bootstrap/tarball/v2.3.2",
@@ -18,10 +18,11 @@
         "fs-extra"          : "0.8.1"
     },
     "devDependencies": {
-        "intern"       : "1.3.2",
-        "twig"         : "http://github.com/justjohn/twig.js/tarball/0.7.0",
+        "dom-lite"     : "http://github.com/superdweebie/dom-lite/tarball/master",
         "js-doc-parse" : "http://github.com/superdweebie/js-doc-parse/tarball/master",
-        "dom-lite"     : "http://github.com/superdweebie/dom-lite/tarball/master"
+        "jshint"       : "2.4.4",
+        "intern"       : "1.3.2",
+        "twig"         : "http://github.com/justjohn/twig.js/tarball/0.7.0"
     },
     "description": "The mutant offspring of Twitter Bootstrap and Dojo",
     "keywords": ["JavaScript", "Dojo", "Widget", "Bootstrap"],
