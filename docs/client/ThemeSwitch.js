@@ -1,6 +1,7 @@
 define([
     'dojo/_base/declare',
     'dojo/_base/lang',
+    'dojo/dom',
     'dojo/cookie',
     'havok/widget/Tooltip',
     'havok/widget/RadioButtonGroup'
@@ -8,6 +9,7 @@ define([
 function (
     declare,
     lang,
+    dom,
     cookie,
     Tooltip,
     RadioButtonGroup
@@ -31,26 +33,27 @@ function (
                     bootstrap = this.containerNode.lastElementChild,
                     theme = cookie('havok-docs-theme');
 
-                var zoopTooltip = new Tooltip({target: zoop, placement: 'bottom', title: 'View docs with zoop styles'});
-                zoopTooltip.startup();
+                (new Tooltip({target: zoop, placement: 'bottom', title: 'View docs with zoop styles'})).startup();
+                (new Tooltip({target: bootstrap, placement: 'bottom', title: 'View docs with default bootstrap styles'})).startup();
 
-                var bootstrapTooltip = new Tooltip({target: bootstrap, placement: 'bottom', title: 'View docs with default bootstrap styles'});
-                bootstrapTooltip.startup();
-
-                if (theme == 'bootstrap'){
-                    this.set('active', bootstrap);
-                } else {
-                    this.set('active', zoop);
-                }
+                //remove preload
+                var link = dom.byId('themeSwtichPreloadLink');
+                if (link) link.parentElement.removeChild(link)
 
                 this.watch('active', lang.hitch(this, function(p, o, n){
+                    var link = dom.byId('themeSwtichLink');
                     if (n == zoop){
                         cookie('havok-docs-theme', 'zoop');
+                        if (link) link.href = '/docs/zoop.css'
                     } else if (n == bootstrap){
                         cookie('havok-docs-theme', 'bootstrap');
+                        if (link) link.href = '/docs/bootstrap.css'
                     }
-                    document.location.reload();
+                    if (!link) document.location.reload()
                 }))
+
+                if (theme == 'bootstrap') this.set('active', bootstrap);
+                else this.set('active', zoop);
             }
         }
     );

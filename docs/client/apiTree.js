@@ -1,14 +1,10 @@
 define([
-    'dojo/Deferred',
-    'dojo/store/Memory'
+    'dojo/store/Memory',
+    'dojo/text!./api-tree-data.json'
 ],
 function(
-    Deferred,
-    Memory
+    Memory,
+    data
 ){
-    var result = new Deferred;
-    require(['dojo/text!docs/api-tree-data.json'], function(data){
-        result.resolve(new Memory(JSON.parse(data)));
-    })
-    return result;
+    return new Memory(JSON.parse(data));
 });

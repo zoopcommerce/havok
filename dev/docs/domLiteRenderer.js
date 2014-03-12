@@ -6,6 +6,7 @@ dojoConfig.merge = [
     'docs/config'
 ]
 dojoConfig.less = false;
+
 var parser = require('dom-lite/parser');
 var nodeType = require('dom-lite/nodeType');
 
@@ -21,15 +22,16 @@ exports.render = function(rawHtml, callback){
         var renderedHead = document.head ? document.head.outerHTML : '';
         var prettifyPath = __dirname + '/../../docs/client/vendor/prettify/prettify';
 
+        delete require.cache[require.resolve(prettifyPath)]; //make sure that prettify reloads each request
         require(prettifyPath);
         window['PR_SHOULD_USE_CONTINUATION'] = false; //ensures that pretty printing is sync rather than async
         window.prettyPrint();
-        delete require.cache[require.resolve(prettifyPath)]; //make sure that prettify reloads each request
 
+        delete require.cache[require.resolve('dojo/dojo')]; //make sure that dojo is fresh
+        delete(global.define);
         require('dojo/dojo');
-        delete require.cache[require.resolve('dojo/dojo')]; //make sure that dojo reloads each request
 
-        global.require(['dojo/has', 'havok/parser/parser'], function(has, parser){
+        global.require(['dojo/has', 'havok/parser/parser', 'dojo/_base/config'], function(has, parser, intConfig){
 
             has.add("dom-addeventlistener", !!document.addEventListener);
             has.add("dom-attributes-explicit", true);

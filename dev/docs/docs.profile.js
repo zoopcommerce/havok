@@ -17,10 +17,11 @@ var profile = {
             includeLocales: ['en-gb', 'en-us'],
             include: [
                 'havok/*',
-                'docs/*'
+                'docs/*',
+                'mystique/Alpha',
+                'mystique/Length'
             ],
-            boot: 1,
-            customBase: 1
+            boot: 1
         }
     },
     packages:[

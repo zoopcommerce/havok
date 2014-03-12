@@ -11,7 +11,7 @@ var makeDocs = function(callback){
             if (err) {callback(err); return;}
             require('./../dev/docs/compileZoopTheme').compileZoopTheme(function(err){
                 if (err) {callback(err); return;}
-                require('./../dev/docs/generateHTML').generateHTML(false, function(err){
+                require('./../dev/docs/generateHTML').generateHTML(true, function(err){
                     if (err) {callback(err); return;}
                     console.log('DONE  ' + message);
                     callback();

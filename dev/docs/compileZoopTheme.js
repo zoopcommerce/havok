@@ -1,7 +1,6 @@
 var lessc = require('less');
 var docsPaths = require('./docsPaths');
 var path = require('path');
-
 var fs = require('fs-extra');
 
 var compileZoopTheme = function(callback){
@@ -35,7 +34,13 @@ var compileZoopTheme = function(callback){
                     optCss = root.toCSS({compress: true, strictMaths: false, strictUnits: false});
                     fs.writeFile(optCssFilename, optCss, function(err){
                         if (err) {callback(err); return;}
-                        callback();
+                        fs.copy(docsPaths.dist + '/docs/docs.css', docsPaths.dist + '/docs/bootstrap.css', function(err){
+                            if (err) {callback(err); return;}
+                            fs.unlink(docsPaths.dist + '/docs/docs.css', function(err){
+                                if (err) {callback(err); return;}
+                                callback();
+                            })
+                        })
                     })
                 })
             })

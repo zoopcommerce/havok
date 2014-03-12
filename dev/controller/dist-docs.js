@@ -11,7 +11,9 @@ var process = function(request, response, callback){
         parsedUrl = url.parse('/index.html');
     }
     fs.readFile(require.resolve(docsDistDir + parsedUrl.pathname), function(err, content){
-        devUtil.writeResponse(request, response, err, content, devUtil.getContentType(parsedUrl));
+        setTimeout(function(){
+            devUtil.writeResponse(request, response, err, content, devUtil.getContentType(parsedUrl));
+        }, 1000)
         callback(err);
     })
 }

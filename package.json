@@ -9,7 +9,7 @@
         "dojo"              : "1.9.3",
         "dijit"             : "http://github.com/dojo/dijit/tarball/1.9.3",
         "dojo-util"         : "http://github.com/dojo/util/tarball/1.9.3",
-        "mystique"          : "http://github.com/zoopcommerce/mystique-js/tarball/1.2.2",
+        "mystique"          : "http://github.com/zoopcommerce/mystique-js/tarball/1.2.3",
         "mystique-common"   : "http://github.com/zoopcommerce/mystique/tarball/1.2.2",
         "bootstrap"         : "http://github.com/twbs/bootstrap/tarball/v2.3.2",
         "font-awesome"      : "4.0.3",

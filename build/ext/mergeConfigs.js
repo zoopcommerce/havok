@@ -18,10 +18,18 @@ mergeConfigs = function(profile, callback){
             configManager.merge(profile.defaultConfig.merge, mergedConfig).then(function(mergedConfig){
                 profile.defaultConfig = lang.mixinDeep(profile.defaultConfig, mergedConfig);
 
-                //make sure merged config files are excluded from layers - they just waste space there
-                for (var i in profile.layers){
-                    if (!profile.layers[i].exclude) profile.layers[i].exclude = [];
-                    profile.layers[i].exclude = profile.layers[i].exclude.concat(profile.defaultConfig.merge);
+                //make sure merged config files are left out from layers - they just waste space there
+                var i;
+                var j;
+                var index;
+
+                for (i in profile.layers){
+                    for (j in profile.defaultConfig.merge){
+                        index = profile.layers[i].include.indexOf(profile.defaultConfig.merge[j]);
+                        if (index !== -1){
+                            profile.layers[i].include.splice(index, 1);
+                        }
+                    }
                 }
                 delete(profile.defaultConfig.merge);
                 mergeDone.resolve();
@@ -35,9 +43,14 @@ mergeConfigs = function(profile, callback){
                     profile.less = profile.defaultConfig.less;
                     profile.defaultConfig.less = false;
 
-                    for (var i in profile.layers){
-                        if (!profile.layers[i].exclude) profile.layers[i].exclude = [];
-                        profile.layers[i].exclude.push('havok/lessLoader');
+                    var i;
+                    var index;
+
+                    for (i in profile.layers){
+                        index = profile.layers[i].include.indexOf('havok/lessLoader');
+                        if (index !== -1){
+                            profile.layers[i].include.splice(index, 1);
+                        }
                     }
                 }
                 console.log('DONE  ' + message);

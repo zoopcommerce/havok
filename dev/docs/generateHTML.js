@@ -108,5 +108,5 @@ var generateHTML = function(domLite, callback){
     })
 }
 
-if(require.main === module) generateHTML(false, function(err){if (err) throw err})
+if(require.main === module) generateHTML(true, function(err){if (err) throw err})
 else exports.generateHTML = generateHTML
