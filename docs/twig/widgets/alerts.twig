@@ -1,0 +1,70 @@
+<h1>Alerts</h1>
+
+<p class="lead">Show/hide visual alters to your users.</p>
+
+<p>Use the <code>w-alert</code> tag to create a <a href="/api/havok/widget/Alert.html">havok/widget/Alert</a>.</p>
+
+<h2>Default alert</h2>
+<p>Wrap any text in <code>w-alert</code> for a basic warning alert message.</p>
+<div class="bs-docs-example">
+    <w-alert hidden=false>
+        <strong>Warning!</strong> Best check your self, you're not looking too good.
+    </w-alert>
+</div>
+<pre class="prettyprint linenums">
+{% set alertExample1 %}
+<w-alert hidden=false>
+    <strong>Warning!</strong> Best check your self, you're not looking too good.
+</w-alert>{% endset %}{{alertExample1|e}}
+</pre>
+
+<h2>Block alerts</h2>
+
+<p>Add class <code>alert-block</code> for longer messages.</p>
+<div class="bs-docs-example">
+    <w-alert hidden=false class="alert-block">
+        <h4>Warning!</h4>
+        <p>Best check your self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
+    </w-alert>
+</div>
+<pre class="prettyprint linenums">
+{% set alertExample2 %}
+<w-alert hidden=false class="alert-block">
+    <h4>Warning!</h4>
+    <p>Best check your self, ...</p>
+</w-alert>{% endset %}{{alertExample2|e}}
+</pre>
+
+<h2>Pretty colors</h2>
+
+<p>Add sematic classes for different styling:</p>
+<div class="bs-docs-example">
+    <w-alert class="alert-info" hidden=false>
+        <strong>Info!</strong> alert.
+    </w-alert>
+    <w-alert class="alert-error" hidden=false>
+        <strong>Error!</strong> alert.
+    </w-alert>
+    <w-alert class="alert-success" hidden=false>
+        <strong>Success!</strong> alert.
+    </w-alert>
+</div>
+<pre class="prettyprint linenums">
+{% set alertExample3 %}
+<w-alert class="alert-info" hidden=false>
+    <strong>Info!</strong> alert.
+</w-alert>
+<w-alert class="alert-error" hidden=false>
+    <strong>Error!</strong> alert.
+</w-alert>
+<w-alert class="alert-success" hidden=false>
+    <strong>Success!</strong> alert.
+</w-alert>{% endset %}{{alertExample3|e}}
+</pre>
+
+<h2>See also</h2>
+
+<p>Api documentation:</p>
+<ul>
+    <li><a href="/api/havok/widget/Alert.html">havok/widget/Alert</a></li>
+</ul>

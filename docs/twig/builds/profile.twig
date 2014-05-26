@@ -1,0 +1,164 @@
+<h1>Profile</h1>
+
+<p>A build profile is a js file that describes which packages will be built, which modules should be in any layers, and <i>lots</i> of other switches that can be used to tailor your layer for a specific runtime environment.</p>
+
+<p>Dojo has many settings that can be used to refine the output of a build. Havok tries to simplify this for the most common usage.</p>
+
+<p>The following outlines the properties of a simple build profile which will target the browser environment.</p>
+
+<h2>releaseDir</h2>
+
+<p>A path relative to the profile where the build will be saved.</p>
+
+<h2>distDir (optional)</h2>
+
+<p>A path relative to the profile where build layer js and css will be copied.</p>
+
+<h2>defaultConfig</h2>
+
+<p>Values for <code>dojoConfig</code> that should be baked into the build. This would normally be set to:</p>
+
+<pre class="prettyprint linenums">
+defaultConfig: {
+    deps: [
+        'havok/ready!'
+    ],
+    merge: [
+        'havok/config'
+    ]
+}
+</pre>
+
+<h2>localeList</h2>
+
+<p>A list of locales to be build. This would normally be set to:</p>
+<pre class="prettyprint linenums">
+localeList: ['en-gb', 'en-us']
+</pre>
+
+<h2>layers</h2>
+
+<p>This is the most important aspect of defining a build profile. Each layer defines a single compressed js file with the included modules and their dependencies along with a compressed css file of all the less for that layer.</p>
+
+<p>Bootable layers include the dojo loader. Non-bootable layers require the dojo loader to be loaded before they can be used.</p>
+
+<h4>Example layer definitions:</h4>
+
+<p>A layer that includes the dojo loader, and nothing else:</p>
+<pre class="prettyprint linenums">
+"dojo/dojo": {
+    include: [],
+    customBase: 1
+}
+</pre>
+
+<p>A bootable layer that every single havok module. This layer will be the same as the havok distributable:</p>
+<pre class="prettyprint linenums">
+"havok/havok":{
+    includeLocales: ['en-gb', 'en-us'],
+    include: [
+        'havok/*'
+    ],
+    boot: 1
+}
+</pre>
+
+<p>A bootable layer that include just the Select and TextBox form widgets:</p>
+<pre class="prettyprint linenums">
+"mylayer":{
+    includeLocales: ['en-gb', 'en-us'],
+    include: [
+        'havok/form/Select',
+        'havok/form/TextBox'
+    ],
+    boot: 1
+}
+</pre>
+
+<p>A pair of layers. One is the dojo loader, with a few foundational havok modules. The other can be loaded later with some specific widgets:</p>
+<pre class="prettyprint linenums">
+"dojo/dojo":{
+    include: [
+        'havok/di/Di',
+        'havok/widget/_WidgetBase'
+    ],
+    customBase: 1
+}
+"mylayer":{
+    includeLocales: ['en-gb', 'en-us'],
+    include: [
+        'havok/form/ColorPicker',
+        'havok/form/TextEditor'
+    ],
+    exclude: [
+        "dojo/dojo"
+    ]
+    boot: 1
+}
+</pre>
+
+<p>A layer that includes every module in your own custom AMD package, and a few from Havok:</p>
+<pre class="prettyprint linenums">
+"mypackage/mypackage":{
+    includeLocales: ['en-gb', 'en-us'],
+    include: [
+        'mypackage/*',
+        'havok/ready',
+        'havok/router/started',
+        'havok/exception/started'
+    ],
+    boot: 1
+}
+</pre>
+
+<h2>Packages</h2>
+
+<p>An array of AMD packages that should be built along with havok and dojo packages. Location must be a path relative to the profile.</p>
+
+<pre class="prettyprint linenums">
+packages:[
+    {
+        name: "mypackage",
+        location: '../mypackage'
+    }
+]
+</pre>
+
+<h2>Complete Example</h2>
+
+<p>A complete build profile might look like this:</p>
+
+<pre class="prettyprint linenums">
+var profile = {
+    releaseDir:"../release",
+    distDir:"../dist",
+    defaultConfig: {
+        deps: [
+            'havok/ready!'
+        ],
+        merge: [
+            'havok/config',
+            'mypackage/config'
+        ]
+    },
+    localeList: ['en-gb', 'en-us'],
+    layers:{
+        "mypackage/mypackage":{
+            includeLocales: ['en-gb', 'en-us'],
+            include: [
+                'mypackage/*',
+                'havok/ready',
+                'havok/router/started',
+                'havok/exception/started'
+            ],
+            boot: 1
+        }
+    },
+    packages:[
+        {
+            name: "mypackage",
+            location: '../mypackage'
+        }
+    ]
+}
+</pre>

@@ -14,7 +14,6 @@ function(
     //		havok/test/filter/Asset/DeferredFilter
 
     return declare(
-        'havok/test/filter/asset/DeferredFilter',
         [Base],
         {
 

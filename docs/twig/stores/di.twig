@@ -1,0 +1,28 @@
+<h1>Di Stores</h1>
+
+<p>Stores may be added using the shared di config. To do so, add keys to the <code>stores</code> object. Eg:</p>
+
+<pre class="prettyprint linenums">
+di: {
+    'stores': {
+        gets: {
+            store1: 'my/store/one',
+            store2: 'my/store/two'
+        },
+        proxies: {
+            store3: {
+                base: 'my/store/three',
+                proxyMethods: [
+                    'get',
+                    'query'
+                ]
+            }
+        }
+    }
+}</pre>
+
+<p>Adding stores via di is particularly handy for two reasons.</p>
+
+<p>Firstly, it is very easy to override a store, and inject an alternative data set. For json rest stores, it can be convienient to inject the target.</p>
+
+<p>Secondly, by using proxies, the store will be lazy loaded. That is, it will only be fetched on it's first use.</p>

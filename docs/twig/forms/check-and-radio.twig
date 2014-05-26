@@ -1,0 +1,140 @@
+<h1>Check and Radio</h1>
+
+<h2>Checkbox</h2>
+<p>Use <code>f-checkbox</code> to create a <a href="/api/havok/form/Checkbox.html">havok/form/Checkbox</a>.</p>
+
+<div class="bs-docs-example form-horizontal">
+    <f-checkbox
+        checked
+        label="Checked Enabled"
+        help-messages="this is a checkbox"
+    ></f-checkbox>
+    <f-checkbox
+        label="Unchecked Enabled"
+        help-messages="this is a checkbox"
+    ></f-checkbox>
+    <f-checkbox
+        checked
+        disabled
+        label="Checked Disabled"
+        help-messages="this is a checkbox"
+    ></f-checkbox>
+    <f-checkbox
+        disabled
+        label='Unchecked Disabled'
+        help-messages='this is a checkbox'
+    ></f-checkbox>
+</div>
+
+<pre class="prettyprint linenums">
+{% set checkExample1 %}
+<f-checkbox
+    checked
+    label="Checked Enabled"
+    help-messages="this is a checkbox"
+></f-checkbox>
+<f-checkbox
+    label="Unchecked Enabled"
+    help-messages="this is a checkbox"
+></f-checkbox>
+<f-checkbox
+    checked
+    disabled
+    label="Checked Disabled"
+    help-messages="this is a checkbox"
+></f-checkbox>
+<f-checkbox
+    disabled
+    label='Unchecked Disabled'
+    help-messages='this is a checkbox'
+></f-checkbox>{% endset %}{{checkExample1|e}}
+</pre>
+
+<h2>Button style Checkbox</h2>
+
+<p>Use <code>f-toggle-button</code> to create a <a href="/api/havok/form/ToggleButton.html">havok/form/ToggleButton</a> for a button style checkbox.</p>
+<div class="bs-docs-example">
+    <d-formspy>
+        <f-toggle-button
+            label='A checkbox'
+            help-messages='this is a button checkbox'
+            value=true
+        />
+            Check Me
+        </f-toggle-button>
+    </d-formspy>
+</div>
+
+<pre class="prettyprint linenums">
+{% set checkExample2 %}
+<f-toggle-button
+    label='A checkbox'
+    help-messages='this is a button checkbox'
+    value=true
+/>
+    Check Me
+</f-toggle-button>{% endset %}{{checkExample2|e}}
+</pre>
+
+<h2>Grouped Button Style Checkboxes</h2>
+
+<p>Use <code>f-checkbox-button-group</code> to create a <a href="/api/havok/form/CheckboxButtonGroup.html">havok/form/CheckboxButtonGroup</a> for a group of button style checkboxes.</p>
+
+<div class="bs-docs-example">
+    <d-formspy>
+        <f-checkbox-button-group
+               label='A checkbox group'
+               help-messages='this is a checkbox group'
+               value='{"l": true, "m": false, "r": true}'
+        />
+            <button value="l">left</button>
+            <button value="m">middle</button>
+            <button value="r">right</button>
+        </f-checkbox-button-group>
+    </d-formspy>
+</div>
+
+    <pre class="prettyprint linenums">
+{% set checkExample3 %}
+<f-checkbox-button-group
+       label='A checkbox group'
+       help-messages='this is a checkbox group'
+       value='{"l": true, "m": false, "r": true}'
+/>
+    <button value="l">left</button>
+    <button value="m">middle</button>
+    <button value="r">right</button>
+</f-checkbox-button-group>{% endset %}{{checkExample3|e}}
+</pre>
+
+<h2>Button Style Radio Group</h2>
+
+<p>Use <code>f-radio-button-group</code> to create a <a href="/api/havok/form/RadioButtonGroup.html">havok/form/RadioButtonGroup</a> for a group of button style radios.</p>
+
+<div class="bs-docs-example">
+    <d-formspy>
+        <f-radio-button-group
+            label="A radio group"
+            help-messages="this is a radio group"
+            value="m"
+        >
+            <button value="l">left</button>
+            <button value="m">middle</button>
+            <button value="r">right</button>
+        </f-radio-button-group>
+    </d-formspy>
+</div>
+
+        <pre class="prettyprint linenums">
+{% set checkExample4 %}
+<f-radio-button-group
+    label="A radio group"
+    help-messages="this is a radio group"
+    value="m"
+>
+    <button value="l">left</button>
+    <button value="m">middle</button>
+    <button value="r">right</button>
+</f-radio-button-group> {% endset %}{{checkExample4|e}}
+</pre>
+

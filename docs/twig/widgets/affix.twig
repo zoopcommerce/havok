@@ -1,0 +1,107 @@
+<h1>Affix</h1>
+
+<p>The content of an Affix widget will stay visible in the viewport when it's target element is also visible. By default, Affix will target the parent element.</p>
+
+<p>The nav to the left is an example.</p>
+
+<style>
+    .affix-example.affix {
+        top: 100px;
+    }
+    .affix-example.affix-bottom {
+        position: absolute;
+        top: auto;
+        bottom: 14px;
+    }
+</style>
+
+<h2>Stand alone widget</h2>
+<p>Scroll the viewport to see the example working</p>
+<div class="bs-docs-example">
+    <div style="height: 300px">
+        <w-affix class="affix-example" viewport-offset-top="100">
+            <button class="btn">I'm affixed!</button>
+        </w-affix>
+    </div>
+</div>
+<pre class="prettyprint linenums">
+{% set affixExample1 %}
+<w-affix viewport-offset-top="100">
+    <button class="btn">I'm affixed!</button>
+</w-affix>{% endset %}{{affixExample1|e}}
+</pre>
+
+<h2>Alternate affix target</h2>
+<p>Scroll the viewport to see the example working</p>
+<div class="bs-docs-example">
+    <div class="row-fluid" style="position:relative">
+        <div class="span3">
+            <w-affix class="affix-example" viewport-offset-top="100" target="AffixTarget1">
+                <button class="btn">Target 1</button>
+            </w-affix>
+        </div>
+        <div class="span9">
+            <div id ="AffixTarget1" class="well">
+                <p><b>Target 1</b></p>
+                <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.</p>
+                <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.</p>
+                <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.</p>
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid" style="position:relative">
+        <div class="span3">
+            <w-affix class="affix-example" viewport-offset-top="100" target="AffixTarget2">
+                <button class="btn">Target 2</button>
+            </w-affix>
+        </div>
+        <div class="span9">
+            <div id ="AffixTarget2" class="well">
+                <p><b>Target 2</b></p>
+                <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.</p>
+                <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.</p>
+                <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<pre class="prettyprint linenums">
+{% set affixExample2 %}
+<div class="span3">
+    <w-affix viewport-offset-top="100" target="AffixTarget1">
+        <button class="btn">Target 1</button>
+    </w-affix>
+</div>
+<div class="span9">
+    <div id ="AffixTarget1" class="well">
+        <p><b>Target 1</b></p>
+        ....
+    </div>
+</div>
+{% endset %}{{affixExample2|e}}
+</pre>
+
+<h2>Affix Mixin</h2>
+<p>Affix behaviour can be mixed in to any widget. Simply use the <code>affix</code> attibute</p>
+<div class="bs-docs-example">
+    <div style="height: 300px">
+        <w-toggle-button class="affix-example" affix viewport-offset-top="100">
+            Affixed toggle
+        </w-toggle-button>
+    </div>
+</div>
+<pre class="prettyprint linenums">
+{% set affixExample3 %}
+<w-toggle-button affix viewport-offset-top="100">
+    Affixed toggle
+</w-toggle-button>
+{% endset %}{{affixExample3|e}}
+</pre>
+
+<h2>See also</h2>
+
+<p>Api documentation:</p>
+<ul>
+    <li><a href="/api/havok/widget/Affix.html">havok/widget/Affix</a></li>
+    <li><a href="/api/havok/widget/_AffixMixin.html">havok/widget/_AffixMixin</a></li>
+</ul>

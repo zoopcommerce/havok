@@ -1,0 +1,54 @@
+//
+//   Less for havok/widget/TextToolbar and havok/widget/TextEditor
+//
+
+.font-mini{
+    font-size: @fontSizeMini;
+}
+
+.font-small{
+    font-size: @fontSizeSmall;
+}
+
+.font-nomal{
+    font-size: @baseFontSize;
+}
+
+.font-large{
+    font-size: @fontSizeLarge;
+}
+
+.text-editor-toolbar {
+    white-space: nowrap;
+    display: inline-block;
+    margin-bottom: 5px;
+
+    .tool-group + .tool-group {
+        margin-left: 5px;
+    }
+}
+
+.text-editor-wrapper {
+    width: 100%;
+    display: inline-block;
+}
+
+.text-editor {
+    .box-sizing(border-box);
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    color: #555554;
+    display: inline-block;
+    padding: 4px 6px;
+    transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+    overflow-y: auto;
+    min-height: 200px;
+    width: 100%;
+}
+
+.text-editor-source {
+    .text-editor;
+    font-family: monospace;
+}

@@ -1,0 +1,29 @@
+//
+//   Less for havok/widget/Tree
+//
+
+@import "bootstrap/less/navs.less";
+
+.tree li a {
+    cursor: pointer
+}
+
+.tree-icon {
+    padding-right: 5px
+}
+
+.folder-open ol {
+    display: block
+}
+
+.folder-open .fa-folder:before {
+    content: @fa-var-folder-open
+}
+
+.folder-close ol {
+    display: none
+}
+
+.folder-close .fa-folder:before {
+    content: @fa-var-folder
+}

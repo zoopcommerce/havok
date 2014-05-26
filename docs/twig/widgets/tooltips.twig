@@ -1,0 +1,106 @@
+<h1>Tooltips</h1>
+
+<p class="lead">Simple stylish tooltips.</p>
+
+<p>Use the <code>w-tooltip</code> tag to create a <a href="/api/havok/widget/Tooltip.html">havok/widget/Tooltip</a>. Use the <code>title</code> attribute to define the content of the tooltip.</p>
+
+<div class="bs-docs-example tooltip-demo">
+    <p class="muted" style="margin-bottom: 0;">Tight pants next level keffiyeh <w-tooltip title="Default tooltip">you probably</w-tooltip> haven't heard of them. Photo booth beard raw denim letterpress vegan messenger bag stumptown. Farm-to-table seitan, mcsweeney's fixie sustainable quinoa 8-bit american apparel <w-tooltip title="Another tooltip">have a</w-tooltip> terry richardson vinyl chambray. Beard stumptown, cardigans banh mi lomo thundercats. Tofu biodiesel williamsburg marfa, four loko mcsweeney's cleanse vegan chambray. A really ironic artisan <w-tooltip title="A much longer tooltip belongs right here to demonstrate the max-width we apply.">whatever keytar</w-tooltip>, scenester farm-to-table banksy Austin <w-tooltip title="The last tip!">twitter handle</w-tooltip> freegan cred raw denim single-origin coffee viral.</p>
+</div>
+
+<pre class="prettyprint linenums">
+{% set tooltipExample1 %}
+<w-tooltip title="Default tooltip">you probably</w-tooltip>{% endset %}{{tooltipExample1|e}}
+</pre>
+
+<h2>Four directions</h2>
+<div class="bs-docs-example tooltip-demo">
+    <ul class="bs-docs-tooltip-examples">
+        <li><w-tooltip placement="top" title="Tooltip on top">Tooltip on top</w-tooltip></li>
+        <li><w-tooltip placement="right" title="Tooltip on right">Tooltip on right</w-tooltip></li>
+        <li><w-tooltip placement="bottom" title="Tooltip on bottom">Tooltip on bottom</w-tooltip></li>
+        <li><w-tooltip placement="left" title="Tooltip on left">Tooltip on left</w-tooltip></li>
+    </ul>
+</div>
+
+<pre class="prettyprint linenums">
+{% set tooltipExample2 %}
+<w-tooltip placement="top" title="Tooltip on top">Tooltip on top</w-tooltip>
+<w-tooltip placement="right" title="Tooltip on right">Tooltip on right</w-tooltip>
+<w-tooltip placement="bottom" title="Tooltip on bottom">Tooltip on bottom</w-tooltip>
+<w-tooltip placement="left" title="Tooltip on left">Tooltip on left</w-tooltip>{% endset %}{{tooltipExample2|e}}
+</pre>
+
+<h2>Custom trigger event</h2>
+<div class="bs-docs-example tooltip-demo">
+    <ul class="bs-docs-tooltip-examples">
+        <li><w-tooltip show-on="click" title="I was clicked">Click to show tooltip</w-tooltip></li>
+    </ul>
+</div>
+<pre class="prettyprint linenums">
+{% set tooltipExample3 %}
+<w-tooltip show-on="click" title="I was clicked">Click to show tooltip</w-tooltip>{% endset %}{{tooltipExample3|e}}
+</pre>
+
+<h2>Inverse tooltip</h2>
+<div class="bs-docs-example tooltip-demo">
+    <ul class="bs-docs-tooltip-examples">
+        <li><w-tooltip class="inverse" title="Inverse tooltip">Inverse Tooltip</w-tooltip></li>
+    </ul>
+</div>
+<pre class="prettyprint linenums">
+{% set tooltipExample4 %}
+<w-tooltip class="inverse" title="Inverse tooltip">Inverse Tooltip</w-tooltip>{% endset %}{{tooltipExample4|e}}
+</pre>
+
+<h2>Alternate target</h2>
+<p>By default a tooltip will be triggered by interaction with the dom node it wraps. To define an alternate dom node, use the <code>target</code> attribute. This allows more flexibility in markup.</p>
+<div class="bs-docs-example tooltip-demo">
+    <div class="bs-docs-tooltip-examples">
+        <button id="findOutMore" class="btn">Find out more <i class="icon-question-sign"></i></button>
+        <w-tooltip target="findOutMore" title="Here's some more info"></w-tooltip>
+    </div>
+</div>
+<pre class="prettyprint linenums">
+{% set tooltipExample5 %}
+<button id="findOutMore" class="btn">Find out more <i class="icon-question-sign"></i></button>
+<!-- other markup here -->
+<w-tooltip target="findOutMore" title="Here's some more info"></w-tooltip>{% endset %}{{tooltipExample5|e}}
+</pre>
+
+<h2>Programatic Example</h2>
+<p>It is straight forward to create a tooltip targeting a node in script.</p>
+<div class="bs-docs-example tooltip-demo">
+    <div class="bs-docs-tooltip-examples">
+        <button id="findOutEvenMore" class="btn">Find out even more <i class="icon-question-sign"></i></button>
+        <script>
+          require(
+              ['havok/widget/Tooltip', 'dojo/domReady!'],
+              function(Tooltip){
+                  var tooltip = new Tooltip({target: 'findOutEvenMore', title: 'Here is even more info'});
+                  tooltip.startup();
+              }
+          )
+        </script>
+    </div>
+</div>
+<pre class="prettyprint linenums">
+{% set tooltipExample6 %}
+<button id="findOutEvenMore" class="btn">Find out even more <i class="icon-question-sign"></i></button>
+<script>
+  require(
+      ['havok/widget/Tooltip', 'dojo/domReady!'],
+      function(Tooltip){
+          var tooltip = new Tooltip({target: 'findOutEvenMore', title: 'Here is even more info'});
+          tooltip.startup();
+      }
+  )
+</script>{% endset %}{{tooltipExample6|e}}
+</pre>
+
+<h2>See also</h2>
+
+<p>Api documentation:</p>
+<ul>
+    <li><a href="/api/havok/widget/Tooltip.html">havok/widget/Tooltip</a></li>
+</ul>

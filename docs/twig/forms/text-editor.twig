@@ -1,0 +1,18 @@
+<h1>Text Editor</h1>
+
+<p>Add rich text editing with <code>f-text-editor</code> to create a <a href="/api/havok/form/TextEditor.html">havok/form/TextEditor</a>. Also supports filters and validators.</p>
+
+<div class="bs-docs-example">
+    <d-formspy class="form-horizontal">
+        <f-text-editor label="My Story" help-messages="here is some text to edit" required>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </f-text-editor>
+    </d-formspy>
+</div>
+
+<pre class="prettyprint linenums">
+{% set editorExample1 %}
+<f-text-editor label="My Story" help-messages="here is some text to edit" required>
+    Lorem ipsum dolor sit amet, ...
+</f-text-editor>{% endset %}{{editorExample1|e}}
+</pre>

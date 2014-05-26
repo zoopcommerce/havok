@@ -1,0 +1,35 @@
+//
+//   Less for havok/widget/Overlay
+//
+
+.overlay {
+    .overlay-backdrop {
+        opacity: 0.8;
+        position: absolute;
+        background-color: @black;
+    }
+
+    .overlay-content {
+        color: @grayLighter;
+        position: absolute;
+    }
+}
+
+.overlay.document {
+    .overlay-backdrop {
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 10000;
+    }
+
+    .overlay-content {
+        position: fixed;
+        z-index: 10001;
+    }
+}
+
+.overlay.wait {
+    cursor:wait;
+}

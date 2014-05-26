@@ -1,0 +1,47 @@
+<div class="color-picker">
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span10">
+                <div class="color-picker-constraint">
+                    <w-movable
+                        data-dojo-attach-point="boxHandle"
+                        data-dojo-attach-event="moved: onBoxHandleMoved"
+                        class="color-picker-box-handle"
+                        tabindex=0
+                    ></w-movable>
+                    <div class="color-picker-outer-box">
+                        <div
+                            class="color-picker-box"
+                            data-dojo-attach-point="box"
+                            data-dojo-attach-event="ondijitclick: onBoxClick"
+                            ></div>
+                    </div>
+                </div>
+            </div>
+            <div class="span2">
+                <div class="color-picker-hue-constraint">
+                    <w-movable
+                        data-dojo-attach-point="hueHandle"
+                        data-dojo-attach-event="moved: onHueHandleMoved"
+                        class="color-picker-hue-handle"
+                        tabindex=0
+                    ></w-movable>
+                    <div class="color-picker-hue-outer-box">
+                        <div
+                            class="color-picker-hue"
+                            data-dojo-attach-point="hue"
+                            data-dojo-attach-event="ondijitclick: onHueClick"
+                        ></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <f-hex-color
+                data-dojo-attach-point="hex"
+                class="span10"
+                suppress-validation-messages='{"preActivity": true, "postActivity": true}'
+            ></f-hex-color>
+        </div>
+    </div>
+</div>

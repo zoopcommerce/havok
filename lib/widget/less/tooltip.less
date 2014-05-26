@@ -1,0 +1,25 @@
+//
+//   Less for havok/widget/Tooltip
+//
+
+@import "bootstrap/less/tooltip.less";
+
+.tooltip {
+    z-index: 10001;
+}
+
+.tooltip.hidden {
+    display: none;
+}
+
+.tooltip-inner {
+    display: block;
+}
+
+.tooltip.inverse .tooltip-inner {
+	background: @grayLight;
+	color: @black;
+}
+.tooltip.inverse .tooltip-arrow {
+	border-top-color: @grayLight;
+}

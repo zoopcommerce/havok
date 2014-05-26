@@ -1,0 +1,168 @@
+<h1>Widgets with Stores</h1>
+
+<p>Many of the havok widgets can optionally use the <code>havok/widget/_StoreMixin</code> to manage lists of items. Stores allow great flexibility. Items may be fetched via ajax, filtered, sorted, and reused throughout your application.</p>
+
+<h2>Nav</h2>
+
+<div class="bs-docs-example">
+    <datalist id="navStore1">
+        <option>home</option>
+        <option href="#stores">#navs anchor</option>
+        <option disabled>disabled pill</option>
+    </datalist>
+    <w-nav-pill active="home" store="navStore1"></w-nav-pill>
+</div>
+<pre class="prettyprint linenums">
+{% set storeExample1 %}
+<datalist id="navStore1">
+    <option>home</option>
+    <option href="#stores">#navs anchor</option>
+    <option disabled>disabled pill</option>
+</datalist>
+<w-nav-pill store="navStore1"></w-nav-pill>{% endset %}{{storeExample1|e}}
+</pre>
+
+<h2>Nav dropdowns</h2>
+<p>Using a store, add dropdown menus with nested <code>d-group</code> tags.</p>
+<div class="bs-docs-example">
+    <datalist id="navStore2">
+        <option id="home">home</option>
+        <d-group text="help <b class='caret'></b>">
+            <option>action</option>
+            <option>another action</option>
+            <option>something else</option>
+            <option type="divider"></option>
+            <d-group text="deeper submenu">
+                <option>deep menu 1</option>
+                <option>deep menu 2</option>
+            </d-group>
+        </d-group>
+    </datalist>
+    <w-nav-pill store="navStore2" active="home"></w-nav-pill>
+</div>
+<pre class="prettyprint linenums">
+{% set storeExample2 %}
+<datalist id="navStore2">
+    <option id="home">home</option>
+    <d-group text="help <b class='caret'></b>">
+        <option>action</option>
+        <option>another action</option>
+        <option>something else</option>
+        <option type="divider"></option>
+        <d-group text="deeper submenu">
+            <option>deep menu 1</option>
+            <option>deep menu 2</option>
+        </d-group>
+    </d-group>
+</datalist>
+<w-nav-pill store="navStore2" active="home"></w-nav-pill>{% endset %}{{storeExample2|e}}
+</pre>
+
+<h2>Nav list</h2>
+<p>If using a store, set <code>type: 'nav-header'</code> to create headers:</p>
+<div class="bs-docs-example">
+    <div class="well" style="max-width: 340px; padding: 8px 0;">
+        <datalist id="navListStore1">
+            <option type="nav-header">List header</option>
+            <option>Home</option>
+            <option>Library</option>
+            <option>Applications</option>
+            <option type="nav-header">Another list header</option>
+            <option>Profile</option>
+            <option>Settings</option>
+            <option type="divider"></option>
+            <option>Help</option>
+        </datalist>
+        <w-nav-list store="navListStore1"></w-nav-list>
+    </div>
+</div>
+<pre class="prettyprint linenums">
+{% set storeExample3 %}
+<datalist id="navListStore1">
+    <option type="nav-header">List header</option>
+    <option>Home</option>
+    <option>Library</option>
+    <option>Applications</option>
+    <option type="nav-header">Another list header</option>
+    <option>Profile</option>
+    <option>Settings</option>
+    <option type="divider"></option>
+    <option>Help</option>
+</datalist>
+<w-nav-list store="navListStore1"></w-nav-list>{% endset %}{{storeExample3|e}}
+</pre>
+
+
+<h2>Nav Bar Dropdown</h2>
+<div class="bs-docs-example">
+    <datalist id="navBarStore1">
+        <option>Home</option>
+        <d-group text="Dropdown <span class='caret'></span>">
+            <option>Item 1</option>
+            <option>Item 2</option>
+        </d-group>
+    </datalist>
+    <w-nav-bar>
+        <w-nav-bar-links store="navBarStore1"></w-nav-bar-links>
+    </w-nav-bar>
+</div>
+<pre class="prettyprint linenums">
+{% set storeExample4 %}
+<datalist id="navBarStore1">
+    <option>Home</option>
+    <d-group text="Dropdown <span class='caret'></span>">
+        <option>Item 1</option>
+        <option>Item 2</option>
+    </d-group>
+</datalist>
+<w-nav-bar>
+    <w-nav-bar-links store="navBarStore1"></w-nav-bar-links>
+</w-nav-bar>{% endset %}{{storeExample4|e}}
+</pre>
+
+<h2>Nav Tree</h2>
+<p>Note, when using a store, a tree will lazy load. That is, the contents of a folder will not be loaded until that folder is opened.</p>
+
+<div class="bs-docs-example">
+    <div>
+        <datalist id="treeStore1">
+            <d-group text="One">
+                <d-group text="One One">
+                    <option>One One One</option>
+                    <option>One One Two</option>
+                </d-group>
+                <option>One Two</option>
+                <option>One Three</option>
+            </d-group>
+            <d-group text="Two">
+                <option>Two One</option>
+                <option>Two Two</option>
+            </d-group>
+            <option>Three</option>
+            <option>Four</option>
+            <option>Five</option>
+        </datalist>
+        <w-tree store="treeStore1"></w-tree>
+    </div>
+</div>
+<pre class="prettyprint linenums">
+{% set storeExample5 %}
+<datalist id="treeStore1">
+    <d-group text="One">
+        <d-group text="One One">
+            <option>One One One</option>
+            <option>One One Two</option>
+        </d-group>
+        <option>One Two</option>
+        <option>One Three</option>
+    </d-group>
+    <d-group text="Two">
+        <option>Two One</option>
+        <option>Two Two</option>
+    </d-group>
+    <option>Three</option>
+    <option>Four</option>
+    <option>Five</option>
+</datalist>
+<w-tree store="treeStore1"></w-tree>{% endset %}{{storeExample5|e}}
+</pre>

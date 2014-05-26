@@ -1,0 +1,31 @@
+<h1>Color</h1>
+
+<h2>Hex Color</h2>
+
+<p>Tag <code>f-hex-color</code> creats a <a href="/api/havok/form/HexColor.html">havok/form/HexColor</a> which extends <a href="/api/havok/form/ValidationTextbox.html">havok/form/ValidationTextbox</a>. It can be used to enter valid six character hex codes.</p>
+
+<h2>Example</h2>
+<div class="bs-docs-example">
+    <d-formspy class="form-horizontal">
+        <f-hex-color label="Color" value = "#abc123"></f-hex-color>
+    </d-formspy>
+</div>
+
+<pre class="prettyprint linenums">
+{% set colorExample1 %}
+<f-hex-color label="Color" value = "#abc123"></f-hex-color>{% endset %}{{colorExample1|e}}
+</pre>
+
+<h2>Color Picker</h2>
+
+<p>Tag <code>f-color-picker</code> creates a <a href="/api/havok/form/ColorPicker.html">havok/form/ColorPicker</a> input.</p>
+
+<div class="bs-docs-example">
+    <d-formspy class="form-horizontal">
+        <f-color-picker label="Color" value="#35c3c1" help-messages="please pick a color"></f-color-picker>
+    </d-formspy>
+</div>
+<pre class="prettyprint linenums">
+{% set colorExample2 %}
+<f-color-picker label="Color" value="#35c3c1" help-messages="please pick a color"></f-color-picker>{% endset %}{{colorExample2|e}}
+</pre>

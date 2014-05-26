@@ -1,11 +1,12 @@
-define([], function(){
-    //sensible build profile default settings
-return {
+//sensible build profile default settings
+var profile = {
     action:"release",
     releaseDir:"release",
     layerOptimize:"closure",
     selectorEngine:"lite",
     mini:1,
+    copyrightFile: "copyright.txt",
+    buildNotice: "builtNotice.txt",
     buildReportDir: ".",
     buildReportFilename: "build-report.txt",
     insertAbsMids: 0,
@@ -21,26 +22,25 @@ return {
     },
     packages:[
         {
-            name:"dojo",
-            location:"dojo"
+            name: "dojo"
         },
         {
-            name:"dijit",
-            location:"dijit"
+            name: "dijit"
         },
         {
-            name:"havok",
-            location:"havok"
+            name: "havok"
         },
         {
-            name:"mystique",
-            location:"mystique"
+            name: "mystique"
         },
         {
-            name:"mystique-common",
-            location:"mystique-common"
+            name: "mystique-common"
         }
     ],
+    paths: {
+        'bootstrap': 'bootstrap',
+        'font-awesome': 'font-awesome'
+    },
     staticHasFeatures: {
         'dom': 1,
         'host-browser': 1,
@@ -70,18 +70,18 @@ return {
         'dojo-debug-messages': 0
     },
     plugins: {
-        "havok/config/ready":"havok/build/plugin/config/ready",
-        "havok/router/baseUrl":"havok/build/plugin/router/baseUrl",
-        "havok/router/started":"havok/build/plugin/router/started",
-        "havok/di/sharedDi":"havok/build/plugin/di/sharedDi",
-        "havok/proxy":"havok/build/plugin/proxy",
-        "havok/get":"havok/build/plugin/get",
-        "havok/less":"havok/build/plugin/less",
-        "mystique/messages":"havok/build/plugin/messages",
-        "dojo/text":"havok/build/plugin/text"
+        "havok/config/ready"    : "havok-build/plugin/config/ready",
+        "havok/router/baseUrl"  : "havok-build/plugin/router/baseUrl",
+        "havok/router/started"  : "havok-build/plugin/router/started",
+        "havok/di/sharedDi"     : "havok-build/plugin/di/sharedDi",
+        "havok/parser/complete" : "havok-build/plugin/parser/complete",
+        "havok/proxy"           : "havok-build/plugin/proxy",
+        "havok/get"             : "havok-build/plugin/get",
+        "havok/less"            : "havok-build/plugin/less",
+        "mystique/messages"     : "havok-build/plugin/messages",
+        "dojo/text"             : "havok-build/plugin/text"
     },
     transforms: {
-        writeAmd: ["havok/build/transforms/writeAmd", "write"]
+        writeAmd: ["havok-build/transforms/writeAmd", "write"]
     }
 }
-});

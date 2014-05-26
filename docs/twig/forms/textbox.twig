@@ -1,0 +1,225 @@
+<h1>Textbox</h1>
+
+<p class="lead">Supercharge the humble textbox with more styling and data processing options.</p>
+
+<h2>Simple textbox</h2>
+
+<p>Use <code>f-textbox</code> to create a <a href="/api/havok/form/Textbox.html">havok/form/Textbox</a> to collect simple text data.</p>
+
+<div class="bs-docs-example">
+    <d-formspy class="form-horizontal">
+        <f-textbox value="hello"></f-textbox>
+    </d-formspy>
+</div>
+
+<pre class="prettyprint linenums">
+{% set textboxExample1 %}
+<f-textbox value="hello"></f-textbox>{% endset %}{{textboxExample1|e}}
+</pre>
+
+<h2>Placeholders</h2>
+
+<div class="bs-docs-example" class="form-horizontal">
+    <div class="form-horizontal">
+        <f-textbox placeholder="Enter your name"></f-textbox>
+    </div>
+</div>
+<pre class="prettyprint linenums">
+{% set textboxExample2 %}
+<f-textbox placeholder="Enter your name"></f-textbox>{% endset %}{{textboxExample2|e}}
+</pre>
+
+<h2>Filters</h2>
+
+<p>Filters can be applied value displayed in the textbox. For more information about filters, see the filters section of the Data Quality documentation.</p>
+
+<p>Note: The <code>Trim</code> filter is applied on all textboxes by default.</p>
+
+<p>Example with an uppercase filter set:</p>
+<div class="bs-docs-example">
+    <d-formspy class="form-horizontal">
+        <f-textbox label="name" filter="Uppercase" value="John Smith"></f-textbox>
+    </d-formspy>
+</div>
+
+<pre class="prettyprint linenums">
+{% set textboxExample5 %}
+<f-textbox label="name" filter="Uppercase" value="John Smith"></f-textbox>{% endset %}{{textboxExample5|e}}
+</pre>
+
+<p>Set a filter chain:</p>
+<div class="bs-docs-example">
+    <d-formspy class="form-horizontal">
+        <f-textbox label="name" filter='["Trim", "Uppercase"]' value="    John Smith    "></f-textbox>
+    </d-formspy>
+</div>
+
+<pre class="prettyprint linenums">
+{% set textboxExample6 %}
+<f-textbox label="name" filter='["Trim", "Uppercase"]' value="    John Smith    "></f-textbox>{% endset %}{{textboxExample6|e}}
+</pre>
+
+<p>Filters are created by <a href="api/havok/filter/factory.html">havok/filter/factory</a> which supports abreviated names for the filters bundled with havok. To set your own custom filter, pass the complete module name. Eg <code>filters: 'My/Filter/Module'</code></p>
+
+<h2>Appendages</h2>
+
+<h4>Using Attributes</h4>
+<p>Simple and clean</p>
+<div class="bs-docs-example">
+    <div class="form-horizontal">
+        <f-textbox label="name" prepend="pre" append='["app1", "app2"]'></f-textbox>
+    </div>
+</div>
+
+<pre class="prettyprint linenums">
+{% set textboxExample7 %}
+<f-textbox label="name" prepend="pre" append='["app1", "app2"]'></f-textbox>{% endset %}{{textboxExample7|e}}
+</pre>
+
+<h4>Set using tags</h4>
+<p>Allows greater control over style</p>
+<div class="bs-docs-example">
+    <div class="form-horizontal">
+        <f-textbox placeholder="name">
+            <label><strong>name</strong></label>
+            <span prepend><b>p</b>re1</span>
+            <span append><b>a</b>ppend 1</span>
+            <span append><b>a</b>ppend 2</span>
+        </f-textbox>
+    </div>
+</div>
+
+<pre class="prettyprint linenums">
+{% set textboxExample8 %}
+<f-textbox placeholder="name">
+    <label><strong>name</strong></label>
+    <span prepend><b>p</b>re1</span>
+    <span append><b>a</b>ppend 1</span>
+    <span append><b>a</b>ppend 2</span>
+</f-textbox>{% endset %}{{textboxExample8|e}}
+</pre>
+
+<h4>Buttons</h4>
+<div class="bs-docs-example">
+    <div class="form-horizontal">
+        <f-textbox label="name">
+            <button prepend>pre1</button>
+            <button append>append 1</button>
+            <button append>append 2</button>
+        </f-textbox>
+    </div>
+</div>
+
+<pre class="prettyprint linenums">
+{% set textboxExample9 %}
+<f-textbox label="name">
+    <button prepend>pre1</button>
+    <button append>append 1</button>
+    <button append>append 2</button>
+</f-textbox>{% endset %}{{textboxExample9|e}}
+</pre>
+
+<h3>Dropdowns</h3>
+<div class="bs-docs-example">
+    <div class="form-horizontal">
+        <f-textbox label="name">
+            <w-dropdown-toggle class="btn" append>
+                Action <span class="caret"></span>
+                <w-dropdown class="hide">
+                    <a href="">Action</a>
+                    <a href="">Another action</a>
+                    <a href="">Something else here</a>
+                    <hr />
+                    <a href="">Separated link</a>
+                </w-dropdown>
+            </w-dropdown-toggle>
+        </f-textbox>
+    </div>
+</div>
+<
+<pre class="prettyprint linenums">
+{% set textboxExample10 %}
+<f-textbox label="name">
+    <w-dropdown-toggle class="btn" append>
+        Action <span class="caret"></span>
+        <w-dropdown class="hide">
+            <a href="">Action</a>
+            <a href="">Another action</a>
+            <a href="">Something else here</a>
+            <hr />
+            <a href="">Separated link</a>
+        </w-dropdown>
+    </w-dropdown-toggle>
+</f-textbox>{% endset %}{{textboxExample10|e}}
+</pre>
+
+<h4>Split dropdowns</h4>
+<div class="bs-docs-example">
+    <div class="form-horizontal">
+        <f-textbox label="name">
+            <w-dropdown-toggle class="btn-group" append>
+                <button class="btn">Action</button>
+                <button dropdown-toggle class="btn"><span class="caret"></span></button>
+                <w-dropdown class="hide">
+                    <a href="">Action</a>
+                    <a href="">Another action</a>
+                    <a href="">Something else here</a>
+                    <hr />
+                    <a href="">Separated link</a>
+                </w-dropdown>
+            </w-dropdown-toggle>
+        </f-textbox>
+    </div>
+</div>
+
+<pre class="prettyprint linenums">
+{% set textboxExample11 %}
+<f-textbox label="name">
+    <w-dropdown-toggle class="btn-group" append>
+        <button class="btn">Action</button>
+        <button dropdown-toggle class="btn"><span class="caret"></span></button>
+        <w-dropdown class="hide">
+            <a href="">Action</a>
+            <a href="">Another action</a>
+            <a href="">Something else here</a>
+            <hr />
+            <a href="">Separated link</a>
+        </w-dropdown>
+    </w-dropdown-toggle>
+</f-textbox>{% endset %}{{textboxExample11|e}}
+</pre>
+
+<h4>Programatically change appendages</h4>
+<div class="bs-docs-example">
+    <div class="form-horizontal">
+        <f-textbox label="name" prepend="prepend" append='["app1", "app2"]' id="appendageExample"></f-textbox>
+    </div>
+    <w-button-group id="buttonGroup1">
+        <button>.set('prepend', ['1', '2'])</button>
+        <button>.set('append', '3')</button>
+        <button>.addPrependage('pre')</button>
+        <button>.addAppendage('post')</button>
+    </w-button-group>
+    <script type="text/javascript">
+        require(['dijit/registry', 'havok/ready!'], function(registry){
+            var buttonGroup = registry.byId('buttonGroup1');
+            var textbox = registry.byId('appendageExample');
+
+            buttonGroup.on('item-click', function(e){
+                eval('textbox' + e.item.innerHTML); // Quick and dirty use of eval here.
+            });
+        })
+        </script>
+    </div>
+
+<h2>Style the textbox</h2>
+<div class="bs-docs-example">
+    <div class="form-horizontal">
+        <f-textbox class="span2" label="name"></f-textbox>
+    </div>
+</div>
+
+<pre class="prettyprint linenums">
+{% set textboxExample12 %}
+<f-textbox class="span2" label="name"></f-textbox>{% endset %}{{textboxExample12|e}}
+</pre>

@@ -1,0 +1,27 @@
+<h1>Date Textbox</h1>
+
+<p><code>f-date</code> creates a <a href="/api/havok/form/Date.html">havok/form/Date</a> which extends <code>havok/form/Textbox</code> to give date picking ability.</p>
+
+<h2>Example</h2>
+<div class="bs-docs-example">
+    <d-formspy class="form-horizontal">
+        <f-date label="Date" help-messages="pick a date"></f-date>
+    </d-formspy>
+</div>
+
+<pre class="prettyprint linenums">
+{% set dateTextboxExample1 %}
+<f-date label="Date" help-messages="pick a date"></f-date>{% endset %}{{dateTextboxExample1|e}}
+</pre>
+
+<h2>Example with preset value</h2>
+<div class="bs-docs-example">
+    <d-formspy class="form-horizontal">
+        <f-date label="Date" help-messages="pick a date" value="2020-01-01T14:00:00.000Z"></f-date>
+    </d-formspy>
+</div>
+
+<pre class="prettyprint linenums">
+{% set dateTextboxExample2 %}
+<f-date label="Date" help-messages="pick a date" value="2020-01-01T14:00:00.000Z"></f-date>{% endset %}{{dateTextboxExample2|e}}
+</pre>

@@ -1,0 +1,18 @@
+{% extends "_page-content.twig" %}
+
+{% set title='Dependency Injection' %}
+{% set byline='Your gateway to loosely coupled and flexible code.' %}
+
+{% block mainContent %}
+    <section id="overview" title="Overview"><div class="well">{% include 'di/overview.twig' %}</div></section>
+    <section id="config-format" title="Config Format"><div class="well">{% include 'di/config-format.twig' %}</div></section>
+    <section id="base" title="base"><div class="well">{% include 'di/base.twig' %}</div></section>
+    <section id="params" title="params"><div class="well">{% include 'di/params.twig' %}</div></section>
+    <section id="gets" title="gets"><div class="well">{% include 'di/gets.twig' %}</div></section>
+    <section id="proxies" title="proxies"><div class="well">{% include 'di/proxies.twig' %}</div></section>
+    <section id="directives" title="Directives"><div class="well">{% include 'di/directives.twig' %}</div></section>
+    <section id="injecting-arrays" title="Injecting Arrays"><div class="well">{% include 'di/injecting-arrays.twig' %}</div></section>
+    <section id="proxy-objects" title="Proxy Objects"><div class="well">{% include 'di/proxy-objects.twig' %}</div></section>
+    <section id="plugins" title="Plugins"><div class="well">{% include 'di/plugins.twig' %}</div></section>
+    <section id="build" title="Build"><div class="well">{% include 'di/build.twig' %}</div></section>
+{% endblock %}

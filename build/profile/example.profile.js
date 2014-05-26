@@ -1,7 +1,10 @@
 var profile = {
-    basePath:"../../../", //this is the dojo base path for building. Other paths in the profile are relative to this path.
     releaseDir:"example", //this is the directory the built files will be placed in
+    distDir:"dist", //build layers and layer css will be copied to this directory
     defaultConfig: { //set a default dojoConfig to be rolled into the build
+        deps: [
+            'havok/ready!'
+        ],
         merge: [
             'havok/config' //any configs specified here will be merged by the havok build preprocessor
         ]

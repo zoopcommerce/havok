@@ -1,0 +1,4 @@
+define([
+    './testCurrency',
+    './testFactory'
+], function () {});

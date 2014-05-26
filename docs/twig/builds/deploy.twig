@@ -1,0 +1,12 @@
+<h1>Deploy</h1>
+
+<p>You built layers will be saved in the <code>distDir</code> defined in your build profile.</p>
+
+<p>Place the following in your <code>head</code> tag to use your built layers:</p>
+
+<pre class="prettyprint linenums">
+{% set ex1 %}
+<link rel="stylesheet" href="path/to/layer.css">
+<script src="path/to/bootable/layer.js"></script>{% endset %}{{ex1|e}}
+</pre>
+<p>Note: these docs use a bootable havok layer. Take a look at the source to see.</p>

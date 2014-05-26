@@ -1,0 +1,15 @@
+<h1>Email Text Box</h1>
+
+<p><code>f-email</code> will create a <a href="/api/havok/form/Email.html">havok/form/Email</a> which extends <a href="/api/havok/form/TextBox.html">havok/form/TextBox</a> with Required and Email validators already set.</p>
+
+<h2>Example</h2>
+<div class="bs-docs-example">
+    <d-formspy class="form-horizontal">
+        <f-email label="Email"></f-email>
+    </d-formspy>
+</div>
+
+<pre class="prettyprint linenums">
+{% set emailExample1 %}
+<f-email label="Email"></f-email>{% endset %}{{emailExample1|e}}
+</pre>

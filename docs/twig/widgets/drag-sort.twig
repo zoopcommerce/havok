@@ -1,0 +1,205 @@
+<h1>Dragable and Sortable</h1>
+
+<p class="lead">Add drag and drop to dom nodes and list widgets.</p>
+
+<h2>Dragable</h2>
+<p>Use the <code>w-dragable</code> tag to create a <a href="/api/havok/widget/Dragable">havok/widget/Dragable</a> to make an element dragable.</p>
+
+<div class="bs-docs-example">
+    <w-dragable class="label label-info">Drag me!</w-dragable>
+</div>
+
+<pre class="prettyprint linenums">
+{% set dragExample1 %}
+<w-dragable class="label label-info">Drag me!</w-dragable>{% endset %}{{dragExample1|e}}
+</pre>
+
+<h4>Drag with Grip</h4>
+<p>Add a <code>data-havok-grip</code> to indicate a drag grip.</p>
+<div class="bs-docs-example">
+    <w-dragable class="label label-info">Drag me! <i class="fa fa-arrows" data-havok-grip></i></w-dragable>
+</div>
+
+<pre class="prettyprint linenums">
+{% set dragExample2 %}
+<w-dragable class="label label-info">Drag me! <i class="fa fa-arrows" data-havok-grip></i></w-dragable>{% endset %}{{dragExample2|e}}
+</pre>
+
+<hr class="bs-docs-separator">
+
+<h2>Movable</h2>
+
+<p>Use the <code>w-movable</code> tag to create a <a href="/api/havok/widget/Movable">havok/widget/Movable</a> to make an element move and stay when drag is complete.</p>
+
+<div class="bs-docs-example">
+    <div class=well style="width: 200px; height: 200px">
+        <w-movable class="label label-info">Move me!</w-movable>
+    </div>
+</div>
+
+<pre class="prettyprint linenums">
+{% set dragExample3 %}
+<div class=well style="width: 200px; height: 200px">
+    <w-movable class="label label-info">Move me!</w-movable>
+</div>{% endset %}{{dragExample3|e}}
+</pre>
+
+<h4>Move with Grip</h4>
+<p>Add a <code>data-havok-grip</code> to indicate a move grip.</p>
+<div class="bs-docs-example">
+    <div class=well style="width: 200px; height: 200px">
+        <w-movable class="label label-info">Move me! <i class="fa fa-arrows" data-havok-grip></i></w-movable>
+    </div>
+</div>
+
+<pre class="prettyprint linenums">
+{% set dragExample4 %}
+<div class=well style="width: 200px; height: 200px">
+    <w-movable class="label label-info">Move me! <i class="fa fa-arrows" data-havok-grip></i></w-movable>
+</div> {% endset %}{{dragExample4|e}}
+</pre>
+
+<h4>Moving with arrow keys</h4>
+<p>If a moveable has focus, it can be moved with the arrow keys.</p>
+
+<div class="bs-docs-example">
+    <div class=well style="width: 200px; height: 200px;">
+        <w-movable class="label label-info" tabindex=0>Move me!</w-movable>
+    </div>
+</div>
+
+<pre class="prettyprint linenums">
+{% set dragExample5 %}
+<div class=well style="width: 200px; height: 200px;">
+    <w-movable class="label label-info" tabindex=0>Move me!</w-movable>
+</div>{% endset %}{{dragExample5|e}}
+</pre>
+
+<hr class="bs-docs-separator">
+
+<h2>Sortable</h2>
+
+<p>Use the <code>sortable</code> attribute on list type widgets to make them sortable via drag and drop. This will mixin the <a href="/api/href/widget/_SortableMixin">havok/widget/_SortableMixin</a> module.</p>
+
+<div class="bs-docs-example">
+    <w-nav-tab class="nav-stacked" sortable>
+        <a href="">ACT</a>
+        <a href="">NSW</a>
+        <a href="">Vic</a>
+        <a href="">Qld</a>
+        <a href="">SA</a>
+        <a href="">NT</a>
+        <a href="">WA</a>
+        <a href="">Tas</a>
+    </w-nav-tab>
+</div>
+
+<pre class="prettyprint linenums">
+{% set sortExample1 %}
+<w-nav-tab class="nav-stacked" sortable>
+    <a href="">ACT</a>
+    <a href="">NSW</a>
+    <a href="">Vic</a>
+    <a href="">Qld</a>
+    <a href="">SA</a>
+    <a href="">NT</a>
+    <a href="">WA</a>
+    <a href="">Tas</a>
+</w-nav-tab>{% endset %}{{sortExample1|e}}
+</pre>
+
+<h3>Sort between lists</h3>
+
+<p>Use the <code>drop-targets</code> attribute to allow sorting between lists.</p>
+<div class="bs-docs-example">
+    <div class="row-fluid clearfix">
+        <w-nav-tab class="span6 nav-stacked"
+            id="leftSortable"
+            sortable
+            drop-targets="leftSortable rightSortable"
+            >
+            <li><a>Harry</a></li>
+            <li><a>Max</a></li>
+            <li><a>Phillip</a></li>
+            <li><a>James</a></li>
+        </w-nav-tab>
+        <w-nav-tab class="span6 nav-stacked"
+            id="rightSortable"
+            sortable
+            drop-targets="leftSortable rightSortable"
+            >
+            <li><a>Michael</a></li>
+            <li><a>Tim</a></li>
+            <li><a>Shaun</a></li>
+            <li><a>Robert</a></li>
+        </w-nav-tab>
+    </div>
+</div>
+
+<pre class="prettyprint linenums">
+{% set sortExample2 %}
+<w-nav-tab class="span6 nav-stacked"
+    id="leftSortable"
+    sortable
+    drop-targets="leftSortable rightSortable"
+    >
+    <li><a>Harry</a></li>
+    <li><a>Max</a></li>
+    <li><a>Phillip</a></li>
+    <li><a>James</a></li>
+</w-nav-tab>
+<w-nav-tab class="span6 nav-stacked"
+    id="rightSortable"
+    sortable
+    drop-targets="leftSortable rightSortable"
+    >
+    <li><a>Michael</a></li>
+    <li><a>Tim</a></li>
+    <li><a>Shaun</a></li>
+    <li><a>Robert</a></li>
+</w-nav-tab>{% endset %}{{sortExample2|e}}
+</pre>
+
+<h3>Horizontal example</h3>
+
+<div class="bs-docs-example">
+  <w-nav-pill sortable>
+      <a>Tiny</a>
+      <a>Small</a>
+      <a>Medium</a>
+      <a>Big</a>
+      <a>Biggest</a>
+  </w-nav-pill>
+</div>
+
+<h3>Tabs example</h3>
+
+<p>Tabs in a <code>havok/widget/TabContainer</code> are sortable by default.</p>
+
+<div class="bs-docs-example">
+  <w-tab-container style="margin-bottom: 18px;">
+    <section class="active">
+        <header>Section 1</header>
+        <p>I'm in Section 1.</p>
+    </section>
+    <section>
+        <header>Section 2</header>
+        <p>Howdy, I'm in Section 2.</p>
+    </section>
+    <section>
+        <header>Section 3</header>
+        <p>What up girl, this is Section 3.</p>
+    </section>
+  </w-tab-container>
+</div>
+
+<hr class="bs-docs-separator">
+
+<h2>See also</h2>
+
+<p>Api documentation:</p>
+<ul>
+    <li><a href="/api/havok/widget/Dragable.html">havok/widget/Dragable</a></li>
+    <li><a href="/api/havok/widget/Movable.html">havok/widget/Movable</a></li>
+    <li><a href="/api/havok/widget/_SortableMixin.html">havok/widget/_SortableMixin</a></li>
+</ul>

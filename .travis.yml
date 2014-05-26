@@ -1,0 +1,17 @@
+language: node_js
+
+node_js:
+- '0.10'
+
+before_script:
+  - md5before=$(md5sum dist/havok/havok.js)
+
+script:
+  - node test/runtests.js
+  - node build/make.js
+  - md5after=$(md5sum dist/havok/havok.js)
+  - ["$md5before" = "$md5after"] && echo "Build md5 correct" || travis_finish build 1
+  - node docs/make.js
+
+after_success:
+  - sh ./travis/ghPages.sh

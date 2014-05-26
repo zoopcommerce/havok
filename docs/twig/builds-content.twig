@@ -1,0 +1,11 @@
+{% extends "_page-content.twig" %}
+
+{% set title='Builds' %}
+{% set byline='Make your production code small and fast.' %}
+
+{% block mainContent %}
+    <section id="overview" title="Overview"><div class="well">{% include 'builds/overview.twig' %}</div></section>
+    <section id="profile" title="Profile"><div class="well">{% include 'builds/profile.twig' %}</div></section>
+    <section id="make" title="Make"><div class="well">{% include 'builds/make.twig' %}</div></section>
+    <section id="deploy" title="Deploy"><div class="well">{% include 'builds/deploy.twig' %}</div></section>
+{% endblock %}

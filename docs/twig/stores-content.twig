@@ -1,0 +1,16 @@
+{% extends "_page-content.twig" %}
+
+{% set title='Stores' %}
+{% set byline='Keep your data and presentation separated' %}
+
+{% block mainContent %}
+    <section id="overview" title="Overview"><div class="well">{% include 'stores/overview.twig' %}</div></section>
+    <section id="manager" title="Manager"><div class="well">{% include 'stores/manager.twig' %}</div></section>
+    <section id="datalist" title="Datalist Stores"><div class="well">{% include 'stores/datalist.twig' %}</div></section>
+    <section id="di" title="Di Stores"><div class="well">{% include 'stores/di.twig' %}</div></section>
+    <section id="throttle" title="Throttle"><div class="well">{% include 'stores/throttle.twig' %}</div></section>
+    <section id="query-cache" title="Query Cache"><div class="well">{% include 'stores/query-cache.twig' %}</div></section>
+    <section id="widgets" title="Widgets with Stores"><div class="well">{% include 'stores/widgets.twig' %}</div></section>
+    <section id="forms" title="Forms with Stores"><div class="well">{% include 'stores/forms.twig' %}</div></section>
+{% endblock %}
+

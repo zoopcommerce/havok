@@ -1,0 +1,25 @@
+<h1>Make</h1>
+
+<p>Run the build using the <code>havok/build/make.js</code> script, with your build profile as an arguemnt. Eg:</p>
+
+<pre class="prettyprint linenums">
+node path/to/havok/build/make.js path/to/my.profile.js
+</pre>
+
+<p>Builds do a lot of processing, and may take several minutes to complete.</p>
+
+<p>During the build, a dojo build profile called <code>path/to/my.profile.processed.js</code> will be created. It contains the complete expanded build profile will all settings. You may wish to inspect this file. Any of the defaults can be overridden in <code>path/to/my.profile.js</code>.</p>
+
+<p><code>make.js</code> reads a profile and passes it through several stages of processing. Each of these stanges can be run separately from the command line, which may be useful when debuggin a build:</p>
+
+<ul>
+    <li><code>node path/to/havok/build/ext/prepareReleaseDir.js path/to/my.profile.js</code>.</li>
+    <li><code>node path/to/havok/build/ext/mixinDefault.js path/to/my.profile.js</code>.</li>
+    <li><code>node path/to/havok/build/ext/fixupLocationsAndPaths.js path/to/my.profile.js</code>.</li>
+    <li><code>node path/to/havok/build/ext/externalLess.js path/to/my.profile.js</code>.</li>
+    <li><code>node path/to/havok/build/ext/expandPackageIncludes.js path/to/my.profile.js</code>.</li>
+    <li><code>node path/to/havok/build/ext/mergeConfigs.js path/to/my.profile.js</code>.</li>
+    <li><code>node path/to/havok/build/ext/build.js path/to/my.profile.js</code>.</li>
+    <li><code>node path/to/havok/build/ext/compileLess.js path/to/my.profile.js</code>.</li>
+    <li><code>node path/to/havok/build/ext/copyDist.js path/to/my.profile.js</code>.</li>
+</ul>

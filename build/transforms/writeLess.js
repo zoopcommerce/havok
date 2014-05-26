@@ -49,11 +49,10 @@ define([
             ranksLess = [],
             rawLess = [],
             rawLessFilename,
-            rawCssFilename,
-            optCssFilename,
+            importOption,
             pieces,
             moduleSet = writeAmd.computeLayerContents(resource, resource.layer.include, resource.layer.exclude);
-            
+
         for (i in moduleSet){
             if (!moduleSet[i].less) {
                 continue;
@@ -62,12 +61,12 @@ define([
             for (j in moduleSet[i].less) {
                 module = moduleSet[i].less[j];
                 if (module.lessConfig.defs){
-                    defsLess.push(module.module);
+                    defsLess.push(module);
                 } else {
                     while (ranksLess.length - 1 < module.lessConfig.rank){
                         ranksLess.push([]);
                     }
-                    ranksLess[module.lessConfig.rank].push(module.module);
+                    ranksLess[module.lessConfig.rank].push(module);
                 }
             }
         }
@@ -89,29 +88,31 @@ define([
                     var alreadyAdded = false;
 
                     for (j = 0; j < defsLess.length; j++){
-                        if (defsLess[j].src == module.src){
+                        if (defsLess[j].module.src == module.src){
                             alreadyAdded = true;
                             break;
                         }
                     }
                     if (!alreadyAdded){
-                        defsLess.push(module);
+                        defsLess.push({module: module, lessConfig: bc.less[i]});
                     }
                 } else if (resource.layer.boot) {
                     while (ranksLess.length - 1 < bc.less[i].rank){
                         ranksLess.push([]);
                     }
-                    ranksLess[bc.less[i].rank].push(module);
+                    ranksLess[bc.less[i].rank].push({module: module, lessConfig: bc.less[i]});
                 }
             }
         }
 
         for(i = 0; i < defsLess.length; i++){
-            rawLess.push("@import '" + getRelativePath(defsLess[i].dest, resource.dest) + "';");
+            importOption = defsLess[i].lessConfig.importOption ? '(' + defsLess[i].lessConfig.importOption + ') ' : '';
+            rawLess.push("@import " + importOption + "'" + getRelativePath(defsLess[i].module.dest, resource.dest) + "';");
         }
         for (i = 0; i < ranksLess.length; i++){
             for (j = 0; j < ranksLess[i].length; j++){
-                rawLess.push("@import '" + getRelativePath(ranksLess[i][j].dest, resource.dest) + "';");
+                importOption = ranksLess[i][j].lessConfig.importOption ? '(' + ranksLess[i][j].lessConfig.importOption + ') ' : '';
+                rawLess.push("@import " + importOption + "'" + getRelativePath(ranksLess[i][j].module.dest, resource.dest) + "';");
             }
         }
 
@@ -120,52 +121,12 @@ define([
         pieces = resource.dest.split('.');
         pieces.pop();
         rawLessFilename = pieces.join('.') + '.less';
-        if (bc.layerOptimize){
-            rawCssFilename = pieces.join('.') + '.uncompressed.css';
-            optCssFilename = pieces.join('.') + '.css';
-        } else {
-            rawCssFilename = pieces.join('.') + '.css';
-        }
 
         fileUtils.ensureDirectoryByFilename(rawLessFilename);
         fs.writeFile(rawLessFilename, bc.newlineFilter(rawLess, resource, "writeAmd"), resource.encoding, function(err){
 
-            if (err){
-                callback(resource, err);
-                return;
-            }
-
-            //parse the less into css
-            //note: the lessc global is defined in the buildconfig.js
-            var parser = new lessc.Parser({
-                    relativeUrls: true,
-                    paths: [fileUtils.getFilepath(rawLessFilename)],
-                    filename: fileUtils.getFilename(rawLessFilename)
-                }),
-                rawCss,
-                optCss;
-
-            parser.parse(rawLess, function(err, root){
-                if (err){
-                    callback(resource, err);
-                    return;
-                }
-                rawCss = root.toCSS({compress: false, strictMaths: false, strictUnits: false});
-                fs.writeFile(rawCssFilename, bc.newlineFilter(rawCss, resource, "writeAmd"), resource.encoding, function(err){
-                    if (err){
-                        callback(resource, err);
-                        return;
-                    }
-                    if (bc.layerOptimize){
-                        optCss = root.toCSS({compress: true, strictMaths: false, strictUnits: false});
-                        fs.writeFile(optCssFilename, bc.newlineFilter(optCss, resource, "writeAmd"), resource.encoding, function(err){
-                            callback(resource, err);
-                        })
-                    } else {
-                        callback(resource, err);
-                    }
-                })
-            })
+            callback(resource, err);
+            return;
         });
     };
 });

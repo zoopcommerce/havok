@@ -1,0 +1,60 @@
+<h1>Carousel</h1>
+
+<p>Simply use <code>w-carousel</code> tag to create a <a href="/api/havok/widget/Carousel.html">havok/widget/Carousel</a>. Eg:</p>
+
+<div class="bs-docs-example">
+    <w-carousel>
+        {% include 'widgets/img/carousel-01.twig' %}
+        {% include 'widgets/img/carousel-02.twig' %}
+        {% include 'widgets/img/carousel-03.twig' %}
+    </w-carousel>
+</div>
+<pre class="prettyprint linenums">
+{% set carouselExample1 %}
+<w-carousel>
+    <img ... >
+    <img ... >
+    <img ... >
+</w-carousel>{% endset %}{{carouselExample1|e}}
+</pre>
+
+<h2>Adding captions</h2>
+
+<div class="bs-docs-example">
+    <w-carousel>
+        <figure class="active">
+            {% include 'widgets/img/carousel-01.twig' %}
+            <figcaption>
+                <h4>First Thumbnail label</h4>
+                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            </figcaption>
+        </figure>
+        <figure>
+            {% include 'widgets/img/carousel-02.twig' %}
+            <figcaption>
+                <h4>Second Thumbnail label</h4>
+                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            </figcaption>
+        </figure>
+        <figure>
+            {% include 'widgets/img/carousel-03.twig' %}
+            <figcaption>
+                <h4>Third Thumbnail label</h4>
+                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            </figcaption>
+        </figure>
+    </w-carousel>
+</div>
+<pre class="prettyprint linenums">
+{% set carouselExample2 %}
+    <w-carousel>
+        <figure class="active">
+            <img ... >
+            <figcaption>
+                <h4>First Thumbnail label</h4>
+                <p>Cras justo odio, dapibus ...</p>
+            </figcaption>
+        </figure>
+        ...
+    </w-carousel>{% endset %}{{carouselExample2|e}}
+</pre>

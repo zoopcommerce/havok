@@ -1,0 +1,17 @@
+<h1>Query Cache</h1>
+
+<p><code>havok/store/QueryCache</code> is a store wrapper that extends <code>havok/store/Cache</code> to also cache query results.</p>
+
+<p>Eg:</p>
+
+<pre class="prettyprint linenums">
+require(['havok/store/QueryCache', 'dojo/store/JsonRest', 'dojo/storeMemory'], function(storeManager, JsonRest, Memory){
+    var store = new QueryCache(
+        new JsonRest({target: 'http://myserver.com'}), //master store
+        new Memory //slave store
+    );
+}</pre>
+
+<p>By default the query cache will be cleared each time a <code>put</code>, <code>add</code>, or <code>remove</code> is made against the store.</p>
+
+<p>The query cache can be cleared manually with the <code>clearQueryCache</code> function.</p>

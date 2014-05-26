@@ -1,0 +1,60 @@
+<h1>Select</h1>
+
+<p>Use <code>f-select</code> to create a <a href="/api/havok/form/Select.html">havok/form/Select</a> that provides nicely styled select.</p>
+
+<h2>Example</h2>
+<div class="bs-docs-example">
+    <d-formspy class="form-horizontal">
+        <f-select label="State" help-mssages="please select a state">
+            <option value="NSW">New South Wales</option>
+            <option value="Qld">Queensland</option>
+            <option value="Vic">Victoria</option>
+            <option value="SA">South Australia</option>
+            <option value="NT">Northern Territory</option>
+            <option value="WA">Western Australia</option>
+            <option value="ACT">Australian Capital Territory</option>
+            <option value="Tas">Tasmania</option>
+        </f-select>
+    </d-formspy>
+</div>
+
+<pre class="prettyprint linenums">
+{% set selectExample1 %}
+<f-select label="State" help-mssages="please select a state">
+    <option value="NSW">New South Wales</option>
+    <option value="Qld">Queensland</option>
+    ...
+    <option value="Tas">Tasmania</option>
+</f-select>{% endset %}{{selectExample1|e}}
+</pre>
+
+
+<h2>Predefined selection</h2>
+<div class="bs-docs-example">
+    <d-formspy class="form-horizontal">
+        <f-select label="State" value="NSW">
+            <option value="NSW">New South Wales</option>
+            <option value="Qld">Queensland</option>
+            <option value="Vic">Victoria</option>
+            <option value="SA">South Australia</option>
+            <option value="NT">Northern Territory</option>
+            <option value="WA">Western Australia</option>
+            <option value="ACT">Australian Capital Territory</option>
+            <option value="Tas">Tasmania</option>
+        </f-select>
+    </d-formspy>
+</div>
+
+<pre class="prettyprint linenums">
+{% set selectExample2 %}
+<f-select label="State" value="NSW">
+    <option value="NSW">New South Wales</option>
+    <option value="Qld">Queensland</option>
+    ...
+    <option value="Tas">Tasmania</option>
+</f-select>{% endset %}{{selectExample2|e}}
+</pre>
+
+<h2>Using a store</h2>
+
+<p>Select can use a store, see <a href="/stores.html#forms">forms with stores</a></p>

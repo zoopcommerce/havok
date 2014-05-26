@@ -1,0 +1,12 @@
+<p>{{shortName}} is a mixin. It is not intended to be used alone.</p>
+<p>To extend a class with {{shortName}} use <code>declare</code>. Eg:</p>
+
+<pre class="prettyprint linenums">
+require(['dojo/_base/declare', 'my/parent/class', '{{location}}'], function(declare, MyParent, {{shortName}}){
+    var MyChildClass = declare([MyParent, {{shortName}}], function(){
+        //other child extensions here
+    });
+
+    var child = new MyChildClass; //create an instance of MyChildClass
+});
+</pre>

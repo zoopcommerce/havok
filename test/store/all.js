@@ -1,0 +1,4 @@
+define([
+    './testManager',
+    './testThrottle'
+], function () {});

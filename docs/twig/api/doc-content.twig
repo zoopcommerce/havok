@@ -1,0 +1,151 @@
+{% extends "api-content.twig" %}
+
+{% set apiPath = rootPath ~ 'api/' %}
+
+{% block mainContent %}
+<section>
+    <div class="well">
+        <h1>
+            {% if type == 'constructor' %}<span class='fa fa-wrench'></span> {% endif %}
+            {% if type == 'object' %}<span class='fa fa-circle-o'></span> {% endif %}
+            {% if type == 'instance' %}<span class='fa fa-circle'></span> {% endif %}
+            {% if type == 'function' %}<span class='fa fa-cog'></span> {% endif %}
+            {{location}}
+        </h1>
+        {% if superclass %}
+            <p><span class="fa fa-code-fork"></span> Inherits from <a href="{{apiPath}}{{superclass}}.html">{{superclass}}</a>
+            {% if mixins|length > 1 %}, mixins {% for mixin in mixins %}{% if not loop.first %}<a href="{{apiPath}}{{mixin}}.html">{{mixin}}</a>{% if not loop.last %}, {% endif %}{% endif %}{% endfor %}{% endif %}
+            </p>
+        {% endif %}
+        <div class="lead">{{summary}}</div>
+        {{description}}
+
+        {% if type == 'constructor' %}
+            <h2>Usage</h2>
+            {% if shortName|slice(0,1) == '_' %}
+                {% include 'api/_mixin-usage.twig' %}
+            {% else %}
+                {% include 'api/_constructor-usage.twig' %}
+            {% endif %}
+        {% endif %}
+
+        {% if returnTypes|length > 0 %}
+            <p><span class="strong">Returns:</span> {% for type in returnTypes %}{{type}}{% if not loop.last %} | {% endif %}{% endfor %}</p>
+        {% endif %}
+
+        {% if properties %}
+            <h2>Properties</h2>
+            <p class="muted">All properties are filtered from view.</p>
+            <w-accordion style="position: relative; top: -30px; background-color: #FBFBFB;">
+                {% for prop in properties %}
+                    <section class="{% if prop.private %}private hide{% endif %} {% if prop.from != location %}inherited hide{% endif %}">
+                        <header>{% if prop.private %}<span class='fa fa-key'></span> {% endif %}{% if prop.from != location %}<span class="fa fa-code-fork"></span> {% endif %}{{prop.name}}</header>
+                        <h4>{{prop.name}}{% if prop.private %}<span class='muted'> - private</span>{% endif %}</h4>
+                        {% if prop.from is defined %}<p>Defined by <a href="{{apiPath}}{{prop.from}}.html">{{prop.from}}</a></p>{% endif %}
+                        <p><strong>Types:</strong> {% for type in prop.types %}{{type}}{% if not loop.last %}, {% endif %}{% endfor %}</p>
+                        {% if prop.tags %}<p><strong>Tagged:</strong> {% for tag in prop.tags %}{{tag}}{% if not loop.last %}, {% endif %}{% endfor %}</p>{% endif %}
+                        {% if prop.summary is defined %}<p class="lead">{{prop.summary}}</p>{% endif %}
+                        {% if prop.description is defined %}{{prop.description}}{% endif %}
+                    </section>
+                {% endfor %}
+            </w-accordion>
+        {% endif %}
+
+        {% if methods %}
+            <h2>Methods</h2>
+            <p class="muted">All methods are filtered from view.</p>
+            <w-accordion style="position: relative; top: -30px; background-color: #FBFBFB;">
+                {% for method in methods %}
+                    <section class="{% if method.private %}private hide{% endif %} {% if method.from != location %}inherited hide{% endif %}">
+                        <header>{% if method.private %}<span class='fa fa-key'></span> {% endif %}{% if method.from != location %}<span class="fa fa-code-fork"></span> {% endif %}{{method.name}}</header>
+                        <h4>{{method.name}}({% for param in method.parameters %}{{param.name}}{% if not loop.last %}, {% endif %}{% endfor %}){% if method.private %}<span class='muted'> - private</span>{% endif %}</h4>
+                        {% if method.from is defined %}<p>Defined by <a href="{{apiPath}}{{method.from}}.html">{{method.from}}</a></p>{% endif %}
+                        {% if method.summary is defined %}<p class="lead">{{method.summary}}</p>{% endif %}
+                        {% if method.description is defined %}{{method.description}}{% endif %}
+                        {% if method.parameters|length > 0 %}
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 100px;">Parameter</th>
+                                        <th style="width: 50px;">Type</th>
+                                        <th style="width: 50px;">Usage</th>
+                                        <th>Summary</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for param in method.parameters %}
+                                        <tr>
+                                            <td>{{param.name}}</td>
+                                            <td>{% for type in param.types %}{{type}}{% if not loop.last %} | {% endif %}{% endfor %}</td>
+                                            <td>{{param.usage}}</td>
+                                            <td>{{param.summary}}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        {% endif %}
+                        {% if method.returnTypes|length > 0 %}
+                            <p><span class="strong">Returns:</span> {% for type in method.returnTypes %}{{type}}{% if not loop.last %} | {% endif %}{% endfor %}</p>
+                        {% endif %}
+
+                        {% if method.examples %}
+                            <h5>Examples</h5>
+                            {% for example in method.examples %}
+                                <pre class="prettyprint linenums">{{example}}</pre>
+                            {% endfor %}
+                        {% endif %}
+                    </section>
+                {% endfor %}
+            </w-accordion>
+        {% endif %}
+
+        {% if events %}
+            <h2>Events</h2>
+            <p class="muted">All events are filtered from view.</p>
+            <w-accordion style="position: relative; top: -30px; background-color: #FBFBFB;">
+                {% for event in events %}
+                    <section class="{% if event.private %}private hide{% endif %} {% if event.from != location %}inherited hide{% endif %}">
+                        <header>{% if event.private %}<span class='fa fa-key'></span> {% endif %}{% if event.from != location %}<span class="fa fa-code-fork"></span> {% endif %}{{event.name}}</header>
+                        <h4>{{event.name}}({% for param in event.parameters %}{{param.name}}{% if not loop.last %}, {% endif %}{% endfor %}){% if event.private %}<span class='muted'> - private</span>{% endif %}</h4>
+                        {% if event.from is defined %}<p>Defined by <a href="{{apiPath}}{{event.from}}.html">{{event.from}}</a></p>{% endif %}
+                        {% if event.summary is defined %}<p class="lead">{{event.summary}}</p>{% endif %}
+                        {% if event.description is defined %}{{event.description}}{% endif %}
+                        {% if event.parameters|length > 0 %}
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 100px;">Parameter</th>
+                                        <th style="width: 50px;">Type</th>
+                                        <th style="width: 50px;">Usage</th>
+                                        <th>Summary</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for param in event.parameters %}
+                                        <tr>
+                                            <td>{{param.name}}</td>
+                                            <td>{% for type in param.types %}{{type}}{% if not loop.last %} | {% endif %}{% endfor %}</td>
+                                            <td>{{param.usage}}</td>
+                                            <td>{{param.summary}}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        {% endif %}
+                        {% if event.returnTypes|length > 0 %}
+                            <p><span class="strong">Returns:</span> {% for type in event.returnTypes %}{{type}}{% if not loop.last %} | {% endif %}{% endfor %}</p>
+                        {% endif %}
+
+                        {% if event.examples %}
+                            <h5>Examples</h5>
+                            {% for example in event.examples %}
+                                <pre class="prettyprint linenums">{{example}}</pre>
+                            {% endfor %}
+                        {% endif %}
+                    </section>
+                {% endfor %}
+            </w-accordion>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

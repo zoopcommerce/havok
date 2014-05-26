@@ -1,0 +1,146 @@
+<h1>Using Form Widgets</h1>
+
+<p>All form widgets have a number of common behaviors.</p>
+
+<h2>Flow</h2>
+
+<h4>Block</h4>
+
+<p>By default all form widgets use block positioning, and will flow each one below the other:</p>
+
+<div class="bs-docs-example">
+    <div class="form-horizontal">
+        <f-textbox placeholder="input 1"></f-textbox>
+        <f-textbox placeholder="input 2"></f-textbox>
+    </div>
+</div>
+
+<h4>Inline</h4>
+
+<p>Use the <code>inline</code> attribute to make inputs display inline for compact forms:</p>
+<div class="bs-docs-example">
+    <div class="form-horizontal">
+        <f-textbox inline placeholder="input 1"></f-textbox>
+        <f-textbox inline placeholder="input 2"></f-textbox>
+    </div>
+</div>
+<pre class="prettyprint linenums">
+{% set formWidgetExample1 %}
+<f-textbox inline placeholder="input 1"></f-textbox>
+<f-textbox inline placeholder="input 2"></f-textbox>{% endset %}{{formWidgetExample1|e}}
+</pre>
+
+<h2>Labels</h2>
+
+<p>Add a label to any form widget</p>
+
+<h4>Using attributes</h4>
+<p>Simple and clean</p>
+<div class="bs-docs-example">
+    <div class="form-horizontal">
+        <f-textbox label="name"></f-textbox>
+    </div>
+</div>
+<pre class="prettyprint linenums">
+{% set formWidgetExample2 %}
+<f-textbox label="name"></f-textbox>{% endset %}{{formWidgetExample2|e}}
+</pre>
+
+<h4>Set using tags</h4>
+<p>Allows greater control over style.</p>
+<div class="bs-docs-example">
+    <div class="form-horizontal">
+        <f-textbox placeholder="name">
+            <label><em>name</em></label>
+        </f-textbox>
+    </div>
+</div>
+<pre class="prettyprint linenums">
+{% set formWidgetExample3 %}
+<f-textbox placeholder="name">
+    <label><em>name</em></label>
+</f-textbox>{% endset %}{{formWidgetExample3|e}}
+</pre>
+
+<h2>Help messages</h2>
+
+<div class="bs-docs-example">
+    <div class="form-horizontal">
+        <f-textbox label="Name" help-messages="please enter your full name"></f-textbox>
+    </div>
+</div>
+
+
+<pre class="prettyprint linenums">
+{% set formWidgetExample4 %}
+<f-textbox label="Name" help-messages="please enter your full name"></f-textbox>{% endset %}{{formWidgetExample4|e}}
+</pre>
+
+<h4>Multiple help messages</h4>
+<div class="bs-docs-example">
+    <div class="form-horizontal">
+        <f-textbox label="Name" help-messages='["please enter your full name", "eg: John Smith"]'></f-textbox>
+    </div>
+</div>
+
+<pre class="prettyprint linenums">
+{% set formWidgetExample5 %}
+<f-textbox label="Name" help-messages='["please enter your full name", "eg: John Smith"]'></f-textbox></f-textbox>{% endset %}{{formWidgetExample5|e}}
+</pre>
+
+<h4>Using markup</h4>
+<div class="bs-docs-example">
+    <div class="form-horizontal">
+        <f-textbox>
+            <label>name</label>
+            <span help-message>Please enter your full name</span>
+            <span help-message>eg: John Smith</span>
+        </f-textbox>
+    </div>
+</div>
+
+<pre class="prettyprint linenums">
+{% set formWidgetExample6 %}
+<f-textbox>
+    <label>name</label>
+    <span help-message>Please enter your full name</span>
+    <span help-message>eg: John Smith</span>
+</f-textbox>{% endset %}{{formWidgetExample6|e}}
+</pre>
+
+<h4>Message position</h4>
+
+<p>There are three possible values for <code>message-position</code>:</p>
+
+<ul>
+    <li><b>auto:</b> if the message is one line, display inline. If it is multiline, display block</li>
+    <li><b>inline:</b> always display message inline. If the message is more than one line, only the first will be shown.</li>
+    <li><b>block:</b> always display message as block, even when there is only one line.</li>
+</ul>
+<div class="bs-docs-example">
+    <div class="form-horizontal">
+        <f-textbox label="name" message-position="block" help-messages="Please enter your full name"></f-textbox>
+    </div>
+</div>
+
+<pre class="prettyprint linenums">
+{% set formWidgetExample7 %}
+<f-textbox label="name" message-position="block" help-messages="Please enter your full name"></f-textbox>{% endset %}{{formWidgetExample7|e}}
+</pre>
+
+<h2>Required star</h2>
+<p>A required star will automatically be added to required form inputs. However, if you want to force a required star to show, use the <code>required-star</code> attribute.</p>
+<div class="bs-docs-example">
+    <div class="form-horizontal">
+        <f-textbox label="name" required-star></f-textbox>
+    </div>
+</div>
+
+<pre class="prettyprint linenums">
+{% set formWidgetExample8 %}
+<f-textbox label="name" required-star></f-textbox>{% endset %}{{formWidgetExample8|e}}
+</pre>
+
+<h2>Post Activity</h2>
+
+<p>All form widgets have a <code>postActivity</code> property which is set to true after user interaction.</p>

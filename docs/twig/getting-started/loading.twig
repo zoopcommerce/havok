@@ -1,0 +1,83 @@
+<h1>Loading</h1>
+
+<p class="lead">Load Havok in your pages.</p>
+
+<h2>Quick and Dirty</h2>
+<p>If you are using the Havok dist you need to link <code>havok.css</code>, and load <code>havok.js</code>:</p>
+<pre class="prettyprint linenums">
+{% set loadingExample1 %}
+<link rel="stylesheet" href="path/to/havok.css">
+<script src="path/to/havok.js"></script>{% endset %}{{loadingExample1|e}}
+</pre>
+
+<h2>Simple development confiuration</h2>
+<p>Configure havok so you can develop your own javascript modules against it. In development mode all js modules are loaded async. In addition, less files are also loaded async and compliled client side. This makes development mode very flexible, responsive to code changes, and simple to debug. However, it does mean page loads are slow, so don't use this for production code.</p>
+
+<p>First build havok:</p>
+<pre class="prettyprint linenums">
+node path/to/havok/build/make.js
+</pre>
+
+<p>When the build is complete, you will find havok and all havok dependencies nicely arranged in the <code>path/to/havok/release</code> directory.</p>
+
+<p>Add the following to your page, and you'll be ready to rock:</p>
+<pre class="prettyprint linenums">
+{% set loadingExample2 %}
+<script type="text/javascript">
+	dojoConfig = {
+		isDebug: true,
+		async: true,
+		deps: ['havok/ready!'],
+        merge: ['havok/config']
+	}
+</script>
+<script src="havok/release/dojo/dojo.js"></script>{% endset %}{{loadingExample2|e}}
+</pre>
+
+<p>To add your own AMD package to the dojo loader, use:</p>
+<pre class="prettyprint linenums">
+{% set loadingExample3 %}
+<script type="text/javascript">
+	dojoConfig = {
+		isDebug: true,
+		async: true,
+		deps: ['havok/ready!'],
+        merge: ['havok/config'],
+        packages: [
+            {name: 'mypackage', location: 'path/to/my/package'}
+        ]
+	}
+</script>
+<script src="havok/release/dojo/dojo.js"></script>{% endset %}{{loadingExample3|e}}
+</pre>
+
+<p>Including <code>deps: ['havok/ready!']</code> will bootstrap havok. For more information about bootstrapping read about <a href="./services.html">havok/ready!</a></p>
+<p>Including <code>merge: ['havok/config']</code> will use the default havok configuration. For more information read about the <a href="./services.html">config merger</a></p>
+
+<h2>Advanced development configuration</h2>
+<p>You can load havok, dojo, and all dependencies without first building havok. This is particularly useful if you also intend to work on havok source code itself.</p>
+<p>To do so requires remapping paths on the server side.</p>
+<p>Add the following to your page:</p>
+
+<pre class="prettyprint linenums">
+{% set loadingExample4 %}
+<script type="text/javascript">
+	dojoConfig = {
+		isDebug: true,
+		async: true,
+		deps: ['havok/ready!'],
+        merge: ['havok/config']
+	}
+</script>
+<script src="dojo/dojo.js"></script>{% endset %}{{loadingExample4|e}}
+</pre>
+
+<p>You will then need to map requests for AMD modules to their correct file locations. If you are using <code>node.js</code>, then the <code>havok/dev/packages.js</code> can help you do this.</p>
+
+<h2>Production configuration</h2>
+<p>It is strongly recommended that you use the havok build tools to create a bootable layer that is used in production. Load your built layer css and js, and you're ready to go:</p>
+<pre class="prettyprint linenums">
+{% set loadingExample5 %}
+<link rel="stylesheet" href="path/to/layer.css">
+<script src="path/to/bootable/layer.js"></script>{% endset %}{{loadingExample5|e}}
+</pre>

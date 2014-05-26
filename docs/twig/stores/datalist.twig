@@ -1,0 +1,19 @@
+<h1>Datalist</h1>
+
+<p>There are many different ways to add a store to the manager, depending on your needs.</p>
+
+<p>Stores can be added using markup. If you place a <code>datalist</code> anywhere in your document with it's <code>id</code> attribute set, then <a href="/api/havok/store/Datalist">havok/store/Datalist</a> will be used to turn that <code>datalist</code> into a store. Eg:</p>
+
+<pre class="prettyprint linenums">
+{% set ex1 %}
+<datalist id="myDatalistStore">
+    <option data-id="home">home</option>
+    <option data-id="navs">#navs anchor</option>
+    <option data-id="disabled">disabled pill</option>
+</datalist>
+<script>
+require(['havok/store/manager!myDatalistStore'], function(myDatalistStore){
+    //do something with myDatalistStore
+}
+</script>
+{% endset %}{{ex1|e}}</pre>

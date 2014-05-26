@@ -3,7 +3,7 @@ define(
     function(){
         return {
             merge: [
-                'havok/test/config/asset/Config3'
+                'test/config/asset/Config3'
             ],
             configTest: {
                 test1: {

@@ -8,23 +8,22 @@ define(
                 //The default directives are:
                 //directives: {
                 //    declare: false,
-                //    define: false,
                 //    cache: true
                 //}
 
                 //Get instance with no base set.
                 //When no base is set, the base is assumed to be the config property name
-                //This will return an instnace of havok/test/di/asset/Penguin
-                'havok/test/di/asset/Penguin': {
+                //This will return an instnace of test/di/asset/Penguin
+                'test/di/asset/Penguin': {
                     params: {
                         name: 'kate'
                     }
                 },
 
                 //Create with base set:
-                //This will return an instnace of havok/test/di/asset/Zoo
+                //This will return an instnace of test/di/asset/Zoo
                 'zooWithBase': {
-                    base: 'havok/test/di/asset/Zoo'
+                    base: 'test/di/asset/Zoo'
                 },
 
                 //Base set to another identifier
@@ -43,10 +42,10 @@ define(
                 },
 
                 //Create instance and mixin some params:
-                //This will return an instnace of havok/test/di/asset/Zoo,
+                //This will return an instnace of test/di/asset/Zoo,
                 //and mixin values from the params object into the instance
                 'zooParams': {
-                    base: 'havok/test/di/asset/Zoo',
+                    base: 'test/di/asset/Zoo',
                     params: {
                         name: 'Zoo with param'
                     }
@@ -54,7 +53,7 @@ define(
 
                 //Return module with params mixedin
                 'foodsParams': {
-                    base: 'havok/test/di/asset/foods',
+                    base: 'test/di/asset/foods',
                     params: {
                         penguin: 'fish',
                         meerkat: 'grubs'
@@ -66,7 +65,7 @@ define(
                 //It tells the di to create a new intance of the
                 //module and return that, if the module has a declare
                 'zooDeclareFalse': {
-                    base: 'havok/test/di/asset/Zoo',
+                    base: 'test/di/asset/Zoo',
                     directives: {
                         declare: false
                     },
@@ -81,7 +80,7 @@ define(
                 //This effectively declares a new module. Note that a constructor
                 //will be returned, not an instnace.
                 'ZooDeclareTrue': {
-                    base: 'havok/test/di/asset/Zoo',
+                    base: 'test/di/asset/Zoo',
                     directives: {
                         declare: true
                     },
@@ -95,7 +94,7 @@ define(
                 //The next time get is called, the cached result will be returned.
                 //directives.cache: true is the default setting
                 'zooCacheTrue': {
-                    base: 'havok/test/di/asset/Zoo',
+                    base: 'test/di/asset/Zoo',
                     directives: {
                         cache: true
                     },
@@ -108,7 +107,7 @@ define(
                 //Tells the di not to cache this result.
                 //The next time get is called, the a new instnace will be created.
                 'zooCacheFalse': {
-                    base: 'havok/test/di/asset/Zoo',
+                    base: 'test/di/asset/Zoo',
                     directives: {
                         cache: false
                     },
@@ -117,71 +116,12 @@ define(
                     }
                 },
 
-                //define: false
-                //This is the default setting. Tells the di not to create a new
-                //base from this config.
-                'zooDefineFalse': {
-                    base: 'havok/test/di/asset/Zoo',
-                    directives: {
-                        define: false
-                    },
-                    params: {
-                        name: 'Zoo define false'
-                    }
-                },
-
-                //define: true
-                //Tells the di to use dojo/_base/define to create a new base.
-                //After this object has been got, the following code will work:
-                //
-                //require('zooDefineTrue', function(zooDefineTrue){
-                //    console.debug(ZooDefineBaseTrue.name) //prints 'Zoo defineBase true'
-                //})
-                //
-                'zooDefineTrue': {
-                    base: 'havok/test/di/asset/Zoo',
-                    directives: {
-                        define: true
-                    },
-                    params: {
-                        name: 'Zoo define true'
-                    }
-                },
-
-                //define: true
-                //Demonstrates defineBase for a module which does not have a declare
-                //
-                'foodsDefineTrue': {
-                    base: 'havok/test/di/asset/foods',
-                    directives: {
-                        define: true
-                    },
-                    params: {
-                        penguin: 'fish',
-                        meerkat: 'grubs'
-                    }
-                },
-
-                //Declare: true and Define: true
-                //This combination effectively creates a new module that can
-                //be loaded normally with the AMD loader: ie require(['ZooDeclareAndDefine'], function(){})
-                'ZooDeclareAndDefine': {
-                    base: 'havok/test/di/asset/Zoo',
-                    directives: {
-                        declare: true,
-                        define: true
-                    },
-                    params: {
-                        name: 'Zoo declared and defined'
-                    }
-                },
-
                 'lion1': {
-                    base: 'havok/test/di/asset/Lion'
+                    base: 'test/di/asset/Lion'
                 },
 
                 'lion2': {
-                    base: 'havok/test/di/asset/Lion',
+                    base: 'test/di/asset/Lion',
                     params: {
                         name: 'liz'
                     }
@@ -193,21 +133,21 @@ define(
                 //This particular zoo will get the instances of lion1 and lion2
                 //configured directly above
                 'zooWithGets': {
-                    base: 'havok/test/di/asset/Zoo',
+                    base: 'test/di/asset/Zoo',
                     params: {
                         name: 'Zoo with gets'
                     },
                     gets: {
                         lion1: 'lion1',
                         lion2: 'lion2',
-                        tiger: 'havok/test/di/asset/Tiger'
+                        tiger: 'test/di/asset/Tiger'
                     }
                 },
 
                 //Gets with array
                 //This will inject an array of objects created with di.get
                 'zooWithGetsArray': {
-                    base: 'havok/test/di/asset/Zoo',
+                    base: 'test/di/asset/Zoo',
                     params: {
                         name: 'Zoo with gets array'
                     },
@@ -224,13 +164,13 @@ define(
                 //the config for creating the object, rather than looking for
                 //and identifier in the di config
                 'zooWithNestedGetsConfig': {
-                    base: 'havok/test/di/asset/Zoo',
+                    base: 'test/di/asset/Zoo',
                     params: {
                         name: 'Zoo with nested gets config'
                     },
                     gets: {
                         tiger: {
-                            base: 'havok/test/di/asset/Tiger',
+                            base: 'test/di/asset/Tiger',
                             params: {
                                 name: 'tim'
                             }
@@ -238,7 +178,7 @@ define(
                         cage: [
                             'lion2',
                             {
-                                base: 'havok/test/di/asset/Lion',
+                                base: 'test/di/asset/Lion',
                                 params: {
                                     name: 'emma'
                                 }
@@ -257,7 +197,7 @@ define(
                 //underling object will be loaded, the method called, and the result
                 //passed back through the proxy.
                 'zooWithProxyMethods': {
-                    base: 'havok/test/di/asset/Zoo',
+                    base: 'test/di/asset/Zoo',
                     proxyMethods: [
                         'listAnimals'
                     ],
@@ -267,12 +207,12 @@ define(
                     gets: {
                         lion1: 'lion1',
                         lion2: 'lion2',
-                        tiger: 'havok/test/di/asset/Tiger'
+                        tiger: 'test/di/asset/Tiger'
                     }
                 },
 
                 'tigerWithProxyMethods': {
-                    base: 'havok/test/di/asset/Tiger',
+                    base: 'test/di/asset/Tiger',
                     params: {
                         name: 'Josh'
                     },
@@ -283,7 +223,7 @@ define(
 
                 //Proxies can also be inject in the same way as gets
                 'zooWithProxies': {
-                    base: 'havok/test/di/asset/Zoo',
+                    base: 'test/di/asset/Zoo',
                     proxyMethods: [
                         'listAnimals'
                     ],
@@ -295,7 +235,7 @@ define(
                         cage: [
                             'lion2',
                             {
-                                base: 'havok/test/di/asset/Lion',
+                                base: 'test/di/asset/Lion',
                                 params: {
                                     name: 'emma'
                                 }
@@ -306,7 +246,7 @@ define(
 
                 //Array injections can be spread across params, gets and proxies
                 'zooWithSpreadArray': {
-                    base: 'havok/test/di/asset/Zoo',
+                    base: 'test/di/asset/Zoo',
                     params: {
                         animals: [
                             'cobra',

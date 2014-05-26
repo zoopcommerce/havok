@@ -1,0 +1,180 @@
+<h1>Parser</h1>
+
+<p class="lead">Brief and expressive syntax to add widgets to your pages</p>
+
+<p>The havok parser will transform static markup into dynamic widgets. The havok parser was written with the following aims:</p>
+
+<ul>
+    <li>Lighter and smaller than the default dojo parser.</li>
+    <li>Keep support basic compatability with dojo parser.</li>
+    <li>Allow brief expressive syntax.</li>
+    <li>Optionally support valid html</li>
+</ul>
+
+<h2>Use</h2>
+
+<p>To use the parser, load <code>havok/parser/parser</code> and call <code>parse</code>. Eg:</p>
+<pre class="prettyprint linenums">
+require(['havok/parser/parser', function(parser){
+    parser.parse();
+})
+</pre>
+
+<p>By default, the parser will parse the <code>document.body</code>. To restrict parsing to the children of a particular node, the pass that node to the <code>parse</code> function:</p>
+<pre class="prettyprint linenums">
+require(['havok/parser/parser', function(parser){
+    parser.parse(domNode);
+})
+</pre>
+
+<h2>complete! plugin</h2>
+
+<p>The <code>havok/parser/complete!</code> AMD plugin can be used to prevent a script from running until the parser has completed. Eg:</p>
+<pre class="prettyprint linenums">
+require(['havok/parser/complete!', function(){
+    //do something after parsing complete
+})
+</pre>
+
+<h2>Custom Tags</h2>
+
+<p>The havok parser uses custom tags. The tags are mapped to AMD modules via the parser config. For example, the following config maps the <code>w-modal</code> tag to the <code>havok/widget/Modal</code> module. When the parser finds a <code>w-modal</code> dom node, it will use that dom node to create an instance of <code>havok/widget/Modal</code>:</p>
+
+<pre class="prettyprint linenums">
+parser: {
+    tags: {
+        'w-modal' : 'havok/widget/Modal',
+    }
+}
+</pre>
+
+<p>By convention all havok custom tags which load widgets have a <code>w-</code> prefix. All havok custom tags with load form widgets have a <code>f-</code> prefix.</p>
+
+<p>You may add your own custom tags by simply adding to the parser config.</p>
+
+<p>The default parser config includes the following custom tags:</p>
+
+<ul>
+    <li><code>f-checkbox</code></li>
+    <li><code>f-checkbox-button-group</code></li>
+    <li><code>f-color-picker</code></li>
+    <li><code>f-credit-card-expiry</code></li>
+    <li><code>f-currency</code></li>
+    <li><code>f-date</code></li>
+    <li><code>f-email</code></li>
+    <li><code>f-form</code></li>
+    <li><code>f-hex-color</code></li>
+    <li><code>f-number</code></li>
+    <li><code>f-password</code></li>
+    <li><code>f-radio-button-group</code></li>
+    <li><code>f-select</code></li>
+    <li><code>f-textarea</code></li>
+    <li><code>f-textbox</code></li>
+    <li><code>f-text-editor</code></li>
+    <li><code>f-toggle-button</code></li>
+    <li><code>f-typeahead</code></li>
+    <li><code>f-validation-group</code></li>
+    <li><code>w-accordion</code></li>
+    <li><code>w-affix</code></li>
+    <li><code>w-alert</code></li>
+    <li><code>w-button</code></li>
+    <li><code>w-button-group</code></li>
+    <li><code>w-color-dropdown</code></li>
+    <li><code>w-date-dropdown</code></li>
+    <li><code>w-dragable</code></li>
+    <li><code>w-dropdown</code></li>
+    <li><code>w-dropdown-container</code></li>
+    <li><code>w-dropdown-submenu</code></li>
+    <li><code>w-dropdown-toggle</code></li>
+    <li><code>w-carousel</code></li>
+    <li><code>w-checkbox-button-group</code></li>
+    <li><code>w-modal</code></li>
+    <li><code>w-movable</code></li>
+    <li><code>w-nav-bar</code></li>
+    <li><code>w-nav-bar-links</code></li>
+    <li><code>w-nav-list</code></li>
+    <li><code>w-nav-pill</code></li>
+    <li><code>w-nav-tab</code></li>
+    <li><code>w-overlay</code></li>
+    <li><code>w-radio-button-group</code></li>
+    <li><code>w-tab-container</code></li>
+    <li><code>w-text-editor</code></li>
+    <li><code>w-text-toolbar</code></li>
+    <li><code>w-tree</code></li>
+    <li><code>w-toggle-button</code></li>
+    <li><code>w-tooltip</code></li>
+</ul>
+
+<h2>Custom Attributes</h2>
+
+<p>Any attributes defined in the markup will be passed in the <code>params</code> object to the widget constructor. For example, the following will set the <code>placeholder</code> property of the textbox widget:</p>
+
+<pre class="prettyprint linenums">
+{% set parserExample1 %}
+<f-textbox placeholder="Enter your name"></f-textbox>{% endset %}{{parserExample1|e}}
+</pre>
+
+<p>The parser will attempt to cast attributes into the correct type:</p>
+
+<ul>
+    <li><strong>Number:</strong> if the widget property matching with the attribute is a number, the string attribute will be cast to a number.</li>
+    <li><strong>Boolean:</strong> if the widget property matching with the attribute is boolean, the string attribute will be cast to boolean.</li>
+    <li><strong>Object:</strong> if the widget property matching with the attribute is an object, the string attribute will parsed using <code>JSON.parse</code>.</li>
+</ul>
+
+<h2>Mixins</h2>
+
+<p>Mixins can be registered with the parser using the config, much the same as tags. Eg:</p>
+
+<pre class="prettyprint linenums">
+parser: {
+    mixins: {
+        'store' : 'havok/widget/_StoreMixin'
+    }
+}
+</pre>
+
+<p>If a widget has an attribute defined by the parser mixins config, then the AMD module is mixed into the widget instance.</p>
+
+<p>For example, this will create a <code>havok/widget/NavPill</code> widget with <code>havok/widget/_StoreMixin</code> also mixed in.:</p>
+<pre class="prettyprint linenums">
+{% set parserExample2 %}
+<w-nav-pill store="navStore1"></w-nav-pill>{% endset %}{{parserExample2|e}}
+</pre>
+
+<h2>Dojo parser compatibility</h2>
+
+<p>The havok parser will read the following attributes, and process them in the same way as the dojo parser:</p>
+
+<ul>
+    <li><code>data-dojo-type</code></li>
+    <li><code>data-dojo-mixins</code></li>
+    <li><code>data-dojo-props</code></li>
+</ul>
+
+<p>The following two examples will result in exactly the same widget:</p>
+
+<pre class="prettyprint linenums">
+{% set parserExample3 %}
+<w-nav-pill active="home" store="navStore1"></w-nav-pill>{% endset %}{{parserExample3|e}}
+</pre>
+
+<pre class="prettyprint linenums">
+{% set parserExample4 %}
+<div data-dojo-type="havok/widget/NavPill"
+     data-dojo-mixins="havok/widget/_StoreMixin"
+     data-dojo-props="
+        active: 'home',
+        store: 'navStore1'
+    "
+></div>{% endset %}{{parserExample4|e}}
+</pre>
+
+<h2>Valid HTML</h2>
+
+<p>Clearly the havok parser's use of custom tags and custom attributes is not standard HTML. If this is an issue for your application, you have the following options:</p>
+
+<ul>
+    <li>Custom tags, as long as the tag name contains a <code>-</code> are valid in html5, and will not conflict with any future html5 tags. However, these custom tags do cause problems for older browsers like ie8. If you need to work with ie8 you have three options. Firstly you can use <code>data-dojo-type</code> annotation rather than the custom tags. Secondly you could register the custom tags with ie8 using <code>document.createElement('my-custom-tag')</code> before any other script is loaded. Thirdly you could use server side parsing to expand the custom tags into standard html before it arrives in the browser.</li>
+    <li>Custom attributes may clash with future html5 attributes and will not pass a html validator. Therefore, any attribute may be prefixed with <code>data-</code> or <code>data-havok-</code> and the parser will handle them correctly.</li>
+</ul>

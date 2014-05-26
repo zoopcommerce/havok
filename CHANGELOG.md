@@ -1,8 +1,13 @@
 Havok changelog
 ===============
 
-Welcome to BETA 1.0
+Welcome to Havok 2.0
 
-This is a huge step forward, and our first real step out into public.
-Previous incarnations of this lib existed at http://github.com/superdweebie/sijit. A
-lot has changed, and improved since then. We hope you like it.
+- New tree widget
+- Support for simpler declarative widget markup, including custom tags, and better use of html 5 sematic tags
+- New parser. Lighter than the standard dojo parser.
+- Api documentation added to the docs pages
+- Alternate zoop style added to the docs pages
+- Simpler havok bootstrapping
+- Experimental server side templating support
+- Removal of php from the docs building process - only need node.js now
